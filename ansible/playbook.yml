@@ -1,0 +1,12 @@
+---
+- hosts: all
+  remote_user: vagrant
+  roles:
+    - init
+    - php7.1-fpm
+    - apache-fpm
+    - mysql
+    - composer
+    - dotfiles
+    - app
+

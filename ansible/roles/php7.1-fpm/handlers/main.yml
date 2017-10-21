@@ -1,0 +1,3 @@
+---
+- name: restart php7.1-fpm
+  service: name=php7.1-fpm enabled=yes state=restarted

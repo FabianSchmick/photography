@@ -1,0 +1,12 @@
+---
+
+- name: Assures /home/vagrant dir exists
+  file: path=/home/vagrant state=directory
+
+- name: Custom dotfiles
+  sudo: yes
+  template: src=bashrc.tpl dest=/home/vagrant/.bashrc
+
+- name: Custom dotfiles
+  sudo: yes
+  template: src=bashrc.tpl dest=/root/.bashrc

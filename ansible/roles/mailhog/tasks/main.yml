@@ -1,0 +1,9 @@
+---
+- name: Download MailHog
+  sudo: yes
+  get_url: url=https://github.com/mailhog/MailHog/releases/download/v0.1.8/MailHog_linux_amd64 dest=/usr/local/bin/mailhog mode=0775
+
+- name: Start MailHog
+  sudo: yes
+  shell: nohup /usr/local/bin/mailhog > /var/log/mailhog.log 2>&1 &
+  when: inventory_hostname == "192.168.56.128"

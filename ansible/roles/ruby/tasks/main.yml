@@ -1,0 +1,22 @@
+---
+- name: Add ppa Repository (ruby)
+  sudo: yes
+  apt_repository: repo=ppa:brightbox/ruby-ng update_cache=yes
+
+- name: Install Ruby Packages
+  sudo: yes
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - ruby2.2
+    - libsqlite3-dev
+    - ruby-bundler
+
+# http://stackoverflow.com/questions/18490591/how-to-install-ruby-2-on-ubuntu-without-rvm
+- name: Configure ruby to 2.2
+  sudo: yes
+  shell: "{{ item }}"
+  with_items:
+    - "update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby2.2 999"
+    - "update-alternatives --install /usr/bin/rake rake /usr/bin/rake2.2 999"
+    - "update-alternatives --install /usr/bin/gem gem /usr/bin/gem2.2 999"
+    - "gem install capistrano"

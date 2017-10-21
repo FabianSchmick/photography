@@ -1,0 +1,4 @@
+---
+# put group vars here or directly in the inventory file
+timezone: Europe/Berlin
+servername: local.development.dev 192.168.56.128

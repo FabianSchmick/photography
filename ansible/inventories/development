@@ -1,0 +1,21 @@
+#!/bin/bash
+#see http://docs.ansible.com/developing_inventory.html and http://stackoverflow.com/questions/26859360/cant-use-ansible-inventory-file-because-it-is-executable
+cat <<EOF
+{
+    "vagrant": {
+        "hosts": [
+            "192.168.56.128"
+        ],
+        "vars": {
+            "ansible_connection": "local"
+        }
+    },
+    "_meta": {
+        "hostvars": {
+            "192.168.56.128": {
+                "host-variable": "demo"
+            }
+        }
+    }
+}
+EOF

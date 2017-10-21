@@ -1,0 +1,182 @@
+---
+- name: Add ppa Repository (php)
+  sudo: yes
+  apt_repository: repo=ppa:ondrej/php update_cache=yes
+
+- name: Install PHP Packages
+  sudo: yes
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - libapache2-mod-fastcgi
+    - php5.6-cgi
+    - php5.6-cli
+    - php5.6-common
+    - php5.6-curl
+    - php5.6-fpm
+    - php5.6-gd
+    - php-imagick
+    - php5.6-intl
+    - php5.6-mcrypt
+    - php5.6-mysql
+    - php5.6-readline
+    - php5.6-sqlite3
+    - php-xdebug
+    - php5.6-xsl
+    - php5.6-json
+    - php5.6-mbstring
+
+- name: Configure PHP-FPM to use UNIX sockets instead of TCP
+  sudo: yes
+  lineinfile: dest=/etc/php/5.6/fpm/pool.d/www.conf
+              regexp='listen = '
+              line='listen = /var/run/php5-fpm.sock'
+
+- name: ensure timezone is set in fpm php.ini
+  sudo: yes
+  lineinfile: dest=/etc/php/5.6/fpm/php.ini
+              regexp='date.timezone ='
+              line='date.timezone = {{ timezone }}'
+
+- name: ensure timezone is set in cgi php.ini
+  sudo: yes
+  lineinfile: dest=/etc/php/5.6/cgi/php.ini
+              regexp='date.timezone ='
+              line='date.timezone = {{ timezone }}'
+
+- name: ensure timezone is set in cli php.ini
+  sudo: yes
+  lineinfile: dest=/etc/php/5.6/cli/php.ini
+              regexp='date.timezone ='
+              line='date.timezone = {{ timezone }}'
+
+- name: ensure max_execution_time is set in fpm php.ini
+  sudo: yes
+  lineinfile: dest=/etc/php/5.6/fpm/php.ini
+              regexp='max_execution_time ='
+              line='max_execution_time = 900'
+
+- name: ensure max_execution_time is set in cgi php.ini
+  sudo: yes
+  lineinfile: dest=/etc/php/5.6/cgi/php.ini
+              regexp='max_execution_time ='
+              line='max_execution_time = 900'
+
+- name: ensure memory_limit is set in fpm php.ini
+  sudo: yes
+  lineinfile: dest=/etc/php/5.6/fpm/php.ini
+              regexp='memory_limit ='
+              line='memory_limit = 512M'
+
+- name: ensure memory_limit is set in cli php.ini
+  sudo: yes
+  lineinfile: dest=/etc/php/5.6/cli/php.ini
+              regexp='memory_limit ='
+              line='memory_limit = 512M'
+
+- name: ensure realpath_cache_size is set in fpm php.ini
+  sudo: yes
+  lineinfile: dest=/etc/php/5.6/fpm/php.ini
+              regexp='realpath_cache_size ='
+              line='realpath_cache_size = 4096k'
+
+- name: ensure realpath_cache_size is set in cli php.ini
+  sudo: yes
+  lineinfile: dest=/etc/php/5.6/cli/php.ini
+              regexp='realpath_cache_size ='
+              line='realpath_cache_size = 4096k'
+
+- name: ensure realpath_cache_size is set in cgi php.ini
+  sudo: yes
+  lineinfile: dest=/etc/php/5.6/cgi/php.ini
+              regexp='realpath_cache_size ='
+              line='realpath_cache_size = 4096k'
+
+- name: ensure realpath_cache_ttl is set in fpm php.ini
+  sudo: yes
+  lineinfile: dest=/etc/php/5.6/fpm/php.ini
+              regexp='realpath_cache_ttl ='
+              line='realpath_cache_ttl = 7200'
+
+- name: ensure realpath_cache_ttl is set in cli php.ini
+  sudo: yes
+  lineinfile: dest=/etc/php/5.6/cli/php.ini
+              regexp='realpath_cache_ttl ='
+              line='realpath_cache_ttl = 7200'
+
+- name: ensure realpath_cache_ttl is set in cgi php.ini
+  sudo: yes
+  lineinfile: dest=/etc/php/5.6/cgi/php.ini
+              regexp='realpath_cache_ttl ='
+              line='realpath_cache_ttl = 7200'
+
+- name: set SYMFONY_ENV variable
+  sudo: yes
+  ini_file: dest=/etc/php/5.6/fpm/pool.d/www.conf
+            section=www
+            option='env[SYMFONY_ENV]'
+            value='prod'
+  notify: restart php5.6-fpm
+
+- name: Set www group to vagrant
+  sudo: yes
+  ini_file: dest=/etc/php/5.6/fpm/pool.d/www.conf
+            section=www
+            option=group
+            value=vagrant
+  notify: restart php5.6-fpm
+
+- name: Set www group to vagrant
+  sudo: yes
+  ini_file: dest=/etc/php/5.6/fpm/pool.d/www.conf
+            section=www
+            option=user
+            value=vagrant
+  notify: restart php5.6-fpm
+
+- name: ensure upload_max_filesize size is set in fpm php.ini
+  sudo: yes
+  ini_file: dest=/etc/php/5.6/fpm/php.ini
+            section=PHP
+            option='upload_max_filesize'
+            value='128M'
+  notify: restart php5.6-fpm
+
+- name: ensure post_max_size size is set in fpm php.ini
+  sudo: yes
+  ini_file: dest=/etc/php/5.6/fpm/php.ini
+            section=PHP
+            option='post_max_size'
+            value='128M'
+  notify: restart php5.6-fpm
+
+- name: ensure upload_max_filesize size is set in cli php.ini
+  sudo: yes
+  ini_file: dest=/etc/php/5.6/cli/php.ini
+            section=PHP
+            option='upload_max_filesize'
+            value='128M'
+  notify: restart php5.6-fpm
+
+- name: ensure post_max_size size is set in cli php.ini
+  sudo: yes
+  ini_file: dest=/etc/php/5.6/cli/php.ini
+            section=PHP
+            option='post_max_size'
+            value='128M'
+  notify: restart php5.6-fpm
+
+- name: ensure upload_max_filesize size is set in cgi php.ini
+  sudo: yes
+  ini_file: dest=/etc/php/5.6/cgi/php.ini
+            section=PHP
+            option='upload_max_filesize'
+            value='128M'
+  notify: restart php5.6-fpm
+
+- name: ensure post_max_size size is set in cgi php.ini
+  sudo: yes
+  ini_file: dest=/etc/php/5.6/cgi/php.ini
+            section=PHP
+            option='post_max_size'
+            value='128M'
+  notify: restart php5.6-fpm

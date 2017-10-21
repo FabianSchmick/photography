@@ -1,0 +1,52 @@
+---
+- name: Add ppa Repository
+  sudo: yes
+  apt_repository: repo=ppa:nginx/stable update_cache=yes
+
+- name: Install package
+  sudo: yes
+  apt: pkg=nginx state=latest
+
+- name: disable sendfile
+  sudo: yes
+  lineinfile: dest=/etc/nginx/nginx.conf
+              regexp='sendfile \w+;'
+              line='sendfile off;'
+  notify: restart nginx
+
+- name: setup doc-suche.vm vhost
+  sudo: yes
+  template: src=nginx-vhost.conf.tpl dest=/etc/nginx/sites-enabled/foobar.development.local.conf
+  notify: restart nginx
+
+- name: php.conf for nginx
+  sudo: yes
+  template: src=fastcgi-php.conf.tpl dest=/etc/nginx/fastcgi-php.conf
+
+# - name:  update cli's php.ini
+#   ini_file: dest=/etc/php5/cli/php.ini section={{ item.section }} option={{ item.option }} value={{ item.value }}
+#   with_items:
+#     - { section: 'Date', option: 'date.timezone', value: '{{ timezone }}' }
+#
+# - name:  update fpm's php.ini
+#   ini_file: dest=/etc/php5/fpm/php.ini section={{ item.section }} option={{ item.option }} value={{ item.value }}
+#   with_items:
+#     - { section: 'Date', option: 'date.timezone', value: '{{ timezone }}' }
+#     - { section: 'PHP', option: 'display_errors', value: 'On' }
+#     - { section: 'opcache', option: 'opcache.enable', value: '0' }
+#     - { section: 'XDebug', option: 'xdebug.idekey', value: 'vagrant' }
+#     - { section: 'XDebug', option: 'xdebug.default_enable', value: '1' }
+#     - { section: 'XDebug', option: 'xdebug.remote_enable', value: '1' }
+#     - { section: 'XDebug', option: 'xdebug.remote_autostart', value: '1' }
+#     - { section: 'XDebug', option: 'xdebug.remote_handler', value: 'dbgp' }
+#     - { section: 'XDebug', option: 'xdebug.remote_connect_back', value: '1' }
+#     - { section: 'XDebug', option: 'xdebug.remote_port', value: '9000' }
+#   notify: restart php5-fpm
+#
+# - name:  update fpm's pool
+#   ini_file: dest=/etc/php5/fpm/pool.d/www.conf section={{ item.section }} option={{ item.option }} value={{ item.value }}
+#   with_items:
+#     - { section: 'www', option: 'listen', value: '{{ php.listen }}' }
+#     - { section: 'www', option: 'user', value: '{{ user }}' }
+#     - { section: 'www', option: 'group', value: '{{ user }}' }
+#   notify: restart php5-fpm

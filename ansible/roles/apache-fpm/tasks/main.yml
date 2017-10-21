@@ -1,0 +1,35 @@
+---
+- name: Install Apache
+  sudo: yes
+  apt: pkg=apache2 state=latest
+
+- name: Install Apache Modules
+  sudo: yes
+  apache2_module: state=present name={{ item }}
+  notify: restart apache
+  with_items:
+    - rewrite
+    - vhost_alias
+    - headers
+    - expires
+    - filter
+    - actions
+    - fastcgi
+
+- name: Change default apache site
+  sudo: yes
+  template: src=vhost.conf.tpl dest=/etc/apache2/sites-available/000-default.conf
+  notify: restart apache
+
+- name: Configure fastcgi
+  sudo: yes
+  template: src=fastcgi.conf.tpl dest=/etc/apache2/conf-available/php5-fpm.conf
+
+- name: Reload config
+  sudo: yes
+  command: a2enconf php5-fpm.conf
+  notify:
+    - restart apache
+
+- name: Ensure env is set
+  lineinfile: dest=/etc/apache2/envvars line='export APACHE_ARGUMENTS=-DDEVELOPMENT'

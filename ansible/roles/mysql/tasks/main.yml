@@ -1,0 +1,24 @@
+---
+- name: mysql | Install MySQL Packages
+  sudo: yes
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - mysql-server-5.6
+    - mysql-client-5.6
+    - python-mysqldb
+
+- name: Update root password for all root accounts
+  sudo: yes
+  mysql_user: name=root host={{ item }} check_implicit_admin=yes login_user=root login_password='' append_privs=yes
+  with_items:
+    - 127.0.0.1
+    - ::1
+    - localhost
+
+- name: Create application databases
+  sudo: yes
+  mysql_db: name=application state=present login_user=root login_password=''
+
+- name: mysql | Create users
+  sudo: yes
+  mysql_user: name=application password=application priv=application.*:ALL state=present login_user=root login_password=''
