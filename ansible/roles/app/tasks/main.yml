@@ -13,6 +13,9 @@
   sudo: yes
   shell: cd /vagrant && composer install
 
+- name: Update db schema
+  shell: cd /vagrant && php bin/console doctrine:schema:update -f
+
 - cron: name="Clear profiler cache"
         user="root"
         weekday="*"
