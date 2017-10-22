@@ -33,3 +33,9 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    AppBundle\Service\EntryService:
+        public: true
+        arguments:
+            $em: "@doctrine.orm.entity_manager"
+            $imageDir: "%image_directory%"

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <form id="newEntry" action="{{ path('entry_new') }}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="MAX_FILE_SIZE" value="16777216" /> {# 16MB #}
+
+        <label for="title">Title</label>
+        <input id="title" type="text" name="new[title]" required="required"/>
+
+        <label for="description">Description</label>
+        <textarea id="description" name="new[description]"></textarea>
+
+        <label for="author">Author</label>
+        <input id="author" type="text" name="new[author]"/>
+
+        <label for="image">Image</label>
+        <input id="image" type="file" name="new[image]" required="required" accept="image/*"/>
+
+        <label for="location">Location</label>
+        <input id="location" type="text" name="new[location]"/>
+
+        <label for="timestamp">Timestamp</label>
+        <input id="timestamp" type="date" name="new[timestamp]"/>
+
+        <label for="tags">Tags</label>
+        <select id="tags" name="new[tags][]" required="required" multiple="multiple">
+            <option value="" disabled="disabled" selected="selected">Select your option</option>
+            {% for tag in tags %}
+                <option value="{{ tag.name }}" >{{ tag.name }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit" name="submit">Submit form</button>
+    </form>
+
+{% endblock %}
