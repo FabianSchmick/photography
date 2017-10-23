@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <form id="editTag" action="{{ path('tag_edit', {'id': tag.id}) }}" method="post">
+        <input type="hidden" name="edit[id]" value="{{ tag.id }}"/>
+
+        <label for="name">Name</label>
+        <input id="name" type="text" name="edit[name]" value="{{ tag.name }}" required="required"/>
+
+        <button type="submit" name="submit">Submit form</button>
+    </form>
+
+{% endblock %}

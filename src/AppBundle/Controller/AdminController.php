@@ -106,4 +106,68 @@ class AdminController extends Controller
 
         return $this->redirect($this->generateUrl('entry_index'));
     }
+
+    /**
+     * List all tags
+     *
+     * @Route("/tag/", name="tag_index")
+     */
+    public function tagIndexAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $tags = $em->getRepository('AppBundle:Tag')->findAll();
+
+        return $this->render('admin/tag/index.html.twig', [
+            'tags' => $tags,
+        ]);
+    }
+
+    /**
+     * Save a new tag
+     *
+     * @Route("/tag/new", name="tag_new")
+     */
+    public function tagNewAction(Request $request)
+    {
+        if ($newTag = $request->request->get('new')) {
+            $tagService = $this->get('AppBundle\Service\TagService');
+
+            $tagService->saveTag($newTag);
+        }
+
+        return $this->render('admin/tag/new.html.twig', []);
+    }
+
+    /**
+     * Save a existing tag
+     *
+     * @Route("/tag/edit/{id}", name="tag_edit")
+     */
+    public function tagEditAction(Request $request, Tag $tag)
+    {
+        if ($editTag = $request->request->get('edit')) {
+            $tagService = $this->get('AppBundle\Service\TagService');
+
+            $tagService->saveTag($editTag);
+        }
+
+        return $this->render('admin/tag/edit.html.twig', [
+            'tag'  => $tag,
+        ]);
+    }
+
+    /**
+     * Delete a tag
+     *
+     * @Route("/tag/delete/{id}", name="tag_delete")
+     */
+    public function tagDeleteAction(Request $request, Tag $tag)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $em->remove($tag);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('tag_index'));
+    }
 }

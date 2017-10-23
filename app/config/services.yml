@@ -39,3 +39,8 @@ services:
         arguments:
             $em: "@doctrine.orm.entity_manager"
             $imageDir: "%image_directory%"
+
+    AppBundle\Service\TagService:
+        public: true
+        arguments:
+            $em: "@doctrine.orm.entity_manager"

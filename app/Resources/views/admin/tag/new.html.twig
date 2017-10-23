@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <form id="newTag" action="{{ path('tag_new') }}" method="post">
+        <label for="name">Name</label>
+        <input id="name" type="text" name="new[name]" required="required"/>
+
+        <button type="submit" name="submit">Submit form</button>
+    </form>
+
+{% endblock %}
