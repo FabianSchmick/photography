@@ -67,4 +67,28 @@ class AdminController extends Controller
             'tags' => $tags,
         ]);
     }
+
+    /**
+     * Save an existing entry
+     *
+     * @Route("/entry/edit/{id}", name="entry_edit")
+     */
+    public function entryEditAction(Request $request, Entry $entry)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $tags = $em->getRepository('AppBundle:Tag')->findAll();
+
+        if ($editEntry = $request->request->get('edit')) {
+            $image = $request->files->get('edit');
+
+            $entryService = $this->get('AppBundle\Service\EntryService');
+
+            $entryService->saveEntry($editEntry, $image);
+        }
+
+        return $this->render('admin/entry/edit.html.twig', [
+            'entry' => $entry,
+            'tags'  => $tags,
+        ]);
+    }
 }

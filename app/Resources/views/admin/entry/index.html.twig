@@ -14,8 +14,10 @@
                 <div class="entryTimestamp">
                     {{ entry.timestamp|date("d.m.Y") }}
                 </div>
+                <a href="{{ path('entry_edit', {'id': entry.id}) }}">Edit</a>
             </div>
         {% endfor %}
     </div>
+    <a href="{{ path('entry_new') }}">New Entry</a>
 
 {% endblock %}

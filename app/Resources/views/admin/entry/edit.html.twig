@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <form id="editEntry" action="{{ path('entry_edit', {'id': entry.id}) }}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="MAX_FILE_SIZE" value="16777216"/> {# 16MB #}
+        <input type="hidden" name="edit[id]" value="{{ entry.id }}"/>
+
+        <label for="title">Title</label>
+        <input id="title" type="text" name="edit[title]" value="{{ entry.title }}" required="required"/>
+
+        <label for="description">Description</label>
+        <textarea id="description" name="edit[description]">{{ entry.description }}</textarea>
+
+        <label for="author">Author</label>
+        <input id="author" type="text" name="edit[author]" value="{{ entry.author }}"/>
+
+        <label for="image">Image (old image gets only overwritten if you upload a new one)</label>
+        <input id="image" type="file" name="edit[image]" accept="image/*"/>
+
+        <label for="location">Location</label>
+        <input id="location" type="text" name="edit[location]" value="{{ entry.location }}"/>
+
+        <label for="timestamp">Timestamp</label>
+        <input id="timestamp" type="date" name="edit[timestamp]" value="{{ entry.timestamp|date("d.m.Y") }}"/>
+
+        <label for="tags">Tags</label>
+        <select id="tags" name="edit[tags][]" required="required" multiple="multiple">
+            {% for tag in tags %}
+                {% set continue = false %}
+                {% for entryTag in entry.tags %}
+                    {% if entryTag.name == tag.name %}
+                        {% set continue = true %}
+                        <option value="{{ tag.name }}" selected="selected">{{ tag.name }}</option>
+                    {% endif %}
+                {% endfor %}
+                {% if not continue %}
+                    <option value="{{ tag.name }}">{{ tag.name }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+
+        <button type="submit" name="submit">Submit form</button>
+    </form>
+
+{% endblock %}

@@ -49,6 +49,12 @@ class EntryService
     public function saveEntry(array $entry, $image)
     {
         $imageName = '';
+        $entryEntity = new Entry();
+        if (isset($entry['id'])) {
+            $entryEntity = $this->em->getRepository('AppBundle:Entry')->findOneBy(['id' => $entry['id']]);
+            $imageName = $entryEntity->getImage();
+        }
+
         if (isset($image['image'])) {
             /** @var UploadedFile $image */
             $imageName = md5(uniqid()) . '.' . $image['image']->guessExtension();
@@ -58,8 +64,6 @@ class EntryService
                 $imageName
             );
         }
-
-        $entryEntity = new Entry();
         $entryEntity->setTitle($entry['title']);
         $entryEntity->setDescription($entry['description']);
         $entryEntity->setAuthor($entry['author']);
