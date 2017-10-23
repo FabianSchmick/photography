@@ -91,4 +91,19 @@ class AdminController extends Controller
             'tags'  => $tags,
         ]);
     }
+
+    /**
+     * Delete an entry
+     *
+     * @Route("/entry/delete/{id}", name="entry_delete")
+     */
+    public function entryDeleteAction(Request $request, Entry $entry)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $em->remove($entry);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('entry_index'));
+    }
 }
