@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="entries">
+        {% for entry in entries %}
+            <div class="entry">
+                <div class="entryTitle">
+                    {{ entry.title }}
+                </div>
+                <div class="entryImage">
+                    <img src="{{ image_directory }}/{{ entry.image }}" alt="{{ entry.title }}">
+                </div>
+                <div class="entryTimestamp">
+                    {{ entry.timestamp|date("d.m.Y") }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

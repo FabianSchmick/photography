@@ -31,6 +31,21 @@ class AdminController extends Controller
     }
 
     /**
+     * List all entries
+     *
+     * @Route("/entry/", name="entry_index")
+     */
+    public function entryIndexAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entries = $em->getRepository('AppBundle:Entry')->findAll();
+
+        return $this->render('admin/entry/index.html.twig', [
+            'entries' => $entries,
+        ]);
+    }
+
+    /**
      * Save an new entry
      *
      * @Route("/entry/new", name="entry_new")
