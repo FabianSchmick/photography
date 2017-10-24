@@ -19,3 +19,4 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
 
     image_directory: '%kernel.project_dir%/web/uploads/images'
+    assets_directory: '/bundles/app/'

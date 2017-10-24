@@ -44,3 +44,11 @@ services:
         public: true
         arguments:
             $em: "@doctrine.orm.entity_manager"
+
+    AppBundle\Twig\AssetVersionExtension:
+        public: true
+        arguments:
+            $appDir: "%kernel.root_dir%/../"
+            $assetsDir: "%assets_directory%"
+        tags:
+            - { name: twig.extension }
