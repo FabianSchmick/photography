@@ -8,5 +8,6 @@
     - mysql
     - composer
     - dotfiles
+    - nodejs
     - app
 

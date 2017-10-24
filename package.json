@@ -1,0 +1,34 @@
+{
+  "name": "photography",
+  "description": "Photography page",
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/fschmick/photography"
+  },
+  "version": "1.0.0",
+  "dependencies": {
+    "animate.css": "^3.5.2",
+    "bootstrap": "^3.3.7",
+    "coffee-script": "^1.12.7",
+    "del": "^3.0.0",
+    "enquire.js": "^2.1.6",
+    "event-stream": "^3.3.4",
+    "fancybox": "^3.0.0",
+    "font-awesome": "^4.7.0",
+    "gulp": "^3.9.1",
+    "gulp-cached": "^1.1.1",
+    "gulp-cli": "^1.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^3.3.2",
+    "gulp-plumber": "^1.1.0",
+    "gulp-remember": "^0.3.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-rev": "^8.0.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-uglify": "^3.0.0",
+    "gulp-uglifycss": "^1.0.8",
+    "jquery": "^2.*",
+    "jquery-match-height": "^0.7.2",
+    "run-sequence": "^2.1.0"
+  }
+}

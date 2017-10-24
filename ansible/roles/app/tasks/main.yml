@@ -16,6 +16,14 @@
 - name: Update db schema
   shell: cd /vagrant && php bin/console doctrine:schema:update -f
 
+- name: Install node packages
+  sudo: yes
+  shell: cd /vagrant && npm install --no-bin-links
+
+- name: Execute gulp tasks
+  sudo: yes
+  shell: cd /vagrant && gulp default
+
 - cron: name="Clear profiler cache"
         user="root"
         weekday="*"

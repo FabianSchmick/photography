@@ -1,0 +1,82 @@
+.box-shadow (@x: 0px, @y: 0px, @blur: 7px, @alpha: .25) {
+  -webkit-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+  -moz-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+  box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+}
+
+.clearfix {
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+  }
+}
+
+.border-box {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.transition-all (@time: 0.2s){
+  -webkit-transition: all @time ease-in;
+  -moz-transition: all @time ease-in;
+  transition: all @time ease-in;
+}
+
+.transition-scale(@factor: 1.06) {
+  -webkit-transform: scale(@factor);
+  -moz-transform: scale(@factor);
+  transform: scale(@factor);
+}
+
+.border-radius (@radius: 50%) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius:    @radius;
+  border-radius:         @radius;
+}
+
+//.retina-image("/bundles/app/img/layout/logo", "png", 200px, 60px);
+.retina-image(@file, @extension, @width, @height) {
+  background-image: url("@{file}.@{extension}");
+
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (   min--moz-device-pixel-ratio: 2),
+  only screen and (     -o-min-device-pixel-ratio: 2/1),
+  only screen and (        min-device-pixel-ratio: 2),
+  only screen and (                min-resolution: 192dpi),
+  only screen and (                min-resolution: 2dppx) {
+    background-image: url("@{file}@2x.@{extension}");
+    background-size: @width @height;
+  }
+}
+
+.alignCenterXY {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.alignCenterX {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.alignCenterY {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

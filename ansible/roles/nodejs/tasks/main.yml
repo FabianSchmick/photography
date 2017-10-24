@@ -6,3 +6,11 @@
 - name: Install nodejs Packages
   sudo: yes
   apt: pkg=nodejs state=present
+
+- name: Update nodejs
+  sudo: yes
+  shell: npm cache clean -f && npm install -g n && n stable
+
+- name: Install gulp global
+  sudo: yes
+  shell: npm install -g gulp-cli

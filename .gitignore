@@ -19,3 +19,7 @@
 /vendor/
 /web/bundles/
 /web/uploads/
+/node_modules/
+/src/AppBundle/Resources/public/min/
+rev-manifest.json
+npm-debug.log
