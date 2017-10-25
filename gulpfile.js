@@ -34,7 +34,7 @@ gulp.task('styles', function() {
             './node_modules/font-awesome/less/font-awesome.less',
             './node_modules/animate.css/animate.css',
             './node_modules/fancybox/css/jquery.fancybox.css',
-            './node_modules/bootstrap/dist/css/bootstrap.css',
+            './node_modules/bootstrap/dist/css/bootstrap.css'
         ])
         .pipe(plumber(function (error) {
             console.log(error.toString());
@@ -83,6 +83,58 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('.'));
 });
 
+gulp.task('stylesAdmin', function() {
+    return es.concat(
+        gulp.src([
+            './node_modules/font-awesome/less/font-awesome.less',
+            './node_modules/bootstrap/dist/css/bootstrap.css'
+        ])
+        .pipe(plumber(function (error) {
+            console.log(error.toString());
+            this.emit('end');
+        }))
+        .pipe(sourcemaps.init()),
+        gulp.src([
+            './web/bundles/app/less/defaultadmin.less'
+        ])
+        .pipe(plumber(function (error) {
+            console.log(error.toString());
+            this.emit('end');
+        }))
+        .pipe(sourcemaps.init())
+        .pipe(less())
+    )
+    .pipe(concat('min/css/admin.css' ))
+    .pipe(uglifycss())
+    .pipe(rev())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('web/bundles/app'))
+    .pipe(rev.manifest({merge: true}))
+    .pipe(gulp.dest('.'));
+});
+
+gulp.task('scriptsAdmin', function() {
+    return gulp.src([
+        './node_modules/jquery/dist/jquery.js',
+        './node_modules/enquire.js/dist/enquire.js',
+        './node_modules/jquery-match-height/dist/jquery.matchHeight.js',
+        './node_modules/bootstrap/dist/js/bootstrap.js',
+        './web/bundles/app/js/admin.js'
+    ])
+    .pipe(plumber(function (error) {
+        console.log(error.toString());
+        this.emit('end');
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(concat('min/js/admin.js'))
+    .pipe(uglify())
+    .pipe(rev())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('web/bundles/app'))
+    .pipe(rev.manifest({merge: true}))
+    .pipe(gulp.dest('.'));
+});
+
 gulp.task('clean', function () {
     return del.sync(['rev-manifest.json', 'web/bundles/app/min/css/*', 'web/bundles/app/min/js/*']);
 });
@@ -92,14 +144,18 @@ gulp.task('watch', function() {
         rs(
             'clean',
             'styles',
-            'scripts'
+            'stylesAdmin',
+            'scripts',
+            'scriptsAdmin'
         )
     });
     gulp.watch( './web/bundles/app/js/**', function () {
         rs(
             'clean',
             'styles',
-            'scripts'
+            'stylesAdmin',
+            'scripts',
+            'scriptsAdmin'
         )
     });
 });
@@ -110,7 +166,9 @@ gulp.task('default',
             'clean',
             'fonts',
             'styles',
-            'scripts'
+            'stylesAdmin',
+            'scripts',
+            'scriptsAdmin'
         )
     }
 );
