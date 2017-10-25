@@ -19,7 +19,7 @@
         </div>
         <div class="panel-body">
             {% if error %}
-                <div class="alert alert-danger">{{ error.message | replace({"Bad credentials." : "Password wrong"}) }}</div>
+                <div class="alert alert-danger">{{ error.message | replace({"Bad credentials." : "Username or Password wrong"}) }}</div>
             {% endif %}
             <form action="{{ path('login') }}" method="post" class="form-signin">
                 <div class="form-group">
