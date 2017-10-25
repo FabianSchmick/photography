@@ -1,0 +1,45 @@
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+        <div class="sidebar-search">
+            <div class="input-group custom-search-form">
+                <input type="text" id="search" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <ul class="nav" id="side-menu">
+            <li>
+                <a href="{{ path('entry_new') }}"><i class="fa fa-plus"></i> New Entry</a>
+            </li>
+            <li>
+                <a href="{{ path('entry_index') }}"><i class="fa fa-list"></i> All Entries</a>
+            </li>
+            <li>
+                <a href="{{ path('tag_index') }}"><i class="fa fa-list"></i> All Tags</a>
+            </li>
+            <li class="subNav">
+                <a href="#"><i class="fa fa-picture-o fa-fw"></i> Entries<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    {% for entry in entries %}
+                        <li>
+                            <a href="{{ path('entry_edit', {'id': entry.id}) }}">{{ entry.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li class="subNav">
+                <a href="#"><i class="fa fa-hashtag fa-fw"></i> Tags<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    {% for tag in tags %}
+                        <li>
+                            <a href="{{ path('tag_edit', {'id': tag.id}) }}">{{ tag.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

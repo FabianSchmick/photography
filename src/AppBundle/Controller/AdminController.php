@@ -170,4 +170,19 @@ class AdminController extends Controller
 
         return $this->redirect($this->generateUrl('tag_index'));
     }
+
+    /**
+     * Renders the admin navigation sidebar
+     */
+    public function renderSidebarAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entries = $em->getRepository('AppBundle:Entry')->findAll();
+        $tags = $em->getRepository('AppBundle:Tag')->findAll();
+
+        return $this->render('admin/inc/sidebar.html.twig', [
+            'entries' => $entries,
+            'tags' => $tags,
+        ]);
+    }
 }
