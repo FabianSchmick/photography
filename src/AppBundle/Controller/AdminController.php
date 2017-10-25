@@ -60,7 +60,13 @@ class AdminController extends Controller
 
             $entryService = $this->get('AppBundle\Service\EntryService');
 
-            $entryService->saveEntry($newEntry, $image);
+            $entry = $entryService->saveEntry($newEntry, $image);
+            $url = $this->generateUrl('entry_edit', ['id' => $entry->getId()]);
+
+            $this->addFlash(
+                'success',
+                'Your new entry has been saved. Edit it here: <a href="' . $url . '">' . $entry->getTitle() . '</a>.'
+            );
         }
 
         return $this->render('admin/entry/new.html.twig', [
@@ -84,6 +90,11 @@ class AdminController extends Controller
             $entryService = $this->get('AppBundle\Service\EntryService');
 
             $entryService->saveEntry($editEntry, $image);
+
+            $this->addFlash(
+                'success',
+                'Your changes have been saved.'
+            );
         }
 
         return $this->render('admin/entry/edit.html.twig', [
@@ -104,7 +115,7 @@ class AdminController extends Controller
         $em->remove($entry);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('entry_index'));
+        return $this->redirect($this->generateUrl('admin_index'));
     }
 
     /**
@@ -149,6 +160,11 @@ class AdminController extends Controller
             $tagService = $this->get('AppBundle\Service\TagService');
 
             $tagService->saveTag($editTag);
+
+            $this->addFlash(
+                'success',
+                'Your changes have been saved.'
+            );
         }
 
         return $this->render('admin/tag/edit.html.twig', [
@@ -168,7 +184,7 @@ class AdminController extends Controller
         $em->remove($tag);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('tag_index'));
+        return $this->redirect($this->generateUrl('admin_index'));
     }
 
     /**

@@ -8,6 +8,13 @@
         <div class="col-xs-12">
             <h1 class="page-header">New Entry</h1>
 
+            {% for flash_message in app.session.flashBag.get('success') %}
+                <div class="flash-notice alert alert-success fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{ flash_message|raw }}
+                </div>
+            {% endfor %}
+
             <form id="newEntry" class="form-horizontal" action="{{ path('entry_new') }}" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="MAX_FILE_SIZE" value="16777216" /> {# 16MB #}
 
