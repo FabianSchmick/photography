@@ -30,6 +30,7 @@
     "jquery": "^2.*",
     "jquery-match-height": "^0.7.2",
     "run-sequence": "^2.1.0",
+    "select2": "^4.0.4",
     "startbootstrap-sb-admin-2": "^3.3.7"
   }
 }

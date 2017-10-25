@@ -1,6 +1,7 @@
 $(document).ready(function() {
     search();
     ajaxPageWrapper();
+    initSelect2();
 });
 
 // Logic for searching the navigation
@@ -46,8 +47,19 @@ function ajaxPageWrapper() {
             } else {
                 $(temp).find(".nav.navbar-top-links.navbar-right").insertAfter( $("div.navbar-header")  );
             }
+
+            initSelect2();
         });
 
         return false;
+    });
+}
+
+// Initializes select2 fields
+function initSelect2() {
+    $('.select2').select2();
+
+    $('#tags.select2').select2({
+        tags: true
     });
 }
