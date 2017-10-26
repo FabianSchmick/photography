@@ -6,6 +6,8 @@ use AppBundle\Entity\Entry;
 use AppBundle\Entity\Tag;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
+use Imagine\Image\Box;
+use Imagine\Imagick\Imagine;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
@@ -25,17 +27,35 @@ class EntryService
      */
     private $imageDir;
 
+    /**
+     * The quality for jpeg images
+     *
+     * @var int $imageQuality
+     */
+    private $imageQuality;
+
+    /**
+     * The height for thumbnails
+     *
+     * @var int $thumbHeight
+     */
+    private $thumbHeight;
+
 
     /**
      * EntryService constructor.
      *
      * @param   EntityManager     $em           Entity Manager
      * @param   string            $imageDir     Directory for uploaded images
+     * @param   int               $imageQuality The quality for jpeg images
+     * @param   int               $thumbHeight  The height for thumbnails
      */
-    public function __construct(EntityManager $em, $imageDir)
+    public function __construct(EntityManager $em, $imageDir, $imageQuality = 75, $thumbHeight = 500)
     {
         $this->em = $em;
         $this->imageDir = $imageDir;
+        $this->imageQuality = $imageQuality;
+        $this->thumbHeight = $thumbHeight;
     }
 
     /**
@@ -56,13 +76,25 @@ class EntryService
         }
 
         if (isset($image['image'])) {
-            /** @var UploadedFile $image */
-            $imageName = md5(uniqid()) . '.' . $image['image']->guessExtension();
+            if (!file_exists($this->imageDir. '/thumb')) {    // Create image and thumbnail directory
+                mkdir($this->imageDir . '/thumb', 0777, true);
+            }
 
-            $image['image']->move(
-                $this->imageDir,
-                $imageName
-            );
+            // Random name and convert to jpg later
+            $imageName = md5(uniqid()) . '.jpg';
+
+            $imagine = new Imagine();
+            $newImage = $imagine->open($image['image']->getPathName());
+            $newImage->strip();
+            $newImage->save($this->imageDir . '/' . $imageName, array('jpeg_quality' => $this->imageQuality));  // Save and minify image
+
+            /** @var Box $size */
+            $size = $newImage->getSize();
+
+            $newImage
+                ->thumbnail($size->heighten($this->thumbHeight))
+                ->save($this->imageDir . '/thumb/' . $imageName, array('jpeg_quality' => $this->imageQuality))  // Save and minfiy thumbnail
+            ;
         }
         $entryEntity->setTitle($entry['title']);
         $entryEntity->setDescription($entry['description']);

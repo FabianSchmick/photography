@@ -39,6 +39,8 @@ services:
         arguments:
             $em: "@doctrine.orm.entity_manager"
             $imageDir: "%image_directory%"
+            $imageQuality: "%jpeg_quality%"
+            $thumbHeight: "%thumb_height%"
 
     AppBundle\Service\TagService:
         public: true

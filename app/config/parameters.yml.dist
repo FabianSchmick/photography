@@ -20,3 +20,6 @@ parameters:
 
     image_directory: '%kernel.project_dir%/web/uploads/images'
     assets_directory: '/bundles/app/'
+
+    jpeg_quality: 75
+    thumb_height: 500
