@@ -65,7 +65,7 @@ class AdminController extends Controller
 
             $this->addFlash(
                 'success',
-                'Your new entry has been saved. Edit it here: <a href="' . $url . '">' . $entry->getTitle() . '</a>.'
+                'Your new entry has been saved. Edit it here: <a class="alert-link" href="' . $url . '">' . $entry->getTitle() . '</a>.'
             );
         }
 
