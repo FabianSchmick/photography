@@ -17,6 +17,8 @@ name: Name
 photography: Photography
 admin: Admin
 homepage: Homepage
+english: English
+german: German
 
 # Entry
 new.entry: New Entry
