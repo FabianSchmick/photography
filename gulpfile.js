@@ -19,6 +19,12 @@ var copy = {
             './node_modules/font-awesome/fonts/*'
         ],
         dest: './web/bundles/app/min/fonts/'
+    },
+    font: {
+        src: [
+            './node_modules/summernote/dist/font/*'
+        ],
+        dest: './web/bundles/app/min/css/font/'
     }
 };
 
@@ -26,6 +32,8 @@ var copy = {
 gulp.task('fonts', function () {
     gulp.src(copy.fonts.src)
         .pipe(gulp.dest(copy.fonts.dest));
+    gulp.src(copy.font.src)
+        .pipe(gulp.dest(copy.font.dest));
 });
 
 gulp.task('styles', function() {
@@ -90,7 +98,8 @@ gulp.task('stylesAdmin', function() {
             './node_modules/bootstrap/dist/css/bootstrap.css',
             './node_modules/startbootstrap-sb-admin-2/vendor/metisMenu/metisMenu.min.css',
             './node_modules/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css',
-            './node_modules/select2/dist/css/select2.css'
+            './node_modules/select2/dist/css/select2.css',
+            './node_modules/summernote/dist/summernote.css'
         ])
         .pipe(plumber(function (error) {
             console.log(error.toString());
@@ -125,6 +134,7 @@ gulp.task('scriptsAdmin', function() {
         './node_modules/startbootstrap-sb-admin-2/vendor/metisMenu/metisMenu.min.js',
         './node_modules/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js',
         './node_modules/select2/dist/js/select2.js',
+        './node_modules/summernote/dist/summernote.js',
         './web/bundles/app/js/admin.js'
     ])
     .pipe(plumber(function (error) {

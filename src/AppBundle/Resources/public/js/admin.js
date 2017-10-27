@@ -2,6 +2,7 @@ $(document).ready(function() {
     search();
     ajaxPageWrapper();
     initSelect2();
+    initWysiwyg();
 });
 
 // Logic for searching the navigation
@@ -49,6 +50,7 @@ function ajaxPageWrapper() {
             }
 
             initSelect2();
+            initWysiwyg();
         });
 
         return false;
@@ -61,5 +63,21 @@ function initSelect2() {
 
     $('#tags.select2').select2({
         tags: true
+    });
+}
+
+// Initializes summernote wysiwyg editor
+function initWysiwyg() {
+    $('#description').summernote({
+        height: 100,
+        toolbar: [
+            // [groupName, [list of button]]
+            ['misc', ['undo', 'redo']],
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['insert', ['link']],
+            ['fontsize', ['fontsize']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['misc', ['codeview', 'help']]
+        ]
     });
 }
