@@ -152,7 +152,7 @@ gulp.task('scriptsAdmin', function() {
 });
 
 gulp.task('clean', function () {
-    return del.sync(['rev-manifest.json', 'web/bundles/app/min/css/*', 'web/bundles/app/min/js/*']);
+    return del.sync(['rev-manifest.json', 'web/bundles/app/min/css/*', '!web/bundles/app/min/css/font', 'web/bundles/app/min/js/*']);
 });
 
 gulp.task('watch', function() {
