@@ -1,0 +1,41 @@
+# Common translations
+title: Title
+description: Description
+author: Author
+image: Image
+location: Location
+timestamp: Date
+tags: Tags
+entries: Entries
+edit: Edit
+submit: Submit
+delete: Delete
+close: Close
+name: Name
+
+# Base / Admin template
+photography: Photography
+admin: Admin
+homepage: Homepage
+
+# Entry
+new.entry: New Entry
+delete.msg.entry: Are you sure you want to delete the entry
+current.img: Current Image
+img.upload.info: Old image gets only overwritten if you upload a new one
+success.edit: Your changes have been saved
+success.new: Your new entry has been saved. Edit it here
+
+# Tag
+new.tag: New Tag
+delete.msg.tag: Are you sure you want to delete the tag
+
+# Sidebar
+search: Search
+
+# Login
+login: login
+sign.in: Please Sign In
+bad.credentials: Username or Password wrong
+username: Username
+password: Password

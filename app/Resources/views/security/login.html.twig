@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}Login | Photography{% endblock %}</title>
+    <title>{% block title %}{{ 'login'|trans }} | {{ 'photography'|trans }}{% endblock %}</title>
     {% block stylesheets %}
         <link rel="stylesheet" type="text/css" href="{{ asset('min/css/admin.css'|asset_version) }}"/>
     {% endblock %}
@@ -15,27 +15,27 @@
 
     <div class="login-panel panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Please Sign In</h3>
+            <h3 class="panel-title">{{ 'sign.in'|trans }}</h3>
         </div>
         <div class="panel-body">
             {% if error %}
-                <div class="alert alert-danger">{{ error.message | replace({"Bad credentials." : "Username or Password wrong"}) }}</div>
+                <div class="alert alert-danger">{{ error.message | replace({"Bad credentials." : 'bad.credentials'|trans}) }}</div>
             {% endif %}
             <form action="{{ path('login') }}" method="post" class="form-signin">
                 <div class="form-group">
                     <div class="input-group" style="padding-bottom: 15px">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" id="inputUser" class="form-control" name="_username" placeholder="Username" required="required"><br/>
+                        <input type="text" id="inputUser" class="form-control" name="_username" placeholder="{{ 'username'|trans }}" required="required"><br/>
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                        <input type="password" id="inputPassword" class="form-control" name="_password" placeholder="Password" required="required">
+                        <input type="password" id="inputPassword" class="form-control" name="_password" placeholder="{{ 'password'|trans }}" required="required">
                     </div>
                 </div>
 
                 <input type="hidden" name="_target_path" value="account" />
 
-                <button class="btn btn-lg btn-success btn-block" type="submit" name="login">Log in</button>
+                <button class="btn btn-lg btn-success btn-block" type="submit" name="login">{{ 'login'|trans }}</button>
             </form>
         </div>
     </div>

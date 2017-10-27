@@ -1,0 +1,41 @@
+# Common translations
+title: Titel
+description: Beschreibung
+author: Autor
+image: Bild
+location: Aufnahmeort
+timestamp: Datum
+tags: Schlüsselwörter
+entries: Einträge
+edit: Bearbeiten
+submit: Bestätigen
+delete: Löschen
+close: Schließen
+name: Name
+
+# Base / Admin template
+photography: Fotografie
+admin: Admin
+homepage: Homepage
+
+# Entry
+new.entry: Neuer Eintrag
+delete.msg.entry: Sind Sie sicher, dass Sie den Eintrag löschen möchten
+current.img: Aktuelles Bild
+img.upload.info: Das aktuelle Bild wird nur überschrieben, wenn Sie ein neues hochladen
+success.edit: Ihre Änderrungen wurden gespeichert
+success.new: Ihr neuer Eintrag wurde gespeichert. Weiter bearbeiten
+
+# Tag
+new.tag: Neues Schlüsselwort
+delete.msg.tag: Sind Sie sicher, dass Sie dieses Schlüsselwort löschen möchten
+
+# Sidebar
+search: Suche
+
+# Login
+login: Anmelden
+sign.in: Bitte melden Sie sich an
+bad.credentials: Benutzername oder Passwort falsch
+username: Benutzername
+password: Passwort

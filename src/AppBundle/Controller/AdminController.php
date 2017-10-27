@@ -63,9 +63,10 @@ class AdminController extends Controller
             $entry = $entryService->saveEntry($newEntry, $image);
             $url = $this->generateUrl('entry_edit', ['id' => $entry->getId()]);
 
+            $translated = $this->get('translator')->trans('success.new');
             $this->addFlash(
                 'success',
-                'Your new entry has been saved. Edit it here: <a class="alert-link" href="' . $url . '">' . $entry->getTitle() . '</a>.'
+                $translated . ': <a class="alert-link" href="' . $url . '">' . $entry->getTitle() . '</a>.'
             );
         }
 
@@ -91,9 +92,10 @@ class AdminController extends Controller
 
             $entryService->saveEntry($editEntry, $image);
 
+            $translated = $this->get('translator')->trans('success.edit');
             $this->addFlash(
                 'success',
-                'Your changes have been saved.'
+                $translated . '.'
             );
         }
 
@@ -161,9 +163,10 @@ class AdminController extends Controller
 
             $tagService->saveTag($editTag);
 
+            $translated = $this->get('translator')->trans('success.edit');
             $this->addFlash(
                 'success',
-                'Your changes have been saved.'
+                $translated . '.'
             );
         }
 

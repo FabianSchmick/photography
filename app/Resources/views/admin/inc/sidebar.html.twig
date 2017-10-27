@@ -2,7 +2,7 @@
     <div class="sidebar-nav navbar-collapse">
         <div class="sidebar-search">
             <div class="input-group custom-search-form">
-                <input type="text" id="search" class="form-control" placeholder="Search...">
+                <input type="text" id="search" class="form-control" placeholder="{{ 'search'|trans }}...">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button">
                         <i class="fa fa-search"></i>
@@ -12,7 +12,7 @@
         </div>
         <ul class="nav" id="side-menu">
             <li>
-                <a href="{{ path('entry_new') }}"><i class="fa fa-plus"></i> New Entry</a>
+                <a href="{{ path('entry_new') }}"><i class="fa fa-plus"></i> {{ 'new.entry'|trans }}</a>
             </li>
             {# Maybe unnecessary, have to think about it
             <li>
@@ -23,7 +23,7 @@
             </li>
             #}
             <li class="subNav">
-                <a href="#"><i class="fa fa-picture-o fa-fw"></i> Entries<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-picture-o fa-fw"></i> {{ 'entries'|trans }}<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     {% for entry in entries %}
                         <li>
@@ -33,7 +33,7 @@
                 </ul>
             </li>
             <li class="subNav">
-                <a href="#"><i class="fa fa-hashtag fa-fw"></i> Tags<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-hashtag fa-fw"></i> {{ 'tags'|trans }}<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     {% for tag in tags %}
                         <li>

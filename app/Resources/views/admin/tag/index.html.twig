@@ -8,11 +8,11 @@
                 <div class="tagName">
                     {{ tag.name }}
                 </div>
-                <a href="{{ path('tag_edit', {'id': tag.id}) }}">Edit</a>
-                <a href="{{ path('tag_delete', {'id': tag.id}) }}">Delete</a>
+                <a href="{{ path('tag_edit', {'id': tag.id}) }}">{{ 'edit'|trans }}</a>
+                <a href="{{ path('tag_delete', {'id': tag.id}) }}">{{ 'delete'|trans }}</a>
             </div>
         {% endfor %}
     </div>
-    <a href="{{ path('tag_new') }}">New Tag</a>
+    <a href="{{ path('tag_new') }}">{{ 'new.tag'|trans }}</a>
 
 {% endblock %}

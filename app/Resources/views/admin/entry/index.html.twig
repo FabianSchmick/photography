@@ -14,11 +14,11 @@
                 <div class="entryTimestamp">
                     {{ entry.timestamp|date("d.m.Y") }}
                 </div>
-                <a href="{{ path('entry_edit', {'id': entry.id}) }}">Edit</a>
-                <a href="{{ path('entry_delete', {'id': entry.id}) }}">Delete</a>
+                <a href="{{ path('entry_edit', {'id': entry.id}) }}">{{ 'edit'|trans }}</a>
+                <a href="{{ path('entry_delete', {'id': entry.id}) }}">{{ 'delete'|trans }}</a>
             </div>
         {% endfor %}
     </div>
-    <a href="{{ path('entry_new') }}">New Entry</a>
+    <a href="{{ path('entry_new') }}">{{ 'new.entry'|trans }}</a>
 
 {% endblock %}
