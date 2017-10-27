@@ -25,9 +25,9 @@ class AdminController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('admin/index.html.twig', [
-
-        ]);
+        // Till I don't know what to display here, redirect to new entry
+        return $this->redirect($this->generateUrl('entry_new'));
+//        return $this->render('admin/index.html.twig', []);
     }
 
     /**
