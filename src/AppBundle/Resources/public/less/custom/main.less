@@ -5,3 +5,25 @@ body {
   font-family: @font-main;
   color: @color-primary;
 }
+
+.parallaxContainer {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+
+  .parallax {
+    position: absolute;
+    height: 200%; /* Greater then 100% */
+    width: 100%;
+    z-index: -1;
+    background: url("@{imagepath}/cover-placeholder.jpg") center / 100% auto no-repeat #fff;
+  }
+}
+
+#cover.parallaxContainer {
+  height: 700px;
+
+  .parallax {
+    height: 140%;
+  }
+}

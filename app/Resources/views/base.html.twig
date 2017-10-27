@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-            <link rel="stylesheet" type="text/css" href="{{ asset('min/css/main.css'|asset_version) }}"/>
-        {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}
-            <script type="text/javascript" src="{{ asset('min/js/main.js'|asset_version) }}"></script>
-        {% endblock %}
-    </body>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ 'admin'|trans }}{% endblock %} | {{ 'photography'|trans }}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('min/css/main.css'|asset_version) }}"/>
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+
+{# Maybe sticky nav with anchor points? #}
+{#<header>#}
+    {#<nav></nav>#}
+{#</header>#}
+
+{% block cover %}
+    <section id="cover">
+    </section>
+{% endblock %}
+
+{% block content %}
+    <section id="content">
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('min/js/main.js'|asset_version) }}"></script>
+
+    <script type="application/javascript">
+        jQuery(document).ready(function() {
+        });
+    </script>
+{% endblock %}
+</body>
 </html>
