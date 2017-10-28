@@ -25,4 +25,18 @@ class EntryRepository extends \Doctrine\ORM\EntityRepository
             ->setParameters(array('tag' => $tag));
         return $qb->getQuery()->getResult();
     }
+
+    /**
+     * Return query to load all entries
+     *
+     * @return \Doctrine\ORM\Query  The query
+     */
+    public function getFindAllQuery()
+    {
+        $query = $this->_em->createQueryBuilder()
+            ->select('e')
+            ->from($this->getEntityName(), 'e')
+            ->getQuery();
+        return $query;
+    }
 }

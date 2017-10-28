@@ -1,0 +1,8 @@
+{% for entry in entries %}
+    <li class="entry">
+        <div class="entryImage">
+            <img src="{{ image_directory }}/thumb/{{ entry.image }}" alt="{{ entry.title }}">
+        </div>
+        <p>{{ entry.id }}</p>
+    </li>
+{% endfor %}

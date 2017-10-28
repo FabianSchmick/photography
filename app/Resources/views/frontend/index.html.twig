@@ -8,5 +8,8 @@
 {% endblock %}
 {% block content %}
     <section id="content">
+        <ul id="entries" class="list-unstyled">
+            {{ render(controller('AppBundle:Default:paginateEntries', { 'page': 1 })) }}
+        </ul>
     </section>
 {% endblock %}
