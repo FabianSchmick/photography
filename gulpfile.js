@@ -40,8 +40,6 @@ gulp.task('styles', function() {
     return es.concat(
         gulp.src([
             './node_modules/font-awesome/css/font-awesome.css',
-            './node_modules/animate.css/animate.css',
-            './node_modules/fancybox/css/jquery.fancybox.css',
             './node_modules/bootstrap/dist/css/bootstrap.css',
             './node_modules/justifiedGallery/dist/css/justifiedGallery.css'
         ])
@@ -72,9 +70,6 @@ gulp.task('styles', function() {
 gulp.task('scripts', function() {
     return gulp.src([
         './node_modules/jquery/dist/jquery.js',
-        './node_modules/enquire.js/dist/enquire.js',
-        './node_modules/fancybox/js/jquery.fancybox.js',
-        './node_modules/jquery-match-height/dist/jquery.matchHeight.js',
         './node_modules/bootstrap/dist/js/bootstrap.js',
         './node_modules/justifiedGallery/dist/js/jquery.justifiedGallery.js',
         './web/bundles/app/js/default.js'
@@ -130,8 +125,6 @@ gulp.task('stylesAdmin', function() {
 gulp.task('scriptsAdmin', function() {
     return gulp.src([
         './node_modules/jquery/dist/jquery.js',
-        './node_modules/enquire.js/dist/enquire.js',
-        './node_modules/jquery-match-height/dist/jquery.matchHeight.js',
         './node_modules/bootstrap/dist/js/bootstrap.js',
         './node_modules/startbootstrap-sb-admin-2/vendor/metisMenu/metisMenu.min.js',
         './node_modules/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js',
