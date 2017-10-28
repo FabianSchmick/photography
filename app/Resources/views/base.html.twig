@@ -28,6 +28,10 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script type="text/javascript">
+        var paginateUrl = "{{ path('paginate_entries') }}";
+    </script>
+
     <script type="text/javascript" src="{{ asset('min/js/main.js'|asset_version) }}"></script>
 
     <script type="application/javascript">

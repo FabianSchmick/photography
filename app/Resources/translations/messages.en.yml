@@ -41,3 +41,6 @@ sign.in: Please Sign In
 bad.credentials: Username or Password wrong
 username: Username
 password: Password
+
+# Frontend
+load.more: Load more

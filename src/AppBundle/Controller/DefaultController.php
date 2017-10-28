@@ -19,7 +19,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/page/{page}", name="paginate_entries")
+     * @Route("/page/{page}", name="paginate_entries", requirements={"page": "\d+"})
      */
     public function paginateEntriesAction(Request $request, $page = 1)
     {

@@ -41,3 +41,6 @@ sign.in: Bitte melden Sie sich an
 bad.credentials: Benutzername oder Passwort falsch
 username: Benutzername
 password: Passwort
+
+# Frontend
+load.more: Mehr laden

@@ -1,7 +1,9 @@
 $(document).ready(function() {
     parallax();
+    lazyLoad();
 });
 
+// Parallax effect for the cover
 function parallax() {
     var parallaxElements = $('.parallax'),
         parallaxQuantity = parallaxElements.length;
@@ -17,6 +19,21 @@ function parallax() {
                     'transform': 'translate3d(0,' + scrolled * -0.3 + 'px, 0)'
                 });
             }
+        });
+    });
+}
+
+// Lazy loads the entries
+function lazyLoad() {
+    var currentPage = 1;
+    $('#content').on('click', '#loadMore', function () {
+        currentPage++;
+        var paginateUrlPage = paginateUrl + '/' + currentPage;
+        $("#spinner").show();
+        $.get(paginateUrlPage, function(data) {
+            $("#entries").append($(data));
+            $("#spinner").hide();
+            $("#loadMore").hide();
         });
     });
 }

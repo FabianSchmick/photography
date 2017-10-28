@@ -10,6 +10,8 @@
     <section id="content">
         <ul id="entries" class="list-unstyled">
             {{ render(controller('AppBundle:Default:paginateEntries', { 'page': 1 })) }}
+            <li id="spinner" class="spinner" style="display: none"><img id="img-spinner" src="{{ asset('bundles/app/img/layout/ajax-loader.gif') }}" alt="Loading..."></li>
         </ul>
+        <button type="button" id="loadMore" class="btn btn-primary">{{ 'load.more'|trans }}</button>
     </section>
 {% endblock %}
