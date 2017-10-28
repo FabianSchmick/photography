@@ -30,9 +30,58 @@ body {
 
 #entries {
   position: relative;
+  margin: 0 auto 100px;;
+  overflow: initial;
+
+  .entry {
+    overflow: hidden;
+
+    img {
+      -moz-transition: transform 0.3s;
+      -webkit-transition: transform 0.3s;
+      transition: transform 0.3s;
+    }
+
+    .title {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      min-height: 50px;
+      padding: 15px 10px 5px;
+      color: @color-secondary;
+      opacity: 0;
+      background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(fade(@color-primary, 60%)));
+      background: -webkit-linear-gradient(top, transparent 0%, fade(@color-primary, 60%) 100%);
+      background: -moz-linear-gradient(top, transparent 0%, fade(@color-primary, 60%) 100%);
+      background: linear-gradient(to bottom, transparent 0%, fade(@color-primary, 60%) 100%);
+      .transition-all;
+    }
+
+    &:hover {
+      img {
+        -moz-transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05);
+      }
+
+      .title {
+        opacity: 1;
+        .transition-all;
+      }
+    }
+  }
 
   #spinner {
     position: absolute;
+    display: block;
     .alignCenterX;
+    text-align: center;
+    padding: 0;
+    margin: 0 auto;
+    bottom: -70px;
+  }
+  svg path,
+  svg rect{
+    fill: #000;
   }
 }

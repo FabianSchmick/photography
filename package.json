@@ -29,6 +29,7 @@
     "gulp-uglifycss": "^1.0.8",
     "jquery": "^2.*",
     "jquery-match-height": "^0.7.2",
+    "justifiedGallery": "^3.6.3",
     "run-sequence": "^2.1.0",
     "select2": "^4.0.4",
     "startbootstrap-sb-admin-2": "^3.3.7",
