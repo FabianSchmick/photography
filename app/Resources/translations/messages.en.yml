@@ -43,5 +43,6 @@ username: Username
 password: Password
 
 # Frontend
+home: Home
 gallery: Gallery
 languages: Languages

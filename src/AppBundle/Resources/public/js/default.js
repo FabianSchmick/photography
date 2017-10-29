@@ -79,8 +79,28 @@ function lazyLoad() {
 
 // Justify entries
 function justify() {
+    var rowHeight = 400;
+
+    if ($(window).width() < 1025) {
+        rowHeight = 300;
+    } else if ($(window).width() < 768) {
+        rowHeight = 200;
+    } else if ($(window).width() < 500) {
+        rowHeight = 125;
+    }
+
+    $(window).on('resize', function() {
+        if ($(window).width() < 1025) {
+            rowHeight = 300;
+        } else if ($(window).width() < 768) {
+            rowHeight = 200;
+        } else if ($(window).width() < 500) {
+            rowHeight = 125;
+        }
+    });
+
     $('#entries').justifiedGallery({
-        rowHeight : 400,
+        rowHeight : rowHeight,
         maxRowHeight : '175%',
         lastRow : 'nojustify',
         margins : 5,

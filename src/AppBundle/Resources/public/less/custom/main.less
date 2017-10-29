@@ -68,6 +68,11 @@ header {
             border-color: @color-secondary;
           }
         }
+
+        @media (max-width: 768px) {
+          text-align: left;
+          padding: 10px 15px 10px 25px;
+        }
       }
 
       .navbar-toggle {
@@ -98,6 +103,10 @@ header {
 
       i.fa {
         color: @color-teritary;
+      }
+
+      @media (max-width: 768px) {
+        padding: 0 15px;
       }
     }
 
@@ -150,6 +159,10 @@ header {
     width: 100%;
     z-index: -1;
     background: url("@{imagepath}/cover-placeholder.jpg") center / 100% auto no-repeat #fff;
+
+    @media (max-width: 768px) {
+      background: url("@{imagepath}/cover-placeholder-responsive.jpg") center / 100% auto no-repeat #fff;
+    }
   }
 }
 
@@ -158,6 +171,41 @@ header {
 
   .parallax {
     height: 140%;
+  }
+
+  /* Not the best way, but I don't know anything better yet */
+  @media(max-width:1850px){
+    height: 650px;
+  }
+  @media(max-width:1650px){
+    height: 600px;
+  }
+  @media(max-width:1500px){
+    height: 550px;
+  }
+  @media(max-width:1400px){
+    height: 500px;
+  }
+  @media(max-width:1250px){
+    height: 450px;
+  }
+  @media(max-width:1150px){
+    height: 400px;
+  }
+  @media(max-width:1000px){
+    height: 350px;
+  }
+  @media(max-width:900px){
+    height: 300px;
+  }
+  @media(max-width:600px){
+    height: 250px;
+  }
+  @media(max-width:500px){
+    height: 200px;
+  }
+  @media(max-width:400px){
+    height: 150px;
   }
 }
 
