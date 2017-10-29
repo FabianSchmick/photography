@@ -6,6 +6,139 @@ body {
   color: @color-primary;
 }
 
+.container {
+  width: 100%;
+  padding: 0 30px;
+}
+
+header {
+  #menu {
+    padding: 20px;
+    transition: all 0.8s;
+
+    &.navbar-default {
+      background-color: transparent;
+      border: none;
+
+      .navbar-nav > li {
+        > a {
+          background: transparent;
+          text-transform: uppercase;
+          color: @color-secondary;
+          font-size: 12px;
+          letter-spacing: 1px;
+          font-weight: 500;
+
+          &:hover {
+            color: @color-teritary;
+          }
+        }
+
+        &.active a, a:focus {
+          font-weight: bold;
+        }
+      }
+
+      .dropdown-menu {
+        background: transparent;
+        min-width: 1px;
+        width: 100%;
+        text-align: center;
+        padding-bottom: 10px;
+
+        .active {
+          font-weight: bold;
+        }
+
+        .flag {
+          display: inline-block;
+          height: 10px;
+          width: 20px;
+          background: center / 100% auto no-repeat #fff;
+        }
+
+        > li > a {
+          color: @color-secondary;
+          padding: 3px 5px;
+          display: inline-block;
+          border-bottom: 1px solid transparent;
+
+          &:hover {
+            background: transparent;
+            border-color: @color-secondary;
+          }
+        }
+      }
+
+      .navbar-toggle {
+        border-radius: 0;
+
+        &:hover,
+        &:focus {
+          background-color: @color-teritary;
+          border: none;
+        }
+
+        &:hover {
+          > .icon-bar {
+            background-color: #FFF;
+          }
+        }
+      }
+
+      @media (max-width: 768px) {
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    a.navbar-brand {
+      margin: 8px 0 0 0;
+      padding: 0;
+      height: auto;
+
+      i.fa {
+        color: @color-teritary;
+      }
+    }
+
+    &.on {
+      background-color: @color-secondary !important;
+      padding: 0 !important;
+
+      &.navbar-default {
+        .navbar-nav > li {
+          > a {
+            color: @color-primary;
+
+            &:hover {
+              color: @color-teritary;
+            }
+          }
+
+          &.active a, a:focus {
+            font-weight: bold;
+          }
+        }
+
+        .dropdown-menu {
+          background: @color-secondary;
+          border: none;
+          box-shadow: none;
+          border-radius: 0;
+
+          > li > a {
+            color: @color-primary;
+
+            &:hover {
+              border-color: @color-primary;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .parallaxContainer {
   position: relative;
   height: 400px;
@@ -30,7 +163,7 @@ body {
 
 #entries {
   position: relative;
-  margin: 0 auto 100px;;
+  margin: 100px auto;
   overflow: initial;
 
   .entry {
@@ -82,6 +215,6 @@ body {
   }
   svg path,
   svg rect{
-    fill: #000;
+    fill: @color-teritary;
   }
 }

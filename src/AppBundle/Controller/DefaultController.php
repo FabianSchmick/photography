@@ -35,4 +35,25 @@ class DefaultController extends Controller
             'pages'     => $pages
         ]);
     }
+
+    /**
+     * Change language
+     *
+     * @Route("admin/language/{locale}", name="changeLanguageAdmin")
+     * @Route("/language/{locale}", name="changeLanguage")
+     */
+    public function changeLanguageAction($locale)
+    {
+        $request = $this->container->get('request_stack')->getCurrentRequest();
+        $routeName = $request->get('_route');
+        $request->attributes->set('_locale', null);
+        $this->get('session')->set('_locale', $locale);
+
+        $redirect = 'homepage';
+        if ($routeName == 'changeLanguageAdmin') {
+            $redirect = 'admin_index';
+        }
+
+        return $this->redirect($this->generateUrl($redirect));
+    }
 }

@@ -31,20 +31,6 @@ class AdminController extends Controller
     }
 
     /**
-     * Change language
-     *
-     * @Route("/language/{locale}", name="changeLanguage")
-     */
-    public function changeLanguageAction($locale)
-    {
-        $request = $this->container->get('request_stack')->getCurrentRequest();
-        $request->attributes->set('_locale', null);
-        $this->get('session')->set('_locale', $locale);
-
-        return $this->redirect($this->generateUrl('admin_index'));
-    }
-
-    /**
      * List all entries
      *
      * @Route("/entry/", name="entry_index")

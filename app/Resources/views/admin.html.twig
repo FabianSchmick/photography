@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,12 +31,12 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="{{ path('changeLanguage', {'locale': 'en'}) }}" class="{% if app.request.locale == 'en' %}active{% endif %}">
+                        <a href="{{ path('changeLanguageAdmin', {'locale': 'en'}) }}" class="{% if app.request.locale == 'en' %}active{% endif %}">
                             <span class="flag" style="background-image: url({{ asset('bundles/app/img/layout/icons/en.jpg') }})"></span> {{ 'english'|trans }}
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path('changeLanguage', {'locale': 'de'}) }}" class="{% if app.request.locale == 'de' %}active{% endif %}">
+                        <a href="{{ path('changeLanguageAdmin', {'locale': 'de'}) }}" class="{% if app.request.locale == 'de' %}active{% endif %}">
                             <span class="flag" style="background-image: url({{ asset('bundles/app/img/layout/icons/de.jpg') }})"></span> {{ 'german'|trans }}
                         </a>
                     </li>
