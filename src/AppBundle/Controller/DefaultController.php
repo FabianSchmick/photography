@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Doctrine\PaginationHelper;
+use AppBundle\Entity\Entry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,18 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         return $this->render('frontend/index.html.twig', [
+        ]);
+    }
+
+    /**
+     * Gather all information for the entry detail page
+     *
+     * @Route("/entry/{id}/{title}", name="entry_detail")
+     */
+    public function entryDetailAction(Request $request, $title, Entry $entry)
+    {
+        return $this->render('frontend/inc/entry.html.twig', [
+            'entry' => $entry,
         ]);
     }
 

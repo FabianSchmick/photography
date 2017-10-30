@@ -41,7 +41,8 @@ gulp.task('styles', function() {
         gulp.src([
             './node_modules/font-awesome/css/font-awesome.css',
             './node_modules/bootstrap/dist/css/bootstrap.css',
-            './node_modules/justifiedGallery/dist/css/justifiedGallery.css'
+            './node_modules/justifiedGallery/dist/css/justifiedGallery.css',
+            './node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css'
         ])
         .pipe(plumber(function (error) {
             console.log(error.toString());
@@ -72,6 +73,7 @@ gulp.task('scripts', function() {
         './node_modules/jquery/dist/jquery.js',
         './node_modules/bootstrap/dist/js/bootstrap.js',
         './node_modules/justifiedGallery/dist/js/jquery.justifiedGallery.js',
+        './node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js',
         './web/bundles/app/js/default.js'
     ])
     .pipe(plumber(function (error) {

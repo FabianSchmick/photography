@@ -1,8 +1,14 @@
+// Global vars
+var currentPage = 1,
+    group = $("[data-fancybox='entries']"),
+    groupLength = group.length;
+
 $(document).ready(function() {
     navigation();
     parallax();
     lazyLoad();
     justify();
+    lightbox();
 });
 
 // Functions for the navigation
@@ -57,24 +63,54 @@ function parallax() {
 
 // Lazy loads the entries
 function lazyLoad() {
-    var currentPage = 1;
-
     $(window).scroll(function() {
         if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-            currentPage++;
-            var paginateUrlPage = paginateUrl + '/' + currentPage;
-            $("#spinner").show();
-            $.get(paginateUrlPage, function(data) {
-                if (data.length == 0) {
-                    $("#spinner").remove();
-                    return false;
-                }
-                $(data).insertBefore($("#spinner"));
-                $("#spinner").hide();
-                $('#entries').justifiedGallery('norewind');
-            });
+            loadEntries()
         }
     });
+}
+
+// Ajax function to get the next entries
+function loadEntries() {
+    currentPage++;
+    var paginateUrlPage = paginateUrl + '/' + currentPage;
+    $("#spinner").show();
+
+    $.ajax({
+        url: paginateUrlPage,
+        type: 'GET',
+        dataType: 'html',
+        success: function(data) {
+            if (data.length == 0) {
+                $("#spinner").remove();
+                return false;
+            }
+
+            $(data).insertBefore($("#spinner"));
+            $("#spinner").hide();
+            $('#entries').justifiedGallery('norewind');
+
+            callback(data)
+        }
+    });
+}
+
+// Callback because of asynchronous call
+function callback(data) {
+    $(data).each(function(index, element) {
+        if (typeof $(element).data('src') !== 'undefined') {
+            $.fancybox.getInstance('createGroup', {
+                type : 'ajax',
+                src  : $(element).data('src'),
+                opts : {
+                    hash : false,
+                }
+            });
+            groupLength++;
+        }
+    });
+
+    $.fancybox.getInstance('updateControls', 'force');
 }
 
 // Justify entries
@@ -106,5 +142,18 @@ function justify() {
         margins : 5,
         imagesAnimationDuration: 1000,
         captions: false
+    });
+}
+
+// Lightbox (fancybox) for the image entries -> load dynamic content https://github.com/fancyapps/fancyBox/issues/257
+function lightbox() {
+    $(group).fancybox({
+        hash : false,
+
+        afterShow: function(instance){
+            if (this.index  >= groupLength - 3){
+                loadEntries();
+            }
+        }
     });
 }

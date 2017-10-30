@@ -1,0 +1,22 @@
+<div class="entry row">
+    <div class="entryImage col-xs-10">
+        <img src="{{ image_directory }}/{{ entry.image }}" alt="{{ entry.title }}" width="100%">
+    </div>
+    <div class="entryInfo col-xs-2">
+        <div class="entryTitle ">
+            {{ entry.title }}
+        </div>
+        <div class="entryDescription">
+            {{ entry.description }}
+        </div>
+        <div class="entryLocation">
+            {{ entry.location }}
+        </div>
+        <div class="entryAuthor">
+            {{ entry.author }}
+        </div>
+        <div class="entryTimestamp">
+            {{ entry.timestamp|date("d.m.Y") }}
+        </div>
+    </div>
+</div>
