@@ -9,6 +9,10 @@ body {
 .container {
   width: 100%;
   padding: 0 30px;
+
+  @media(max-width:400px){
+    padding: 0 15px;
+  }
 }
 
 header {
@@ -84,7 +88,8 @@ header {
           border: none;
         }
 
-        &:hover {
+        &:hover,
+        &:focus {
           > .icon-bar {
             background-color: #FFF;
           }
@@ -99,7 +104,15 @@ header {
     a.navbar-brand {
       margin: 8px 0 0 0;
       padding: 0;
-      height: auto;
+      height: 35px;
+      color: @color-secondary;
+      line-height: 32px;
+
+      img {
+        height: 100%;
+        border-radius: 50%;
+        display: none;
+      }
 
       i.fa {
         color: @color-teritary;
@@ -142,6 +155,14 @@ header {
               border-color: @color-primary;
             }
           }
+        }
+      }
+
+      a.navbar-brand {
+        color: @color-primary;
+
+        img {
+          display: inline-block;
         }
       }
     }
@@ -344,8 +365,14 @@ header {
       .entryInfo {
         top: auto;
         bottom: 0;
+        padding: 0 15px;
 
-        .entryDescription, ul {
+        h2 {
+          margin-top: 10px;
+          font-size: 22px;
+        }
+
+        .entryDescription, .entryTimestamp, .entryAuthor {
           display: none;
         }
       }
@@ -355,7 +382,7 @@ header {
 
 .fancybox-container {
   .fancybox-slide {
-    padding: 40px;
+    padding: 30px;
 
     > div.entry {
       margin: 0;
