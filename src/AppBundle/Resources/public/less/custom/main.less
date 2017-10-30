@@ -267,8 +267,100 @@ header {
   }
 }
 
+.entry {
+  height: 100%;
+  width: 100%;
+  .entryInner {
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    .entryImage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 80%;
+      text-align: center;
+
+      img {
+        max-height: 100%;
+        max-width: 100%;
+        margin-top: -1px;
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+      }
+    }
+
+    .entryInfo {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 20%;
+      padding: 0 30px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    @media(max-width: 1400px){
+      .entryImage {
+        width: 75%;
+      }
+      .entryInfo {
+        width: 25%;
+      }
+    }
+
+    @media(max-width: 1080px){
+      .entryImage {
+        width: 66.66666%;
+      }
+      .entryInfo {
+        width: 33.33333%;
+      }
+    }
+
+    @media(max-width: 768px){
+      .entryImage {
+        width: 100%;
+        height: 70%;
+      }
+      .entryInfo {
+        width: 100%;
+        height: 30%;
+        top: auto;
+        bottom: 0;
+      }
+    }
+
+    @media(max-width: 440px){
+      .entryInfo {
+        top: auto;
+        bottom: 0;
+
+        .entryDescription, ul {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
 .fancybox-container {
   .fancybox-slide {
-    padding: 0 40px;
+    padding: 40px;
+
+    > div.entry {
+      margin: 0;
+      padding: 0;
+      max-height: 100%;
+    }
   }
 }

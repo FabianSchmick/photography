@@ -1,22 +1,21 @@
-<div class="entry row">
-    <div class="entryImage col-xs-10">
-        <img src="{{ image_directory }}/{{ entry.image }}" alt="{{ entry.title }}" width="100%">
-    </div>
-    <div class="entryInfo col-xs-2">
-        <div class="entryTitle ">
-            {{ entry.title }}
+<div class="entry">
+    <div class="entryInner">
+        <div class="entryImage">
+            <img src="{{ image_directory }}/{{ entry.image }}" alt="{{ entry.title }}">
         </div>
-        <div class="entryDescription">
-            {{ entry.description }}
-        </div>
-        <div class="entryLocation">
-            {{ entry.location }}
-        </div>
-        <div class="entryAuthor">
-            {{ entry.author }}
-        </div>
-        <div class="entryTimestamp">
-            {{ entry.timestamp|date("d.m.Y") }}
+        <div class="entryInfo">
+            <h2 class="entryTitle">
+                {{ entry.title }}
+            </h2>
+            <p class="entryDescription">
+                {{ entry.description }}
+            </p>
+            <ul class="list-unstyled">
+                <li class="entryLocation"><strong>{{ 'location'|trans }}</strong>: {{ entry.location }}</li>
+                <li class="entryAuthor"><strong>{{ 'author'|trans }}</strong>: {{ entry.author }}</li>
+                <li class="entryTimestamp"><strong>{{ 'timestamp'|trans }}</strong>: {{ entry.timestamp|date("d.m.Y") }}</li>
+            </ul>
+            <a href="{{ image_directory }}/{{ entry.image }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
         </div>
     </div>
 </div>
