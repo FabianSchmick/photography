@@ -196,7 +196,7 @@ class AdminController extends Controller
     public function renderSidebarAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $entries = $em->getRepository('AppBundle:Entry')->findAll();
+        $entries = $em->getRepository('AppBundle:Entry')->findBy([], ['timestamp' => 'DESC']);
         $tags = $em->getRepository('AppBundle:Tag')->findAll();
 
         return $this->render('admin/inc/sidebar.html.twig', [

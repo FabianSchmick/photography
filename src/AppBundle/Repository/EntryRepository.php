@@ -36,6 +36,7 @@ class EntryRepository extends \Doctrine\ORM\EntityRepository
         $query = $this->_em->createQueryBuilder()
             ->select('e')
             ->from($this->getEntityName(), 'e')
+            ->orderBy('e.timestamp', 'DESC')
             ->getQuery();
         return $query;
     }

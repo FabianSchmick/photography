@@ -8,7 +8,7 @@
                 {{ entry.title }}
             </h2>
             <p class="entryDescription">
-                {{ entry.description }}
+                {{ entry.description|raw }}
             </p>
             <ul class="list-unstyled">
                 <li class="entryLocation"><strong>{{ 'location'|trans }}</strong>: {{ entry.location }}</li>
