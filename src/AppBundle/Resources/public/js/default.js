@@ -1,7 +1,8 @@
 // Global vars
 var currentPage = 1,
     group = $("[data-fancybox='entries']"),
-    groupLength = group.length;
+    groupLength = group.length,
+    checkAjax = true;
 
 $(document).ready(function() {
     navigation();
@@ -64,8 +65,11 @@ function parallax() {
 // Lazy loads the entries
 function lazyLoad() {
     $(window).scroll(function() {
-        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-            loadEntries()
+        if (checkAjax && $(window).scrollTop() + $(window).height() > $(document).height() - 600) {
+            checkAjax = false;
+            $.when(loadEntries()).done(function(){
+                checkAjax = true;
+            });
         }
     });
 }
@@ -76,13 +80,14 @@ function loadEntries() {
     var paginateUrlPage = paginateUrl + '/' + currentPage;
     $("#spinner").show();
 
-    $.ajax({
+    return $.ajax({
         url: paginateUrlPage,
         type: 'GET',
         dataType: 'html',
         success: function(data) {
             if (data.length == 0) {
                 $("#spinner").remove();
+                checkAjax = false;
                 return false;
             }
 
@@ -151,7 +156,7 @@ function lightbox() {
         hash : false,
 
         afterShow: function(instance){
-            if (this.index  >= groupLength - 3){
+            if (checkAjax && this.index  >= groupLength - 3){
                 loadEntries();
             }
         }
