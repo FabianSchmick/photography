@@ -33,6 +33,26 @@
                 </ul>
             </li>
             <li class="subNav">
+                <a href="#"><i class="fa fa-users fa-fw"></i> {{ 'authors'|trans }}<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    {% for author in authors %}
+                        <li>
+                            <a href="{{ path('author_edit', {'id': author.id}) }}">{{ author.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li class="subNav">
+                <a href="#"><i class="fa fa-globe fa-fw"></i> {{ 'locations'|trans }}<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    {% for location in locations %}
+                        <li>
+                            <a href="{{ path('location_edit', {'id': location.id}) }}">{{ location.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li class="subNav">
                 <a href="#"><i class="fa fa-hashtag fa-fw"></i> {{ 'tags'|trans }}<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     {% for tag in tags %}

@@ -42,6 +42,16 @@ services:
             $imageQuality: "%jpeg_quality%"
             $thumbHeight: "%thumb_height%"
 
+    AppBundle\Service\AuthorService:
+        public: true
+        arguments:
+            $em: "@doctrine.orm.entity_manager"
+
+    AppBundle\Service\LocationService:
+        public: true
+        arguments:
+            $em: "@doctrine.orm.entity_manager"
+
     AppBundle\Service\TagService:
         public: true
         arguments:

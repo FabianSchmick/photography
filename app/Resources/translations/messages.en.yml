@@ -5,8 +5,10 @@ author: Author
 image: Image
 location: Location
 timestamp: Date
-tags: Tags
 entries: Entries
+authors: Authors
+locations: Locations
+tags: Tags
 edit: Edit
 submit: Submit
 delete: Delete
@@ -27,6 +29,14 @@ current.img: Current Image
 img.upload.info: Old image gets only overwritten if you upload a new one
 success.edit: Your changes have been saved
 success.new: Your new entry has been saved. Edit it here
+
+# Author
+new.author: New Author
+delete.msg.author: Are you sure you want to delete the author
+
+# Location
+new.location: New Location
+delete.msg.location: Are you sure you want to delete the location
 
 # Tag
 new.tag: New Tag

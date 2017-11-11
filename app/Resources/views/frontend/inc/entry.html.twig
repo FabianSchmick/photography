@@ -11,8 +11,8 @@
                 {{ entry.description|raw }}
             </p>
             <ul class="list-unstyled">
-                <li class="entryLocation"><strong>{{ 'location'|trans }}</strong>: {{ entry.location }}</li>
-                <li class="entryAuthor"><strong>{{ 'author'|trans }}</strong>: {{ entry.author }}</li>
+                {% if entry.location.name is defined %}<li class="entryLocation"><strong>{{ 'location'|trans }}</strong>: {{ entry.location.name }}</li>{% endif %}
+                {% if entry.author.name is defined %}<li class="entryAuthor"><strong>{{ 'author'|trans }}</strong>: {{ entry.author.name }}</li>{% endif %}
                 <li class="entryTimestamp"><strong>{{ 'timestamp'|trans }}</strong>: {{ entry.timestamp|date("d.m.Y") }}</li>
             </ul>
             <a href="{{ image_directory }}/{{ entry.image }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>

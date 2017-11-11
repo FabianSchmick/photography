@@ -1,0 +1,18 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+
+    <div class="locations">
+        {% for location in locations %}
+            <div class="location">
+                <div class="locationName">
+                    {{ location.name }}
+                </div>
+                <a href="{{ path('location_edit', {'id': location.id}) }}">{{ 'edit'|trans }}</a>
+                <a href="{{ path('location_delete', {'id': location.id}) }}">{{ 'delete'|trans }}</a>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="{{ path('location_new') }}">{{ 'new.location'|trans }}</a>
+
+{% endblock %}

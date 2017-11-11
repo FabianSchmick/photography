@@ -54,7 +54,11 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="author">{{ 'author'|trans }}</label>
                     <div class="col-sm-10">
-                        <input id="author" class="form-control" type="text" name="edit[author]" value="{{ entry.author }}"/>
+                        <select id="author" class="select2 add form-control" name="edit[author]">
+                            {% for author in authors %}
+                                <option value="{{ author.name }}" {% if entry.author.id is defined and entry.author.id == author.id %}selected="selected"{% endif %}>{{ author.name }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                 </div>
 
@@ -70,7 +74,11 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="location">{{ 'location'|trans }}</label>
                     <div class="col-sm-10">
-                        <input id="location" class="form-control" type="text" name="edit[location]" value="{{ entry.location }}"/>
+                        <select id="location" class="select2 add form-control" name="edit[location]">
+                            {% for location in locations %}
+                                <option value="{{ location.name }}" {% if entry.location.id is defined and entry.location.id == location.id %}selected="selected"{% endif %}>{{ location.name }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                 </div>
 
@@ -84,7 +92,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="tags">{{ 'tags'|trans }}*</label>
                     <div class="col-sm-10">
-                        <select id="tags" class="select2 form-control" name="edit[tags][]" required="required" multiple="multiple">
+                        <select id="tags" class="select2 add form-control" name="edit[tags][]" required="required" multiple="multiple">
                             {% for tag in tags %}
                                 {% set continue = false %}
                                 {% for entryTag in entry.tags %}

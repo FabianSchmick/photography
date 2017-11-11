@@ -35,7 +35,13 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="author">{{ 'author'|trans }}</label>
                     <div class="col-sm-10">
-                        <input id="author" class="form-control" type="text" name="new[author]"/>
+                        <div style="padding-right: 15px">
+                            <select id="author" class="select2 add form-control" name="new[author]">
+                                {% for author in authors %}
+                                    <option value="{{ author.name }}" >{{ author.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -49,7 +55,14 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="location">{{ 'location'|trans }}</label>
                     <div class="col-sm-10">
-                        <input id="location" class="form-control" type="text" name="new[location]"/>
+                        <div style="padding-right: 15px">
+                            <select id="location" class="select2 add form-control" name="new[location]">
+                                <option value="" disabled="disabled" selected="selected"></option>
+                                {% for location in locations %}
+                                    <option value="{{ location.name }}" >{{ location.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -64,7 +77,7 @@
                     <label class="control-label col-sm-2" for="tags">{{ 'tags'|trans }}*</label>
                     <div class="col-sm-10">
                         <div style="padding-right: 15px">
-                            <select id="tags" class="select2 form-control" name="new[tags][]" required="required" multiple="multiple">
+                            <select id="tags" class="select2 add form-control" name="new[tags][]" required="required" multiple="multiple">
                                 {% for tag in tags %}
                                     <option value="{{ tag.name }}" >{{ tag.name }}</option>
                                 {% endfor %}

@@ -37,9 +37,10 @@ class Entry
     private $description;
 
     /**
-     * @var string
+     * @var Author
      *
-     * @ORM\Column(name="author", type="string", length=100, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Author", inversedBy="entries", cascade={"persist"})
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
      */
     private $author;
 
@@ -51,9 +52,10 @@ class Entry
     private $image;
 
     /**
-     * @var string
+     * @var Location
      *
-     * @ORM\Column(name="location", type="string", length=200, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Location", inversedBy="entries", cascade={"persist"})
+     * @ORM\JoinColumn(name="location_id", referencedColumnName="id")
      */
     private $location;
 
@@ -144,7 +146,7 @@ class Entry
     /**
      * Set author
      *
-     * @param string $author
+     * @param Author $author
      *
      * @return Entry
      */
@@ -158,7 +160,7 @@ class Entry
     /**
      * Get author
      *
-     * @return string
+     * @return Author
      */
     public function getAuthor()
     {
@@ -192,7 +194,7 @@ class Entry
     /**
      * Set location
      *
-     * @param string $location
+     * @param Location $location
      *
      * @return Entry
      */
@@ -206,7 +208,7 @@ class Entry
     /**
      * Get location
      *
-     * @return string
+     * @return Location
      */
     public function getLocation()
     {

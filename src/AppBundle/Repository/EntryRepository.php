@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Author;
+use AppBundle\Entity\Location;
 use AppBundle\Entity\Tag;
 
 /**
@@ -23,6 +25,32 @@ class EntryRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder("e")
             ->where(':tag MEMBER OF e.file')
             ->setParameters(array('tag' => $tag));
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Find entries by an author
+     *
+     * @param Author $author
+     * @return array
+     */
+    public function findEntriesByAuthor(Author $author)
+    {
+        $qb = $this->createQueryBuilder("e");
+        $qb ->where($qb->expr()->eq('e.author', $author->getId()));
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Find entries by a location
+     *
+     * @param Location $location
+     * @return array
+     */
+    public function findEntriesByLocation(Location $location)
+    {
+        $qb = $this->createQueryBuilder("e");
+        $qb ->where($qb->expr()->eq('e.location', $location->getId()));
         return $qb->getQuery()->getResult();
     }
 

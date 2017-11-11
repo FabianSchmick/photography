@@ -5,8 +5,10 @@ author: Autor
 image: Bild
 location: Aufnahmeort
 timestamp: Datum
-tags: Schlüsselwörter
 entries: Einträge
+authors: Autoren
+locations: Aufnahmeorte
+tags: Schlüsselwörter
 edit: Bearbeiten
 submit: Bestätigen
 delete: Löschen
@@ -27,6 +29,14 @@ current.img: Aktuelles Bild
 img.upload.info: Das aktuelle Bild wird nur überschrieben, wenn Sie ein neues hochladen
 success.edit: Ihre Änderrungen wurden gespeichert
 success.new: Ihr neuer Eintrag wurde gespeichert. Weiter bearbeiten
+
+# Author
+new.author: Neuer Autor
+delete.msg.author: Sind Sie sicher, dass Sie diesen Autor löschen möchten
+
+# Location
+new.location: Neuer Aufnahmeort
+delete.msg.location: Sind Sie sicher, dass Sie diesen Aufnahmeort löschen möchten
 
 # Tag
 new.tag: Neues Schlüsselwort

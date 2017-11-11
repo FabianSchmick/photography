@@ -2,7 +2,9 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Author;
 use AppBundle\Entity\Entry;
+use AppBundle\Entity\Location;
 use AppBundle\Entity\Tag;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
@@ -98,9 +100,33 @@ class EntryService
         }
         $entryEntity->setTitle($entry['title']);
         $entryEntity->setDescription($entry['description']);
-        $entryEntity->setAuthor($entry['author']);
+
+        if (!empty($entry['author'])) {
+            $authorEntity = $this->em->getRepository('AppBundle:Author')->findOneBy(['name' => $entry['author']]);
+
+            if (!$authorEntity) {
+                $authorEntity = new Author();
+            }
+            $authorEntity->setName($entry['author']);
+            $this->em->persist($authorEntity);
+
+            $entryEntity->setAuthor($authorEntity);
+        }
+
         $entryEntity->setImage($imageName);
-        $entryEntity->setLocation($entry['location']);
+
+        if (!empty($entry['location'])) {
+            $locationEntity = $this->em->getRepository('AppBundle:Location')->findOneBy(['name' => $entry['location']]);
+
+            if (!$locationEntity) {
+                $locationEntity = new Location();
+            }
+            $locationEntity->setName($entry['location']);
+            $this->em->persist($locationEntity);
+
+            $entryEntity->setLocation($locationEntity);
+        }
+
         if ($timestamp = date_create(date($entry['timestamp']))) {
             $entryEntity->setTimestamp($timestamp);
         } else {

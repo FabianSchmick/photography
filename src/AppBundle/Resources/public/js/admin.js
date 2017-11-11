@@ -61,7 +61,7 @@ function ajaxPageWrapper() {
 function initSelect2() {
     $('.select2').select2();
 
-    $('#tags.select2').select2({
+    $('.select2.add').select2({
         tags: true
     });
 }

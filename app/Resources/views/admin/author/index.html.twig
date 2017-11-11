@@ -1,0 +1,18 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+
+    <div class="authors">
+        {% for author in authors %}
+            <div class="author">
+                <div class="authorName">
+                    {{ author.name }}
+                </div>
+                <a href="{{ path('author_edit', {'id': author.id}) }}">{{ 'edit'|trans }}</a>
+                <a href="{{ path('author_delete', {'id': author.id}) }}">{{ 'delete'|trans }}</a>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="{{ path('author_new') }}">{{ 'new.author'|trans }}</a>
+
+{% endblock %}
