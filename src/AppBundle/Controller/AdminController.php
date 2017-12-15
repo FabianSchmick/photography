@@ -10,6 +10,7 @@ use AppBundle\Service\EntryService;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -123,6 +124,9 @@ class AdminController extends Controller
     public function entryDeleteAction(Request $request, Entry $entry)
     {
         $em = $this->getDoctrine()->getManager();
+
+        $filesystem = new Filesystem();
+        $filesystem->remove($this->getParameter('image_directory') . '/' . $entry->getImage());
 
         $em->remove($entry);
         $em->flush();
