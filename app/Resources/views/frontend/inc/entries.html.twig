@@ -1,5 +1,7 @@
 {% for entry in entries %}
-    {% set url = path('entry_detail', {'id': entry.id, 'title': entry.title|replace({' ': '-'})}) %}
+    {% set url = path('entry_detail', {'slug': entry.slug}) %}
+    {% set src = path('ajax_entry_detail', {'id': entry.id}) %}
+
     <a href="javascript:;" data-fancybox="entries" data-src="{{ url }}" data-type="ajax" class="entry">
         <img src="{{ image_directory }}/thumb/{{ entry.image }}" alt="{{ entry.title }}">
         <div class="title">{{ entry.title }}</div>

@@ -22,9 +22,22 @@ class DefaultController extends Controller
     /**
      * Gather all information for the entry detail page
      *
-     * @Route("/entry/{id}/{title}", name="entry_detail")
+     * @Route("/entry/{slug}", name="entry_detail")
      */
-    public function entryDetailAction(Request $request, $title, Entry $entry)
+    public function entryDetailAction(Request $request, Entry $entry)
+    {
+        // TODO: Create beautiful detail page
+        return $this->render('frontend/inc/entry.html.twig', [
+            'entry' => $entry,
+        ]);
+    }
+
+    /**
+     * Gather all information for the ajax entry detail page (lightbox)
+     *
+     * @Route("/ajax/entry/{id}/", name="ajax_entry_detail")
+     */
+    public function ajaxEntryDetailAction(Request $request, Entry $entry)
     {
         return $this->render('frontend/inc/entry.html.twig', [
             'entry' => $entry,
