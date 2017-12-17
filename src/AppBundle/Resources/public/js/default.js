@@ -14,14 +14,18 @@ $(document).ready(function() {
 
 // Functions for the navigation
 function navigation() {
-    $(window).bind('scroll', function() {
-        var navHeight = $(window).height() - 520;
-        if ($(window).scrollTop() > navHeight) {
-            $('.navbar-default').addClass('on');
-        } else {
-            $('.navbar-default').removeClass('on');
-        }
-    });
+    if ($('header').offset().top - $('main').offset().top === 0) {
+        $('.navbar-default').addClass('on');
+    } else {
+        $(window).bind('scroll', function() {
+            var navHeight = $(window).height() - 520;
+            if ($(window).scrollTop() > navHeight) {
+                $('.navbar-default').addClass('on');
+            } else {
+                $('.navbar-default').removeClass('on');
+            }
+        });
+    }
 
     $('body').scrollspy({
         target: '.navbar-default',
@@ -155,10 +159,18 @@ function lightbox() {
     $(group).fancybox({
         hash : false,
 
-        afterShow: function(instance){
+        beforeShow:  function(instance){
+            var entries = $("[data-fancybox='entries']");
+
+            history.pushState(null, '', $(entries[this.index]).attr('href'));
+
             if (checkAjax && this.index  >= groupLength - 3){
                 loadEntries();
             }
+        },
+
+        afterClose: function(instance){
+            history.pushState(null, '', homeUrl);
         }
     });
 }

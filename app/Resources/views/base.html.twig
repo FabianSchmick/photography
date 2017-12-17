@@ -22,13 +22,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href=""><img src="" alt="logo"/></a>
+                <a class="navbar-brand" href="{{ path('homepage') }}"><img src="" alt="logo"/></a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#cover" class="page-scroll">{{ 'home'|trans }}</a></li>
-                    <li><a href="#entries" class="page-scroll">{{ 'gallery'|trans }}</a></li>
+                    <li><a href="{{ path('homepage') }}#cover" class="page-scroll" data-target="#cover">{{ 'home'|trans }}</a></li>
+                    <li><a href="{{ path('homepage') }}#entries" class="page-scroll" data-target="#entries">{{ 'gallery'|trans }}</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ 'languages'|trans }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -51,19 +51,14 @@
 </header>
 
 {% block cover %}
-    <section id="cover">
-    </section>
 {% endblock %}
 
-{% block introduction %}
-    <section id="introduction">
-    </section>
-{% endblock %}
-
-{% block content %}
-    <section id="content">
-    </section>
-{% endblock %}
+<main>
+    {% block content %}
+        <section id="content">
+        </section>
+    {% endblock %}
+</main>
 
 {% block javascripts %}
     <script type="text/javascript">

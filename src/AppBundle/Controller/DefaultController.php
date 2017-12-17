@@ -26,7 +26,6 @@ class DefaultController extends Controller
      */
     public function entryDetailAction(Request $request, Entry $entry)
     {
-        // TODO: Create beautiful detail page
         return $this->render('frontend/inc/entry.html.twig', [
             'entry' => $entry,
         ]);
@@ -39,7 +38,7 @@ class DefaultController extends Controller
      */
     public function ajaxEntryDetailAction(Request $request, Entry $entry)
     {
-        return $this->render('frontend/inc/entry.html.twig', [
+        return $this->render('frontend/inc/ajaxEntry.html.twig', [
             'entry' => $entry,
         ]);
     }
