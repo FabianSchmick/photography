@@ -66,3 +66,24 @@ DirectoryIndex app.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
+
+# gzip for css/js
+
+# adjust response headers for gzipped css files
+<FilesMatch "\.css\.gz$">
+    AddEncoding gzip .gz
+    ForceType "text/css"
+</FilesMatch>
+
+# adjust response headers for gzipped js files
+<FilesMatch "\.js\.gz$">
+    AddEncoding gzip .gz
+    ForceType "application/javascript"
+</FilesMatch>
+
+# gzip for css/js
+# rewrite file if gzipped file exists
+RewriteCond %{HTTP:Accept-Encoding} gzip.*deflate|deflate.*gzip
+RewriteCond %{REQUEST_FILENAME} \.(css|js)$
+RewriteCond %{REQUEST_FILENAME}.gz -f
+RewriteRule ^.*$ %{REQUEST_URI}.gz [L]

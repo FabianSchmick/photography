@@ -4,6 +4,7 @@ var gulp  = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     uglifycss = require('gulp-uglifycss'),
+    gzip = require('gulp-gzip'),
     sourcemaps = require('gulp-sourcemaps'),
     plumber = require('gulp-plumber'),
     rev = require('gulp-rev'),
@@ -145,6 +146,47 @@ gulp.task('default',
     }
 );
 
+/* Deployment tasks */
+gulp.task('deployStyles', function () {
+    return deployStyles(stylesConf.frontend);
+});
+
+gulp.task('deployScripts', function() {
+    return deployScripts(scriptsConf.frontend)
+});
+
+gulp.task('deployStylesAdmin', function () {
+    return deployStyles(stylesConf.admin);
+});
+
+gulp.task('deployScriptsAdmin', function() {
+    return deployScripts(scriptsConf.admin)
+});
+
+gulp.task('compress', function() {
+    gulp.src(destination + '/min/js/*.js')
+        .pipe(gzip())
+        .pipe(gulp.dest(destination + '/min/js'));
+    gulp.src(destination + '/min/css/*.css')
+        .pipe(gzip())
+        .pipe(gulp.dest(destination + '/min/css'));
+});
+
+gulp.task('deploy',
+    function () {
+        rs(
+            'clean',
+            'fonts',
+            'deployStyles',
+            'deployStylesAdmin',
+            'deployScripts',
+            'deployScriptsAdmin',
+            'compress'
+        );
+    }
+);
+
+/* Functions for styles and scripts */
 function styles(conf) {
     return es.concat(
         gulp.src(conf.src)
@@ -162,7 +204,6 @@ function styles(conf) {
         .pipe(less())
     )
     .pipe(concat(conf.concatName))
-    .pipe(uglifycss())
     .pipe(rev())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(destination))
@@ -178,9 +219,44 @@ function scripts(conf) {
     }))
     .pipe(sourcemaps.init())
     .pipe(concat(conf.concatName))
-    .pipe(uglify())
     .pipe(rev())
     .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(destination))
+    .pipe(rev.manifest({merge: true}))
+    .pipe(gulp.dest('.'));
+}
+
+function deployStyles(conf) {
+    return es.concat(
+        gulp.src(conf.src)
+        .pipe(plumber(function (error) {
+            console.log(error.toString());
+            this.emit('end');
+        })),
+        gulp.src(conf.furtherource)
+        .pipe(plumber(function (error) {
+            console.log(error.toString());
+            this.emit('end');
+        }))
+        .pipe(less())
+    )
+    .pipe(concat(conf.concatName))
+    .pipe(uglifycss())
+    .pipe(rev())
+    .pipe(gulp.dest(destination))
+    .pipe(rev.manifest({merge: true}))
+    .pipe(gulp.dest('.'));
+}
+
+function deployScripts(conf) {
+    return gulp.src(conf.src)
+    .pipe(plumber(function (error) {
+        console.log(error.toString());
+        this.emit('end');
+    }))
+    .pipe(concat(conf.concatName))
+    .pipe(uglify())
+    .pipe(rev())
     .pipe(gulp.dest(destination))
     .pipe(rev.manifest({merge: true}))
     .pipe(gulp.dest('.'));

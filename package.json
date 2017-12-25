@@ -17,6 +17,7 @@
     "gulp-cached": "^1.1.1",
     "gulp-cli": "^1.4.0",
     "gulp-concat": "^2.6.1",
+    "gulp-gzip": "^1.4.0",
     "gulp-less": "^3.3.2",
     "gulp-plumber": "^1.1.0",
     "gulp-remember": "^0.3.1",
