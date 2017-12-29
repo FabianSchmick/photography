@@ -250,6 +250,11 @@ header {
 }
 
 #content {
+  h1 {
+    margin-top: 110px;
+    text-align: center;
+  }
+
   &.container {
     padding: 0 25px;
 
@@ -424,6 +429,31 @@ header {
         .entryDescription, .entryTimestamp, .entryAuthor {
           display: none;
         }
+      }
+    }
+  }
+}
+
+ul.tags {
+  margin: 0;
+
+  li {
+    float: left;
+    padding: 0 10px 10px 0;
+
+    > a{
+      display: block;
+      padding: 5px 10px;
+      .transition-all;
+      border: 1px solid @color-teritary;
+      border-radius: 20px;
+      color: @color-teritary;
+      text-decoration: none;
+
+      &:hover {
+        .transition-all;
+        color: #fff;
+        background: @color-teritary;;
       }
     }
   }
