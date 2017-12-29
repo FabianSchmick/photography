@@ -18,14 +18,15 @@ class EntryRepository extends \Doctrine\ORM\EntityRepository
      * Find entries by a tag
      *
      * @param Tag $tag
-     * @return array
+     * @return string
      */
     public function findEntriesByTag(Tag $tag)
     {
         $qb = $this->createQueryBuilder("e")
-            ->where(':tag MEMBER OF e.file')
-            ->setParameters(array('tag' => $tag));
-        return $qb->getQuery()->getResult();
+            ->where(':tag MEMBER OF e.tags')
+            ->setParameters(array('tag' => $tag))
+            ->orderBy('e.timestamp', 'DESC');
+        return $qb->getQuery();
     }
 
     /**

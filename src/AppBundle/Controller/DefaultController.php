@@ -44,13 +44,47 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/page/{page}", name="paginate_entries", requirements={"page": "\d+"})
+     * Route for paginate entries
+     *
+     * @Route("/entries/{page}", name="paginate_entries", requirements={"page": "\d+"})
      */
     public function paginateEntriesAction(Request $request, $page = 1)
     {
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->getRepository('AppBundle:Entry')->getFindAllQuery();
+        $pages = PaginationHelper::getPagesCount($query);
+        $entries = PaginationHelper::paginate($query, 10, $page);
+
+        return $this->render('frontend/inc/entries.html.twig', [
+            'entries'   => $entries,
+            'page'      => $page,
+            'pages'     => $pages
+        ]);
+    }
+
+    /**
+     * Filter entries by tag
+     *
+     * @Route("/tag/{slug}", name="tag_filter")
+     */
+    public function tagFilterAction(Request $request, Tag $tag)
+    {
+        return $this->render('frontend/tag.html.twig', [
+            'tag' => $tag
+        ]);
+    }
+
+    /**
+     * Route for paginate by tag
+     *
+     * @Route("/tag/{slug}/{page}", name="paginate_by_tag", requirements={"page": "\d+"})
+     */
+    public function paginateByTagAction(Request $request, Tag $tag, $page = 1)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $query = $em->getRepository('AppBundle:Entry')->findEntriesByTag($tag);
         $pages = PaginationHelper::getPagesCount($query);
         $entries = PaginationHelper::paginate($query, 10, $page);
 

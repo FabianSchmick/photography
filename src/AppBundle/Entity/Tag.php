@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Tag
@@ -35,6 +36,12 @@ class Tag
      * @ORM\ManyToMany(targetEntity="Entry", mappedBy="tags", cascade={"persist"})
      */
     private $entries;
+
+    /**
+     * @ORM\Column(type="string", unique=true)
+     * @Gedmo\Slug(fields={"name"}, updatable=true)
+     */
+    private $slug;
 
 
     /**
@@ -96,6 +103,30 @@ class Tag
     public function setEntries(ArrayCollection $entries)
     {
         $this->entries = $entries;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Entry
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
 
