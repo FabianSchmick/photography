@@ -94,7 +94,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="timestamp">{{ 'timestamp'|trans }}</label>
                     <div class="col-sm-10">
-                        <input id="timestamp" class="form-control" type="date" name="edit[timestamp]" value="{{ entry.timestamp|date("d.m.Y") }}"/>
+                        <input id="timestamp" class="form-control" type="date" name="edit[timestamp]" value="{{ entry.timestamp|date("Y-m-d") }}"/>
                     </div>
                 </div>
 
