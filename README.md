@@ -14,7 +14,8 @@ The project provides you following functionality:
 - Node packages with Gulp, Bootstrap, jQuery and many more
 - Image compression and thumbnail generation with [Imagine](https://imagine.readthedocs.io/en/latest/)
 - Small CMS for creating new entries
-- Multilingualism in English and German
+- Half- multilingualism in English and German (entities missing)
+- Tag possibility for describing and filtering entries
 - Lazyloading for images
 - Justified Gallery with [JustifiedGallery](http://miromannino.github.io/Justified-Gallery/)
 - Lightbox with [Fancybox](http://fancyapps.com/fancybox/3/)
@@ -37,4 +38,9 @@ after you encoded the password with symfony built in command
 php bin/console security:encode-password
 ```
 
-Now you only need to run `npm install` and `gulp` in the projet root to generate the stylesheet and javascript files.
+Now you only need to run `npm install` and `gulp deploy` in the project root to generate the stylesheet and javascript files.
+
+If you need some example data run:
+```
+php bin/console doctrine:fixtures:load
+```
