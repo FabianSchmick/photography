@@ -8,7 +8,8 @@ timestamp: Datum
 entries: Einträge
 authors: Autoren
 locations: Aufnahmeorte
-tags: Schlüsselwörter
+tags: Tags
+tag: Tag
 edit: Bearbeiten
 submit: Bestätigen
 delete: Löschen

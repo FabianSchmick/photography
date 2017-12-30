@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 
+{% block metaDesc %}{{ 'introduction.tag'|trans }} {{ tag.name }}{% endblock %}
+{% block title %}{{ 'tag'|trans }} {{ tag.name }}{% endblock %}
+
 {% block cover %}
     <section id="cover" class="parallaxContainer">
         <div class="parallax">

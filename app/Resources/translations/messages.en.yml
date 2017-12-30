@@ -9,6 +9,7 @@ entries: Entries
 authors: Authors
 locations: Locations
 tags: Tags
+tag: Tag
 edit: Edit
 submit: Submit
 delete: Delete
