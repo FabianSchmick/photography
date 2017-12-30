@@ -13,10 +13,12 @@
                 <h1 class="entryTitle">
                     {{ entry.title }}
                 </h1>
-                <p class="entryDescription">
-                    {{ entry.description|raw }}
-                </p>
-                <ul class="list-unstyled">
+                {% if entry.description != "" %}
+                    <p class="entryDescription">
+                        {{ entry.description|raw }}
+                    </p>
+                {% endif %}
+                <ul class="list-unstyled meta">
                     {% if entry.location.name is defined %}<li class="entryLocation"><strong>{{ 'location'|trans }}</strong>: {{ entry.location.name }}</li>{% endif %}
                     {% if entry.author.name is defined %}<li class="entryAuthor"><strong>{{ 'author'|trans }}</strong>: {{ entry.author.name }}</li>{% endif %}
                     <li class="entryTimestamp"><strong>{{ 'timestamp'|trans }}</strong>: {{ entry.timestamp|date("d.m.Y") }}</li>
@@ -26,7 +28,7 @@
                         <li><a href="{{ path('tag_filter', {'slug': tag.slug}) }}">{{ tag.name }}</a></li>
                     {% endfor %}
                 </ul>
-                <a href="{{ image_directory }}/{{ entry.image }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
+                <a class="btn" href="{{ image_directory }}/{{ entry.image }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
             </div>
         </article>
     </section>
