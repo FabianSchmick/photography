@@ -22,6 +22,7 @@ admin: Admin
 homepage: Homepage
 english: Englisch
 german: Deutsch
+live.view: Live Ansicht
 
 # Entry
 new.entry: Neuer Eintrag
