@@ -29,7 +29,7 @@ class DefaultController extends Controller
      */
     public function entryDetailAction(Request $request, Entry $entry)
     {
-        return $this->render('frontend/inc/entry.html.twig', [
+        return $this->render('frontend/entry.html.twig', [
             'entry' => $entry,
         ]);
     }
