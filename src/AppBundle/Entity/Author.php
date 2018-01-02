@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Translatable\Translatable;
 
 /**
  * Author
@@ -25,6 +27,7 @@ class Author
     /**
      * @var string
      *
+     * @Gedmo\Translatable
      * @ORM\Column(name="name", type="string", length=100, unique=true)
      */
     private $name;
@@ -35,6 +38,12 @@ class Author
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="author", cascade={"persist"})
      */
     private $entries;
+
+    /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     */
+    private $locale;
 
 
     /**
@@ -96,6 +105,16 @@ class Author
     public function setEntries($entries)
     {
         $this->entries = $entries;
+    }
+
+    /**
+     * Set locale
+     *
+     * @param $locale
+     */
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 }
 

@@ -14,7 +14,7 @@ The project provides you following functionality:
 - Node packages with Gulp, Bootstrap, jQuery and many more
 - Image compression and thumbnail generation with [Imagine](https://imagine.readthedocs.io/en/latest/)
 - Small CMS for creating new entries
-- Half- multilingualism in English and German (entities missing)
+- Multilingualism in English and German
 - Tag possibility for describing and filtering entries
 - Lazyloading for images
 - Justified Gallery with [JustifiedGallery](http://miromannino.github.io/Justified-Gallery/)

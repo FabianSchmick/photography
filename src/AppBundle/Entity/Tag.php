@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Translatable\Translatable;
 
 /**
  * Tag
@@ -26,6 +27,7 @@ class Tag
     /**
      * @var string
      *
+     * @Gedmo\Translatable
      * @ORM\Column(name="name", type="string", length=150, unique=true)
      */
     private $name;
@@ -42,6 +44,12 @@ class Tag
      * @Gedmo\Slug(fields={"name"}, updatable=true)
      */
     private $slug;
+
+    /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     */
+    private $locale;
 
 
     /**
@@ -127,6 +135,16 @@ class Tag
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set locale
+     *
+     * @param $locale
+     */
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 }
 
