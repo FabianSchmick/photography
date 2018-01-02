@@ -25,4 +25,36 @@ class TagRepository extends \Doctrine\ORM\EntityRepository
             ->setParameters(array('entry' => $entry));
         return $qb->getQuery()->getResult();
     }
+
+    /**
+     * Find a tag by criteria
+     * Need this special function, because of translatable
+     * https://github.com/stof/StofDoctrineExtensionsBundle/issues/232
+     *
+     * @param $params
+     * @return mixed
+     */
+    public function findOneByCriteria(array $params)
+    {
+        $query = $this->createQueryBuilder('t');
+
+        $i = 0;
+        foreach ($params as $column => $value) {
+            if ($i < 1) {
+                $query->where("t.$column = :$column");
+            } else {
+                $query->andWhere("t.$column = :$column");
+            }
+            $query->setParameter($column, $value);
+
+            $i++;
+        }
+
+        $query = $query->getQuery();
+
+
+        $query->setHint(\Doctrine\ORM\Query::HINT_CUSTOM_OUTPUT_WALKER, 'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker');
+
+        return $query->getOneOrNullResult();
+    }
 }

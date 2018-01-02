@@ -40,8 +40,9 @@ class Tag
     private $entries;
 
     /**
-     * @ORM\Column(type="string", unique=true)
+     * @Gedmo\Translatable
      * @Gedmo\Slug(fields={"name"}, updatable=true)
+     * @ORM\Column(type="string", unique=true)
      */
     private $slug;
 

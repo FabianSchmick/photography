@@ -135,7 +135,7 @@ class EntryService
 
         $tagsArrayCollection = new ArrayCollection();
         foreach ($entry['tags'] as $tag) {
-            $tagEntity = $this->em->getRepository('AppBundle:Tag')->findOneBy(['name' => $tag]);
+            $tagEntity = $this->em->getRepository('AppBundle:Tag')->findOneByCriteria(['name' => $tag]);
 
             if (!$tagEntity) {
                 $tagEntity = new Tag();

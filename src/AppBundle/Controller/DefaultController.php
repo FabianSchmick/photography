@@ -4,7 +4,9 @@ namespace AppBundle\Controller;
 
 use AppBundle\Doctrine\PaginationHelper;
 use AppBundle\Entity\Entry;
+use AppBundle\Entity\Tag;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -23,6 +25,7 @@ class DefaultController extends Controller
      * Gather all information for the entry detail page
      *
      * @Route("/entry/{slug}", name="entry_detail")
+     * @ParamConverter("entry", class="AppBundle:Entry", options={"repository_method" = "findOneByCriteria"})
      */
     public function entryDetailAction(Request $request, Entry $entry)
     {
@@ -67,6 +70,7 @@ class DefaultController extends Controller
      * Filter entries by tag
      *
      * @Route("/tag/{slug}", name="tag_filter")
+     * @ParamConverter("tag", class="AppBundle:Tag", options={"repository_method" = "findOneByCriteria"})
      */
     public function tagFilterAction(Request $request, Tag $tag)
     {
@@ -79,6 +83,7 @@ class DefaultController extends Controller
      * Route for paginate by tag
      *
      * @Route("/tag/{slug}/{page}", name="paginate_by_tag", requirements={"page": "\d+"})
+     * @ParamConverter("tag", class="AppBundle:Tag", options={"repository_method" = "findOneByCriteria", "mapping": {"slug": "slug"}})
      */
     public function paginateByTagAction(Request $request, Tag $tag, $page = 1)
     {

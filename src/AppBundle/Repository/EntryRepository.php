@@ -69,4 +69,36 @@ class EntryRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $query;
     }
+
+    /**
+     * Find an entry by criteria
+     * Need this special function, because of translatable
+     * https://github.com/stof/StofDoctrineExtensionsBundle/issues/232
+     *
+     * @param $params
+     * @return mixed
+     */
+    public function findOneByCriteria(array $params)
+    {
+        $query = $this->createQueryBuilder('e');
+
+        $i = 0;
+        foreach ($params as $column => $value) {
+            if ($i < 1) {
+                $query->where("e.$column = :$column");
+            } else {
+                $query->andWhere("e.$column = :$column");
+            }
+            $query->setParameter($column, $value);
+
+            $i++;
+        }
+
+        $query = $query->getQuery();
+
+
+        $query->setHint(\Doctrine\ORM\Query::HINT_CUSTOM_OUTPUT_WALKER, 'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker');
+
+        return $query->getOneOrNullResult();
+    }
 }

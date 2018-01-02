@@ -36,7 +36,7 @@ class TagService
      */
     public function saveTag(array $tag)
     {
-        $duplicate = $this->em->getRepository('AppBundle:Tag')->findOneBy(['name' => $tag['name']]);
+        $duplicate = $this->em->getRepository('AppBundle:Tag')->findOneByCriteria(['name' => $tag['name']]);
 
         if ($duplicate) {
             return $duplicate;

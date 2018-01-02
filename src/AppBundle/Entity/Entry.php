@@ -82,6 +82,7 @@ class Entry
     private $tags;
 
     /**
+     * @Gedmo\Translatable
      * @Gedmo\Slug(fields={"title"}, updatable=true)
      * @ORM\Column(type="string", unique=true)
      */
