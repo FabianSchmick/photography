@@ -158,6 +158,7 @@ function justify() {
 function lightbox() {
     $(group).fancybox({
         hash : false,
+        autoFocus : false,
 
         beforeShow:  function(instance){
             var entries = $("[data-fancybox='entries']");

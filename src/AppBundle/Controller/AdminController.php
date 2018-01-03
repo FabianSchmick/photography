@@ -127,6 +127,7 @@ class AdminController extends Controller
 
         $filesystem = new Filesystem();
         $filesystem->remove($this->getParameter('image_directory') . '/' . $entry->getImage());
+        $filesystem->remove($this->getParameter('image_directory') . '/thumb/' . $entry->getImage());
 
         $em->remove($entry);
         $em->flush();
