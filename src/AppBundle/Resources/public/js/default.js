@@ -156,9 +156,16 @@ function justify() {
 
 // Lightbox (fancybox) for the image entries -> load dynamic content https://github.com/fancyapps/fancyBox/issues/257
 function lightbox() {
+    var lang = 'en';
+
+    if ($('html').attr('lang') === 'de') {
+        lang = $('html').attr('lang');
+    }
+
     $(group).fancybox({
         hash : false,
         autoFocus : false,
+        lang : lang,
 
         beforeShow:  function(instance){
             var entries = $("[data-fancybox='entries']");
