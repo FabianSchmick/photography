@@ -62,3 +62,8 @@ gallery: Fotos
 languages: Sprachen
 fullscreen: Vollbild
 introduction.tag: Alle Bilder gefiltert zum Thema
+
+# Error page
+page.not.found: Seite wurde nicht gefunden (error 404)
+page.not.found.explanation.1: Die angeforderte Seite konnte nicht gefunden werden. Möglicherweise existiert die Seite nicht mehr. Überprüfen Sie die URL auf Rechtschreibfehler oder kehren Sie zur
+page.not.found.explanation.2: Startseite zurück

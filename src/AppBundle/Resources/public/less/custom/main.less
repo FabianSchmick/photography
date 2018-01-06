@@ -29,6 +29,11 @@ body {
   }
 }
 
+.textContainer {
+  max-width: 750px;
+  margin: auto;
+}
+
 .btn {
   display: inline-block;
   padding: 10px 25px;
@@ -42,7 +47,8 @@ body {
     padding-right: 5px;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     .transition-all;
     background: lighten(@color-teritary, 5);
     color: @color-secondary;

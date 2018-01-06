@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block metaDesc %}{{ 'page.not.found'|trans }}{% endblock %}
+{% block title %}{{ 'page.not.found'|trans }}{% endblock %}
+
+{% block cover %}
+    <section id="cover" class="parallaxContainer">
+        <div class="parallax">
+        </div>
+    </section>
+{% endblock %}
+{% block content %}
+    <section id="content" class="container">
+        <h1>{{ 'page.not.found'|trans }}</h1>
+
+        <article class="textContainer">
+            <p class="text-center">
+                {{ 'page.not.found.explanation.1'|trans }} <a href="{{ path('homepage') }}">{{ 'page.not.found.explanation.2'|trans }}</a>.
+            </p>
+        </article>
+    </section>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        var paginateUrl = "",
+            homeUrl = "{{ path('homepage') }}";
+    </script>
+
+    <script type="text/javascript" src="{{ asset('min/js/main.js'|asset_version) }}"></script>
+{% endblock %}

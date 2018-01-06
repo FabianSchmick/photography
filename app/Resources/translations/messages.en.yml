@@ -62,3 +62,8 @@ gallery: Gallery
 languages: Languages
 fullscreen: Fullscreen
 introduction.tag: All pictures filtered by tag
+
+# Error page
+page.not.found: Page not found (error 404)
+page.not.found.explanation.1: The requested page couldn't be located. Maybe the site doesn't exist any longer. Checkout for any URL misspelling or
+page.not.found.explanation.2: return to the homepage
