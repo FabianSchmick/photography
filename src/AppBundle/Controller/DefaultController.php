@@ -10,6 +10,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @Route("{_locale}", requirements={"_locale": "%app.locales%"})
+ */
 class DefaultController extends Controller
 {
     /**
@@ -98,26 +101,5 @@ class DefaultController extends Controller
             'page'      => $page,
             'pages'     => $pages
         ]);
-    }
-
-    /**
-     * Change language
-     *
-     * @Route("admin/language/{locale}", name="changeLanguageAdmin")
-     * @Route("/language/{locale}", name="changeLanguage")
-     */
-    public function changeLanguageAction($locale)
-    {
-        $request = $this->container->get('request_stack')->getCurrentRequest();
-        $routeName = $request->get('_route');
-        $request->attributes->set('_locale', null);
-        $this->get('session')->set('_locale', $locale);
-
-        $redirect = 'homepage';
-        if ($routeName == 'changeLanguageAdmin') {
-            $redirect = 'admin_index';
-        }
-
-        return $this->redirect($this->generateUrl($redirect));
     }
 }

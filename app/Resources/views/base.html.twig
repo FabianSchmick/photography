@@ -26,6 +26,7 @@
                 <a class="navbar-brand" href="{{ path('homepage') }}"><img src="" alt="logo"/></a>
             </div>
 
+            {% set request = app.request %}
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{ path('homepage') }}#cover" class="page-scroll" data-target="#cover">{{ 'home'|trans }}</a></li>
@@ -33,16 +34,14 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="flag" style="background-image: url({{ asset('bundles/app/img/layout/icons/'~ app.request.locale ~ '.jpg') }})"></span> {{ 'languages'|trans }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ path('changeLanguage', {'locale': 'en'}) }}" class="{% if app.request.locale == 'en' %}active{% endif %}">
-                                    <span class="flag" style="background-image: url({{ asset('bundles/app/img/layout/icons/en.jpg') }})"></span> {{ 'english'|trans }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ path('changeLanguage', {'locale': 'de'}) }}" class="{% if app.request.locale == 'de' %}active{% endif %}">
-                                    <span class="flag" style="background-image: url({{ asset('bundles/app/img/layout/icons/de.jpg') }})"></span> {{ 'german'|trans }}
-                                </a>
-                            </li>
+                            {% for locale in locales|split('|') %}
+                                {% set lang = 'locale.' ~ locale %}
+                                <li>
+                                    <a href="{{ path('homepage', {'_locale': locale}) }}" class="{% if request.locale == locale %}active{% endif %}">
+                                        <span class="flag" style="background-image: url({{ asset('bundles/app/img/layout/icons/'~ locale ~ '.jpg') }})"></span> {{ lang|trans }}
+                                    </a>
+                                </li>
+                            {% endfor %}
                         </ul>
                     </li>
                 </ul>

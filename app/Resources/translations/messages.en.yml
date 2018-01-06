@@ -22,6 +22,8 @@ admin: Admin
 homepage: Homepage
 english: English
 german: German
+locale.en: English
+locale.de: German
 live.view: Live view
 
 # Entry
