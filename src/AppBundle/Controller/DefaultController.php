@@ -52,7 +52,7 @@ class DefaultController extends Controller
     /**
      * Route for paginate entries
      *
-     * @Route("/entries/{page}", name="paginate_entries", requirements={"page": "\d+"})
+     * @Route("/ajax/entries/{page}", name="paginate_entries", requirements={"page": "\d+"})
      */
     public function paginateEntriesAction(Request $request, $page = 1)
     {
@@ -85,7 +85,7 @@ class DefaultController extends Controller
     /**
      * Route for paginate by tag
      *
-     * @Route("/tag/{slug}/{page}", name="paginate_by_tag", requirements={"page": "\d+"})
+     * @Route("/ajax/tag/{slug}/{page}", name="paginate_by_tag", requirements={"page": "\d+"})
      * @ParamConverter("tag", class="AppBundle:Tag", options={"repository_method" = "findOneByCriteria", "mapping": {"slug": "slug"}})
      */
     public function paginateByTagAction(Request $request, Tag $tag, $page = 1)
