@@ -36,16 +36,19 @@ class TagService
      */
     public function saveTag(array $tag)
     {
-        $duplicate = $this->em->getRepository('AppBundle:Tag')->findOneByCriteria(['name' => $tag['name']]);
-
-        if ($duplicate) {
-            return $duplicate;
-        }
         $tagEntity = new Tag();
         if (isset($tag['id'])) {
             $tagEntity = $this->em->getRepository('AppBundle:Tag')->findOneBy(['id' => $tag['id']]);
+        } else {
+            $duplicate = $this->em->getRepository('AppBundle:Tag')->findOneByCriteria(['name' => $tag['name']]);
         }
+
+        if (!empty($duplicate)) {
+            return $duplicate;
+        }
+
         $tagEntity->setName($tag['name']);
+        $tagEntity->setDescription($tag['description']);
 
         $this->em->persist($tagEntity);
         $this->em->flush();

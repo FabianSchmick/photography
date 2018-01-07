@@ -13,9 +13,13 @@
     <section id="content" class="container">
         <h1>{{ tag.name }}</h1>
 
-        <p class="text-center">
-            {{ 'introduction.tag'|trans }} <strong>{{ tag.name }}</strong>
-        </p>
+        <div class="textContainer text-center">
+            {% if tag.description != "" %}
+                {{ tag.description|raw }}
+            {% else %}
+                <p>{{ 'introduction.tag'|trans }} <strong>{{ tag.name }}</strong></p>
+            {% endif %}
+        </div>
 
         <div id="entries" class="list-unstyled">
             {{ render(controller('AppBundle:Default:paginateByTag', {'slug': tag.slug, 'page': 1 })) }}

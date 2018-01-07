@@ -33,6 +33,14 @@ class Tag
     private $name;
 
     /**
+     * @var array
+     *
+     * @Gedmo\Translatable
+     * @ORM\Column(name="description", type="array", nullable=true)
+     */
+    private $description;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Entry", mappedBy="tags", cascade={"persist"})
@@ -95,6 +103,30 @@ class Tag
     }
 
     /**
+     * Set description
+     *
+     * @param array $description
+     *
+     * @return Tag
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return array
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
      * Get entries
      *
      * @return ArrayCollection
@@ -148,4 +180,3 @@ class Tag
         $this->locale = $locale;
     }
 }
-
