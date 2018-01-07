@@ -364,9 +364,9 @@ class AdminController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entries = $em->getRepository('AppBundle:Entry')->findBy([], ['timestamp' => 'DESC']);
-        $authors = $em->getRepository('AppBundle:Author')->findAll();
-        $locations = $em->getRepository('AppBundle:Location')->findAll();
-        $tags = $em->getRepository('AppBundle:Tag')->findAll();
+        $authors = $em->getRepository('AppBundle:Author')->findBy([], ['name' => 'ASC']);
+        $locations = $em->getRepository('AppBundle:Location')->findBy([], ['name' => 'ASC']);
+        $tags = $em->getRepository('AppBundle:Tag')->findBy([], ['name' => 'ASC']);
 
         return $this->render('admin/inc/sidebar.html.twig', [
             'entries' => $entries,
