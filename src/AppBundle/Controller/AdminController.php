@@ -6,13 +6,17 @@ use AppBundle\Entity\Author;
 use AppBundle\Entity\Entry;
 use AppBundle\Entity\Location;
 use AppBundle\Entity\Tag;
+use AppBundle\Service\AuthorService;
 use AppBundle\Service\EntryService;
+use AppBundle\Service\LocationService;
+use AppBundle\Service\TagService;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Translation\Translator;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 
@@ -53,7 +57,7 @@ class AdminController extends Controller
      *
      * @Route("/entry/new", name="entry_new")
      */
-    public function entryNewAction(Request $request)
+    public function entryNewAction(Request $request, Translator $translator, EntryService $entryService)
     {
         $em = $this->getDoctrine()->getManager();
         $authors = $em->getRepository('AppBundle:Author')->findAll();
@@ -63,12 +67,10 @@ class AdminController extends Controller
         if ($newEntry = $request->request->get('new')) {
             $image = $request->files->get('new');
 
-            $entryService = $this->get('AppBundle\Service\EntryService');
-
             $entry = $entryService->saveEntry($newEntry, $image);
             $url = $this->generateUrl('entry_edit', ['id' => $entry->getId()]);
 
-            $translated = $this->get('translator')->trans('success.new');
+            $translated = $translator->trans('success.new');
             $this->addFlash(
                 'success',
                 $translated . ': <a class="alert-link" href="' . $url . '">' . $entry->getTitle() . '</a>.'
@@ -87,7 +89,7 @@ class AdminController extends Controller
      *
      * @Route("/entry/edit/{id}", name="entry_edit")
      */
-    public function entryEditAction(Request $request, Entry $entry)
+    public function entryEditAction(Request $request, EntryService $entryService, Translator $translator, Entry $entry)
     {
         $em = $this->getDoctrine()->getManager();
         $authors = $em->getRepository('AppBundle:Author')->findAll();
@@ -97,11 +99,9 @@ class AdminController extends Controller
         if ($editEntry = $request->request->get('edit')) {
             $image = $request->files->get('edit');
 
-            $entryService = $this->get('AppBundle\Service\EntryService');
-
             $entryService->saveEntry($editEntry, $image);
 
-            $translated = $this->get('translator')->trans('success.edit');
+            $translated = $translator->trans('success.edit');
             $this->addFlash(
                 'success',
                 $translated . '.'
@@ -155,11 +155,9 @@ class AdminController extends Controller
      *
      * @Route("/author/new", name="author_new")
      */
-    public function authorNewAction(Request $request)
+    public function authorNewAction(Request $request, AuthorService $authorService)
     {
         if ($newAuthor = $request->request->get('new')) {
-            $authorService = $this->get('AppBundle\Service\AuthorService');
-
             $authorService->saveAuthor($newAuthor);
         }
 
@@ -171,14 +169,12 @@ class AdminController extends Controller
      *
      * @Route("/author/edit/{id}", name="author_edit")
      */
-    public function authorEditAction(Request $request, Author $author)
+    public function authorEditAction(Request $request, AuthorService $authorService, Translator $translator, Author $author)
     {
         if ($editAuthor = $request->request->get('edit')) {
-            $authorService = $this->get('AppBundle\Service\AuthorService');
-
             $authorService->saveAuthor($editAuthor);
 
-            $translated = $this->get('translator')->trans('success.edit');
+            $translated = $translator->trans('success.edit');
             $this->addFlash(
                 'success',
                 $translated . '.'
@@ -231,11 +227,9 @@ class AdminController extends Controller
      *
      * @Route("/location/new", name="location_new")
      */
-    public function locationNewAction(Request $request)
+    public function locationNewAction(Request $request, LocationService $locationService)
     {
         if ($newLocation = $request->request->get('new')) {
-            $locationService = $this->get('AppBundle\Service\LocationService');
-
             $locationService->saveLocation($newLocation);
         }
 
@@ -247,14 +241,12 @@ class AdminController extends Controller
      *
      * @Route("/location/edit/{id}", name="location_edit")
      */
-    public function locationEditAction(Request $request, Location $location)
+    public function locationEditAction(Request $request, LocationService $locationService, Translator $translator, Location $location)
     {
         if ($editLocation = $request->request->get('edit')) {
-            $locationService = $this->get('AppBundle\Service\LocationService');
-
             $locationService->saveLocation($editLocation);
 
-            $translated = $this->get('translator')->trans('success.edit');
+            $translated = $translator->trans('success.edit');
             $this->addFlash(
                 'success',
                 $translated . '.'
@@ -307,11 +299,9 @@ class AdminController extends Controller
      *
      * @Route("/tag/new", name="tag_new")
      */
-    public function tagNewAction(Request $request)
+    public function tagNewAction(Request $request, TagService $tagService)
     {
         if ($newTag = $request->request->get('new')) {
-            $tagService = $this->get('AppBundle\Service\TagService');
-
             $tagService->saveTag($newTag);
         }
 
@@ -323,14 +313,12 @@ class AdminController extends Controller
      *
      * @Route("/tag/edit/{id}", name="tag_edit")
      */
-    public function tagEditAction(Request $request, Tag $tag)
+    public function tagEditAction(Request $request, TagService $tagService, Translator $translator, Tag $tag)
     {
         if ($editTag = $request->request->get('edit')) {
-            $tagService = $this->get('AppBundle\Service\TagService');
-
             $tagService->saveTag($editTag);
 
-            $translated = $this->get('translator')->trans('success.edit');
+            $translated = $translator->trans('success.edit');
             $this->addFlash(
                 'success',
                 $translated . '.'
