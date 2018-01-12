@@ -28,7 +28,7 @@ function search() {
 function ajaxPageWrapper() {
     $(".sidebar-nav ul.nav-second-level").on("click", "a", function() {
         // Ajax loader image
-        $("#page-wrapper").html('<div id="spinner" class="spinner"><img id="img-spinner" src="/bundles/app/img/layout/ajax-loader.gif" alt="Loading..."/></div>');
+        $("#page-wrapper").html('<div id="spinner" class="spinner"><img id="img-spinner" src="/assets/img/layout/ajax-loader.gif" alt="Loading..."/></div>');
 
         var uri = $(this).attr('href'); // Requested uri
 

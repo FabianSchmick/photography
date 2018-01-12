@@ -5,4 +5,4 @@ User-agent: *
 Disallow: /login
 Disallow: /admin/
 Disallow: /ajax/
-Disallow: /bundles/app/img/layout/
+Disallow: /assets/img/layout/

@@ -12,7 +12,7 @@ var gulp  = require('gulp'),
     es = require('event-stream'),
     rs = require('run-sequence');
 
-var destination = './web/bundles/app';
+var destination = './web/assets';
 
 /* Third Party */
 var copy = {
@@ -39,7 +39,7 @@ var stylesConf = {
             './node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css'
         ],
         furtherource: [
-            './web/bundles/app/less/default.less'
+            destination + '/less/default.less'
         ],
         concatName: 'min/css/main.css'
     },
@@ -53,7 +53,7 @@ var stylesConf = {
             './node_modules/summernote/dist/summernote.css'
         ],
         furtherource: [
-            './web/bundles/app/less/defaultadmin.less'
+            destination + '/less/defaultadmin.less'
         ],
         concatName: 'min/css/admin.css'
     }
@@ -66,7 +66,7 @@ var scriptsConf = {
             './node_modules/bootstrap/dist/js/bootstrap.js',
             './node_modules/justifiedGallery/dist/js/jquery.justifiedGallery.js',
             './node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js',
-            './web/bundles/app/js/default.js'
+            destination + '/js/default.js'
         ],
         concatName: 'min/js/main.js'
     },
@@ -78,7 +78,7 @@ var scriptsConf = {
             './node_modules/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js',
             './node_modules/select2/dist/js/select2.js',
             './node_modules/summernote/dist/summernote.js',
-            './web/bundles/app/js/admin.js'
+            destination + '/js/admin.js'
         ],
         concatName: 'min/js/admin.js'
     }

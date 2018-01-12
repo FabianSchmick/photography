@@ -22,7 +22,7 @@ parameters:
 
     # Image upload directory in web folder
     image_upload_directory: /uploads/images/
-    assets_directory: /bundles/app/
+    assets_directory: /assets/
 
     jpeg_quality: 75
     thumb_height: 500
