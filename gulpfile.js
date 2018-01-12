@@ -78,6 +78,7 @@ var scriptsConf = {
             './node_modules/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js',
             './node_modules/select2/dist/js/select2.js',
             './node_modules/summernote/dist/summernote.js',
+            './node_modules/summernote/lang/summernote-de-DE.js',
             destination + '/js/admin.js'
         ],
         concatName: 'min/js/admin.js'

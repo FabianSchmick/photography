@@ -68,8 +68,15 @@ function initSelect2() {
 
 // Initializes summernote wysiwyg editor
 function initWysiwyg() {
+    var lang = '';
+
+    if ($('html').attr('lang') == 'de') {
+        lang = 'de-DE';
+    }
+
     $('#description').summernote({
         height: 100,
+        lang: lang,
         toolbar: [
             // [groupName, [list of button]]
             ['misc', ['undo', 'redo']],
