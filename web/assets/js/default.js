@@ -7,9 +7,6 @@ var currentPage = 1,
 $(document).ready(function() {
     navigation();
     parallax();
-    lazyLoad();
-    justify();
-    lightbox();
 });
 
 // Functions for the navigation

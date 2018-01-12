@@ -42,10 +42,15 @@
     </section>
 {% endblock %}
 {% block javascripts %}
-    <script type="text/javascript">
-        var paginateUrl = "{{ path('paginate_by_tag', {'slug': tag.slug}) }}",
-            homeUrl = "{{ path('homepage') }}";
-    </script>
+    {{ parent() }}
 
-    <script type="text/javascript" src="{{ asset('min/js/main.js'|asset_version) }}"></script>
+    <script type="application/javascript">
+        var paginateUrl = "{{ path('paginate_by_tag', {'slug': tag.slug}) }}";
+
+        jQuery(document).ready(function() {
+            lazyLoad();
+            justify();
+            lightbox();
+        });
+    </script>
 {% endblock %}

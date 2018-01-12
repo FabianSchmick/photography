@@ -28,3 +28,16 @@
         </div>
     </section>
 {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="application/javascript">
+        var paginateUrl = "{{ path('paginate_entries') }}";
+
+        jQuery(document).ready(function() {
+            lazyLoad();
+            justify();
+            lightbox();
+        });
+    </script>
+{% endblock %}
