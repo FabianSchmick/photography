@@ -75,7 +75,7 @@
                     <label class="control-label col-sm-2" for="image">{{ 'image'|trans }}</label>
                     <div class="col-sm-10">
                         <input id="image" type="file" name="edit[image]" accept="image/*"/>
-                        <a href="{{ image_directory }}/{{ entry.image }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> {{ 'current.img'|trans }}</a>
+                        <a href="{{ image_directory }}{{ entry.image }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> {{ 'current.img'|trans }}</a>
                         <p class="help-block">({{ 'img.upload.info'|trans }})</p>
                     </div>
                 </div>

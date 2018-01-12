@@ -18,8 +18,11 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
 
-    image_directory: '%kernel.project_dir%/web/uploads/images'
-    assets_directory: '/bundles/app/'
+    locale: en
+
+    # Image upload directory in web folder
+    image_upload_directory: /uploads/images/
+    assets_directory: /bundles/app/
 
     jpeg_quality: 75
     thumb_height: 500

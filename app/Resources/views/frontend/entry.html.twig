@@ -7,7 +7,7 @@
     <section id="entry" class="container">
         <article class="entryInner row">
             <div class="entryImage col-lg-9">
-                <img src="{{ image_directory }}/{{ entry.image }}" alt="{{ entry.title }}">
+                <img src="{{ image_directory }}{{ entry.image }}" alt="{{ entry.title }}">
             </div>
             <div class="entryInfo col-lg-3">
                 <h1 class="entryTitle">
@@ -28,7 +28,7 @@
                         <li><a href="{{ path('tag_filter', {'slug': tag.slug}) }}">{{ tag.name }}</a></li>
                     {% endfor %}
                 </ul>
-                <a class="btn" href="{{ image_directory }}/{{ entry.image }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
+                <a class="btn" href="{{ image_directory }}{{ entry.image }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
             </div>
         </article>
     </section>

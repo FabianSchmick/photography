@@ -9,7 +9,7 @@
                     {{ entry.title }}
                 </div>
                 <div class="entryImage">
-                    <img src="{{ image_directory }}/{{ entry.image }}" alt="{{ entry.title }}">
+                    <img src="{{ image_directory }}{{ entry.image }}" alt="{{ entry.title }}">
                 </div>
                 <div class="entryTimestamp">
                     {{ entry.timestamp|date("d.m.Y") }}

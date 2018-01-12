@@ -3,7 +3,7 @@
     {% set src = path('ajax_entry_detail', {'id': entry.id}) %}
 
     <a href="{{ url }}" data-fancybox="entries" data-src="{{ src }}" data-type="ajax" class="entry">
-        <img src="{{ image_directory }}/thumb/{{ entry.image }}" alt="{{ entry.title }}">
+        <img src="{{ image_directory }}thumb/{{ entry.image }}" alt="{{ entry.title }}">
         <div class="title">{{ entry.title }}</div>
     </a>
 {% endfor %}
