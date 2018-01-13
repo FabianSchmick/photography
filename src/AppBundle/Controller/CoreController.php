@@ -41,7 +41,7 @@ class CoreController extends Controller
         $em = $this->getDoctrine()->getManager();
         $locales = explode('|', $this->getParameter('app.locales'));
 
-        $hostname = $request->getHost();
+        $hostname = $request->getScheme(). '://' . $request->getHost();
 
         $urls = [];
         foreach ($locales as $locale) {
