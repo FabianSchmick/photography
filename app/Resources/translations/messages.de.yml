@@ -62,6 +62,7 @@ gallery: Fotos
 languages: Sprachen
 fullscreen: Vollbild
 introduction.tag: Alle Bilder gefiltert zum Thema
+similar.tags: Ähnliche Tags
 
 # Error page
 page.not.found: Seite wurde nicht gefunden (error 404)

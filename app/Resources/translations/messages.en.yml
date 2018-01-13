@@ -62,6 +62,7 @@ gallery: Gallery
 languages: Languages
 fullscreen: Fullscreen
 introduction.tag: All pictures filtered by tag
+similar.tags: Similar tags
 
 # Error page
 page.not.found: Page not found (error 404)

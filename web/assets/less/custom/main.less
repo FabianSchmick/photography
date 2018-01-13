@@ -32,6 +32,12 @@ body {
 .textContainer {
   max-width: 750px;
   margin: auto;
+
+  .similarTags {
+    padding: 15px 0 10px;
+    font-weight: bold;
+    letter-spacing: 0.4px;
+  }
 }
 
 .btn {
@@ -374,7 +380,8 @@ header {
   }
 
   .tags {
-    padding: 15px 0 20px;
+    padding-top: 15px;
+    padding-bottom: 20px;
   }
 }
 
@@ -496,9 +503,12 @@ header {
 
 ul.tags {
   margin: 0;
+  padding-right: 2px;
+  padding-left: 2px;
 
   li {
-    float: left;
+    display: inline-block;
+    margin: 0 -2px;
     padding: 0 10px 10px 0;
 
     > a{

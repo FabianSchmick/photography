@@ -77,8 +77,13 @@ class DefaultController extends Controller
      */
     public function tagFilterAction(Request $request, Tag $tag)
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $relatedTags = $em->getRepository('AppBundle:Tag')->findRelatedTagsByTag($tag);
+
         return $this->render('frontend/tag.html.twig', [
-            'tag' => $tag
+            'tag'           => $tag,
+            'relatedTags'   => $relatedTags
         ]);
     }
 

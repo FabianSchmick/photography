@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Entry;
+use AppBundle\Entity\Tag;
 
 /**
  * TagRepository
@@ -21,8 +22,36 @@ class TagRepository extends \Doctrine\ORM\EntityRepository
     public function findTagsByEntry(Entry $entry)
     {
         $qb = $this->createQueryBuilder("t")
-            ->where(':entry MEMBER OF t.entry')
+            ->where(':entry MEMBER OF t.entries')
             ->setParameters(array('entry' => $entry));
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Find related tags by a tag.
+     * Method returns the tags from all entries which relate to the current tag under the following conditions:
+     *      - excluding the requested tag
+     *      - occurrence of min 3 times
+     *      - max 10 related tags
+     *
+     * @param Tag $tag
+     * @return array
+     */
+    public function findRelatedTagsByTag(Tag $tag)
+    {
+        $in = $this->getEntityManager()->getRepository('AppBundle:Entry')
+            ->createQueryBuilder('a_e')
+            ->where(':tag MEMBER OF a_e.tags');
+
+        $qb = $this->createQueryBuilder("b_t");
+        $qb ->innerJoin('b_t.entries', 'b_te')
+            ->where($qb->expr()->in('b_te', $in->getDQL()))
+            ->andWhere('b_t.id != :id')
+            ->groupBy('b_t.id')
+            ->having('COUNT(b_t.id) > 2')
+            ->setMaxResults(10)
+            ->setParameters(array('tag' => $tag, 'id' => $tag->getId()));
+
         return $qb->getQuery()->getResult();
     }
 

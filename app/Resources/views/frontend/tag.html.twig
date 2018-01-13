@@ -19,6 +19,15 @@
             {% else %}
                 <p>{{ 'introduction.tag'|trans }} <strong>{{ tag.name }}</strong></p>
             {% endif %}
+
+            {% if relatedTags|length > 1 %}
+                <div class="similarTags">{{ 'similar.tags'|trans }}:</div>
+                <ul class="list-unstyled tags" style="display: inline-block">
+                    {% for relatedTag in relatedTags %}
+                        <li><a href="{{ path('tag_filter', {'slug': relatedTag.slug}) }}">{{ relatedTag.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </div>
 
         <div id="entries" class="list-unstyled">
