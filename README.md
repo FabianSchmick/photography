@@ -9,16 +9,18 @@ Here is an example of how an end result could look: [fotografie.fabian-schmick.d
 ![back-and-frontend](./back-and-frontend.jpg "Back- and Frontend view")
 
 The project provides you following functionality:
-- Symfony
+- Symfony 3.4 (LTS version)
 - Vagrantfile and ansible configuration for development (https://github.com/FabianSchmick/vagrant_skeleton) 
 - Node packages with Gulp, Bootstrap, jQuery and many more
-- Image compression and thumbnail generation with [Imagine](https://imagine.readthedocs.io/en/latest/)
 - Small CMS for creating new entries
+- Image compression and thumbnail generation with [Imagine](https://imagine.readthedocs.io/en/latest/)
 - Multilingualism in English and German
 - Tag possibility for describing and filtering entries
 - Lazyloading for images
 - Justified Gallery with [JustifiedGallery](http://miromannino.github.io/Justified-Gallery/)
 - Lightbox with [Fancybox](http://fancyapps.com/fancybox/3/)
+- Dynamic Sitemap generation
+- And many more 
 
 
 ## Installation
