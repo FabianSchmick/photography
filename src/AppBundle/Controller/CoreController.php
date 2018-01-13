@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Router;
 
 class CoreController extends Controller
 {
@@ -30,5 +31,56 @@ class CoreController extends Controller
         }
 
         return $this->redirect($this->generateUrl($redirect));
+    }
+
+    /**
+     * @Route("/sitemap.{_format}", name="sitemap", requirements={"_format" = "xml"})
+     */
+    public function sitemapAction(Request $request, Router $router)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $locales = explode('|', $this->getParameter('app.locales'));
+
+        $hostname = $request->getHost();
+
+        $urls = [];
+        foreach ($locales as $locale) {
+            $urls[] = [
+                'loc'        => $router->generate('homepage', ['_locale' => $locale]),
+                'changefreq' => 'weekly',
+                'priority'   => '1.0'
+            ];
+
+            $entries = $em->getRepository('AppBundle:Entry')->findAll();
+
+            foreach ($entries as $entry) {
+                $entry->setTranslatableLocale($locale);
+                $em->refresh($entry);
+
+                $urls[] = [
+                    'loc'        => $router->generate('entry_detail', ['_locale' => $locale, 'slug' => $entry->getSlug()]),
+                    'changefreq' => 'weekly',
+                    'priority'   => '0.5'
+                ];
+            }
+
+            $tags = $em->getRepository('AppBundle:Tag')->findAll();
+
+            foreach ($tags as $tag) {
+                $tag->setTranslatableLocale($locale);
+                $em->refresh($tag);
+
+                $urls[] = [
+                    'loc'        => $router->generate('tag_filter', ['_locale' => $locale, 'slug' => $tag->getSlug()]),
+                    'changefreq' => 'weekly',
+                    'priority'   => '0.5'
+                ];
+            }
+        }
+
+        return $this->render('sitemap.xml.twig', [
+            'urls'      => $urls,
+            'hostname'  => $hostname,
+        ]);
     }
 }

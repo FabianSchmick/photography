@@ -6,3 +6,5 @@ Disallow: /login
 Disallow: /admin/
 Disallow: /ajax/
 Disallow: /assets/img/layout/
+
+# Sitemap: https://domain.com/sitemap.xml
