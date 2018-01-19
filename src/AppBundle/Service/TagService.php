@@ -48,7 +48,10 @@ class TagService
         }
 
         $tagEntity->setName($tag['name']);
-        $tagEntity->setDescription($tag['description']);
+
+        if (!empty($tag['description'])) {
+            $tagEntity->setDescription($tag['description']);
+        }
 
         $this->em->persist($tagEntity);
         $this->em->flush();

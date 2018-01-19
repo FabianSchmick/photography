@@ -2,10 +2,7 @@
 
 namespace AppBundle\Service;
 
-use AppBundle\Entity\Author;
 use AppBundle\Entity\Entry;
-use AppBundle\Entity\Location;
-use AppBundle\Entity\Tag;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Imagine\Image\Box;
@@ -21,6 +18,27 @@ class EntryService
      * @var EntityManager $em
      */
     private $em;
+
+    /**
+     * Author service
+     *
+     * @var AuthorService $authorService
+     */
+    private $authorService;
+
+    /**
+     * Location service
+     *
+     * @var LocationService $locationService
+     */
+    private $locationService;
+
+    /**
+     * Tag service
+     *
+     * @var TagService $tagService
+     */
+    private $tagService;
 
     /**
      * Directory for uploaded images
@@ -47,14 +65,20 @@ class EntryService
     /**
      * EntryService constructor.
      *
-     * @param   EntityManager     $em           Entity Manager
-     * @param   string            $imageDir     Directory for uploaded images
-     * @param   int               $imageQuality The quality for jpeg images
-     * @param   int               $thumbHeight  The height for thumbnails
+     * @param   EntityManager     $em               Entity Manager
+     * @param   AuthorService     $authorService    Author service
+     * @param   LocationService   $locationService  Location service
+     * @param   TagService        $tagService       Tag service
+     * @param   string            $imageDir         Directory for uploaded images
+     * @param   int               $imageQuality     The quality for jpeg images
+     * @param   int               $thumbHeight      The height for thumbnails
      */
-    public function __construct(EntityManager $em, $imageDir, $imageQuality = 75, $thumbHeight = 500)
+    public function __construct(EntityManager $em, AuthorService $authorService, LocationService $locationService, TagService $tagService, $imageDir, $imageQuality = 75, $thumbHeight = 500)
     {
         $this->em = $em;
+        $this->authorService = $authorService;
+        $this->locationService = $locationService;
+        $this->tagService = $tagService;
         $this->imageDir = $imageDir;
         $this->imageQuality = $imageQuality;
         $this->thumbHeight = $thumbHeight;
@@ -102,12 +126,8 @@ class EntryService
         $entryEntity->setDescription($entry['description']);
 
         if (!empty($entry['author'])) {
-            $authorEntity = $this->em->getRepository('AppBundle:Author')->findOneBy(['name' => $entry['author']]);
+            $authorEntity = $this->authorService->saveAuthor(['name' => $entry['author']]);
 
-            if (!$authorEntity) {
-                $authorEntity = new Author();
-            }
-            $authorEntity->setName($entry['author']);
             $this->em->persist($authorEntity);
 
             $entryEntity->setAuthor($authorEntity);
@@ -116,31 +136,22 @@ class EntryService
         $entryEntity->setImage($imageName);
 
         if (!empty($entry['location'])) {
-            $locationEntity = $this->em->getRepository('AppBundle:Location')->findOneBy(['name' => $entry['location']]);
+            $locationEntity = $this->locationService->saveLocation(['name' => $entry['location']]);
 
-            if (!$locationEntity) {
-                $locationEntity = new Location();
-            }
-            $locationEntity->setName($entry['location']);
             $this->em->persist($locationEntity);
 
             $entryEntity->setLocation($locationEntity);
         }
 
+        $entryEntity->setTimestamp(new \DateTime("now"));
         if ($timestamp = date_create(date($entry['timestamp']))) {
             $entryEntity->setTimestamp($timestamp);
-        } else {
-            $entryEntity->setTimestamp(new \DateTime("now"));
         }
 
         $tagsArrayCollection = new ArrayCollection();
         foreach ($entry['tags'] as $tag) {
-            $tagEntity = $this->em->getRepository('AppBundle:Tag')->findOneByCriteria(['name' => $tag]);
+            $tagEntity = $this->tagService->saveTag(['name' => $tag]);
 
-            if (!$tagEntity) {
-                $tagEntity = new Tag();
-            }
-            $tagEntity->setName($tag);
             $this->em->persist($tagEntity);
 
             $tagsArrayCollection->add($tagEntity);
