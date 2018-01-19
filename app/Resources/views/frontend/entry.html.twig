@@ -13,11 +13,7 @@
                 <h1 class="entryTitle">
                     {{ entry.title }}
                 </h1>
-                {% if entry.description != "" %}
-                    <p class="entryDescription">
-                        {{ entry.description|raw }}
-                    </p>
-                {% endif %}
+                {{ entry.description|raw }}
                 <ul class="list-unstyled meta">
                     {% if entry.location.name is defined %}<li class="entryLocation"><strong>{{ 'location'|trans }}</strong>: {{ entry.location.name }}</li>{% endif %}
                     {% if entry.author.name is defined %}<li class="entryAuthor"><strong>{{ 'author'|trans }}</strong>: {{ entry.author.name }}</li>{% endif %}
