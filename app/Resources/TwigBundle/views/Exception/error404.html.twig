@@ -20,11 +20,3 @@
         </article>
     </section>
 {% endblock %}
-{% block javascripts %}
-    <script type="text/javascript">
-        var paginateUrl = "",
-            homeUrl = "{{ path('homepage') }}";
-    </script>
-
-    <script type="text/javascript" src="{{ asset('min/js/main.js'|asset_version) }}"></script>
-{% endblock %}

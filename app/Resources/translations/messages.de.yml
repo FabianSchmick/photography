@@ -65,6 +65,9 @@ introduction.tag: Alle Bilder gefiltert zum Thema
 similar.tags: Ähnliche Tags
 
 # Error page
-page.not.found: Seite wurde nicht gefunden (error 404)
+page.not.found: Seite wurde nicht gefunden (code 404)
 page.not.found.explanation.1: Die angeforderte Seite konnte nicht gefunden werden. Möglicherweise existiert die Seite nicht mehr. Überprüfen Sie die URL auf Rechtschreibfehler oder kehren Sie zur
 page.not.found.explanation.2: Startseite zurück
+site.error: Unerwarteter Fehler (code 500)
+site.error.explanation.1: Die Anfrage konnte vom Server nicht verarbeitet werden. Eventuell ist der Programmcode fehlerhaft. Bitte versuchen Sie es später erneut oder kehren Sie zur
+site.error.explanation.2: Startseite zurück

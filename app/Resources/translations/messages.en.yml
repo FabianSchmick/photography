@@ -65,6 +65,9 @@ introduction.tag: All pictures filtered by tag
 similar.tags: Similar tags
 
 # Error page
-page.not.found: Page not found (error 404)
+page.not.found: Page not found (code 404)
 page.not.found.explanation.1: The requested page couldn't be located. Maybe the site doesn't exist any longer. Checkout for any URL misspelling or
 page.not.found.explanation.2: return to the homepage
+site.error: Unexpected site error (code 500)
+site.error.explanation.1: The request could not handled by the server. Maybe the code is broken. Please try again later or
+site.error.explanation.2: return to the homepage
