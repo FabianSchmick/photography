@@ -41,6 +41,13 @@ class Tag
     private $description;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=200, nullable=true)
+     */
+    private $image;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Entry", mappedBy="tags", cascade={"persist"})
@@ -124,6 +131,30 @@ class Tag
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Tag
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**

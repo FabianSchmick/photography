@@ -5,7 +5,7 @@
 
 {% block cover %}
     <section id="cover" class="parallaxContainer">
-        <div class="parallax">
+        <div class="parallax" {% if tag.image %}style="background-image: url({{ image_directory }}{{ tag.image }})"{% endif %}>
         </div>
     </section>
 {% endblock %}

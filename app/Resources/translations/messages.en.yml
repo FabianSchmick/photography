@@ -45,6 +45,7 @@ delete.msg.location: Are you sure you want to delete the location
 # Tag
 new.tag: New Tag
 delete.msg.tag: Are you sure you want to delete the tag
+delete.tag.alert: The image will get removed by saving the tag
 
 # Sidebar
 search: Search

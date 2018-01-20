@@ -43,8 +43,9 @@ new.location: Neuer Aufnahmeort
 delete.msg.location: Sind Sie sicher, dass Sie diesen Aufnahmeort löschen möchten
 
 # Tag
-new.tag: Neues Schlüsselwort
-delete.msg.tag: Sind Sie sicher, dass Sie dieses Schlüsselwort löschen möchten
+new.tag: Neuer Tag
+delete.msg.tag: Sind Sie sicher, dass Sie diesen Tag löschen möchten
+delete.tag.alert: Das Bild wird beim Speichern gelöscht werden
 
 # Sidebar
 search: Suche

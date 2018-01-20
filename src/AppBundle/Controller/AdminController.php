@@ -299,7 +299,9 @@ class AdminController extends Controller
     public function tagNewAction(Request $request, TagService $tagService)
     {
         if ($newTag = $request->request->get('new')) {
-            $tagService->saveTag($newTag);
+            $image = $request->files->get('new');
+
+            $tagService->saveTag($newTag, $image);
         }
 
         return $this->render('admin/tag/new.html.twig', []);
@@ -313,7 +315,9 @@ class AdminController extends Controller
     public function tagEditAction(Request $request, TagService $tagService, Translator $translator, Tag $tag)
     {
         if ($editTag = $request->request->get('edit')) {
-            $tagService->saveTag($editTag);
+            $image = $request->files->get('edit');
+
+            $tagService->saveTag($editTag, $image);
 
             $translated = $translator->trans('success.edit');
             $this->addFlash(
@@ -332,9 +336,11 @@ class AdminController extends Controller
      *
      * @Route("/tag/delete/{id}", name="tag_delete")
      */
-    public function tagDeleteAction(Request $request, Tag $tag)
+    public function tagDeleteAction(Request $request, Tag $tag, CoreService $coreService)
     {
         $em = $this->getDoctrine()->getManager();
+
+        $coreService->deleteImage($tag->getImage());
 
         $em->remove($tag);
         $em->flush();

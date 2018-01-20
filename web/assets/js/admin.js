@@ -2,6 +2,7 @@ $(document).ready(function() {
     search();
     ajaxPageWrapper();
     initSelect2();
+    deleteImageButton();
     initWysiwyg();
 });
 
@@ -49,11 +50,26 @@ function ajaxPageWrapper() {
                 $(temp).find(".nav.navbar-top-links.navbar-right").insertAfter( $("div.navbar-header")  );
             }
 
+            deleteImageButton();
             initSelect2();
             initWysiwyg();
         });
 
         return false;
+    });
+}
+
+// When clicked the delete image btn, an input gets the value 1
+function deleteImageButton() {
+    $('document').ready(function () {
+        $('#deleteImage').on('click', function (e) {
+
+            $('input[name="edit[deleteImage]"]').val(1);
+
+            $('#deleteImageAlert').show();
+
+            e.preventDefault();
+        })
     });
 }
 

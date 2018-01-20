@@ -3,8 +3,8 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Tag;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
 class TagService
@@ -16,29 +16,41 @@ class TagService
      */
     private $em;
 
+    /**
+     * Core service
+     *
+     * @var CoreService $coreService
+     */
+    private $coreService;
+
 
     /**
      * TagService constructor.
      *
-     * @param   EntityManager     $em           Entity Manager
+     * @param   EntityManager     $em               Entity Manager
+     * @param   CoreService       $coreService      Core service
      */
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManager $em, CoreService $coreService)
     {
         $this->em = $em;
+        $this->coreService = $coreService;
     }
 
     /**
      * Save a tag
      *
-     * @param   array   $tag              Array of data for saving a tag object
+     * @param   array               $tag              Array of data for saving a tag object
+     * @param   array|UploadedFile  $image            Empty array or UploadFile object with containing image
      *
-     * @return  Tag     $tagEntity        The saved tag entity
+     * @return  Tag                 $tagEntity        The saved tag entity
      */
-    public function saveTag(array $tag)
+    public function saveTag(array $tag, $image = [])
     {
+        $imageName = '';
         $tagEntity = new Tag();
         if (isset($tag['id'])) {
             $tagEntity = $this->em->getRepository('AppBundle:Tag')->findOneBy(['id' => $tag['id']]);
+            $imageName = $tagEntity->getImage();
         } else {
             $duplicate = $this->em->getRepository('AppBundle:Tag')->findOneByCriteria(['name' => $tag['name']]);
         }
@@ -52,6 +64,24 @@ class TagService
         if (!empty($tag['description'])) {
             $tagEntity->setDescription($tag['description']);
         }
+
+        if (!empty($tag['deleteImage'])) {
+            $this->coreService->deleteImage($tagEntity->getImage());
+
+            $imageName = '';
+
+            $tagEntity->setImage($imageName);
+        }
+
+        if (!empty($image['image'])) {
+            if ($tagEntity->getImage()) {
+                $this->coreService->deleteImage($tagEntity->getImage());
+            }
+
+            $imageName = $this->coreService->saveImage($image);
+        }
+
+        $tagEntity->setImage($imageName);
 
         $this->em->persist($tagEntity);
         $this->em->flush();
