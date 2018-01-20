@@ -7,14 +7,13 @@ use AppBundle\Entity\Entry;
 use AppBundle\Entity\Location;
 use AppBundle\Entity\Tag;
 use AppBundle\Service\AuthorService;
+use AppBundle\Service\CoreService;
 use AppBundle\Service\EntryService;
 use AppBundle\Service\LocationService;
 use AppBundle\Service\TagService;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -121,13 +120,11 @@ class AdminController extends Controller
      *
      * @Route("/entry/delete/{id}", name="entry_delete")
      */
-    public function entryDeleteAction(Request $request, Entry $entry)
+    public function entryDeleteAction(Request $request, Entry $entry, CoreService $coreService)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $filesystem = new Filesystem();
-        $filesystem->remove($this->getParameter('image_directory') . $entry->getImage());
-        $filesystem->remove($this->getParameter('image_directory') . 'thumb/' . $entry->getImage());
+        $coreService->deleteImage($entry->getImage());
 
         $em->remove($entry);
         $em->flush();

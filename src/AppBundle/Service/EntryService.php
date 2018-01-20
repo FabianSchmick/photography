@@ -93,6 +93,10 @@ class EntryService
         }
 
         if (isset($image['image'])) {
+            if ($entryEntity->getImage()) {
+                $this->coreService->deleteImage($entryEntity->getImage());
+            }
+
             $imageName = $this->coreService->saveImage($image, true);
         }
 

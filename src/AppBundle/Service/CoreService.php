@@ -95,4 +95,26 @@ class CoreService
             ->save($this->imageDir . '/thumb/' . $imageName, array('jpeg_quality' => $this->imageQuality))  // Save and minfiy thumbnail
         ;
     }
+
+    /**
+     * Deletes a image
+     *
+     * @param   string  $imageName  The image to delete
+     *
+     * @return  bool    $return     Return true if success
+     */
+    public function deleteImage($imageName)
+    {
+        $return = false;
+
+        if (is_writable($this->imageDir . '/' . $imageName)) {
+            $return = unlink($this->imageDir . '/' . $imageName);
+        }
+
+        if ($return && is_writable($this->imageDir . '/thumb/' . $imageName)) {
+            $return = unlink($this->imageDir . '/thumb/' . $imageName);
+        }
+
+        return $return;
+    }
 }
