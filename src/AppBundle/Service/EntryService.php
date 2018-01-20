@@ -5,8 +5,6 @@ namespace AppBundle\Service;
 use AppBundle\Entity\Entry;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
-use Imagine\Image\Box;
-use Imagine\Imagick\Imagine;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
@@ -18,6 +16,13 @@ class EntryService
      * @var EntityManager $em
      */
     private $em;
+
+    /**
+     * Core service
+     *
+     * @var CoreService $coreService
+     */
+    private $coreService;
 
     /**
      * Author service
@@ -40,48 +45,23 @@ class EntryService
      */
     private $tagService;
 
-    /**
-     * Directory for uploaded images
-     *
-     * @var string $imageDir
-     */
-    private $imageDir;
-
-    /**
-     * The quality for jpeg images
-     *
-     * @var int $imageQuality
-     */
-    private $imageQuality;
-
-    /**
-     * The height for thumbnails
-     *
-     * @var int $thumbHeight
-     */
-    private $thumbHeight;
-
 
     /**
      * EntryService constructor.
      *
      * @param   EntityManager     $em               Entity Manager
+     * @param   CoreService       $coreService      Core service
      * @param   AuthorService     $authorService    Author service
      * @param   LocationService   $locationService  Location service
      * @param   TagService        $tagService       Tag service
-     * @param   string            $imageDir         Directory for uploaded images
-     * @param   int               $imageQuality     The quality for jpeg images
-     * @param   int               $thumbHeight      The height for thumbnails
      */
-    public function __construct(EntityManager $em, AuthorService $authorService, LocationService $locationService, TagService $tagService, $imageDir, $imageQuality = 75, $thumbHeight = 500)
+    public function __construct(EntityManager $em, CoreService $coreService, AuthorService $authorService, LocationService $locationService, TagService $tagService)
     {
         $this->em = $em;
+        $this->coreService = $coreService;
         $this->authorService = $authorService;
         $this->locationService = $locationService;
         $this->tagService = $tagService;
-        $this->imageDir = $imageDir;
-        $this->imageQuality = $imageQuality;
-        $this->thumbHeight = $thumbHeight;
     }
 
     /**
@@ -101,27 +81,6 @@ class EntryService
             $imageName = $entryEntity->getImage();
         }
 
-        if (isset($image['image'])) {
-            if (!file_exists($this->imageDir. '/thumb')) {    // Create image and thumbnail directory
-                mkdir($this->imageDir . '/thumb', 0777, true);
-            }
-
-            // Random name and convert to jpg later
-            $imageName = md5(uniqid()) . '.jpg';
-
-            $imagine = new Imagine();
-            $newImage = $imagine->open($image['image']->getPathName());
-            $newImage->strip();
-            $newImage->save($this->imageDir . '/' . $imageName, array('jpeg_quality' => $this->imageQuality));  // Save and minify image
-
-            /** @var Box $size */
-            $size = $newImage->getSize();
-
-            $newImage
-                ->thumbnail($size->heighten($this->thumbHeight))
-                ->save($this->imageDir . '/thumb/' . $imageName, array('jpeg_quality' => $this->imageQuality))  // Save and minfiy thumbnail
-            ;
-        }
         $entryEntity->setTitle($entry['title']);
         $entryEntity->setDescription($entry['description']);
 
@@ -131,6 +90,10 @@ class EntryService
             $this->em->persist($authorEntity);
 
             $entryEntity->setAuthor($authorEntity);
+        }
+
+        if (isset($image['image'])) {
+            $imageName = $this->coreService->saveImage($image, true);
         }
 
         $entryEntity->setImage($imageName);
