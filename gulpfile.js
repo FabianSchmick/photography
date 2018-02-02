@@ -2,6 +2,7 @@
 var gulp  = require('gulp'),
     less = require('gulp-less'),
     concat = require('gulp-concat'),
+    autoprefixer = require('gulp-autoprefixer'),
     uglify = require('gulp-uglify'),
     uglifycss = require('gulp-uglifycss'),
     gzip = require('gulp-gzip'),
@@ -240,6 +241,7 @@ function deployStyles(conf) {
             this.emit('end');
         }))
         .pipe(less())
+        .pipe(autoprefixer())
     )
     .pipe(concat(conf.concatName))
     .pipe(uglifycss())

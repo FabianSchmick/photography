@@ -13,6 +13,7 @@
     "event-stream": "^3.3.4",
     "font-awesome": "^4.7.0",
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.1.0",
     "gulp-cached": "^1.1.1",
     "gulp-cli": "^1.4.0",
     "gulp-concat": "^2.6.1",
