@@ -40,7 +40,7 @@ class DefaultController extends Controller
     /**
      * Gather all information for the ajax entry detail page (lightbox)
      *
-     * @Route("/ajax/entry/{id}/", name="ajax_entry_detail")
+     * @Route("/ajax/entry/{id}/", name="ajax_entry_detail", requirements={"id" = "\d+"}, condition="request.isXmlHttpRequest()")
      */
     public function ajaxEntryDetailAction(Request $request, Entry $entry)
     {
@@ -52,7 +52,7 @@ class DefaultController extends Controller
     /**
      * Route for paginate entries
      *
-     * @Route("/ajax/entries/{page}", name="paginate_entries", requirements={"page": "\d+"})
+     * @Route("/ajax/entries/{page}", name="paginate_entries", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
      */
     public function paginateEntriesAction(Request $request, $page = 1)
     {
@@ -90,7 +90,7 @@ class DefaultController extends Controller
     /**
      * Route for paginate by tag
      *
-     * @Route("/ajax/tag/{slug}/{page}", name="paginate_by_tag", requirements={"page": "\d+"})
+     * @Route("/ajax/tag/{slug}/{page}", name="paginate_by_tag", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
      * @ParamConverter("tag", class="AppBundle:Tag", options={"repository_method" = "findOneByCriteria", "mapping": {"slug": "slug"}})
      */
     public function paginateByTagAction(Request $request, Tag $tag, $page = 1)
