@@ -5,6 +5,7 @@ namespace AppBundle\Repository;
 use AppBundle\Entity\Author;
 use AppBundle\Entity\Location;
 use AppBundle\Entity\Tag;
+use Doctrine\ORM\Query;
 
 /**
  * EntryRepository
@@ -15,10 +16,10 @@ use AppBundle\Entity\Tag;
 class EntryRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
-     * Find entries by a tag
+     * Find entries query by a tag
      *
      * @param Tag $tag
-     * @return string
+     * @return Query
      */
     public function findEntriesByTag(Tag $tag)
     {

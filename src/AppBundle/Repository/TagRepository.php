@@ -31,13 +31,16 @@ class TagRepository extends \Doctrine\ORM\EntityRepository
      * Find related tags by a tag.
      * Method returns the tags from all entries which relate to the current tag under the following conditions:
      *      - excluding the requested tag
-     *      - occurrence of min 3 times
-     *      - max 10 related tags
+     *      - occurrence of min $count times
+     *      - max $limit related tags
      *
      * @param Tag $tag
+     * @param int $count
+     * @param int $limit
+     *
      * @return array
      */
-    public function findRelatedTagsByTag(Tag $tag)
+    public function findRelatedTagsByTag(Tag $tag, $count = 3, $limit = 10)
     {
         $in = $this->getEntityManager()->getRepository('AppBundle:Entry')
             ->createQueryBuilder('a_e')
@@ -48,8 +51,8 @@ class TagRepository extends \Doctrine\ORM\EntityRepository
             ->where($qb->expr()->in('b_te', $in->getDQL()))
             ->andWhere('b_t.id != :id')
             ->groupBy('b_t.id')
-            ->having('COUNT(b_t.id) > 2')
-            ->setMaxResults(10)
+            ->having('COUNT(b_t.id) >= ' . $count)
+            ->setMaxResults($limit)
             ->setParameters(array('tag' => $tag, 'id' => $tag->getId()));
 
         return $qb->getQuery()->getResult();
