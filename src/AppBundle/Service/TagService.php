@@ -3,7 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Tag;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
@@ -12,7 +12,7 @@ class TagService
     /**
      * Entity Manager
      *
-     * @var EntityManager $em
+     * @var EntityManagerInterface $em
      */
     private $em;
 
@@ -27,10 +27,10 @@ class TagService
     /**
      * TagService constructor.
      *
-     * @param   EntityManager     $em               Entity Manager
-     * @param   CoreService       $coreService      Core service
+     * @param   EntityManagerInterface  $em               Entity Manager
+     * @param   CoreService             $coreService      Core service
      */
-    public function __construct(EntityManager $em, CoreService $coreService)
+    public function __construct(EntityManagerInterface $em, CoreService $coreService)
     {
         $this->em = $em;
         $this->coreService = $coreService;

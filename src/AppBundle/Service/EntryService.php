@@ -4,7 +4,7 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Entry;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
@@ -13,7 +13,7 @@ class EntryService
     /**
      * Entity Manager
      *
-     * @var EntityManager $em
+     * @var EntityManagerInterface $em
      */
     private $em;
 
@@ -49,13 +49,13 @@ class EntryService
     /**
      * EntryService constructor.
      *
-     * @param   EntityManager     $em               Entity Manager
-     * @param   CoreService       $coreService      Core service
-     * @param   AuthorService     $authorService    Author service
-     * @param   LocationService   $locationService  Location service
-     * @param   TagService        $tagService       Tag service
+     * @param   EntityManagerInterface  $em               Entity Manager
+     * @param   CoreService             $coreService      Core service
+     * @param   AuthorService           $authorService    Author service
+     * @param   LocationService         $locationService  Location service
+     * @param   TagService              $tagService       Tag service
      */
-    public function __construct(EntityManager $em, CoreService $coreService, AuthorService $authorService, LocationService $locationService, TagService $tagService)
+    public function __construct(EntityManagerInterface $em, CoreService $coreService, AuthorService $authorService, LocationService $locationService, TagService $tagService)
     {
         $this->em = $em;
         $this->coreService = $coreService;

@@ -11,12 +11,10 @@ use AppBundle\Service\CoreService;
 use AppBundle\Service\EntryService;
 use AppBundle\Service\LocationService;
 use AppBundle\Service\TagService;
-use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Translation\Translator;
-use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Translation\TranslatorInterface;
 
 
 /**
@@ -56,7 +54,7 @@ class AdminController extends Controller
      *
      * @Route("/entry/new", name="entry_new")
      */
-    public function entryNewAction(Request $request, Translator $translator, EntryService $entryService)
+    public function entryNewAction(Request $request, TranslatorInterface $translator, EntryService $entryService)
     {
         $em = $this->getDoctrine()->getManager();
         $authors = $em->getRepository('AppBundle:Author')->findAll();
@@ -88,7 +86,7 @@ class AdminController extends Controller
      *
      * @Route("/entry/edit/{id}", name="entry_edit")
      */
-    public function entryEditAction(Request $request, EntryService $entryService, Translator $translator, Entry $entry)
+    public function entryEditAction(Request $request, EntryService $entryService, TranslatorInterface $translator, Entry $entry)
     {
         $em = $this->getDoctrine()->getManager();
         $authors = $em->getRepository('AppBundle:Author')->findAll();
@@ -166,7 +164,7 @@ class AdminController extends Controller
      *
      * @Route("/author/edit/{id}", name="author_edit")
      */
-    public function authorEditAction(Request $request, AuthorService $authorService, Translator $translator, Author $author)
+    public function authorEditAction(Request $request, AuthorService $authorService, TranslatorInterface $translator, Author $author)
     {
         if ($editAuthor = $request->request->get('edit')) {
             $authorService->saveAuthor($editAuthor);
@@ -238,7 +236,7 @@ class AdminController extends Controller
      *
      * @Route("/location/edit/{id}", name="location_edit")
      */
-    public function locationEditAction(Request $request, LocationService $locationService, Translator $translator, Location $location)
+    public function locationEditAction(Request $request, LocationService $locationService, TranslatorInterface $translator, Location $location)
     {
         if ($editLocation = $request->request->get('edit')) {
             $locationService->saveLocation($editLocation);
@@ -312,7 +310,7 @@ class AdminController extends Controller
      *
      * @Route("/tag/edit/{id}", name="tag_edit")
      */
-    public function tagEditAction(Request $request, TagService $tagService, Translator $translator, Tag $tag)
+    public function tagEditAction(Request $request, TagService $tagService, TranslatorInterface $translator, Tag $tag)
     {
         if ($editTag = $request->request->get('edit')) {
             $image = $request->files->get('edit');

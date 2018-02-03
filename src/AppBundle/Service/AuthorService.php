@@ -3,8 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Author;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 
 class AuthorService
@@ -12,7 +11,7 @@ class AuthorService
     /**
      * Entity Manager
      *
-     * @var EntityManager $em
+     * @var EntityManagerInterface $em
      */
     private $em;
 
@@ -20,9 +19,9 @@ class AuthorService
     /**
      * AuthorService constructor.
      *
-     * @param   EntityManager     $em           Entity Manager
+     * @param   EntityManagerInterface     $em           Entity Manager
      */
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }

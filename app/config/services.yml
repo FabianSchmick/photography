@@ -2,6 +2,7 @@
 # https://symfony.com/doc/current/service_container.html
 parameters:
     #parameter_name: value
+    container.autowiring.strict_mode: true
 
 services:
     # default configuration for services in *this* file

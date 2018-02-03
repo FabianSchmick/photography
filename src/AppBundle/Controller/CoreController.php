@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Router;
+use Symfony\Component\Routing\RouterInterface;
 
 class CoreController extends Controller
 {
@@ -36,7 +36,7 @@ class CoreController extends Controller
     /**
      * @Route("/sitemap.{_format}", name="sitemap", requirements={"_format" = "xml"})
      */
-    public function sitemapAction(Request $request, Router $router)
+    public function sitemapAction(Request $request, RouterInterface $router)
     {
         $em = $this->getDoctrine()->getManager();
         $locales = explode('|', $this->getParameter('app.locales'));
