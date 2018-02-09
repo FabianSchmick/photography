@@ -15,6 +15,7 @@
 
 <header>
     <nav id="menu" class="navbar navbar-default navbar-fixed-top">
+        {% htmlcompress %}
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -47,6 +48,8 @@
                 </ul>
             </div>
         </div>
+        {% endhtmlcompress %}
+
     </nav>
 </header>
 
@@ -54,10 +57,13 @@
 {% endblock %}
 
 <main>
+    {% htmlcompress %}
     {% block content %}
         <section id="content">
         </section>
     {% endblock %}
+    {% endhtmlcompress %}
+
 </main>
 
 {% block javascripts %}

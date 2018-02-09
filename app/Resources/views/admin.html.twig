@@ -14,6 +14,7 @@
 <div id="wrapper">
 
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        {% htmlcompress %}
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -49,21 +50,21 @@
         </ul>
 
         {{ render(controller('AppBundle:Admin:renderSidebar')) }}
+        {% endhtmlcompress %}
+
     </nav>
 
     <div id="page-wrapper">
-        {% block body %}
-        {% endblock %}
+        {% htmlcompress %}
+            {% block body %}
+            {% endblock %}
+        {% endhtmlcompress %}
+
     </div>
 
 </div>
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset('min/js/admin.js'|asset_version) }}"></script>
-
-    <script type="application/javascript">
-        jQuery(document).ready(function() {
-        });
-    </script>
 {% endblock %}
 </body>
 </html>

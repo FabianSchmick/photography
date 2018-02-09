@@ -52,6 +52,13 @@ services:
         tags:
             - { name: twig.extension }
 
+    nochso\HtmlCompressTwig\Extension:
+        public: true
+        arguments:
+            $forceCompression: false
+        tags:
+            - { name: twig.extension }
+
     # Fix: https://stackoverflow.com/questions/47613979/symfony-3-4-0-could-not-find-any-fixture-services-to-load/48049905#48049905
     AppBundle\DataFixtures\:
         resource: '../../src/AppBundle/DataFixtures'
