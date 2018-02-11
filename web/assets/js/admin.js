@@ -33,6 +33,8 @@ function ajaxPageWrapper() {
 
         var uri = $(this).attr('href'); // Requested uri
 
+        history.pushState(null, '', uri);
+
         // Add class active
         $('ul.nav a').removeClass('active');
         $('ul.nav a[href="' + uri + '"]').addClass('active');
