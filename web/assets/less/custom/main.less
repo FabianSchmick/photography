@@ -102,6 +102,8 @@ header {
         width: 100%;
         text-align: center;
         padding-bottom: 10px;
+        box-shadow: none;
+        border: 0;
 
         .active {
           font-weight: bold;
@@ -494,11 +496,20 @@ header {
         height: 40%;
 
         h2 {
-          margin-top: 10px;
+          margin: 10px 0 13px;
         }
 
-        .entryDescription, .entryTimestamp, .entryAuthor {
+        .meta {
+          padding: 0;
+          margin: 0;
+        }
+
+        .entryTimestamp, .entryAuthor {
           display: none;
+        }
+
+        .tags {
+          padding-bottom: 10px;
         }
       }
     }
