@@ -27,6 +27,7 @@
 {% endblock %}
 
 {% block metaDesc %}{{ desc }}{% endblock %}
+
 {% block title %}{{ 'tag'|trans }} {{ tag.name }}{% endblock %}
 
 {% block cover %}
@@ -35,6 +36,7 @@
         </div>
     </section>
 {% endblock %}
+
 {% block content %}
     <section id="content" class="container">
         <h1>{{ tag.name }}</h1>
@@ -76,6 +78,7 @@
         </div>
     </section>
 {% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
 

@@ -15,12 +15,14 @@
     <meta itemprop="description" content="{{ 'meta.desc'|trans }}"/>
     <meta itemprop="image" content="{{ absolute_url(asset('assets/img/layout/cover-placeholder.jpg')) }}"/>
 {% endblock %}
+
 {% block cover %}
     <section id="cover" class="parallaxContainer">
         <div class="parallax">
         </div>
     </section>
 {% endblock %}
+
 {% block content %}
     <section id="content" class="container">
         <div id="entries" class="list-unstyled">
@@ -43,6 +45,7 @@
         </div>
     </section>
 {% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
 
