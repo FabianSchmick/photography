@@ -1,5 +1,27 @@
 {% extends 'base.html.twig' %}
 
+{% set desc = entry.description|striptags %}
+{% if desc == "" %}
+    {% set desc = entry.title %}
+{% endif %}
+
+{% block socialTags %}
+    <meta property="og:title" content="{{ entry.title }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="{{ url(app.request.attributes.get('_route'),
+        app.request.attributes.get('_route_params')) }}"/>
+    <meta property="og:image" content="{{ absolute_url(image_directory ~ entry.image) }}">
+    <meta property="og:description" content="{{ desc }}"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="{{ entry.title }}"/>
+    <meta name="twitter:description" content="{{ desc }}"/>
+    <meta name="twitter:image" content="{{ absolute_url(image_directory ~ entry.image) }}"/>
+    <meta itemprop="name" content="{{ entry.title }}"/>
+    <meta itemprop="description" content="{{ desc }}"/>
+    <meta itemprop="image" content="{{ absolute_url(image_directory ~ entry.image) }}"/>
+{% endblock %}
+
+{% block metaDesc %}{{ desc }}{% endblock %}
 {% block title %}{{ entry.title }}{% endblock %}
 
 {% block content %}

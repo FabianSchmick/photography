@@ -1,6 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block metaDesc %}{{ 'introduction.tag'|trans }} {{ tag.name }}{% endblock %}
+{% set desc = tag.description|striptags %}
+{% if desc == "" %}
+    {% set desc = 'introduction.tag'|trans ~ ' ' ~ tag.name %}
+{% endif %}
+
+{% set img = absolute_url(asset('assets/img/layout/cover-placeholder.jpg')) %}
+{% if tag.image %}
+    {% set img = absolute_url(image_directory ~ tag.image) %}
+{% endif %}
+
+{% block socialTags %}
+    <meta property="og:title" content="{{ 'tag'|trans }} {{ tag.name }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="{{ url(app.request.attributes.get('_route'),
+        app.request.attributes.get('_route_params')) }}"/>
+    <meta property="og:image" content="{{ img }}">
+    <meta property="og:description" content="{{ desc }}"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="{{ 'tag'|trans }} {{ tag.name }}"/>
+    <meta name="twitter:description" content="{{ desc }}"/>
+    <meta name="twitter:image" content="{{ img }}"/>
+    <meta itemprop="name" content="{{ 'tag'|trans }} {{ tag.name }}"/>
+    <meta itemprop="description" content="{{ desc }}"/>
+    <meta itemprop="image" content="{{ img }}"/>
+{% endblock %}
+
+{% block metaDesc %}{{ desc }}{% endblock %}
 {% block title %}{{ 'tag'|trans }} {{ tag.name }}{% endblock %}
 
 {% block cover %}

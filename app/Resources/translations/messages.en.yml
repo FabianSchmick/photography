@@ -65,6 +65,7 @@ fullscreen: Fullscreen
 introduction.tag: All pictures filtered by tag
 similar.tags: Similar tags
 noscript: Please enable JavaScript to use this website without any issues
+meta.desc: Photography Blog
 
 # Error page
 page.not.found: Page not found (code 404)

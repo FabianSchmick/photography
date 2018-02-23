@@ -1,5 +1,20 @@
 {% extends 'base.html.twig' %}
 
+{% block socialTags %}
+    <meta property="og:title" content="{{ 'photography'|trans }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="{{ url(app.request.attributes.get('_route'),
+        app.request.attributes.get('_route_params')) }}"/>
+    <meta property="og:image" content="{{ absolute_url(asset('assets/img/layout/cover-placeholder.jpg')) }}"/>
+    <meta property="og:description" content="{{ 'meta.desc'|trans }}"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="{{ 'photography'|trans }}"/>
+    <meta name="twitter:description" content="{{ 'meta.desc'|trans }}"/>
+    <meta name="twitter:image" content="{{ absolute_url(asset('assets/img/layout/cover-placeholder.jpg')) }}"/>
+    <meta itemprop="name" content="{{ 'photography'|trans }}"/>
+    <meta itemprop="description" content="{{ 'meta.desc'|trans }}"/>
+    <meta itemprop="image" content="{{ absolute_url(asset('assets/img/layout/cover-placeholder.jpg')) }}"/>
+{% endblock %}
 {% block cover %}
     <section id="cover" class="parallaxContainer">
         <div class="parallax">
