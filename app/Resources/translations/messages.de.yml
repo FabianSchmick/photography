@@ -55,6 +55,7 @@ search: Suche
 login: Anmelden
 sign.in: Bitte melden Sie sich an
 bad.credentials: Benutzername oder Passwort falsch
+Invalid credentials.: Benutzername oder Passwort falsch
 username: Benutzername
 password: Passwort
 
@@ -67,6 +68,9 @@ introduction.tag: Alle Bilder gefiltert zum Thema
 similar.tags: Ähnliche Tags
 noscript: Bitte aktivieren Sie JavaScript um die Webseite im vollen Umfang nutzen zu können
 meta.desc: Fotografie Blog
+
+# Errors
+Invalid CSRF token.: Ungültiger Token, bitte versuchen Sie es erneut
 
 # Error page
 page.not.found: Seite wurde nicht gefunden (code 404)

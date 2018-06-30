@@ -55,6 +55,7 @@ search: Search
 login: login
 sign.in: Please Sign In
 bad.credentials: Username or Password wrong
+Invalid credentials.: Username or Password wrong
 username: Username
 password: Password
 
@@ -67,6 +68,9 @@ introduction.tag: All pictures filtered by tag
 similar.tags: Similar tags
 noscript: Please enable JavaScript to use this website without any issues
 meta.desc: Photography Blog
+
+# Errors
+Invalid CSRF token.: Invalid token, please try again
 
 # Error page
 page.not.found: Page not found (code 404)

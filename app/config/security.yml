@@ -38,6 +38,9 @@ security:
                 default_target_path: /admin
                 target_path_parameter: redirect_url
                 failure_path: /login
+                csrf_parameter:       _token
+                csrf_token_id:        authenticate
+                csrf_token_generator: security.csrf.token_manager
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

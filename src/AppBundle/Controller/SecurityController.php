@@ -2,29 +2,34 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\LoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends Controller
 {
     /**
      * @Route("/login", name="login")
+     * https://stackoverflow.com/questions/35663410/form-builder-for-symfony-login-page
      */
-    public function loginAction(Request $request)
+    public function loginAction(Request $request, AuthenticationUtils $authenticationUtils)
     {
-        $authenticationUtils = $this->get('security.authentication_utils');
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-        return $this->render(
-            'security/login.html.twig',
-            array(
-                // last username entered by the user
-                'last_username' => $lastUsername,
-                'error'         => $error,
-            )
-        );
+        $defaultData = array('_username' => $authenticationUtils->getLastUsername());
+
+        $form = $this->createForm(LoginType::class, $defaultData);
+
+        if (!is_null($authenticationUtils->getLastAuthenticationError(false))) {
+            $form->addError(new \Symfony\Component\Form\FormError(
+                $authenticationUtils->getLastAuthenticationError()->getMessageKey()
+            ));
+        }
+
+        $form->handleRequest($request);
+
+        return $this->render('security/login.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 }

@@ -18,25 +18,26 @@
             <h3 class="panel-title">{{ 'sign.in'|trans }}</h3>
         </div>
         <div class="panel-body">
-            {% if error %}
-                <div class="alert alert-danger">{{ error.message | replace({"Bad credentials." : 'bad.credentials'|trans}) }}</div>
-            {% endif %}
-            <form action="{{ path('login') }}" method="post" class="form-signin">
-                <div class="form-group">
-                    <div class="input-group" style="padding-bottom: 15px">
-                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" id="inputUser" class="form-control" name="_username" placeholder="{{ 'username'|trans }}" required="required"><br/>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                        <input type="password" id="inputPassword" class="form-control" name="_password" placeholder="{{ 'password'|trans }}" required="required">
-                    </div>
+            {{ form_start(form, {'action': path('login')}) }}
+
+            {{ form_errors(form) }}
+
+            <div class="form-group">
+                <div class="input-group" style="padding-bottom: 15px">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    {{ form_widget(form._username) }}
                 </div>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    {{ form_widget(form._password) }}
+                </div>
+            </div>
 
-                <input type="hidden" name="_target_path" value="account" />
+            {{ form_rest(form) }}
 
-                <button class="btn btn-lg btn-success btn-block" type="submit" name="login">{{ 'login'|trans }}</button>
-            </form>
+            <button class="btn btn-lg btn-success btn-block" type="submit" name="login">{{ 'login'|trans }}</button>
+
+            {{ form_end(form) }}
         </div>
     </div>
 
