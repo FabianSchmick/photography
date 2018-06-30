@@ -25,6 +25,7 @@ german: German
 locale.en: English
 locale.de: German
 live.view: Live view
+logout: Logout
 
 # Entry
 new.entry: New Entry

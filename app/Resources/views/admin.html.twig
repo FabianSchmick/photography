@@ -45,9 +45,14 @@
                     {% endfor %}
                 </ul>
             </li>
-            <li class="dropdown">
+            <li>
                 <a href="{{ path('homepage', {'_locale': request.locale}) }}" target="_blank">
                     <i class="fa fa-home"></i> {{ 'homepage'|trans }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('logout') }}" title="{{ 'logout'|trans }}">
+                    <i class="fa fa-sign-out "></i>
                 </a>
             </li>
         </ul>

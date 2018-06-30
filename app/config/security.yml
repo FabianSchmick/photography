@@ -25,6 +25,9 @@ security:
             http_basic: ~
 
             logout_on_user_change: true
+            logout:
+                path:   /logout
+                target: /
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             form_login:
