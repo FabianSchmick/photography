@@ -30,7 +30,7 @@ Clone the project
 git clone https://github.com/FabianSchmick/photography.git
 ```
 
-[Setup Symfony](https://symfony.com/doc/current/setup.html) or use [vagrantfile for local development](https://github.com/FabianSchmick/vagrant_skeleton/blob/master/README.md)
+[Setup Symfony](https://symfony.com/doc/current/setup.html) or use [vagrantfile for local development](https://github.com/FabianSchmick/vagrant_skeleton/blob/master/README.md) or use [migraw for local development](https://github.com/marcharding/migraw)
 
 **Backend password:**
 
