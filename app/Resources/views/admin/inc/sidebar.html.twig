@@ -37,7 +37,7 @@
                 <ul class="nav nav-second-level">
                     {% for author in authors %}
                         <li>
-                            <a href="{{ path('author_edit', {'id': author.id}) }}">{{ author.name }}</a>
+                            <a href="{{ path('admin_author_edit', {'id': author.id}) }}">{{ author.name }}</a>
                         </li>
                     {% endfor %}
                 </ul>

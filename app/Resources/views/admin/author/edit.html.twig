@@ -15,8 +15,7 @@
             </div>
         {% endfor %}
 
-        <form id="editAuthor" class="form-horizontal" action="{{ path('author_edit', {'id': author.id}) }}" method="post">
-            <input type="hidden" name="edit[id]" value="{{ author.id }}"/>
+        {{ form_start(form, {'action': path('admin_author_edit', {'id': author.id}), 'attr': {'class': 'form-horizontal'}}) }}
 
             <div id="deleteModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
@@ -29,19 +28,24 @@
                             <p>{{ 'delete.msg.author'|trans }} <strong>{{ author.name }}</strong>?</p>
                         </div>
                         <div class="modal-footer">
-                            <a href="{{ path('author_delete', {'id': author.id}) }}" class="btn btn-danger">{{ 'delete'|trans }}</a>
+                            <a href="{{ path('admin_author_delete', {'id': author.id}) }}" class="btn btn-danger">{{ 'delete'|trans }}</a>
                             <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'close'|trans }}</button>
                         </div>
                     </div>
                 </div>
             </div>
 
+            {{ form_errors(form) }}
+
             <div class="form-group">
                 <label class="control-label col-sm-2" for="name">{{ 'name'|trans }}*</label>
                 <div class="col-sm-10">
-                    <input id="name" class="form-control" type="text" name="edit[name]" value="{{ author.name }}" required="required"/>
+                    {{ form_widget(form.name) }}
+                    {{ form_errors(form.name) }}
                 </div>
             </div>
+
+            {{ form_rest(form) }}
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
@@ -49,7 +53,8 @@
                     <button class="btn btn-danger pull-right" type="button" data-toggle="modal" data-target="#deleteModal">{{ 'delete'|trans }}</button>
                 </div>
             </div>
-        </form>
+
+        {{ form_end(form) }}
     </div>
 </div>
 

@@ -1,18 +1,50 @@
 {% extends 'admin.html.twig' %}
 
+{% block title %}{{ 'authors'|trans }}{% endblock %}
+
 {% block body %}
 
-    <div class="authors">
-        {% for author in authors %}
-            <div class="author">
-                <div class="authorName">
-                    {{ author.name }}
-                </div>
-                <a href="{{ path('author_edit', {'id': author.id}) }}">{{ 'edit'|trans }}</a>
-                <a href="{{ path('author_delete', {'id': author.id}) }}">{{ 'delete'|trans }}</a>
+<div class="row">
+    <div class="col-xs-12">
+
+        <div class="page-header">
+            <div class="pull-left">
+                <h1>{{ 'authors'|trans }}</h1>
             </div>
-        {% endfor %}
+            <div class="pull-right">
+                <ul class="actions list-unstyled pull-right">
+                    <li><a class="btn btn-primary" href="{{ path('admin_author_new') }}">{{ 'new.author'|trans }}</a></li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>{{ 'name'|trans }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for author in authors %}
+                <tr>
+                    <td>
+                        {{ loop.index }}
+                    </td>
+                    <td>
+                        {{ author.name }}
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('admin_author_edit', {'id': author.id}) }}" title="{{ 'edit'|trans }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
     </div>
-    <a href="{{ path('author_new') }}">{{ 'new.author'|trans }}</a>
+</div>
 
 {% endblock %}
