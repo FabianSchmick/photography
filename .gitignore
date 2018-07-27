@@ -1,5 +1,6 @@
 .idea
 .vagrant
+.php_cs.cache
 /ansible/playbook.retry
 /.web-server-pid
 /app/config/parameters.yml
