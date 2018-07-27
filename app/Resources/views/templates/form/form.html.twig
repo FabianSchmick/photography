@@ -1,0 +1,13 @@
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            <span class="help-block">
+                <ul class="list-unstyled text-danger">
+                {% for error in errors %}
+                    <li>{{ error.message|trans|raw }}</li>
+                {% endfor %}
+                </ul>
+            </span>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}

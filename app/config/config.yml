@@ -40,6 +40,7 @@ twig:
     strict_variables: '%kernel.debug%'
     form_themes:
         - 'bootstrap_3_layout.html.twig'
+        - 'templates/form/form.html.twig'
     globals:
         image_directory: '%image_upload_directory%'
         locales: '%app.locales%'

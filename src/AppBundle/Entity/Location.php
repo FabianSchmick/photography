@@ -6,12 +6,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Translatable;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Location
  *
  * @ORM\Table(name="location")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\LocationRepository")
+ * @UniqueEntity("name")
  */
 class Location
 {
@@ -27,6 +30,7 @@ class Location
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @Gedmo\Translatable
      * @ORM\Column(name="name", type="string", length=200, unique=true)
      */

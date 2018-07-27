@@ -1,18 +1,50 @@
 {% extends 'admin.html.twig' %}
 
+{% block title %}{{ 'locations'|trans }}{% endblock %}
+
 {% block body %}
 
-    <div class="locations">
-        {% for location in locations %}
-            <div class="location">
-                <div class="locationName">
-                    {{ location.name }}
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="page-header">
+                <div class="pull-left">
+                    <h1>{{ 'locations'|trans }}</h1>
                 </div>
-                <a href="{{ path('location_edit', {'id': location.id}) }}">{{ 'edit'|trans }}</a>
-                <a href="{{ path('location_delete', {'id': location.id}) }}">{{ 'delete'|trans }}</a>
+                <div class="pull-right">
+                    <ul class="actions list-unstyled pull-right">
+                        <li><a class="btn btn-primary" href="{{ path('admin_location_new') }}">{{ 'new.location'|trans }}</a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
             </div>
-        {% endfor %}
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>{{ 'name'|trans }}</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for location in locations %}
+                    <tr>
+                        <td>
+                            {{ loop.index }}
+                        </td>
+                        <td>
+                            {{ location.name }}
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('admin_location_edit', {'id': location.id}) }}" title="{{ 'edit'|trans }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
     </div>
-    <a href="{{ path('location_new') }}">{{ 'new.location'|trans }}</a>
 
 {% endblock %}

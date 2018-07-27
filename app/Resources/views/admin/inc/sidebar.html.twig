@@ -47,7 +47,7 @@
                 <ul class="nav nav-second-level">
                     {% for location in locations %}
                         <li>
-                            <a href="{{ path('location_edit', {'id': location.id}) }}">{{ location.name }}</a>
+                            <a href="{{ path('admin_location_edit', {'id': location.id}) }}">{{ location.name }}</a>
                         </li>
                     {% endfor %}
                 </ul>
