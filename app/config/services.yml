@@ -35,6 +35,9 @@ services:
     #     arguments:
     #         $someArgument: 'some_value'
 
+    Vich\UploaderBundle\Naming\SubdirDirectoryNamer:
+        public: true
+
     AppBundle\Service\CoreService:
         arguments:
             $imageDir: "%image_directory%"
@@ -43,6 +46,10 @@ services:
 
     AppBundle\Service\EntryService:
         public: true
+
+    AppBundle\EventListener\RemovedFileListener:
+        tags:
+            - { name: kernel.event_listener, event: vich_uploader.post_remove, method: onPostRemove }
 
     AppBundle\Twig\AssetVersionExtension:
         public: true

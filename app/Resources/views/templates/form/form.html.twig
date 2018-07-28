@@ -11,3 +11,50 @@
         {% endif %}
     {% endspaceless %}
 {% endblock form_errors %}
+
+{% block form_row -%}
+    <div class="{% if not compound %}form-group{% endif %}{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+        {{- form_label(form) -}}
+        {{- form_widget(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock form_row %}
+
+{%- block form_widget_compound -%}
+    {%- if form is rootform -%}
+        {{ form_errors(form) }}
+    {%- endif -%}
+    {{- block('form_rows') -}}
+    {{- form_rest(form) -}}
+{%- endblock form_widget_compound -%}
+
+{% block vich_file_widget %}
+    {% spaceless %}
+        {{ form_widget(form.file) }}
+        {% if form.delete is defined %}
+            {{ form_widget(form.delete) }}
+            {{ form_errors(form.delete) }}
+        {% endif %}
+
+        {% if download_uri %}
+            <a href="{{ download_uri }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> {{ 'current.img'|trans }}</a>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+
+{% block vich_image_widget %}
+    {% spaceless %}
+        {{ form_widget(form.file) }}
+        {% if form.delete is defined %}
+            {{ form_widget(form.delete) }}
+            {{ form_errors(form.delete) }}
+        {% endif %}
+
+        {#{% if image_uri %}#}
+        {#<a href="{{ image_uri }}"><img src="{{ image_uri }}" alt="" /></a>#}
+        {#{% endif %}#}
+        {% if download_uri %}
+            <a href="{{ download_uri }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> {{ 'current.img'|trans }}</a>
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
