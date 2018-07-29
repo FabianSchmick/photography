@@ -1,7 +1,7 @@
 <div class="entry">
     <article class="entryInner">
         <div class="entryImage">
-            <img src="{{ image_directory }}{{ entry.image }}" alt="{{ entry.title }}">
+            <img src="{{ vich_uploader_asset(entry.image, 'file') }}" alt="{{ entry.title }}">
         </div>
         <div class="entryInfo">
             <h2 class="entryTitle">
@@ -18,7 +18,7 @@
                     <li><a href="{{ path('tag_filter', {'slug': tag.slug}) }}">{{ tag.name }}</a></li>
                 {% endfor %}
             </ul>
-            <a class="btn" href="{{ image_directory }}{{ entry.image }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
+            <a class="btn" href="{{ vich_uploader_asset(entry.image, 'file') }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
         </div>
     </article>
 </div>

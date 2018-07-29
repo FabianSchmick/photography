@@ -77,10 +77,13 @@ function deleteImageButton() {
 
 // Initializes select2 fields
 function initSelect2() {
-    $('.select2').select2();
+    $('.select2').select2({
+        placeholder: ""
+    });
 
     $('.select2.add').select2({
-        tags: true
+        tags: true,
+        placeholder: ""
     });
 }
 

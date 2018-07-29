@@ -51,12 +51,19 @@ class Location
 
 
     /**
-     * Author constructor.
+     * Location constructor.
      */
     public function __construct() {
         $this->entries = new ArrayCollection();
     }
 
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
 
     /**
      * Get id

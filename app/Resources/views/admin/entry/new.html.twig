@@ -4,95 +4,86 @@
 
 {% block body %}
 
-    <div class="row">
-        <div class="col-xs-12">
-            <h1 class="page-header">{{ 'new.entry'|trans }}</h1>
+<div class="row">
+    <div class="col-xs-12">
+        <h1 class="page-header">{{ 'new.entry'|trans }}</h1>
 
-            {% for flash_message in app.session.flashBag.get('success') %}
-                <div class="flash-notice alert alert-success fade in">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    {{ flash_message|raw }}
+        {% for flash_message in app.session.flashBag.get('success') %}
+            <div class="flash-notice alert alert-success fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{ flash_message|raw }}
+            </div>
+        {% endfor %}
+
+        {{ form_start(form, {'action': path('admin_entry_new'), 'attr': {'class': 'form-horizontal'}}) }}
+
+            {{ form_errors(form) }}
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="title">{{ 'title'|trans }}*</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.title) }}
+                    {{ form_errors(form.title) }}
                 </div>
-            {% endfor %}
+            </div>
 
-            <form id="newEntry" class="form-horizontal" action="{{ path('entry_new') }}" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="MAX_FILE_SIZE" value="16777216" /> {# 16MB #}
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="title">{{ 'title'|trans }}*</label>
-                    <div class="col-sm-10">
-                        <input id="title" class="form-control" type="text" name="new[title]" required="required"/>
-                    </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="description">{{ 'description'|trans }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.description, {'id': 'description'}) }}
+                    {{ form_errors(form.description) }}
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="description">{{ 'description'|trans }}</label>
-                    <div class="col-sm-10">
-                        <textarea id="description" class="form-control" name="new[description]"></textarea>
-                    </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="author">{{ 'author'|trans }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.author, {'attr': {'class': 'select2 add form-control'}}) }}
+                    {{ form_errors(form.author) }}
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="author">{{ 'author'|trans }}</label>
-                    <div class="col-sm-10">
-                        <div>
-                            <select id="author" class="select2 add form-control" name="new[author]">
-                                {% for author in authors %}
-                                    <option value="{{ author.name }}" >{{ author.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="image">{{ 'image'|trans }}*</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.image) }}
+                    {{ form_errors(form.image) }}
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="image">{{ 'image'|trans }}*</label>
-                    <div class="col-sm-10">
-                        <input id="image" type="file" name="new[image]" required="required" accept="image/*"/>
-                    </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="location">{{ 'location'|trans }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.location, {'attr': {'class': 'select2 add form-control'}}) }}
+                    {{ form_errors(form.location) }}
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="location">{{ 'location'|trans }}</label>
-                    <div class="col-sm-10">
-                        <div>
-                            <select id="location" class="select2 add form-control" name="new[location]">
-                                <option value="" disabled="disabled" selected="selected"></option>
-                                {% for location in locations %}
-                                    <option value="{{ location.name }}" >{{ location.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="timestamp">{{ 'timestamp'|trans }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.timestamp) }}
+                    {{ form_errors(form.timestamp) }}
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="timestamp">{{ 'timestamp'|trans }}</label>
-                    <div class="col-sm-10">
-                        <input id="timestamp" class="form-control" type="date" name="new[timestamp]"/>
-                    </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="tags">{{ 'tags'|trans }}*</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.tags, {'attr': {'class': 'select2 add form-control'}}) }}
+                    {{ form_errors(form.tags) }}
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="tags">{{ 'tags'|trans }}*</label>
-                    <div class="col-sm-10">
-                        <div>
-                            <select id="tags" class="select2 add form-control" name="new[tags][]" required="required" multiple="multiple">
-                                {% for tag in tags %}
-                                    <option value="{{ tag.name }}" >{{ tag.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                </div>
+            {{ form_rest(form) }}
 
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-success" type="submit" name="submit">{{ 'submit'|trans }}</button>
-                    </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-success" type="submit" name="submit">{{ 'submit'|trans }}</button>
                 </div>
-            </form>
-        </div>
+            </div>
+        {{ form_end(form) }}
     </div>
+</div>
 
 {% endblock %}

@@ -1,24 +1,54 @@
 {% extends 'admin.html.twig' %}
 
+{% block title %}{{ 'entries'|trans }}{% endblock %}
+
 {% block body %}
 
-    <div class="entries">
-        {% for entry in entries %}
-            <div class="entry">
-                <div class="entryTitle">
-                    {{ entry.title }}
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="page-header">
+                <div class="pull-left">
+                    <h1>{{ 'entries'|trans }}</h1>
                 </div>
-                <div class="entryImage">
-                    <img src="{{ image_directory }}{{ entry.image }}" alt="{{ entry.title }}">
+                <div class="pull-right">
+                    <ul class="actions list-unstyled pull-right">
+                        <li><a class="btn btn-primary" href="{{ path('admin_entry_new') }}">{{ 'new.entry'|trans }}</a></li>
+                    </ul>
                 </div>
-                <div class="entryTimestamp">
-                    {{ entry.timestamp|date("d.m.Y") }}
-                </div>
-                <a href="{{ path('entry_edit', {'id': entry.id}) }}">{{ 'edit'|trans }}</a>
-                <a href="{{ path('entry_delete', {'id': entry.id}) }}">{{ 'delete'|trans }}</a>
+                <div class="clearfix"></div>
             </div>
-        {% endfor %}
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{ 'title'|trans }}</th>
+                    <th>{{ 'timestamp'|trans }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entry in entries %}
+                    <tr>
+                        <td>
+                            {{ loop.index }}
+                        </td>
+                        <td>
+                            {{ entry.title }}
+                        </td>
+                        <td>
+                            {{ entry.timestamp|date('d-m->') }}
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('admin_entry_edit', {'id': entry.id}) }}" title="{{ 'edit'|trans }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
     </div>
-    <a href="{{ path('entry_new') }}">{{ 'new.entry'|trans }}</a>
 
 {% endblock %}

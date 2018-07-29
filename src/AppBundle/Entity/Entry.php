@@ -6,12 +6,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Translatable;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Entry
  *
  * @ORM\Table(name="entry")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EntryRepository")
+ * @Vich\Uploadable
  */
 class Entry
 {
@@ -28,6 +31,7 @@ class Entry
      * @var string
      *
      * @Gedmo\Translatable
+     * @Assert\NotBlank()
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
@@ -49,9 +53,10 @@ class Entry
     private $author;
 
     /**
-     * @var string
+     * @var File
      *
-     * @ORM\Column(name="image", type="string", length=200)
+     * @Assert\NotBlank()
+     * @ORM\OneToOne(targetEntity="EntryImage", inversedBy="entry", cascade={"persist", "remove"})
      */
     private $image;
 
@@ -66,6 +71,10 @@ class Entry
     /**
      * @var \DateTime
      *
+     * @Assert\Date()
+     * @Assert\LessThan(
+     *     value="now",
+     * )
      * @ORM\Column(name="timestamp", type="datetime", nullable=true)
      */
     private $timestamp;
@@ -73,6 +82,7 @@ class Entry
     /**
      * @var ArrayCollection
      *
+     * @Assert\NotBlank()
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="entries", cascade={"persist"})
      * @ORM\JoinTable(name="tag_to_entry",
      *     joinColumns={@ORM\JoinColumn(name="entry_id", referencedColumnName="id")},
@@ -187,11 +197,11 @@ class Entry
     /**
      * Set image
      *
-     * @param string $image
+     * @param File $image
      *
      * @return Entry
      */
-    public function setImage($image)
+    public function setImage(File $image)
     {
         $this->image = $image;
 
@@ -201,7 +211,7 @@ class Entry
     /**
      * Get image
      *
-     * @return string
+     * @return File
      */
     public function getImage()
     {
@@ -310,4 +320,3 @@ class Entry
         $this->locale = $locale;
     }
 }
-

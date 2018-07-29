@@ -30,7 +30,6 @@
         </div>
 
         {{ form_start(form, {'action': path('admin_tag_edit', {'id': tag.id}), 'attr': {'class': 'form-horizontal'}}) }}
-            <input type="hidden" name="edit[deleteImage]" value="0"/>
 
             {{ form_errors(form) }}
 

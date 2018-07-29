@@ -10,15 +10,15 @@
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="{{ url(app.request.attributes.get('_route'),
         app.request.attributes.get('_route_params')) }}"/>
-    <meta property="og:image" content="{{ absolute_url(image_directory ~ entry.image) }}">
+    <meta property="og:image" content="{{ vich_uploader_asset(entry.image, 'file') }}">
     <meta property="og:description" content="{{ desc }}"/>
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:title" content="{{ entry.title }}"/>
     <meta name="twitter:description" content="{{ desc }}"/>
-    <meta name="twitter:image" content="{{ absolute_url(image_directory ~ entry.image) }}"/>
+    <meta name="twitter:image" content="{{ vich_uploader_asset(entry.image, 'file') }}"/>
     <meta itemprop="name" content="{{ entry.title }}"/>
     <meta itemprop="description" content="{{ desc }}"/>
-    <meta itemprop="image" content="{{ absolute_url(image_directory ~ entry.image) }}"/>
+    <meta itemprop="image" content="{{ vich_uploader_asset(entry.image, 'file') }}"/>
 {% endblock %}
 
 {% block metaDesc %}{{ desc }}{% endblock %}
@@ -29,7 +29,7 @@
     <section id="entry" class="container">
         <article class="entryInner row">
             <div class="entryImage col-lg-9">
-                <img src="{{ image_directory }}{{ entry.image }}" alt="{{ entry.title }}">
+                <img src="{{ vich_uploader_asset(entry.image, 'file') }}" alt="{{ entry.title }}">
             </div>
             <div class="entryInfo col-lg-3">
                 <h1 class="entryTitle">
@@ -46,7 +46,7 @@
                         <li><a href="{{ path('tag_filter', {'slug': tag.slug}) }}">{{ tag.name }}</a></li>
                     {% endfor %}
                 </ul>
-                <a class="btn" href="{{ image_directory }}{{ entry.image }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
+                <a class="btn" href="{{ vich_uploader_asset(entry.image, 'file') }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
             </div>
         </article>
     </section>

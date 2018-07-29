@@ -24,9 +24,10 @@
                 </div>
             {% endfor %}
 
-            <form id="editEntry" class="form-horizontal" action="{{ path('entry_edit', {'id': entry.id}) }}" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="MAX_FILE_SIZE" value="16777216"/> {# 16MB #}
-                <input type="hidden" name="edit[id]" value="{{ entry.id }}"/>
+
+            {{ form_start(form, {'action': path('admin_entry_edit', {'id': entry.id}), 'attr': {'class': 'form-horizontal'}}) }}
+
+                {{ form_errors(form) }}
 
                 <div id="deleteModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
@@ -39,7 +40,7 @@
                                 <p>{{ 'delete.msg.entry'|trans }} <strong>{{ entry.title }}</strong>?</p>
                             </div>
                             <div class="modal-footer">
-                                <a href="{{ path('entry_delete', {'id': entry.id}) }}" class="btn btn-danger">{{ 'delete'|trans }}</a>
+                                <a href="{{ path('admin_entry_delete', {'id': entry.id}) }}" class="btn btn-danger">{{ 'delete'|trans }}</a>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'close'|trans }}</button>
                             </div>
                         </div>
@@ -49,74 +50,63 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="title">{{ 'title'|trans }}*</label>
                     <div class="col-sm-10">
-                        <input id="title" class="form-control" type="text" name="edit[title]" value="{{ entry.title }}" required="required"/>
+                        {{ form_widget(form.title) }}
+                        {{ form_errors(form.title) }}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="description">{{ 'description'|trans }}</label>
                     <div class="col-sm-10">
-                        <textarea id="description" class="form-control" name="edit[description]">{{ entry.description }}</textarea>
+                        {{ form_widget(form.description, {'id': 'description'}) }}
+                        {{ form_errors(form.description) }}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="author">{{ 'author'|trans }}</label>
                     <div class="col-sm-10">
-                        <select id="author" class="select2 add form-control" name="edit[author]">
-                            {% for author in authors %}
-                                <option value="{{ author.name }}" {% if entry.author.id is defined and entry.author.id == author.id %}selected="selected"{% endif %}>{{ author.name }}</option>
-                            {% endfor %}
-                        </select>
+                        {{ form_widget(form.author, {'attr': {'class': 'select2 add form-control'}}) }}
+                        {{ form_errors(form.author) }}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="image">{{ 'image'|trans }}</label>
                     <div class="col-sm-10">
-                        <input id="image" type="file" name="edit[image]" accept="image/*"/>
-                        <a href="{{ image_directory }}{{ entry.image }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> {{ 'current.img'|trans }}</a>
-                        <p class="help-block">({{ 'img.upload.info'|trans }})</p>
+                        {{ form_widget(form.image) }}
+                        {{ form_errors(form.image) }}
+                        {% if entry.image %}
+                            <p class="help-block">({{ 'img.upload.info'|trans }})</p>
+                        {% endif %}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="location">{{ 'location'|trans }}</label>
                     <div class="col-sm-10">
-                        <select id="location" class="select2 add form-control" name="edit[location]">
-                            {% for location in locations %}
-                                <option value="{{ location.name }}" {% if entry.location.id is defined and entry.location.id == location.id %}selected="selected"{% endif %}>{{ location.name }}</option>
-                            {% endfor %}
-                        </select>
+                        {{ form_widget(form.location, {'attr': {'class': 'select2 add form-control'}}) }}
+                        {{ form_errors(form.location) }}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="timestamp">{{ 'timestamp'|trans }}</label>
                     <div class="col-sm-10">
-                        <input id="timestamp" class="form-control" type="date" name="edit[timestamp]" value="{{ entry.timestamp|date("Y-m-d") }}"/>
+                        {{ form_widget(form.timestamp) }}
+                        {{ form_errors(form.timestamp) }}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="tags">{{ 'tags'|trans }}*</label>
                     <div class="col-sm-10">
-                        <select id="tags" class="select2 add form-control" name="edit[tags][]" required="required" multiple="multiple">
-                            {% for tag in tags %}
-                                {% set continue = false %}
-                                {% for entryTag in entry.tags %}
-                                    {% if entryTag.name == tag.name %}
-                                        {% set continue = true %}
-                                        <option value="{{ tag.name }}" selected="selected">{{ tag.name }}</option>
-                                    {% endif %}
-                                {% endfor %}
-                                {% if not continue %}
-                                    <option value="{{ tag.name }}">{{ tag.name }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
+                        {{ form_widget(form.tags, {'attr': {'class': 'select2 add form-control'}}) }}
+                        {{ form_errors(form.tags) }}
                     </div>
                 </div>
+
+                {{ form_rest(form) }}
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
@@ -124,7 +114,7 @@
                         <button class="btn btn-danger pull-right" type="button" data-toggle="modal" data-target="#deleteModal">{{ 'delete'|trans }}</button>
                     </div>
                 </div>
-            </form>
+            {{ form_end(form) }}
         </div>
     </div>
 

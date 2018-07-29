@@ -12,14 +12,14 @@
         </div>
         <ul class="nav" id="side-menu">
             <li>
-                <a href="{{ path('entry_new') }}"><i class="fa fa-plus"></i> {{ 'new.entry'|trans }}</a>
+                <a href="{{ path('admin_entry_new') }}"><i class="fa fa-plus"></i> {{ 'new.entry'|trans }}</a>
             </li>
             {# Maybe unnecessary, have to think about it
             <li>
-                <a href="{{ path('entry_index') }}"><i class="fa fa-list"></i> All Entries</a>
+                <a href="{{ path('admin_entry_index') }}"><i class="fa fa-list"></i> All Entries</a>
             </li>
             <li>
-                <a href="{{ path('tag_index') }}"><i class="fa fa-list"></i> All Tags</a>
+                <a href="{{ path('admin_tag_index') }}"><i class="fa fa-list"></i> All Tags</a>
             </li>
             #}
             <li class="subNav">
@@ -27,7 +27,7 @@
                 <ul class="nav nav-second-level">
                     {% for entry in entries %}
                         <li>
-                            <a href="{{ path('entry_edit', {'id': entry.id}) }}">{{ entry.title }}</a>
+                            <a href="{{ path('admin_entry_edit', {'id': entry.id}) }}">{{ entry.title }}</a>
                         </li>
                     {% endfor %}
                 </ul>
