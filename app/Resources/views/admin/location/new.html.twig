@@ -4,23 +4,23 @@
 
 {% block body %}
 
-    <div class="row">
-        <div class="col-xs-12">
-            <h1 class="page-header">{{ 'new.location'|trans }}</h1>
+<div class="row">
+    <div class="col-xs-12">
+        <h1 class="page-header">{{ 'new.location'|trans }}</h1>
 
-            {% for flash_message in app.session.flashBag.get('success') %}
-                <div class="flash-notice alert alert-success fade in">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    {{ flash_message|raw }}
-                </div>
-            {% endfor %}
+        {% for flash_message in app.session.flashBag.get('success') %}
+            <div class="flash-notice alert alert-success fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{ flash_message|raw }}
+            </div>
+        {% endfor %}
 
-            {{ form_start(form, {'action': path('admin_location_new'), 'attr': {'class': 'form-horizontal'}}) }}
+        {{ form_start(form, {'action': path('admin_location_new'), 'attr': {'class': 'form-horizontal'}}) }}
 
             {{ form_errors(form) }}
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="name">{{ 'name'|trans }}*</label>
+                <label class="control-label col-sm-2" for="location_name">{{ 'name'|trans }}*</label>
                 <div class="col-sm-10">
                     {{ form_widget(form.name) }}
                     {{ form_errors(form.name) }}
@@ -35,8 +35,8 @@
                 </div>
             </div>
 
-            {{ form_end(form) }}
-        </div>
+        {{ form_end(form) }}
     </div>
+</div>
 
 {% endblock %}

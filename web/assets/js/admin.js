@@ -95,7 +95,7 @@ function initWysiwyg() {
         lang = 'de-DE';
     }
 
-    $('#description').summernote({
+    $('.wysiwyg').summernote({
         height: 100,
         lang: lang,
         toolbar: [

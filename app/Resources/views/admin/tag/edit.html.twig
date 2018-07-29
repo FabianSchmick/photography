@@ -52,7 +52,7 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="name">{{ 'name'|trans }}*</label>
+                <label class="control-label col-sm-2" for="tag_name">{{ 'name'|trans }}*</label>
                 <div class="col-sm-10">
                     {{ form_widget(form.name) }}
                     {{ form_errors(form.name) }}
@@ -60,15 +60,15 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="description">{{ 'description'|trans }}</label>
+                <label class="control-label col-sm-2" for="tag_description">{{ 'description'|trans }}</label>
                 <div class="col-sm-10">
-                    {{ form_widget(form.description, {'id': 'description'}) }}
+                    {{ form_widget(form.description, {'attr': {'class': 'wysiwyg'}}) }}
                     {{ form_errors(form.description) }}
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="image">{{ 'image'|trans }}</label>
+                <label class="control-label col-sm-2" for="tag_image_file_file">{{ 'image'|trans }}</label>
                 <div class="col-sm-10">
                     {{ form_widget(form.image) }}
                     {{ form_errors(form.image) }}
