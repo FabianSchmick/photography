@@ -4,7 +4,6 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Tag;
 use AppBundle\Form\TagType;
-use AppBundle\Service\CoreService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +36,7 @@ class TagController extends Controller
      *
      * @Route("/new", name="admin_tag_new")
      */
-    public function newAction(Request $request, TranslatorInterface $translator, CoreService $coreService)
+    public function newAction(Request $request, TranslatorInterface $translator)
     {
         $tag = new Tag();
         $form = $this->createForm(TagType::class, $tag);

@@ -4,7 +4,6 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Entry;
 use AppBundle\Form\EntryType;
-use AppBundle\Service\CoreService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +36,7 @@ class EntryController extends Controller
      *
      * @Route("/new", name="admin_entry_new")
      */
-    public function newAction(Request $request, TranslatorInterface $translator, CoreService $coreService)
+    public function newAction(Request $request, TranslatorInterface $translator)
     {
         $entry = new Entry();
         $form = $this->createForm(EntryType::class, $entry);

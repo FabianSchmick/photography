@@ -66,7 +66,7 @@ class AssetVersionExtension extends \Twig_Extension
             throw new \Exception(sprintf('Cannot find manifest file: "%s"', $manifestPath));
         }
 
-        return $this->assetsDir . $this->paths[$filename];
+        return $this->assetsDir . '/' .$this->paths[$filename];
     }
 
     /**

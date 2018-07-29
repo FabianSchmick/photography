@@ -3,9 +3,10 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Entry;
+use AppBundle\Entity\EntryImage;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 
 
 class EntryService
@@ -16,13 +17,6 @@ class EntryService
      * @var EntityManagerInterface $em
      */
     private $em;
-
-    /**
-     * Core service
-     *
-     * @var CoreService $coreService
-     */
-    private $coreService;
 
     /**
      * Author service
@@ -50,15 +44,13 @@ class EntryService
      * EntryService constructor.
      *
      * @param   EntityManagerInterface  $em               Entity Manager
-     * @param   CoreService             $coreService      Core service
      * @param   AuthorService           $authorService    Author service
      * @param   LocationService         $locationService  Location service
      * @param   TagService              $tagService       Tag service
      */
-    public function __construct(EntityManagerInterface $em, CoreService $coreService, AuthorService $authorService, LocationService $locationService, TagService $tagService)
+    public function __construct(EntityManagerInterface $em, AuthorService $authorService, LocationService $locationService, TagService $tagService)
     {
         $this->em = $em;
-        $this->coreService = $coreService;
         $this->authorService = $authorService;
         $this->locationService = $locationService;
         $this->tagService = $tagService;
@@ -68,17 +60,15 @@ class EntryService
      * Save an entry
      *
      * @param   array   $entry              Array of data for saving an entry object
-     * @param   array|UploadedFile $image   Empty array or UploadFile object with containing image
+     * @param   File    $image              UploadFile object with containing image
      *
      * @return  Entry   $entryEntity        The saved entry entity
      */
-    public function saveEntry(array $entry, $image)
+    public function saveEntry(array $entry, File $image = null)
     {
-        $imageName = '';
         $entryEntity = new Entry();
         if (isset($entry['id'])) {
             $entryEntity = $this->em->getRepository('AppBundle:Entry')->findOneBy(['id' => $entry['id']]);
-            $imageName = $entryEntity->getImage();
         }
 
         $entryEntity->setTitle($entry['title']);
@@ -87,25 +77,18 @@ class EntryService
         if (!empty($entry['author'])) {
             $authorEntity = $this->authorService->saveAuthor(['name' => $entry['author']]);
 
-            $this->em->persist($authorEntity);
-
             $entryEntity->setAuthor($authorEntity);
         }
 
-        if (isset($image['image'])) {
-            if ($entryEntity->getImage()) {
-                $this->coreService->deleteImage($entryEntity->getImage());
-            }
+        if ($image) {
+            $entryImage = new EntryImage();
+            $entryImage->setFile($image);
 
-            $imageName = $this->coreService->saveImage($image, true);
+            $entryEntity->setImage($entryImage);
         }
-
-        $entryEntity->setImage($imageName);
 
         if (!empty($entry['location'])) {
             $locationEntity = $this->locationService->saveLocation(['name' => $entry['location']]);
-
-            $this->em->persist($locationEntity);
 
             $entryEntity->setLocation($locationEntity);
         }
@@ -118,8 +101,6 @@ class EntryService
         $tagsArrayCollection = new ArrayCollection();
         foreach ($entry['tags'] as $tag) {
             $tagEntity = $this->tagService->saveTag(['name' => $tag]);
-
-            $this->em->persist($tagEntity);
 
             $tagsArrayCollection->add($tagEntity);
         }

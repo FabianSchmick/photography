@@ -38,12 +38,6 @@ services:
     Vich\UploaderBundle\Naming\SubdirDirectoryNamer:
         public: true
 
-    AppBundle\Service\CoreService:
-        arguments:
-            $imageDir: "%image_directory%"
-            $imageQuality: "%jpeg_quality%"
-            $thumbHeight: "%thumb_height%"
-
     AppBundle\Service\EntryService:
         public: true
 

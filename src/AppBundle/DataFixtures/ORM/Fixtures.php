@@ -7,6 +7,8 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Fixtures extends AbstractFixture implements FixtureInterface, ContainerAwareInterface
@@ -21,7 +23,6 @@ class Fixtures extends AbstractFixture implements FixtureInterface, ContainerAwa
     public function load(ObjectManager $manager)
     {
         $entryService = $this->container->get('AppBundle\Service\EntryService');
-        $imageDir = $this->container->getParameter('image_directory');
 
         $entries = [
             [
@@ -70,44 +71,28 @@ class Fixtures extends AbstractFixture implements FixtureInterface, ContainerAwa
             ],
         ];
 
-        $images = [
-            [
-                'image' => new UploadedFile(__DIR__ . '/../img/example1.jpg', 'example1', 'image/jpg'),
-            ],
-            [
-                'image' => new UploadedFile(__DIR__ . '/../img/example2.jpg', 'example2', 'image/jpg'),
-            ],
-            [
-                'image' => new UploadedFile(__DIR__ . '/../img/example3.jpg', 'example3', 'image/jpg'),
-            ],
-            [
-                'image' => new UploadedFile(__DIR__ . '/../img/example4.jpg', 'example4', 'image/jpg'),
-            ],
-        ];
+        $imgDir = __DIR__ . '/../img';
+        $tmpDir = __DIR__ . '/../tmp';
 
-        // Delete old images
-        $this->recursiveDelete($imageDir);
+        $fileSystem = new Filesystem();
+        $fileSystem->mirror($imgDir, $tmpDir);
+
+        $finder = new Finder();
+        $finder->files()->in($tmpDir);
+
+        foreach ($finder as $file) {
+            $images[] =  new UploadedFile($file->getRealPath(), $file->getFilename(), 'image/jpg', $file->getSize(), null, true);
+        }
 
         // 20 entries
         for ($i = 0; $i < 5; $i++) {
             foreach ($entries as $key => $entry) {
                 $entryService->saveEntry($entry, $images[$key]);
             }
+            if ($i < 4) {
+                $fileSystem->mirror($imgDir, $tmpDir);
+            }
             shuffle($images);
         }
     }
-
-    function recursiveDelete($str)
-    {
-        if (is_file($str)) {
-            return @unlink($str);
-        } elseif (is_dir($str)) {
-            $scan = glob(rtrim($str,'/').'/*');
-            foreach($scan as $index => $path) {
-                $this->recursiveDelete($path);
-            }
-            return @rmdir($str);
-        }
-    }
-
 }

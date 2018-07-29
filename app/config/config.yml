@@ -7,7 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     app.locales: en|de
-    image_directory: '%kernel.project_dir%/web/%image_upload_directory%'
+    abs_upload_directory: '%kernel.project_dir%/web/%upload_directory%'
 
 framework:
     #esi: ~
@@ -42,7 +42,6 @@ twig:
         - 'bootstrap_3_layout.html.twig'
         - 'templates/form/form.html.twig'
     globals:
-        image_directory: '%image_upload_directory%'
         locales: '%app.locales%'
 
 # Doctrine Configuration
@@ -109,20 +108,20 @@ vich_uploader:
     db_driver: orm
     mappings:
         file:
-            uri_prefix: /uploads
-            upload_destination: '%kernel.project_dir%/web/uploads'
+            uri_prefix: '%upload_directory%'
+            upload_destination: '%abs_upload_directory%'
             namer:
                 service: Vich\UploaderBundle\Naming\UniqidNamer
             directory_namer:
                 service: Vich\UploaderBundle\Naming\SubdirDirectoryNamer
                 options: { chars_per_dir: 1, dirs: 2 }
         entry_image:
-            uri_prefix: /uploads/entries
-            upload_destination: '%kernel.project_dir%/web/uploads/entries'
+            uri_prefix: '%upload_directory%/entries'
+            upload_destination: '%abs_upload_directory%/entries'
             namer:
                 service: Vich\UploaderBundle\Naming\UniqidNamer
         tag_image:
-            uri_prefix: /uploads/tags
-            upload_destination: '%kernel.project_dir%/web/uploads/tags'
+            uri_prefix: '%upload_directory%/tags'
+            upload_destination: '%abs_upload_directory%/tags'
             namer:
                 service: Vich\UploaderBundle\Naming\UniqidNamer
