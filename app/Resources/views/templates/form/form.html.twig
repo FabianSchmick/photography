@@ -13,7 +13,7 @@
 {% endblock form_errors %}
 
 {% block form_row -%}
-    <div class="{% if not compound %}form-group{% endif %}{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+    <div class="{% if not compound %}form-group{% else %}compound{% endif %}{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
         {{- form_label(form) -}}
         {{- form_widget(form) -}}
         {{- form_errors(form) -}}

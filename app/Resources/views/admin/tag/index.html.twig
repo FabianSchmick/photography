@@ -1,18 +1,50 @@
 {% extends 'admin.html.twig' %}
 
+{% block title %}{{ 'tags'|trans }}{% endblock %}
+
 {% block body %}
 
-    <div class="tags">
-        {% for tag in tags %}
-            <div class="tag">
-                <div class="tagName">
-                    {{ tag.name }}
-                </div>
-                <a href="{{ path('tag_edit', {'id': tag.id}) }}">{{ 'edit'|trans }}</a>
-                <a href="{{ path('tag_delete', {'id': tag.id}) }}">{{ 'delete'|trans }}</a>
+<div class="row">
+    <div class="col-xs-12">
+
+        <div class="page-header">
+            <div class="pull-left">
+                <h1>{{ 'tags'|trans }}</h1>
             </div>
-        {% endfor %}
+            <div class="pull-right">
+                <ul class="actions list-unstyled pull-right">
+                    <li><a class="btn btn-primary" href="{{ path('admin_tag_new') }}">{{ 'new.tag'|trans }}</a></li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{ 'name'|trans }}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for tag in tags %}
+                <tr>
+                    <td>
+                        {{ loop.index }}
+                    </td>
+                    <td>
+                        {{ tag.name }}
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('admin_tag_edit', {'id': tag.id}) }}" title="{{ 'edit'|trans }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
     </div>
-    <a href="{{ path('tag_new') }}">{{ 'new.tag'|trans }}</a>
+</div>
 
 {% endblock %}

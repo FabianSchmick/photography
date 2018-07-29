@@ -86,11 +86,16 @@ input#image {
   display: inline-block;
 }
 
-#deleteImage {
-  padding: 0 0 0 10px;
-  display: inline-block;
-  vertical-align: bottom;
-  line-height: 20px;
+.compound {
+  input[type="file"]{
+    padding: 0 0 5px;
+  }
+
+  .checkbox {
+    display: inline-block;
+    padding: 0 15px 0 0;
+    min-height: 0;
+  }
 }
 
 .modal .form-group.note-form-group {

@@ -1,0 +1,109 @@
+<?php
+
+namespace AppBundle\Controller\Admin;
+
+use AppBundle\Entity\Tag;
+use AppBundle\Form\TagType;
+use AppBundle\Service\CoreService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Translation\TranslatorInterface;
+
+/**
+ * Tag controller.
+ *
+ * @Route("admin/tag")
+ */
+class TagController extends Controller
+{
+    /**
+     * List all tags
+     *
+     * @Route("/", name="admin_tag_index")
+     */
+    public function indexAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $tags = $em->getRepository('AppBundle:Tag')->findAll();
+
+        return $this->render('admin/tag/index.html.twig', [
+            'tags' => $tags,
+        ]);
+    }
+
+    /**
+     * Save a new tag
+     *
+     * @Route("/new", name="admin_tag_new")
+     */
+    public function newAction(Request $request, TranslatorInterface $translator, CoreService $coreService)
+    {
+        $tag = new Tag();
+        $form = $this->createForm(TagType::class, $tag);
+        $form->handleRequest($request);
+
+        $em = $this->getDoctrine()->getManager();
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em->persist($tag);
+            $em->flush();
+
+            $url = $this->generateUrl('admin_tag_edit', ['id' => $tag->getId()]);
+
+            $translated = $translator->trans('success.new');
+            $this->addFlash(
+                'success',
+                $translated . ': <a class="alert-link" href="' . $url . '">' . $tag->getName() . '</a>.'
+            );
+        }
+
+        return $this->render('admin/tag/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * Save a existing tag
+     *
+     * @Route("/edit/{id}", name="admin_tag_edit")
+     */
+    public function editAction(Request $request, TranslatorInterface $translator, Tag $tag)
+    {
+        $form = $this->createForm(TagType::class, $tag);
+        $form->handleRequest($request);
+
+        $em = $this->getDoctrine()->getManager();
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em->persist($tag);
+            $em->flush();
+
+            $translated = $translator->trans('success.edit');
+            $this->addFlash(
+                'success',
+                $translated . '.'
+            );
+        }
+
+        return $this->render('admin/tag/edit.html.twig', [
+            'tag'  => $tag,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * Delete a tag
+     *
+     * @Route("/delete/{id}", name="admin_tag_delete")
+     */
+    public function deleteAction(Request $request, Tag $tag)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $em->remove($tag);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('admin_index'));
+    }
+}

@@ -6,12 +6,17 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Translatable;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Tag
  *
  * @ORM\Table(name="tag")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TagRepository")
+ * @UniqueEntity("name")
+ * @Vich\Uploadable
  */
 class Tag
 {
@@ -27,6 +32,7 @@ class Tag
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @Gedmo\Translatable
      * @ORM\Column(name="name", type="string", length=150, unique=true)
      */
@@ -41,9 +47,10 @@ class Tag
     private $description;
 
     /**
-     * @var string
+     * @var File
      *
-     * @ORM\Column(name="image", type="string", length=200, nullable=true)
+     * @ORM\OneToOne(targetEntity="TagImage", inversedBy="tag", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id", nullable=true, onDelete="SET NULL"))
      */
     private $image;
 
@@ -136,11 +143,11 @@ class Tag
     /**
      * Set image
      *
-     * @param string $image
+     * @param File $image
      *
      * @return Tag
      */
-    public function setImage($image)
+    public function setImage(File $image)
     {
         $this->image = $image;
 
@@ -150,7 +157,7 @@ class Tag
     /**
      * Get image
      *
-     * @return string
+     * @return File
      */
     public function getImage()
     {

@@ -116,3 +116,8 @@ vich_uploader:
             directory_namer:
                 service: Vich\UploaderBundle\Naming\SubdirDirectoryNamer
                 options: { chars_per_dir: 1, dirs: 2 }
+        tag_image:
+            uri_prefix: /uploads/tags
+            upload_destination: '%kernel.project_dir%/web/uploads/tags'
+            namer:
+                service: Vich\UploaderBundle\Naming\UniqidNamer

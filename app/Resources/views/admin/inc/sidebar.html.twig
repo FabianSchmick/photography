@@ -57,7 +57,7 @@
                 <ul class="nav nav-second-level">
                     {% for tag in tags %}
                         <li>
-                            <a href="{{ path('tag_edit', {'id': tag.id}) }}">{{ tag.name }}</a>
+                            <a href="{{ path('admin_tag_edit', {'id': tag.id}) }}">{{ tag.name }}</a>
                         </li>
                     {% endfor %}
                 </ul>
