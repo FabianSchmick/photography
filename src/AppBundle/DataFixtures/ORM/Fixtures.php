@@ -26,53 +26,53 @@ class Fixtures extends AbstractFixture implements FixtureInterface, ContainerAwa
 
         $entries = [
             [
-                'title'         => 'Forest near my hometown',
-                'description'   => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-                'author'        => 'Fabian Schmick',
-                'image'         => '',
-                'location'      => 'Germany, NRW',
-                'timestamp'     => '28.10.2017',
-                'tags'          => [
+                'title' => 'Forest near my hometown',
+                'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+                'author' => 'Fabian Schmick',
+                'image' => '',
+                'location' => 'Germany, NRW',
+                'timestamp' => '28.10.2017',
+                'tags' => [
                     'Nature', 'Forest', 'Woods', 'Trees', 'Landscape',
-                ]
+                ],
             ],
             [
-                'title'         => 'Mountain over 2300m',
-                'description'   => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-                'author'        => 'Fabian Schmick',
-                'image'         => '',
-                'location'      => 'Germany, Bavaria',
-                'timestamp'     => '28.10.2017',
-                'tags'          => [
+                'title' => 'Mountain over 2300m',
+                'description' => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+                'author' => 'Fabian Schmick',
+                'image' => '',
+                'location' => 'Germany, Bavaria',
+                'timestamp' => '28.10.2017',
+                'tags' => [
                     'Nature', 'Mountain', 'Landscape',
-                ]
+                ],
             ],
             [
-                'title'         => 'Field',
-                'description'   => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-                'author'        => 'Fabian Schmick',
-                'image'         => '',
-                'location'      => 'Germany, NRW',
-                'timestamp'     => '28.10.2017',
-                'tags'          => [
+                'title' => 'Field',
+                'description' => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+                'author' => 'Fabian Schmick',
+                'image' => '',
+                'location' => 'Germany, NRW',
+                'timestamp' => '28.10.2017',
+                'tags' => [
                     'Nature', 'Grass', 'Landscape',
-                ]
+                ],
             ],
             [
-                'title'         => 'Sunset in winter',
-                'description'   => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-                'author'        => 'Fabian Schmick',
-                'image'         => '',
-                'location'      => 'Germany, NRW',
-                'timestamp'     => '28.10.2017',
-                'tags'          => [
+                'title' => 'Sunset in winter',
+                'description' => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+                'author' => 'Fabian Schmick',
+                'image' => '',
+                'location' => 'Germany, NRW',
+                'timestamp' => '28.10.2017',
+                'tags' => [
                     'Nature', 'Sunset', 'Winter', 'Snow', 'Landscape',
-                ]
+                ],
             ],
         ];
 
-        $imgDir = __DIR__ . '/../img';
-        $tmpDir = __DIR__ . '/../tmp';
+        $imgDir = __DIR__.'/../img';
+        $tmpDir = __DIR__.'/../tmp';
 
         $fileSystem = new Filesystem();
         $fileSystem->mirror($imgDir, $tmpDir);
@@ -81,11 +81,11 @@ class Fixtures extends AbstractFixture implements FixtureInterface, ContainerAwa
         $finder->files()->in($tmpDir);
 
         foreach ($finder as $file) {
-            $images[] =  new UploadedFile($file->getRealPath(), $file->getFilename(), 'image/jpg', $file->getSize(), null, true);
+            $images[] = new UploadedFile($file->getRealPath(), $file->getFilename(), 'image/jpg', $file->getSize(), null, true);
         }
 
         // 20 entries
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 5; ++$i) {
             foreach ($entries as $key => $entry) {
                 $entryService->saveEntry($entry, $images[$key]);
             }

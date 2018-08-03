@@ -32,40 +32,40 @@ class EntryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, array(
+            ->add('title', TextType::class, [
                 'label' => false,
-            ))
-            ->add('description', TextareaType::class, array(
+            ])
+            ->add('description', TextareaType::class, [
                 'label' => false,
                 'required' => false,
-            ))
-            ->add('author', EntityType::class, array(
+            ])
+            ->add('author', EntityType::class, [
                 'label' => false,
                 'required' => false,
                 'class' => 'AppBundle:Author',
                 'placeholder' => '',
-            ))
-            ->add('image', EntryImageType::class, array(
+            ])
+            ->add('image', EntryImageType::class, [
                 'label' => false,
                 'required' => false,
-            ))
-            ->add('location', EntityType::class, array(
+            ])
+            ->add('location', EntityType::class, [
                 'label' => false,
                 'required' => false,
                 'class' => 'AppBundle:Location',
                 'placeholder' => '',
-            ))
-            ->add('timestamp', DateType::class, array(
+            ])
+            ->add('timestamp', DateType::class, [
                 'label' => false,
                 'required' => false,
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
-            ))
-            ->add('tags', EntityType::class, array(
+            ])
+            ->add('tags', EntityType::class, [
                 'label' => false,
                 'class' => 'AppBundle:Tag',
                 'multiple' => true,
-            ))
+            ])
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {

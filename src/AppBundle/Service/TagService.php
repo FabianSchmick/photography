@@ -7,21 +7,19 @@ use AppBundle\Entity\TagImage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\File;
 
-
 class TagService
 {
     /**
-     * Entity Manager
+     * Entity Manager.
      *
-     * @var EntityManagerInterface $em
+     * @var EntityManagerInterface
      */
     private $em;
-
 
     /**
      * TagService constructor.
      *
-     * @param   EntityManagerInterface  $em               Entity Manager
+     * @param EntityManagerInterface $em Entity Manager
      */
     public function __construct(EntityManagerInterface $em)
     {
@@ -29,12 +27,12 @@ class TagService
     }
 
     /**
-     * Save a tag
+     * Save a tag.
      *
-     * @param   array       $tag              Array of data for saving a tag object
-     * @param   File        $image            UploadFile object with containing image
+     * @param array $tag   Array of data for saving a tag object
+     * @param File  $image UploadFile object with containing image
      *
-     * @return  Tag         $tagEntity        The saved tag entity
+     * @return Tag $tagEntity        The saved tag entity
      */
     public function saveTag(array $tag, File $image = null)
     {

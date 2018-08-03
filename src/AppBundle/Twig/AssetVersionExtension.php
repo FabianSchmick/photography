@@ -5,25 +5,25 @@ namespace AppBundle\Twig;
 class AssetVersionExtension extends \Twig_Extension
 {
     /**
-     * @var string  $appDir     Application directory
+     * @var string Application directory
      */
     private $appDir;
 
     /**
-     * @var string $assetsDir   Assets directory e.g. /bundles/app/
+     * @var string Assets directory e.g. /bundles/app/
      */
     private $assetsDir;
 
     /**
-     * @var array   $paths      Path of the asset files
+     * @var array Path of the asset files
      */
-    private $paths = array();
+    private $paths = [];
 
     /**
      * AssetVersionExtension constructor.
      *
-     * @param string    $appDir
-     * @param string    $assetsDir
+     * @param string $appDir
+     * @param string $assetsDir
      */
     public function __construct($appDir, $assetsDir)
     {
@@ -32,28 +32,30 @@ class AssetVersionExtension extends \Twig_Extension
     }
 
     /**
-     * Register Twig function
+     * Register Twig function.
      *
      * @return array
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('asset_version', array($this, 'getAssetVersion')),
-        );
+        return [
+            new \Twig_SimpleFilter('asset_version', [$this, 'getAssetVersion']),
+        ];
     }
 
     /**
-     * Get the current asset
+     * Get the current asset.
      *
-     * @param   string        $filename       The requested filename to find
-     * @return  string                        The real filename
-     * @throws  \Exception
+     * @param string $filename The requested filename to find
+     *
+     * @return string The real filename
+     *
+     * @throws \Exception
      */
     public function getAssetVersion($filename)
     {
         if (count($this->paths) === 0) {
-            $manifestPath = $this->appDir . '/rev-manifest.json';
+            $manifestPath = $this->appDir.'/rev-manifest.json';
 
             if (!file_exists($manifestPath)) {
                 throw new \Exception(sprintf('Cannot find manifest file: "%s"', $manifestPath));
@@ -66,7 +68,7 @@ class AssetVersionExtension extends \Twig_Extension
             throw new \Exception(sprintf('Cannot find manifest file: "%s"', $manifestPath));
         }
 
-        return $this->assetsDir . '/' .$this->paths[$filename];
+        return $this->assetsDir.'/'.$this->paths[$filename];
     }
 
     /**

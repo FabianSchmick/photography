@@ -6,7 +6,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-
 /**
  * Admin controller.
  *
@@ -25,7 +24,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Renders the admin navigation sidebar
+     * Renders the admin navigation sidebar.
      */
     public function renderSidebarAction()
     {
@@ -37,7 +36,7 @@ class AdminController extends Controller
 
         return $this->render('admin/inc/sidebar.html.twig', [
             'entries' => $entries,
-            'authors'  => $authors,
+            'authors' => $authors,
             'locations' => $locations,
             'tags' => $tags,
         ]);

@@ -5,21 +5,19 @@ namespace AppBundle\Service;
 use AppBundle\Entity\Location;
 use Doctrine\ORM\EntityManagerInterface;
 
-
 class LocationService
 {
     /**
-     * Entity Manager
+     * Entity Manager.
      *
-     * @var EntityManagerInterface $em
+     * @var EntityManagerInterface
      */
     private $em;
-
 
     /**
      * LocationService constructor.
      *
-     * @param   EntityManagerInterface     $em           Entity Manager
+     * @param EntityManagerInterface $em Entity Manager
      */
     public function __construct(EntityManagerInterface $em)
     {
@@ -27,11 +25,11 @@ class LocationService
     }
 
     /**
-     * Save a location
+     * Save a location.
      *
-     * @param   array     $location         Array of data for saving a location object
+     * @param array $location Array of data for saving a location object
      *
-     * @return  Location  $locationEntity   The saved location entity
+     * @return Location $locationEntity   The saved location entity
      */
     public function saveLocation(array $location)
     {

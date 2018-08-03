@@ -41,14 +41,14 @@ class CoreController extends Controller
         $em = $this->getDoctrine()->getManager();
         $locales = explode('|', $this->getParameter('app.locales'));
 
-        $hostname = $request->getScheme(). '://' . $request->getHost();
+        $hostname = $request->getScheme().'://'.$request->getHost();
 
         $urls = [];
         foreach ($locales as $locale) {
             $urls[] = [
-                'loc'        => $router->generate('homepage', ['_locale' => $locale]),
+                'loc' => $router->generate('homepage', ['_locale' => $locale]),
                 'changefreq' => 'weekly',
-                'priority'   => '1.0'
+                'priority' => '1.0',
             ];
 
             $entries = $em->getRepository('AppBundle:Entry')->findAll();
@@ -58,9 +58,9 @@ class CoreController extends Controller
                 $em->refresh($entry);
 
                 $urls[] = [
-                    'loc'        => $router->generate('entry_show', ['_locale' => $locale, 'slug' => $entry->getSlug()]),
+                    'loc' => $router->generate('entry_show', ['_locale' => $locale, 'slug' => $entry->getSlug()]),
                     'changefreq' => 'weekly',
-                    'priority'   => '0.5'
+                    'priority' => '0.5',
                 ];
             }
 
@@ -71,16 +71,16 @@ class CoreController extends Controller
                 $em->refresh($tag);
 
                 $urls[] = [
-                    'loc'        => $router->generate('tag_show', ['_locale' => $locale, 'slug' => $tag->getSlug()]),
+                    'loc' => $router->generate('tag_show', ['_locale' => $locale, 'slug' => $tag->getSlug()]),
                     'changefreq' => 'weekly',
-                    'priority'   => '0.5'
+                    'priority' => '0.5',
                 ];
             }
         }
 
         return $this->render('sitemap.xml.twig', [
-            'urls'      => $urls,
-            'hostname'  => $hostname,
+            'urls' => $urls,
+            'hostname' => $hostname,
         ]);
     }
 }

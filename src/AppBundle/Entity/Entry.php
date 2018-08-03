@@ -5,12 +5,11 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Gedmo\Translatable\Translatable;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * Entry
+ * Entry.
  *
  * @ORM\Table(name="entry")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EntryRepository")
@@ -105,16 +104,16 @@ class Entry
      */
     private $locale;
 
-
     /**
      * Entry constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->tags = new ArrayCollection();
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -124,7 +123,7 @@ class Entry
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
      *
@@ -138,7 +137,7 @@ class Entry
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -148,7 +147,7 @@ class Entry
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param array $description
      *
@@ -162,7 +161,7 @@ class Entry
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return array
      */
@@ -172,7 +171,7 @@ class Entry
     }
 
     /**
-     * Set author
+     * Set author.
      *
      * @param Author $author
      *
@@ -186,7 +185,7 @@ class Entry
     }
 
     /**
-     * Get author
+     * Get author.
      *
      * @return Author
      */
@@ -196,7 +195,7 @@ class Entry
     }
 
     /**
-     * Set image
+     * Set image.
      *
      * @param File $image
      *
@@ -210,7 +209,7 @@ class Entry
     }
 
     /**
-     * Get image
+     * Get image.
      *
      * @return File
      */
@@ -220,7 +219,7 @@ class Entry
     }
 
     /**
-     * Set location
+     * Set location.
      *
      * @param Location $location
      *
@@ -234,7 +233,7 @@ class Entry
     }
 
     /**
-     * Get location
+     * Get location.
      *
      * @return Location
      */
@@ -244,7 +243,7 @@ class Entry
     }
 
     /**
-     * Set timestamp
+     * Set timestamp.
      *
      * @param \DateTime $timestamp
      *
@@ -258,7 +257,7 @@ class Entry
     }
 
     /**
-     * Get timestamp
+     * Get timestamp.
      *
      * @return \DateTime
      */
@@ -268,7 +267,7 @@ class Entry
     }
 
     /**
-     * Get tags
+     * Get tags.
      *
      * @return ArrayCollection
      */
@@ -278,7 +277,7 @@ class Entry
     }
 
     /**
-     * Set tags
+     * Set tags.
      *
      * @param ArrayCollection $tags
      */
@@ -288,7 +287,7 @@ class Entry
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
      *
@@ -302,7 +301,7 @@ class Entry
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
      * @return string
      */
@@ -312,7 +311,7 @@ class Entry
     }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param $locale
      */

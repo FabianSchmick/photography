@@ -2,9 +2,9 @@
 
 namespace AppBundle\EventSubscriber;
 
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class LocaleSubscriber implements EventSubscriberInterface
 {
@@ -33,9 +33,9 @@ class LocaleSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             // must be registered after the default Locale listener
-            KernelEvents::REQUEST => array(array('onKernelRequest', 15)),
-        );
+            KernelEvents::REQUEST => [['onKernelRequest', 15]],
+        ];
     }
 }

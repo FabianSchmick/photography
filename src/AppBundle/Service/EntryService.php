@@ -8,45 +8,43 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\File;
 
-
 class EntryService
 {
     /**
-     * Entity Manager
+     * Entity Manager.
      *
-     * @var EntityManagerInterface $em
+     * @var EntityManagerInterface
      */
     private $em;
 
     /**
-     * Author service
+     * Author service.
      *
-     * @var AuthorService $authorService
+     * @var AuthorService
      */
     private $authorService;
 
     /**
-     * Location service
+     * Location service.
      *
-     * @var LocationService $locationService
+     * @var LocationService
      */
     private $locationService;
 
     /**
-     * Tag service
+     * Tag service.
      *
-     * @var TagService $tagService
+     * @var TagService
      */
     private $tagService;
-
 
     /**
      * EntryService constructor.
      *
-     * @param   EntityManagerInterface  $em               Entity Manager
-     * @param   AuthorService           $authorService    Author service
-     * @param   LocationService         $locationService  Location service
-     * @param   TagService              $tagService       Tag service
+     * @param EntityManagerInterface $em              Entity Manager
+     * @param AuthorService          $authorService   Author service
+     * @param LocationService        $locationService Location service
+     * @param TagService             $tagService      Tag service
      */
     public function __construct(EntityManagerInterface $em, AuthorService $authorService, LocationService $locationService, TagService $tagService)
     {
@@ -57,12 +55,12 @@ class EntryService
     }
 
     /**
-     * Save an entry
+     * Save an entry.
      *
-     * @param   array   $entry              Array of data for saving an entry object
-     * @param   File    $image              UploadFile object with containing image
+     * @param array $entry Array of data for saving an entry object
+     * @param File  $image UploadFile object with containing image
      *
-     * @return  Entry   $entryEntity        The saved entry entity
+     * @return Entry $entryEntity        The saved entry entity
      */
     public function saveEntry(array $entry, File $image = null)
     {
@@ -93,7 +91,7 @@ class EntryService
             $entryEntity->setLocation($locationEntity);
         }
 
-        $entryEntity->setTimestamp(new \DateTime("now"));
+        $entryEntity->setTimestamp(new \DateTime('now'));
         if ($timestamp = date_create(date($entry['timestamp']))) {
             $entryEntity->setTimestamp($timestamp);
         }

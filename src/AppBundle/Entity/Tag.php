@@ -5,13 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Gedmo\Translatable\Translatable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * Tag
+ * Tag.
  *
  * @ORM\Table(name="tag")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TagRepository")
@@ -75,11 +74,11 @@ class Tag
      */
     private $locale;
 
-
     /**
      * Tag constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->entries = new ArrayCollection();
     }
 
@@ -92,7 +91,7 @@ class Tag
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -102,7 +101,7 @@ class Tag
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -116,7 +115,7 @@ class Tag
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -126,7 +125,7 @@ class Tag
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param array $description
      *
@@ -140,7 +139,7 @@ class Tag
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return array
      */
@@ -150,7 +149,7 @@ class Tag
     }
 
     /**
-     * Set image
+     * Set image.
      *
      * @param File $image
      *
@@ -164,7 +163,7 @@ class Tag
     }
 
     /**
-     * Get image
+     * Get image.
      *
      * @return File
      */
@@ -174,7 +173,7 @@ class Tag
     }
 
     /**
-     * Get entries
+     * Get entries.
      *
      * @return ArrayCollection
      */
@@ -184,7 +183,7 @@ class Tag
     }
 
     /**
-     * Set entries
+     * Set entries.
      *
      * @param ArrayCollection $entries
      */
@@ -194,7 +193,7 @@ class Tag
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
      *
@@ -208,7 +207,7 @@ class Tag
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
      * @return string
      */
@@ -218,7 +217,7 @@ class Tag
     }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param $locale
      */

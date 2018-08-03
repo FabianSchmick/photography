@@ -5,12 +5,11 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Gedmo\Translatable\Translatable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Author
+ * Author.
  *
  * @ORM\Table(name="author")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AuthorRepository")
@@ -49,11 +48,11 @@ class Author
      */
     private $locale;
 
-
     /**
      * Author constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->entries = new ArrayCollection();
     }
 
@@ -66,7 +65,7 @@ class Author
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -76,7 +75,7 @@ class Author
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -90,7 +89,7 @@ class Author
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -100,7 +99,7 @@ class Author
     }
 
     /**
-     * Get Entries
+     * Get Entries.
      *
      * @return ArrayCollection
      */
@@ -110,7 +109,7 @@ class Author
     }
 
     /**
-     * Set Entries
+     * Set Entries.
      *
      * @param ArrayCollection $entries
      */
@@ -120,7 +119,7 @@ class Author
     }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param $locale
      */
@@ -129,4 +128,3 @@ class Author
         $this->locale = $locale;
     }
 }
-

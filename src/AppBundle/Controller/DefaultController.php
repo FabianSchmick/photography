@@ -5,8 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Doctrine\PaginationHelper;
 use AppBundle\Entity\Entry;
 use AppBundle\Entity\Tag;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -25,7 +25,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Gather all information for the entry detail page
+     * Gather all information for the entry detail page.
      *
      * @Route("/entry/{slug}", name="entry_show")
      * @ParamConverter("entry", class="AppBundle:Entry", options={"repository_method" = "findOneByCriteria"})
@@ -38,7 +38,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Gather all information for the ajax entry detail page (lightbox)
+     * Gather all information for the ajax entry detail page (lightbox).
      *
      * @Route("/ajax/entry/{id}/", name="ajax_entry_show", requirements={"id" = "\d+"}, condition="request.isXmlHttpRequest()")
      */
@@ -50,7 +50,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Route for paginate entries
+     * Route for paginate entries.
      *
      * @Route("/ajax/entries/{page}", name="paginate_entries", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
      */
@@ -63,14 +63,14 @@ class DefaultController extends Controller
         $entries = PaginationHelper::paginate($query, 10, $page);
 
         return $this->render('frontend/entry/ajax-list.html.twig', [
-            'entries'   => $entries,
-            'page'      => $page,
-            'pages'     => $pages
+            'entries' => $entries,
+            'page' => $page,
+            'pages' => $pages,
         ]);
     }
 
     /**
-     * Filter entries by a tag
+     * Filter entries by a tag.
      *
      * @Route("/tag/{slug}", name="tag_show")
      * @ParamConverter("tag", class="AppBundle:Tag", options={"repository_method" = "findOneByCriteria"})
@@ -82,13 +82,13 @@ class DefaultController extends Controller
         $relatedTags = $em->getRepository('AppBundle:Tag')->findRelatedTagsByTag($tag);
 
         return $this->render('frontend/tag/show.html.twig', [
-            'tag'           => $tag,
-            'relatedTags'   => $relatedTags
+            'tag' => $tag,
+            'relatedTags' => $relatedTags,
         ]);
     }
 
     /**
-     * Route for paginate by tag
+     * Route for paginate by tag.
      *
      * @Route("/ajax/tag/{slug}/{page}", name="paginate_by_tag", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
      * @ParamConverter("tag", class="AppBundle:Tag", options={"repository_method" = "findOneByCriteria", "mapping": {"slug": "slug"}})
@@ -102,9 +102,9 @@ class DefaultController extends Controller
         $entries = PaginationHelper::paginate($query, 10, $page);
 
         return $this->render('frontend/entry/ajax-list.html.twig', [
-            'entries'   => $entries,
-            'page'      => $page,
-            'pages'     => $pages
+            'entries' => $entries,
+            'page' => $page,
+            'pages' => $pages,
         ]);
     }
 }

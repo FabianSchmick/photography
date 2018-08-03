@@ -18,7 +18,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 class LocationController extends Controller
 {
     /**
-     * List all locations
+     * List all locations.
      *
      * @Route("/", name="admin_location_index")
      */
@@ -33,7 +33,7 @@ class LocationController extends Controller
     }
 
     /**
-     * Save a new location
+     * Save a new location.
      *
      * @Route("/new", name="admin_location_new")
      */
@@ -53,7 +53,7 @@ class LocationController extends Controller
             $translated = $translator->trans('success.new');
             $this->addFlash(
                 'success',
-                $translated . ': <a class="alert-link" href="' . $url . '">' . $location->getName() . '</a>.'
+                $translated.': <a class="alert-link" href="'.$url.'">'.$location->getName().'</a>.'
             );
         }
 
@@ -63,7 +63,7 @@ class LocationController extends Controller
     }
 
     /**
-     * Save a existing location
+     * Save a existing location.
      *
      * @Route("/edit/{id}", name="admin_location_edit")
      */
@@ -80,18 +80,18 @@ class LocationController extends Controller
             $translated = $translator->trans('success.edit');
             $this->addFlash(
                 'success',
-                $translated . '.'
+                $translated.'.'
             );
         }
 
         return $this->render('admin/location/edit.html.twig', [
-            'location'  => $location,
+            'location' => $location,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * Delete a location
+     * Delete a location.
      *
      * @Route("/delete/{id}", name="admin_location_delete")
      */

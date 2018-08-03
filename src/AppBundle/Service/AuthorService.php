@@ -5,21 +5,19 @@ namespace AppBundle\Service;
 use AppBundle\Entity\Author;
 use Doctrine\ORM\EntityManagerInterface;
 
-
 class AuthorService
 {
     /**
-     * Entity Manager
+     * Entity Manager.
      *
-     * @var EntityManagerInterface $em
+     * @var EntityManagerInterface
      */
     private $em;
-
 
     /**
      * AuthorService constructor.
      *
-     * @param   EntityManagerInterface     $em           Entity Manager
+     * @param EntityManagerInterface $em Entity Manager
      */
     public function __construct(EntityManagerInterface $em)
     {
@@ -27,11 +25,11 @@ class AuthorService
     }
 
     /**
-     * Save an author
+     * Save an author.
      *
-     * @param   array   $author           Array of data for saving an author object
+     * @param array $author Array of data for saving an author object
      *
-     * @return  Author  $authorEntity     The saved author entity
+     * @return Author $authorEntity     The saved author entity
      */
     public function saveAuthor(array $author)
     {

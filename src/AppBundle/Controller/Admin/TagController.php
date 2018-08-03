@@ -17,7 +17,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 class TagController extends Controller
 {
     /**
-     * List all tags
+     * List all tags.
      *
      * @Route("/", name="admin_tag_index")
      */
@@ -32,7 +32,7 @@ class TagController extends Controller
     }
 
     /**
-     * Save a new tag
+     * Save a new tag.
      *
      * @Route("/new", name="admin_tag_new")
      */
@@ -44,7 +44,6 @@ class TagController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
-
             $em->persist($tag);
             $em->flush();
 
@@ -53,7 +52,7 @@ class TagController extends Controller
             $translated = $translator->trans('success.new');
             $this->addFlash(
                 'success',
-                $translated . ': <a class="alert-link" href="' . $url . '">' . $tag->getName() . '</a>.'
+                $translated.': <a class="alert-link" href="'.$url.'">'.$tag->getName().'</a>.'
             );
         }
 
@@ -63,7 +62,7 @@ class TagController extends Controller
     }
 
     /**
-     * Save a existing tag
+     * Save a existing tag.
      *
      * @Route("/edit/{id}", name="admin_tag_edit")
      */
@@ -74,25 +73,24 @@ class TagController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
-
             $em->persist($tag);
             $em->flush();
 
             $translated = $translator->trans('success.edit');
             $this->addFlash(
                 'success',
-                $translated . '.'
+                $translated.'.'
             );
         }
 
         return $this->render('admin/tag/edit.html.twig', [
-            'tag'  => $tag,
+            'tag' => $tag,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * Delete a tag
+     * Delete a tag.
      *
      * @Route("/delete/{id}", name="admin_tag_delete")
      */

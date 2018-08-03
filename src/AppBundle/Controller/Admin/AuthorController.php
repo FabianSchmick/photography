@@ -17,7 +17,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 class AuthorController extends Controller
 {
     /**
-     * List all authors
+     * List all authors.
      *
      * @Route("/", name="admin_authors_index")
      */
@@ -32,7 +32,7 @@ class AuthorController extends Controller
     }
 
     /**
-     * Save an new author
+     * Save an new author.
      *
      * @Route("/new", name="admin_author_new")
      */
@@ -52,7 +52,7 @@ class AuthorController extends Controller
             $translated = $translator->trans('success.new');
             $this->addFlash(
                 'success',
-                $translated . ': <a class="alert-link" href="' . $url . '">' . $author->getName() . '</a>.'
+                $translated.': <a class="alert-link" href="'.$url.'">'.$author->getName().'</a>.'
             );
         }
 
@@ -62,7 +62,7 @@ class AuthorController extends Controller
     }
 
     /**
-     * Save an existing author
+     * Save an existing author.
      *
      * @Route("/edit/{id}", name="admin_author_edit")
      */
@@ -79,18 +79,18 @@ class AuthorController extends Controller
             $translated = $translator->trans('success.edit');
             $this->addFlash(
                 'success',
-                $translated . '.'
+                $translated.'.'
             );
         }
 
         return $this->render('admin/author/edit.html.twig', [
-            'author'  => $author,
+            'author' => $author,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * Delete an author
+     * Delete an author.
      *
      * @Route("/delete/{id}", name="admin_author_delete")
      */

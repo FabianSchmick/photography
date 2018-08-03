@@ -17,7 +17,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 class EntryController extends Controller
 {
     /**
-     * List all entries
+     * List all entries.
      *
      * @Route("/", name="admin_entry_index")
      */
@@ -32,7 +32,7 @@ class EntryController extends Controller
     }
 
     /**
-     * Save a new entry
+     * Save a new entry.
      *
      * @Route("/new", name="admin_entry_new")
      */
@@ -44,7 +44,6 @@ class EntryController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
-
             $em->persist($entry);
             $em->flush();
 
@@ -53,7 +52,7 @@ class EntryController extends Controller
             $translated = $translator->trans('success.new');
             $this->addFlash(
                 'success',
-                $translated . ': <a class="alert-link" href="' . $url . '">' . $entry->getTitle() . '</a>.'
+                $translated.': <a class="alert-link" href="'.$url.'">'.$entry->getTitle().'</a>.'
             );
         }
 
@@ -63,7 +62,7 @@ class EntryController extends Controller
     }
 
     /**
-     * Save a existing entry
+     * Save a existing entry.
      *
      * @Route("/edit/{id}", name="admin_entry_edit")
      */
@@ -74,25 +73,24 @@ class EntryController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
-
             $em->persist($entry);
             $em->flush();
 
             $translated = $translator->trans('success.edit');
             $this->addFlash(
                 'success',
-                $translated . '.'
+                $translated.'.'
             );
         }
 
         return $this->render('admin/entry/edit.html.twig', [
-            'entry'  => $entry,
+            'entry' => $entry,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * Delete a entry
+     * Delete a entry.
      *
      * @Route("/delete/{id}", name="admin_entry_delete")
      */

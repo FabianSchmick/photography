@@ -7,21 +7,21 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Event\Event;
 
 /**
- * https://github.com/dustin10/VichUploaderBundle/issues/523#issuecomment-254858575
+ * https://github.com/dustin10/VichUploaderBundle/issues/523#issuecomment-254858575.
  */
 class RemovedFileListener
 {
     /**
-     * Entity Manager
+     * Entity Manager.
      *
-     * @var EntityManagerInterface $em
+     * @var EntityManagerInterface
      */
     private $em;
 
     /**
      * RemovedFileListener constructor.
      *
-     * @param   EntityManagerInterface  $em  Entity Manager
+     * @param EntityManagerInterface $em Entity Manager
      */
     public function __construct(EntityManagerInterface $em)
     {
@@ -29,7 +29,7 @@ class RemovedFileListener
     }
 
     /**
-     * Make sure a file entity object is removed after the file is deleted
+     * Make sure a file entity object is removed after the file is deleted.
      */
     public function onPostRemove(Event $event)
     {
