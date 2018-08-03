@@ -125,3 +125,20 @@ vich_uploader:
             upload_destination: '%abs_upload_directory%/tags'
             namer:
                 service: Vich\UploaderBundle\Naming\UniqidNamer
+
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+    filter_sets:
+        cache: ~
+        entry_thumbnail:
+            quality: '%jpeg_quality%'
+            filters:
+                relative_resize:
+                    heighten: '%thumb_height%'
+        entry_detail:
+            quality: '%jpeg_quality%'
+            filters:
+                relative_resize:
+                    heighten: '%detail_height%'

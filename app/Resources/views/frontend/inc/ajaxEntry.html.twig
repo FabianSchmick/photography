@@ -1,7 +1,7 @@
 <div class="entry">
     <article class="entryInner">
         <div class="entryImage">
-            <img src="{{ vich_uploader_asset(entry.image, 'file') }}" alt="{{ entry.title }}">
+            <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_detail') }}" alt="{{ entry.title }}">
         </div>
         <div class="entryInfo">
             <h2 class="entryTitle">

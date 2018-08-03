@@ -21,6 +21,7 @@
 /web/assets/min/
 /web/bundles/
 /web/uploads/
+/web/media/cache/
 /node_modules/
 /src/AppBundle/Resources/public/min/
 rev-manifest.json

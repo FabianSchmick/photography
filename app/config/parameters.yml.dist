@@ -26,3 +26,4 @@ parameters:
 
     jpeg_quality: 75
     thumb_height: 500
+    detail_height: 1400

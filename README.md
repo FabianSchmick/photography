@@ -13,7 +13,7 @@ The project provides you following functionality:
 - Vagrantfile and ansible configuration for development (https://github.com/FabianSchmick/vagrant_skeleton) 
 - Node packages with Gulp, Bootstrap, jQuery and many more
 - Small CMS for creating new entries
-- Image compression and thumbnail generation with [Imagine](https://imagine.readthedocs.io/en/latest/)
+- Image compression and thumbnail generation with [LiipImagineBundle](https://github.com/liip/LiipImagineBundle)
 - Multilingualism in English and German
 - Tag possibility for describing and filtering entries
 - Lazyloading for images

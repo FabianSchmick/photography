@@ -32,7 +32,7 @@
 
 {% block cover %}
     <section id="cover" class="parallaxContainer">
-        <div class="parallax" {% if tag.image %}style="background-image: url({{ vich_uploader_asset(tag.image, 'file') }})"{% endif %}>
+        <div class="parallax" {% if tag.image %}style="background-image: url({{ vich_uploader_asset(tag.image, 'file')|imagine_filter('entry_detail') }})"{% endif %}>
         </div>
     </section>
 {% endblock %}

@@ -29,7 +29,7 @@
     <section id="entry" class="container">
         <article class="entryInner row">
             <div class="entryImage col-lg-9">
-                <img src="{{ vich_uploader_asset(entry.image, 'file') }}" alt="{{ entry.title }}">
+                <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_detail') }}" alt="{{ entry.title }}">
             </div>
             <div class="entryInfo col-lg-3">
                 <h1 class="entryTitle">
