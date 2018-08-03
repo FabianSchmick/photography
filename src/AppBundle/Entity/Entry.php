@@ -23,7 +23,8 @@ class Entry
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="AppBundle\Doctrine\UniqueIdGenerator")
      */
     private $id;
 
