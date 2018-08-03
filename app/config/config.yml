@@ -98,6 +98,8 @@ stof_doctrine_extensions:
     default_locale: '%locale%'
     translation_fallback: true
     persist_default_translation: true
+    class:
+        sluggable: AppBundle\EventListener\SluggableListener
     orm:
         default:
             sluggable: true
