@@ -27,12 +27,12 @@ class DefaultController extends Controller
     /**
      * Gather all information for the entry detail page
      *
-     * @Route("/entry/{slug}", name="entry_detail")
+     * @Route("/entry/{slug}", name="entry_show")
      * @ParamConverter("entry", class="AppBundle:Entry", options={"repository_method" = "findOneByCriteria"})
      */
-    public function entryDetailAction(Request $request, Entry $entry)
+    public function entryShowAction(Request $request, Entry $entry)
     {
-        return $this->render('frontend/entry.html.twig', [
+        return $this->render('frontend/entry/show.html.twig', [
             'entry' => $entry,
         ]);
     }
@@ -40,11 +40,11 @@ class DefaultController extends Controller
     /**
      * Gather all information for the ajax entry detail page (lightbox)
      *
-     * @Route("/ajax/entry/{id}/", name="ajax_entry_detail", requirements={"id" = "\d+"}, condition="request.isXmlHttpRequest()")
+     * @Route("/ajax/entry/{id}/", name="ajax_entry_show", requirements={"id" = "\d+"}, condition="request.isXmlHttpRequest()")
      */
-    public function ajaxEntryDetailAction(Request $request, Entry $entry)
+    public function ajaxEntryShowAction(Request $request, Entry $entry)
     {
-        return $this->render('frontend/inc/ajaxEntry.html.twig', [
+        return $this->render('frontend/entry/ajax-show.html.twig', [
             'entry' => $entry,
         ]);
     }
@@ -62,7 +62,7 @@ class DefaultController extends Controller
         $pages = PaginationHelper::getPagesCount($query);
         $entries = PaginationHelper::paginate($query, 10, $page);
 
-        return $this->render('frontend/inc/entries.html.twig', [
+        return $this->render('frontend/entry/ajax-list.html.twig', [
             'entries'   => $entries,
             'page'      => $page,
             'pages'     => $pages
@@ -70,18 +70,18 @@ class DefaultController extends Controller
     }
 
     /**
-     * Filter entries by tag
+     * Filter entries by a tag
      *
-     * @Route("/tag/{slug}", name="tag_filter")
+     * @Route("/tag/{slug}", name="tag_show")
      * @ParamConverter("tag", class="AppBundle:Tag", options={"repository_method" = "findOneByCriteria"})
      */
-    public function tagFilterAction(Request $request, Tag $tag)
+    public function tagShowAction(Request $request, Tag $tag)
     {
         $em = $this->getDoctrine()->getManager();
 
         $relatedTags = $em->getRepository('AppBundle:Tag')->findRelatedTagsByTag($tag);
 
-        return $this->render('frontend/tag.html.twig', [
+        return $this->render('frontend/tag/show.html.twig', [
             'tag'           => $tag,
             'relatedTags'   => $relatedTags
         ]);
@@ -101,7 +101,7 @@ class DefaultController extends Controller
         $pages = PaginationHelper::getPagesCount($query);
         $entries = PaginationHelper::paginate($query, 10, $page);
 
-        return $this->render('frontend/inc/entries.html.twig', [
+        return $this->render('frontend/entry/ajax-list.html.twig', [
             'entries'   => $entries,
             'page'      => $page,
             'pages'     => $pages

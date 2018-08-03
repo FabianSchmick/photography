@@ -32,7 +32,7 @@
 
 {% block cover %}
     <section id="cover" class="parallaxContainer">
-        <div class="parallax" {% if tag.image %}style="background-image: url({{ vich_uploader_asset(tag.image, 'file')|imagine_filter('entry_detail') }})"{% endif %}>
+        <div class="parallax" {% if tag.image %}style="background-image: url({{ vich_uploader_asset(tag.image, 'file')|imagine_filter('entry_show') }})"{% endif %}>
         </div>
     </section>
 {% endblock %}
@@ -52,7 +52,7 @@
                 <div class="similarTags">{{ 'similar.tags'|trans }}:</div>
                 <ul class="list-unstyled tags" style="display: inline-block">
                     {% for relatedTag in relatedTags %}
-                        <li><a href="{{ path('tag_filter', {'slug': relatedTag.slug}) }}">{{ relatedTag.name }}</a></li>
+                        <li><a href="{{ path('tag_show', {'slug': relatedTag.slug}) }}">{{ relatedTag.name }}</a></li>
                     {% endfor %}
                 </ul>
             {% endif %}

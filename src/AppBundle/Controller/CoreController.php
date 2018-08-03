@@ -58,7 +58,7 @@ class CoreController extends Controller
                 $em->refresh($entry);
 
                 $urls[] = [
-                    'loc'        => $router->generate('entry_detail', ['_locale' => $locale, 'slug' => $entry->getSlug()]),
+                    'loc'        => $router->generate('entry_show', ['_locale' => $locale, 'slug' => $entry->getSlug()]),
                     'changefreq' => 'weekly',
                     'priority'   => '0.5'
                 ];
@@ -71,7 +71,7 @@ class CoreController extends Controller
                 $em->refresh($tag);
 
                 $urls[] = [
-                    'loc'        => $router->generate('tag_filter', ['_locale' => $locale, 'slug' => $tag->getSlug()]),
+                    'loc'        => $router->generate('tag_show', ['_locale' => $locale, 'slug' => $tag->getSlug()]),
                     'changefreq' => 'weekly',
                     'priority'   => '0.5'
                 ];

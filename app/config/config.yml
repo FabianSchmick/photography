@@ -139,7 +139,7 @@ liip_imagine:
             filters:
                 relative_resize:
                     heighten: '%thumb_height%'
-        entry_detail:
+        entry_show:
             quality: '%jpeg_quality%'
             filters:
                 relative_resize:
