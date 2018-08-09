@@ -61,13 +61,21 @@ function ajaxPageWrapper() {
 
 // Initializes select2 fields
 function initSelect2() {
+    var language = null;
+
+    if ($('html').attr('lang') == 'de') {
+        language = "de";
+    }
+
     $('.select2').select2({
-        placeholder: ""
+        placeholder: "",
+        language: language
     });
 
     $('.select2.add').select2({
         tags: true,
-        placeholder: ""
+        placeholder: "",
+        language: language
     });
 }
 
