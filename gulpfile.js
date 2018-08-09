@@ -51,6 +51,7 @@ var stylesConf = {
             './node_modules/startbootstrap-sb-admin-2/vendor/metisMenu/metisMenu.min.css',
             './node_modules/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css',
             './node_modules/select2/dist/css/select2.css',
+            './node_modules/select2-bootstrap-theme/dist/select2-bootstrap.css',
             './node_modules/summernote/dist/summernote.css'
         ],
         furtherource: [

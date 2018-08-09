@@ -67,15 +67,14 @@ function initSelect2() {
         language = "de";
     }
 
-    $('.select2').select2({
-        placeholder: "",
-        language: language
-    });
+    $.fn.select2.defaults.set("theme", "bootstrap");
+    $.fn.select2.defaults.set("language", language);
+    $.fn.select2.defaults.set("placeholder", "");
+
+    $('.select2').select2();
 
     $('.select2.add').select2({
-        tags: true,
-        placeholder: "",
-        language: language
+        tags: true
     });
 }
 
