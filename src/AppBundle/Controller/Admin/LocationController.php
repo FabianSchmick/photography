@@ -55,6 +55,8 @@ class LocationController extends Controller
                 'success',
                 $translated.': <a class="alert-link" href="'.$url.'">'.$location->getName().'</a>.'
             );
+
+            $form = $this->createForm(LocationType::class, new Location());
         }
 
         return $this->render('admin/location/new.html.twig', [

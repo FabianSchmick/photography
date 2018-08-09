@@ -81,6 +81,8 @@ class TagController extends Controller
                 'success',
                 $translated.'.'
             );
+
+            $form = $this->createForm(TagType::class, new Tag());
         }
 
         return $this->render('admin/tag/edit.html.twig', [

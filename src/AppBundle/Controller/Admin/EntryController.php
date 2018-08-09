@@ -54,6 +54,8 @@ class EntryController extends Controller
                 'success',
                 $translated.': <a class="alert-link" href="'.$url.'">'.$entry->getTitle().'</a>.'
             );
+
+            $form = $this->createForm(EntryType::class, new Entry());
         }
 
         return $this->render('admin/entry/new.html.twig', [

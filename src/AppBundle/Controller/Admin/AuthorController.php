@@ -54,6 +54,8 @@ class AuthorController extends Controller
                 'success',
                 $translated.': <a class="alert-link" href="'.$url.'">'.$author->getName().'</a>.'
             );
+
+            $form = $this->createForm(AuthorType::class, new Author());
         }
 
         return $this->render('admin/author/new.html.twig', [
