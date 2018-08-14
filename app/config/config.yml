@@ -135,12 +135,16 @@ liip_imagine:
     filter_sets:
         cache: ~
         entry_thumbnail:
-            quality: '%jpeg_quality%'
             filters:
                 relative_resize:
                     heighten: '%thumb_height%'
+            post_processors:
+                jpegoptim: { strip_all: true, max: '%jpeg_quality%', progressive: true }
+                optipng: { strip_all: true, level: '%png_level%' }
         entry_show:
-            quality: '%jpeg_quality%'
             filters:
                 relative_resize:
                     heighten: '%detail_height%'
+            post_processors:
+                jpegoptim: { strip_all: true, max: '%jpeg_quality%', progressive: true }
+                optipng: { strip_all: true, level: '%png_level%' }
