@@ -90,7 +90,30 @@ input#image {
   max-width: 100%;
 }
 
-.compound {
+.form-group {
+  > [class^="col"] {
+    > .form-group {
+      margin: 0;
+      > [class^="col"] {
+        padding: 0;
+        width: auto;
+      }
+    }
+  }
+
+  label.required {
+    position: relative;
+
+    &:after {
+      content: "*";
+      position: absolute;
+      top: 7px;
+      right: 10px;
+      width: 5px;
+      height: 100%;
+    }
+  }
+
   input[type="file"]{
     padding: 0 0 5px;
   }

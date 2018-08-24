@@ -15,14 +15,17 @@ class TagType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => false,
+                'label' => 'name',
             ])
             ->add('description', TextareaType::class, [
-                'label' => false,
+                'label' => 'description',
                 'required' => false,
+                'attr' => [
+                    'class' => 'wysiwyg',
+                ],
             ])
             ->add('image', TagImageType::class, [
-                'label' => false,
+                'label' => 'image',
                 'required' => false,
             ])
         ;

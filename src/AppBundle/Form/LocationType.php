@@ -14,7 +14,7 @@ class LocationType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => false,
+                'label' => 'name',
             ])
         ;
     }

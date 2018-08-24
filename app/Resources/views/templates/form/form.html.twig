@@ -1,3 +1,5 @@
+{% use "bootstrap_3_horizontal_layout.html.twig" %}
+
 {% block form_errors %}
     {% spaceless %}
         {% if errors|length > 0 %}
@@ -13,12 +15,23 @@
 {% endblock form_errors %}
 
 {% block form_row -%}
-    <div class="{% if not compound %}form-group{% else %}compound{% endif %}{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+    <div class="form-group{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
         {{- form_label(form) -}}
-        {{- form_widget(form) -}}
-        {{- form_errors(form) -}}
+        <div class="{{ block('form_group_class') }}">
+            {{- form_widget(form) -}}
+            {{- form_errors(form) -}}
+        </div>
     </div>
 {%- endblock form_row %}
+
+{% block form_label -%}
+    {%- if label is same as(false) -%}
+        {#<div class="{{ block('form_label_class') }}"></div>#}
+    {%- else -%}
+        {%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' ' ~ block('form_label_class'))|trim}) -%}
+        {{- parent() -}}
+    {%- endif -%}
+{%- endblock form_label %}
 
 {%- block form_widget_compound -%}
     {%- if form is rootform -%}
@@ -37,7 +50,8 @@
         {% endif %}
 
         {% if download_uri %}
-            <a href="{{ download_uri }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> {{ 'current.img'|trans }}</a>
+            <a href="{{ download_uri }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> {{ 'current.file'|trans }}</a>
+            <p class="help-block">({{ 'file.upload.info'|trans }})</p>
         {% endif %}
     {% endspaceless %}
 {% endblock %}
@@ -54,7 +68,8 @@
         {#<a href="{{ image_uri }}"><img src="{{ image_uri }}" alt="" /></a>#}
         {#{% endif %}#}
         {% if download_uri %}
-            <a href="{{ download_uri }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> {{ 'current.img'|trans }}</a>
+            <a href="{{ download_uri }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> {{ 'current.file'|trans }}</a>
+            <p class="help-block">({{ 'file.upload.info'|trans }})</p>
         {% endif %}
     {% endspaceless %}
 {% endblock %}

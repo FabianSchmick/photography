@@ -39,7 +39,7 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes:
-        - 'bootstrap_3_layout.html.twig'
+        - 'bootstrap_3_horizontal_layout.html.twig'
         - 'templates/form/form.html.twig'
     globals:
         locales: '%app.locales%'

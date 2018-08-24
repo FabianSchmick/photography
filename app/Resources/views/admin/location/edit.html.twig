@@ -1,3 +1,4 @@
+{% import 'templates/macro/macro.html.twig' as macro %}
 {% extends 'admin.html.twig' %}
 
 {% block title %}{{ 'edit'|trans }} - {{ location.name }}{% endblock %}
@@ -15,37 +16,13 @@
             </div>
         {% endfor %}
 
-        {{ form_start(form, {'action': path('admin_location_edit', {'id': location.id}), 'attr': {'class': 'form-horizontal'}}) }}
+        {{ form_start(form, {'action': path('admin_location_edit', {'id': location.id})}) }}
 
-            <div id="deleteModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">{{ 'delete'|trans }}?</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>{{ 'delete.msg.location'|trans }} <strong>{{ location.name }}</strong>?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="{{ path('admin_location_delete', {'id': location.id}) }}" class="btn btn-danger">{{ 'delete'|trans }}</a>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'close'|trans }}</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {{ macro.create_delete_modal('delete.msg.location', location.name, path('admin_location_delete', {'id': location.id})) }}
 
             {{ form_errors(form) }}
 
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="location_name">{{ 'name'|trans }}*</label>
-                <div class="col-sm-10">
-                    {{ form_widget(form.name) }}
-                    {{ form_errors(form.name) }}
-                </div>
-            </div>
-
-            {{ form_rest(form) }}
+            {{ form_widget(form) }}
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">

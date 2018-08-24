@@ -1,121 +1,47 @@
+{% import 'templates/macro/macro.html.twig' as macro %}
 {% extends 'admin.html.twig' %}
 
 {% block title %}{{ 'edit'|trans }} - {{ entry.title }}{% endblock %}
 
 {% block body %}
 
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="page-header clearfix">
-                <div class="pull-left">
-                    <h1>{{ entry.title }}</h1>
-                </div>
-                <div class="pull-right">
-                    <ul class="actions list-unstyled pull-right">
-                        <li><a class="btn btn-primary" href="{{ path('entry_show', {'slug': entry.slug}) }}" target="_blank" title="{{ 'live.view'|trans }}"><i class="fa fa-eye" aria-hidden="true"></i></a></li>
-                    </ul>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="page-header clearfix">
+            <div class="pull-left">
+                <h1>{{ entry.title }}</h1>
+            </div>
+            <div class="pull-right">
+                <ul class="actions list-unstyled pull-right">
+                    <li><a class="btn btn-primary" href="{{ path('entry_show', {'slug': entry.slug}) }}" target="_blank" title="{{ 'live.view'|trans }}"><i class="fa fa-eye" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+        {% for flash_message in app.session.flashBag.get('success') %}
+            <div class="flash-notice alert alert-success fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+
+        {{ form_start(form, {'action': path('admin_entry_edit', {'id': entry.id})}) }}
+
+            {{ macro.create_delete_modal('delete.msg.entry', entry.title, path('admin_entry_delete', {'id': entry.id})) }}
+
+            {{ form_errors(form) }}
+
+            {{ form_widget(form) }}
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-success" type="submit" name="submit">{{ 'submit'|trans }}</button>
+                    <button class="btn btn-danger pull-right" type="button" data-toggle="modal" data-target="#deleteModal">{{ 'delete'|trans }}</button>
                 </div>
             </div>
 
-            {% for flash_message in app.session.flashBag.get('success') %}
-                <div class="flash-notice alert alert-success fade in">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    {{ flash_message }}
-                </div>
-            {% endfor %}
-
-
-            {{ form_start(form, {'action': path('admin_entry_edit', {'id': entry.id}), 'attr': {'class': 'form-horizontal'}}) }}
-
-                {{ form_errors(form) }}
-
-                <div id="deleteModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">{{ 'delete'|trans }}?</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>{{ 'delete.msg.entry'|trans }} <strong>{{ entry.title }}</strong>?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="{{ path('admin_entry_delete', {'id': entry.id}) }}" class="btn btn-danger">{{ 'delete'|trans }}</a>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'close'|trans }}</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="entry_title">{{ 'title'|trans }}*</label>
-                    <div class="col-sm-10">
-                        {{ form_widget(form.title) }}
-                        {{ form_errors(form.title) }}
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="entry_description">{{ 'description'|trans }}</label>
-                    <div class="col-sm-10">
-                        {{ form_widget(form.description, {'attr': {'class': 'wysiwyg'}}) }}
-                        {{ form_errors(form.description) }}
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="entry_author">{{ 'author'|trans }}</label>
-                    <div class="col-sm-10">
-                        {{ form_widget(form.author, {'attr': {'class': 'select2 add form-control'}}) }}
-                        {{ form_errors(form.author) }}
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="entry_image_file_file">{{ 'image'|trans }}</label>
-                    <div class="col-sm-10">
-                        {{ form_widget(form.image) }}
-                        {{ form_errors(form.image) }}
-                        {% if entry.image %}
-                            <p class="help-block">({{ 'img.upload.info'|trans }})</p>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="entry_location">{{ 'location'|trans }}</label>
-                    <div class="col-sm-10">
-                        {{ form_widget(form.location, {'attr': {'class': 'select2 add form-control'}}) }}
-                        {{ form_errors(form.location) }}
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="entry_timestamp">{{ 'timestamp'|trans }}</label>
-                    <div class="col-sm-10">
-                        {{ form_widget(form.timestamp) }}
-                        {{ form_errors(form.timestamp) }}
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="entry_tags">{{ 'tags'|trans }}*</label>
-                    <div class="col-sm-10">
-                        {{ form_widget(form.tags, {'attr': {'class': 'select2 add form-control'}}) }}
-                        {{ form_errors(form.tags) }}
-                    </div>
-                </div>
-
-                {{ form_rest(form) }}
-
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-success" type="submit" name="submit">{{ 'submit'|trans }}</button>
-                        <button class="btn btn-danger pull-right" type="button" data-toggle="modal" data-target="#deleteModal">{{ 'delete'|trans }}</button>
-                    </div>
-                </div>
-            {{ form_end(form) }}
-        </div>
+        {{ form_end(form) }}
     </div>
+</div>
 
 {% endblock %}

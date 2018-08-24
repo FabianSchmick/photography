@@ -30,8 +30,8 @@ logout: Logout
 # Entry
 new.entry: New Entry
 delete.msg.entry: Are you sure you want to delete the entry
-current.img: Current Image
-img.upload.info: Old image gets only overwritten if you upload a new one
+current.file: Current file
+file.upload.info: Old file gets only overwritten if you upload a new one
 success.edit: Your changes have been saved
 success.new: Your new entry has been saved. Edit it here
 

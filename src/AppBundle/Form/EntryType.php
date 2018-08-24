@@ -33,38 +33,50 @@ class EntryType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => false,
+                'label' => 'title',
             ])
             ->add('description', TextareaType::class, [
-                'label' => false,
+                'label' => 'description',
                 'required' => false,
+                'attr' => [
+                    'class' => 'wysiwyg',
+                ],
             ])
             ->add('author', EntityType::class, [
-                'label' => false,
+                'label' => 'author',
                 'required' => false,
                 'class' => 'AppBundle:Author',
                 'placeholder' => '',
+                'attr' => [
+                    'class' => 'select2 add form-control',
+                ],
             ])
             ->add('image', EntryImageType::class, [
-                'label' => false,
+                'label' => 'image',
                 'required' => false,
             ])
             ->add('location', EntityType::class, [
-                'label' => false,
+                'label' => 'location',
                 'required' => false,
                 'class' => 'AppBundle:Location',
                 'placeholder' => '',
+                'attr' => [
+                    'class' => 'select2 add form-control',
+                ],
             ])
             ->add('timestamp', DateType::class, [
-                'label' => false,
+                'label' => 'timestamp',
                 'required' => false,
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
             ])
             ->add('tags', EntityType::class, [
-                'label' => false,
+                'label' => 'tags',
                 'class' => 'AppBundle:Tag',
                 'multiple' => true,
+                'attr' => [
+                    'class' => 'select2 add form-control',
+                ],
             ])
         ;
 

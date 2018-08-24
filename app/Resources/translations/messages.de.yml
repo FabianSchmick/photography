@@ -30,8 +30,8 @@ logout: Abmelden
 # Entry
 new.entry: Neuer Eintrag
 delete.msg.entry: Sind Sie sicher, dass Sie den Eintrag löschen möchten
-current.img: Aktuelles Bild
-img.upload.info: Das aktuelle Bild wird nur überschrieben, wenn Sie ein neues hochladen
+current.file: Aktuelle Datei
+file.upload.info: Die aktuelle Datei wird nur überschrieben, wenn Sie ein neues hochladen
 success.edit: Ihre Änderrungen wurden gespeichert
 success.new: Ihr neuer Eintrag wurde gespeichert. Weiter bearbeiten
 
