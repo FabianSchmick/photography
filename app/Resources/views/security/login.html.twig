@@ -18,7 +18,7 @@
             <h3 class="panel-title">{{ 'sign.in'|trans }}</h3>
         </div>
         <div class="panel-body">
-            {{ form_start(form, {'action': path('login')}) }}
+            {{ form_start(form, {'action': path('login'), 'attr': {'class': 'no-horizontal'}}) }}
 
             {{ form_errors(form) }}
 
