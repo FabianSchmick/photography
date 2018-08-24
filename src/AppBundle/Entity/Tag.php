@@ -22,7 +22,7 @@ class Tag
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="AppBundle\Doctrine\UniqueIdGenerator")
@@ -33,16 +33,18 @@ class Tag
      * @var string
      *
      * @Assert\NotBlank()
+     * @Assert\Length(max=128)
      * @Gedmo\Translatable
-     * @ORM\Column(name="name", type="string", length=150, unique=true)
+     * @ORM\Column(type="string", length=128, unique=true)
      */
     private $name;
 
     /**
-     * @var array
+     * @var string
      *
+     * @Assert\Length(max=65535)
      * @Gedmo\Translatable
-     * @ORM\Column(name="description", type="array", nullable=true)
+     * @ORM\Column(type="text", length=65535, nullable=true)
      */
     private $description;
 
@@ -50,7 +52,7 @@ class Tag
      * @var File
      *
      * @ORM\OneToOne(targetEntity="TagImage", inversedBy="tag", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="image_id", referencedColumnName="id", nullable=true, onDelete="SET NULL"))
+     * @ORM\JoinColumn(referencedColumnName="id", nullable=true, onDelete="SET NULL"))
      */
     private $image;
 
@@ -127,7 +129,7 @@ class Tag
     /**
      * Set description.
      *
-     * @param array $description
+     * @param string $description
      *
      * @return Tag
      */
@@ -141,7 +143,7 @@ class Tag
     /**
      * Get description.
      *
-     * @return array
+     * @return string
      */
     public function getDescription()
     {
@@ -197,7 +199,7 @@ class Tag
      *
      * @param string $slug
      *
-     * @return Entry
+     * @return Tag
      */
     public function setSlug($slug)
     {

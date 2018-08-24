@@ -20,7 +20,7 @@ class Entry
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="AppBundle\Doctrine\UniqueIdGenerator")
@@ -30,17 +30,19 @@ class Entry
     /**
      * @var string
      *
-     * @Gedmo\Translatable
      * @Assert\NotBlank()
-     * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\Length(max=255)
+     * @Gedmo\Translatable
+     * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
-     * @var array
+     * @var string
      *
+     * @Assert\Length(max=65535)
      * @Gedmo\Translatable
-     * @ORM\Column(name="description", type="array", nullable=true)
+     * @ORM\Column(type="text", length=65535, nullable=true)
      */
     private $description;
 
@@ -48,7 +50,7 @@ class Entry
      * @var Author
      *
      * @ORM\ManyToOne(targetEntity="Author", inversedBy="entries", cascade={"persist"})
-     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
+     * @ORM\JoinColumn(referencedColumnName="id")
      */
     private $author;
 
@@ -64,7 +66,7 @@ class Entry
      * @var Location
      *
      * @ORM\ManyToOne(targetEntity="Location", inversedBy="entries", cascade={"persist"})
-     * @ORM\JoinColumn(name="location_id", referencedColumnName="id")
+     * @ORM\JoinColumn(referencedColumnName="id")
      */
     private $location;
 
@@ -85,9 +87,9 @@ class Entry
      * @Assert\NotBlank()
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="entries", cascade={"persist"})
      * @ORM\JoinTable(name="tag_to_entry",
-     *     joinColumns={@ORM\JoinColumn(name="entry_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
-     *     )
+     *     joinColumns={@ORM\JoinColumn(referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(referencedColumnName="id")}
+     * )
      */
     private $tags;
 
@@ -149,7 +151,7 @@ class Entry
     /**
      * Set description.
      *
-     * @param array $description
+     * @param string $description
      *
      * @return Entry
      */
@@ -163,7 +165,7 @@ class Entry
     /**
      * Get description.
      *
-     * @return array
+     * @return string
      */
     public function getDescription()
     {

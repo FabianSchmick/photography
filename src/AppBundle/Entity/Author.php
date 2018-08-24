@@ -20,7 +20,7 @@ class Author
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -30,8 +30,9 @@ class Author
      * @var string
      *
      * @Assert\NotBlank()
+     * @Assert\Length(max=128)
      * @Gedmo\Translatable
-     * @ORM\Column(name="name", type="string", length=100, unique=true)
+     * @ORM\Column(type="string", length=128, unique=true)
      */
     private $name;
 
