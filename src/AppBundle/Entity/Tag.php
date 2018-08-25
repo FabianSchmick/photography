@@ -57,6 +57,14 @@ class Tag
     private $image;
 
     /**
+     * @var int
+     *
+     * @Assert\Type("numeric")
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $sort;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Entry", mappedBy="tags", cascade={"persist"})
@@ -172,6 +180,30 @@ class Tag
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set sort.
+     *
+     * @param int $sort
+     *
+     * @return Tag
+     */
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
+
+        return $this;
+    }
+
+    /**
+     * Get sort.
+     *
+     * @return int
+     */
+    public function getSort()
+    {
+        return $this->sort;
     }
 
     /**

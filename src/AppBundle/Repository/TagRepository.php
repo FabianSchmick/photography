@@ -52,6 +52,8 @@ class TagRepository extends \Doctrine\ORM\EntityRepository
         $qb->innerJoin('b_t.entries', 'b_te')
             ->where($qb->expr()->in('b_te', $in->getDQL()))
             ->andWhere('b_t.id != :id')
+            ->orderBy('COUNT(b_t.id)', 'DESC')
+            ->addOrderBy('b_t.sort', 'DESC')
             ->groupBy('b_t.id')
             ->having('COUNT(b_t.id) >= '.$count)
             ->setMaxResults($limit)

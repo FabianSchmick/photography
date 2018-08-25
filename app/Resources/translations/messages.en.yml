@@ -5,6 +5,7 @@ author: Author
 image: Image
 location: Location
 timestamp: Date
+sort: Sort
 entries: Entries
 authors: Authors
 locations: Locations

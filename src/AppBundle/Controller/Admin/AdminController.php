@@ -2,9 +2,9 @@
 
 namespace AppBundle\Controller\Admin;
 
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Admin controller.
@@ -32,7 +32,7 @@ class AdminController extends Controller
         $entries = $em->getRepository('AppBundle:Entry')->findBy([], ['timestamp' => 'DESC']);
         $authors = $em->getRepository('AppBundle:Author')->findBy([], ['name' => 'ASC']);
         $locations = $em->getRepository('AppBundle:Location')->findBy([], ['name' => 'ASC']);
-        $tags = $em->getRepository('AppBundle:Tag')->findBy([], ['name' => 'ASC']);
+        $tags = $em->getRepository('AppBundle:Tag')->findBy([], ['sort' => 'DESC']);
 
         return $this->render('admin/inc/sidebar.html.twig', [
             'entries' => $entries,

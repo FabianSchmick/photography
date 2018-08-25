@@ -8,6 +8,7 @@ use AppBundle\Entity\Location;
 use AppBundle\Entity\Tag;
 use AppBundle\Service\CoreService;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -86,6 +87,10 @@ class EntryType extends AbstractType
             ->add('tags', EntityType::class, [
                 'label' => 'tags',
                 'class' => 'AppBundle:Tag',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('t')
+                        ->orderBy('t.sort', 'DESC');
+                },
                 'multiple' => true,
                 'attr' => [
                     'class' => 'select2 add form-control',

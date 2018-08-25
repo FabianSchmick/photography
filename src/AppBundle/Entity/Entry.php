@@ -90,6 +90,7 @@ class Entry
      *     joinColumns={@ORM\JoinColumn(referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(referencedColumnName="id")}
      * )
+     * @ORM\OrderBy({"sort"="DESC"})
      */
     private $tags;
 
