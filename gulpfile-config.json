@@ -1,0 +1,80 @@
+{
+  "publicPath": "./web",
+  "assetsPath": "./web/assets",
+  "bsProxy": "127.0.0.1",
+  "watchHtml": "./app/Resources/views/*/**",
+
+  "fonts": {
+    "src": [
+      "./node_modules/font-awesome/fonts/*"
+    ],
+    "dest": "assets/dist/fonts/"
+  },
+
+  "font": {
+    "src": [
+      "./node_modules/summernote/dist/font/*"
+    ],
+    "dest": "assets/dist/css/font/"
+  },
+
+  "images": {
+    "src": [
+      "./web/assets/img/**/*"
+    ],
+    "dest": "assets/dist/img/"
+  },
+
+  "styles": {
+    "frontend": {
+      "src": [
+        "./node_modules/font-awesome/css/font-awesome.css",
+        "./node_modules/bootstrap/dist/css/bootstrap.css",
+        "./node_modules/justifiedGallery/dist/css/justifiedGallery.css",
+        "./node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css",
+        "./web/assets/sass/frontend.sass"
+      ],
+      "dest": "assets/dist/css/main.css"
+    },
+    "admin": {
+      "src": [
+        "./node_modules/font-awesome/css/font-awesome.css",
+        "./node_modules/bootstrap/dist/css/bootstrap.css",
+        "./node_modules/startbootstrap-sb-admin-2/vendor/metisMenu/metisMenu.min.css",
+        "./node_modules/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css",
+        "./node_modules/select2/dist/css/select2.css",
+        "./node_modules/select2-bootstrap-theme/dist/select2-bootstrap.css",
+        "./node_modules/summernote/dist/summernote.css",
+        "./web/assets/sass/admin.sass"
+      ],
+      "dest": "assets/dist/css/admin.css"
+    }
+  },
+
+  "scripts": {
+    "frontend": {
+      "src": [
+        "./node_modules/jquery/dist/jquery.js",
+        "./node_modules/bootstrap/dist/js/bootstrap.js",
+        "./node_modules/justifiedGallery/dist/js/jquery.justifiedGallery.js",
+        "./node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js",
+        "./web/assets/js/frontend.js"
+      ],
+      "dest": "assets/dist/js/main.js"
+    },
+    "admin": {
+      "src": [
+        "./node_modules/jquery/dist/jquery.js",
+        "./node_modules/bootstrap/dist/js/bootstrap.js",
+        "./node_modules/startbootstrap-sb-admin-2/vendor/metisMenu/metisMenu.min.js",
+        "./node_modules/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js",
+        "./node_modules/select2/dist/js/select2.js",
+        "./node_modules/select2/dist/js/i18n/de.js",
+        "./node_modules/summernote/dist/summernote.js",
+        "./node_modules/summernote/lang/summernote-de-DE.js",
+        "./web/assets/js/admin.js"
+      ],
+      "dest": "assets/dist/js/admin.js"
+    }
+  }
+}

@@ -1,0 +1,107 @@
+html,
+body
+    min-height: 100%
+    width: 100%
+    font-family: $font-main
+    color: $color-primary
+
+textarea
+    resize: vertical
+    min-height: 37px
+
+.login-panel
+    max-width: 450px
+    margin-left: auto
+    margin-right: auto
+
+#wrapper
+    min-height: 100%
+
+    #spinner
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+
+    #page-wrapper
+        padding-bottom: 15px
+        min-height: calc(100vh - 51px) /* Not the best way, but 100% not working when ajax loads new content */
+
+.navbar-brand
+    padding: 10px 15px
+    line-height: 28px
+
+    #logo
+        float: left
+        height: 100%
+        padding-right: 10px
+
+#change-language
+    .active
+        font-weight: bold
+
+    .flag
+        display: inline-block
+        height: 10px
+        width: 20px
+        background: center / 100% auto no-repeat #fff
+
+    i
+        margin-left: 5px
+
+#side-menu
+    overflow-y: auto
+    overflow-x: hidden
+    height: calc(100vh - 120px)
+
+    i
+        width: 17px
+
+.page-header
+    .actions
+        margin: 20px 0 0
+
+        li
+            float: left
+            padding: 0 5px
+
+input#image
+    display: inline-block
+
+.select2
+    max-width: 100%
+
+.no-horizontal
+    .form-group
+        margin-left: auto
+        margin-right: auto
+
+.form-group
+    > [class^="col"]
+        > .form-group
+            margin: 0
+            > [class^="col"]
+                padding: 0
+                width: auto
+
+    label.required
+        position: relative
+
+        &:after
+            content: "*"
+            position: absolute
+            top: 7px
+            right: 10px
+            width: 5px
+            height: 100%
+
+    input[type="file"]
+        padding: 0 0 5px
+
+    .checkbox
+        display: inline-block
+        padding: 0 15px 0 0
+        min-height: 0
+
+.modal .form-group.note-form-group
+    margin: 0

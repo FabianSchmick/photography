@@ -22,7 +22,6 @@ parameters:
 
     # Image upload directory in web folder
     upload_directory: /uploads
-    assets_directory: /assets
 
     # Image qualities and Liip Imagine filters configurations
     jpeg_quality: 75

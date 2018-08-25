@@ -9,7 +9,7 @@
     {% endblock %}
     <title>{% block title %}{{ 'photography'|trans }}{% endblock %}</title>
     {% block stylesheets %}
-        <link rel="stylesheet" type="text/css" href="{{ asset('min/css/main.css'|asset_version) }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/dist/css/main.css') }}"/>
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
@@ -84,7 +84,7 @@
         var homeUrl = "{{ path('homepage') }}";
     </script>
 
-    <script type="text/javascript" src="{{ asset('min/js/main.js'|asset_version) }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/dist/js/main.js') }}"></script>
 {% endblock %}
 </body>
 </html>

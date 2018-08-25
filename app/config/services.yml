@@ -46,14 +46,6 @@ services:
             - { name: kernel.event_listener, event: vich_uploader.pre_remove, method: onPreRemove }
             - { name: kernel.event_listener, event: vich_uploader.post_remove, method: onPostRemove }
 
-    AppBundle\Twig\AssetVersionExtension:
-        public: true
-        arguments:
-            $appDir: "%kernel.root_dir%/../"
-            $assetsDir: "%assets_directory%"
-        tags:
-            - { name: twig.extension }
-
     nochso\HtmlCompressTwig\Extension:
         public: true
         arguments:
