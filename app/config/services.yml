@@ -43,6 +43,7 @@ services:
 
     AppBundle\EventListener\RemovedFileListener:
         tags:
+            - { name: kernel.event_listener, event: vich_uploader.pre_remove, method: onPreRemove }
             - { name: kernel.event_listener, event: vich_uploader.post_remove, method: onPostRemove }
 
     AppBundle\Twig\AssetVersionExtension:
