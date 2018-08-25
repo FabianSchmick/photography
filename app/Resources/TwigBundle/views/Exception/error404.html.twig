@@ -10,10 +10,10 @@
     </section>
 {% endblock %}
 {% block content %}
-    <section id="content" class="container">
+    <section id="content" class="container error">
         <h1>{{ 'page.not.found'|trans }}</h1>
 
-        <article class="textContainer">
+        <article class="text-container">
             <p class="text-center">
                 {{ 'page.not.found.explanation.1'|trans }} <a href="{{ path('homepage') }}">{{ 'page.not.found.explanation.2'|trans }}</a>.
             </p>

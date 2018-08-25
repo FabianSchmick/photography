@@ -1,17 +1,17 @@
 <div class="entry">
-    <article class="entryInner">
-        <div class="entryImage">
+    <article class="entry-inner">
+        <div class="entry-image">
             <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_show') }}" alt="{{ entry.title }}">
         </div>
-        <div class="entryInfo">
-            <h2 class="entryTitle">
+        <div class="entry-info">
+            <h2 class="entry-title">
                 {{ entry.title }}
             </h2>
             {{ entry.description|raw }}
             <ul class="list-unstyled meta">
-                {% if entry.location.name is defined %}<li class="entryLocation"><strong>{{ 'location'|trans }}</strong>: {{ entry.location.name }}</li>{% endif %}
-                {% if entry.author.name is defined %}<li class="entryAuthor"><strong>{{ 'author'|trans }}</strong>: {{ entry.author.name }}</li>{% endif %}
-                <li class="entryTimestamp"><strong>{{ 'timestamp'|trans }}</strong>: {{ entry.timestamp|date("d.m.Y") }}</li>
+                {% if entry.location.name is defined %}<li class="entry-location"><strong>{{ 'location'|trans }}</strong>: {{ entry.location.name }}</li>{% endif %}
+                {% if entry.author.name is defined %}<li class="entry-author"><strong>{{ 'author'|trans }}</strong>: {{ entry.author.name }}</li>{% endif %}
+                <li class="entry-timestamp"><strong>{{ 'timestamp'|trans }}</strong>: {{ entry.timestamp|date("d.m.Y") }}</li>
             </ul>
             <ul class="list-unstyled clearfix tags">
                 {% for tag in entry.tags %}

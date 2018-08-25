@@ -31,7 +31,7 @@
 {% block title %}{{ 'tag'|trans }} {{ tag.name }}{% endblock %}
 
 {% block cover %}
-    <section id="cover" class="parallaxContainer">
+    <section id="cover" class="parallax-container">
         <div class="parallax" {% if tag.image %}style="background-image: url({{ vich_uploader_asset(tag.image, 'file')|imagine_filter('entry_show') }})"{% endif %}>
         </div>
     </section>
@@ -41,7 +41,7 @@
     <section id="content" class="container">
         <h1>{{ tag.name }}</h1>
 
-        <div class="textContainer text-center">
+        <div class="text-container text-center">
             {% if tag.description != "" %}
                 {{ tag.description|raw }}
             {% else %}
@@ -49,7 +49,7 @@
             {% endif %}
 
             {% if relatedTags|length > 1 %}
-                <div class="similarTags">{{ 'similar.tags'|trans }}:</div>
+                <div class="similar-tags">{{ 'similar.tags'|trans }}:</div>
                 <ul class="list-unstyled tags" style="display: inline-block">
                     {% for relatedTag in relatedTags %}
                         <li><a href="{{ path('tag_show', {'slug': relatedTag.slug}) }}">{{ relatedTag.name }}</a></li>
