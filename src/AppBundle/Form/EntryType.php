@@ -6,7 +6,8 @@ use AppBundle\Entity\Author;
 use AppBundle\Entity\Entry;
 use AppBundle\Entity\Location;
 use AppBundle\Entity\Tag;
-use Doctrine\ORM;
+use AppBundle\Service\CoreService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -20,13 +21,25 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class EntryType extends AbstractType
 {
     /**
-     * @var ORM\EntityManager
+     * @var EntityManagerInterface
      */
-    protected $em;
+    private $em;
 
-    public function __construct(ORM\EntityManagerInterface $em)
+    /**
+     * @var CoreService
+     */
+    private $coreService;
+
+    /**
+     * EntryType constructor.
+     *
+     * @param EntityManagerInterface $em          Entity Manager
+     * @param CoreService            $coreService
+     */
+    public function __construct(EntityManagerInterface $em, CoreService $coreService)
     {
         $this->em = $em;
+        $this->coreService = $coreService;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -98,6 +111,13 @@ class EntryType extends AbstractType
             }
 
             $event->setData($data);
+        });
+
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+            $form = $event->getForm();
+            $object = $form->getData();
+
+            $object->setDescription($this->coreService->purifyString($object->getDescription()));
         });
     }
 

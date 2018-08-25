@@ -10,8 +10,6 @@ use Symfony\Component\HttpFoundation\File\File;
 class TagService
 {
     /**
-     * Entity Manager.
-     *
      * @var EntityManagerInterface
      */
     private $em;

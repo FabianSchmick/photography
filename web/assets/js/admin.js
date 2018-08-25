@@ -89,14 +89,19 @@ function initWysiwyg() {
     $('.wysiwyg').summernote({
         height: 100,
         lang: lang,
+        disableDragAndDrop: true,
+        linkTargetBlank: false,
         toolbar: [
             // [groupName, [list of button]]
             ['misc', ['undo', 'redo']],
-            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['style', ['clear', 'bold']],
             ['insert', ['link']],
-            ['fontsize', ['fontsize']],
-            ['para', ['ul', 'ol', 'paragraph']],
+            ['para', ['ul']],
             ['misc', ['codeview', 'help']]
-        ]
+        ],
+        onCreateLink: function(linkUrl) {
+            return /^([A-Za-z][A-Za-z0-9+-.]*\:[\/\/]?|\/)/.test(linkUrl) ?
+                linkUrl : 'http://' + linkUrl;
+        }
     });
 }
