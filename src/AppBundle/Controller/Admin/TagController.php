@@ -54,6 +54,8 @@ class TagController extends Controller
                 'success',
                 $translated.': <a class="alert-link" href="'.$url.'">'.$tag->getName().'</a>.'
             );
+
+            $form = $this->createForm(TagType::class, new Tag());
         }
 
         return $this->render('admin/tag/new.html.twig', [
@@ -81,8 +83,6 @@ class TagController extends Controller
                 'success',
                 $translated.'.'
             );
-
-            $form = $this->createForm(TagType::class, new Tag());
         }
 
         return $this->render('admin/tag/edit.html.twig', [
