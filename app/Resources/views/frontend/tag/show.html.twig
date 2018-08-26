@@ -58,7 +58,7 @@
             {% endif %}
         </div>
 
-        <div id="entries" class="list-unstyled">
+        <div id="entries" data-justified="true">
             {{ render(controller('AppBundle:Default:paginateByTag', {'slug': tag.slug, 'page': 1 })) }}
 
             <div id="spinner" class="spinner" style="display: none">

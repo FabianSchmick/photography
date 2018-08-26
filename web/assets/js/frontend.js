@@ -78,8 +78,10 @@ function lazyLoad() {
 // Ajax function to get the next entries
 function loadEntries() {
     currentPage++;
-    var paginateUrlPage = paginateUrl + '/' + currentPage;
-    $("#spinner").show();
+    var paginateUrlPage = paginateUrl + '/' + currentPage,
+        spinner = $('#spinner');
+
+    $(spinner).show();
 
     return $.ajax({
         url: paginateUrlPage,
@@ -87,14 +89,14 @@ function loadEntries() {
         dataType: 'html',
         success: function(data) {
             if (data.length == 0) {
-                $("#spinner").remove();
+                $(spinner).remove();
                 checkAjax = false;
                 return false;
             }
 
-            $(data).insertBefore($("#spinner"));
-            $("#spinner").hide();
-            $('#entries').justifiedGallery('norewind');
+            $(data).insertBefore($(spinner));
+            $(spinner).hide();
+            $('[data-justified="true"]').justifiedGallery('norewind');
 
             callback(data)
         }
@@ -141,7 +143,7 @@ function justify() {
         }
     });
 
-    $('#entries').justifiedGallery({
+    $('[data-justified="true"]').justifiedGallery({
         rowHeight : rowHeight,
         maxRowHeight : '175%',
         lastRow : 'nojustify',
