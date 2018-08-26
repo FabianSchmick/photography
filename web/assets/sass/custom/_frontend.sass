@@ -1,6 +1,7 @@
-html,
-body
+html
     height: 100%
+body
+    min-height: 100%
     width: 100%
     font-family: $font-main
     color: $color-primary
@@ -60,23 +61,105 @@ noscript
         background: lighten($color-teritary, 5)
         color: $color-secondary
 
-header
-    #menu
-        padding: 20px
-        transition: all 0.8s
+header#menu
+    padding: 20px
+    transition: padding 0.8s ease, background-color 0.8s ease
 
-        &.navbar-default
-            background-color: transparent
+    &.navbar-default
+        background-color: transparent
+        border: none
+
+        .navbar-nav > li
+            > a
+                background: transparent
+                text-transform: uppercase
+                color: $color-secondary
+                font-size: 12px
+                letter-spacing: 1px
+                font-weight: 500
+
+                &:hover
+                    color: $color-teritary
+
+            &.active a, a:focus
+                font-weight: bold
+
+        .flag
+            display: inline-block
+            height: 10px
+            width: 20px
+            background: center / 100% auto no-repeat #fff
+
+        .dropdown-menu
+            background: transparent
+            min-width: 1px
+            width: 100%
+            text-align: center
+            padding-bottom: 10px
+            box-shadow: none
+            border: 0
+
+            .active
+                font-weight: bold
+
+            > li > a
+                color: $color-secondary
+                padding: 3px 5px
+                display: inline-block
+                border-bottom: 1px solid transparent
+
+                &:hover
+                    background: transparent
+                    font-weight: bold
+
+            @media (max-width: 768px)
+                text-align: left
+                padding: 10px 15px 10px 25px
+
+        .navbar-toggle
+            border-radius: 0
+
+            &:hover,
+            &:focus
+                background-color: $color-teritary
+                border: none
+
+                > .icon-bar
+                    background-color: #fff
+
+        @media (max-width: 768px)
+            background-color: rgba(0, 0, 0, 0.3)
+
+        .navbar-collapse
             border: none
 
+    a.navbar-brand
+        margin: 8px 0 0 0
+        padding: 0
+        height: 35px
+        color: $color-secondary
+        line-height: 32px
+
+        img
+            height: 100%
+            border-radius: 50%
+            padding-right: 5px
+            display: none
+
+        i.fa
+            color: $color-teritary
+
+        @media (max-width: 767px)
+            padding: 0 15px
+
+    &.on
+        background-color: $color-secondary !important
+        padding: 0 !important
+
+        &.navbar-default
             .navbar-nav > li
                 > a
-                    background: transparent
-                    text-transform: uppercase
-                    color: $color-secondary
-                    font-size: 12px
-                    letter-spacing: 1px
-                    font-weight: 500
+                    color: $color-primary
 
                     &:hover
                         color: $color-teritary
@@ -84,106 +167,23 @@ header
                 &.active a, a:focus
                     font-weight: bold
 
-            .flag
-                display: inline-block
-                height: 10px
-                width: 20px
-                background: center / 100% auto no-repeat #fff
-
             .dropdown-menu
-                background: transparent
-                min-width: 1px
-                width: 100%
-                text-align: center
-                padding-bottom: 10px
+                background: $color-secondary
+                border: none
                 box-shadow: none
-                border: 0
-
-                .active
-                    font-weight: bold
-
-                > li > a
-                    color: $color-secondary
-                    padding: 3px 5px
-                    display: inline-block
-                    border-bottom: 1px solid transparent
-
-                    &:hover
-                        background: transparent
-                        font-weight: bold
-
-                @media (max-width: 768px)
-                    text-align: left
-                    padding: 10px 15px 10px 25px
-
-            .navbar-toggle
                 border-radius: 0
 
-                &:hover,
-                &:focus
-                    background-color: $color-teritary
-                    border: none
+                > li > a
+                    color: $color-primary
 
-                    > .icon-bar
-                        background-color: #fff
-
-            @media (max-width: 768px)
-                background-color: rgba(0, 0, 0, 0.3)
-
-            .navbar-collapse
-                border: none
-
-        a.navbar-brand
-            margin: 8px 0 0 0
-            padding: 0
-            height: 35px
-            color: $color-secondary
-            line-height: 32px
-
-            img
-                height: 100%
-                border-radius: 50%
-                padding-right: 5px
-                display: none
-
-            i.fa
-                color: $color-teritary
-
-            @media (max-width: 767px)
-                padding: 0 15px
-
-        &.on
-            background-color: $color-secondary !important
-            padding: 0 !important
-
-            &.navbar-default
-                .navbar-nav > li
-                    > a
-                        color: $color-primary
-
-                        &:hover
-                            color: $color-teritary
-
-                    &.active a, a:focus
+                    &:hover
                         font-weight: bold
 
-                .dropdown-menu
-                    background: $color-secondary
-                    border: none
-                    box-shadow: none
-                    border-radius: 0
+        a.navbar-brand
+            color: $color-primary
 
-                    > li > a
-                        color: $color-primary
-
-                        &:hover
-                            font-weight: bold
-
-            a.navbar-brand
-                color: $color-primary
-
-                img
-                    display: inline-block
+            img
+                display: inline-block
 
 .parallax-container
     position: relative
@@ -315,10 +315,19 @@ header
         margin: 20px 0
 
     .meta
-        padding: 10px 0 0
+        padding: 10px 0
+        margin: 0
 
-        li
-            padding: 2px 0
+        dd
+            display: inline
+            margin: 0
+
+            &:after
+                content: ''
+                display: block
+
+        dt
+            display: inline-block
 
     .tags
         padding-top: 15px
@@ -417,7 +426,7 @@ header
                     padding: 0
                     margin: 0
 
-                .entry-timestamp, .entry-author
+                .entry-timestamp, .entry-timestamp-value, .entry-author, .entry-author-value
                     display: none
 
                 .tags

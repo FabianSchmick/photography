@@ -19,17 +19,16 @@
 
 <noscript>
     <style>
-        header #menu { margin-top: 55px; }
+        header#menu { margin-top: 55px; }
     </style>
     <div class="alert alert-danger" role="alert">
         {{ 'noscript'|trans }}
     </div>
 </noscript>
 
-<header>
-    <nav id="menu" class="navbar navbar-default navbar-fixed-top">
+<header id="menu" class="navbar navbar-default navbar-fixed-top">
+    <nav class="container">
         {% htmlcompress %}
-        <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -60,7 +59,6 @@
                     </li>
                 </ul>
             </div>
-        </div>
         {% endhtmlcompress %}
 
     </nav>
