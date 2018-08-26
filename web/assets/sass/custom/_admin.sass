@@ -23,6 +23,13 @@ textarea
         top: 50%
         transform: translate(-50%, -50%)
 
+        svg
+            height: 60px
+            width: 60px
+
+            use
+                fill: #000
+
     #page-wrapper
         padding-bottom: 15px
         min-height: calc(100vh - 51px) /* Not the best way, but 100% not working when ajax loads new content */
@@ -42,9 +49,10 @@ textarea
 
     .flag
         display: inline-block
-        height: 10px
-        width: 20px
-        background: center / 100% auto no-repeat #fff
+
+        svg
+            height: 10px
+            width: 20px
 
     i
         margin-left: 5px

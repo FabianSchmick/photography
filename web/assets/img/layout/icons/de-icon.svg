@@ -1,0 +1,6 @@
+<svg id="de-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30">
+    <defs><style>.cls-1{fill:#d00;}.cls-2{fill:#ffce00;}</style></defs>
+    <rect id="black_stripe" data-name="black stripe" width="60" height="30"/>
+    <rect id="red_stripe" data-name="red stripe" class="cls-1" y="10" width="60" height="20"/>
+    <rect id="gold_stripe" data-name="gold stripe" class="cls-2" y="20" width="60" height="10"/>
+</svg>

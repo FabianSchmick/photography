@@ -45,13 +45,19 @@
                     <li><a href="{{ path('homepage') }}#cover" class="page-scroll" data-target="#cover">{{ 'home'|trans }}</a></li>
                     <li><a href="{{ path('homepage') }}#entries" class="page-scroll" data-target="#entries">{{ 'gallery'|trans }}</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="flag" style="background-image: url({{ asset('assets/img/layout/icons/'~ app.request.locale ~ '.jpg') }})"></span> {{ 'languages'|trans }} <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="flag"><svg><use xlink:href="#{{ request.locale }}-icon"/></svg></span> {{ 'languages'|trans }} <span class="caret"></span>
+                        </a>
                         <ul class="dropdown-menu" role="menu">
                             {% for locale in locales|split('|') %}
                                 {% set lang = 'locale.' ~ locale %}
                                 <li>
                                     <a href="{{ path('homepage', {'_locale': locale}) }}" class="{% if request.locale == locale %}active{% endif %}">
-                                        <span class="flag" style="background-image: url({{ asset('assets/img/layout/icons/'~ locale ~ '.jpg') }})"></span> {{ lang|trans }}
+                                        <span class="flag">
+                                            <svg>
+                                                <use xlink:href="#{{ locale }}-icon"/>
+                                            </svg>
+                                        </span> {{ lang|trans }}
                                     </a>
                                 </li>
                             {% endfor %}
@@ -76,6 +82,13 @@
     {% endhtmlcompress %}
 
 </main>
+
+<div id="embed-svg" style="display: none">
+    {% block embed_svg %}
+        {{ asset('assets/img/layout/icons/de-icon.svg')|inline_svg() }}
+        {{ asset('assets/img/layout/icons/en-icon.svg')|inline_svg() }}
+    {% endblock embed_svg %}
+</div>
 
 {% block javascripts %}
     <script type="text/javascript">

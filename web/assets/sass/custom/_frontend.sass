@@ -86,9 +86,10 @@ header#menu
 
         .flag
             display: inline-block
-            height: 10px
-            width: 20px
-            background: center / 100% auto no-repeat #fff
+
+            svg
+                height: 10px
+                width: 20px
 
         .dropdown-menu
             background: transparent
@@ -302,9 +303,12 @@ header#menu
         margin: 0 auto
         bottom: -80px
 
-        svg path,
-        svg rect
-            fill: $color-teritary
+        svg
+            height: 60px
+            width: 60px
+
+            use
+                fill: $color-teritary
 
     @media(max-width: 450px)
         margin: 20px auto 100px

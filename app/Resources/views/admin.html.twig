@@ -32,14 +32,18 @@
         <ul class="nav navbar-top-links navbar-right">
             <li id="change-language" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" title="{{ 'languages'|trans }}">
-                    <span class="flag" style="background-image: url({{ asset('assets/img/layout/icons/'~ app.request.locale ~ '.jpg') }})"></span> <i class="fa fa-caret-down"></i>
+                    <span class="flag"><svg><use xlink:href="#{{ request.locale }}-icon"/></svg></span> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu">
                     {% for locale in locales|split('|') %}
                         {% set lang = 'locale.' ~ locale %}
                         <li>
                             <a href="{{ path('localeAdmin', {'_locale': locale}) }}" class="{% if request.locale == locale %}active{% endif %}">
-                                <span class="flag" style="background-image: url({{ asset('assets/img/layout/icons/'~ locale ~ '.jpg') }})"></span> {{ lang|trans }}
+                            <span class="flag">
+                                <svg>
+                                    <use xlink:href="#{{ locale }}-icon"/>
+                                </svg>
+                            </span> {{ lang|trans }}
                             </a>
                         </li>
                     {% endfor %}
@@ -71,6 +75,15 @@
     </div>
 
 </div>
+
+<div id="embed-svg" style="display: none">
+    {% block embed_svg %}
+        {{ asset('assets/img/layout/icons/de-icon.svg')|inline_svg() }}
+        {{ asset('assets/img/layout/icons/en-icon.svg')|inline_svg() }}
+        {{ asset('assets/img/layout/icons/spinner-icon.svg')|inline_svg() }}
+    {% endblock embed_svg %}
+</div>
+
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset('assets/dist/js/admin.js') }}"></script>
 {% endblock %}
