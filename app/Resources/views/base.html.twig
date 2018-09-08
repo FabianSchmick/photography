@@ -92,7 +92,8 @@
 
 {% block javascripts %}
     <script type="text/javascript">
-        var homeUrl = "{{ path('homepage') }}";
+        var pageUrl = "{{ path(app.request.attributes.get('_route'),
+            app.request.attributes.get('_route_params')) }}";
     </script>
 
     <script type="text/javascript" src="{{ asset('assets/dist/js/main.js') }}"></script>

@@ -1,7 +1,7 @@
 // Global vars
 var currentPage = 1,
-    group = $("[data-fancybox='entries']"),
-    groupLength = group.length,
+    entriesGallery = $("[data-fancybox='entries']"),
+    entriesGalleryLength = entriesGallery.length,
     checkAjax = true;
 
 $(document).ready(function() {
@@ -45,13 +45,12 @@ function navigation() {
 
 // Parallax effect for the cover
 function parallax() {
-    var parallaxElements = $('.parallax'),
-        parallaxQuantity = parallaxElements.length;
+    var parallaxElements = $('.parallax');
 
     $(window).on('scroll', function () {
         window.requestAnimationFrame(function () {
 
-            for (var i = 0; i < parallaxQuantity; i++) {
+            for (var i = 0; i < parallaxElements.length; i++) {
                 var currentElement = parallaxElements.eq(i);
                 var scrolled = $(window).scrollTop();
 
@@ -83,23 +82,18 @@ function loadEntries() {
 
     $(spinner).show();
 
-    return $.ajax({
-        url: paginateUrlPage,
-        type: 'GET',
-        dataType: 'html',
-        success: function(data) {
-            if (data.length == 0) {
-                $(spinner).remove();
-                checkAjax = false;
-                return false;
-            }
-
-            $(data).insertBefore($(spinner));
-            $(spinner).hide();
-            $('[data-justified="true"]').justifiedGallery('norewind');
-
-            callback(data)
+    return $.get(paginateUrlPage, function(data) {
+        if (data.length == 0) {
+            $(spinner).remove();
+            checkAjax = false;
+            return false;
         }
+
+        $(data).insertBefore($(spinner));
+        $(spinner).hide();
+        $('[data-justified="true"]').justifiedGallery('norewind');
+
+        callback(data)
     });
 }
 
@@ -109,12 +103,9 @@ function callback(data) {
         if (typeof $(element).data('src') !== 'undefined') {
             $.fancybox.getInstance('createGroup', {
                 type : 'ajax',
-                src  : $(element).data('src'),
-                opts : {
-                    hash : false,
-                }
+                src  : $(element).data('src')
             });
-            groupLength++;
+            entriesGalleryLength++;
         }
     });
 
@@ -133,16 +124,6 @@ function justify() {
         rowHeight = 125;
     }
 
-    $(window).on('resize', function() {
-        if ($(window).width() < 1025) {
-            rowHeight = 300;
-        } else if ($(window).width() < 768) {
-            rowHeight = 200;
-        } else if ($(window).width() < 500) {
-            rowHeight = 125;
-        }
-    });
-
     $('[data-justified="true"]').justifiedGallery({
         rowHeight : rowHeight,
         maxRowHeight : '175%',
@@ -155,29 +136,22 @@ function justify() {
 
 // Lightbox (fancybox) for the image entries -> load dynamic content https://github.com/fancyapps/fancyBox/issues/257
 function lightbox() {
-    var lang = 'en';
+    $.fancybox.defaults.lang = $('html').attr('lang');
+    $.fancybox.defaults.hash = false;
+    $.fancybox.defaults.autoFocus = false;
 
-    if ($('html').attr('lang') === 'de') {
-        lang = $('html').attr('lang');
-    }
+    $.fancybox.defaults.beforeShow = function(instance){
+        var entries = $("[data-fancybox='entries']");
 
-    $(group).fancybox({
-        hash : false,
-        autoFocus : false,
-        lang : lang,
+        history.pushState(null, '', $(entries[this.index]).attr('href'));
 
-        beforeShow:  function(instance){
-            var entries = $("[data-fancybox='entries']");
-
-            history.pushState(null, '', $(entries[this.index]).attr('href'));
-
-            if (checkAjax && this.index  >= groupLength - 3){
-                loadEntries();
-            }
-        },
-
-        afterClose: function(instance){
-            history.pushState(null, '', homeUrl);
+        if (checkAjax && this.index  >= entriesGalleryLength - 3){
+            loadEntries();
         }
-    });
+    };
+    $.fancybox.defaults.afterClose = function(instance){
+        history.pushState(null, '', pageUrl);
+    };
+
+    $(entriesGallery).fancybox();
 }
