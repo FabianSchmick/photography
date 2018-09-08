@@ -16,6 +16,7 @@ class CoreService
     {
         $config = HTMLPurifier_Config::createDefault();
         $config->set('HTML.AllowedElements', ['a', 'b', 'strong', 'ul', 'li', 'p', 'br']);
+        $config->set('Attr.AllowedFrameTargets', ['_blank']);
         $purifier = new HTMLPurifier($config);
 
         return $purifier->purify($string);
