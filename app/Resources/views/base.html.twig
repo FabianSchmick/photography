@@ -12,8 +12,10 @@
         <meta name="description" content="{% block meta_description %}{{ 'meta.desc'|trans }}{% endblock %}">
         <meta property="og:title" content="{{ block('title') }}"/>
         <meta property="og:type" content="website"/>
-        <meta property="og:url" content="{{ url(app.request.attributes.get('_route'),
-            app.request.attributes.get('_route_params')) }}"/>
+        {% if app.request.attributes.get('_route') %}
+            <meta property="og:url" content="{{ url(app.request.attributes.get('_route'),
+                app.request.attributes.get('_route_params')) }}"/>
+        {% endif %}
         <meta property="og:image" content="{% block meta_image %}{{ absolute_url(asset('assets/img/layout/cover-placeholder.jpg')) }}{% endblock %}"/>
         <meta property="og:description" content="{{ block('meta_description') }}"/>
         <meta name="twitter:card" content="summary"/>
@@ -110,10 +112,12 @@
 </div>
 
 {% block javascripts %}
-    <script type="text/javascript">
-        var pageUrl = "{{ path(app.request.attributes.get('_route'),
-            app.request.attributes.get('_route_params')) }}";
-    </script>
+    {% if app.request.attributes.get('_route') %}
+        <script type="text/javascript">
+            var pageUrl = "{{ url(app.request.attributes.get('_route'),
+                app.request.attributes.get('_route_params')) }}";
+        </script>
+    {% endif %}
 
     <script type="text/javascript" src="{{ asset('assets/dist/js/main.js') }}"></script>
 {% endblock %}
