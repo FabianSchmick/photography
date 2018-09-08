@@ -1,8 +1,8 @@
 {
   "publicPath": "./web",
   "assetsPath": "./web/assets",
-  "bsProxy": "127.0.0.1",
-  "watchHtml": "./app/Resources/views/*/**",
+  "bsProxy": "127.0.0.1/app_dev.php",
+  "watchHtml": "./app/Resources/**/*",
 
   "fonts": {
     "src": [
@@ -16,13 +16,6 @@
       "./node_modules/summernote/dist/font/*"
     ],
     "dest": "assets/dist/css/font/"
-  },
-
-  "images": {
-    "src": [
-      "./web/assets/img/**/*"
-    ],
-    "dest": "assets/dist/img/"
   },
 
   "styles": {
