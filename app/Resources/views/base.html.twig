@@ -4,10 +4,29 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{% block metaDesc %}{{ 'meta.desc'|trans }}{% endblock %}">
-    {% block socialTags %}
+    {% block meta_robots %}
+        <meta name="robots" content="noarchive">
     {% endblock %}
+
+    {% block social_tags %}
+        <meta name="description" content="{% block meta_description %}{{ 'meta.desc'|trans }}{% endblock %}">
+        <meta property="og:title" content="{{ block('title') }}"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="{{ url(app.request.attributes.get('_route'),
+            app.request.attributes.get('_route_params')) }}"/>
+        <meta property="og:image" content="{% block meta_image %}{{ absolute_url(asset('assets/img/layout/cover-placeholder.jpg')) }}{% endblock %}"/>
+        <meta property="og:description" content="{{ block('meta_description') }}"/>
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:title" content="{{ block('title') }}"/>
+        <meta name="twitter:description" content="{{ block('meta_description') }}"/>
+        <meta name="twitter:image" content="{{ block('meta_image') }}"/>
+        <meta itemprop="name" content="{{ block('title') }}"/>
+        <meta itemprop="description" content="{{ block('meta_description') }}"/>
+        <meta itemprop="image" content="{{ block('meta_image') }}"/>
+    {% endblock %}
+
     <title>{% block title %}{{ 'photography'|trans }}{% endblock %}</title>
+
     {% block stylesheets %}
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/dist/css/main.css') }}"/>
     {% endblock %}

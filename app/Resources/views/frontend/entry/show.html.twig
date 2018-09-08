@@ -5,23 +5,9 @@
     {% set desc = entry.title %}
 {% endif %}
 
-{% block socialTags %}
-    <meta property="og:title" content="{{ entry.title }}"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="{{ url(app.request.attributes.get('_route'),
-        app.request.attributes.get('_route_params')) }}"/>
-    <meta property="og:image" content="{{ vich_uploader_asset(entry.image, 'file') }}">
-    <meta property="og:description" content="{{ desc }}"/>
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="{{ entry.title }}"/>
-    <meta name="twitter:description" content="{{ desc }}"/>
-    <meta name="twitter:image" content="{{ vich_uploader_asset(entry.image, 'file') }}"/>
-    <meta itemprop="name" content="{{ entry.title }}"/>
-    <meta itemprop="description" content="{{ desc }}"/>
-    <meta itemprop="image" content="{{ vich_uploader_asset(entry.image, 'file') }}"/>
-{% endblock %}
+{% block meta_description %}{{ desc }}{% endblock %}
 
-{% block metaDesc %}{{ desc }}{% endblock %}
+{% block meta_image %}{{ absolute_url(vich_uploader_asset(entry.image, 'file')) }}{% endblock %}
 
 {% block title %}{{ entry.title }}{% endblock %}
 
