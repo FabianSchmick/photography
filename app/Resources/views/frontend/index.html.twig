@@ -27,6 +27,15 @@
 {% endblock embed_svg %}
 
 {% block javascripts %}
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "Blog",
+        "name": "{{ block('title') }} | {{ 'photography'|trans }}",
+        "url": "{{ url(app.request.attributes.get('_route'),
+            app.request.attributes.get('_route_params')) }}",
+        "description": "{{ block('meta_description') }}"
+    }</script>
+
     {{ parent() }}
 
     <script type="application/javascript">
