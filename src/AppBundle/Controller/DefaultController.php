@@ -60,7 +60,7 @@ class DefaultController extends Controller
 
         $query = $em->getRepository('AppBundle:Entry')->getFindAllQuery();
         $pages = PaginationHelper::getPagesCount($query);
-        $entries = PaginationHelper::paginate($query, 10, $page);
+        $entries = PaginationHelper::paginate($query, Entry::PAGINATION_QUANTITY, $page);
 
         return $this->render('frontend/entry/ajax-list.html.twig', [
             'entries' => $entries,
@@ -99,7 +99,7 @@ class DefaultController extends Controller
 
         $query = $em->getRepository('AppBundle:Entry')->findEntriesByTag($tag);
         $pages = PaginationHelper::getPagesCount($query);
-        $entries = PaginationHelper::paginate($query, 10, $page);
+        $entries = PaginationHelper::paginate($query, Entry::PAGINATION_QUANTITY, $page);
 
         return $this->render('frontend/entry/ajax-list.html.twig', [
             'entries' => $entries,

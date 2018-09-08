@@ -17,6 +17,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Entry
 {
+    const PAGINATION_QUANTITY = 10;
+
     /**
      * @var int
      *
