@@ -2,28 +2,28 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Service\EntryService;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class Fixtures extends AbstractFixture implements FixtureInterface, ContainerAwareInterface
+class Fixtures extends AbstractFixture implements FixtureInterface
 {
-    private $container;
+    /**
+     * @var EntryService
+     */
+    private $entryService;
 
-    public function setContainer(ContainerInterface $container = null)
+    public function __construct(EntryService $entryService)
     {
-        $this->container = $container;
+        $this->entryService = $entryService;
     }
 
     public function load(ObjectManager $manager)
     {
-        $entryService = $this->container->get('AppBundle\Service\EntryService');
-
         $entries = [
             [
                 'title' => 'Forest near my hometown',
@@ -87,7 +87,7 @@ class Fixtures extends AbstractFixture implements FixtureInterface, ContainerAwa
         // 20 entries
         for ($i = 0; $i < 5; ++$i) {
             foreach ($entries as $key => $entry) {
-                $entryService->saveEntry($entry, $images[$key]);
+                $this->entryService->saveEntry($entry, $images[$key]);
             }
             if ($i < 4) {
                 $fileSystem->mirror($imgDir, $tmpDir);
