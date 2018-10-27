@@ -182,7 +182,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setAuthor($author)
+    public function setAuthor(Author $author)
     {
         $this->author = $author;
 
@@ -230,7 +230,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setLocation($location)
+    public function setLocation(Location $location)
     {
         $this->location = $location;
 
@@ -254,9 +254,9 @@ class Entry
      *
      * @return Entry
      */
-    public function setTimestamp($timestamp)
+    public function setTimestamp(\DateTime $timestamp)
     {
-        $this->timestamp = $timestamp;
+        $this->timestamp = clone $timestamp;
 
         return $this;
     }

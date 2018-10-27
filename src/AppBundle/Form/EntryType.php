@@ -109,6 +109,10 @@ class EntryType extends AbstractType
                 $data['location'] = $this->saveNewChoiceByName($data['location'], Location::class, 'AppBundle:Location');
             }
 
+            if (empty($data['timestamp'])) {
+                $data['timestamp'] = date('yyyy-MM-dd');
+            }
+
             foreach ($data['tags'] as $key => $tag) {
                 if (!empty($tag = trim($tag))) {
                     $data['tags'][$key] = $this->saveNewChoiceByName($tag, Tag::class, 'AppBundle:Tag');
@@ -121,6 +125,11 @@ class EntryType extends AbstractType
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
             $form = $event->getForm();
             $object = $form->getData();
+
+            /** @var \DateTime $date */
+            $date = $object->getTimestamp();
+            $date->setTime(date('H'), date('i'), date('s'));
+            $object->setTimestamp($date);
 
             $object->setDescription($this->coreService->purifyString($object->getDescription()));
         });
