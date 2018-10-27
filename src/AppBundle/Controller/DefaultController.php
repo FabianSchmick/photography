@@ -32,8 +32,15 @@ class DefaultController extends Controller
      */
     public function entryShowAction(Request $request, Entry $entry)
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $prev = $em->getRepository('AppBundle:Entry')->findByTimestamp($entry);
+        $next = $em->getRepository('AppBundle:Entry')->findByTimestamp($entry, '>', 'ASC');
+
         return $this->render('frontend/entry/show.html.twig', [
             'entry' => $entry,
+            'prev' => $prev,
+            'next' => $next,
         ]);
     }
 

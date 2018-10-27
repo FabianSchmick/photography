@@ -14,6 +14,16 @@
 {% block content %}
     <section id="entry" class="container">
         <article class="entry-inner row">
+            {% if next %}
+                <a class="next" href="{{ path('entry_show', {'slug': next.slug}) }}" title="{{ 'next'|trans }}">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            {% else %}
+                <span class="next disabled" href="#" title="{{ 'next'|trans }}">
+                <i class="fa fa-angle-left"></i>
+            </span>
+            {% endif %}
+
             <div class="entry-image col-lg-9">
                 <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_show') }}" alt="{{ entry.title }}">
             </div>
@@ -27,7 +37,7 @@
                         <dt class="entry-location">{{ 'location'|trans }}:</dt>
                         <dd class="entry-location-value">{{ entry.location.name }}</dd>
                     {% endif %}
-                    {% if entry.location.name is defined %}
+                    {% if entry.author.name is defined %}
                         <dt class="entry-author">{{ 'author'|trans }}:</dt>
                         <dd class="entry-author-value">{{ entry.author.name }}</dd>
                     {% endif %}
@@ -43,6 +53,17 @@
                 </ul>
                 <a class="btn" href="{{ vich_uploader_asset(entry.image, 'file') }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
             </div>
+
+            {% if prev %}
+                <a class="prev" href="{{ path('entry_show', {'slug': prev.slug}) }}" title="{{ 'prev'|trans }}">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            {% else %}
+                <span class="prev disabled" href="#" title="{{ 'prev'|trans }}">
+                <i class="fa fa-angle-right"></i>
+            </span>
+            {% endif %}
+
         </article>
     </section>
 {% endblock %}

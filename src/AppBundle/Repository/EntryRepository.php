@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Author;
+use AppBundle\Entity\Entry;
 use AppBundle\Entity\Location;
 use AppBundle\Entity\Tag;
 use Doctrine\ORM\Query;
@@ -60,6 +61,29 @@ class EntryRepository extends \Doctrine\ORM\EntityRepository
         $qb->where($qb->expr()->eq('e.location', $location->getId()));
 
         return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @param Entry  $entry
+     * @param string $compare
+     * @param string $order
+     *
+     * @return Entry|null
+     */
+    public function findByTimestamp(Entry $entry, $compare = '<', $order = 'DESC')
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->where("e.timestamp {$compare} :timestamp")
+            ->andWhere('e != :entry')
+            ->orderBy('e.timestamp', $order)
+            ->setMaxResults(1)
+            ->setParameters([
+                'entry' => $entry,
+                'timestamp' => $entry->getTimestamp(),
+            ])
+            ->getQuery();
+
+        return $qb->getOneOrNullResult();
     }
 
     /**
