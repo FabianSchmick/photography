@@ -9,8 +9,7 @@ Here is an example of how an end result could look: [fotografie.fabian-schmick.d
 ![back-and-frontend](./github/example.gif "Back- and Frontend view")
 
 The project provides you following functionality:
-- Symfony 3.4 (LTS version)
-- Vagrantfile and ansible configuration for development (https://github.com/FabianSchmick/vagrant_skeleton) 
+- Symfony 3.4 (LTS version) 
 - Node packages with Gulp, Bootstrap, jQuery and many more
 - Small CMS for creating new entries
 - Image compression and thumbnail generation with [LiipImagineBundle](https://github.com/liip/LiipImagineBundle)

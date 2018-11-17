@@ -1,3 +1,0 @@
----
-# put host vars here or directly in the inventory file
-host-variable: demo
