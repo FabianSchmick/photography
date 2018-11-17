@@ -9,13 +9,13 @@ Here is an example of how an end result could look: [fotografie.fabian-schmick.d
 ![back-and-frontend](./github/example.gif "Back- and Frontend view")
 
 The project provides you following functionality:
-- Symfony 3.4 (LTS version) 
-- Node packages with Gulp, Bootstrap, jQuery and many more
-- Small CMS for creating new entries
+- [Symfony 3.4](https://symfony.com/) (LTS version) 
+- Basic responsive layout with [Bootstrap](https://getbootstrap.com/) and [jQuery](https://jquery.com/)
+- Small CMS / Backend for creating new entries and tags
 - Image compression and thumbnail generation with [LiipImagineBundle](https://github.com/liip/LiipImagineBundle)
-- Multilingualism in English and German
+- I18n support in English and German
 - Tag possibility for describing and filtering entries
-- Lazyloading for images
+- Lazyloading / Infinityscrolling for images
 - Justified Gallery with [JustifiedGallery](http://miromannino.github.io/Justified-Gallery/)
 - Lightbox with [Fancybox](http://fancyapps.com/fancybox/3/)
 - Dynamic Sitemap generation
@@ -29,7 +29,12 @@ Clone the project
 git clone https://github.com/FabianSchmick/photography.git
 ```
 
-[Setup Symfony](https://symfony.com/doc/current/setup.html) or use [vagrantfile for local development](https://github.com/FabianSchmick/vagrant_skeleton/blob/master/README.md) or use [migraw for local development](https://github.com/marcharding/migraw)
+Install the dependencies via composer
+```
+composer install
+```
+
+To start the application [Setup Symfony](https://symfony.com/doc/3.4/setup.html#running-the-symfony-application) or use [vagrantfile for local development](https://github.com/FabianSchmick/vagrant_skeleton/blob/master/README.md) or use [migraw for local development](https://github.com/marcharding/migraw)
 
 **Backend password:**
 
