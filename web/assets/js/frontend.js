@@ -155,3 +155,29 @@ function lightbox() {
 
     $(entriesGallery).fancybox();
 }
+
+// Loads next or prev entry for entry detail page links
+function loadNextPrevEntry() {
+    var spinner = '#spinner';
+    $(spinner).hide();
+
+    $('section#entry').on('click', 'a.prev, a.next', function (e) {
+        var el = $(this);
+
+        $(spinner).show();
+
+        $.get($(el).attr('href'), function(data) {
+            var html = $.parseHTML(data);
+
+            $('section#entry article').replaceWith($(html).find('section#entry article'));
+
+            $('section#entry img').on('load', function() {
+                $(spinner).hide();
+            });
+
+            history.pushState(null, '', $(el).attr('href'));
+        });
+
+        e.preventDefault();
+    })
+}

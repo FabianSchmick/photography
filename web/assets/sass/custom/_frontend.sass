@@ -336,12 +336,33 @@ header#menu
         padding-top: 15px
         padding-bottom: 20px
 
+
 #entry
+    display: flex
     padding-top: 50px
-    padding-bottom: 50px
+    min-height: 100vh
+    align-items: center
 
     img
         width: 100%
+
+    .entry-image
+        position: relative
+        min-height: 100px
+
+        .spinner
+            position: absolute
+            display: block
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+
+            svg
+                height: 60px
+                width: 60px
+
+                use
+                    fill: $color-teritary
 
     .entry-inner
         position: relative
@@ -350,7 +371,6 @@ header#menu
     .next
         display: flex
         position: absolute
-        z-index: 10
         top: 50%
         transform: translateY(-50%)
         height: 100%
@@ -368,34 +388,28 @@ header#menu
             color: #fff
 
     .prev
-        right: -15px
+        right: 15px
         background-image: linear-gradient(to right, rgba(0,0,0,0.0001) 0, rgba(0,0,0,0.5) 100%)
     .next
-        left: -15px
+        left: 15px
         background-image: linear-gradient(to right, rgba(0,0,0,0.5) 0, rgba(0,0,0,0.0001) 100%)
 
     @media(max-width: 1200px)
-        .entry-image
-            padding-bottom: 10px
+        align-items: normal
+
+        .entry-info
+            padding-top: 10px
+            padding-bottom: 30px
 
         .prev,
         .next
-            height: 150px
             padding: 0 40px
-            top: 25%
-            transform: translateY(-25%)
 
     @media(max-width: 450px)
         .prev,
         .next
             font-size: 24px
-            height: 75px
             padding: 0 30px
-
-        .prev
-            right: 0
-        .next
-            left: 0
 
 .entry
     height: 100%
