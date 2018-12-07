@@ -22,9 +22,9 @@ photography: Photography
 admin: Admin
 homepage: Homepage
 english: English
-german: German
+german: Deutsch
 locale.en: English
-locale.de: German
+locale.de: Deutsch
 live.view: Live view
 logout: Logout
 
