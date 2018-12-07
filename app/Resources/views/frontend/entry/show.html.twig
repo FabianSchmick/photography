@@ -79,6 +79,19 @@
 {% endblock embed_svg %}
 
 {% block javascripts %}
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "ImageObject",
+        "author": "{{ entry.author.name is defined ? entry.author.name }}",
+        {% if entry.location.name is defined %}
+        "contentLocation": "{{ entry.location.name }}",
+        {% endif %}
+        "contentUrl": "{{ vich_uploader_asset(entry.image, 'file') }}",
+        "datePublished": "{{ entry.timestamp|date("Y-m-d") }}",
+        "description": "{{ entry.description|striptags }}",
+        "name": "{{ entry.title }}"
+    }</script>
+
     {{ parent() }}
 
     <script type="application/javascript">

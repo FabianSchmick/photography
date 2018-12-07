@@ -19,6 +19,7 @@ The project provides you following functionality:
 - Justified Gallery with [JustifiedGallery](http://miromannino.github.io/Justified-Gallery/)
 - Lightbox with [Fancybox](http://fancyapps.com/fancybox/3/)
 - Dynamic Sitemap generation
+- SEO optimized
 - And many more 
 
 
