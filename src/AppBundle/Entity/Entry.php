@@ -115,6 +115,7 @@ class Entry
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->timestamp = new \DateTime();
     }
 
     /**
