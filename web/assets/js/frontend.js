@@ -101,7 +101,7 @@ function loadEntries() {
 function callback(data) {
     $(data).each(function(index, element) {
         if (typeof $(element).data('src') !== 'undefined') {
-            $.fancybox.getInstance('createGroup', {
+            $.fancybox.getInstance().addContent({
                 type : 'ajax',
                 src  : $(element).data('src')
             });
@@ -139,6 +139,8 @@ function lightbox() {
     $.fancybox.defaults.lang = $('html').attr('lang');
     $.fancybox.defaults.hash = false;
     $.fancybox.defaults.autoFocus = false;
+    $.fancybox.defaults.smallBtn = false;
+    $.fancybox.defaults.buttons = ["close"];
 
     $.fancybox.defaults.beforeShow = function(instance){
         var entries = $("[data-fancybox='entries']");
