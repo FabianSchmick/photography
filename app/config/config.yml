@@ -35,6 +35,11 @@ framework:
     php_errors:
         log: true
 
+# Fix https://stackoverflow.com/questions/51208547/how-to-fix-sensio-bundle-frameworkextrabundle-configuration-route-is-depreca
+sensio_framework_extra:
+    router:
+        annotations: false
+
 # Twig Configuration
 twig:
     debug: '%kernel.debug%'
