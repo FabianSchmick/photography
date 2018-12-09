@@ -62,8 +62,11 @@ password: Passwort
 
 # Frontend
 home: Home
+introduction: About
 gallery: Fotos
 languages: Sprachen
+introduction.headline: <strong>Naturfotografie</strong>
+introduction.longtext: Mein Name ist John Doe und dies ist mein toller Fotoblog, über welchen es sich hauptsächlich um die schöne Natur dreht
 fullscreen: Vollbild
 next: Weiter
 prev: Zurück

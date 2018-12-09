@@ -8,6 +8,21 @@
 {% endblock %}
 
 {% block content %}
+    <section id="introduction">
+        <h1>{{ 'photography'|trans }}</h1>
+        <article class="text-container">
+            <h2 class="h4">{{ 'introduction.headline'|trans|raw }}</h2>
+            <p>
+                {{ 'introduction.longtext'|trans|raw }}
+            </p>
+        </article>
+        <ul class="list-unstyled clearfix social">
+            <li><a href="mailto:john-doe@example.com" class="fa fa-envelope-o" title="Mail"></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/john-doe/" class="fa fa-facebook" title="Facebook"></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/john-doe/" class="fa fa-instagram" title="Instagram"></a></li>
+        </ul>
+    </section>
+
     <section id="content" class="container">
         <div id="entries" data-justified="true">
             {{ render(controller('AppBundle:Default:paginateEntries', { 'page': 1 })) }}

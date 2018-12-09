@@ -62,8 +62,11 @@ password: Password
 
 # Frontend
 home: Home
+introduction: Über
 gallery: Gallery
 languages: Languages
+introduction.headline: <strong>Nature Photography</strong>
+introduction.longtext: My name is John Doe and this is my awesome Photoblog which is mostly about the beautiful nature
 fullscreen: Fullscreen
 next: Next
 prev: Previous
