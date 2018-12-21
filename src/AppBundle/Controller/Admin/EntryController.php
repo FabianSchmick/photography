@@ -4,9 +4,9 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Entry;
 use AppBundle\Form\EntryType;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -55,7 +55,7 @@ class EntryController extends Controller
                 $translated.': <a class="alert-link" href="'.$url.'">'.$entry->getTitle().'</a>.'
             );
 
-            $form = $this->createForm(EntryType::class, new Entry());
+            return $this->redirectToRoute('admin_entry_new');
         }
 
         return $this->render('admin/entry/new.html.twig', [
@@ -103,6 +103,6 @@ class EntryController extends Controller
         $em->remove($entry);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('admin_index'));
+        return $this->redirectToRoute('admin_index');
     }
 }

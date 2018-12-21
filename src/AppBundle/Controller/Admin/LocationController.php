@@ -5,9 +5,9 @@ namespace AppBundle\Controller\Admin;
 use AppBundle\Entity\Location;
 use AppBundle\Form\LocationType;
 use AppBundle\Service\LocationService;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -56,7 +56,7 @@ class LocationController extends Controller
                 $translated.': <a class="alert-link" href="'.$url.'">'.$location->getName().'</a>.'
             );
 
-            $form = $this->createForm(LocationType::class, new Location());
+            return $this->redirectToRoute('admin_location_new');
         }
 
         return $this->render('admin/location/new.html.twig', [
@@ -110,6 +110,6 @@ class LocationController extends Controller
         $em->remove($location);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('admin_index'));
+        return $this->redirectToRoute('admin_index');
     }
 }

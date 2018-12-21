@@ -4,9 +4,9 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Tag;
 use AppBundle\Form\TagType;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -55,7 +55,7 @@ class TagController extends Controller
                 $translated.': <a class="alert-link" href="'.$url.'">'.$tag->getName().'</a>.'
             );
 
-            $form = $this->createForm(TagType::class, new Tag());
+            return $this->redirectToRoute('admin_tag_new');
         }
 
         return $this->render('admin/tag/new.html.twig', [
@@ -103,6 +103,6 @@ class TagController extends Controller
         $em->remove($tag);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('admin_index'));
+        return $this->redirectToRoute('admin_index');
     }
 }

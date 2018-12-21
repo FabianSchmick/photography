@@ -4,9 +4,9 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Author;
 use AppBundle\Form\AuthorType;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -55,7 +55,7 @@ class AuthorController extends Controller
                 $translated.': <a class="alert-link" href="'.$url.'">'.$author->getName().'</a>.'
             );
 
-            $form = $this->createForm(AuthorType::class, new Author());
+            return $this->redirectToRoute('admin_author_new');
         }
 
         return $this->render('admin/author/new.html.twig', [
@@ -109,6 +109,6 @@ class AuthorController extends Controller
         $em->remove($author);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('admin_index'));
+        return $this->redirectToRoute('admin_index');
     }
 }
