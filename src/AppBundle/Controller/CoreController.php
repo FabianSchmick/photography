@@ -10,14 +10,14 @@ use Symfony\Component\Routing\RouterInterface;
 class CoreController extends Controller
 {
     /**
-     * @Route("/", name="locale")
+     * @Route("/", name="locale", defaults={"redirect": "homepage"})
      * @Route("/admin/language/{_locale}/",
-     *     defaults={"_locale": "%locale%"},
+     *     defaults={"redirect": "admin_index"},
      *     requirements={"_locale": "%app.locales%"},
      *     name="localeAdmin"
-     *  )
+     * )
      */
-    public function localeAction(Request $request)
+    public function localeAction(Request $request, $redirect)
     {
         $this->get('session')->set('_locale', $this->container->getParameter('locale'));
 
@@ -25,12 +25,7 @@ class CoreController extends Controller
             $this->get('session')->set('_locale', $requestedLocale);
         }
 
-        $redirect = 'homepage';
-        if ($request->get('_route') == 'localeAdmin') {
-            $redirect = 'admin_index';
-        }
-
-        return $this->redirect($this->generateUrl($redirect));
+        return $this->redirectToRoute($redirect);
     }
 
     /**
