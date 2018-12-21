@@ -11,6 +11,7 @@
     "bootstrap": "^3.3.*",
     "browser-sync": "^2.26.3",
     "del": "^3.0.0",
+    "detect_swipe": "^2.1.4",
     "font-awesome": "^4.7.0",
     "gulp": "4.0.0",
     "gulp-autoprefixer": "^4.1.0",

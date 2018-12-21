@@ -164,11 +164,23 @@ function loadNextPrevEntry() {
     $(spinner).hide();
 
     $('section#entry').on('click', 'a.prev, a.next', function (e) {
-        var el = $(this);
-
         $(spinner).show();
 
-        $.get($(el).attr('href'), function(data) {
+        loadEntry($(this).attr('href'));
+
+        e.preventDefault();
+    }).on('swipeleft', function() {
+        $(spinner).show();
+
+        loadEntry($(this).find('a.prev').attr('href'));
+    }).on('swiperight', function() {
+        $(spinner).show();
+
+        loadEntry($(this).find('a.next').attr('href'));
+    });
+
+    function loadEntry(url) {
+        $.get(url, function(data) {
             var html = $.parseHTML(data);
 
             $('section#entry article').replaceWith($(html).find('section#entry article'));
@@ -177,9 +189,7 @@ function loadNextPrevEntry() {
                 $(spinner).hide();
             });
 
-            history.pushState(null, '', $(el).attr('href'));
+            history.pushState(null, '', url);
         });
-
-        e.preventDefault();
-    })
+    }
 }

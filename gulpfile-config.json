@@ -51,6 +51,7 @@
         "./node_modules/bootstrap/dist/js/bootstrap.js",
         "./node_modules/justifiedGallery/dist/js/jquery.justifiedGallery.js",
         "./node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js",
+        "./node_modules/detect_swipe/jquery.detect_swipe.js",
         "./web/assets/js/frontend.js"
       ],
       "dest": "assets/dist/js/main.js"
