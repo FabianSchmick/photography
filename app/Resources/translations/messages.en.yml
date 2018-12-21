@@ -35,19 +35,23 @@ current.file: Current file
 file.upload.info: Old file gets only overwritten if you upload a new one
 success.edit: Your changes have been saved
 success.new: Your new entry has been saved. Edit it here
+success.deleted.entry: The entry <strong>%entry%</strong> has been deleted
 
 # Author
 new.author: New Author
 delete.msg.author: Are you sure you want to delete the author
+success.deleted.author: The author <strong>%author%</strong> has been deleted
 
 # Location
 new.location: New Location
 delete.msg.location: Are you sure you want to delete the location
+success.deleted.location: The location <strong>%location%</strong> has been deleted
 
 # Tag
 new.tag: New Tag
 delete.msg.tag: Are you sure you want to delete the tag
 delete.tag.alert: The image will get removed by saving the tag
+success.deleted.tag: The tag <strong>%tag%</strong> has been deleted
 
 # Sidebar
 search: Search

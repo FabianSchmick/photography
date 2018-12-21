@@ -35,19 +35,23 @@ current.file: Aktuelle Datei
 file.upload.info: Die aktuelle Datei wird nur überschrieben, wenn Sie ein neues hochladen
 success.edit: Ihre Änderrungen wurden gespeichert
 success.new: Ihr neuer Eintrag wurde gespeichert. Weiter bearbeiten
+success.deleted.entry: Der Eintrag <strong>%entry%</strong> wurde gelöscht
 
 # Author
 new.author: Neuer Autor
 delete.msg.author: Sind Sie sicher, dass Sie diesen Autor löschen möchten
+success.deleted.author: Der Autor <strong>%author%</strong> wurde gelöscht
 
 # Location
 new.location: Neuer Aufnahmeort
 delete.msg.location: Sind Sie sicher, dass Sie diesen Aufnahmeort löschen möchten
+success.deleted.location: Der Aufnahmeort <strong>%location%</strong> wurde gelöscht
 
 # Tag
 new.tag: Neuer Tag
 delete.msg.tag: Sind Sie sicher, dass Sie diesen Tag löschen möchten
 delete.tag.alert: Das Bild wird beim Speichern gelöscht werden
+success.deleted.tag: Der Tag <strong>%tag%</strong> wurde gelöscht
 
 # Sidebar
 search: Suche

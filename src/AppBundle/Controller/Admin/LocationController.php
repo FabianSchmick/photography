@@ -97,12 +97,19 @@ class LocationController extends Controller
      *
      * @Route("/delete/{id}", name="admin_location_delete")
      */
-    public function deleteAction(Request $request, Location $location)
+    public function deleteAction(Request $request, TranslatorInterface $translator, Location $location)
     {
         $em = $this->getDoctrine()->getManager();
 
+        $translated = str_replace('%location%', $location->getName(), $translator->trans('success.deleted.location'));
+
         $em->remove($location);
         $em->flush();
+
+        $this->addFlash(
+            'success',
+            $translated.'.'
+        );
 
         return $this->redirectToRoute('admin_index');
     }

@@ -96,12 +96,19 @@ class EntryController extends Controller
      *
      * @Route("/delete/{id}", name="admin_entry_delete")
      */
-    public function deleteAction(Request $request, Entry $entry)
+    public function deleteAction(Request $request, TranslatorInterface $translator, Entry $entry)
     {
         $em = $this->getDoctrine()->getManager();
 
+        $translated = str_replace('%entry%', $entry->getTitle(), $translator->trans('success.deleted.entry'));
+
         $em->remove($entry);
         $em->flush();
+
+        $this->addFlash(
+            'success',
+            $translated.'.'
+        );
 
         return $this->redirectToRoute('admin_index');
     }

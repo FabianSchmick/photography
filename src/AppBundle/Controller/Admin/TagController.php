@@ -96,12 +96,19 @@ class TagController extends Controller
      *
      * @Route("/delete/{id}", name="admin_tag_delete")
      */
-    public function deleteAction(Request $request, Tag $tag)
+    public function deleteAction(Request $request, TranslatorInterface $translator, Tag $tag)
     {
         $em = $this->getDoctrine()->getManager();
 
+        $translated = str_replace('%tag%', $tag->getName(), $translator->trans('success.deleted.tag'));
+
         $em->remove($tag);
         $em->flush();
+
+        $this->addFlash(
+            'success',
+            $translated.'.'
+        );
 
         return $this->redirectToRoute('admin_index');
     }

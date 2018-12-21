@@ -96,12 +96,19 @@ class AuthorController extends Controller
      *
      * @Route("/delete/{id}", name="admin_author_delete")
      */
-    public function deleteAction(Request $request, Author $author)
+    public function deleteAction(Request $request, TranslatorInterface $translator, Author $author)
     {
         $em = $this->getDoctrine()->getManager();
 
+        $translated = str_replace('%author%', $author->getName(), $translator->trans('success.deleted.author'));
+
         $em->remove($author);
         $em->flush();
+
+        $this->addFlash(
+            'success',
+            $translated.'.'
+        );
 
         return $this->redirectToRoute('admin_index');
     }
