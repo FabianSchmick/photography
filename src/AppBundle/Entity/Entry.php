@@ -52,7 +52,7 @@ class Entry
      * @var Author
      *
      * @ORM\ManyToOne(targetEntity="Author", inversedBy="entries", cascade={"persist"})
-     * @ORM\JoinColumn(referencedColumnName="id")
+     * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
     private $author;
 
@@ -68,7 +68,7 @@ class Entry
      * @var Location
      *
      * @ORM\ManyToOne(targetEntity="Location", inversedBy="entries", cascade={"persist"})
-     * @ORM\JoinColumn(referencedColumnName="id")
+     * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
     private $location;
 

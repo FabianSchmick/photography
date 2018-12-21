@@ -99,12 +99,6 @@ class AuthorController extends Controller
     public function deleteAction(Request $request, Author $author)
     {
         $em = $this->getDoctrine()->getManager();
-        $entries = $em->getRepository('AppBundle:Entry')->findEntriesByAuthor($author);
-
-        foreach ($entries as $entry) {
-            $entry->setAuthor(null);
-            $em->persist($entry);
-        }
 
         $em->remove($author);
         $em->flush();

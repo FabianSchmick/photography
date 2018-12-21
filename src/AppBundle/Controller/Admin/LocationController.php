@@ -100,12 +100,6 @@ class LocationController extends Controller
     public function deleteAction(Request $request, Location $location)
     {
         $em = $this->getDoctrine()->getManager();
-        $entries = $em->getRepository('AppBundle:Entry')->findEntriesByLocation($location);
-
-        foreach ($entries as $entry) {
-            $entry->setLocation(null);
-            $em->persist($entry);
-        }
 
         $em->remove($location);
         $em->flush();
