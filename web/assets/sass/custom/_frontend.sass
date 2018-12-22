@@ -33,6 +33,18 @@ h4, .h4
     h2, .h2
         font-size: 22px
 
+a.link,
+article a,
+p a
+    border-bottom: 2px solid lighten($color-teritary, 9)
+    color: lighten($color-teritary, 9)
+    transition: all 0.2s ease-in
+
+    &:hover, &:focus
+        border-color: $color-teritary
+        color: $color-teritary
+        text-decoration: none
+
 .container
     width: 100%
     padding: 0 30px
@@ -84,6 +96,7 @@ header#menu
                 font-size: 12px
                 letter-spacing: 1px
                 font-weight: 500
+                transition: all 0.125s ease-in
 
                 &:hover
                     color: $color-teritary
@@ -197,6 +210,7 @@ header#menu
     position: relative
     height: 400px
     overflow: hidden
+    box-shadow: inset 0 -25px 25px -25px #000
 
     .parallax
         position: absolute
