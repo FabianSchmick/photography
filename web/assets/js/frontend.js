@@ -1,7 +1,7 @@
 // Global vars
 var currentPage = 1,
     entriesGallery = $("[data-fancybox='entries']"),
-    entriesGalleryLength = entriesGallery.length,
+    entriesGalleryLength = $(entriesGallery).length,
     checkAjax = true;
 
 $(document).ready(function() {
@@ -93,19 +93,22 @@ function loadEntries() {
         $(spinner).hide();
         $("[data-justified=\"true\"]").justifiedGallery("norewind");
 
-        callback(data);
+        entriesGalleryLength = $("[data-fancybox='entries']").length;
+
+        if ($.fancybox.getInstance()) { // If clicked throw lightbox
+            addContentToLightbox(data);
+        }
     });
 }
 
 // Callback because of asynchronous call
-function callback(data) {
+function addContentToLightbox(data) {
     $(data).each(function(index, element) {
         if (typeof $(element).data("src") !== "undefined") {
             $.fancybox.getInstance().addContent({
                 type: "ajax",
                 src: $(element).data("src")
             });
-            entriesGalleryLength++;
         }
     });
 
@@ -142,7 +145,7 @@ function lightbox() {
     $.fancybox.defaults.smallBtn = false;
     $.fancybox.defaults.buttons = ["close"];
 
-    $.fancybox.defaults.beforeShow = function(instance) {
+    $.fancybox.defaults.beforeShow = function() {
         var entries = $("[data-fancybox='entries']");
 
         history.pushState(null, "", $(entries[this.index]).attr("href"));
@@ -151,7 +154,7 @@ function lightbox() {
             loadEntries();
         }
     };
-    $.fancybox.defaults.afterClose = function(instance) {
+    $.fancybox.defaults.afterClose = function() {
         history.pushState(null, "", pageUrl);
     };
 
