@@ -27,11 +27,11 @@
     <section id="content" class="container">
         <h1>{{ tag.name }}</h1>
 
-        <div class="text-container text-center">
+        <article class="text-container text-center">
+            <h2 class="h4">{{ 'introduction.tag'|trans }} <strong>{{ tag.name }}</strong></h2>
+
             {% if tag.description != "" %}
                 {{ tag.description|raw }}
-            {% else %}
-                <p>{{ 'introduction.tag'|trans }} <strong>{{ tag.name }}</strong></p>
             {% endif %}
 
             {% if relatedTags|length > 1 %}
@@ -42,7 +42,7 @@
                     {% endfor %}
                 </ul>
             {% endif %}
-        </div>
+        </article>
 
         <div id="entries" data-justified="true">
             {{ render(controller('AppBundle:Tag:paginate', {'slug': tag.slug, 'page': 1 })) }}
