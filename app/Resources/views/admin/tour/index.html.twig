@@ -1,0 +1,50 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}{{ 'tours'|trans }}{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-xs-12">
+
+        <div class="page-header">
+            <div class="pull-left">
+                <h1>{{ 'tours'|trans }}</h1>
+            </div>
+            <div class="pull-right">
+                <ul class="actions list-unstyled pull-right">
+                    <li><a class="btn btn-primary" href="{{ path('admin_tour_new') }}">{{ 'new.tour'|trans }}</a></li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{ 'name'|trans }}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for tour in tours %}
+                <tr>
+                    <td>
+                        {{ loop.index }}
+                    </td>
+                    <td>
+                        {{ tour.name }}
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('admin_tour_edit', {'id': tour.id}) }}" title="{{ 'edit'|trans }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+{% endblock %}

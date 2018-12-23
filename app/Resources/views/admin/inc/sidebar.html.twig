@@ -62,6 +62,19 @@
                     {% endfor %}
                 </ul>
             </li>
+            <li class="subNav">
+                <a href="#"><i class="fa fa-map fa-fw"></i> {{ 'tours'|trans }}<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ path('admin_tour_new')}}"><i class="fa fa-plus"></i> {{ 'new.tour'|trans }}</a>
+                    </li>
+                    {% for tour in tours %}
+                        <li>
+                            <a href="{{ path('admin_tour_edit', {'id': tour.id}) }}">{{ tour.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

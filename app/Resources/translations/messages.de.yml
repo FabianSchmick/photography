@@ -11,11 +11,14 @@ authors: Autoren
 locations: Aufnahmeorte
 tags: Tags
 tag: Tag
+tours: Touren
+tour: Tour
 edit: Bearbeiten
 submit: Bestätigen
 delete: Löschen
 close: Schließen
 name: Name
+file: Datei
 
 # Base / Admin template
 photography: Fotografie
@@ -52,6 +55,12 @@ new.tag: Neuer Tag
 delete.msg.tag: Sind Sie sicher, dass Sie diesen Tag löschen möchten
 delete.tag.alert: Das Bild wird beim Speichern gelöscht werden
 success.deleted.tag: Der Tag <strong>%tag%</strong> wurde gelöscht
+
+# Tour
+new.tour: Neue Tour
+delete.msg.tour: Sind Sie sicher, dass Sie diese Tour löschen möchten
+success.deleted.tour: Die Tour <strong>%tour%</strong> wurde gelöscht
+previewEntry: Vorschau Eintrag
 
 # Sidebar
 search: Suche

@@ -133,6 +133,11 @@ vich_uploader:
             upload_destination: '%abs_upload_directory%/tags'
             namer:
                 service: Vich\UploaderBundle\Naming\UniqidNamer
+        tour_file:
+            uri_prefix: '%upload_directory%/tours'
+            upload_destination: '%abs_upload_directory%/tours'
+            namer:
+                service: Vich\UploaderBundle\Naming\UniqidNamer
 
 liip_imagine:
     resolvers:

@@ -33,12 +33,14 @@ class AdminController extends Controller
         $authors = $em->getRepository('AppBundle:Author')->findBy([], ['name' => 'ASC']);
         $locations = $em->getRepository('AppBundle:Location')->findBy([], ['name' => 'ASC']);
         $tags = $em->getRepository('AppBundle:Tag')->findBy([], ['sort' => 'DESC']);
+        $tours = $em->getRepository('AppBundle:Tour')->findBy([], ['updated' => 'DESC']);
 
         return $this->render('admin/inc/sidebar.html.twig', [
             'entries' => $entries,
             'authors' => $authors,
             'locations' => $locations,
             'tags' => $tags,
+            'tours' => $tours,
         ]);
     }
 }

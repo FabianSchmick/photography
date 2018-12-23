@@ -11,11 +11,14 @@ authors: Authors
 locations: Locations
 tags: Tags
 tag: Tag
+tours: Tours
+tour: Tour
 edit: Edit
 submit: Submit
 delete: Delete
 close: Close
 name: Name
+file: File
 
 # Base / Admin template
 photography: Photography
@@ -52,6 +55,12 @@ new.tag: New Tag
 delete.msg.tag: Are you sure you want to delete the tag
 delete.tag.alert: The image will get removed by saving the tag
 success.deleted.tag: The tag <strong>%tag%</strong> has been deleted
+
+# Tour
+new.tour: New Tour
+delete.msg.tour: Are you sure you want to delete the tour
+success.deleted.tour: The tour <strong>%tour%</strong> has been deleted
+previewEntry: Preview Entry
 
 # Sidebar
 search: Search

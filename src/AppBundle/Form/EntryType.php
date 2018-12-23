@@ -96,6 +96,15 @@ class EntryType extends AbstractType
                     'class' => 'select2 add form-control',
                 ],
             ])
+            ->add('tour', EntityType::class, [
+                'label' => 'tour',
+                'required' => false,
+                'class' => 'AppBundle:Tour',
+                'placeholder' => '',
+                'attr' => [
+                    'class' => 'select2 form-control',
+                ],
+            ])
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {

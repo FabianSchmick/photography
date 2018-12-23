@@ -97,6 +97,21 @@ class Entry
     private $tags;
 
     /**
+     * @var Tour
+     *
+     * @ORM\ManyToOne(targetEntity="Tour", inversedBy="entries", cascade={"persist"})
+     * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $tour;
+
+    /**
+     * @var Tour
+     *
+     * @ORM\OneToOne(targetEntity="Tour", mappedBy="previewEntry")
+     */
+    private $previewTour;
+
+    /**
      * @Gedmo\Translatable
      * @Gedmo\Slug(fields={"title"}, updatable=true)
      * @ORM\Column(type="string", unique=true)
@@ -116,6 +131,14 @@ class Entry
     {
         $this->tags = new ArrayCollection();
         $this->timestamp = new \DateTime();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 
     /**
@@ -290,6 +313,54 @@ class Entry
     public function setTags(ArrayCollection $tags)
     {
         $this->tags = $tags;
+    }
+
+    /**
+     * Set tour.
+     *
+     * @param Tour $tour
+     *
+     * @return Entry
+     */
+    public function setTour(Tour $tour)
+    {
+        $this->tour = $tour;
+
+        return $this;
+    }
+
+    /**
+     * Get tour.
+     *
+     * @return Tour
+     */
+    public function getTour()
+    {
+        return $this->tour;
+    }
+
+    /**
+     * Get previewTour.
+     *
+     * @return Tour
+     */
+    public function getPreviewTour()
+    {
+        return $this->previewTour;
+    }
+
+    /**
+     * Set previewTour.
+     *
+     * @param Tour $previewTour
+     *
+     * @return Entry
+     */
+    public function setPreviewTour(Tour $previewTour)
+    {
+        $this->previewTour = $previewTour;
+
+        return $this;
     }
 
     /**
