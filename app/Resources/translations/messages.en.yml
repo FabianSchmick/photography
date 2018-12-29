@@ -88,6 +88,17 @@ similar.tags: Similar tags
 noscript: Please enable JavaScript to use this website without any issues
 meta.desc: Photography Blog
 
+# Tour
+tours.headline: Tour recommendations
+introduction.tours.headline: My favorite tours
+introduction.tours: I would like to list my favorite tours here for you.
+show.tour: Show tour
+tour.distance: Length
+tour.distance.unit: km
+tour.minAltitude: Min altitude
+tour.maxAltitude: Max altitude
+tour.altitude.unit: hm
+
 # Errors
 Invalid CSRF token.: Invalid token, please try again
 

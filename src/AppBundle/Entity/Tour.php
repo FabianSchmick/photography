@@ -5,12 +5,13 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use phpGPX\Models\Track;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * Tour
+ * Tour.
  *
  * @ORM\Table(name="tour")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TourRepository")
@@ -93,6 +94,13 @@ class Tour
      * Used locale to override Translation listener`s locale
      */
     private $locale;
+
+    /**
+     * Helper variable for gpx data like distance, altitude, duration etc.
+     *
+     * @var Track
+     */
+    private $gpxData;
 
     /**
      * Tour constructor.
@@ -292,5 +300,21 @@ class Tour
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
+    }
+
+    /**
+     * @return Track
+     */
+    public function getGpxData()
+    {
+        return $this->gpxData;
+    }
+
+    /**
+     * @param Track $gpxData
+     */
+    public function setGpxData(Track $gpxData)
+    {
+        $this->gpxData = $gpxData;
     }
 }

@@ -159,3 +159,11 @@ liip_imagine:
             post_processors:
                 jpegoptim: { strip_all: true, max: '%jpeg_quality%', progressive: true }
                 optipng: { strip_all: true, level: '%png_level%' }
+        tour_thumbnail:
+            filters:
+                thumbnail:
+                    size: [1080, 500]
+                    mode: outbound
+            post_processors:
+                jpegoptim: { strip_all: true, max: '%jpeg_quality%', progressive: true }
+                optipng: { strip_all: true, level: '%png_level%' }

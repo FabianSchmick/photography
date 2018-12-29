@@ -46,6 +46,12 @@ class CoreController extends Controller
                 'priority' => '1.0',
             ];
 
+            $urls[] = [
+                'loc' => $router->generate('tour_index', ['_locale' => $locale]),
+                'changefreq' => 'weekly',
+                'priority' => '1.0',
+            ];
+
             $entries = $em->getRepository('AppBundle:Entry')->findAll();
 
             foreach ($entries as $entry) {

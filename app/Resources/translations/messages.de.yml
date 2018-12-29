@@ -88,6 +88,17 @@ similar.tags: Ähnliche Tags
 noscript: Bitte aktivieren Sie JavaScript um die Webseite im vollen Umfang nutzen zu können
 meta.desc: Fotografie Blog
 
+# Tour
+tours.headline: Touren Empfehlungen
+introduction.tours.headline: Meine Lieblingstouren
+introduction.tours: Meine Lieblingstouren möchte ich hier einmal für dich auflisten.
+show.tour: Tour anzeigen
+tour.distance: Länge
+tour.distance.unit: km
+tour.minAltitude: Tiefster Punkt
+tour.maxAltitude: Höchster Punkt
+tour.altitude.unit: hm
+
 # Errors
 Invalid CSRF token.: Ungültiger Token, bitte versuchen Sie es erneut
 

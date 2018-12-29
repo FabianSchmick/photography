@@ -15,6 +15,7 @@ The project provides you following functionality:
 - Image compression and thumbnail generation with [LiipImagineBundle](https://github.com/liip/LiipImagineBundle)
 - I18n support in English and German
 - Tag possibility for describing and filtering entries
+- Upload gpx files for showing your favorite tours and connect them with your entries
 - Lazyloading / Infinityscrolling for images
 - Justified Gallery with [JustifiedGallery](http://miromannino.github.io/Justified-Gallery/)
 - Lightbox with [Fancybox](http://fancyapps.com/fancybox/3/)
