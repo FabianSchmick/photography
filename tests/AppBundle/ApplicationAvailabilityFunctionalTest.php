@@ -31,6 +31,8 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
         yield ['/en/'];
         yield ['/login'];
         yield ['/en/tag/nature'];
+        yield ['/de/tour/'];
+        yield ['/en/tour/'];
         yield ['/sitemap.xml'];
     }
 }
