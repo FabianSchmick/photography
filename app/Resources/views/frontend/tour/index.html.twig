@@ -10,7 +10,7 @@
 
 {% block cover %}
     <section id="cover" class="parallax-container">
-        <div class="parallax" style="background-image: url({{ asset('assets/img/layout/cover-placeholder.jpg')|imagine_filter('entry_show') }})">
+        <div class="parallax" style="background-image: url({{ asset('assets/img/layout/cover-tour.jpg')|imagine_filter('entry_show') }})">
         </div>
     </section>
 {% endblock %}
@@ -25,50 +25,52 @@
             </p>
         </article>
 
-        <ul id="tours" class="tours row list-unstyled">
-            {% for tour in tours %}
-                <li class="col-lg-6">
-                    <a href="#">
-                        <div class="tour-preview-img">
-                            {% if tour.previewEntry %}
-                                <img src="{{ vich_uploader_asset(tour.previewEntry.image, 'file')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.previewEntry.title }}">
-                            {% else %}
-                                <img src="{{ asset('assets/img/layout/cover-placeholder.jpg')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.name }}">
-                            {% endif %}
-                        </div>
-                        <div class="tour-info-container">
-                            <div class="tour-info clearfix">
-                                <h4 class="h1">{{ tour.name }}</h4>
-                                {% if tour.description %}
-                                    {{ tour.description|raw }}
+        <div class="tours-container">
+            <ul class="tours row list-unstyled">
+                {% for tour in tours %}
+                    <li class="col-lg-6">
+                        <a href="#">
+                            <div class="tour-preview-img">
+                                {% if tour.previewEntry %}
+                                    <img src="{{ vich_uploader_asset(tour.previewEntry.image, 'file')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.previewEntry.title }}">
                                 {% else %}
-                                    <p>
-                                        {{ tour.gpxData.description }}
-                                    </p>
+                                    <img src="{{ asset('assets/img/layout/cover-tour.jpg')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.name }}">
                                 {% endif %}
-                                <dl class="meta">
-                                    {% if tour.gpxData.stats.distance %}
-                                        {% set distance = tour.gpxData.stats.distance / 1000 %}
-                                        <dt class="tour-distance"><i class="fa fa-arrows-h" aria-hidden="true" title="{{ 'tour.distance'|trans }}"></i></dt>
-                                        <dd class="tour-distance-value">{{ distance|number_format(1, ',', '.') }} {{ 'tour.distance.unit'|trans }}</dd>
-                                    {% endif %}
-                                    {% if tour.gpxData.stats.maxAltitude %}
-                                        <dt class="tour-maxAltitude"><i class="fa fa-angle-up " aria-hidden="true" title="{{ 'tour.maxAltitude'|trans }}"></i></dt>
-                                        <dd class="tour-maxAltitude-value">{{ tour.gpxData.stats.maxAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
-                                    {% endif %}
-                                    {% if tour.gpxData.stats.minAltitude %}
-                                        <dt class="tour-minAltitude"><i class="fa fa-angle-down " aria-hidden="true" title="{{ 'tour.minAltitude'|trans }}"></i></dt>
-                                        <dd class="tour-minAltitude-value">{{ tour.gpxData.stats.minAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
-                                    {% endif %}
-                                </dl>
-                                <button class="btn">
-                                     <i class="fa fa-angle-right" aria-hidden="true"></i> {{ 'show.tour'|trans }}
-                                </button>
                             </div>
-                        </div>
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
+                            <div class="tour-info-container">
+                                <div class="tour-info clearfix">
+                                    <h4 class="h1">{{ tour.name }}</h4>
+                                    {% if tour.description %}
+                                        {{ tour.description|truncate(220, true)|raw }}
+                                    {% else %}
+                                        <p>
+                                            {{ tour.gpxData.description|truncate(220, true) }}
+                                        </p>
+                                    {% endif %}
+                                    <dl class="meta">
+                                        {% if tour.gpxData.stats.distance %}
+                                            {% set distance = tour.gpxData.stats.distance / 1000 %}
+                                            <dt class="tour-distance"><i class="fa fa-arrows-h" aria-hidden="true" title="{{ 'tour.distance'|trans }}"></i></dt>
+                                            <dd class="tour-distance-value">{{ distance|number_format(1, ',', '.') }} {{ 'tour.distance.unit'|trans }}</dd>
+                                        {% endif %}
+                                        {% if tour.gpxData.stats.maxAltitude %}
+                                            <dt class="tour-maxAltitude"><i class="fa fa-angle-up " aria-hidden="true" title="{{ 'tour.maxAltitude'|trans }}"></i></dt>
+                                            <dd class="tour-maxAltitude-value">{{ tour.gpxData.stats.maxAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
+                                        {% endif %}
+                                        {% if tour.gpxData.stats.minAltitude %}
+                                            <dt class="tour-minAltitude"><i class="fa fa-angle-down " aria-hidden="true" title="{{ 'tour.minAltitude'|trans }}"></i></dt>
+                                            <dd class="tour-minAltitude-value">{{ tour.gpxData.stats.minAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
+                                        {% endif %}
+                                    </dl>
+                                    <button class="btn btn-inverse">
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i> {{ 'show.tour'|trans }}
+                                    </button>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </section>
 {% endblock %}
