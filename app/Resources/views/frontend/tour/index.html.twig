@@ -10,7 +10,7 @@
 
 {% block cover %}
     <section id="cover" class="parallax-container">
-        <div class="parallax" style="background-image: url({{ asset('assets/img/layout/cover-tour.jpg')|imagine_filter('entry_show') }})">
+        <div class="parallax" style="background-image: url({{ asset('assets/img/layout/cover-placeholder.jpg')|imagine_filter('entry_show') }})">
         </div>
     </section>
 {% endblock %}
@@ -25,7 +25,13 @@
             </p>
         </article>
 
-        <div class="tours-container">
+        <div id="tours-container">
+            {% if pages > 1 %}
+                <ul class="pagination" data-replace="#tours-container">
+                    {{ paginate(page, pages, 'tour_index_paginated') }}
+                </ul>
+            {% endif %}
+
             <ul class="tours row list-unstyled">
                 {% for tour in tours %}
                     <li class="col-lg-6">
@@ -34,7 +40,7 @@
                                 {% if tour.previewEntry %}
                                     <img src="{{ vich_uploader_asset(tour.previewEntry.image, 'file')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.previewEntry.title }}">
                                 {% else %}
-                                    <img src="{{ asset('assets/img/layout/cover-tour.jpg')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.name }}">
+                                    <img src="{{ asset('assets/img/layout/cover-placeholder.jpg')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.name }}">
                                 {% endif %}
                             </div>
                             <div class="tour-info-container">
@@ -71,6 +77,22 @@
                     </li>
                 {% endfor %}
             </ul>
+
+            {% if pages > 1 %}
+                <ul class="pagination" data-replace="#tours-container">
+                    {{ paginate(page, pages, 'tour_index_paginated') }}
+                </ul>
+            {% endif %}
         </div>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="application/javascript">
+        jQuery(document).ready(function() {
+            pagination();
+        });
+    </script>
 {% endblock %}

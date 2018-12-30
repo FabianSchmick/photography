@@ -86,6 +86,15 @@ p a
     @media(max-width: 450px)
         padding: 7px 17px
 
+ul.pagination
+    li
+        a
+            transition: all 0.2s ease-in
+        &.active a, &.active a:hover, &.active a:focus, a:hover , a:focus
+            background-color: $color-teritary
+            border-color: $color-teritary
+            color: $color-secondary
+
 header#menu
     padding: 20px
     transition: padding 0.8s ease, background-color 0.8s ease
@@ -477,7 +486,7 @@ header#menu
         transition: all 0.2s ease-in
         &:hover
             opacity: 0.8
-            color: #fff
+            color: $color-secondary
 
     .prev
         right: 15px
@@ -536,7 +545,7 @@ header#menu
             height: 100%
             width: 20%
             padding: 0 30px
-            color: #fff
+            color: $color-secondary
 
         a
             text-decoration: none
@@ -615,9 +624,23 @@ ul.tags
                 color: $color-secondary
                 background: $color-teritary
 
-ul.tours
+#tours-container
     margin-top: 110px
     margin-bottom: 30px
+    text-align: center
+
+    .pagination
+        margin-top: 0
+
+    @media(max-width: 450px)
+        margin-top: 30px
+
+        .pagination
+            margin-bottom: 10px
+
+ul.tours
+    margin-bottom: 0
+    text-align: initial
 
     li
         position: relative
@@ -639,7 +662,7 @@ ul.tours
             max-width: calc(100% - 30px)
             background: rgba(0,0,0,0.7)
             transition: all 0.3s
-            color: #fff
+            color: $color-secondary
 
             .tour-info
                 position: relative
@@ -661,7 +684,7 @@ ul.tours
                         display: inline-block
 
                     dt
-                        border: 1px solid #fff
+                        border: 1px solid $color-secondary
                         margin-right: 5px
                         border-radius: 50%
                         width: 35px
@@ -741,9 +764,6 @@ ul.tours
 
             .btn
                 background: $color-teritary
-
-    @media(max-width: 450px)
-        margin-top: 30px
 
 .fancybox-active.compensate-for-scrollbar
     #menu,

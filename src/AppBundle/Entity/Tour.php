@@ -20,6 +20,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Tour
 {
+    const PAGINATION_QUANTITY = 6;
+
     /**
      * @var int
      *

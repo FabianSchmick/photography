@@ -10,4 +10,19 @@ namespace AppBundle\Repository;
  */
 class TourRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Return query to load all entries.
+     *
+     * @return \Doctrine\ORM\Query The query
+     */
+    public function getFindAllQuery()
+    {
+        $query = $this->_em->createQueryBuilder()
+            ->select('t')
+            ->from($this->getEntityName(), 't')
+            ->orderBy('t.updated', 'DESC')
+            ->getQuery();
+
+        return $query;
+    }
 }

@@ -19,6 +19,8 @@ delete: Löschen
 close: Schließen
 name: Name
 file: Datei
+pagination.prev: '<i class="fa fa-angle-left" aria-hidden="true" title="Zurück"></i>'
+pagination.next: '<i class="fa fa-angle-right" aria-hidden="true" title="Weiter"></i>'
 
 # Base / Admin template
 photography: Fotografie

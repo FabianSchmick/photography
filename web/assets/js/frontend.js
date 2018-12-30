@@ -34,9 +34,8 @@ function navigation() {
             var target = $(this.hash);
             target = target.length ? target : $("[name=" + this.hash.slice(1) +"]");
             if (target.length) {
-                $("html,body").animate({
-                    scrollTop: target.offset().top - 40
-                }, 900);
+                smoothScroll(target);
+
                 return false;
             }
         }
@@ -195,4 +194,32 @@ function loadNextPrevEntry() {
             history.pushState(null, "", url);
         });
     }
+}
+
+// Ajax replace for pagination
+function pagination() {
+    $('main').on('click', 'ul.pagination a', function (e) {
+        var url = $(this).attr('href'),
+            pagination = $(this).closest('ul.pagination'),
+            replace = $(pagination).data('replace');
+
+        $.get(url, function(data) {
+            var html = $.parseHTML(data);
+
+            $(replace).replaceWith($(html).find(replace));
+
+            smoothScroll(replace);
+
+            history.pushState(null, "", url);
+        });
+
+        e.preventDefault();
+    })
+}
+
+// Smooth scroll to an element
+function smoothScroll(target) {
+    $("html,body").animate({
+        scrollTop: $(target).offset().top - 50
+    }, 900);
 }

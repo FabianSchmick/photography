@@ -1,0 +1,3 @@
+{% for pagination in paginations %}
+    <li class="{{ pagination.class }}"><a href="{{ pagination.path }}">{{ pagination.text|raw }}</a></li>
+{% endfor %}

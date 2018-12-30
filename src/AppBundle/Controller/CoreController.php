@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Doctrine\PaginationHelper;
+use AppBundle\Entity\Tour;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,11 +48,16 @@ class CoreController extends Controller
                 'priority' => '1.0',
             ];
 
-            $urls[] = [
-                'loc' => $router->generate('tour_index', ['_locale' => $locale]),
-                'changefreq' => 'weekly',
-                'priority' => '1.0',
-            ];
+            $query = $em->getRepository('AppBundle:Tour')->getFindAllQuery();
+            $pages = PaginationHelper::getPagesCount($query, Tour::PAGINATION_QUANTITY);
+
+            for ($i=1; $i < $pages +1; $i++) {
+                $urls[] = [
+                    'loc' => $router->generate('tour_index_paginated', ['_locale' => $locale, 'page' => $i]),
+                    'changefreq' => 'weekly',
+                    'priority' => '1.0',
+                ];
+            }
 
             $entries = $em->getRepository('AppBundle:Entry')->findAll();
 
