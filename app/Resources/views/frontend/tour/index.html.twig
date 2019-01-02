@@ -35,7 +35,7 @@
             <ul class="tours row list-unstyled">
                 {% for tour in tours %}
                     <li class="col-lg-6">
-                        <a href="#">
+                        <a href="{{ path('tour_show', {'slug': tour.slug}) }}">
                             <div class="tour-preview-img">
                                 {% if tour.previewEntry %}
                                     <img src="{{ vich_uploader_asset(tour.previewEntry.image, 'file')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.previewEntry.title }}">
@@ -60,11 +60,11 @@
                                             <dd class="tour-distance-value">{{ distance|number_format(1, ',', '.') }} {{ 'tour.distance.unit'|trans }}</dd>
                                         {% endif %}
                                         {% if tour.gpxData.stats.maxAltitude %}
-                                            <dt class="tour-maxAltitude"><i class="fa fa-angle-up " aria-hidden="true" title="{{ 'tour.maxAltitude'|trans }}"></i></dt>
+                                            <dt class="tour-maxAltitude"><i class="fa fa-angle-up" aria-hidden="true" title="{{ 'tour.maxAltitude'|trans }}"></i></dt>
                                             <dd class="tour-maxAltitude-value">{{ tour.gpxData.stats.maxAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
                                         {% endif %}
                                         {% if tour.gpxData.stats.minAltitude %}
-                                            <dt class="tour-minAltitude"><i class="fa fa-angle-down " aria-hidden="true" title="{{ 'tour.minAltitude'|trans }}"></i></dt>
+                                            <dt class="tour-minAltitude"><i class="fa fa-angle-down" aria-hidden="true" title="{{ 'tour.minAltitude'|trans }}"></i></dt>
                                             <dd class="tour-minAltitude-value">{{ tour.gpxData.stats.minAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
                                         {% endif %}
                                     </dl>

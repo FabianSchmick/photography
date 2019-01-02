@@ -115,17 +115,7 @@ function addContentToLightbox(data) {
 }
 
 // Justify entries
-function justify() {
-    var rowHeight = 400;
-
-    if ($(window).width() < 1025) {
-        rowHeight = 300;
-    } else if ($(window).width() < 768) {
-        rowHeight = 200;
-    } else if ($(window).width() < 500) {
-        rowHeight = 125;
-    }
-
+function justify(rowHeight) {
     $("[data-justified=\"true\"]").justifiedGallery({
         rowHeight: rowHeight,
         maxRowHeight: "175%",
@@ -149,7 +139,7 @@ function lightbox() {
 
         history.pushState(null, "", $(entries[this.index]).attr("href"));
 
-        if (checkAjax && this.index >= entriesGalleryLength - 3) {
+        if (paginateUrl && checkAjax && this.index >= entriesGalleryLength - 3) {
             loadEntries();
         }
     };
@@ -222,4 +212,16 @@ function smoothScroll(target) {
     $("html,body").animate({
         scrollTop: $(target).offset().top - 50
     }, 900);
+}
+
+// Create a new map with gpx track
+function map(gpx, coordinates) {
+    var map = L.map('map').setView(coordinates, 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    omnivore.gpx(gpx).addTo(map);
 }

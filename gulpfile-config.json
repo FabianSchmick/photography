@@ -18,6 +18,13 @@
     "dest": "assets/dist/css/font/"
   },
 
+  "images": {
+    "src": [
+      "./node_modules/leaflet/dist/images/*"
+    ],
+    "dest": "assets/dist/css/images/"
+  },
+
   "styles": {
     "frontend": {
       "src": [
@@ -25,6 +32,7 @@
         "./node_modules/bootstrap/dist/css/bootstrap.css",
         "./node_modules/justifiedGallery/dist/css/justifiedGallery.css",
         "./node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css",
+        "./node_modules/leaflet/dist/leaflet.css",
         "./web/assets/sass/frontend.sass"
       ],
       "dest": "assets/dist/css/main.css"
@@ -52,6 +60,8 @@
         "./node_modules/justifiedGallery/dist/js/jquery.justifiedGallery.js",
         "./node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js",
         "./node_modules/detect_swipe/jquery.detect_swipe.js",
+        "./node_modules/leaflet/dist/leaflet.js",
+        "./node_modules/@mapbox/leaflet-omnivore/leaflet-omnivore.js",
         "./web/assets/js/frontend.js"
       ],
       "dest": "assets/dist/js/main.js"

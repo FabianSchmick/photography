@@ -99,6 +99,7 @@ tour.distance: Length
 tour.distance.unit: km
 tour.minAltitude: Min altitude
 tour.maxAltitude: Max altitude
+tour.cumulativeElevationGain: Elevation gain
 tour.altitude.unit: hm
 
 # Errors

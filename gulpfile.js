@@ -28,6 +28,11 @@ gulp.task('font', function () {
         .pipe(gulp.dest(config.publicPath + '/' + config.font.dest));
 });
 
+gulp.task('images', function () {
+    return gulp.src(config.images.src)
+        .pipe(gulp.dest(config.publicPath + '/' + config.images.dest));
+});
+
 gulp.task('styles', function () {
     return styles(config.styles.frontend);
 });
@@ -45,7 +50,7 @@ gulp.task('scripts-admin', function() {
 });
 
 gulp.task('clean:styles', function () {
-    return del([assetsPath + '/dist/css/*', '!' + assetsPath + '/dist/css/font']);
+    return del([assetsPath + '/dist/css/*', '!' + assetsPath + '/dist/css/font', '!' + assetsPath + '/dist/css/images']);
 });
 
 gulp.task('clean:scripts', function () {
@@ -88,6 +93,7 @@ gulp.task('default',
         'clean',
         'fonts',
         'font',
+        'images',
         'scripts',
         'styles',
         'scripts-admin',
@@ -128,6 +134,7 @@ gulp.task('deploy',
         'clean',
         'fonts',
         'font',
+        'images',
         'deploy:scripts',
         'deploy:styles',
         'deploy:scripts-admin',

@@ -61,6 +61,23 @@ p a
         font-weight: bold
         letter-spacing: 0.4px
 
+    .meta
+        display: inline-block
+        margin: 0
+
+        dt,
+        dd
+            display: inline-block
+
+        dt
+            width: 20px
+            text-align: center
+
+        dd
+            padding-right: 18px
+            &:last-child
+                padding-right: 0
+
 .btn
     display: inline-block
     padding: 10px 25px
@@ -420,6 +437,7 @@ header#menu
     .meta
         padding: 10px 0
         margin: 0
+        line-height: 26px
 
         dd
             display: inline
@@ -764,6 +782,22 @@ ul.tours
 
             .btn
                 background: $color-teritary
+
+.gallery
+    position: relative
+    margin-top: 110px
+    margin-bottom: 30px
+    text-align: center
+
+    a
+        border-bottom: none
+
+    @media(max-width: 450px)
+        margin-top: 30px
+
+#map
+    height: 400px
+    margin-bottom: 50px
 
 .fancybox-active.compensate-for-scrollbar
     #menu,

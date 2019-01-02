@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block meta_description %}{{ tour.description ? tour.description|striptags|truncate(160) : tour.gpxData.description|truncate(160) }}{% endblock %}
+
+{% set img = tour.previewEntry ? vich_uploader_asset(tour.previewEntry.image, 'file') : asset('assets/img/layout/cover-placeholder.jpg') %}
+{% block meta_image %}{{ absolute_url(img) }}{% endblock %}
+
+{% block title %}{{ 'tour'|trans }} - {{ tour.name }}{% endblock %}
+
+{% block cover %}
+    <section id="cover" class="parallax-container">
+        <div class="parallax" style="background-image: url({{ img|imagine_filter('entry_show') }})">
+        </div>
+    </section>
+{% endblock %}
+
+{% block content %}
+    <section id="content" class="container">
+        <h1>{{ tour.name }}</h1>
+        <article class="text-container text-center">
+            {% if tour.description %}
+                {{ tour.description|raw }}
+            {% else %}
+                <p>
+                    {{ tour.gpxData.description }}
+                </p>
+            {% endif %}
+            <dl class="meta">
+                {% if tour.gpxData.stats.distance %}
+                    {% set distance = tour.gpxData.stats.distance / 1000 %}
+                    <dt class="tour-distance"><i class="fa fa-arrows-h" aria-hidden="true" title="{{ 'tour.distance'|trans }}"></i></dt>
+                    <dd class="tour-distance-value">{{ distance|number_format(1, ',', '.') }} {{ 'tour.distance.unit'|trans }}</dd>
+                {% endif %}
+                {% if tour.gpxData.stats.maxAltitude %}
+                    <dt class="tour-maxAltitude"><i class="fa fa-angle-up" aria-hidden="true" title="{{ 'tour.maxAltitude'|trans }}"></i></dt>
+                    <dd class="tour-maxAltitude-value">{{ tour.gpxData.stats.maxAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
+                {% endif %}
+                {% if tour.gpxData.stats.minAltitude %}
+                    <dt class="tour-minAltitude"><i class="fa fa-angle-down" aria-hidden="true" title="{{ 'tour.minAltitude'|trans }}"></i></dt>
+                    <dd class="tour-minAltitude-value">{{ tour.gpxData.stats.minAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
+                {% endif %}
+                {% if tour.gpxData.stats.cumulativeElevationGain %}
+                    <dt class="tour-cumulativeElevationGain"><i class="fa fa-expand" aria-hidden="true" title="{{ 'tour.cumulativeElevationGain'|trans }}"></i></dt>
+                    <dd class="tour-cumulativeElevationGain-value">{{ tour.gpxData.stats.cumulativeElevationGain|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
+                {% endif %}
+            </dl>
+            <div class="gallery" data-justified="true">
+                {% for entry in tour.entries %}
+                    {% set url = path('entry_show', {'slug': entry.slug}) %}
+                    {% set src = path('ajax_entry_show', {'id': entry.id}) %}
+                    <a href="{{ url }}" data-fancybox="entries" data-src="{{ src }}" data-type="ajax">
+                        <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_thumbnail') }}" alt="{{ entry.title }}">
+                    </a>
+                {% endfor %}
+            </div>
+            <div id="map"></div>
+        </article>
+
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% set firstPoint = tour.gpxData.segments[0].points[0] %}
+
+    <script type="application/javascript">
+        var paginateUrl = false;
+
+        jQuery(document).ready(function() {
+            justify();
+            lightbox();
+            map('{{ vich_uploader_asset(tour.file, 'file') }}', [{{ firstPoint.latitude }}, {{ firstPoint.longitude }}])
+        });
+    </script>
+{% endblock %}

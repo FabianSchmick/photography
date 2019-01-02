@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Doctrine\PaginationHelper;
 use AppBundle\Entity\Tour;
 use AppBundle\Service\CoreService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -24,11 +25,12 @@ class TourController extends Controller
 
         $query = $em->getRepository('AppBundle:Tour')->getFindAllQuery();
         $pages = PaginationHelper::getPagesCount($query, Tour::PAGINATION_QUANTITY);
-        $tours = PaginationHelper::paginate($query, Tour::PAGINATION_QUANTITY, $page);
 
         if ($page > 1 && $page > $pages) {
             throw new NotFoundHttpException();
         }
+
+        $tours = PaginationHelper::paginate($query, Tour::PAGINATION_QUANTITY, $page);
 
         foreach ($tours as $tour) {
             $coreService->setGpxData($tour);
@@ -38,6 +40,19 @@ class TourController extends Controller
             'tours' => $tours,
             'page' => $page,
             'pages' => $pages,
+        ]);
+    }
+
+    /**
+     * @Route("/tour/{slug}", name="tour_show")
+     * @ParamConverter("tour", class="AppBundle:Tour", options={"repository_method" = "findOneByCriteria"})
+     */
+    public function showAction(Request $request, CoreService $coreService, Tour $tour)
+    {
+        $coreService->setGpxData($tour);
+
+        return $this->render('frontend/tour/show.html.twig', [
+            'tour' => $tour,
         ]);
     }
 }

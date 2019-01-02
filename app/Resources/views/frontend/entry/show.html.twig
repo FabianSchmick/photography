@@ -53,6 +53,10 @@
                         <dt class="entry-location">{{ 'location'|trans }}:</dt>
                         <dd class="entry-location-value">{{ entry.location.name }}</dd>
                     {% endif %}
+                    {% if entry.tour.name is defined %}
+                        <dt class="entry-tour">{{ 'tour'|trans }}:</dt>
+                        <dd class="entry-tour-value"><a href="{{ path('tour_show', {'slug': entry.tour.slug }) }}">{{ entry.tour.name }}</a></dd>
+                    {% endif %}
                     {% if entry.author.name is defined %}
                         <dt class="entry-author">{{ 'author'|trans }}:</dt>
                         <dd class="entry-author-value">{{ entry.author.name }}</dd>

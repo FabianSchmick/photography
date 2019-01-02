@@ -99,6 +99,7 @@ tour.distance: Länge
 tour.distance.unit: km
 tour.minAltitude: Tiefster Punkt
 tour.maxAltitude: Höchster Punkt
+tour.cumulativeElevationGain: Höhenunterschied
 tour.altitude.unit: hm
 
 # Errors
