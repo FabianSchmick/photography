@@ -21,7 +21,7 @@ class TagController extends Controller
      *
      * @Route("/", name="admin_tag_index")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
         $tags = $em->getRepository('AppBundle:Tag')->findAll();
@@ -96,7 +96,7 @@ class TagController extends Controller
      *
      * @Route("/delete/{id}", name="admin_tag_delete")
      */
-    public function deleteAction(Request $request, TranslatorInterface $translator, Tag $tag)
+    public function deleteAction(TranslatorInterface $translator, Tag $tag)
     {
         $em = $this->getDoctrine()->getManager();
 

@@ -22,7 +22,7 @@ class LocationController extends Controller
      *
      * @Route("/", name="admin_location_index")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
         $locations = $em->getRepository('AppBundle:Location')->findAll();
@@ -97,7 +97,7 @@ class LocationController extends Controller
      *
      * @Route("/delete/{id}", name="admin_location_delete")
      */
-    public function deleteAction(Request $request, TranslatorInterface $translator, Location $location)
+    public function deleteAction(TranslatorInterface $translator, Location $location)
     {
         $em = $this->getDoctrine()->getManager();
 

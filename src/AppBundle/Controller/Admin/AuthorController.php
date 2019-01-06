@@ -21,7 +21,7 @@ class AuthorController extends Controller
      *
      * @Route("/", name="admin_authors_index")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
         $authors = $em->getRepository('AppBundle:Author')->findAll();
@@ -96,7 +96,7 @@ class AuthorController extends Controller
      *
      * @Route("/delete/{id}", name="admin_author_delete")
      */
-    public function deleteAction(Request $request, TranslatorInterface $translator, Author $author)
+    public function deleteAction(TranslatorInterface $translator, Author $author)
     {
         $em = $this->getDoctrine()->getManager();
 

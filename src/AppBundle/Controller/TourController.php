@@ -7,7 +7,6 @@ use AppBundle\Entity\Tour;
 use AppBundle\Service\CoreService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -19,7 +18,7 @@ class TourController extends Controller
     /**
      * @Route("/tour/page/{page}", name="tour_index_paginated", requirements={"page": "\d+"})
      */
-    public function indexAction(Request $request, CoreService $coreService, $page)
+    public function indexAction(CoreService $coreService, $page)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -47,7 +46,7 @@ class TourController extends Controller
      * @Route("/tour/{slug}", name="tour_show")
      * @ParamConverter("tour", class="AppBundle:Tour", options={"repository_method" = "findOneByCriteria"})
      */
-    public function showAction(Request $request, CoreService $coreService, Tour $tour)
+    public function showAction(CoreService $coreService, Tour $tour)
     {
         $coreService->setGpxData($tour);
 

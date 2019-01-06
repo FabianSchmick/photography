@@ -21,7 +21,7 @@ class EntryController extends Controller
      *
      * @Route("/", name="admin_entry_index")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
         $entries = $em->getRepository('AppBundle:Entry')->findAll();
@@ -96,7 +96,7 @@ class EntryController extends Controller
      *
      * @Route("/delete/{id}", name="admin_entry_delete")
      */
-    public function deleteAction(Request $request, TranslatorInterface $translator, Entry $entry)
+    public function deleteAction(TranslatorInterface $translator, Entry $entry)
     {
         $em = $this->getDoctrine()->getManager();
 

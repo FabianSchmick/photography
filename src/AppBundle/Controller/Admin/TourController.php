@@ -21,7 +21,7 @@ class TourController extends Controller
      *
      * @Route("/", name="admin_tour_index")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
         $tours = $em->getRepository('AppBundle:Tour')->findAll();
@@ -96,7 +96,7 @@ class TourController extends Controller
      *
      * @Route("/delete/{id}", name="admin_tour_delete")
      */
-    public function deleteAction(Request $request, TranslatorInterface $translator, Tour $tour)
+    public function deleteAction(TranslatorInterface $translator, Tour $tour)
     {
         $em = $this->getDoctrine()->getManager();
 

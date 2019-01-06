@@ -3,7 +3,6 @@
 namespace AppBundle\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -16,7 +15,7 @@ class AdminController extends Controller
     /**
      * @Route("/", name="admin_index")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         // Till I don't know what to display here, redirect to new entry
         return $this->redirect($this->generateUrl('admin_entry_new'));

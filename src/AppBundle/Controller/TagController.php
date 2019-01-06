@@ -21,7 +21,7 @@ class TagController extends Controller
      * @Route("/tag/{slug}", name="tag_show")
      * @ParamConverter("tag", class="AppBundle:Tag", options={"repository_method" = "findOneByCriteria"})
      */
-    public function showAction(Request $request, Tag $tag)
+    public function showAction(Tag $tag)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -39,7 +39,7 @@ class TagController extends Controller
      * @Route("/ajax/tag/{slug}/{page}", name="paginate_by_tag", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
      * @ParamConverter("tag", class="AppBundle:Tag", options={"repository_method" = "findOneByCriteria", "mapping": {"slug": "slug"}})
      */
-    public function paginateAction(Request $request, Tag $tag, $page = 1)
+    public function paginateAction(Tag $tag, $page = 1)
     {
         $em = $this->getDoctrine()->getManager();
 
