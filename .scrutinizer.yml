@@ -1,0 +1,53 @@
+build:
+    nodes:
+        analysis:
+            project_setup:
+                override:
+                    - 'true'
+            tests:
+                override:
+                    - ./vendor/bin/simple-phpunit
+                    - php-scrutinizer-run
+                    -
+                        command: phpcs-run
+                        use_website_config: true
+                    - js-scrutinizer-run
+
+    dependencies:
+        before:
+            - mysql -uroot -e 'CREATE DATABASE application'
+        override:
+            - composer install --no-interaction
+            - php bin/console doctrine:migrations:migrate --no-interaction
+            - php bin/console doctrine:fixtures:load --no-interaction
+            - npm install
+            - ./node_modules/.bin/gulp deploy
+
+    environment:
+        timezone: Europe/Paris
+        php:
+            version: "7.2"
+        postgresql: false
+        rabbitmq: false
+        mysql: 5.7
+        redis: false
+
+filter:
+    excluded_paths:
+        - 'app/*'
+        - 'tests/*'
+        - 'bin/*'
+        - 'github/*'
+        - 'var/*'
+        - 'web/assets/dist/*'
+
+checks:
+    php: true
+    javascript: true
+
+tools:
+    sensiolabs_security_checker: true
+    php_loc: true
+    php_pdepend: true
+    php_sim: true
+    php_changetracking: true

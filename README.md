@@ -1,6 +1,8 @@
 Photography
 ===========
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/FabianSchmick/photography/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/FabianSchmick/photography/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/FabianSchmick/photography/badges/build.png?b=master)](https://scrutinizer-ci.com/g/FabianSchmick/photography/build-status/master)
+
 This project is based on the [Symfony PHP Framework](http://symfony.com/) and should be seen as some sort of small template for photographs.
 You should have experience in web development to adjust the project to your preferences.
 
@@ -37,6 +39,11 @@ composer install
 ```
 
 To start the application [Setup Symfony](https://symfony.com/doc/3.4/setup.html#running-the-symfony-application) or use [vagrantfile for local development](https://github.com/FabianSchmick/vagrant_skeleton/blob/master/README.md) or use [migraw for local development](https://github.com/marcharding/migraw)
+
+Generate the database schema
+```
+php bin/console doctrine:migrations:migrate
+```
 
 **Backend password:**
 
