@@ -55,7 +55,7 @@ class CoreController extends Controller
                 $urls[] = [
                     'loc' => $router->generate('tour_index_paginated', ['_locale' => $locale, 'page' => $i]),
                     'changefreq' => 'weekly',
-                    'priority' => '1.0',
+                    'priority' => '0.5',
                 ];
             }
 
@@ -80,6 +80,19 @@ class CoreController extends Controller
 
                 $urls[] = [
                     'loc' => $router->generate('tag_show', ['_locale' => $locale, 'slug' => $tag->getSlug()]),
+                    'changefreq' => 'weekly',
+                    'priority' => '0.5',
+                ];
+            }
+
+            $tours = $em->getRepository('AppBundle:Tour')->findAll();
+
+            foreach ($tours as $tour) {
+                $tour->setTranslatableLocale($locale);
+                $em->refresh($tour);
+
+                $urls[] = [
+                    'loc' => $router->generate('tour_show', ['_locale' => $locale, 'slug' => $tour->getSlug()]),
                     'changefreq' => 'weekly',
                     'priority' => '0.5',
                 ];
