@@ -55,18 +55,20 @@
                     <div id="map"></div>
                     <a class="btn" href="{{ vich_uploader_asset(tour.file, 'file') }}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> {{ 'tour.download'|trans }}</a>
                 </div>
-                <div class="col-xs-12 tour-pictures">
-                    <h3>{{ 'tour.pictures'|trans }}</h3>
-                    <div class="text-container gallery" data-justified="true">
-                        {% for entry in tour.entries %}
-                            {% set url = path('entry_show', {'slug': entry.slug}) %}
-                            {% set src = path('ajax_entry_show', {'id': entry.id}) %}
-                            <a href="{{ url }}" data-fancybox="entries" data-src="{{ src }}" data-type="ajax">
-                                <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_thumbnail') }}" alt="{{ entry.title }}">
-                            </a>
-                        {% endfor %}
+                {% if not tour.entries.empty %}
+                    <div class="col-xs-12 tour-pictures">
+                        <h3>{{ 'tour.pictures'|trans }}</h3>
+                        <div class="text-container gallery" data-justified="true">
+                            {% for entry in tour.entries %}
+                                {% set url = path('entry_show', {'slug': entry.slug}) %}
+                                {% set src = path('ajax_entry_show', {'id': entry.id}) %}
+                                <a href="{{ url }}" data-fancybox="entries" data-src="{{ src }}" data-type="ajax">
+                                    <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_thumbnail') }}" alt="{{ entry.title }}">
+                                </a>
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
         </article>
     </section>
