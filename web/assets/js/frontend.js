@@ -216,7 +216,13 @@ function smoothScroll(target) {
 
 // Create a new map with gpx track
 function map(gpx, coordinates) {
-    var map = L.map('map').setView(coordinates, 13);
+    var map = L.map('map', {
+        scrollWheelZoom: false
+    }).setView(coordinates, 13);
+
+
+    map.on('focus', function() { map.scrollWheelZoom.enable(); });
+    map.on('blur', function() { map.scrollWheelZoom.disable(); });
 
     L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
         maxZoom: 18,

@@ -16,46 +16,59 @@
 
 {% block content %}
     <section id="content" class="container">
-        <h1>{{ tour.name }}</h1>
-        <article class="text-container text-center">
-            {% if tour.description %}
-                {{ tour.description|raw }}
-            {% else %}
-                <p>
-                    {{ tour.gpxData.description }}
-                </p>
-            {% endif %}
-            <dl class="meta">
-                {% if tour.gpxData.stats.distance %}
-                    {% set distance = tour.gpxData.stats.distance / 1000 %}
-                    <dt class="tour-distance"><i class="fa fa-arrows-h" aria-hidden="true" title="{{ 'tour.distance'|trans }}"></i></dt>
-                    <dd class="tour-distance-value">{{ distance|number_format(1, ',', '.') }} {{ 'tour.distance.unit'|trans }}</dd>
+        <article class="tour">
+            <h1>{{ tour.name }}</h1>
+            <div class="text-container text-center tour-desc">
+                {% if tour.description %}
+                    {{ tour.description|raw }}
+                {% else %}
+                    <p>
+                        {{ tour.gpxData.description }}
+                    </p>
                 {% endif %}
-                {% if tour.gpxData.stats.maxAltitude %}
-                    <dt class="tour-maxAltitude"><i class="fa fa-angle-up" aria-hidden="true" title="{{ 'tour.maxAltitude'|trans }}"></i></dt>
-                    <dd class="tour-maxAltitude-value">{{ tour.gpxData.stats.maxAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
-                {% endif %}
-                {% if tour.gpxData.stats.minAltitude %}
-                    <dt class="tour-minAltitude"><i class="fa fa-angle-down" aria-hidden="true" title="{{ 'tour.minAltitude'|trans }}"></i></dt>
-                    <dd class="tour-minAltitude-value">{{ tour.gpxData.stats.minAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
-                {% endif %}
-                {% if tour.gpxData.stats.cumulativeElevationGain %}
-                    <dt class="tour-cumulativeElevationGain"><i class="fa fa-expand" aria-hidden="true" title="{{ 'tour.cumulativeElevationGain'|trans }}"></i></dt>
-                    <dd class="tour-cumulativeElevationGain-value">{{ tour.gpxData.stats.cumulativeElevationGain|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
-                {% endif %}
-            </dl>
-            <div class="gallery" data-justified="true">
-                {% for entry in tour.entries %}
-                    {% set url = path('entry_show', {'slug': entry.slug}) %}
-                    {% set src = path('ajax_entry_show', {'id': entry.id}) %}
-                    <a href="{{ url }}" data-fancybox="entries" data-src="{{ src }}" data-type="ajax">
-                        <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_thumbnail') }}" alt="{{ entry.title }}">
-                    </a>
-                {% endfor %}
             </div>
-            <div id="map"></div>
+            <div class="row tour-info">
+                <div class="col-xs-12 tour-data">
+                    <h3>{{ 'tour.data'|trans }}</h3>
+                    <dl class="dl-horizontal meta-table">
+                        {% if tour.gpxData.stats.distance %}
+                            {% set distance = tour.gpxData.stats.distance / 1000 %}
+                            <dt class="tour-distance">{{ 'tour.distance'|trans }} <i class="fa fa-arrows-h" aria-hidden="true"></i></dt>
+                            <dd class="tour-distance-value">{{ distance|number_format(1, ',', '.') }} {{ 'tour.distance.unit'|trans }}</dd>
+                        {% endif %}
+                        {% if tour.gpxData.stats.maxAltitude %}
+                            <dt class="tour-maxAltitude">{{ 'tour.maxAltitude'|trans }} <i class="fa fa-angle-up" aria-hidden="true"></i></dt>
+                            <dd class="tour-maxAltitude-value">{{ tour.gpxData.stats.maxAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
+                        {% endif %}
+                        {% if tour.gpxData.stats.minAltitude %}
+                            <dt class="tour-minAltitude">{{ 'tour.minAltitude'|trans }} <i class="fa fa-angle-down" aria-hidden="true"></i></dt>
+                            <dd class="tour-minAltitude-value">{{ tour.gpxData.stats.minAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
+                        {% endif %}
+                        {% if tour.gpxData.stats.cumulativeElevationGain %}
+                            <dt class="tour-cumulativeElevationGain">{{ 'tour.cumulativeElevationGain'|trans }} <i class="fa fa-expand" aria-hidden="true"></i></dt>
+                            <dd class="tour-cumulativeElevationGain-value">{{ tour.gpxData.stats.cumulativeElevationGain|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
+                        {% endif %}
+                    </dl>
+                </div>
+                <div class="col-xs-12 text-center tour-map">
+                    <h3>{{ 'tour.map'|trans }}</h3>
+                    <div id="map"></div>
+                    <a class="btn" href="{{ vich_uploader_asset(tour.file, 'file') }}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> {{ 'tour.download'|trans }}</a>
+                </div>
+                <div class="col-xs-12 tour-pictures">
+                    <h3>{{ 'tour.pictures'|trans }}</h3>
+                    <div class="text-container gallery" data-justified="true">
+                        {% for entry in tour.entries %}
+                            {% set url = path('entry_show', {'slug': entry.slug}) %}
+                            {% set src = path('ajax_entry_show', {'id': entry.id}) %}
+                            <a href="{{ url }}" data-fancybox="entries" data-src="{{ src }}" data-type="ajax">
+                                <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_thumbnail') }}" alt="{{ entry.title }}">
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </article>
-
     </section>
 {% endblock %}
 

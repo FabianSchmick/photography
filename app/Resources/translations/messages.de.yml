@@ -94,6 +94,10 @@ meta.desc: Fotografie Blog
 tours.headline: Touren Empfehlungen
 introduction.tours.headline: Meine Lieblingstouren
 introduction.tours: Meine Lieblingstouren möchte ich hier einmal für dich auflisten.
+tour.data: Tourdaten
+tour.map: GPX-Track
+tour.pictures: Bilder
+tour.download: GPX Herunterladen
 show.tour: Tour anzeigen
 tour.distance: Länge
 tour.distance.unit: km
