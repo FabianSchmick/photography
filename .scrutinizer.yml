@@ -7,6 +7,7 @@ build:
             tests:
                 override:
                     - ./vendor/bin/simple-phpunit
+                    - php bin/security-checker.phar security:check composer.lock
                     - php-scrutinizer-run
                     -
                         command: phpcs-run
@@ -24,7 +25,7 @@ build:
             - ./node_modules/.bin/gulp deploy
 
     environment:
-        timezone: Europe/Paris
+        timezone: Europe/Berlin
         php:
             version: "7.2"
         postgresql: false
@@ -44,10 +45,3 @@ filter:
 checks:
     php: true
     javascript: true
-
-tools:
-    sensiolabs_security_checker: true
-    php_loc: true
-    php_pdepend: true
-    php_sim: true
-    php_changetracking: true
