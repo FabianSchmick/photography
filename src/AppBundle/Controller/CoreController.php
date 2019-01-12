@@ -3,11 +3,17 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Doctrine\PaginationHelper;
+use AppBundle\Entity\File;
 use AppBundle\Entity\Tour;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class CoreController extends Controller
 {
@@ -28,6 +34,25 @@ class CoreController extends Controller
         }
 
         return $this->redirectToRoute($redirect);
+    }
+
+    /**
+     * @Route("/download/{file}", name="download_file")
+     * @ParamConverter("file", class="AppBundle:File", options={"mapping": {"file": "fileName"}})
+     */
+    public function downloadFileAction(File $file, UploaderHelper $uploaderHelper)
+    {
+        $projectRoot = $this->getParameter('kernel.project_dir');
+        $filePath = $projectRoot.'/web'.$uploaderHelper->asset($file, 'file');
+
+        if (!file_exists($filePath)) {
+            throw new NotFoundHttpException();
+        }
+
+        $response = new BinaryFileResponse($filePath);
+        $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $file->getOriginalName());
+
+        return $response;
     }
 
     /**
