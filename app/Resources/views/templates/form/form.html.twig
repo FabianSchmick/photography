@@ -41,6 +41,11 @@
     {{- form_rest(form) -}}
 {%- endblock form_widget_compound -%}
 
+{%- block choice_widget_collapsed -%}
+    <span class="clear-select2{% if multiple %} no-offset{% endif %}"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+    {{ parent() }}
+{%- endblock choice_widget_collapsed -%}
+
 {% block vich_file_widget %}
     {% spaceless %}
         {{ form_widget(form.file) }}

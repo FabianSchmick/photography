@@ -70,6 +70,10 @@ function initSelect2() {
     $(".select2.add").select2({
         tags: true
     });
+
+    $('.clear-select2').on('click', function () {
+        $(this).siblings("select.select2").val(null).trigger('change');
+    });
 }
 
 // Initializes summernote wysiwyg editor

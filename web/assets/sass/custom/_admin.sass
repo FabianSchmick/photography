@@ -86,8 +86,11 @@ input#image
 
 .form-group
     > [class^="col"]
+        position: relative
+
         > .form-group
             margin: 0
+
             > [class^="col"]
                 padding: 0
                 width: auto
@@ -105,6 +108,21 @@ input#image
 
     input[type="file"]
         padding: 0 0 5px
+
+    input[type="date"].form-control
+        line-height: initial
+
+    .clear-select2
+        position: absolute
+        right: 45px
+        top: 50%
+        transform: translateY(-50%)
+        cursor: pointer
+        z-index: 10
+        color: grey
+
+        &.no-offset
+            right: 30px
 
     .checkbox
         display: inline-block
