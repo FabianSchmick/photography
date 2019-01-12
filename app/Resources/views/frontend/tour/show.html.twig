@@ -75,8 +75,56 @@
 {% endblock %}
 
 {% block javascripts %}
+    {% set firstPoint = tour.gpxData.segments[0].points|first %}
+    {% set lastPoint = tour.gpxData.segments[0].points|last %}
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "SportsActivityLocation",
+        "name": "{{ tour.name }}",
+        "description": "{{ tour.description ? tour.description|striptags : tour.gpxData.description }}",
+        "Image": [
+        {% for entry in tour.entries %}
+            {
+                "@type": "ImageObject",
+                "@context": "http://schema.org",
+                "caption": "{{ entry.title }}",
+                "url": "{{ url('entry_show', {'slug': entry.slug}) }}",
+                "dateCreated": "{{ entry.timestamp|date('Y-m-d H:i:s') }}"
+            }{% if not loop.last %},{% endif %}
+        {% endfor %}
+        ],
+        "priceRange": "0",
+        "potentialAction": {
+            "@type": ["MoveAction", "ExerciseAction"],
+            "fromLocation": {
+                "@type": "Place",
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": "{{ firstPoint.latitude }}",
+                    "longitude": "{{ firstPoint.longitude }}",
+                    "elevation": "{{ firstPoint.elevation }}"
+                }
+            },
+            "toLocation": {
+                "@type": "Place",
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": "{{ lastPoint.latitude }}",
+                    "longitude": "{{ lastPoint.longitude }}",
+                    "elevation": "{{ lastPoint.elevation }}"
+                }
+            },
+            "distance": {
+                "@context": "http://schema.org",
+                "@type": ["Distance", "QuantitativeValue"],
+                "value": {{ tour.gpxData.stats.distance }},
+                "unitText": "MTR"
+            }
+        }
+    }</script>
+
     {{ parent() }}
-    {% set firstPoint = tour.gpxData.segments[0].points[0] %}
 
     <script type="application/javascript">
         var paginateUrl = false;
