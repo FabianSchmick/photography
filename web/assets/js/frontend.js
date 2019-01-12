@@ -188,10 +188,10 @@ function loadNextPrevEntry() {
 
 // Ajax replace for pagination
 function pagination() {
-    $('main').on('click', 'ul.pagination a', function (e) {
-        var url = $(this).attr('href'),
-            pagination = $(this).closest('ul.pagination'),
-            replace = $(pagination).data('replace');
+    $("main").on("click", "ul.pagination a", function (e) {
+        var url = $(this).attr("href"),
+            pagination = $(this).closest("ul.pagination"),
+            replace = $(pagination).data("replace");
 
         $.get(url, function(data) {
             var html = $.parseHTML(data);
@@ -204,7 +204,7 @@ function pagination() {
         });
 
         e.preventDefault();
-    })
+    });
 }
 
 // Smooth scroll to an element
@@ -216,17 +216,17 @@ function smoothScroll(target) {
 
 // Create a new map with gpx track
 function map(gpx, coordinates) {
-    var map = L.map('map', {
+    var map = L.map("map", {
         scrollWheelZoom: false
     }).setView(coordinates, 13);
 
 
-    map.on('focus', function() { map.scrollWheelZoom.enable(); });
-    map.on('blur', function() { map.scrollWheelZoom.disable(); });
+    map.on("focus", function() { map.scrollWheelZoom.enable(); });
+    map.on("blur", function() { map.scrollWheelZoom.disable(); });
 
-    L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+    L.tileLayer("https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png", {
         maxZoom: 18,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        attribution: "&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>"
     }).addTo(map);
 
     omnivore.gpx(gpx).addTo(map);

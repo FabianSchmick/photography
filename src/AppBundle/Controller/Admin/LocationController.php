@@ -69,7 +69,7 @@ class LocationController extends Controller
      *
      * @Route("/edit/{id}", name="admin_location_edit")
      */
-    public function editAction(Request $request, LocationService $locationService, TranslatorInterface $translator, Location $location)
+    public function editAction(Request $request, TranslatorInterface $translator, Location $location)
     {
         $form = $this->createForm(LocationType::class, $location);
         $form->handleRequest($request);
