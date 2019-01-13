@@ -61,6 +61,10 @@ class EntryType extends AbstractType
                 'required' => false,
                 'class' => 'AppBundle:Author',
                 'placeholder' => '',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('a')
+                        ->orderBy('a.name', 'ASC');
+                },
                 'attr' => [
                     'class' => 'select2 add form-control',
                 ],
@@ -74,6 +78,10 @@ class EntryType extends AbstractType
                 'required' => false,
                 'class' => 'AppBundle:Location',
                 'placeholder' => '',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('l')
+                        ->orderBy('l.name', 'ASC');
+                },
                 'attr' => [
                     'class' => 'select2 add form-control',
                 ],
@@ -101,6 +109,10 @@ class EntryType extends AbstractType
                 'required' => false,
                 'class' => 'AppBundle:Tour',
                 'placeholder' => '',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('t')
+                        ->orderBy('t.name', 'ASC');
+                },
                 'attr' => [
                     'class' => 'select2 form-control',
                 ],
