@@ -10,19 +10,22 @@ Here is an example of how an end result could look: [fotografie.fabian-schmick.d
 
 ![back-and-frontend](./github/example.gif "Back- and Frontend view")
 
+
+## Features
+
 The project provides you following functionality:
 - [Symfony 3.4](https://symfony.com/) (LTS version) 
 - Basic responsive layout with [Bootstrap](https://getbootstrap.com/) and [jQuery](https://jquery.com/)
-- Small CMS / Backend for creating new entries and tags
+- Small CMS / Backend for creating new entries, tags and tours
 - Image compression and thumbnail generation with [LiipImagineBundle](https://github.com/liip/LiipImagineBundle)
 - I18n support in English and German
 - Tag possibility for describing and filtering entries
-- Upload gpx files for showing your favorite tours and connect them with your entries
+- Upload gpx files for showing your favorite tours with [Leaflet](https://leafletjs.com/) and connect them with your entries 
 - Lazyloading / Infinityscrolling for images
 - Justified Gallery with [JustifiedGallery](http://miromannino.github.io/Justified-Gallery/)
 - Lightbox with [Fancybox](http://fancyapps.com/fancybox/3/)
 - Dynamic Sitemap generation
-- SEO optimized
+- SEO optimized and partly a PWA with [Workbox](https://developers.google.com/web/tools/workbox/modules/workbox-build)
 - And many more 
 
 
