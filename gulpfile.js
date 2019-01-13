@@ -11,7 +11,8 @@ var gulp  = require('gulp'),
     plumber = require('gulp-plumber'),
     rev = require('gulp-rev'),
     del = require('del'),
-    ms = require('merge-stream');
+    ms = require('merge-stream'),
+    workbox = require('workbox-build');
 
 /* Config */
 var config = require('./gulpfile-config.json'),
