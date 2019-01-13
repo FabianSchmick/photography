@@ -1,4 +1,5 @@
 .idea
+.migraw
 .php_cs.cache
 /.web-server-pid
 /app/config/parameters.yml
@@ -24,3 +25,4 @@
 /src/AppBundle/Resources/public/min/
 rev-manifest.json
 npm-debug.log
+web/sw.js

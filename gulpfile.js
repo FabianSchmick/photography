@@ -129,6 +129,24 @@ gulp.task('compress', function() {
     ]);
 });
 
+gulp.task('service-worker', function () {
+    return workbox.generateSW({
+        globDirectory: config.publicPath,
+        globPatterns: ['**\/*.{gz,js,css,jpg,JPG,png,ico,otf,eot,ttf,woff,woff2,svg}'],
+        runtimeCaching: [
+            {
+                urlPattern: new RegExp('\/de\/(.*)'),
+                handler: 'staleWhileRevalidate'
+            },
+            {
+                urlPattern: new RegExp('\/en\/(.*)'),
+                handler: 'staleWhileRevalidate'
+            }
+        ],
+        swDest: config.publicPath + '/sw.js'
+    });
+});
+
 gulp.task('deploy',
     gulp.series(
         'clean',
@@ -139,7 +157,8 @@ gulp.task('deploy',
         'deploy:styles',
         'deploy:scripts-admin',
         'deploy:styles-admin',
-        'compress'
+        'compress',
+        'service-worker'
     )
 );
 

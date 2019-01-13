@@ -35,7 +35,8 @@
     "select2": "^4.0.4",
     "select2-bootstrap-theme": "0.1.0-beta.10",
     "startbootstrap-sb-admin-2": "^3.3.7",
-    "summernote": "^0.8.8"
+    "summernote": "^0.8.8",
+    "workbox-build": "^3.6.3"
   },
   "devDependencies": {
     "eslint": "^5.10.0"
