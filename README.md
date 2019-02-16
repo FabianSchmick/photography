@@ -8,7 +8,7 @@ You should have experience in web development to adjust the project to your pref
 
 Here is an example of how an end result could look: [fotografie.fabian-schmick.de](http://fotografie.fabian-schmick.de)
 
-![back-and-frontend](./github/example.gif "Back- and Frontend view")
+![back-and-frontend](./.github/example.gif "Back- and Frontend view")
 
 
 ## Features
