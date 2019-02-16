@@ -7,7 +7,6 @@ var gulp  = require('gulp'),
     uglify = require('gulp-uglify'),
     uglifycss = require('gulp-uglifycss'),
     gzip = require('gulp-gzip'),
-    sourcemaps = require('gulp-sourcemaps'),
     plumber = require('gulp-plumber'),
     rev = require('gulp-rev'),
     del = require('del'),
@@ -15,23 +14,22 @@ var gulp  = require('gulp'),
     workbox = require('workbox-build');
 
 /* Config */
-var config = require('./gulpfile-config.json'),
-    assetsPath = config.assetsPath;
+var config = require('./gulpfile-config.json');
 
 /* Tasks */
 gulp.task('fonts', function () {
     return gulp.src(config.fonts.src)
-        .pipe(gulp.dest(config.publicPath + '/' + config.fonts.dest));
+        .pipe(gulp.symlink(config.publicPath + '/' + config.fonts.dest));
 });
 
 gulp.task('font', function () {
     return gulp.src(config.font.src)
-        .pipe(gulp.dest(config.publicPath + '/' + config.font.dest));
+        .pipe(gulp.symlink(config.publicPath + '/' + config.font.dest));
 });
 
 gulp.task('images', function () {
     return gulp.src(config.images.src)
-        .pipe(gulp.dest(config.publicPath + '/' + config.images.dest));
+        .pipe(gulp.symlink(config.publicPath + '/' + config.images.dest));
 });
 
 gulp.task('styles', function () {
@@ -51,11 +49,11 @@ gulp.task('scripts-admin', function() {
 });
 
 gulp.task('clean:styles', function () {
-    return del([assetsPath + '/dist/css/*', '!' + assetsPath + '/dist/css/font', '!' + assetsPath + '/dist/css/images']);
+    return del([config.assetsPath + '/dist/css/*', '!' + config.assetsPath + '/dist/css/font', '!' + config.assetsPath + '/dist/css/images']);
 });
 
 gulp.task('clean:scripts', function () {
-    return del([assetsPath + '/dist/js/*']);
+    return del([config.assetsPath + '/dist/js/*']);
 });
 
 gulp.task('clean', gulp.series(
@@ -64,10 +62,10 @@ gulp.task('clean', gulp.series(
 ));
 
 gulp.task('watch', function() {
-    gulp.watch(assetsPath + '/sass/**',
+    gulp.watch(config.assetsPath + '/sass/**',
         gulp.series('clean:styles', 'styles', 'styles-admin'));
 
-    gulp.watch(assetsPath + '/js/**',
+    gulp.watch(config.assetsPath + '/js/**',
         gulp.series('clean:scripts', 'scripts', 'scripts-admin'));
 });
 
@@ -76,11 +74,11 @@ gulp.task('watch:bs', function() {
         proxy: config.bsProxy
     });
 
-    gulp.watch(assetsPath + '/sass/**',
+    gulp.watch(config.assetsPath + '/sass/**',
         gulp.series('clean:styles', 'styles', 'styles-admin'))
         .on('change', bs.reload);
 
-    gulp.watch(assetsPath + '/js/**',
+    gulp.watch(config.assetsPath + '/js/**',
         gulp.series('clean:scripts', 'scripts', 'scripts-admin'))
         .on('change', bs.reload);
 
@@ -92,9 +90,11 @@ gulp.task('watch:bs', function() {
 gulp.task('default',
     gulp.series(
         'clean',
-        'fonts',
-        'font',
-        'images',
+        gulp.parallel(
+            'fonts',
+            'font',
+            'images'
+        ),
         'scripts',
         'styles',
         'scripts-admin',
@@ -121,12 +121,12 @@ gulp.task('deploy:scripts-admin', function() {
 
 gulp.task('compress', function() {
     return ms([
-        gulp.src(assetsPath + '/dist/js/*.js')
+        gulp.src(config.assetsPath + '/dist/js/*.js')
             .pipe(gzip())
-            .pipe(gulp.dest(assetsPath + '/dist/js')),
-        gulp.src(assetsPath + '/dist/css/*.css')
+            .pipe(gulp.dest(config.assetsPath + '/dist/js')),
+        gulp.src(config.assetsPath + '/dist/css/*.css')
             .pipe(gzip())
-            .pipe(gulp.dest(assetsPath + '/dist/css'))
+            .pipe(gulp.dest(config.assetsPath + '/dist/css'))
     ]);
 });
 
@@ -151,9 +151,11 @@ gulp.task('service-worker', function () {
 gulp.task('deploy',
     gulp.series(
         'clean',
-        'fonts',
-        'font',
-        'images',
+        gulp.parallel(
+            'fonts',
+            'font',
+            'images'
+        ),
         'deploy:scripts',
         'deploy:styles',
         'deploy:scripts-admin',
@@ -165,32 +167,28 @@ gulp.task('deploy',
 
 /* Functions for styles and scripts */
 function styles(conf) {
-    return gulp.src(conf.src)
+    return gulp.src(conf.src, { sourcemaps: true })
         .pipe(plumber(function (error) {
             console.log(error.toString());
             this.emit('end');
         }))
-        .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(concat(conf.dest))
         .pipe(rev())
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(config.publicPath))
+        .pipe(gulp.dest(config.publicPath, { sourcemaps: '.' }))
         .pipe(rev.manifest({merge: true}))
         .pipe(gulp.dest('.'));
 }
 
 function scripts(conf) {
-    return gulp.src(conf.src)
+    return gulp.src(conf.src, { sourcemaps: true })
         .pipe(plumber(function (error) {
             console.log(error.toString());
             this.emit('end');
         }))
-        .pipe(sourcemaps.init())
         .pipe(concat(conf.dest))
         .pipe(rev())
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(config.publicPath))
+        .pipe(gulp.dest(config.publicPath, { sourcemaps: '.' }))
         .pipe(rev.manifest({merge: true}))
         .pipe(gulp.dest('.'));
 }
