@@ -51,13 +51,13 @@ class TagRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('b_t');
         $qb->innerJoin('b_t.entries', 'b_te')
             ->where($qb->expr()->in('b_te', $in->getDQL()))
-            ->andWhere('b_t.id != :id')
-            ->orderBy('COUNT(b_t.id)', 'DESC')
+            ->andWhere('b_t != :tag')
+            ->orderBy('COUNT(b_t)', 'DESC')
             ->addOrderBy('b_t.sort', 'DESC')
-            ->groupBy('b_t.id')
-            ->having('COUNT(b_t.id) >= '.$count)
+            ->groupBy('b_t')
+            ->having('COUNT(b_t) >= '.$count)
             ->setMaxResults($limit)
-            ->setParameters(['tag' => $tag, 'id' => $tag->getId()]);
+            ->setParameters(['tag' => $tag]);
 
         return $qb->getQuery()->getResult();
     }
