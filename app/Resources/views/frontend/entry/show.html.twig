@@ -1,3 +1,4 @@
+{% import 'templates/macro/json-ld.html.twig' as jsonLd %}
 {% extends 'base.html.twig' %}
 
 {% set desc = entry.description|striptags %}
@@ -83,18 +84,17 @@
 {% endblock embed_svg %}
 
 {% block javascripts %}
-    <script type="application/ld+json">{
-        "@context": "http://schema.org",
-        "@type": "ImageObject",
-        "author": "{{ entry.author.name is defined ? entry.author.name }}",
-        {% if entry.location.name is defined %}
-        "contentLocation": "{{ entry.location.name }}",
-        {% endif %}
-        "contentUrl": "{{ vich_uploader_asset(entry.image, 'file') }}",
-        "datePublished": "{{ entry.timestamp|date("Y-m-d") }}",
-        "description": "{{ entry.description|striptags }}",
-        "name": "{{ entry.name }}"
-    }</script>
+    <script type="application/ld+json">
+        {{ jsonLd.breadcrumbList([
+            {
+                'url': url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')),
+                'name': entry.name
+            }
+        ]) }}
+    </script>
+    <script type="application/ld+json">
+        {{ jsonLd.imageObject(entry) }}
+    </script>
 
     {{ parent() }}
 

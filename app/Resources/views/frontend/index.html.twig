@@ -1,3 +1,4 @@
+{% import 'templates/macro/json-ld.html.twig' as jsonLd %}
 {% extends 'base.html.twig' %}
 
 {% block cover %}
@@ -42,14 +43,29 @@
 {% endblock embed_svg %}
 
 {% block javascripts %}
-    <script type="application/ld+json">{
-        "@context": "http://schema.org",
-        "@type": "Blog",
-        "name": "{{ block('title') }} | {{ 'photography'|trans }}",
-        "url": "{{ url(app.request.attributes.get('_route'),
-            app.request.attributes.get('_route_params')) }}",
-        "description": "{{ block('meta_description') }}"
-    }</script>
+    <script type="application/ld+json">
+        {{ jsonLd.itemList([
+            {
+                'url': url('homepage'),
+                'name': 'home'|trans
+            },
+            {
+                'url': url('homepage', {'_fragment': 'introduction'}),
+                'name': 'introduction'|trans
+            },
+            {
+                'url': url('homepage', {'_fragment': 'entries'}),
+                'name': 'gallery'|trans
+            },
+            {
+                'url': url('tour_index_paginated', {'page': 1}),
+                'name': 'tours'|trans
+            }
+        ]) }}
+    </script>
+    <script type="application/ld+json">
+        {{ jsonLd.blog(block('title'), block('meta_description')) }}
+    </script>
 
     {{ parent() }}
 

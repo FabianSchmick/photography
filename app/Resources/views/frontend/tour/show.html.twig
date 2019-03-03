@@ -1,3 +1,4 @@
+{% import 'templates/macro/json-ld.html.twig' as jsonLd %}
 {% extends 'base.html.twig' %}
 
 {% block meta_description %}{{ tour.description ? tour.description|striptags|truncate(160) : tour.gpxData.description|truncate(160) }}{% endblock %}
@@ -78,51 +79,24 @@
     {% set firstPoint = tour.gpxData.segments[0].points|first %}
     {% set lastPoint = tour.gpxData.segments[0].points|last %}
 
-    <script type="application/ld+json">{
-        "@context": "http://schema.org",
-        "@type": "SportsActivityLocation",
-        "name": "{{ tour.name }}",
-        "description": "{{ tour.description ? tour.description|striptags : tour.gpxData.description }}",
-        "Image": [
-        {% for entry in tour.entries %}
+    <script type="application/ld+json">
+        {{ jsonLd.breadcrumbList([
             {
-                "@type": "ImageObject",
-                "@context": "http://schema.org",
-                "caption": "{{ entry.name }}",
-                "url": "{{ url('entry_show', {'slug': entry.slug}) }}",
-                "dateCreated": "{{ entry.timestamp|date('Y-m-d H:i:s') }}"
-            }{% if not loop.last %},{% endif %}
-        {% endfor %}
-        ],
-        "priceRange": "0",
-        "potentialAction": {
-            "@type": ["MoveAction", "ExerciseAction"],
-            "fromLocation": {
-                "@type": "Place",
-                "geo": {
-                    "@type": "GeoCoordinates",
-                    "latitude": "{{ firstPoint.latitude }}",
-                    "longitude": "{{ firstPoint.longitude }}",
-                    "elevation": "{{ firstPoint.elevation }}"
-                }
+                'url': url('tour_index_paginated', {'page': 1}),
+                'name': 'tours'|trans
             },
-            "toLocation": {
-                "@type": "Place",
-                "geo": {
-                    "@type": "GeoCoordinates",
-                    "latitude": "{{ lastPoint.latitude }}",
-                    "longitude": "{{ lastPoint.longitude }}",
-                    "elevation": "{{ lastPoint.elevation }}"
-                }
+            {
+                'url': url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')),
+                'name': tour.name
             },
-            "distance": {
-                "@context": "http://schema.org",
-                "@type": ["Distance", "QuantitativeValue"],
-                "value": {{ tour.gpxData.stats.distance }},
-                "unitText": "MTR"
-            }
-        }
-    }</script>
+        ]) }}
+    </script>
+    <script type="application/ld+json">
+        {{ jsonLd.blogPosting(tour, tour.previewEntry) }}
+    </script>
+    <script type="application/ld+json">
+        {{ jsonLd.sportsActivityLocation(tour) }}
+    </script>
 
     {{ parent() }}
 

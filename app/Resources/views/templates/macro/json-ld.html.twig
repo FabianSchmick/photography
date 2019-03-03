@@ -1,0 +1,183 @@
+{%- macro blog(title, desc) -%}
+    {%- spaceless -%}
+        {
+            "@context": "http://schema.org",
+            "@type": "Blog",
+            "name": "{{ title }} | {{ 'photography'|trans }}",
+            "url": "{{ url(app.request.attributes.get('_route'),
+                app.request.attributes.get('_route_params')) }}",
+            "description": "{{ desc }}",
+            "publisher": {
+                "@type": "Person",
+                "name": "{{ 'authors.name'|trans }}"
+            }
+        }
+    {%- endspaceless -%}
+{%- endmacro -%}
+
+{%- macro itemList(elements) -%}
+    {%- spaceless -%}
+        {
+            "@context": "http://schema.org",
+            "@type": "ItemList",
+            "itemListElement": [
+                {% for element in elements %}
+                    {
+                        "@type": "SiteNavigationElement",
+                        "position": {{ loop.index }},
+                        "name": "{{ element.name }}",
+                        {% if element.desc is defined %}"description": "{{ element.desc }}",{% endif %}
+                        "url": "{{ element.url }}"
+                    }{% if not loop.last %},{% endif %}
+                {% endfor %}
+            ]
+        }
+    {%- endspaceless -%}
+{%- endmacro -%}
+
+{%- macro imageObject(entry, scriptTag = true) -%}
+    {%- spaceless -%}
+        {
+            "@context": "http://schema.org",
+            "@type": "ImageObject",
+            "author": "{{ entry.author.name is defined ? entry.author.name : 'authors.name'|trans }}",
+            {% if entry.location.name is defined %}
+            "contentLocation": "{{ entry.location.name }}",
+            {% endif %}
+            "contentUrl": "{{ vich_uploader_asset(entry.image, 'file') }}",
+            "url": "{{ url('entry_show', {'slug': entry.slug}) }}",
+            "datePublished": "{{ entry.timestamp|date('Y-m-d') }}",
+            "description": "{{ entry.description|striptags }}",
+            "name": "{{ entry.name }}"
+        }
+    {%- endspaceless -%}
+{%- endmacro -%}
+
+{%- macro blogPosting(post, entry) -%}
+    {% import _self as jsonLd %}
+
+    {%- spaceless -%}
+        {
+            "@context": "http://schema.org",
+            "@type": "BlogPosting",
+            "headline": "{{ post.name }}",
+            "image": {% if entry %}{{ jsonLd.imageObject(entry) }}{% else %}"{{ absolute_url(asset('assets/img/layout/cover-placeholder.jpg')) }}"{% endif %},
+            "editor": "{{ 'authors.name'|trans }}",
+            {% if entry.tags is defined %}
+            "keywords": "{{ entry.tags|join(',') }}",
+            {% endif %}
+            "publisher": {
+                "@type": "Person",
+                "name": "{{ 'authors.name'|trans }}"
+            },
+            "url": "{{ url(app.request.attributes.get('_route'),
+                app.request.attributes.get('_route_params')) }}",
+            "datePublished": "{{ post.updated|date('Y-m-d') }}",
+            "dateModified": "{{ post.updated|date('Y-m-d') }}",
+            "mainEntityOfPage": "True",
+            "articleBody": "{{ post.description|striptags }}",
+            "author": {
+                "@type": "Person",
+                "name": "{{ 'authors.name'|trans }}"
+            }
+        }
+    {%- endspaceless -%}
+{%- endmacro -%}
+
+{%- macro collectionPage(elements) -%}
+    {% import _self as jsonLd %}
+
+    {%- spaceless -%}
+        {
+            "@context": "http://schema.org",
+            "@type": "CollectionPage",
+            "mainEntity": {
+                "@type": "ItemList",
+                "itemListElement": [
+                    {% for element in elements %}
+                        {{ jsonLd.blogPosting(element, element.previewEntry) }}
+                        {% if not loop.last %},{% endif %}
+                    {% endfor %}
+                ]
+            }
+        }
+    {%- endspaceless -%}
+{%- endmacro -%}
+
+{%- macro sportsActivityLocation(tour) -%}
+    {% import _self as jsonLd %}
+    {% set firstPoint = tour.gpxData.segments[0].points|first %}
+    {% set lastPoint = tour.gpxData.segments[0].points|last %}
+
+    {%- spaceless -%}
+        {
+            "@context": "http://schema.org",
+            "@type": "SportsActivityLocation",
+            "name": "{{ tour.name }}",
+            "description": "{{ tour.description|striptags }}",
+            "Image": [
+                {% for entry in tour.entries %}
+                    {{ jsonLd.imageObject(entry) }}
+                    {% if not loop.last %},{% endif %}
+                {% endfor %}
+            ],
+            "priceRange": "0",
+            "potentialAction": {
+                "@type": ["MoveAction", "ExerciseAction"],
+                "fromLocation": {
+                    "@type": "Place",
+                    "geo": {
+                        "@type": "GeoCoordinates",
+                        "latitude": "{{ firstPoint.latitude }}",
+                        "longitude": "{{ firstPoint.longitude }}",
+                        "elevation": "{{ firstPoint.elevation }}"
+                    }
+                },
+                "toLocation": {
+                    "@type": "Place",
+                    "geo": {
+                        "@type": "GeoCoordinates",
+                        "latitude": "{{ lastPoint.latitude }}",
+                        "longitude": "{{ lastPoint.longitude }}",
+                        "elevation": "{{ lastPoint.elevation }}"
+                    }
+                },
+                "distance": {
+                    "@context": "http://schema.org",
+                    "@type": ["Distance", "QuantitativeValue"],
+                    "value": {{ tour.gpxData.stats.distance }},
+                    "unitText": "MTR"
+                }
+            }
+        }
+    {%- endspaceless -%}
+{%- endmacro -%}
+
+{%- macro breadcrumbList(elements) -%}
+    {%- spaceless -%}
+        {
+            "@context": "http://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                        "@id": "{{ url('homepage') }}",
+                        "name": "{{ 'home'|trans }}"
+                    }
+                },
+                {% for element in elements %}
+                    {
+                        "@type": "ListItem",
+                        "position": {{ loop.index +1 }},
+                        "item": {
+                            "@id": "{{ element.url }}",
+                            "name": "{{ element.name }}"
+                        }
+                    }{% if not loop.last %},{% endif %}
+                {% endfor %}
+            ]
+        }
+    {%- endspaceless -%}
+{%- endmacro -%}
