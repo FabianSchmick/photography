@@ -63,7 +63,7 @@
                                 {% set url = path('entry_show', {'slug': entry.slug}) %}
                                 {% set src = path('ajax_entry_show', {'id': entry.id}) %}
                                 <a href="{{ url }}" data-fancybox="entries" data-src="{{ src }}" data-type="ajax">
-                                    <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_thumbnail') }}" alt="{{ entry.title }}">
+                                    <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_thumbnail') }}" alt="{{ entry.name }}">
                                 </a>
                             {% endfor %}
                         </div>
@@ -88,7 +88,7 @@
             {
                 "@type": "ImageObject",
                 "@context": "http://schema.org",
-                "caption": "{{ entry.title }}",
+                "caption": "{{ entry.name }}",
                 "url": "{{ url('entry_show', {'slug': entry.slug}) }}",
                 "dateCreated": "{{ entry.timestamp|date('Y-m-d H:i:s') }}"
             }{% if not loop.last %},{% endif %}

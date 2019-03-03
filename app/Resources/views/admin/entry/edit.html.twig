@@ -1,7 +1,7 @@
 {% import 'templates/macro/macro.html.twig' as macro %}
 {% extends 'admin.html.twig' %}
 
-{% block title %}{{ 'edit'|trans }} - {{ entry.title }}{% endblock %}
+{% block title %}{{ 'edit'|trans }} - {{ entry.name }}{% endblock %}
 
 {% block body %}
 
@@ -9,7 +9,7 @@
     <div class="col-xs-12">
         <div class="page-header clearfix">
             <div class="pull-left">
-                <h1>{{ entry.title }}</h1>
+                <h1>{{ entry.name }}</h1>
             </div>
             <div class="pull-right">
                 <ul class="actions list-unstyled pull-right">
@@ -27,7 +27,7 @@
 
         {{ form_start(form, {'action': path('admin_entry_edit', {'id': entry.id})}) }}
 
-            {{ macro.create_delete_modal('delete.msg.entry', entry.title, path('admin_entry_delete', {'id': entry.id})) }}
+            {{ macro.create_delete_modal('delete.msg.entry', entry.name, path('admin_entry_delete', {'id': entry.id})) }}
 
             {{ form_errors(form) }}
 

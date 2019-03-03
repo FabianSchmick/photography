@@ -37,7 +37,7 @@ class Entry
      * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    private $name;
 
     /**
      * @var string
@@ -113,7 +113,7 @@ class Entry
 
     /**
      * @Gedmo\Translatable
-     * @Gedmo\Slug(fields={"title"}, updatable=true)
+     * @Gedmo\Slug(fields={"name"}, updatable=true)
      * @ORM\Column(type="string", unique=true)
      */
     private $slug;
@@ -138,7 +138,7 @@ class Entry
      */
     public function __toString()
     {
-        return $this->getTitle();
+        return $this->getName();
     }
 
     /**
@@ -152,27 +152,27 @@ class Entry
     }
 
     /**
-     * Set title.
+     * Set name.
      *
-     * @param string $title
+     * @param string $name
      *
      * @return Entry
      */
-    public function setTitle($title)
+    public function setName($name)
     {
-        $this->title = $title;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get title.
+     * Get name.
      *
      * @return string
      */
-    public function getTitle()
+    public function getName()
     {
-        return $this->title;
+        return $this->name;
     }
 
     /**

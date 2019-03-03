@@ -69,7 +69,7 @@ class EntryService
             $entryEntity = $this->em->getRepository('AppBundle:Entry')->findOneBy(['id' => $entry['id']]);
         }
 
-        $entryEntity->setTitle($entry['title']);
+        $entryEntity->setName($entry['name']);
         $entryEntity->setDescription($entry['description']);
 
         if (!empty($entry['author'])) {

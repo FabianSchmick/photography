@@ -46,8 +46,8 @@ class EntryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, [
-                'label' => 'title',
+            ->add('name', TextType::class, [
+                'label' => 'name',
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'description',

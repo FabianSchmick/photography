@@ -52,7 +52,7 @@ class EntryController extends Controller
             $translated = $translator->trans('success.new');
             $this->addFlash(
                 'success',
-                $translated.': <a class="alert-link" href="'.$url.'">'.$entry->getTitle().'</a>.'
+                $translated.': <a class="alert-link" href="'.$url.'">'.$entry->getName().'</a>.'
             );
 
             return $this->redirectToRoute('admin_entry_new');
@@ -100,7 +100,7 @@ class EntryController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $translated = str_replace('%entry%', $entry->getTitle(), $translator->trans('success.deleted.entry'));
+        $translated = str_replace('%entry%', $entry->getName(), $translator->trans('success.deleted.entry'));
 
         $em->remove($entry);
         $em->flush();

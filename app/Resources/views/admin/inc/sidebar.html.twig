@@ -27,7 +27,7 @@
                 <ul class="nav nav-second-level">
                     {% for entry in entries %}
                         <li>
-                            <a href="{{ path('admin_entry_edit', {'id': entry.id}) }}">{{ entry.title }}</a>
+                            <a href="{{ path('admin_entry_edit', {'id': entry.id}) }}">{{ entry.name }}</a>
                         </li>
                     {% endfor %}
                 </ul>

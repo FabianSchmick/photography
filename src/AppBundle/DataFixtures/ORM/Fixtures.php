@@ -26,7 +26,7 @@ class Fixtures extends AbstractFixture implements FixtureInterface
     {
         $entries = [
             [
-                'title' => 'Forest near my hometown',
+                'name' => 'Forest near my hometown',
                 'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
                 'author' => 'Fabian Schmick',
                 'image' => '',
@@ -37,7 +37,7 @@ class Fixtures extends AbstractFixture implements FixtureInterface
                 ],
             ],
             [
-                'title' => 'Mountain over 2300m',
+                'name' => 'Mountain over 2300m',
                 'description' => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
                 'author' => 'Fabian Schmick',
                 'image' => '',
@@ -48,7 +48,7 @@ class Fixtures extends AbstractFixture implements FixtureInterface
                 ],
             ],
             [
-                'title' => 'Field',
+                'name' => 'Field',
                 'description' => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
                 'author' => 'Fabian Schmick',
                 'image' => '',
@@ -59,7 +59,7 @@ class Fixtures extends AbstractFixture implements FixtureInterface
                 ],
             ],
             [
-                'title' => 'Sunset in winter',
+                'name' => 'Sunset in winter',
                 'description' => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
                 'author' => 'Fabian Schmick',
                 'image' => '',

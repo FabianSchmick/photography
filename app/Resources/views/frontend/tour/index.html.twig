@@ -38,7 +38,7 @@
                         <a href="{{ path('tour_show', {'slug': tour.slug}) }}">
                             <div class="tour-preview-img">
                                 {% if tour.previewEntry %}
-                                    <img src="{{ vich_uploader_asset(tour.previewEntry.image, 'file')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.previewEntry.title }}">
+                                    <img src="{{ vich_uploader_asset(tour.previewEntry.image, 'file')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.previewentry.name }}">
                                 {% else %}
                                     <img src="{{ asset('assets/img/layout/cover-placeholder.jpg')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.name }}">
                                 {% endif %}

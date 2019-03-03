@@ -2,14 +2,14 @@
 
 {% set desc = entry.description|striptags %}
 {% if desc == "" %}
-    {% set desc = entry.title %}
+    {% set desc = entry.name %}
 {% endif %}
 
 {% block meta_description %}{{ desc }}{% endblock %}
 
 {% block meta_image %}{{ absolute_url(vich_uploader_asset(entry.image, 'file')) }}{% endblock %}
 
-{% block title %}{{ entry.title }}{% endblock %}
+{% block title %}{{ entry.name }}{% endblock %}
 
 {% block content %}
     <section id="entry" class="container">
@@ -25,7 +25,7 @@
                     </span>
                 {% endif %}
 
-                <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_show') }}" alt="{{ entry.title }}">
+                <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_show') }}" alt="{{ entry.name }}">
 
                 {% if prev %}
                     <a class="prev" href="{{ path('entry_show', {'slug': prev.slug}) }}" title="{{ 'prev'|trans }}">
@@ -45,7 +45,7 @@
             </div>
             <div class="entry-info col-xs-12 col-lg-3">
                 <h1 class="entry-title">
-                    {{ entry.title }}
+                    {{ entry.name }}
                 </h1>
                 {{ entry.description|raw }}
                 <dl class="meta">
@@ -93,7 +93,7 @@
         "contentUrl": "{{ vich_uploader_asset(entry.image, 'file') }}",
         "datePublished": "{{ entry.timestamp|date("Y-m-d") }}",
         "description": "{{ entry.description|striptags }}",
-        "name": "{{ entry.title }}"
+        "name": "{{ entry.name }}"
     }</script>
 
     {{ parent() }}

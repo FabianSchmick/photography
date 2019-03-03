@@ -1,11 +1,11 @@
 <div class="entry">
     <article class="entry-inner">
         <div class="entry-image">
-            <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_show') }}" alt="{{ entry.title }}">
+            <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_show') }}" alt="{{ entry.name }}">
         </div>
         <div class="entry-info">
             <h2 class="entry-title">
-                {{ entry.title }}
+                {{ entry.name }}
             </h2>
             {{ entry.description|raw }}
             <dl class="meta">
