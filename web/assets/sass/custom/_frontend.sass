@@ -16,7 +16,7 @@ noscript
         margin: 0
         border-radius: 0
 
-h1, .h1
+h1, .h1, .entry-title
     hyphens: auto
     word-wrap: break-word
 
@@ -44,13 +44,13 @@ hr
 a.link,
 article a,
 p a
-    border-bottom: 2px solid lighten($color-teritary, 9)
-    color: lighten($color-teritary, 9)
+    border-bottom: 2px solid $color-teritary
+    color: $color-teritary
     transition: all 0.2s ease-in
 
     &:hover, &:focus
-        border-color: $color-teritary
-        color: $color-teritary
+        border-color: lighten($color-teritary, 5)
+        color: lighten($color-teritary, 5)
         text-decoration: none
 
 dl.meta-table
@@ -72,7 +72,7 @@ dl.meta-table
             padding-left: 5px
 
         &:nth-child(4n+1)
-            background: lighten($color-teritary, 55)
+            background: lighten($color-teritary, 5)
 
     dd
         margin-left: 50%
@@ -80,7 +80,7 @@ dl.meta-table
         padding: 10px 0 0 15px
 
         &:nth-child(4n+2)
-            background: lighten($color-teritary, 55)
+            background: lighten($color-teritary, 5)
 
 .container
     width: 100%

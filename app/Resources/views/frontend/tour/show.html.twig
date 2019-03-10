@@ -23,9 +23,7 @@
                 {% if tour.description %}
                     {{ tour.description|raw }}
                 {% else %}
-                    <p>
-                        {{ tour.gpxData.description }}
-                    </p>
+                    <p>{{ tour.gpxData.description }}</p>
                 {% endif %}
             </div>
             <div class="row tour-info">

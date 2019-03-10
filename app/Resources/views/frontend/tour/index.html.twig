@@ -47,13 +47,13 @@
                             <div class="tour-info-container">
                                 <div class="tour-info clearfix">
                                     <h4 class="h1">{{ tour.name }}</h4>
-                                    {% if tour.description %}
-                                        {{ tour.description|truncate(220, true)|raw }}
-                                    {% else %}
-                                        <p>
+                                    <p>
+                                        {% if tour.description %}
+                                            {{ tour.description|striptags|truncate(220, true) }}
+                                        {% else %}
                                             {{ tour.gpxData.description|truncate(220, true) }}
-                                        </p>
-                                    {% endif %}
+                                        {% endif %}
+                                    </p>
                                     <dl class="meta">
                                         {% if tour.gpxData.stats.distance %}
                                             {% set distance = tour.gpxData.stats.distance / 1000 %}
