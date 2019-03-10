@@ -7,8 +7,8 @@
 {% endif %}
 
 {% set img = absolute_url(asset('assets/img/layout/cover-placeholder.jpg')) %}
-{% if tag.image %}
-    {% set img = absolute_url(vich_uploader_asset(tag.image, 'file')) %}
+{% if tag.previewEntry %}
+    {% set img = absolute_url(vich_uploader_asset(tag.previewEntry.image, 'file')) %}
 {% endif %}
 
 {% block meta_description %}{{ desc }}{% endblock %}
@@ -19,7 +19,7 @@
 
 {% block cover %}
     <section id="cover" class="parallax-container">
-        <div class="parallax" {% if tag.image %}style="background-image: url({{ vich_uploader_asset(tag.image, 'file')|imagine_filter('entry_show') }})"{% endif %}>
+        <div class="parallax" {% if tag.previewEntry %}style="background-image: url({{ vich_uploader_asset(tag.previewEntry.image, 'file')|imagine_filter('entry_show') }})"{% endif %}>
         </div>
     </section>
 {% endblock %}

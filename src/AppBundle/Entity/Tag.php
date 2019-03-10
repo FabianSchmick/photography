@@ -49,12 +49,12 @@ class Tag
     private $description;
 
     /**
-     * @var File
+     * @var Entry
      *
-     * @ORM\OneToOne(targetEntity="TagImage", inversedBy="tag", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(referencedColumnName="id", nullable=true, onDelete="SET NULL"))
+     * @ORM\OneToOne(targetEntity="Entry", inversedBy="previewTag")
+     * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
-    private $image;
+    private $previewEntry;
 
     /**
      * @var int
@@ -175,27 +175,27 @@ class Tag
     }
 
     /**
-     * Set image.
+     * Set previewEntry.
      *
-     * @param File $image
+     * @param Entry $previewEntry
      *
      * @return Tag
      */
-    public function setImage(File $image)
+    public function setPreviewEntry(Entry $previewEntry)
     {
-        $this->image = $image;
+        $this->previewEntry = $previewEntry;
 
         return $this;
     }
 
     /**
-     * Get image.
+     * Get previewEntry.
      *
-     * @return File
+     * @return Entry
      */
-    public function getImage()
+    public function getPreviewEntry()
     {
-        return $this->image;
+        return $this->previewEntry;
     }
 
     /**

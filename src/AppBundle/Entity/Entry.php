@@ -97,6 +97,13 @@ class Entry
     private $tags;
 
     /**
+     * @var Tag
+     *
+     * @ORM\OneToOne(targetEntity="Tag", mappedBy="previewEntry")
+     */
+    private $previewTag;
+
+    /**
      * @var Tour
      *
      * @ORM\ManyToOne(targetEntity="Tour", inversedBy="entries", cascade={"persist"})
@@ -329,6 +336,30 @@ class Entry
     public function setTags(ArrayCollection $tags)
     {
         $this->tags = $tags;
+    }
+
+    /**
+     * Get previewTag.
+     *
+     * @return Tag
+     */
+    public function getPreviewTag()
+    {
+        return $this->previewTag;
+    }
+
+    /**
+     * Set previewTag.
+     *
+     * @param Tag $previewTag
+     *
+     * @return Entry
+     */
+    public function setPreviewTag(Tag $previewTag)
+    {
+        $this->previewTag = $previewTag;
+
+        return $this;
     }
 
     /**
