@@ -79,6 +79,22 @@ class Tag
     private $slug;
 
     /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updated;
+
+    /**
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      */
@@ -248,6 +264,54 @@ class Tag
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set created.
+     *
+     * @param \DateTime $created
+     *
+     * @return Tag
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created.
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set updated.
+     *
+     * @param \DateTime $updated
+     *
+     * @return Tag
+     */
+    public function setUpdated(\DateTime $updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Get updated.
+     *
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
     }
 
     /**
