@@ -7,4 +7,4 @@ Disallow: /admin/
 Disallow: /ajax/
 Disallow: /assets/img/layout/
 
-# Sitemap: https://domain.com/sitemap.xml
+Sitemap: https://fotografie.fabian-schmick.de/sitemap.xml

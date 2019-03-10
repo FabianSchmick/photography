@@ -20,6 +20,11 @@ DirectoryIndex app.php
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    <IfDefine !DEVELOPMENT>
+        RewriteCond %{HTTPS} off
+        RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    </IfDefine>
+
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
     # project in a subdirectory, the base path will be prepended to allow proper
@@ -67,6 +72,11 @@ DirectoryIndex app.php
     </IfModule>
 </IfModule>
 
+<IfModule mod_php7.c>
+   php_value upload_max_filesize 16M
+   php_value post_max_size 16M
+</IfModule>
+
 # development access restriction
 <IfDefine !DEVELOPMENT>
     <IfModule mod_headers.c>
@@ -88,7 +98,7 @@ DirectoryIndex app.php
 
     <IfModule mod_expires.c>
 
-        <FilesMatch "\.(gif|jpg|jpeg|png|swf|css|js|html?|xml|txt|ico|gz)$">
+        <FilesMatch "\.(gif|jpg|JPG|jpeg|png|swf|css|js|html?|xml|txt|ico|gz)$">
             ExpiresActive On
             ExpiresDefault "access plus 10 years"
         </FilesMatch>

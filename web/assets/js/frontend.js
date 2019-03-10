@@ -5,18 +5,56 @@ var currentPage = 1,
     checkAjax = true;
 
 $(document).ready(function() {
+    disableGoogleAnalytics();
+    notice();
     navigation();
     parallax();
 });
 
 // Offline Service Worker
-if ('serviceWorker' in navigator) {
-    $(window).on('load', function() {
-        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+if ("serviceWorker" in navigator) {
+    $(window).on("load", function() {
+        navigator.serviceWorker.register("/sw.js").then(function(registration) {
             // console.log('Service Worker registration was successful with scope: ', registration.scope);
         }, function(err) {
-            console.log('ServiceWorker registration failed: ', err);
+            console.log("ServiceWorker registration failed: ", err);
         });
+    });
+}
+
+// Disable GA script
+function disableGoogleAnalytics() {
+    jQuery(".gaOptOut").click(function () {
+        gaOptout();
+        alert("Google Analytics wurde deaktiviert!");
+        return false;
+    });
+}
+
+// Notice
+function notice() {
+    var body = jQuery("body");
+    var notice = jQuery("#notice");
+
+    // check cookie
+    if (jQuery(notice).length > 0) {
+        if (Cookies.get("Notice")) {
+            jQuery(notice).remove();
+        } else {
+            jQuery(notice).addClass("show");
+            jQuery(body).addClass("notice");
+        }
+    }
+
+    // set cookie
+    jQuery(".agree").click(function(e) {
+        jQuery(notice).remove();
+        jQuery(body).removeClass("notice");
+        Cookies.set("Notice", true, {
+            path: "/",
+            expire: 365
+        });
+        e.preventDefault();
     });
 }
 

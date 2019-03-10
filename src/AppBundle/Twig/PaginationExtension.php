@@ -25,6 +25,7 @@ class PaginationExtension extends \Twig_Extension
 
     /**
      * PaginationExtension constructor.
+     *
      * @param RouterInterface     $router
      * @param TranslatorInterface $translator
      * @param EngineInterface     $engine
@@ -49,7 +50,7 @@ class PaginationExtension extends \Twig_Extension
     }
 
     /**
-     * Generates a pagination and adds breaks points with prev and next btn
+     * Generates a pagination and adds breaks points with prev and next btn.
      *
      * @param int    $current Current page
      * @param int    $last    Last page
@@ -77,17 +78,17 @@ class PaginationExtension extends \Twig_Extension
         }
 
         // Break the sites down to max 2 prev and 2 next visible
-        if ($current -2 > 1) {
-            $start = $current -2;
+        if ($current - 2 > 1) {
+            $start = $current - 2;
         }
 
-        if ($current +2 < $last) {
-            $end = $current +2;
+        if ($current + 2 < $last) {
+            $end = $current + 2;
         }
 
         // Add prev and next btn
         if ($current > 1) {
-            $parameters['page'] = $current -1;
+            $parameters['page'] = $current - 1;
             $paginations[0] = [
                 'path' => $this->router->generate($path, $parameters),
                 'class' => $options['prev'],
@@ -96,8 +97,8 @@ class PaginationExtension extends \Twig_Extension
         }
 
         if ($current < $last) {
-            $parameters['page'] = $current +1;
-            $paginations[$last+1] = [
+            $parameters['page'] = $current + 1;
+            $paginations[$last + 1] = [
                 'path' => $this->router->generate($path, $parameters),
                 'class' => $options['next'],
                 'text' => $this->translator->trans('pagination.next'),
@@ -105,7 +106,7 @@ class PaginationExtension extends \Twig_Extension
         }
 
         // Add pages with their numbers
-        for ($i = $start; $i <= $end; $i++) {
+        for ($i = $start; $i <= $end; ++$i) {
             $class = ($i == $current ? $options['active'] : '');
             $parameters['page'] = $i;
             $paginations[$i] = [

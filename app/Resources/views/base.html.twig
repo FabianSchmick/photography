@@ -10,7 +10,7 @@
 
     {% block social_tags %}
         <meta name="description" content="{% block meta_description %}{{ 'meta.desc'|trans }}{% endblock %}">
-        <meta property="og:title" content="{{ block('title') }}"/>
+        <meta property="og:title" content="{{ block('title') }} | {{ 'photography'|trans }}"/>
         <meta property="og:type" content="website"/>
         {% if app.request.attributes.get('_route') %}
             <meta property="og:url" content="{{ url(app.request.attributes.get('_route'),
@@ -19,20 +19,49 @@
         <meta property="og:image" content="{% block meta_image %}{{ absolute_url(asset('assets/img/layout/cover-placeholder.jpg')) }}{% endblock %}"/>
         <meta property="og:description" content="{{ block('meta_description') }}"/>
         <meta name="twitter:card" content="summary"/>
-        <meta name="twitter:title" content="{{ block('title') }}"/>
+        <meta name="twitter:title" content="{{ block('title') }} | {{ 'photography'|trans }}"/>
         <meta name="twitter:description" content="{{ block('meta_description') }}"/>
         <meta name="twitter:image" content="{{ block('meta_image') }}"/>
-        <meta itemprop="name" content="{{ block('title') }}"/>
+        <meta itemprop="name" content="{{ block('title') }} | {{ 'photography'|trans }}"/>
         <meta itemprop="description" content="{{ block('meta_description') }}"/>
         <meta itemprop="image" content="{{ block('meta_image') }}"/>
     {% endblock %}
 
-    <title>{% block title %}{{ 'photography'|trans }}{% endblock %}</title>
+    <title>{% block title %}{{ 'authors.name'|trans }}{% endblock %} | {{ 'photography'|trans }}</title>
 
     {% block stylesheets %}
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:700%7CRoboto:300" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/dist/css/main.css') }}"/>
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    {% if app.environment == 'prod' and ga %}
+        <!-- Google Analytics -->
+        <script>
+            var gaProperty = '{{ ga }}';
+
+            var disableStr = 'ga-disable-' + gaProperty;
+            if (document.cookie.indexOf(disableStr + '=true') > -1) {
+                window[disableStr] = true;
+            }
+
+            function gaOptout() {
+                document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+                window[disableStr] = true;
+            }
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', gaProperty]);
+            _gaq.push(['_gat._anonymizeIp']);
+            _gaq.push(['_trackPageview']);
+
+            (function () {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    {% endif %}
 </head>
 <body id="{% block body_id %}body{% endblock %}">
 
@@ -51,22 +80,22 @@
     <nav class="container">
         {% htmlcompress %}
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ path('homepage') }}"><img src="" alt="logo"/> {{ 'photography'|trans }}</a>
+                <a class="navbar-brand" href="{{ path('homepage') }}"><img src="{{ asset('assets/img/logo.jpg') }}" alt="logo"/> {{ 'authors.name'|trans }}</a>
             </div>
 
             {% set request = app.request %}
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="main-navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ path('homepage', {'_fragment': 'cover'}) }}" class="page-scroll" data-target="#cover">{{ 'home'|trans }}</a></li>
                     <li><a href="{{ path('homepage', {'_fragment': 'introduction'}) }}" class="page-scroll" data-target="#introduction">{{ 'introduction'|trans }}</a></li>
                     <li><a href="{{ path('homepage', {'_fragment': 'entries'}) }}" class="page-scroll" data-target="#entries">{{ 'gallery'|trans }}</a></li>
                     <li><a href="{{ path('tour_index_paginated', {'page': '1'}) }}" class="page-scroll" data-target="#tours">{{ 'tours'|trans }}</a></li>
+                    <li><a href="{{ path('imprint-dataprotection') }}" class="page-scroll" data-target="#imprint-privacy">{{ 'imprint.privacy.policies'|trans }}</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="flag"><svg><use xlink:href="#{{ request.locale }}-icon"/></svg></span> {{ 'languages'|trans }} <span class="caret"></span>
@@ -89,7 +118,6 @@
                 </ul>
             </div>
         {% endhtmlcompress %}
-
     </nav>
 </header>
 
@@ -98,13 +126,18 @@
 
 <main>
     {% htmlcompress %}
-    {% block content %}
-        <section id="content">
-        </section>
-    {% endblock %}
+        {% block content %}
+            <section id="content">
+            </section>
+        {% endblock %}
     {% endhtmlcompress %}
-
 </main>
+
+<div id="notice" class="show">
+    {{ 'cookie.notice'|trans }}<br>
+    <a href="{{ path('imprint-dataprotection') }}" class="link">{{ 'cookie.notice.moreInforamtion'|trans }}</a>
+    <a href="#" class="agree link">{{ 'cookie.notice.agree'|trans }}</a>
+</div>
 
 <div id="embed-svg" style="display: none">
     {% block embed_svg %}

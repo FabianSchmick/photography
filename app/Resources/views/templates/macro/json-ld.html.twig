@@ -61,7 +61,7 @@
             "@context": "http://schema.org",
             "@type": "BlogPosting",
             "headline": "{{ post.name }}",
-            "image": {% if entry %}{{ jsonLd.imageObject(entry) }}{% else %}"{{ absolute_url(asset('assets/img/layout/cover-placeholder.jpg')) }}"{% endif %},
+            "image": {% if entry %}{{ jsonLd.imageObject(entry) }}{% else %}"{{ absolute_url(asset('assets/img/layout/cover-tour.jpg')) }}"{% endif %},
             "editor": "{{ 'authors.name'|trans }}",
             {% if entry.tags is defined %}
             "keywords": "{{ entry.tags|join(',') }}",

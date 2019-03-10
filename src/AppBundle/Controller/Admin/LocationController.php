@@ -4,7 +4,6 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Location;
 use AppBundle\Form\LocationType;
-use AppBundle\Service\LocationService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;

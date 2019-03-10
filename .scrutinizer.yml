@@ -35,10 +35,10 @@ build:
 
 filter:
     excluded_paths:
+        - '.github/*'
         - 'app/*'
         - 'tests/*'
         - 'bin/*'
-        - 'github/*'
         - 'var/*'
         - 'web/assets/dist/*'
 

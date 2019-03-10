@@ -3,7 +3,7 @@
 
 {% block meta_description %}{{ tour.description ? tour.description|striptags|truncate(160) : tour.gpxData.description|truncate(160) }}{% endblock %}
 
-{% set img = tour.previewEntry ? vich_uploader_asset(tour.previewEntry.image, 'file') : asset('assets/img/layout/cover-placeholder.jpg') %}
+{% set img = tour.previewEntry ? vich_uploader_asset(tour.previewEntry.image, 'file') : asset('assets/img/layout/cover-tour.jpg') %}
 {% block meta_image %}{{ absolute_url(img) }}{% endblock %}
 
 {% block title %}{{ 'tour'|trans }} - {{ tour.name }}{% endblock %}

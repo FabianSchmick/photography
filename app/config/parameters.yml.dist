@@ -19,6 +19,7 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
 
     locale: en
+    google_analytics: ~
 
     # Image upload directory in web folder
     upload_directory: /uploads

@@ -49,6 +49,7 @@ twig:
         - 'templates/form/form.html.twig'
     globals:
         locales: '%app.locales%'
+        ga: '%google_analytics%'
 
 # Doctrine Configuration
 doctrine:

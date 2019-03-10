@@ -18,7 +18,7 @@ class UniqueIdGenerator extends AbstractIdGenerator
 
             if (!$found) {
                 $persisted = $em->getUnitOfWork()->getScheduledEntityInsertions();
-                $ids = array_map(function($o) { return $o->getId(); }, $persisted);
+                $ids = array_map(function ($o) { return $o->getId(); }, $persisted);
                 $found = array_search($id, $ids);
             }
         } while ($found);

@@ -5,5 +5,13 @@ app:
 logout:
     path: /logout
 
+imprint-dataprotection:
+    path: /{_locale}/privacy
+    requirements:
+        _locale: "%app.locales%"
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    frontend/static/privacy.html.twig
+
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.yaml"

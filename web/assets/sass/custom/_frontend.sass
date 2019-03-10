@@ -16,6 +16,11 @@ noscript
         margin: 0
         border-radius: 0
 
+h1, .h1,
+h2, .h2,
+h3, .h3
+    font-family: $font-header
+
 h1, .h1, .entry-title
     hyphens: auto
     word-wrap: break-word
@@ -72,7 +77,7 @@ dl.meta-table
             padding-left: 5px
 
         &:nth-child(4n+1)
-            background: lighten($color-teritary, 5)
+            background: lighten($color-teritary, 55)
 
     dd
         margin-left: 50%
@@ -80,7 +85,7 @@ dl.meta-table
         padding: 10px 0 0 15px
 
         &:nth-child(4n+2)
-            background: lighten($color-teritary, 5)
+            background: lighten($color-teritary, 55)
 
 .container
     width: 100%
@@ -886,3 +891,34 @@ ul.tours
 
     .fancybox-close-small:after
         right: 0
+
+#notice
+    display: none
+    position: fixed
+    bottom: 50px
+    left: 50px
+    width: 320px
+    padding: 25px
+    background: rgba(255,255,255,0.95)
+    z-index: 100
+
+    &.show
+        display: block
+
+    a
+        display: inline-block
+        margin: 10px 10px 0 0
+
+    @media(max-width: 450px)
+        bottom: 25px
+        left: 25px
+        padding: 15px
+        width: 265px
+
+#footer
+    position: fixed
+    bottom: 0
+    width: 100%
+    height: 60px
+    line-height: 60px
+    background-color: #fff

@@ -1,0 +1,207 @@
+{% extends 'base.html.twig' %}
+
+{% block meta_robots %}<meta name="robots" content="noindex,noarchive,follow">{% endblock %}
+
+{% block title %}{{ 'imprint.privacy.policies'|trans }}{% endblock %}
+
+{% block body_id %}imprint-privacy{% endblock %}
+
+{% block cover %}
+    <section id="cover" class="parallax-container">
+        <div class="parallax">
+        </div>
+    </section>
+{% endblock %}
+
+{% block content %}
+    <section id="content" class="container">
+        <h1>{{ 'imprint.privacy.policies'|trans }}</h1>
+
+        <address id="imprint" class="text-container text-center" style="padding: 50px 0">
+            <p>
+                Fabian Schmick<br />
+                Kurkölnischestraße, 4<br />
+                59929 Brilon<br />
+                Germany
+            </p>
+            <p>
+                {{ 'phone'|trans }}: 015225756456<br />
+                {{ 'email'|trans }}: <a href="mailto:schmick.fabian@web.de">schmick.fabian(at)web.de</a><br />
+            </p>
+        </address>
+
+        <div class="text-container">
+            <strong>{{ 'contradiction.advertising.emails'|trans }}</strong>
+            <p>
+                {{ 'contradiction.advertising.emails.text'|trans }}
+            </p>
+
+            <br/>
+
+            <strong>{{ 'copyright'|trans }}</strong>
+            <p>
+                {{ 'copyright.text'|trans }}
+            </p>
+
+            <hr/>
+
+            <strong>{{ 'privacy.intro'|trans }}</strong>
+            <p>
+                {{ 'privacy.intro.text'|trans }}
+            </p>
+
+            <br/>
+
+            <strong>{{ 'legal.basis.of.processing'|trans }}</strong>
+            <p>
+                {{ 'legal.basis.of.processing.text'|trans }}
+            </p>
+
+            <br/>
+
+            <strong>{{ 'right.to.information'|trans }}</strong>
+            <p>
+                {{ 'right.to.information.text'|trans|raw }}
+            </p>
+
+            <br/>
+
+            <strong>{{ 'disclosure.of.data'|trans }}</strong>
+            <p>
+                {{ 'disclosure.of.data.text'|trans }}
+            </p>
+            <ul>
+                {% set ul = 'disclosure.of.data.ul'|trans|split('|') %}
+                {% for li in ul %}
+                    <li>{{ li }}</li>
+                {% endfor %}
+            </ul>
+
+            <br/>
+
+            <strong>{{ 'affected.rights'|trans }}</strong>
+            <p>
+                {{ 'affected.rights.text'|trans }}
+            </p>
+            <ul>
+                {% set ul = 'affected.rights.ul'|trans|split('|') %}
+                {% for li in ul %}
+                    <li>{{ li }}</li>
+                {% endfor %}
+            </ul>
+
+            <br/>
+
+            <strong>{{ 'withdrawal'|trans }}</strong>
+            <p>
+                {{ 'withdrawal.text'|trans|raw }}
+            </p>
+
+            <br/>
+
+            <strong>{{ 'general.collection.of.data'|trans }}</strong>
+            <p>
+                {{ 'general.collection.of.data.text'|trans }}
+            </p>
+            <ul>
+                {% set ul = 'general.collection.of.data.ul'|trans|split('|') %}
+                {% for li in ul %}
+                    <li>{{ li }}</li>
+                {% endfor %}
+            </ul>
+            <p>
+                {{ 'general.collection.of.data.text2'|trans }}
+            </p>
+
+            <br/>
+
+            <strong>{{ 'contact.forms'|trans }}</strong>
+            <p>
+                {{ 'contact.forms.text'|trans }}
+            </p>
+
+            <br/>
+
+            <strong>{{ 'right.to.data.portability'|trans }}</strong>
+            <p>
+                {{ 'right.to.data.portability.text'|trans }}
+            </p>
+
+            <br/>
+
+            <strong>{{ 'links.to.other.websites'|trans }}</strong>
+            <p>
+                {{ 'links.to.other.websites.text'|trans }}
+            </p>
+
+            <br/>
+
+            <strong>{{ 'references.to.third.party.websites'|trans }}</strong>
+            <p>
+                {{ 'references.to.third.party.websites.text'|trans }}
+            </p>
+
+            <br/>
+
+            <strong>{{ 'right.to.complain.to.a.supervisory.authority'|trans }}</strong>
+            <p>
+                {{ 'right.to.complain.to.a.supervisory.authority.text'|trans }}
+            </p>
+
+            <br/>
+
+            <strong>{{ 'google.analytics'|trans }}</strong>
+            <p>
+                {{ 'google.analytics.text'|trans|raw }}
+            </p>
+
+            <br/>
+
+            <strong>{{ 'google.fonts'|trans }}</strong>
+            <p>
+                {{ 'google.fonts.text'|trans|raw }}
+            </p>
+
+            <br/>
+
+            <strong>{{ 'security.alert'|trans }}</strong>
+            <p>
+                {{ 'security.alert.text'|trans }}
+            </p>
+
+            <br/>
+
+            <strong>{{ 'changes.to.this.privacy.policy'|trans }}</strong>
+            <p>
+                {{ 'changes.to.this.privacy.policy.text'|trans }}
+            </p>
+
+            <br/>
+
+            <p>
+                {{ 'privacy.hint'|trans }}
+            </p>
+            <br/>
+            <p>
+                {{ 'privacy.inquiry'|trans|raw }}
+            </p>
+
+            <br/>
+        </div>
+
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="application/javascript">
+        jQuery(document).ready(function() {
+            $("a[href^=\"#\"]:not(.gaOptOut)").on('click', function (e) {
+                smoothScroll($(this).attr('href'));
+
+                e.preventDefault();
+            })
+        });
+    </script>
+{% endblock %}

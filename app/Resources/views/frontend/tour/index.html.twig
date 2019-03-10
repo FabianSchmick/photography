@@ -3,7 +3,7 @@
 
 {% block meta_description %}{{ 'tours.headline'|trans }} ({{ 'introduction.tours.headline'|trans|striptags }}){% endblock %}
 
-{% block meta_image %}{{ absolute_url(asset('assets/img/layout/cover-placeholder.jpg')) }}{% endblock %}
+{% block meta_image %}{{ absolute_url(asset('assets/img/layout/cover-tour.jpg')) }}{% endblock %}
 
 {% block title %}{{ 'tours'|trans }}{% endblock %}
 
@@ -11,7 +11,7 @@
 
 {% block cover %}
     <section id="cover" class="parallax-container">
-        <div class="parallax" style="background-image: url({{ asset('assets/img/layout/cover-placeholder.jpg')|imagine_filter('entry_show') }})">
+        <div class="parallax" style="background-image: url({{ asset('assets/img/layout/cover-tour.jpg')|imagine_filter('entry_show') }})">
         </div>
     </section>
 {% endblock %}
@@ -41,7 +41,7 @@
                                 {% if tour.previewEntry %}
                                     <img src="{{ vich_uploader_asset(tour.previewEntry.image, 'file')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.previewentry.name }}">
                                 {% else %}
-                                    <img src="{{ asset('assets/img/layout/cover-placeholder.jpg')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.name }}">
+                                    <img src="{{ asset('assets/img/layout/cover-tour.jpg')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.name }}">
                                 {% endif %}
                             </div>
                             <div class="tour-info-container">
