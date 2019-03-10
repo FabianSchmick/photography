@@ -269,7 +269,6 @@ function map(gpx, coordinates) {
         scrollWheelZoom: false
     }).setView(coordinates, 13);
 
-
     map.on("focus", function() { map.scrollWheelZoom.enable(); });
     map.on("blur", function() { map.scrollWheelZoom.disable(); });
 
@@ -278,5 +277,16 @@ function map(gpx, coordinates) {
         attribution: "&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>"
     }).addTo(map);
 
-    omnivore.gpx(gpx).addTo(map);
+    var track = omnivore.gpx(gpx);
+    track.on("ready", function() {
+        this.setStyle({
+            color: "#00cdcd",
+            weight: 5
+        });
+        this.eachLayer(function(marker) {
+            marker.bindPopup(marker.feature.properties.name);
+        });
+    });
+
+    map.addLayer(track);
 }
