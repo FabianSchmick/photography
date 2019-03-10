@@ -3,9 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Tag;
-use AppBundle\Entity\TagImage;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\File\File;
 
 class TagService
 {
@@ -27,12 +25,11 @@ class TagService
     /**
      * Save a tag.
      *
-     * @param array $tag   Array of data for saving a tag object
-     * @param File  $image UploadFile object with containing image
+     * @param array $tag Array of data for saving a tag object
      *
      * @return Tag $tagEntity        The saved tag entity
      */
-    public function saveTag(array $tag, File $image = null)
+    public function saveTag(array $tag)
     {
         $tagEntity = new Tag();
         if (isset($tag['id'])) {
@@ -49,13 +46,6 @@ class TagService
 
         if (!empty($tag['description'])) {
             $tagEntity->setDescription($tag['description']);
-        }
-
-        if ($image['image']) {
-            $entryImage = new TagImage();
-            $entryImage->setFile($image);
-
-            $tagEntity->setImage($entryImage);
         }
 
         $this->em->persist($tagEntity);
