@@ -51,7 +51,7 @@ class Tag
     /**
      * @var Entry
      *
-     * @ORM\OneToOne(targetEntity="Entry", inversedBy="previewTag")
+     * @ORM\ManyToOne(targetEntity="Entry", inversedBy="previewTag")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
     private $previewEntry;
@@ -68,6 +68,7 @@ class Tag
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Entry", mappedBy="tags", cascade={"persist"})
+     * @ORM\OrderBy({"timestamp"="DESC"})
      */
     private $entries;
 

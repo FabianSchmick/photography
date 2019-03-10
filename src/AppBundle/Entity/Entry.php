@@ -99,7 +99,7 @@ class Entry
     /**
      * @var Tag
      *
-     * @ORM\OneToOne(targetEntity="Tag", mappedBy="previewEntry")
+     * @ORM\OneToMany(targetEntity="Tag", mappedBy="previewEntry")
      */
     private $previewTag;
 
