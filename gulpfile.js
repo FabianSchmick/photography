@@ -17,19 +17,17 @@ var gulp  = require('gulp'),
 var config = require('./gulpfile-config.json');
 
 /* Tasks */
-gulp.task('fonts', function () {
-    return gulp.src(config.fonts.src)
-        .pipe(gulp.symlink(config.publicPath + '/' + config.fonts.dest));
-});
+gulp.task('symlink', function () {
+    var streams = [];
 
-gulp.task('font', function () {
-    return gulp.src(config.font.src)
-        .pipe(gulp.symlink(config.publicPath + '/' + config.font.dest));
-});
+    config.symlink.forEach(function(file) {
+        var stream = gulp.src(file.src)
+            .pipe(gulp.symlink(config.publicPath + '/' + file.dest));
 
-gulp.task('images', function () {
-    return gulp.src(config.images.src)
-        .pipe(gulp.symlink(config.publicPath + '/' + config.images.dest));
+        streams.push(stream);
+    });
+
+    return ms.apply(this, streams);
 });
 
 gulp.task('styles', function () {
@@ -56,7 +54,7 @@ gulp.task('clean:scripts', function () {
     return del([config.assetsPath + '/dist/js/*']);
 });
 
-gulp.task('clean', gulp.series(
+gulp.task('clean', gulp.parallel(
     'clean:styles',
     'clean:scripts'
 ));
@@ -90,11 +88,7 @@ gulp.task('watch:bs', function() {
 gulp.task('default',
     gulp.series(
         'clean',
-        gulp.parallel(
-            'fonts',
-            'font',
-            'images'
-        ),
+        'symlink',
         'scripts',
         'styles',
         'scripts-admin',
@@ -151,11 +145,7 @@ gulp.task('service-worker', function () {
 gulp.task('deploy',
     gulp.series(
         'clean',
-        gulp.parallel(
-            'fonts',
-            'font',
-            'images'
-        ),
+        'symlink',
         'deploy:scripts',
         'deploy:styles',
         'deploy:scripts-admin',

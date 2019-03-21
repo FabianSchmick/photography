@@ -4,26 +4,20 @@
   "bsProxy": "127.0.0.1/app_dev.php",
   "watchHtml": "./app/Resources/**/*",
 
-  "fonts": {
-    "src": [
-      "./node_modules/font-awesome/fonts/*"
-    ],
-    "dest": "assets/dist/fonts/"
-  },
-
-  "font": {
-    "src": [
-      "./node_modules/summernote/dist/font/*"
-    ],
-    "dest": "assets/dist/css/font/"
-  },
-
-  "images": {
-    "src": [
-      "./node_modules/leaflet/dist/images/*"
-    ],
-    "dest": "assets/dist/css/images/"
-  },
+  "symlink": [
+    {
+      "src": "./node_modules/font-awesome/fonts/*",
+      "dest": "assets/dist/fonts/"
+    },
+    {
+      "src": "./node_modules/summernote/dist/font/*",
+      "dest": "assets/dist/css/font/"
+    },
+    {
+      "src": "./node_modules/leaflet/dist/images/*",
+      "dest": "assets/dist/css/images/"
+    }
+  ],
 
   "styles": {
     "frontend": {
