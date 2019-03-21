@@ -1,5 +1,5 @@
 {%- macro blog(title, desc) -%}
-    {%- spaceless -%}
+    {% filter spaceless %}
         {
             "@context": "http://schema.org",
             "@type": "Blog",
@@ -12,11 +12,11 @@
                 "name": "{{ 'authors.name'|trans }}"
             }
         }
-    {%- endspaceless -%}
+    {% endfilter %}
 {%- endmacro -%}
 
 {%- macro itemList(elements) -%}
-    {%- spaceless -%}
+    {% filter spaceless %}
         {
             "@context": "http://schema.org",
             "@type": "ItemList",
@@ -32,11 +32,11 @@
                 {% endfor %}
             ]
         }
-    {%- endspaceless -%}
+    {% endfilter %}
 {%- endmacro -%}
 
 {%- macro imageObject(entry, scriptTag = true) -%}
-    {%- spaceless -%}
+    {% filter spaceless %}
         {
             "@context": "http://schema.org",
             "@type": "ImageObject",
@@ -50,13 +50,13 @@
             "description": "{{ entry.description|striptags }}",
             "name": "{{ entry.name }}"
         }
-    {%- endspaceless -%}
+    {% endfilter %}
 {%- endmacro -%}
 
 {%- macro blogPosting(post, entry) -%}
     {% import _self as jsonLd %}
 
-    {%- spaceless -%}
+    {% filter spaceless %}
         {
             "@context": "http://schema.org",
             "@type": "BlogPosting",
@@ -81,13 +81,13 @@
                 "name": "{{ 'authors.name'|trans }}"
             }
         }
-    {%- endspaceless -%}
+    {% endfilter %}
 {%- endmacro -%}
 
 {%- macro collectionPage(elements) -%}
     {% import _self as jsonLd %}
 
-    {%- spaceless -%}
+    {% filter spaceless %}
         {
             "@context": "http://schema.org",
             "@type": "CollectionPage",
@@ -101,7 +101,7 @@
                 ]
             }
         }
-    {%- endspaceless -%}
+    {% endfilter %}
 {%- endmacro -%}
 
 {%- macro sportsActivityLocation(tour) -%}
@@ -109,7 +109,7 @@
     {% set firstPoint = tour.gpxData.segments[0].points|first %}
     {% set lastPoint = tour.gpxData.segments[0].points|last %}
 
-    {%- spaceless -%}
+    {% filter spaceless %}
         {
             "@context": "http://schema.org",
             "@type": "SportsActivityLocation",
@@ -150,11 +150,11 @@
                 }
             }
         }
-    {%- endspaceless -%}
+    {% endfilter %}
 {%- endmacro -%}
 
 {%- macro breadcrumbList(elements) -%}
-    {%- spaceless -%}
+    {% filter spaceless %}
         {
             "@context": "http://schema.org",
             "@type": "BreadcrumbList",
@@ -179,5 +179,5 @@
                 {% endfor %}
             ]
         }
-    {%- endspaceless -%}
+    {% endfilter %}
 {%- endmacro -%}

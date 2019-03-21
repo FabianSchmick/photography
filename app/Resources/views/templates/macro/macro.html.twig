@@ -1,5 +1,5 @@
 {%- macro create_delete_modal(body, entity, deleteLink) -%}
-    {%- spaceless -%}
+    {% filter spaceless %}
         <div id="deleteModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -17,5 +17,5 @@
                 </div>
             </div>
         </div>
-    {%- endspaceless -%}
+    {% endfilter %}
 {%- endmacro -%}

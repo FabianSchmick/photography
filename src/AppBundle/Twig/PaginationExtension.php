@@ -5,8 +5,10 @@ namespace AppBundle\Twig;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Translation\TranslatorInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\Markup;
 
-class PaginationExtension extends \Twig_Extension
+class PaginationExtension extends AbstractExtension
 {
     /**
      * @var RouterInterface
@@ -57,7 +59,7 @@ class PaginationExtension extends \Twig_Extension
      * @param string $path    Name of the controller which paginates
      * @param array  $options Additional options like a query for the paginate controller or css classes name
      *
-     * @return \Twig_Markup
+     * @return Markup
      */
     public function getPagination($current, $last, $path, $options = [])
     {
@@ -122,7 +124,7 @@ class PaginationExtension extends \Twig_Extension
             'paginations' => $paginations,
         ]);
 
-        return new \Twig_Markup($html, 'UTF-8');
+        return new Markup($html, 'UTF-8');
     }
 
     /**

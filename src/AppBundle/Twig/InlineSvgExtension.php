@@ -2,6 +2,9 @@
 
 namespace AppBundle\Twig;
 
+use Twig\Extension\AbstractExtension;
+use Twig\Markup;
+
 /**
  * Class InlineSvgExtension.
  *
@@ -9,14 +12,14 @@ namespace AppBundle\Twig;
  *
  * Usage:
  * Add or replace attributes with the attr property:
- * {{ asset('assets/img/logo.svg')|inline_svg({attr: {class: 'inline-svg', id: 'logo'}})|raw }}
+ * {{ asset('assets/img/logo.svg')|inline_svg({attr: {class: 'inline-svg', id: 'logo'}}) }}
  *
  * Add CSS classes:
- * {{ asset('assets/img/logo.svg')|inline_svg({classes: 'add-classname another-classname'})|raw }}
+ * {{ asset('assets/img/logo.svg')|inline_svg({classes: 'add-classname another-classname'}) }}
  *
  * Inspired by https://github.com/manuelodelain/svg-twig-extension
  */
-class InlineSvgExtension extends \Twig_Extension
+class InlineSvgExtension extends AbstractExtension
 {
     /**
      * Project web directory.
@@ -101,7 +104,7 @@ class InlineSvgExtension extends \Twig_Extension
         // remove comments
         $svgString = preg_replace('#<!--.*-->#', '', $svgString);
 
-        return new \Twig_Markup($svgString, 'UTF-8');
+        return new Markup($svgString, 'UTF-8');
     }
 
     /**

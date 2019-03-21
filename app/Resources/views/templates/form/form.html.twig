@@ -1,7 +1,7 @@
 {% use "bootstrap_3_horizontal_layout.html.twig" %}
 
 {% block form_errors %}
-    {% spaceless %}
+    {% filter spaceless %}
         {% if errors|length > 0 %}
             <span class="help-block">
                 <ul class="list-unstyled text-danger">
@@ -11,7 +11,7 @@
                 </ul>
             </span>
         {% endif %}
-    {% endspaceless %}
+    {% endfilter %}
 {% endblock form_errors %}
 
 {% block form_row -%}
@@ -47,7 +47,7 @@
 {%- endblock choice_widget_collapsed -%}
 
 {% block vich_file_widget %}
-    {% spaceless %}
+    {% filter spaceless %}
         {{ form_widget(form.file) }}
         {% if form.delete is defined %}
             {{ form_widget(form.delete) }}
@@ -58,11 +58,11 @@
             <a href="{{ download_uri }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> {{ 'current.file'|trans }}</a>
             <p class="help-block">({{ 'file.upload.info'|trans }})</p>
         {% endif %}
-    {% endspaceless %}
+    {% endfilter %}
 {% endblock %}
 
 {% block vich_image_widget %}
-    {% spaceless %}
+    {% filter spaceless %}
         {{ form_widget(form.file) }}
         {% if form.delete is defined %}
             {{ form_widget(form.delete) }}
@@ -76,5 +76,5 @@
             <a href="{{ download_uri }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> {{ 'current.file'|trans }}</a>
             <p class="help-block">({{ 'file.upload.info'|trans }})</p>
         {% endif %}
-    {% endspaceless %}
+    {% endfilter %}
 {% endblock %}
