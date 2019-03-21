@@ -24,7 +24,7 @@ if ("serviceWorker" in navigator) {
 
 // Disable GA script
 function disableGoogleAnalytics() {
-    jQuery(".gaOptOut").click(function () {
+    $(".gaOptOut").on("click", function () {
         gaOptout();
         alert("Google Analytics wurde deaktiviert!");
         return false;
@@ -33,23 +33,23 @@ function disableGoogleAnalytics() {
 
 // Notice
 function notice() {
-    var body = jQuery("body");
-    var notice = jQuery("#notice");
+    var body = $("body");
+    var notice = $("#notice");
 
     // check cookie
-    if (jQuery(notice).length > 0) {
+    if ($(notice).length > 0) {
         if (Cookies.get("Notice")) {
-            jQuery(notice).remove();
+            $(notice).remove();
         } else {
-            jQuery(notice).addClass("show");
-            jQuery(body).addClass("notice");
+            $(notice).addClass("show");
+            $(body).addClass("notice");
         }
     }
 
     // set cookie
-    jQuery(".agree").click(function(e) {
-        jQuery(notice).remove();
-        jQuery(body).removeClass("notice");
+    $(".agree").on("click", function(e) {
+        $(notice).remove();
+        $(body).removeClass("notice");
         Cookies.set("Notice", true, {
             path: "/",
             expire: 365
@@ -112,7 +112,7 @@ function parallax() {
 
 // Lazy loads the entries
 function lazyLoad() {
-    $(window).scroll(function() {
+    $(window).on("scroll", function() {
         if (checkAjax && $(window).scrollTop() + $(window).height() > $(document).height() - 600) {
             checkAjax = false;
             $.when(loadEntries()).done(function() {

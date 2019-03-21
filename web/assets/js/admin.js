@@ -7,19 +7,19 @@ $(document).ready(function() {
 
 // Logic for searching the navigation
 function search() {
-    jQuery("#search").keyup(function () {
-        var filter = jQuery(this).val();
-        jQuery("ul#side-menu li").each(function () {
-            if (jQuery(this).text().search(new RegExp(filter, "i")) < 0) {
-                jQuery(this).hide();
+    $("#search").on("keyup", function () {
+        var filter = $(this).val();
+        $("ul#side-menu li").each(function () {
+            if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                $(this).hide();
             } else {
-                jQuery(this).show();
+                $(this).show();
             }
         });
-        jQuery(".subNav").addClass("active").find(".nav").collapse("show");
+        $(".subNav").addClass("active").find(".nav").collapse("show");
 
         if (filter === "") {
-            jQuery(".subNav").removeClass("active").find(".nav").collapse("hide");
+            $(".subNav").removeClass("active").find(".nav").collapse("hide");
         }
     });
 }
