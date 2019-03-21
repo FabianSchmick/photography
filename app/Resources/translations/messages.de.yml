@@ -19,6 +19,7 @@ delete: Löschen
 close: Schließen
 name: Name
 file: Datei
+page: Seite
 pagination.prev: '<i class="fa fa-angle-left" aria-hidden="true" title="Zurück"></i>'
 pagination.next: '<i class="fa fa-angle-right" aria-hidden="true" title="Weiter"></i>'
 
@@ -31,7 +32,6 @@ german: Deutsch
 locale.en: English
 locale.de: Deutsch
 live.view: Live Ansicht
-logout: Abmelden
 
 # Entry
 new.entry: Neuer Eintrag
@@ -74,6 +74,7 @@ bad.credentials: Benutzername oder Passwort falsch
 Invalid credentials.: Benutzername oder Passwort falsch
 username: Benutzername
 password: Passwort
+logout: Abmelden
 
 # Frontend
 home: Home

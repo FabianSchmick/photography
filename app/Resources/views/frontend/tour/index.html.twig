@@ -1,11 +1,11 @@
 {% import 'templates/macro/json-ld.html.twig' as jsonLd %}
 {% extends 'base.html.twig' %}
 
-{% block meta_description %}{{ 'tours.headline'|trans }} ({{ 'introduction.tours.headline'|trans|striptags }}){% endblock %}
+{% block meta_description %}{{ 'tours.headline'|trans }} - {{ 'page'|trans }} {{ page }} - ({{ 'introduction.tours.headline'|trans|striptags }}){% endblock %}
 
 {% block meta_image %}{{ absolute_url(asset('assets/img/layout/cover-tour.jpg')) }}{% endblock %}
 
-{% block title %}{{ 'tours'|trans }}{% endblock %}
+{% block title %}{{ 'tours'|trans }} - {{ 'page'|trans }} {{ page }}{% endblock %}
 
 {% block body_id %}tours{% endblock %}
 
