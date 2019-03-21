@@ -7,6 +7,7 @@ use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\Markup;
+use Twig\TwigFunction;
 
 class PaginationExtension extends AbstractExtension
 {
@@ -47,7 +48,7 @@ class PaginationExtension extends AbstractExtension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('paginate', [$this, 'getPagination']),
+            new TwigFunction('paginate', [$this, 'getPagination']),
         ];
     }
 

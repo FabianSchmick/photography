@@ -4,6 +4,7 @@ namespace AppBundle\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\Markup;
+use Twig\TwigFilter;
 
 /**
  * Class InlineSvgExtension.
@@ -46,7 +47,7 @@ class InlineSvgExtension extends AbstractExtension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('inline_svg', [$this, 'getInlineSvg']),
+            new TwigFilter('inline_svg', [$this, 'getInlineSvg']),
         ];
     }
 
