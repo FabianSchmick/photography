@@ -7,6 +7,11 @@ module.exports = {
     "parserOptions": {
         "ecmaVersion": 5
     },
+    "globals": {
+        "pageUrl": "readonly",
+        "gaOptout": "readonly",
+        "paginateUrl": "writable"
+    },
     "rules": {
         "arrow-spacing": ["error", { "before": true, "after": true }],
         "block-spacing": ["error", "always"],
