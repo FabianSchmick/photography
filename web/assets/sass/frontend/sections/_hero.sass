@@ -1,0 +1,58 @@
+.parallax-container
+    position: relative
+    height: 400px
+    overflow: hidden
+    box-shadow: inset 0 -25px 25px -25px #000
+
+    .parallax
+        position: absolute
+        height: 200% /* Greater then 100% */
+        width: 100%
+        z-index: -1
+        background: url("#{$imagepath}/cover-placeholder.jpg") center / 100% auto no-repeat #fff
+
+        @media (max-width: 768px)
+            background: url("#{$imagepath}/cover-placeholder-responsive.jpg") center / 100% auto no-repeat #fff
+
+#cover.parallax-container
+    height: 700px
+
+    .parallax
+        height: 140%
+
+        @media(max-width: 500px)
+            height: 100%
+            transform: none !important
+            background-attachment: fixed
+            background-position: top
+
+    /* Not the best way, but I don't know anything better yet */
+    @media(max-width: 1850px)
+        height: 650px
+
+    @media(max-width: 1650px)
+        height: 600px
+
+    @media(max-width: 1500px)
+        height: 550px
+
+    @media(max-width: 1400px)
+        height: 500px
+
+    @media(max-width: 1250px)
+        height: 450px
+
+    @media(max-width: 1150px)
+        height: 400px
+
+    @media(max-width: 1000px)
+        height: 350px
+
+    @media(max-width: 900px)
+        height: 300px
+
+    @media(max-width: 600px)
+        height: 250px
+
+    @media(max-width: 350px)
+        height: 180px

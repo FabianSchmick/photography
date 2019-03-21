@@ -1,0 +1,101 @@
+#entries
+    position: relative
+    margin: 100px auto
+    overflow: initial
+
+    #spinner
+        position: absolute
+        display: block
+        transform: translateX(-50%)
+        text-align: center
+        padding: 0
+        margin: 0 auto
+        bottom: -80px
+
+        svg
+            height: 60px
+            width: 60px
+
+            use
+                fill: $color-teritary
+
+    @media(max-width: 450px)
+        margin: 20px auto 100px
+
+#entry
+    display: flex
+    padding-top: 50px
+    min-height: 100vh
+    align-items: center
+
+    .entry-title
+        margin: 20px 0
+
+    img
+        width: 100%
+
+    .entry-image
+        position: relative
+        min-height: 100px
+
+        .spinner
+            position: absolute
+            display: block
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+
+            svg
+                height: 60px
+                width: 60px
+
+                use
+                    fill: $color-teritary
+
+    .entry-inner
+        position: relative
+
+    .prev,
+    .next
+        display: flex
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        height: 100%
+        opacity: 0.4
+        font-size: 34px
+        color: $color-teritary
+        text-decoration: none
+        border: none
+        padding: 0 50px
+        align-items: center
+        justify-content: center
+        background-repeat: repeat-x
+        transition: all 0.2s ease-in
+        &:hover
+            opacity: 0.8
+            color: $color-secondary
+
+    .prev
+        right: 15px
+        background-image: linear-gradient(to right, rgba(0,0,0,0.0001) 0, rgba(0,0,0,0.5) 100%)
+    .next
+        left: 15px
+        background-image: linear-gradient(to right, rgba(0,0,0,0.5) 0, rgba(0,0,0,0.0001) 100%)
+
+    @media(max-width: 1200px)
+        align-items: normal
+
+        .entry-info
+            padding-top: 10px
+            padding-bottom: 30px
+
+        .prev,
+        .next
+            padding: 0 40px
+
+    @media(max-width: 450px)
+        .prev,
+        .next
+            font-size: 24px
+            padding: 0 30px

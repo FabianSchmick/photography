@@ -1,0 +1,16 @@
+ul.pagination
+    li
+        a
+            transition: all 0.2s ease-in
+        &.active a, &.active a:hover, &.active a:focus, a:hover , a:focus
+            background-color: $color-teritary
+            border-color: $color-teritary
+            color: $color-secondary
+
+#tours-container
+    .pagination
+        margin-top: 0
+
+    @media(max-width: 450px)
+        .pagination
+            margin-bottom: 10px

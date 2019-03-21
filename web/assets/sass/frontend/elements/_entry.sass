@@ -1,0 +1,116 @@
+#entries .entry
+    overflow: hidden
+
+    img
+        transition: transform 0.3s
+        max-width: 100%
+
+    .title
+        position: absolute
+        bottom: 0
+        width: 100%
+        min-height: 50px
+        padding: 15px 10px 5px
+        color: $color-secondary
+        opacity: 0
+        background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 100%)
+        transition: all 0.2s ease-in
+
+    &:hover
+        img
+            transform: scale(1.05)
+
+        .title
+            opacity: 1
+            transition: all 0.2s ease-in
+
+.entry
+    height: 100%
+    width: 100%
+    background: none !important
+
+    .entry-inner
+        position: relative
+        height: 100%
+        width: 100%
+
+        .entry-title
+            margin: 20px 0
+
+        .entry-image
+            position: absolute
+            top: 0
+            left: 0
+            height: 100%
+            width: 80%
+            text-align: center
+
+            img
+                max-height: 100%
+                max-width: 100%
+                margin-top: -1px
+                position: relative
+                top: 50%
+                transform: translateY(-50%)
+
+        .entry-info
+            position: absolute
+            top: 0
+            right: 0
+            height: 100%
+            width: 20%
+            padding: 0 30px
+            color: $color-secondary
+
+        a
+            text-decoration: none
+            color: $color-teritary
+
+            &.btn
+                color: $color-secondary
+
+        @media(max-width: 1400px)
+            .entry-image
+                width: 75%
+
+            .entry-info
+                width: 25%
+
+        @media(max-width: 1080px)
+            .entry-image
+                width: 100%
+                height: 70%
+
+            .entry-info
+                width: 100%
+                height: 30%
+                top: auto
+                bottom: 0
+                padding: 0
+
+        @media(max-width: 768px)
+            .entry-image
+                height: 70%
+
+            .entry-info
+                height: 30%
+
+        @media(max-width: 440px)
+            .entry-image
+                height: 60%
+
+            .entry-info
+                height: 40%
+
+                h2
+                    margin: 10px 0 13px
+
+                .meta
+                    padding: 0
+                    margin: 0
+
+                .entry-timestamp, .entry-timestamp-value, .entry-author, .entry-author-value
+                    display: none
+
+                .tags
+                    padding-bottom: 10px

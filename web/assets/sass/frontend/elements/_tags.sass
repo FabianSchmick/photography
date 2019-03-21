@@ -1,0 +1,27 @@
+ul.tags
+    margin: 0
+    padding-right: 2px
+    padding-left: 2px
+
+    li
+        display: inline-block
+        margin: 0 -2px
+        padding: 0 10px 10px 0
+
+        > a
+            display: block
+            padding: 5px 10px
+            transition: all 0.2s ease-in
+            border: 1px solid $color-teritary
+            border-radius: 20px
+            color: $color-teritary
+            text-decoration: none
+
+            &:hover
+                transition: all 0.2s ease-in
+                color: $color-secondary
+                background: $color-teritary
+
+.entry-info .tags
+    padding-top: 15px
+    padding-bottom: 20px

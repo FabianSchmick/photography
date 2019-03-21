@@ -1,0 +1,53 @@
+#tours-container
+    margin-top: 110px
+    margin-bottom: 30px
+    text-align: center
+
+    @media(max-width: 450px)
+        margin-top: 30px
+
+.tour
+    h3
+        text-align: center
+
+    .tour-desc
+        padding-bottom: 40px
+
+    .tour-info
+        > div
+            position: relative
+            padding-top: 30px
+            padding-bottom: 50px
+
+            &:before
+                content: ''
+                position: absolute
+                top: 0
+                left: 50%
+                transform: translateX(-50%)
+                height: 3px
+                width: 60px
+                background: $color-teritary
+
+    .gallery
+        position: relative
+        margin-bottom: 30px
+        text-align: center
+
+        a
+            border-bottom: none
+
+    .tour-map
+        #map
+            height: 400px
+            margin: 0 -25px
+
+            a
+                border: none
+
+            @media(max-width: 450px)
+                height: 300px
+                margin: 0 -15px
+
+        .btn
+            margin-top: 15px

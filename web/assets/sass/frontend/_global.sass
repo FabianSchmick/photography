@@ -1,0 +1,76 @@
+html
+    height: 100%
+body
+    min-height: 100%
+    width: 100%
+    font-family: $font-main
+    color: $color-primary
+    font-size: 16px
+
+noscript
+    position: fixed
+    width: 100%
+    z-index: 100
+
+    .alert
+        margin: 0
+        border-radius: 0
+
+h1, .h1,
+h2, .h2,
+h3, .h3
+    font-family: $font-header
+
+h1, .h1, .entry-title
+    hyphens: auto
+    word-wrap: break-word
+
+h4, .h4
+    line-height: 24px
+
+hr
+    height: 3px
+    width: 60px
+    background: $color-teritary
+    border: 0
+    margin-top: 40px
+    margin-bottom: 40px
+
+@media(max-width: 450px)
+    body
+        font-size: 14px
+
+    h1, .h1
+        font-size: 28px
+
+    h2, .h2
+        font-size: 22px
+
+a.link,
+article a,
+p a
+    border-bottom: 2px solid $color-teritary
+    color: $color-teritary
+    transition: all 0.2s ease-in
+
+    &:hover, &:focus
+        border-color: lighten($color-teritary, 5)
+        color: lighten($color-teritary, 5)
+        text-decoration: none
+
+.container
+    width: 100%
+    max-width: 1920px
+    padding: 0 30px
+
+    @media(max-width: 450px)
+        padding: 0 15px
+
+.text-container
+    max-width: 750px
+    margin: auto
+
+    .similar-tags
+        padding: 15px 0 10px
+        font-weight: bold
+        letter-spacing: 0.4px

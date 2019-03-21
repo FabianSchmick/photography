@@ -1,0 +1,55 @@
+#introduction
+    text-align: center
+    position: relative
+    padding: 0 30px
+
+    &:before
+        content: ""
+        position: absolute
+        transform: translateX(-50%)
+        width: 150px
+        height: 150px
+        background: url("#{$imagepath}/../logo.jpg") no-repeat center /contain
+        border-radius: 50%
+        top: -75px
+        border: 2px solid #fff
+
+        @media(max-width: 768px)
+            width: 100px
+            height: 100px
+            top: -50px
+
+        @media(max-width: 450px)
+            display: none
+
+    @media(max-width: 450px)
+        padding: 0 15px
+
+    h1
+        margin: auto
+        padding: 110px 0 30px
+
+        @media(max-width: 450px)
+            padding: 30px 0 15px
+
+    .social
+        display: inline-block
+        padding-top: 20px
+
+        li
+            float: left
+
+            a
+                padding: 0 16px
+                font-size: 22px
+                color: $color-primary
+                transition: all 0.2s ease-in
+
+                &:hover,
+                &:focus
+                    text-decoration: none
+                    color: $color-teritary
+                    transition: all 0.2s ease-in
+
+        @media(max-width: 450px)
+            margin: 0

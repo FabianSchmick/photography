@@ -1,0 +1,24 @@
+.btn
+    display: inline-block
+    padding: 10px 25px
+    transition: all 0.2s ease-in
+
+    border-radius: 5px
+    color: $color-secondary
+    background: $color-teritary
+    text-decoration: none
+
+    &.btn-inverse
+        background: transparent
+        border: 2px solid $color-teritary
+
+    i
+        padding-right: 5px
+
+    &:hover,
+    &:focus
+        background: lighten($color-teritary, 5)
+        color: $color-secondary
+
+    @media(max-width: 450px)
+        padding: 7px 17px

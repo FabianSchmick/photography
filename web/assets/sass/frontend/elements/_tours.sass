@@ -1,0 +1,126 @@
+ul.tours
+    margin-bottom: 0
+    text-align: initial
+
+    li
+        position: relative
+        margin-bottom: 25px
+
+        .tour-preview-img
+            overflow: hidden
+
+            img
+                width: 100%
+                transition: transform 0.3s
+
+        .tour-info-container
+            position: absolute
+            top: 0
+            left: 15px
+            height: 100%
+            width: 100%
+            max-width: calc(100% - 30px)
+            background: rgba(0,0,0,0.7)
+            transition: all 0.3s
+            color: $color-secondary
+
+            .tour-info
+                position: relative
+                padding: 40px 50px 50px
+                height: 100%
+
+                .h1
+                    margin: 0 0 20px
+
+                .meta
+                    display: inline-block
+                    margin: 0
+                    position: absolute
+                    bottom: 50px
+                    left: 50px
+
+                    dt,
+                    dd
+                        display: inline-block
+
+                    dt
+                        border: 1px solid $color-secondary
+                        margin-right: 5px
+                        border-radius: 50%
+                        width: 35px
+                        height: 35px
+                        text-align: center
+                        line-height: 32px
+
+                    dd
+                        padding-right: 25px
+                        &:last-child
+                            padding-right: 0
+
+                .btn
+                    position: absolute
+                    bottom: 50px
+                    right: 50px
+
+                @media(max-width: 1450px) and (min-width: 1200px), (max-width: 767px)
+                    padding: 25px 30px 30px
+
+                    .h1
+                        font-size: 32px
+
+                    .meta
+                        bottom: 30px
+                        left: 30px
+
+                        dt
+                            border: none
+                            margin: 0
+                            width: 20px
+                            height: auto
+                            line-height: initial
+
+                        dd
+                            padding-right: 18px
+
+                    .btn
+                        bottom: 30px
+                        right: 30px
+
+                @media(max-width: 600px)
+                    .h1
+                        font-size: 26px
+
+                    p
+                        display: none
+
+                    .meta
+                        .tour-maxAltitude, .tour-maxAltitude-value,
+                        .tour-minAltitude, .tour-minAltitude-value
+                            display: none
+
+                @media(max-width: 600px)
+                    padding: 15px
+
+                    .h1
+                        font-size: 22px
+
+                    .meta
+                        bottom: 15px
+                        left: 15px
+
+                    .btn
+                        bottom: 15px
+                        right: 15px
+
+        @media(max-width: 450px)
+            margin-bottom: 15px
+
+        &:hover
+            .tour-preview-img img
+                transform: scale(1.05)
+
+            .tour-info-container
+                background: rgba(0,0,0,0.5)
+
+            .btn
+                background: $color-teritary

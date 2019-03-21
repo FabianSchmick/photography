@@ -1,0 +1,26 @@
+html,
+body
+    min-height: 100%
+    width: 100%
+    font-family: $font-main
+    color: $color-primary
+
+#wrapper
+    min-height: 100%
+
+    #spinner
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+
+        svg
+            height: 60px
+            width: 60px
+
+            use
+                fill: #000
+
+    #page-wrapper
+        padding-bottom: 15px
+        min-height: calc(100vh - 51px) /* Not the best way, but 100% not working when ajax loads new content */
