@@ -3,6 +3,7 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Service\EntryService;
+use AppBundle\Service\TourService;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -17,21 +18,39 @@ class Fixtures extends AbstractFixture implements FixtureInterface
      */
     private $entryService;
 
-    public function __construct(EntryService $entryService)
+    /**
+     * @var TourService
+     */
+    private $tourService;
+
+    /**
+     * @var string
+     */
+    private $projectDir;
+
+    public function __construct(EntryService $entryService, TourService $tourService, $projectDir)
     {
         $this->entryService = $entryService;
+        $this->tourService = $tourService;
+        $this->projectDir = $projectDir;
     }
 
     public function load(ObjectManager $manager)
     {
+        $tours = [
+            [
+                'name' => 'Tour to the top of the mountain',
+                'description' => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+            ],
+        ];
+
         $entries = [
             [
                 'name' => 'Forest near my hometown',
                 'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
                 'author' => 'Fabian Schmick',
-                'image' => '',
                 'location' => 'Germany, NRW',
-                'timestamp' => '28.10.2017',
+                'timestamp' => '2017-10-26',
                 'tags' => [
                     'Nature', 'Forest', 'Woods', 'Trees', 'Landscape',
                 ],
@@ -42,18 +61,17 @@ class Fixtures extends AbstractFixture implements FixtureInterface
                 'author' => 'Fabian Schmick',
                 'image' => '',
                 'location' => 'Germany, Bavaria',
-                'timestamp' => '28.10.2017',
+                'timestamp' => '2017-10-27',
                 'tags' => [
                     'Nature', 'Mountain', 'Landscape',
                 ],
             ],
             [
-                'name' => 'Field',
+                'name' => 'Field with mushrooms',
                 'description' => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
                 'author' => 'Fabian Schmick',
-                'image' => '',
                 'location' => 'Germany, NRW',
-                'timestamp' => '28.10.2017',
+                'timestamp' => '2017-10-28',
                 'tags' => [
                     'Nature', 'Grass', 'Landscape',
                 ],
@@ -62,37 +80,57 @@ class Fixtures extends AbstractFixture implements FixtureInterface
                 'name' => 'Sunset in winter',
                 'description' => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
                 'author' => 'Fabian Schmick',
-                'image' => '',
                 'location' => 'Germany, NRW',
-                'timestamp' => '28.10.2017',
+                'timestamp' => '2017-10-29',
                 'tags' => [
                     'Nature', 'Sunset', 'Winter', 'Snow', 'Landscape',
                 ],
             ],
         ];
 
-        $imgDir = __DIR__.'/../img';
+        $imgFixturesDir = $this->projectDir . '/fixtures/img';
+        $tourFixturesDir = $this->projectDir . '/fixtures/tour';
         $tmpDir = __DIR__.'/../tmp';
 
         $fileSystem = new Filesystem();
-        $fileSystem->mirror($imgDir, $tmpDir);
+        $fileSystem->remove($tmpDir);
+        $fileSystem->mirror($tourFixturesDir, $tmpDir);
 
-        $finder = new Finder();
-        $finder->files()->in($tmpDir);
+        $gpxFiles = $this->getFiles($tmpDir);
 
-        foreach ($finder as $file) {
-            $images[] = new UploadedFile($file->getRealPath(), $file->getFilename(), 'image/jpg', $file->getSize(), null, true);
+        foreach ($tours as $tour) {
+            $this->tourService->saveTour($tour, $gpxFiles[array_rand($gpxFiles)]);
         }
+
+        $fileSystem = new Filesystem();
+        $fileSystem->remove($tmpDir);
+        $fileSystem->mirror($imgFixturesDir, $tmpDir);
+
+        $images = $this->getFiles($tmpDir);
 
         // 20 entries
         for ($i = 0; $i < 5; ++$i) {
             foreach ($entries as $key => $entry) {
+                $minute = (string) random_int(10, 59);
+                $entry['timestamp'] .= ' 11:'.$minute;
                 $this->entryService->saveEntry($entry, $images[$key]);
             }
             if ($i < 4) {
-                $fileSystem->mirror($imgDir, $tmpDir);
+                $fileSystem->mirror($imgFixturesDir, $tmpDir);
             }
             shuffle($images);
         }
+    }
+
+    private function getFiles($tmpDir)
+    {
+        $finder = new Finder();
+        $finder->files()->in($tmpDir);
+
+        foreach ($finder as $file) {
+            $files[] = new UploadedFile($file->getRealPath(), $file->getFilename(), null, null, null, true);
+        }
+
+        return $files ?? [];
     }
 }

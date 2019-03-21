@@ -15,6 +15,7 @@ services:
         # if you need to do this, you can override this setting on individual services
         public: false
         bind:
+            $projectDir: '%kernel.project_dir%'
             $webDir: '%kernel.project_dir%/web'
             $defaultLocale: '%locale%'
 
