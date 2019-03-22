@@ -107,6 +107,7 @@ tour.minAltitude: Tiefster Punkt
 tour.maxAltitude: Höchster Punkt
 tour.cumulativeElevationGain: Höhenunterschied
 tour.altitude.unit: hm
+tour.locations: Orte
 
 # Errors
 Invalid CSRF token.: Ungültiger Token, bitte versuchen Sie es erneut

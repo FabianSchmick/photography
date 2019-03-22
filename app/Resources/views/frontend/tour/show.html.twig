@@ -47,6 +47,10 @@
                             <dt class="tour-cumulativeElevationGain">{{ 'tour.cumulativeElevationGain'|trans }} <i class="fa fa-expand" aria-hidden="true"></i></dt>
                             <dd class="tour-cumulativeElevationGain-value">{{ tour.gpxData.stats.cumulativeElevationGain|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
                         {% endif %}
+                        {% if locations %}
+                            <dt class="tour-locations">{{ 'tour.locations'|trans }} <i class="fa fa-globe" aria-hidden="true"></i></dt>
+                            <dd class="tour-locations-value">{{ locations|join(', ') }}</dd>
+                        {% endif %}
                     </dl>
                 </div>
                 <div class="col-xs-12 text-center tour-map">

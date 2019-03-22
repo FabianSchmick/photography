@@ -107,6 +107,7 @@ tour.minAltitude: Min altitude
 tour.maxAltitude: Max altitude
 tour.cumulativeElevationGain: Elevation gain
 tour.altitude.unit: hm
+tour.locations: Locations
 
 # Errors
 Invalid CSRF token.: Invalid token, please try again

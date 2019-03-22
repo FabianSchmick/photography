@@ -50,8 +50,14 @@ class TourController extends Controller
     {
         $coreService->setGpxData($tour);
 
+        if (!$tour->getEntries()->isEmpty()) {
+            $locations = array_map(function ($e) { return $e->getLocation(); }, $tour->getEntries()->toArray());
+            $locations = array_unique($locations);
+        }
+
         return $this->render('frontend/tour/show.html.twig', [
             'tour' => $tour,
+            'locations' => $locations ?? [],
         ]);
     }
 }
