@@ -83,7 +83,7 @@ gallery: Gallery
 languages: Languages
 authors.name: Fabian Schmick
 introduction.headline: Forests, streams, mountains, landscapes, mushrooms - <strong>Nature Photography</strong>
-introduction.longtext: My name is Fabian Schmick, I am in my early 20s, come from Sauerland (Germany) and am a Web Developer. Because I am a passionate wanderer, I always discover small and big highlights on my tours which I capture with my camera. On this Website I present my favourite shots.
+introduction.longtext: My name is Fabian Schmick, I am in my early 20s, come from Sauerland (Germany) and am a Web Developer. Because I am a passionate wanderer, I always discover small and big highlights on my tours which I capture with my camera. On this Website you will find nature-photography and reports of my hiking tours from the Sauerland, the Eifel and soon the alps, too.
 fullscreen: Fullscreen
 next: Next
 prev: Previous
@@ -94,8 +94,8 @@ meta.desc: Forests, streams, mountains, landscapes, mushrooms - Nature Photograp
 
 # Tour
 tours.headline: My tour recommendations
-introduction.tours.headline: My favorite tours to hike
-introduction.tours: In most cases, I plan my tours on the computer and create a GPX file for my GPS device. So I'm always on the safe side and can dedicate myself to <strong>nature</strong> and <strong>photography</strong> during the tour. I would like to list my favorite tours here for you.
+introduction.tours.headline: Scenic loop hiking-, crest- or summit- tours
+introduction.tours: In most cases, I plan my tours on the computer and create a GPX file for my GPS device. So I'm always on the safe side and can dedicate myself to <strong>nature</strong> and <strong>photography</strong> during the tour. About my favorite tours I write short tour reports and provide the GPX-File for downloading.
 tour.data: Tourdata
 tour.map: GPX-Track
 tour.pictures: Pictures

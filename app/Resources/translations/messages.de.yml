@@ -83,7 +83,7 @@ gallery: Fotos
 languages: Sprachen
 authors.name: Fabian Schmick
 introduction.headline: Wälder, Bäche, Berge, Landschaften, Pilze  - <strong>Naturfotografie</strong>
-introduction.longtext: Mein Name ist Fabian Schmick, bin Anfang 20, komme aus dem Sauerland und bin als Webentwickler tätig. Da ich leidenschaftlicher Wanderer bin, entdecke ich auf meinen Touren immer wieder kleine und große Highlights welche ich mit meiner Kamera festhalte. Auf dieser Webseite stelle ich meine Lieblingsaufnahmen vor.
+introduction.longtext: Mein Name ist Fabian Schmick, bin Anfang 20, komme aus dem Sauerland und bin als Webentwickler tätig. Da ich leidenschaftlicher Wanderer bin, entdecke ich auf meinen Touren immer wieder kleine und große Highlights welche ich mit meiner Kamera festhalte. Auf dieser Webseite findest du Naturfotografie und Berichte meiner Wander-Touren aus dem Sauerland, der Eifel und bald auch der Alpen.
 fullscreen: Vollbild
 next: Weiter
 prev: Zurück
@@ -94,8 +94,8 @@ meta.desc: Wälder, Bäche, Berge, Landschaften, Pilze - Naturfotografie von Fab
 
 # Tour
 tours.headline: Meine Touren Empfehlungen
-introduction.tours.headline: Meine Lieblingstouren zum Nachwandern
-introduction.tours: Meine Touren plane ich in meistens über den Computer und erstelle mir dadurch eine GPX-Datei für mein GPS-Gerät. Somit bin ich immer auf der sicheren Seite und kann mich während der Tour ganz der <strong>Natur</strong> und der <strong>Fotografie</strong> widmen. Meine Lieblingstouren möchte ich hier einmal für dich auflisten.
+introduction.tours.headline: Aussichtsreiche Rundwanderwege, Kammenwege oder Gipfeltouren
+introduction.tours: Meine Touren plane ich in meistens über den Computer und erstelle mir dadurch eine GPX-Datei für mein GPS-Gerät. Somit bin ich immer auf der sicheren Seite und kann mich während der Tour ganz der <strong>Natur</strong> und der <strong>Fotografie</strong> widmen. Über meine Lieblingswanderwege verfasse ich hier kurze Touren-Berichte und stelle die jeweilige GPX-Datei als Download zur Verfügung.
 tour.data: Tourdaten
 tour.map: GPX-Track
 tour.pictures: Bilder
