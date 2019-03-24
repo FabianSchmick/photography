@@ -33,3 +33,7 @@ parameters:
     # This has to be configured for the OS you are running this app on (eg. executable or binary files)
     liip_imagine.jpegoptim.binary: '%kernel.project_dir%/node_modules/jpegoptim-bin/vendor/jpegoptim'
     liip_imagine.optipng.binary: '%kernel.project_dir%/node_modules/optipng-bin/vendor/optipng'
+
+    # The current password for development: admin
+    # For prod environment encode the password with symfony built in command (php bin/console security:encode-password)
+    admin_password: '$2y$12$H1WecSp72DERilgu1sPbR.wXKzmCYErQY7JCetMOvVJVC8/zUY0di'

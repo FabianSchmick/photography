@@ -48,17 +48,20 @@ Generate the database schema
 php bin/console doctrine:migrations:migrate
 ```
 
-**Backend password:**
-
-Choose a secure password for the backend `/admin` and write it in `app/config/security.yml`
-after you encoded the password with symfony built in command
-```
-php bin/console security:encode-password
-```
-
 Now you only need to run `npm install` and `gulp deploy` in the project root to generate the stylesheet and javascript files.
 
 If you need some example data run:
 ```
 php bin/console doctrine:fixtures:load
+```
+
+---
+
+The standard login credentials for the backend `/admin`:
+- Username: admin
+- Password: admin
+
+If you want to change them you need to encode the password with symfony built in command and replace it's value in `app/config/paramters.yml`
+```
+php bin/console security:encode-password
 ```
