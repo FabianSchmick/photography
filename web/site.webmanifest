@@ -1,5 +1,5 @@
 {
-    "name": "Fotografie",
+    "name": "Fabian Schmick Fotografie",
     "short_name": "Fotografie",
     "icons": [
         {
@@ -15,6 +15,6 @@
     ],
     "theme_color": "#00cdcd",
     "background_color": "#00cdcd",
-    "start_url": "https://fotografie.fabian-schmick.de",
+    "start_url": "/",
     "display": "standalone"
 }
