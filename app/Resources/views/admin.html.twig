@@ -4,11 +4,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="{{ asset('safari-pinned-tab.svg') }}" color="#00cdcd">
+    <meta name="msapplication-TileColor" content="#00cdcd">
+    <meta name="theme-color" content="#00cdcd">
+
     <title>{% block title %}{{ 'admin'|trans }}{% endblock %} | {{ 'photography'|trans }}</title>
+
     {% block stylesheets %}
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/dist/css/admin.css') }}"/>
     {% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <body>
 
@@ -25,7 +34,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ path('admin_index') }}"> <img src="{{ asset('assets/img/logo_black.png') }}" id="logo" alt="logo">{{ 'photography'|trans }} {{ 'admin'|trans }}</a>
+                <a class="navbar-brand" href="{{ path('admin_index') }}"> <svg id="logo"><use xlink:href="#logo-camera"/></svg>{{ 'photography'|trans }} {{ 'admin'|trans }}</a>
             </div>
 
             {% set request = app.request %}
@@ -76,6 +85,7 @@
 
 <div id="embed-svg" style="display: none">
     {% block embed_svg %}
+        {{ asset('assets/img/logo-camera.svg')|inline_svg() }}
         {{ asset('assets/img/layout/icons/de-icon.svg')|inline_svg() }}
         {{ asset('assets/img/layout/icons/en-icon.svg')|inline_svg() }}
         {{ asset('assets/img/layout/icons/spinner-icon.svg')|inline_svg() }}

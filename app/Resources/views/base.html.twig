@@ -27,13 +27,20 @@
         <meta itemprop="image" content="{{ block('meta_image') }}"/>
     {% endblock %}
 
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="{{ asset('safari-pinned-tab.svg') }}" color="#00cdcd">
+    <meta name="msapplication-TileColor" content="#00cdcd">
+    <meta name="theme-color" content="#00cdcd">
+
     <title>{% block title %}{{ 'authors.name'|trans }}{% endblock %} | {{ 'photography'|trans }}</title>
 
     {% block stylesheets %}
         <link href="https://fonts.googleapis.com/css?family=Montserrat:700%7CRoboto:300" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/dist/css/main.css') }}"/>
     {% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
     {% if app.environment == 'prod' and ga %}
         <!-- Google Analytics -->
