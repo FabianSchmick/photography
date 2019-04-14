@@ -10,8 +10,7 @@
 
 {% block cover %}
     <section id="cover" class="parallax-container">
-        <div class="parallax" style="background-image: url({{ img|imagine_filter('entry_show') }})">
-        </div>
+        <img class="parallax" src="{{ img|imagine_filter('entry_show') }}" alt="{{ tour.name }}"/>
     </section>
 {% endblock %}
 

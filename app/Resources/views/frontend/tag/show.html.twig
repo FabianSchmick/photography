@@ -1,26 +1,16 @@
 {% import 'templates/macro/json-ld.html.twig' as jsonLd %}
 {% extends 'base.html.twig' %}
 
-{% set desc = tag.description|striptags %}
-{% if desc == "" %}
-    {% set desc = 'introduction.tag'|trans ~ ' ' ~ tag.name %}
-{% endif %}
+{% block meta_description %}{{ tag.description ? tag.description|striptags|truncate(160) : ('introduction.tag'|trans ~ ' ' ~ tag.name)|truncate(160) }}{% endblock %}
 
-{% set img = absolute_url(asset('assets/img/layout/cover-placeholder.jpg')) %}
-{% if tag.previewEntry %}
-    {% set img = absolute_url(vich_uploader_asset(tag.previewEntry.image, 'file')) %}
-{% endif %}
-
-{% block meta_description %}{{ desc }}{% endblock %}
-
-{% block meta_image %}{{ img }}{% endblock %}
+{% set img = tag.previewEntry ? vich_uploader_asset(tag.previewEntry.image, 'file') : asset('assets/img/layout/cover-tag.jpg') %}
+{% block meta_image %}{{ absolute_url(img) }}{% endblock %}
 
 {% block title %}{{ 'tag'|trans }} {{ tag.name }}{% endblock %}
 
 {% block cover %}
     <section id="cover" class="parallax-container">
-        <div class="parallax" {% if tag.previewEntry %}style="background-image: url({{ vich_uploader_asset(tag.previewEntry.image, 'file')|imagine_filter('entry_show') }})"{% endif %}>
-        </div>
+        <img class="parallax" src="{{ img|imagine_filter('entry_show') }}" alt="{{ tag.name }}"/>
     </section>
 {% endblock %}
 

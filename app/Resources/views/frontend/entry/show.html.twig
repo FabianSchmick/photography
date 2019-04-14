@@ -1,12 +1,7 @@
 {% import 'templates/macro/json-ld.html.twig' as jsonLd %}
 {% extends 'base.html.twig' %}
 
-{% set desc = entry.description|striptags %}
-{% if desc == "" %}
-    {% set desc = entry.name %}
-{% endif %}
-
-{% block meta_description %}{{ desc }}{% endblock %}
+{% block meta_description %}{{ entry.description ? entry.description|striptags|truncate(160) : (entry.name ~ ': ' ~ entry.tags|join(', '))|truncate(160) }}{% endblock %}
 
 {% block meta_image %}{{ absolute_url(vich_uploader_asset(entry.image, 'file')) }}{% endblock %}
 
