@@ -34,36 +34,6 @@ class EntryRepository extends \Doctrine\ORM\EntityRepository
     }
 
     /**
-     * Find entries by an author.
-     *
-     * @param Author $author
-     *
-     * @return array
-     */
-    public function findEntriesByAuthor(Author $author)
-    {
-        $qb = $this->createQueryBuilder('e');
-        $qb->where($qb->expr()->eq('e.author', $author->getId()));
-
-        return $qb->getQuery()->getResult();
-    }
-
-    /**
-     * Find entries by a location.
-     *
-     * @param Location $location
-     *
-     * @return array
-     */
-    public function findEntriesByLocation(Location $location)
-    {
-        $qb = $this->createQueryBuilder('e');
-        $qb->where($qb->expr()->eq('e.location', $location->getId()));
-
-        return $qb->getQuery()->getResult();
-    }
-
-    /**
      * @param Entry  $entry
      * @param string $compare
      * @param string $order

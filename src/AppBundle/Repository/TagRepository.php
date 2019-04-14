@@ -14,22 +14,6 @@ use AppBundle\Entity\Tag;
 class TagRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
-     * Find tags by a entry.
-     *
-     * @param Entry $entry
-     *
-     * @return array
-     */
-    public function findTagsByEntry(Entry $entry)
-    {
-        $qb = $this->createQueryBuilder('t')
-            ->where(':entry MEMBER OF t.entries')
-            ->setParameters(['entry' => $entry]);
-
-        return $qb->getQuery()->getResult();
-    }
-
-    /**
      * Find related tags by a tag.
      * Method returns the tags from all entries which relate to the current tag under the following conditions:
      *      - excluding the requested tag
