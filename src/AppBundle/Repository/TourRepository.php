@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Tour;
+
 /**
  * TourRepository.
  *
@@ -23,6 +25,22 @@ class TourRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
 
         return $query;
+    }
+
+    /**
+     * Get the page for $tour on the tour index page.
+     *
+     * @param Tour $tour The tour to find the page for
+     *
+     * @return int The page where $tour is find
+     */
+    public function findTourListPageNumber(Tour $tour)
+    {
+        $tours = $this->getFindAllQuery()->getResult();
+
+        $pos = array_search($tour, $tours);
+
+        return (int) ceil(($pos + 1) / Tour::PAGINATION_QUANTITY);
     }
 
     /**

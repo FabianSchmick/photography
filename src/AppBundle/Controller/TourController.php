@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * @Route("{_locale}", requirements={"_locale": "%app.locales%"})
@@ -46,8 +47,10 @@ class TourController extends Controller
      * @Route("/tour/{slug}", name="tour_show")
      * @ParamConverter("tour", class="AppBundle:Tour", options={"repository_method" = "findOneByCriteria"})
      */
-    public function showAction(CoreService $coreService, Tour $tour)
+    public function showAction(CoreService $coreService, Tour $tour, TranslatorInterface $translator)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $coreService->setGpxData($tour);
 
         if (!$tour->getEntries()->isEmpty()) {
@@ -55,9 +58,23 @@ class TourController extends Controller
             $locations = array_unique($locations);
         }
 
+        $page = $em->getRepository('AppBundle:Tour')->findTourListPageNumber($tour);
+
+        $breadcrumbs = [
+            [
+                'url' => $this->generateUrl('tour_index_paginated', ['page' => $page]),
+                'name' => $translator->trans('tours'),
+            ],
+            [
+                'url' => $this->generateUrl('tour_show', ['slug' => $tour->getSlug()]),
+                'name' => $tour->getName(),
+            ],
+        ];
+
         return $this->render('frontend/tour/show.html.twig', [
             'tour' => $tour,
             'locations' => $locations ?? [],
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 }

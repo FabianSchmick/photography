@@ -1,3 +1,4 @@
+{% import 'templates/macro/json-ld.html.twig' as jsonLd %}
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
 <head>
@@ -131,6 +132,23 @@
 {% block cover %}
 {% endblock %}
 
+{% block breadcrumb %}
+    {% if breadcrumbs is defined %}
+        <nav aria-label="breadcrumb" class="text-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('homepage') }}">{{ 'home'|trans }}</a></li>
+                {% for breadcrumb in breadcrumbs %}
+                    {% if not loop.last %}
+                        <li class="breadcrumb-item"><a href="{{ breadcrumb.url }}">{{ breadcrumb.name|truncate(25) }}</a></li>
+                    {% else %}
+                        <li class="breadcrumb-item active" aria-current="page">{{ breadcrumb.name|truncate(25) }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+        </nav>
+    {% endif %}
+{% endblock %}
+
 <main>
     {% htmlcompress %}
         {% block content %}
@@ -154,6 +172,12 @@
 </div>
 
 {% block javascripts %}
+    {% if breadcrumbs is defined %}
+        <script type="application/ld+json">
+            {{ jsonLd.breadcrumbList(breadcrumbs) }}
+        </script>
+    {% endif %}
+
     {% if app.request.attributes.get('_route') %}
         <script type="text/javascript">
             var pageUrl = "{{ url(app.request.attributes.get('_route'),

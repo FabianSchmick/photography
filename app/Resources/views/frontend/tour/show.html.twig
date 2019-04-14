@@ -81,18 +81,6 @@
     {% set lastPoint = tour.gpxData.segments[0].points|last %}
 
     <script type="application/ld+json">
-        {{ jsonLd.breadcrumbList([
-            {
-                'url': url('tour_index_paginated', {'page': 1}),
-                'name': 'tours'|trans
-            },
-            {
-                'url': url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')),
-                'name': tour.name
-            },
-        ]) }}
-    </script>
-    <script type="application/ld+json">
         {{ jsonLd.blogPosting(tour, tour.previewEntry) }}
     </script>
     <script type="application/ld+json">

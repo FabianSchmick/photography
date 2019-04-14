@@ -80,14 +80,6 @@
 
 {% block javascripts %}
     <script type="application/ld+json">
-        {{ jsonLd.breadcrumbList([
-            {
-                'url': url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')),
-                'name': entry.name
-            }
-        ]) }}
-    </script>
-    <script type="application/ld+json">
         {{ jsonLd.imageObject(entry) }}
     </script>
 
