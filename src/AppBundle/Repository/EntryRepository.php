@@ -63,9 +63,8 @@ class EntryRepository extends \Doctrine\ORM\EntityRepository
      */
     public function getFindAllQuery()
     {
-        $query = $this->_em->createQueryBuilder()
+        $query = $this->createQueryBuilder('e')
             ->select('e')
-            ->from($this->getEntityName(), 'e')
             ->orderBy('e.timestamp', 'DESC')
             ->getQuery();
 
@@ -85,16 +84,9 @@ class EntryRepository extends \Doctrine\ORM\EntityRepository
     {
         $query = $this->createQueryBuilder('e');
 
-        $i = 0;
         foreach ($params as $column => $value) {
-            if ($i < 1) {
-                $query->where("e.$column = :$column");
-            } else {
-                $query->andWhere("e.$column = :$column");
-            }
-            $query->setParameter($column, $value);
-
-            ++$i;
+            $query->andWhere("e.$column = :$column")
+                ->setParameter($column, $value);
         }
 
         $query = $query->getQuery();

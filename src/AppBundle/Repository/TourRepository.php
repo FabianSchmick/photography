@@ -17,9 +17,8 @@ class TourRepository extends \Doctrine\ORM\EntityRepository
      */
     public function getFindAllQuery()
     {
-        $query = $this->_em->createQueryBuilder()
+        $query = $this->createQueryBuilder('t')
             ->select('t')
-            ->from($this->getEntityName(), 't')
             ->orderBy('t.updated', 'DESC')
             ->getQuery();
 
@@ -39,16 +38,9 @@ class TourRepository extends \Doctrine\ORM\EntityRepository
     {
         $query = $this->createQueryBuilder('t');
 
-        $i = 0;
         foreach ($params as $column => $value) {
-            if ($i < 1) {
-                $query->where("t.$column = :$column");
-            } else {
-                $query->andWhere("t.$column = :$column");
-            }
-            $query->setParameter($column, $value);
-
-            ++$i;
+            $query->andWhere("t.$column = :$column")
+                ->setParameter($column, $value);
         }
 
         $query = $query->getQuery();
