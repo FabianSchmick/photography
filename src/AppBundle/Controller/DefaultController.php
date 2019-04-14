@@ -15,7 +15,6 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('frontend/index.html.twig', [
-        ]);
+        return $this->render('frontend/index.html.twig');
     }
 }

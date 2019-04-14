@@ -88,8 +88,8 @@ class Fixtures extends AbstractFixture implements FixtureInterface
             ],
         ];
 
-        $imgFixturesDir = $this->projectDir . '/fixtures/img';
-        $tourFixturesDir = $this->projectDir . '/fixtures/tour';
+        $imgFixturesDir = $this->projectDir.'/fixtures/img';
+        $tourFixturesDir = $this->projectDir.'/fixtures/tour';
         $tmpDir = __DIR__.'/../tmp';
 
         $fileSystem = new Filesystem();

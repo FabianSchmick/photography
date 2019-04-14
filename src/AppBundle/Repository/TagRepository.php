@@ -2,7 +2,6 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\Entry;
 use AppBundle\Entity\Tag;
 
 /**

@@ -2,9 +2,7 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\Author;
 use AppBundle\Entity\Entry;
-use AppBundle\Entity\Location;
 use AppBundle\Entity\Tag;
 use Doctrine\ORM\Query;
 
