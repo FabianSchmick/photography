@@ -2,6 +2,10 @@ header#menu
     padding: 20px
     transition: padding 0.8s ease, background-color 0.8s ease
 
+    .navbar-collapse.collapse,
+    .navbar-collapse.collapsing
+        padding: 0 15px
+
     &.navbar-default
         background-color: transparent
         border: none
@@ -32,7 +36,6 @@ header#menu
         .dropdown-menu
             background: transparent
             min-width: 1px
-            width: 100%
             text-align: center
             padding-bottom: 10px
             box-shadow: none
@@ -41,15 +44,21 @@ header#menu
             .active
                 font-weight: bold
 
-            > li > a
-                color: $color-secondary
-                padding: 3px 5px
-                display: inline-block
-                border-bottom: 1px solid transparent
+            > .dropdown-item
 
                 &:hover
                     background: transparent
-                    font-weight: bold
+
+                > a
+                    color: $color-secondary
+                    padding: 3px 5px
+                    display: inline-block
+                    border-bottom: 1px solid transparent
+                    text-decoration: none
+
+                    &:hover
+                        background: transparent
+                        font-weight: bold
 
             @media (max-width: 768px)
                 text-align: left
@@ -119,9 +128,6 @@ header#menu
 
                 > li > a
                     color: $color-primary
-
-                    &:hover
-                        font-weight: bold
 
         a.navbar-brand
             color: $color-primary

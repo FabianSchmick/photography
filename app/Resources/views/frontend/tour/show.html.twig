@@ -25,8 +25,8 @@
                     <p>{{ tour.gpxData.description }}</p>
                 {% endif %}
             </div>
-            <div class="row tour-info">
-                <div class="col-xs-12 tour-data">
+            <div class="tour-info">
+                <div class="tour-data">
                     <h3>{{ 'tour.data'|trans }}</h3>
                     <dl class="dl-horizontal meta-table">
                         {% if tour.gpxData.stats.distance %}
@@ -52,13 +52,13 @@
                         {% endif %}
                     </dl>
                 </div>
-                <div class="col-xs-12 text-center tour-map">
+                <div class="text-center tour-map">
                     <h3>{{ 'tour.map'|trans }}</h3>
                     <div id="map"></div>
                     <a class="btn" href="{{ path('download_file', {'file': tour.file.fileName}) }}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> {{ 'tour.download'|trans }}</a>
                 </div>
                 {% if not tour.entries.empty %}
-                    <div class="col-xs-12 tour-pictures">
+                    <div class="tour-pictures">
                         <h3>{{ 'tour.pictures'|trans }}</h3>
                         <div class="text-container gallery" data-justified="true">
                             {% for entry in tour.entries %}

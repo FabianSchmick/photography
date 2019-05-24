@@ -1,46 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}{{ 'login'|trans }} | {{ 'photography'|trans }}{% endblock %}</title>
-    {% block stylesheets %}
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/dist/css/admin.css') }}"/>
-    {% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-</head>
-<body>
-<div class="container">
+{% extends 'admin.html.twig' %}
 
-    <div class="login-panel panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">{{ 'sign.in'|trans }}</h3>
-        </div>
-        <div class="panel-body">
-            {{ form_start(form, {'action': path('login'), 'attr': {'class': 'no-horizontal'}}) }}
+{% block title %}{{ 'login'|trans }}{% endblock %}
 
-            {{ form_errors(form) }}
-
-            <div class="form-group">
-                <div class="input-group" style="padding-bottom: 15px">
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    {{ form_widget(form._username) }}
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                    {{ form_widget(form._password) }}
-                </div>
+{% block body %}
+    <section class="container">
+        <div class="login-panel panel panel-default" style="max-width: 500px;margin-left: auto;margin-right: auto">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ 'sign.in'|trans }}</h3>
             </div>
+            <div class="panel-body">
+                {{ form_start(form, {'action': path('login'), 'attr': {'class': 'no-horizontal'}}) }}
 
-            {{ form_rest(form) }}
+                    {{ form_errors(form) }}
 
-            <button class="btn btn-lg btn-success btn-block" type="submit" name="login">{{ 'login'|trans }}</button>
+                    <div class="form-group">
+                        <div class="input-group" style="padding-bottom: 15px">
+                            <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                            {{ form_widget(form._username) }}
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-lock"></i></span>
+                            {{ form_widget(form._password) }}
+                        </div>
+                    </div>
 
-            {{ form_end(form) }}
+                    {{ form_rest(form) }}
+
+                    <button class="btn btn-lg btn-success btn-block" type="submit" name="login">{{ 'login'|trans }}</button>
+
+                {{ form_end(form) }}
+            </div>
         </div>
-    </div>
-
-</div>
-</body>
-</html>
+    </section>
+{% endblock %}

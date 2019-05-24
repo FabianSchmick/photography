@@ -68,7 +68,7 @@ previewEntry: Preview Entry
 search: Search
 
 # Login
-login: login
+login: Login
 sign.in: Please Sign In
 bad.credentials: Username or Password wrong
 Invalid credentials.: Username or Password wrong

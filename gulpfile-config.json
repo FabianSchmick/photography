@@ -6,8 +6,8 @@
 
   "symlink": [
     {
-      "src": "./node_modules/font-awesome/fonts/*",
-      "dest": "assets/dist/fonts/"
+      "src": "./node_modules/@fortawesome/fontawesome-free/webfonts/*",
+      "dest": "assets/dist/webfonts/"
     },
     {
       "src": "./node_modules/summernote/dist/font/*",
@@ -22,7 +22,9 @@
   "styles": {
     "frontend": {
       "src": [
-        "./node_modules/font-awesome/css/font-awesome.css",
+        "./node_modules/@fortawesome/fontawesome-free/css/solid.css",
+        "./node_modules/@fortawesome/fontawesome-free/css/brands.css",
+        "./node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
         "./node_modules/bootstrap/dist/css/bootstrap.css",
         "./node_modules/justifiedGallery/dist/css/justifiedGallery.css",
         "./node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css",
@@ -33,12 +35,11 @@
     },
     "admin": {
       "src": [
-        "./node_modules/font-awesome/css/font-awesome.css",
-        "./node_modules/bootstrap/dist/css/bootstrap.css",
-        "./node_modules/startbootstrap-sb-admin-2/vendor/metisMenu/metisMenu.min.css",
-        "./node_modules/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css",
+        "./node_modules/@fortawesome/fontawesome-free/css/solid.css",
+        "./node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
+        "./node_modules/startbootstrap-sb-admin-2/css/sb-admin-2.css",
         "./node_modules/select2/dist/css/select2.css",
-        "./node_modules/select2-bootstrap-theme/dist/select2-bootstrap.css",
+        "./node_modules/select2-bootstrap4-theme/dist/select2-bootstrap4.css",
         "./node_modules/summernote/dist/summernote.css",
         "./web/assets/sass/admin.sass"
       ],
@@ -65,8 +66,9 @@
       "src": [
         "./node_modules/jquery/dist/jquery.js",
         "./node_modules/bootstrap/dist/js/bootstrap.js",
-        "./node_modules/startbootstrap-sb-admin-2/vendor/metisMenu/metisMenu.min.js",
-        "./node_modules/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js",
+        "./node_modules/popper.js/dist/popper.js",
+        "./node_modules/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js",
+        "./node_modules/startbootstrap-sb-admin-2/js/sb-admin-2.js",
         "./node_modules/select2/dist/js/select2.js",
         "./node_modules/select2/dist/js/i18n/de.js",
         "./node_modules/summernote/dist/summernote.js",
