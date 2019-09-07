@@ -28,27 +28,27 @@
             <div class="tour-info">
                 <div class="tour-data">
                     <h3>{{ 'tour.data'|trans }}</h3>
-                    <dl class="dl-horizontal meta-table">
+                    <dl class="row meta-table">
                         {% if tour.gpxData.stats.distance %}
                             {% set distance = tour.gpxData.stats.distance / 1000 %}
-                            <dt class="tour-distance">{{ 'tour.distance'|trans }} <i class="fa fa-arrows-h" aria-hidden="true"></i></dt>
-                            <dd class="tour-distance-value">{{ distance|number_format(1, ',', '.') }} {{ 'tour.distance.unit'|trans }}</dd>
+                            <dt class="col-6 tour-distance">{{ 'tour.distance'|trans }} <i class="fa fa-arrows-alt-h" aria-hidden="true"></i></dt>
+                            <dd class="col-6 tour-distance-value">{{ distance|number_format(1, ',', '.') }} {{ 'tour.distance.unit'|trans }}</dd>
                         {% endif %}
                         {% if tour.gpxData.stats.maxAltitude %}
-                            <dt class="tour-maxAltitude">{{ 'tour.maxAltitude'|trans }} <i class="fa fa-angle-up" aria-hidden="true"></i></dt>
-                            <dd class="tour-maxAltitude-value">{{ tour.gpxData.stats.maxAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
+                            <dt class="col-6 tour-maxAltitude">{{ 'tour.maxAltitude'|trans }} <i class="fa fa-angle-up" aria-hidden="true"></i></dt>
+                            <dd class="col-6 tour-maxAltitude-value">{{ tour.gpxData.stats.maxAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
                         {% endif %}
                         {% if tour.gpxData.stats.minAltitude %}
-                            <dt class="tour-minAltitude">{{ 'tour.minAltitude'|trans }} <i class="fa fa-angle-down" aria-hidden="true"></i></dt>
-                            <dd class="tour-minAltitude-value">{{ tour.gpxData.stats.minAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
+                            <dt class="col-6 tour-minAltitude">{{ 'tour.minAltitude'|trans }} <i class="fa fa-angle-down" aria-hidden="true"></i></dt>
+                            <dd class="col-6 tour-minAltitude-value">{{ tour.gpxData.stats.minAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
                         {% endif %}
                         {% if tour.gpxData.stats.cumulativeElevationGain %}
-                            <dt class="tour-cumulativeElevationGain">{{ 'tour.cumulativeElevationGain'|trans }} <i class="fa fa-expand" aria-hidden="true"></i></dt>
-                            <dd class="tour-cumulativeElevationGain-value">{{ tour.gpxData.stats.cumulativeElevationGain|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
+                            <dt class="col-6 tour-cumulativeElevationGain">{{ 'tour.cumulativeElevationGain'|trans }} <i class="fa fa-arrows-alt-v" aria-hidden="true"></i></dt>
+                            <dd class="col-6 tour-cumulativeElevationGain-value">{{ tour.gpxData.stats.cumulativeElevationGain|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
                         {% endif %}
                         {% if locations %}
-                            <dt class="tour-locations">{{ 'tour.locations'|trans }} <i class="fa fa-globe" aria-hidden="true"></i></dt>
-                            <dd class="tour-locations-value">{{ locations|join(', ') }}</dd>
+                            <dt class="col-6 tour-locations">{{ 'tour.locations'|trans }} <i class="fa fa-map-marker-alt" aria-hidden="true"></i></dt>
+                            <dd class="col-6 tour-locations-value">{{ locations|join(', ') }}</dd>
                         {% endif %}
                     </dl>
                 </div>

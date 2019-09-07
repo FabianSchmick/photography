@@ -19,7 +19,7 @@
     <section id="content" class="container">
         <h1>{{ 'tours.headline'|trans }}</h1>
         <article class="text-container text-center">
-            <h2 class="h4">{{ 'introduction.tours.headline'|trans|raw }}</h2>
+            <h2 class="h5">{{ 'introduction.tours.headline'|trans|raw }}</h2>
             <p>
                 {{ 'introduction.tours'|trans|raw }}
             </p>
@@ -27,7 +27,7 @@
 
         <div id="tours-container">
             {% if pages > 1 %}
-                <ul class="pagination" data-replace="#tours-container">
+                <ul class="pagination justify-content-center" data-replace="#tours-container">
                     {{ paginate(page, pages, 'tour_index_paginated') }}
                 </ul>
             {% endif %}
@@ -56,7 +56,7 @@
                                     <dl class="meta">
                                         {% if tour.gpxData.stats.distance %}
                                             {% set distance = tour.gpxData.stats.distance / 1000 %}
-                                            <dt class="tour-distance"><i class="fa fa-arrows-h" aria-hidden="true" title="{{ 'tour.distance'|trans }}"></i></dt>
+                                            <dt class="tour-distance"><i class="fa fa-arrows-alt-h" aria-hidden="true" title="{{ 'tour.distance'|trans }}"></i></dt>
                                             <dd class="tour-distance-value">{{ distance|number_format(1, ',', '.') }} {{ 'tour.distance.unit'|trans }}</dd>
                                         {% endif %}
                                         {% if tour.gpxData.stats.maxAltitude %}
@@ -79,7 +79,7 @@
             </ul>
 
             {% if pages > 1 %}
-                <ul class="pagination" data-replace="#tours-container">
+                <ul class="pagination justify-content-center" data-replace="#tours-container">
                     {{ paginate(page, pages, 'tour_index_paginated') }}
                 </ul>
             {% endif %}
