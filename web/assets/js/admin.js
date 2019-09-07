@@ -1,9 +1,33 @@
 $(document).ready(function() {
+    navigation();
     search();
     ajaxPageWrapper();
     initSelect2();
     initWysiwyg();
 });
+
+// Functions for the navigation
+function navigation() {
+    $('#sidebarToggle, #sidebarToggleTop').on('click', function () {
+        if ($('body').hasClass('sidebar-toggled') && $('#accordionSidebar').hasClass('toggled')) {
+            Cookies.set('sidebar-toggled', true);
+        } else {
+            Cookies.set('sidebar-toggled', false);
+        }
+    });
+
+    $('aside')
+        .on('mouseenter', function () {
+            let el = $('aside').get(0);
+            if (el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth) {
+                $(el).addClass('overflow');
+            }
+        })
+        .on('mouseleave', function () {
+            $('aside').removeClass('overflow');
+        })
+    ;
+}
 
 // Logic for searching the navigation
 function search() {

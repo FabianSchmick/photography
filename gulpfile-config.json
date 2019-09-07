@@ -40,7 +40,7 @@
         "./node_modules/startbootstrap-sb-admin-2/css/sb-admin-2.css",
         "./node_modules/select2/dist/css/select2.css",
         "./node_modules/select2-bootstrap4-theme/dist/select2-bootstrap4.css",
-        "./node_modules/summernote/dist/summernote.css",
+        "./node_modules/summernote/dist/summernote-bs4.css",
         "./web/assets/sass/admin.sass"
       ],
       "dest": "assets/dist/css/admin.css"
@@ -65,13 +65,14 @@
     "admin": {
       "src": [
         "./node_modules/jquery/dist/jquery.js",
+        "./node_modules/popper.js/dist/umd/popper.js",
         "./node_modules/bootstrap/dist/js/bootstrap.js",
-        "./node_modules/popper.js/dist/popper.js",
+        "./node_modules/js-cookie/src/js.cookie.js",
         "./node_modules/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js",
         "./node_modules/startbootstrap-sb-admin-2/js/sb-admin-2.js",
         "./node_modules/select2/dist/js/select2.js",
         "./node_modules/select2/dist/js/i18n/de.js",
-        "./node_modules/summernote/dist/summernote.js",
+        "./node_modules/summernote/dist/summernote-bs4.js",
         "./node_modules/summernote/lang/summernote-de-DE.js",
         "./web/assets/js/admin.js"
       ],

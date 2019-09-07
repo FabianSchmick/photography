@@ -1,12 +1,17 @@
 html,
 body
+    position: relative
     min-height: 100%
     width: 100%
+    background: #f3f3f3
     font-family: $font-main
     color: $color-primary
+    font-size: 16px
+    text-rendering: optimizeLegibility
 
-#wrapper
-    min-height: 100%
+    h1, .h1
+        hyphens: auto
+        word-wrap: break-word
 
     #spinner
         position: absolute
@@ -20,7 +25,3 @@ body
 
             use
                 fill: #000
-
-    #page-wrapper
-        padding-bottom: 15px
-        min-height: calc(100vh - 51px) /* Not the best way, but 100% not working when ajax loads new content */

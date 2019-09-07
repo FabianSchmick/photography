@@ -1,0 +1,73 @@
+#content-wrapper #content
+    background-color: #f3f3f3
+
+.navbar-wrapper
+    position: sticky
+    top: 0
+    z-index: 1000
+
+#wrapper
+    position: fixed
+    overflow: hidden
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+
+    @media (min-width: 1921px)
+        .sidebar
+            width: 100% !important
+
+            .nav-item .nav-link
+                width: 100% !important
+
+        .sidebar-wrapper
+            min-width: 14rem
+
+            #accordionSidebar
+                margin-left: auto
+
+        main
+            max-width: calc(1920px - 14rem)
+            margin-right: auto
+            margin-left: initial
+
+
+@media (min-width: 768px)
+    .sidebar-wrapper
+        width: 20rem
+        overflow-x: hidden
+        overflow-y: hidden
+        &.overflow
+            overflow-y: auto
+            width: calc(20rem + 23px)
+
+        .sidebar
+            width: auto !important
+
+            .nav-item .nav-link
+                padding: 0.5rem 1rem 0.75rem
+                width: auto
+
+.bg-gradient-primary
+    background-color: $color-teritary
+    //background-image: linear-gradient(180deg, $color-primary 10%, darken($color-primary, 15%) 100%)
+    background-image: none
+    background-size: cover
+
+.text-primary
+    color: $color-teritary !important
+
+#top-search
+    input
+        height: calc(1.5em + 0.75rem + 5px)
+        background: #f3f3f3
+
+        &:focus
+            box-shadow: none !important
+            z-index: 1 !important
+
+    button
+        height: calc(1.5em + 0.75rem + 2px)
+        background: $color-teritary
+        border-color: $color-teritary

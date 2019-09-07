@@ -19,68 +19,138 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/dist/css/admin.css') }}"/>
     {% endblock %}
 </head>
-<body>
 
 <!-- Template by Fabian Schmick https://github.com/FabianSchmick/photography -->
 
-<div id="wrapper">
+{% set request = app.request %}
+{% set sidebarToggled = request.cookies.get('sidebar-toggled') %}
 
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        {% htmlcompress %}
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{ path('admin_index') }}"> <svg id="logo"><use xlink:href="#logo-camera"/></svg>{{ 'photography'|trans }} {{ 'admin'|trans }}</a>
-            </div>
+<body id="page-top"{% if sidebarToggled == 'true' %} class="sidebar-toggled"{% endif %}>
 
-            {% set request = app.request %}
-            <ul class="nav navbar-top-links navbar-right">
-                <li id="change-language" class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" title="{{ 'languages'|trans }}">
-                        <span class="flag"><svg><use xlink:href="#{{ request.locale }}-icon"/></svg></span> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        {% for locale in locales|split('|') %}
-                            {% set lang = 'locale.' ~ locale %}
-                            <li>
-                                <a href="{{ path('localeAdmin', {'_locale': locale}) }}" class="{% if request.locale == locale %}active{% endif %}">
+<div id="wrapper" {% if not app.user %}style="height: 100%"{% endif %}>
+
+    {% if app.user %}
+        <aside class="bg-gradient-primary sidebar-wrapper">
+            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion{% if sidebarToggled == 'true' %} toggled{% endif %}" id="accordionSidebar">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('admin_index') }}">
+                    <div class="sidebar-brand-icon">
+                        <svg id="logo"><use xlink:href="#logo-camera"/></svg>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">{{ 'photography'|trans }} {{ 'admin'|trans }}</div>
+                </a>
+
+
+                <hr class="sidebar-divider d-none d-md-block">
+
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
+            </ul>
+        </aside>
+    {% endif %}
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            {% if app.user %}
+                <div class="navbar-wrapper static-top shadow bg-white">
+                    <nav class="navbar navbar-expand navbar-light topbar mb-4">
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+
+                        <form action="#" id="top-search" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" data-search="" data-target="main">
+                            <div class="input-group d-flex align-items-center">
+                                <input type="text" class="form-control border-0 small" placeholder="{{ 'search'|trans }}..." value="" autocomplete="off" aria-label="Search" name="query">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item dropdown no-arrow d-sm-none">
+                                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </a>
+                                <!-- Dropdown - Messages -->
+                                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                    <form action="#" class="form-inline mr-auto w-100 navbar-search" data-search="" data-target="main">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control bg-light border-0 small" placeholder="{{ 'search'|trans }}..." value="" autocomplete="off" aria-label="Search" name="query">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="button">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="flag">
-                                        <svg>
-                                            <use xlink:href="#{{ locale }}-icon"/>
-                                        </svg>
-                                    </span> {{ lang|trans }}
+                                        <svg><use xlink:href="#{{ request.locale }}-icon"/></svg>
+                                    </span>
+                                </a>
+                                <!-- Dropdown - Alerts -->
+                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                                    <h6 class="dropdown-header">
+                                        {{ 'languages'|trans }}
+                                    </h6>
+                                    {% for locale in locales|split('|') %}
+                                        {% set lang = 'locale.' ~ locale %}
+                                        <a class="dropdown-item d-flex align-items-center" href="{{ path('localeAdmin', {'_locale': locale}) }}">
+                                            <span class="flag mr-2">
+                                                <svg>
+                                                    <use xlink:href="#{{ locale }}-icon"/>
+                                                </svg>
+                                            </span> {{ lang|trans }}
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            </li>
+
+                            <div class="topbar-divider d-none d-sm-block"></div>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-gray-700" href="{{ path('homepage', {'_locale': request.locale}) }}" target="_blank">
+                                    <i class="fas fa-home fa-sm fa-fw mr-2"></i>
+                                    <span class="d-none d-lg-inline">{{ 'homepage'|trans }}</span>
                                 </a>
                             </li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                <li>
-                    <a href="{{ path('homepage', {'_locale': request.locale}) }}" target="_blank">
-                        <i class="fa fa-home"></i> {{ 'homepage'|trans }}
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('logout') }}" title="{{ 'logout'|trans }}">
-                        <i class="fa fa-sign-out "></i>
-                    </a>
-                </li>
-            </ul>
 
-            {{ render(controller('AppBundle:Admin/Admin:renderSidebar')) }}
-        {% endhtmlcompress %}
-    </nav>
+                            <li class="nav-item">
+                                <a class="nav-link text-gray-500" href="{{ path('logout') }}">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
+                                    <span class="d-none d-lg-inline">{{ 'logout'|trans }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            {% endif %}
 
-    <div id="page-wrapper">
-        {% htmlcompress %}
-            {% block body %}
-            {% endblock %}
-        {% endhtmlcompress %}
+            <main class="container-fluid mt-5">
+                {#{% for type, flash_messages in app.session.flashBag.all %}#}
+                    {#<div class="text-center">#}
+                        {#{% for flash_message in flash_messages %}#}
+                            {#<div class="alert alert-{{ type }} alert-dismissible fade show" role="alert">#}
+                                {#{{ flash_message }}#}
+                                {#<button type="button" class="close" data-dismiss="alert" aria-label="Close">#}
+                                    {#<span aria-hidden="true">&times;</span>#}
+                                {#</button>#}
+                            {#</div>#}
+                        {#{% endfor %}#}
+                    {#</div>#}
+                {#{% endfor %}#}
+
+                {% block body %}
+                {% endblock %}
+            </main>
+        </div>
     </div>
-
 </div>
 
 <div id="embed-svg" style="display: none">

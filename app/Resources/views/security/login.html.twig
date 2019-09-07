@@ -3,33 +3,21 @@
 {% block title %}{{ 'login'|trans }}{% endblock %}
 
 {% block body %}
-    <section class="container">
-        <div class="login-panel panel panel-default" style="max-width: 500px;margin-left: auto;margin-right: auto">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{ 'sign.in'|trans }}</h3>
-            </div>
-            <div class="panel-body">
-                {{ form_start(form, {'action': path('login'), 'attr': {'class': 'no-horizontal'}}) }}
+    <section id="login" class="container text-center">
+        <h1 class="h3 mb-3">{{ 'sign.in'|trans }}</h1>
 
-                    {{ form_errors(form) }}
+        {{ form_start(form, {'attr': {'class': 'login-form'}}) }}
 
-                    <div class="form-group">
-                        <div class="input-group" style="padding-bottom: 15px">
-                            <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                            {{ form_widget(form._username) }}
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fas fa-lock"></i></span>
-                            {{ form_widget(form._password) }}
-                        </div>
-                    </div>
+            {{ form_errors(form) }}
 
-                    {{ form_rest(form) }}
+            {{ form_widget(form._username) }}
 
-                    <button class="btn btn-lg btn-success btn-block" type="submit" name="login">{{ 'login'|trans }}</button>
+            {{ form_widget(form._password) }}
 
-                {{ form_end(form) }}
-            </div>
-        </div>
+            {{ form_rest(form) }}
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit" name="login"><i class="fas fa-sign-in-alt"></i> {{ 'login'|trans }}</button>
+
+        {{ form_end(form) }}
     </section>
 {% endblock %}

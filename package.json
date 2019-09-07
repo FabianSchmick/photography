@@ -21,7 +21,7 @@
     "select2": "^4.0.4",
     "select2-bootstrap4-theme": "^1.0.0",
     "startbootstrap-sb-admin-2": "^4.0.3",
-    "summernote": "^0.8.8",
+    "summernote": "^0.8.12",
     "popper.js": "^1.14.7"
   },
   "devDependencies": {
