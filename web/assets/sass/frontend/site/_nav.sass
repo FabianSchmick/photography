@@ -2,10 +2,6 @@ header#menu
     padding: 20px
     transition: padding 0.8s ease, background-color 0.8s ease
 
-    .navbar-collapse.collapse,
-    .navbar-collapse.collapsing
-        padding: 0 15px
-
     &.navbar-default
         background-color: transparent
         border: none
@@ -60,9 +56,16 @@ header#menu
                         background: transparent
                         font-weight: bold
 
-            @media (max-width: 768px)
+            @media (max-width: 991px)
                 text-align: left
-                padding: 10px 15px 10px 25px
+                padding: 5px 0
+
+        @media (max-width: 991px)
+            .navbar-header
+                width: 100%
+
+            .navbar-collapse
+                padding: 15px 0
 
         .navbar-toggle
             border-radius: 0
@@ -85,6 +88,9 @@ header#menu
         .nav > li > a
             padding-left: 8px
             padding-right: 8px
+
+    .navbar-toggler i
+        color: #fff
 
     a.navbar-brand
         margin: 8px 0 0 0
@@ -129,8 +135,18 @@ header#menu
                 > li > a
                     color: $color-primary
 
+        .navbar-toggler i,
         a.navbar-brand
             color: $color-primary
 
             img
                 display: inline-block
+
+    &.navbar-expand-lg > .container,
+    &.navbar-expand-lg > .container-fluid
+        padding-left: 30px
+        padding-right: 30px
+
+        @media(max-width: 450px)
+            padding-left: 15px
+            padding-right: 15px
