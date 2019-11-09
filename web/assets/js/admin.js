@@ -90,7 +90,7 @@ function ajaxPageWrapper() {
 
 // Initializes select2 fields
 function initSelect2() {
-    $.fn.select2.defaults.set("theme", "bootstrap");
+    $.fn.select2.defaults.set("theme", "bootstrap4");
     $.fn.select2.defaults.set("language", $("html").attr("lang"));
     $.fn.select2.defaults.set("placeholder", "");
 

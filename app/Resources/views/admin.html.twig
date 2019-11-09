@@ -106,7 +106,7 @@
                                     </h6>
                                     {% for locale in locales|split('|') %}
                                         {% set lang = 'locale.' ~ locale %}
-                                        <a class="dropdown-item d-flex align-items-center" href="{{ path('localeAdmin', {'_locale': locale}) }}">
+                                        <a class="dropdown-item d-flex align-items-center{% if request.locale == locale %} active{% endif %}" href="{{ path('localeAdmin', {'_locale': locale}) }}">
                                             <span class="flag mr-2">
                                                 <svg>
                                                     <use xlink:href="#{{ locale }}-icon"/>
@@ -138,18 +138,20 @@
             {% endif %}
 
             <main id="page-wrapper" class="container-fluid mt-5">
-                {#{% for type, flash_messages in app.session.flashBag.all %}#}
-                    {#<div class="text-center">#}
-                        {#{% for flash_message in flash_messages %}#}
-                            {#<div class="alert alert-{{ type }} alert-dismissible fade show" role="alert">#}
-                                {#{{ flash_message }}#}
-                                {#<button type="button" class="close" data-dismiss="alert" aria-label="Close">#}
-                                    {#<span aria-hidden="true">&times;</span>#}
-                                {#</button>#}
-                            {#</div>#}
-                        {#{% endfor %}#}
-                    {#</div>#}
-                {#{% endfor %}#}
+                {% block flash_messages %}
+                    {% for type, flash_messages in app.session.flashBag.all %}
+                        <div class="text-center">
+                            {% for flash_message in flash_messages %}
+                                <div class="alert alert-{{ type }} alert-dismissible fade show" role="alert">
+                                    {{ flash_message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                {% endblock %}
 
                 {% block body %}
                 {% endblock %}

@@ -115,8 +115,8 @@
                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="language-dropdown">
                         {% for locale in locales|split('|') %}
                             {% set lang = 'locale.' ~ locale %}
-                            <li class="dropdown-item">
-                                <a href="{{ path('homepage', {'_locale': locale}) }}" class="{% if request.locale == locale %}active{% endif %}">
+                            <li class="dropdown-item{% if request.locale == locale %} active{% endif %}">
+                                <a href="{{ path('homepage', {'_locale': locale}) }}">
                                     <span class="flag">
                                         <svg>
                                             <use xlink:href="#{{ locale }}-icon"/>

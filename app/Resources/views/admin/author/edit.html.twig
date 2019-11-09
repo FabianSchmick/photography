@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <h1 class="page-header">{{ author.name }}</h1>
+        <h1 class="h3 mb-4 text-gray-800">{{ author.name }}</h1>
 
         {% for flash_message in app.session.flashBag.get('success') %}
             <div class="flash-notice alert alert-success fade in">
