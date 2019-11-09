@@ -36,15 +36,20 @@
                     <div class="sidebar-brand-icon">
                         <svg id="logo"><use xlink:href="#logo-camera"/></svg>
                     </div>
-                    <div class="sidebar-brand-text mx-3">{{ 'photography'|trans }} {{ 'admin'|trans }}</div>
+                    <div class="sidebar-brand-text mx-3 text-left">
+                        <span class="text-left">{{ 'photography'|trans }}</span>
+                    </div>
                 </a>
-
 
                 <hr class="sidebar-divider d-none d-md-block">
 
-                <div class="text-center d-none d-md-inline">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
+                {{ render(controller('AppBundle\\Controller\\Admin\\AdminController::renderSidebarAction')) }}
+
+                {#<hr class="sidebar-divider d-none d-md-block">#}
+
+                {#<div class="text-center d-none d-md-inline">#}
+                    {#<button class="rounded-circle border-0" id="sidebarToggle"></button>#}
+                {#</div>#}
             </ul>
         </aside>
     {% endif %}
@@ -59,7 +64,7 @@
 
                         <form action="#" id="top-search" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" data-search="" data-target="main">
                             <div class="input-group d-flex align-items-center">
-                                <input type="text" class="form-control border-0 small" placeholder="{{ 'search'|trans }}..." value="" autocomplete="off" aria-label="Search" name="query">
+                                <input type="text" class="form-control border-0 small" placeholder="{{ 'search'|trans }}..." value="" autocomplete="off" aria-label="Search" name="query" data-sidebar-search>
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fas fa-search fa-sm"></i>
@@ -77,7 +82,7 @@
                                 <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                     <form action="#" class="form-inline mr-auto w-100 navbar-search" data-search="" data-target="main">
                                         <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="{{ 'search'|trans }}..." value="" autocomplete="off" aria-label="Search" name="query">
+                                            <input type="text" class="form-control bg-light border-0 small" placeholder="{{ 'search'|trans }}..." value="" autocomplete="off" aria-label="Search" name="query" data-sidebar-search>
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary" type="button">
                                                     <i class="fas fa-search fa-sm"></i>
@@ -132,7 +137,7 @@
                 </div>
             {% endif %}
 
-            <main class="container-fluid mt-5">
+            <main id="page-wrapper" class="container-fluid mt-5">
                 {#{% for type, flash_messages in app.session.flashBag.all %}#}
                     {#<div class="text-center">#}
                         {#{% for flash_message in flash_messages %}#}

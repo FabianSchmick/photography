@@ -18,7 +18,7 @@ function navigation() {
 
     $('aside')
         .on('mouseenter', function () {
-            let el = $('aside').get(0);
+            var el = $('aside').get(0);
             if (el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth) {
                 $(el).addClass('overflow');
             }
@@ -26,31 +26,41 @@ function navigation() {
         .on('mouseleave', function () {
             $('aside').removeClass('overflow');
         })
+        .on('shown.bs.collapse hidden.bs.collapse', '.collapse', function () {
+            var el = $('aside').get(0);
+            if (el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth) {
+                $(el).addClass('overflow');
+            } else {
+                $('aside').removeClass('overflow');
+            }
+        })
     ;
 }
 
 // Logic for searching the navigation
 function search() {
-    $("#search").on("keyup", function () {
+    $("input[data-sidebar-search]").on("keyup", function () {
         var filter = $(this).val();
-        $("ul#side-menu li").each(function () {
+        $("ul#accordionSidebar li.searchable").each(function () {
             if ($(this).text().search(new RegExp(filter, "i")) < 0) {
                 $(this).hide();
             } else {
                 $(this).show();
+                if ($(this).parent().hasClass('collapse')) {
+                    $(this).parent().collapse("show");
+                }
             }
         });
-        $(".subNav").addClass("active").find(".nav").collapse("show");
 
         if (filter === "") {
-            $(".subNav").removeClass("active").find(".nav").collapse("hide");
+            $("ul#accordionSidebar .collapse").collapse("hide");
         }
     });
 }
 
 // Ajax function for subnavigation
 function ajaxPageWrapper() {
-    $(".sidebar-nav ul.nav-second-level").on("click", "a", function() {
+    $("ul#accordionSidebar").on("click", "a:not([href=\"#\"])", function() {
         // Ajax loader image
         $("#page-wrapper").html("<div id=\"spinner\" class=\"spinner\"><svg><use xlink:href=\"#spinner-icon\"/></svg></div>");
 
@@ -59,8 +69,8 @@ function ajaxPageWrapper() {
         history.pushState(null, "", uri);
 
         // Add class active
-        $("ul.nav a").removeClass("active");
-        $("ul.nav a[href=\"" + uri + "\"]").addClass("active");
+        $("ul#accordionSidebar li").removeClass("active");
+        $("ul#accordionSidebar li a[href=\"" + uri + "\"]").closest('li').addClass("active");
 
         // Get the requested data
         $.get(uri, function(data) {
@@ -69,11 +79,6 @@ function ajaxPageWrapper() {
                 $(this).remove();
             });
             $("#page-wrapper").replaceWith($(temp).find("#page-wrapper"));
-            if ($(".nav.navbar-top-links.navbar-right").length) {
-                $(".nav.navbar-top-links.navbar-right").replaceWith($(temp).find(".nav.navbar-top-links.navbar-right"));
-            } else {
-                $(temp).find(".nav.navbar-top-links.navbar-right").insertAfter($("div.navbar-header"));
-            }
 
             initSelect2();
             initWysiwyg();

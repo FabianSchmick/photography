@@ -1,80 +1,74 @@
-<div class="navbar-default sidebar" role="navigation">
-    <div class="sidebar-nav navbar-collapse">
-        <div class="sidebar-search">
-            <div class="input-group custom-search-form">
-                <input type="text" id="search" class="form-control" placeholder="{{ 'search'|trans }}...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </span>
-            </div>
-        </div>
-        <ul class="nav" id="side-menu">
-            <li>
-                <a href="{{ path('admin_entry_new') }}"><i class="fa fa-plus"></i> {{ 'new.entry'|trans }}</a>
+<li class="nav-item">
+    <a href="{{ path('admin_entry_new') }}" class="nav-link">
+        <i class="fa fa-plus fa-fw"></i> {{ 'new.entry'|trans }}
+    </a>
+</li>
+
+<li class="nav-item">
+    <a href="{{ path('admin_tour_new')}}" class="nav-link">
+        <i class="fa fa-plus fa-fw"></i> {{ 'new.tour'|trans }}
+    </a>
+</li>
+
+<hr class="sidebar-divider d-none d-md-block">
+
+<li class="searchable nav-item">
+    <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapse-1">
+        <i class="fa fa-images fa-fw"></i> {{ 'entries'|trans }}<span class="fa arrow"></span>
+    </a>
+    <ul id="collapse-1" class="collapse list-unstyled">
+        {% for entry in entries %}
+            <li class="searchable nav-item pl-3 ">
+                <a href="{{ path('admin_entry_edit', {'id': entry.id}) }}" class="nav-link p-2">{{ entry.name }}</a>
             </li>
-            {# Maybe unnecessary, have to think about it
-            <li>
-                <a href="{{ path('admin_entry_index') }}"><i class="fa fa-list"></i> All Entries</a>
+        {% endfor %}
+    </ul>
+</li>
+<li class="searchable nav-item">
+    <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapse-5">
+        <i class="fa fa-map fa-fw"></i> {{ 'tours'|trans }}<span class="fa arrow"></span>
+    </a>
+    <ul id="collapse-5" class="collapse list-unstyled">
+        {% for tour in tours %}
+            <li class="searchable nav-item pl-3 ">
+                <a href="{{ path('admin_tour_edit', {'id': tour.id}) }}" class="nav-link p-2">{{ tour.name }}</a>
             </li>
-            <li>
-                <a href="{{ path('admin_tag_index') }}"><i class="fa fa-list"></i> All Tags</a>
+        {% endfor %}
+    </ul>
+</li>
+<li class="searchable nav-item">
+    <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapse-2">
+        <i class="fa fa-users fa-fw"></i> {{ 'authors'|trans }}<span class="fa arrow"></span>
+    </a>
+    <ul id="collapse-2" class="collapse list-unstyled">
+        {% for author in authors %}
+            <li class="searchable nav-item pl-3 ">
+                <a href="{{ path('admin_author_edit', {'id': author.id}) }}" class="nav-link p-2">{{ author.name }}</a>
             </li>
-            #}
-            <li class="subNav">
-                <a href="#"><i class="fa fa-picture-o fa-fw"></i> {{ 'entries'|trans }}<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    {% for entry in entries %}
-                        <li>
-                            <a href="{{ path('admin_entry_edit', {'id': entry.id}) }}">{{ entry.name }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
+        {% endfor %}
+    </ul>
+</li>
+<li class="searchable nav-item">
+    <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapse-3">
+        <i class="fa fa-globe fa-fw"></i> {{ 'locations'|trans }}<span class="fa arrow"></span>
+    </a>
+    <ul id="collapse-3" class="collapse list-unstyled">
+        {% for location in locations %}
+            <li class="searchable nav-item pl-3 ">
+                <a href="{{ path('admin_location_edit', {'id': location.id}) }}" class="nav-link p-2">{{ location.name }}</a>
             </li>
-            <li class="subNav">
-                <a href="#"><i class="fa fa-users fa-fw"></i> {{ 'authors'|trans }}<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    {% for author in authors %}
-                        <li>
-                            <a href="{{ path('admin_author_edit', {'id': author.id}) }}">{{ author.name }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
+        {% endfor %}
+    </ul>
+</li>
+<li class="searchable nav-item">
+    <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapse-4">
+        <i class="fa fa-hashtag fa-fw"></i> {{ 'tags'|trans }}<span class="fa arrow"></span>
+    </a>
+    <ul id="collapse-4" class="collapse list-unstyled">
+        {% for tag in tags %}
+            <li class="searchable nav-item pl-3 ">
+                <a href="{{ path('admin_tag_edit', {'id': tag.id}) }}" class="nav-link p-2">{{ tag.name }}</a>
             </li>
-            <li class="subNav">
-                <a href="#"><i class="fa fa-globe fa-fw"></i> {{ 'locations'|trans }}<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    {% for location in locations %}
-                        <li>
-                            <a href="{{ path('admin_location_edit', {'id': location.id}) }}">{{ location.name }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </li>
-            <li class="subNav">
-                <a href="#"><i class="fa fa-hashtag fa-fw"></i> {{ 'tags'|trans }}<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    {% for tag in tags %}
-                        <li>
-                            <a href="{{ path('admin_tag_edit', {'id': tag.id}) }}">{{ tag.name }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </li>
-            <li class="subNav">
-                <a href="#"><i class="fa fa-map fa-fw"></i> {{ 'tours'|trans }}<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ path('admin_tour_new')}}"><i class="fa fa-plus"></i> {{ 'new.tour'|trans }}</a>
-                    </li>
-                    {% for tour in tours %}
-                        <li>
-                            <a href="{{ path('admin_tour_edit', {'id': tour.id}) }}">{{ tour.name }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </li>
-        </ul>
-    </div>
-</div>
+        {% endfor %}
+    </ul>
+</li>
