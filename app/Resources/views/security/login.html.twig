@@ -4,9 +4,12 @@
 
 {% block body %}
     <section id="login" class="container text-center">
-        <h1 class="h3 mb-3">{{ 'sign.in'|trans }}</h1>
 
-        {{ form_start(form, {'attr': {'class': 'login-form'}}) }}
+        {{ form_start(form, {'attr': {'class': 'login-form shadow'}}) }}
+
+            <h1 class="h3 pb-2 pt-4">{{ 'sign.in'|trans }}</h1>
+
+            <hr/>
 
             {{ form_errors(form) }}
 
@@ -14,9 +17,11 @@
 
             {{ form_widget(form._password) }}
 
-            {{ form_rest(form) }}
-
             <button class="btn btn-lg btn-primary btn-block" type="submit" name="login"><i class="fas fa-sign-in-alt"></i> {{ 'login'|trans }}</button>
+
+            <hr/>
+
+            <a href="{{ path('homepage') }}"><i class="fas fa-angle-left"></i> {{ 'back.to.homepage'|trans }}</a>
 
         {{ form_end(form) }}
     </section>

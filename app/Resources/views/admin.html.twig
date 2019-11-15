@@ -54,7 +54,7 @@
         </aside>
     {% endif %}
     <div id="content-wrapper" class="d-flex flex-column">
-        <div id="content">
+        <div id="content" class="{% if app.request.attributes.get('_route') == 'login' %}login-bg{% endif %}">
             {% if app.user %}
                 <div class="navbar-wrapper static-top shadow bg-white">
                     <nav class="navbar navbar-expand navbar-light topbar mb-4">

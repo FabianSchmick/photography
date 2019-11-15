@@ -69,12 +69,13 @@ search: Suche
 
 # Login
 login: Anmelden
-sign.in: Bitte melden Sie sich an
+sign.in: Bitte anmelden
 bad.credentials: Benutzername oder Passwort falsch
 Invalid credentials.: Benutzername oder Passwort falsch
 username: Benutzername
 password: Passwort
 logout: Abmelden
+back.to.homepage: Zurück zur Startseite
 
 # Frontend
 home: Home
