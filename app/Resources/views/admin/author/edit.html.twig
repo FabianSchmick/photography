@@ -3,36 +3,26 @@
 
 {% block title %}{{ 'edit'|trans }} - {{ author.name }}{% endblock %}
 
+{% block modals %}
+    {{ parent() }}
+    {{ macro.create_delete_modal('delete.msg.author', author.name, path('admin_author_delete', {'id': author.id})) }}
+{% endblock %}
+
 {% block body %}
 
-<div class="row">
-    <div class="col-xs-12">
-        <h1 class="h3 mb-4 text-gray-800">{{ author.name }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ author.name }}</h1>
 
-        {% for flash_message in app.session.flashBag.get('success') %}
-            <div class="flash-notice alert alert-success fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                {{ flash_message }}
-            </div>
-        {% endfor %}
+    {{ form_start(form, {'action': path('admin_author_edit', {'id': author.id})}) }}
 
-        {{ form_start(form, {'action': path('admin_author_edit', {'id': author.id})}) }}
+        {{ form_errors(form) }}
 
-            {{ macro.create_delete_modal('delete.msg.author', author.name, path('admin_author_delete', {'id': author.id})) }}
+        {{ form_widget(form) }}
 
-            {{ form_errors(form) }}
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-success" type="submit" name="submit">{{ 'submit'|trans }}</button>
+            <button class="btn btn-danger pull-right" type="button" data-toggle="modal" data-target="#deleteModal">{{ 'delete'|trans }}</button>
+        </div>
 
-            {{ form_widget(form) }}
-
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button class="btn btn-success" type="submit" name="submit">{{ 'submit'|trans }}</button>
-                    <button class="btn btn-danger pull-right" type="button" data-toggle="modal" data-target="#deleteModal">{{ 'delete'|trans }}</button>
-                </div>
-            </div>
-
-        {{ form_end(form) }}
-    </div>
-</div>
+    {{ form_end(form) }}
 
 {% endblock %}

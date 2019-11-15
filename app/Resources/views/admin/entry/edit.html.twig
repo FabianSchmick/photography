@@ -3,45 +3,33 @@
 
 {% block title %}{{ 'edit'|trans }} - {{ entry.name }}{% endblock %}
 
+{% block modals %}
+    {{ parent() }}
+    {{ macro.create_delete_modal('delete.msg.entry', entry.name, path('admin_entry_delete', {'id': entry.id})) }}
+{% endblock %}
+
 {% block body %}
 
-<div class="row">
-    <div class="col-xs-12">
-        <div class="page-header clearfix">
-            <div class="pull-left">
-                <h1>{{ entry.name }}</h1>
-            </div>
-            <div class="pull-right">
-                <ul class="actions list-unstyled pull-right">
-                    <li><a class="btn btn-primary" href="{{ path('entry_show', {'slug': entry.slug}) }}" target="_blank" title="{{ 'live.view'|trans }}"><i class="fa fa-eye" aria-hidden="true"></i></a></li>
-                </ul>
-            </div>
+    <div class="d-flex justify-content-between">
+        <h1 class="h3 mb-4 text-gray-800">{{ entry.name }}</h1>
+        <div>
+            <a class="btn btn-primary" href="{{ path('entry_show', {'slug': entry.slug}) }}" target="_blank" title="{{ 'live.view'|trans }}">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+
+    {{ form_start(form, {'action': path('admin_entry_edit', {'id': entry.id})}) }}
+
+        {{ form_errors(form) }}
+
+        {{ form_widget(form) }}
+
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-success" type="submit" name="submit">{{ 'submit'|trans }}</button>
+            <button class="btn btn-danger pull-right" type="button" data-toggle="modal" data-target="#deleteModal">{{ 'delete'|trans }}</button>
         </div>
 
-        {% for flash_message in app.session.flashBag.get('success') %}
-            <div class="flash-notice alert alert-success fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                {{ flash_message }}
-            </div>
-        {% endfor %}
-
-        {{ form_start(form, {'action': path('admin_entry_edit', {'id': entry.id})}) }}
-
-            {{ macro.create_delete_modal('delete.msg.entry', entry.name, path('admin_entry_delete', {'id': entry.id})) }}
-
-            {{ form_errors(form) }}
-
-            {{ form_widget(form) }}
-
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button class="btn btn-success" type="submit" name="submit">{{ 'submit'|trans }}</button>
-                    <button class="btn btn-danger pull-right" type="button" data-toggle="modal" data-target="#deleteModal">{{ 'delete'|trans }}</button>
-                </div>
-            </div>
-
-        {{ form_end(form) }}
-    </div>
-</div>
+    {{ form_end(form) }}
 
 {% endblock %}

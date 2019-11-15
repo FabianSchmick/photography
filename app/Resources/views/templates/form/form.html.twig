@@ -18,7 +18,9 @@
 {%- endblock form_widget_compound -%}
 
 {%- block choice_widget_collapsed -%}
-    <span class="clear-select2{% if multiple %} no-offset{% endif %}"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+    {% if 'select2' in attr.class|default and not form.vars.required %}
+        <span class="clear-select2{% if multiple %} no-offset{% endif %}"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+    {% endif %}
     {{ parent() }}
 {%- endblock choice_widget_collapsed -%}
 
@@ -32,7 +34,7 @@
 
         {% if download_uri %}
             <a href="{{ download_uri }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> {{ 'current.file'|trans }}</a>
-            <p class="help-block">({{ 'file.upload.info'|trans }})</p>
+            <small class="pl-2 text-muted">({{ 'file.upload.info'|trans }})</small>
         {% endif %}
     {% endfilter %}
 {% endblock %}
@@ -50,7 +52,7 @@
         {#{% endif %}#}
         {% if download_uri %}
             <a href="{{ download_uri }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> {{ 'current.file'|trans }}</a>
-            <p class="help-block">({{ 'file.upload.info'|trans }})</p>
+            <small class="pl-2 text-muted">({{ 'file.upload.info'|trans }})</small>
         {% endif %}
     {% endfilter %}
 {% endblock %}

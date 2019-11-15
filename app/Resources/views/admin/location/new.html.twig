@@ -4,31 +4,18 @@
 
 {% block body %}
 
-<div class="row">
-    <div class="col-xs-12">
-        <h1 class="h3 mb-4 text-gray-800">{{ 'new.location'|trans }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ 'new.location'|trans }}</h1>
 
-        {% for flash_message in app.session.flashBag.get('success') %}
-            <div class="flash-notice alert alert-success fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                {{ flash_message|raw }}
-            </div>
-        {% endfor %}
+    {{ form_start(form, {'action': path('admin_location_new')}) }}
 
-        {{ form_start(form, {'action': path('admin_location_new')}) }}
+        {{ form_errors(form) }}
 
-            {{ form_errors(form) }}
+        {{ form_widget(form) }}
 
-            {{ form_widget(form) }}
+        <div class="form-group">
+            <button class="btn btn-success" type="submit" name="submit">{{ 'submit'|trans }}</button>
+        </div>
 
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button class="btn btn-success" type="submit" name="submit">{{ 'submit'|trans }}</button>
-                </div>
-            </div>
-
-        {{ form_end(form) }}
-    </div>
-</div>
+    {{ form_end(form) }}
 
 {% endblock %}
