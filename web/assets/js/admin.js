@@ -21,17 +21,21 @@ function navigation() {
             var el = $('aside').get(0);
             if (el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth) {
                 $(el).addClass('overflow');
+                $('body').addClass('nav-overflow');
             }
         })
         .on('mouseleave', function () {
             $('aside').removeClass('overflow');
+            $('body').removeClass('nav-overflow');
         })
         .on('shown.bs.collapse hidden.bs.collapse', '.collapse', function () {
             var el = $('aside').get(0);
             if (el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth) {
                 $(el).addClass('overflow');
+                $('body').addClass('nav-overflow');
             } else {
-                $('aside').removeClass('overflow');
+                $(el).removeClass('overflow');
+                $('body').removeClass('nav-overflow');
             }
         })
     ;
@@ -79,6 +83,7 @@ function ajaxPageWrapper() {
                 $(this).remove();
             });
             $("#page-wrapper").replaceWith($(temp).find("#page-wrapper"));
+            $("#site-modals").html($(temp).find(".modal"));
 
             initSelect2();
             initWysiwyg();
@@ -118,6 +123,7 @@ function initWysiwyg() {
         lang: lang,
         disableDragAndDrop: true,
         linkTargetBlank: false,
+        dialogsInBody: true,
         toolbar: [
             // [groupName, [list of button]]
             ["misc", ["undo", "redo"]],

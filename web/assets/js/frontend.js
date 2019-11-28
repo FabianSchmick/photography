@@ -259,7 +259,7 @@ function pagination() {
 // Smooth scroll to an element
 function smoothScroll(target) {
     $("html,body").animate({
-        scrollTop: $(target).offset().top - 50
+        scrollTop: $(target).offset().top - 60
     }, 900);
 }
 

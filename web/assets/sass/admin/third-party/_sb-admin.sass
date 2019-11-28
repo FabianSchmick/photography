@@ -1,3 +1,17 @@
+body
+    @media (min-width: 768px)
+        #page-wrapper
+            padding-left: 1.5rem
+        .topbar
+            padding-left: 1rem
+
+        &:not(.nav-overflow)
+            #page-wrapper
+                padding-left: calc(1.5rem + 17px)
+            .topbar
+                padding-left: calc(1rem + 17px)
+
+
 #content-wrapper #content
     background-color: #f3f3f3
 

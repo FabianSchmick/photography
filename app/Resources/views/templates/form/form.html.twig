@@ -27,6 +27,7 @@
 {% block vich_file_widget %}
     {% filter spaceless %}
         {{ form_widget(form.file) }}
+        {{ form_errors(form.file) }}
         {% if form.delete is defined %}
             {{ form_widget(form.delete) }}
             {{ form_errors(form.delete) }}
@@ -42,6 +43,7 @@
 {% block vich_image_widget %}
     {% filter spaceless %}
         {{ form_widget(form.file) }}
+        {{ form_errors(form.file) }}
         {% if form.delete is defined %}
             {{ form_widget(form.delete) }}
             {{ form_errors(form.delete) }}
