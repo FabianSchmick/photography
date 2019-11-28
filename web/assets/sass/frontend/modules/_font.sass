@@ -1,0 +1,36 @@
+body
+    font-family: $font-main
+    color: $color-primary
+    font-size: 16px
+    text-rendering: optimizeLegibility
+
+h1, .h1,
+h2, .h2,
+h3, .h3
+    font-family: $font-header
+
+h1, .h1, .entry-title
+    hyphens: auto
+    word-wrap: break-word
+
+@media(max-width: 450px)
+    body
+        font-size: 14px
+
+    h1, .h1
+        font-size: 28px
+
+    h2, .h2
+        font-size: 22px
+
+a.link,
+article a,
+p a
+    border-bottom: 2px solid $color-teritary
+    color: $color-teritary
+    transition: all 0.2s ease-in
+
+    &:hover, &:focus
+        border-color: lighten($color-teritary, 5)
+        color: lighten($color-teritary, 5)
+        text-decoration: none

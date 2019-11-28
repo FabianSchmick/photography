@@ -55,7 +55,7 @@
                 <div class="text-center tour-map">
                     <h3>{{ 'tour.map'|trans }}</h3>
                     <div id="map"></div>
-                    <a class="btn" href="{{ path('download_file', {'file': tour.file.fileName}) }}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> {{ 'tour.download'|trans }}</a>
+                    <a class="btn btn-teritary" href="{{ path('download_file', {'file': tour.file.fileName}) }}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> {{ 'tour.download'|trans }}</a>
                 </div>
                 {% if not tour.entries.empty %}
                     <div class="tour-pictures">

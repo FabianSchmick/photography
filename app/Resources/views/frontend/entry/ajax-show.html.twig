@@ -31,7 +31,7 @@
                     <li><a href="{{ path('tag_show', {'slug': tag.slug}) }}">{{ tag.name }}</a></li>
                 {% endfor %}
             </ul>
-            <a class="btn" href="{{ vich_uploader_asset(entry.image, 'file') }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
+            <a class="btn btn-teritary" href="{{ vich_uploader_asset(entry.image, 'file') }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
         </div>
     </article>
 </div>
