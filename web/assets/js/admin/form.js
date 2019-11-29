@@ -3,26 +3,29 @@ import 'select2/dist/js/i18n/de';
 import 'summernote/dist/summernote-bs4';
 import 'summernote/lang/summernote-de-DE';
 
-// Initializes select2 fields
+/**
+ * Initializes select2 fields
+ */
 export function initSelect2() {
     $.fn.select2.defaults.set("theme", "bootstrap4");
     $.fn.select2.defaults.set("language", $("html").attr("lang"));
     $.fn.select2.defaults.set("placeholder", "");
 
-    $(".select2").select2();
-
-    $(".select2.add").select2({
-        tags: true
-    });
-
-    $(".clear-select2").on("click", function () {
-        $(this).siblings("select.select2").val(null).trigger("change");
+    $(".select2").each((index, el) => {
+        $(el).select2({
+            allowClear: !$(el).prop('required'),
+            tags: !!$(el).attr('multiple'),
+            width: '100%',
+            placeholder: $(el).find('option[value=""]').length ? $(el).find('option[value=""]').text() : ''
+        });
     });
 }
 
-// Initializes summernote wysiwyg editor
+/**
+ * Initializes summernote wysiwyg editor
+ */
 export function initWysiwyg() {
-    var lang = "";
+    let lang = "";
 
     if ($("html").attr("lang") === "de") {
         lang = "de-DE";
@@ -42,7 +45,7 @@ export function initWysiwyg() {
             ["para", ["ul"]],
             ["misc", ["codeview", "help"]]
         ],
-        onCreateLink: function(linkUrl) {
+        onCreateLink: (linkUrl) => {
             return /^([A-Za-z][A-Za-z0-9+-.]*\:[\/\/]?|\/)/.test(linkUrl) ?
                 linkUrl : "http://" + linkUrl;
         }

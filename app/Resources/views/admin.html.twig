@@ -30,7 +30,7 @@
 <div id="wrapper" {% if not app.user %}style="height: 100%"{% endif %}>
 
     {% if app.user %}
-        <aside class="bg-gradient-primary sidebar-wrapper">
+        <aside id="sidebar-nav" class="bg-gradient-primary sidebar-wrapper">
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion{% if sidebarToggled == 'true' %} toggled{% endif %}" id="accordionSidebar">
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('admin_index') }}">
                     <div class="sidebar-brand-icon">
