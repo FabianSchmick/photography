@@ -1,0 +1,34 @@
+{
+  "outputPath": "web/assets/dist",
+  "publicPath": "/assets/dist",
+
+  "styles": {
+    "frontend": {
+      "src": [
+        "./web/assets/sass/frontend.sass"
+      ],
+      "dest": "css/app"
+    },
+    "admin": {
+      "src": [
+        "./web/assets/sass/admin.sass"
+      ],
+      "dest": "css/admin"
+    }
+  },
+
+  "scripts": {
+    "frontend": {
+      "src": [
+        "./web/assets/js/frontend.js"
+      ],
+      "dest": "js/app"
+    },
+    "admin": {
+      "src": [
+        "./web/assets/js/admin.js"
+      ],
+      "dest": "js/admin"
+    }
+  }
+}

@@ -53,15 +53,9 @@
 {% endblock embed_svg %}
 
 {% block javascripts %}
-    {{ parent() }}
-
     <script type="application/javascript">
         var paginateUrl = "{{ path('paginate_by_tag', {'slug': tag.slug}) }}";
-
-        jQuery(document).ready(function() {
-            lazyLoad();
-            justify(400);
-            lightbox();
-        });
     </script>
+
+    {{ parent() }}
 {% endblock %}

@@ -16,7 +16,7 @@
     <title>{% block title %}{{ 'admin'|trans }}{% endblock %} | {{ 'photography'|trans }}</title>
 
     {% block stylesheets %}
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/dist/css/admin.css') }}"/>
+        {{ encore_entry_link_tags('css/admin') }}
     {% endblock %}
 </head>
 
@@ -173,7 +173,7 @@
 </div>
 
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('assets/dist/js/admin.js') }}"></script>
+    {{ encore_entry_script_tags('js/admin') }}
 {% endblock %}
 </body>
 </html>

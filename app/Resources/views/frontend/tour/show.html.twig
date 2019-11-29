@@ -54,13 +54,15 @@
                 </div>
                 <div class="text-center tour-map">
                     <h3>{{ 'tour.map'|trans }}</h3>
-                    <div id="map"></div>
+                    {% set firstPoint = tour.gpxData.segments[0].points|first %}
+                    {% set lastPoint = tour.gpxData.segments[0].points|last %}
+                    <div id="map" data-gpx="{{ vich_uploader_asset(tour.file, 'file') }}" data-coordinates="[{{ firstPoint.latitude }}, {{ firstPoint.longitude }}]"></div>
                     <a class="btn btn-teritary" href="{{ path('download_file', {'file': tour.file.fileName}) }}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> {{ 'tour.download'|trans }}</a>
                 </div>
                 {% if not tour.entries.empty %}
                     <div class="tour-pictures">
                         <h3>{{ 'tour.pictures'|trans }}</h3>
-                        <div class="text-container gallery" data-justified="true">
+                        <div class="text-container gallery" data-justified data-row-height="150">
                             {% for entry in tour.entries %}
                                 {% set url = path('entry_show', {'slug': entry.slug}) %}
                                 {% set src = path('ajax_entry_show', {'id': entry.id}) %}
@@ -77,9 +79,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    {% set firstPoint = tour.gpxData.segments[0].points|first %}
-    {% set lastPoint = tour.gpxData.segments[0].points|last %}
-
     <script type="application/ld+json">
         {{ jsonLd.blogPosting(tour, tour.previewEntry) }}
     </script>
@@ -88,14 +87,4 @@
     </script>
 
     {{ parent() }}
-
-    <script type="application/javascript">
-        var paginateUrl = false;
-
-        jQuery(document).ready(function() {
-            justify();
-            lightbox();
-            map('{{ vich_uploader_asset(tour.file, 'file') }}', [{{ firstPoint.latitude }}, {{ firstPoint.longitude }}])
-        });
-    </script>
 {% endblock %}

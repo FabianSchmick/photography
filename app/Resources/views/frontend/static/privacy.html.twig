@@ -189,17 +189,3 @@
 
     </section>
 {% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-
-    <script type="application/javascript">
-        jQuery(document).ready(function() {
-            $("a[href^=\"#\"]:not(.gaOptOut)").on('click', function (e) {
-                smoothScroll($(this).attr('href'));
-
-                e.preventDefault();
-            })
-        });
-    </script>
-{% endblock %}

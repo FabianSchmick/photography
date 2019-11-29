@@ -40,7 +40,7 @@
 
     {% block stylesheets %}
         <link href="https://fonts.googleapis.com/css?family=Montserrat:700%7CRoboto:300" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/dist/css/main.css') }}"/>
+        {{ encore_entry_link_tags('css/app') }}
     {% endblock %}
 
     {% if app.environment == 'prod' and ga %}
@@ -188,7 +188,7 @@
         </script>
     {% endif %}
 
-    <script type="text/javascript" src="{{ asset('assets/dist/js/main.js') }}"></script>
+    {{ encore_entry_script_tags('js/app') }}
 {% endblock %}
 </body>
 </html>

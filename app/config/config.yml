@@ -31,7 +31,7 @@ framework:
     fragments: ~
     http_method_override: true
     assets:
-        json_manifest_path: '%kernel.project_dir%/rev-manifest.json'
+        json_manifest_path: '%kernel.project_dir%/web/assets/dist/manifest.json'
     php_errors:
         log: true
 
@@ -167,3 +167,8 @@ liip_imagine:
             post_processors:
                 jpegoptim: { strip_all: true, max: '%jpeg_quality%', progressive: true }
                 optipng: { strip_all: true, level: '%png_level%' }
+
+webpack_encore:
+    # The path where Encore is building the assets.
+    # This should match Encore.setOutputPath() in webpack.config.js.
+    output_path: '%kernel.project_dir%/web/assets/dist'

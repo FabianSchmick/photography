@@ -67,15 +67,9 @@
         {{ jsonLd.blog(block('title'), block('meta_description')) }}
     </script>
 
-    {{ parent() }}
-
     <script type="application/javascript">
         var paginateUrl = "{{ path('paginate_entries') }}";
-
-        jQuery(document).ready(function() {
-            lazyLoad();
-            justify(400);
-            lightbox();
-        });
     </script>
+
+    {{ parent() }}
 {% endblock %}

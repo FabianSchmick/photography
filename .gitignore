@@ -3,7 +3,6 @@
 .php_cs.cache
 /.web-server-pid
 /app/config/parameters.yml
-/build/
 /phpunit.xml
 /var/*
 !/var/cache
@@ -23,6 +22,5 @@
 /web/media/cache/
 /node_modules/
 /src/AppBundle/Resources/public/min/
-rev-manifest.json
 npm-debug.log
 web/sw.js
