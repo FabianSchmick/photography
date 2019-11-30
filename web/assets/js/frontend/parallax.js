@@ -2,9 +2,9 @@
  * Parallax effect for the hero
  */
 export function parallax() {
-    let $parallaxElements = $(".parallax");
+    let $parallaxElements = $('.parallax');
 
-    $(window).on("scroll", function () {
+    $(window).on('scroll', function () {
         window.requestAnimationFrame(function () {
 
             for (let i = 0; i < $parallaxElements.length; i++) {
@@ -12,7 +12,7 @@ export function parallax() {
                     scrolled = $(window).scrollTop();
 
                 currentElement.css({
-                    "transform": "translate3d(0," + scrolled * -0.3 + "px, 0)"
+                    'transform': 'translate3d(0,' + scrolled * -0.3 + 'px, 0)'
                 });
             }
         });

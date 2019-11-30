@@ -7,11 +7,11 @@ import 'summernote/lang/summernote-de-DE';
  * Initializes select2 fields
  */
 export function initSelect2() {
-    $.fn.select2.defaults.set("theme", "bootstrap4");
-    $.fn.select2.defaults.set("language", $("html").attr("lang"));
-    $.fn.select2.defaults.set("placeholder", "");
+    $.fn.select2.defaults.set('theme', 'bootstrap4');
+    $.fn.select2.defaults.set('language', $('html').attr('lang'));
+    $.fn.select2.defaults.set('placeholder', '');
 
-    $(".select2").each((index, el) => {
+    $('.select2').each((index, el) => {
         $(el).select2({
             allowClear: !$(el).prop('required'),
             tags: !!$(el).attr('multiple'),
@@ -25,13 +25,13 @@ export function initSelect2() {
  * Initializes summernote wysiwyg editor
  */
 export function initWysiwyg() {
-    let lang = "";
+    let lang = '';
 
-    if ($("html").attr("lang") === "de") {
-        lang = "de-DE";
+    if ($('html').attr('lang') === 'de') {
+        lang = 'de-DE';
     }
 
-    $(".wysiwyg").summernote({
+    $('.wysiwyg').summernote({
         height: 100,
         lang: lang,
         disableDragAndDrop: true,
@@ -39,15 +39,15 @@ export function initWysiwyg() {
         dialogsInBody: true,
         toolbar: [
             // [groupName, [list of button]]
-            ["misc", ["undo", "redo"]],
-            ["style", ["clear", "bold"]],
-            ["insert", ["link"]],
-            ["para", ["ul"]],
-            ["misc", ["codeview", "help"]]
+            ['misc', ['undo', 'redo']],
+            ['style', ['clear', 'bold']],
+            ['insert', ['link']],
+            ['para', ['ul']],
+            ['misc', ['codeview', 'help']]
         ],
         onCreateLink: (linkUrl) => {
             return /^([A-Za-z][A-Za-z0-9+-.]*\:[\/\/]?|\/)/.test(linkUrl) ?
-                linkUrl : "http://" + linkUrl;
+                linkUrl : 'http://' + linkUrl;
         }
     });
 }

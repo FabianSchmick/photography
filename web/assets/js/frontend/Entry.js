@@ -1,4 +1,4 @@
-import {addContentToLightbox} from "./lightbox";
+import { addContentToLightbox } from './lightbox';
 
 /**
  * Class Entry
@@ -16,7 +16,7 @@ class Entry {
     lazyLoad() {
         let $window = $(window);
 
-        $window.on("scroll", () => {
+        $window.on('scroll', () => {
             if (!this.isLoadingEntries && $window.scrollTop() + $window.height() > $(document).height() - 600) {
                 this.isLoadingEntries = true;
                 $.when(this.loadEntries()).done(() => {
@@ -36,8 +36,8 @@ class Entry {
         }
 
         this.paginatePage++;
-        let paginateUrlPage = this.paginateUrl + "/" + this.paginatePage,
-            $spinner = $("#spinner");
+        let paginateUrlPage = this.paginateUrl + '/' + this.paginatePage,
+            $spinner = $('#spinner');
 
         $spinner.show();
 
@@ -50,7 +50,7 @@ class Entry {
 
             $(data).insertBefore($spinner);
             $spinner.hide();
-            $("[data-justified=\"true\"]").justifiedGallery("norewind");
+            $('[data-justified="true"]').justifiedGallery('norewind');
 
             if ($.fancybox.getInstance()) { // If clicked throw lightbox
                 addContentToLightbox(data);
@@ -62,25 +62,25 @@ class Entry {
      * Loads next or prev entry for entry detail page links
      */
     loadNextPrevEntry() {
-        let $spinner = $("#spinner"),
-            $entry = $("section#entry");
+        let $spinner = $('#spinner'),
+            $entry = $('section#entry');
 
         $spinner.hide();
 
-        $entry.on("click", "a.prev, a.next", e => {
+        $entry.on('click', 'a.prev, a.next', e => {
             $spinner.show();
 
-            this.loadEntry($(e.currentTarget).attr("href"), $entry, $spinner);
+            this.loadEntry($(e.currentTarget).attr('href'), $entry, $spinner);
 
             e.preventDefault();
-        }).on("swipeleft", e => {
+        }).on('swipeleft', e => {
             $spinner.show();
 
-            this.loadEntry($(e.currentTarget).find("a.prev").attr("href"), $entry, $spinner);
-        }).on("swiperight", e => {
+            this.loadEntry($(e.currentTarget).find('a.prev').attr('href'), $entry, $spinner);
+        }).on('swiperight', e => {
             $spinner.show();
 
-            this.loadEntry($(e.currentTarget).find("a.next").attr("href"), $entry, $spinner);
+            this.loadEntry($(e.currentTarget).find('a.next').attr('href'), $entry, $spinner);
         });
     }
 
@@ -95,13 +95,13 @@ class Entry {
         $.get(url, data => {
             let html = $.parseHTML(data);
 
-            $entry.find("article").replaceWith($(html).find("section#entry article"));
+            $entry.find('article').replaceWith($(html).find('section#entry article'));
 
-            $entry.find("img").on("load", () => {
+            $entry.find('img').on('load', () => {
                 $spinner.hide();
             });
 
-            history.pushState(null, "", url);
+            history.pushState(null, '', url);
         });
     }
 }
