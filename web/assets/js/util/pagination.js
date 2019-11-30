@@ -1,14 +1,16 @@
 import {smoothScroll} from "./smooth-scroll";
 
-// Ajax replace for pagination
+/**
+ * Ajax replace for pagination
+ */
 export function pagination() {
     $("main").on("click", "ul.pagination a", function (e) {
-        var url = $(this).attr("href"),
+        let url = $(this).attr("href"),
             pagination = $(this).closest("ul.pagination"),
             replace = $(pagination).data("replace");
 
         $.get(url, function(data) {
-            var html = $.parseHTML(data);
+            let html = $.parseHTML(data);
 
             $(replace).replaceWith($(html).find(replace));
 

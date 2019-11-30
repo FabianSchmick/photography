@@ -1,9 +1,14 @@
 import '@fancyapps/fancybox';
 
-import {loadEntries} from "./entries";
+import Entry from "./Entry";
 
-// Lightbox (fancybox) for the image entries -> load dynamic content https://github.com/fancyapps/fancyBox/issues/257
+/**
+ * Lightbox (fancybox) for the image entries
+ * load dynamic content https://github.com/fancyapps/fancyBox/issues/257
+ */
 export function lightbox() {
+    let entriesGallery = "[data-fancybox='entries']";
+
     $.fancybox.defaults.lang = $("html").attr("lang");
     $.fancybox.defaults.hash = false;
     $.fancybox.defaults.autoFocus = false;
@@ -11,12 +16,12 @@ export function lightbox() {
     $.fancybox.defaults.buttons = ["close"];
 
     $.fancybox.defaults.beforeShow = function() {
-        var entries = $("[data-fancybox='entries']");
+        let $entriesGallery = $(entriesGallery);
 
-        history.pushState(null, "", $(entries[this.index]).attr("href"));
+        history.pushState(null, "", $($entriesGallery[this.index]).attr("href"));
 
-        if (paginateUrl && checkAjax && this.index >= entriesGalleryLength - 3) {
-            loadEntries();
+        if (Entry.paginateUrl && !Entry.isLoadingEntries && this.index >= $entriesGallery.length - 3) {
+            Entry.loadEntries();
         }
     };
     $.fancybox.defaults.afterClose = function() {
@@ -26,13 +31,19 @@ export function lightbox() {
     $(entriesGallery).fancybox();
 }
 
-// Callback because of asynchronous call
+/**
+ * Callback because of asynchronous call
+ *
+ * @param data
+ */
 export function addContentToLightbox(data) {
-    $(data).each(function(index, element) {
-        if (typeof $(element).data("src") !== "undefined") {
+    $(data).each((index, el) => {
+        let src = $(el).data("src");
+
+        if (typeof src !== "undefined") {
             $.fancybox.getInstance().addContent({
                 type: "ajax",
-                src: $(element).data("src")
+                src: src
             });
         }
     });

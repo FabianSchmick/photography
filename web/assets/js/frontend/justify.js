@@ -1,6 +1,8 @@
 import 'justifiedGallery';
 
-// Justify entries
+/**
+ * Justify entries
+ */
 export function justify() {
     $("[data-justified]").each((index, el) => {
         $(el).justifiedGallery({

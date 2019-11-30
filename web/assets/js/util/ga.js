@@ -1,4 +1,6 @@
-// Disable GA script
+/**
+ * Disable GA script
+ */
 export function disableGoogleAnalytics() {
     $(".gaOptOut").on("click", function () {
         gaOptout();

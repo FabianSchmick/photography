@@ -7,17 +7,18 @@ import {notice} from "./util/notice";
 import {navigation} from "./frontend/app";
 import {parallax} from "./frontend/parallax";
 
-import {lazyLoad, loadNextPrevEntry} from "./frontend/entries";
 import {justify} from "./frontend/justify";
 import {lightbox} from "./frontend/lightbox";
 import {pagination} from "./util/pagination";
 import {map} from "./frontend/map";
 
+import Entry from "./frontend/Entry";
+
 // Global vars
-global.currentPage = 1;
-global.entriesGallery = $("[data-fancybox='entries']");
-global.entriesGalleryLength = $(entriesGallery).length;
-global.checkAjax = true;
+// global.currentPage = 1;
+// global.entriesGallery = $("[data-fancybox='entries']");
+// global.entriesGalleryLength = $(entriesGallery).length;
+// global.checkAjax = true;
 
 $(document).ready(function() {
     disableGoogleAnalytics();
@@ -25,8 +26,8 @@ $(document).ready(function() {
     navigation();
     parallax();
 
-    loadNextPrevEntry();
-    lazyLoad();
+    Entry.loadNextPrevEntry();
+    Entry.lazyLoad();
     justify();
     lightbox();
 
