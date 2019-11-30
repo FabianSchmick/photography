@@ -27,20 +27,9 @@
     <section id="content" class="container entries-container">
         <div id="entries" data-justified="true" data-paginate="{{ path('paginate_entries') }}">
             {{ render(controller('AppBundle:Entry:paginate', { 'page': 1 })) }}
-
-            <div id="spinner" class="spinner" style="display: none">
-                <svg>
-                    <use xlink:href="#spinner-icon"/>
-                </svg>
-            </div>
         </div>
     </section>
 {% endblock %}
-
-{% block embed_svg %}
-    {{ parent() }}
-    {{ asset('assets/img/layout/icons/spinner-icon.svg')|inline_svg() }}
-{% endblock embed_svg %}
 
 {% block javascripts %}
     <script type="application/ld+json">

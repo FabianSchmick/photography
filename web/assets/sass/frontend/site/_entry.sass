@@ -3,21 +3,18 @@
     margin: 100px auto
     overflow: initial
 
-    #spinner
-        position: absolute
-        display: block
-        transform: translateX(-50%)
-        text-align: center
-        padding: 0
-        margin: 0 auto
-        bottom: -80px
-
-        svg
+    &.loading
+        &:after
+            content: ''
+            position: absolute
+            display: block
+            transform: translateX(-50%)
+            margin: 0 auto
+            bottom: -80px
+            left: 50%
             height: 60px
             width: 60px
-
-            use
-                fill: $color-teritary
+            background: url("#{$imagepath}/layout/icons/spinner-icon.svg") no-repeat center /contain
 
     @media(max-width: 450px)
         margin: 20px auto 100px
@@ -28,6 +25,18 @@
     min-height: 100vh
     align-items: center
 
+    &.loading
+        .entry-image:after
+            content: ''
+            position: absolute
+            display: block
+            transform: translate(-50%, -50%)
+            top: 50%
+            left: 50%
+            height: 60px
+            width: 60px
+            background: url("#{$imagepath}/layout/icons/spinner-icon.svg") no-repeat center /contain
+
     .entry-title
         margin: 20px 0
 
@@ -37,20 +46,6 @@
     .entry-image
         position: relative
         min-height: 100px
-
-        .spinner
-            position: absolute
-            display: block
-            top: 50%
-            left: 50%
-            transform: translate(-50%, -50%)
-
-            svg
-                height: 60px
-                width: 60px
-
-                use
-                    fill: $color-teritary
 
     .entry-inner
         position: relative

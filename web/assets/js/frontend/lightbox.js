@@ -20,7 +20,7 @@ export function lightbox() {
 
         history.pushState(null, '', $($entriesGallery[this.index]).attr('href'));
 
-        if (Entry.paginateUrl && !Entry.isLoadingEntries && this.index >= $entriesGallery.length - 3) {
+        if (this.index >= $entriesGallery.length - 3) {
             Entry.loadEntries();
         }
     };

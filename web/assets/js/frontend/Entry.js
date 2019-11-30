@@ -1,12 +1,17 @@
 import { addContentToLightbox } from './lightbox';
 
 /**
- * Class Entry
+ * Class Entry with methods for index and show page
  */
 class Entry {
     constructor() {
-        this.paginateUrl = $('[data-paginate]').data('paginate') || false;
-        this.paginatePage = 1;
+        let $paginateContainer = $('[data-paginate]');
+
+        this.paginateConfig = {
+            container: $paginateContainer,
+            url: $paginateContainer.data('paginate') || false,
+            page: 1
+        };
         this.isLoadingEntries = false;
     }
 
@@ -28,28 +33,30 @@ class Entry {
 
     /**
      * Ajax function to get the next entries
+     *
      * @returns {*}
      */
     loadEntries() {
-        if (!this.paginateUrl) {
+        if (!this.paginateConfig.container.length || !this.isLoadingEntries) {
             return;
         }
 
-        this.paginatePage++;
-        let paginateUrlPage = this.paginateUrl + '/' + this.paginatePage,
-            $spinner = $('#spinner');
+        this.paginateConfig.container.addClass('loading');
 
-        $spinner.show();
+        this.paginateConfig.page++;
+        let paginateUrlPage = this.paginateConfig.url + '/' + this.paginateConfig.page;
 
         return $.get(paginateUrlPage, data => {
             if (!data.length) {
-                $spinner.remove();
+                this.paginateConfig.container.removeClass('loading');
                 this.isLoadingEntries = true;
                 return false;
             }
 
-            $(data).insertBefore($spinner);
-            $spinner.hide();
+            this.paginateConfig.container
+                .removeClass('loading')
+                .append(data);
+
             $('[data-justified="true"]').justifiedGallery('norewind');
 
             if ($.fancybox.getInstance()) { // If clicked throw lightbox
@@ -62,25 +69,22 @@ class Entry {
      * Loads next or prev entry for entry detail page links
      */
     loadNextPrevEntry() {
-        let $spinner = $('#spinner'),
-            $entry = $('section#entry');
-
-        $spinner.hide();
+        let $entry = $('section#entry');
 
         $entry.on('click', 'a.prev, a.next', e => {
-            $spinner.show();
+            $entry.addClass('loading');
 
-            this.loadEntry($(e.currentTarget).attr('href'), $entry, $spinner);
+            this.loadEntry($(e.currentTarget).attr('href'), $entry);
 
             e.preventDefault();
         }).on('swipeleft', e => {
-            $spinner.show();
+            $entry.addClass('loading');
 
-            this.loadEntry($(e.currentTarget).find('a.prev').attr('href'), $entry, $spinner);
+            this.loadEntry($(e.currentTarget).find('a.prev').attr('href'), $entry);
         }).on('swiperight', e => {
-            $spinner.show();
+            $entry.addClass('loading');
 
-            this.loadEntry($(e.currentTarget).find('a.next').attr('href'), $entry, $spinner);
+            this.loadEntry($(e.currentTarget).find('a.next').attr('href'), $entry);
         });
     }
 
@@ -89,16 +93,17 @@ class Entry {
      *
      * @param {string} url
      * @param {Object} $entry
-     * @param {Object} $spinner
+     *
+     * @returns {*}
      */
-    loadEntry(url, $entry, $spinner) {
-        $.get(url, data => {
+    loadEntry(url, $entry) {
+        return $.get(url, data => {
             let html = $.parseHTML(data);
 
             $entry.find('article').replaceWith($(html).find('section#entry article'));
 
             $entry.find('img').on('load', () => {
-                $spinner.hide();
+                $entry.removeClass('loading');
             });
 
             history.pushState(null, '', url);
@@ -106,4 +111,5 @@ class Entry {
     }
 }
 
+// Singleton pattern, so all vars have their correct state
 export default (new Entry);

@@ -32,12 +32,6 @@
                         <i class="fa fa-angle-right"></i>
                     </span>
                 {% endif %}
-
-                <div id="spinner" class="spinner">
-                    <svg>
-                        <use xlink:href="#spinner-icon"/>
-                    </svg>
-                </div>
             </div>
             <div class="entry-info col-xs-12 col-lg-3">
                 <h1 class="entry-title">
@@ -72,11 +66,6 @@
         </article>
     </section>
 {% endblock %}
-
-{% block embed_svg %}
-    {{ parent() }}
-    {{ asset('assets/img/layout/icons/spinner-icon.svg')|inline_svg() }}
-{% endblock embed_svg %}
 
 {% block javascripts %}
     <script type="application/ld+json">
