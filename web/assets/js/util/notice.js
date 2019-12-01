@@ -23,7 +23,7 @@ export function notice() {
         $body.removeClass('notice');
         Cookies.set('Notice', true, {
             path: '/',
-            expire: 365
+            expires: 365
         });
         e.preventDefault();
     });
