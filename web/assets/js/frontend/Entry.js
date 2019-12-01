@@ -22,11 +22,8 @@ class Entry {
         let $window = $(window);
 
         $window.on('scroll', () => {
-            if (!this.isLoadingEntries && $window.scrollTop() + $window.height() > $(document).height() - 600) {
-                this.isLoadingEntries = true;
-                $.when(this.loadEntries()).done(() => {
-                    this.isLoadingEntries = false;
-                });
+            if ($window.scrollTop() + $window.height() > $(document).height() - 600) {
+                this.loadEntries();
             }
         });
     }
@@ -40,6 +37,8 @@ class Entry {
         if (!this.paginateConfig.container.length || this.isLoadingEntries) {
             return;
         }
+
+        this.isLoadingEntries = true;
 
         this.paginateConfig.container.addClass('loading');
 
@@ -62,6 +61,8 @@ class Entry {
             if ($.fancybox.getInstance()) { // If clicked throw lightbox
                 addContentToLightbox(data);
             }
+
+            this.isLoadingEntries = false;
         });
     }
 

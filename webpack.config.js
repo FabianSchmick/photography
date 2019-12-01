@@ -1,6 +1,7 @@
-const Encore = require('@symfony/webpack-encore');
-const CompressionPlugin = require('compression-webpack-plugin');
-const config = require('./webpack-config.json');
+const Encore = require('@symfony/webpack-encore'),
+    CompressionPlugin = require('compression-webpack-plugin'),
+    workboxPlugin = require('workbox-webpack-plugin'),
+    config = require('./webpack-config.json');
 
 Encore.setOutputPath(config.outputPath)
     .setPublicPath(config.publicPath)
@@ -42,29 +43,35 @@ Encore
         corejs: 3,
         exclude: /node_modules/
     })
-    // .configureTerserPlugin(options => {
-    //     options.cache = true;
-    //     options.terserOptions = {
-    //         cache: true,
-    //         parallel: true,
-    //         output: {
-    //             comments: false
-    //         },
-    //         terserOptions: {
-    //             ecma: 8
-    //         }
-    //     };
-    // })
     .enableBuildNotifications();
 
 if (Encore.isProduction()) {
-    Encore.addPlugin(
-        new CompressionPlugin({
-            algorithm: 'gzip',
-            test: /\.(js|css)$/
-        }),
-        10
-    );
+    Encore
+        .addPlugin(
+            new CompressionPlugin({
+                algorithm: 'gzip',
+                test: /\.(js|css)$/
+            }),
+            10
+        )
+        .addPlugin(
+            new workboxPlugin.GenerateSW({
+                clientsClaim: true,
+                skipWaiting: true,
+                runtimeCaching: [
+                    {
+                        urlPattern: new RegExp('\/de\/(.*)'),
+                        handler: 'StaleWhileRevalidate'
+                    },
+                    {
+                        urlPattern: new RegExp('\/en\/(.*)'),
+                        handler: 'StaleWhileRevalidate'
+                    }
+                ],
+                swDest: config.swDest
+            })
+        )
+    ;
 }
 
 module.exports = Encore.getWebpackConfig();

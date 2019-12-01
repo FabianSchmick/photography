@@ -13,6 +13,7 @@ import { pagination } from './util/pagination';
 import { map } from './frontend/map';
 
 import Entry from './frontend/Entry';
+import {registerSW} from "./util/sw";
 
 $(document).ready(function() {
     disableGoogleAnalytics();
@@ -27,4 +28,6 @@ $(document).ready(function() {
 
     pagination();
     map();
+
+    registerSW();
 });
