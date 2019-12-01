@@ -37,7 +37,7 @@ class Entry {
      * @returns {*}
      */
     loadEntries() {
-        if (!this.paginateConfig.container.length || !this.isLoadingEntries) {
+        if (!this.paginateConfig.container.length || this.isLoadingEntries) {
             return;
         }
 
