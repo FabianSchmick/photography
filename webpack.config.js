@@ -60,11 +60,19 @@ if (Encore.isProduction()) {
                 skipWaiting: true,
                 runtimeCaching: [
                     {
-                        urlPattern: new RegExp('\/de\/(.*)'),
+                        urlPattern: new RegExp('/assets/img/(.*)'),
+                        handler: 'CacheFirst'
+                    },
+                    {
+                        urlPattern: new RegExp('/media/(.*)'),
+                        handler: 'CacheFirst'
+                    },
+                    {
+                        urlPattern: new RegExp('/de/(.*)'),
                         handler: 'StaleWhileRevalidate'
                     },
                     {
-                        urlPattern: new RegExp('\/en\/(.*)'),
+                        urlPattern: new RegExp('/en/(.*)'),
                         handler: 'StaleWhileRevalidate'
                     }
                 ],
