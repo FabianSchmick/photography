@@ -135,7 +135,7 @@ class Tag
     /**
      * Set name.
      *
-     * @param string|null $name
+     * @param string $name
      *
      * @return Tag
      */
@@ -239,19 +239,9 @@ class Tag
     }
 
     /**
-     * Set entries.
-     *
-     * @param Collection $entries
-     */
-    public function setEntries(Collection $entries)
-    {
-        $this->entries = $entries;
-    }
-
-    /**
      * Set slug.
      *
-     * @param string|null $slug
+     * @param string $slug
      *
      * @return Tag
      */
@@ -275,7 +265,7 @@ class Tag
     /**
      * Set created.
      *
-     * @param \DateTime|null $created
+     * @param \DateTime $created
      *
      * @return Tag
      */
@@ -299,7 +289,7 @@ class Tag
     /**
      * Set updated.
      *
-     * @param \DateTime|null $updated
+     * @param \DateTime $updated
      *
      * @return Tag
      */

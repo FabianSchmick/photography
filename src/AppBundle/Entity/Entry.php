@@ -184,7 +184,7 @@ class Entry
      *
      * @param string $name
      *
-     * @return Entry|null
+     * @return Entry
      */
     public function setName($name)
     {
@@ -254,7 +254,7 @@ class Entry
     /**
      * Set image.
      *
-     * @param File|null $image
+     * @param File $image
      *
      * @return Entry
      */
@@ -324,6 +324,20 @@ class Entry
     }
 
     /**
+     * Set tags.
+     *
+     * @param Collection $tags
+     *
+     * @return Entry
+     */
+    public function setTags(Collection $tags)
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
      * Get tags.
      *
      * @return Collection|null
@@ -334,16 +348,6 @@ class Entry
     }
 
     /**
-     * Set tags.
-     *
-     * @param Collection|null $tags
-     */
-    public function setTags(Collection $tags)
-    {
-        $this->tags = $tags;
-    }
-
-    /**
      * Get previewTag.
      *
      * @return Tag|null
@@ -351,20 +355,6 @@ class Entry
     public function getPreviewTag()
     {
         return $this->previewTag;
-    }
-
-    /**
-     * Set previewTag.
-     *
-     * @param Tag|null $previewTag
-     *
-     * @return Entry
-     */
-    public function setPreviewTag(Tag $previewTag)
-    {
-        $this->previewTag = $previewTag;
-
-        return $this;
     }
 
     /**
@@ -402,23 +392,9 @@ class Entry
     }
 
     /**
-     * Set previewTour.
-     *
-     * @param Tour|null $previewTour
-     *
-     * @return Entry
-     */
-    public function setPreviewTour(Tour $previewTour)
-    {
-        $this->previewTour = $previewTour;
-
-        return $this;
-    }
-
-    /**
      * Set slug.
      *
-     * @param string|null $slug
+     * @param string $slug
      *
      * @return Entry
      */
@@ -442,7 +418,7 @@ class Entry
     /**
      * Set created.
      *
-     * @param \DateTime|null $created
+     * @param \DateTime $created
      *
      * @return Entry
      */
@@ -466,7 +442,7 @@ class Entry
     /**
      * Set updated.
      *
-     * @param \DateTime|null $updated
+     * @param \DateTime $updated
      *
      * @return Entry
      */

@@ -216,7 +216,7 @@ class Tour
     /**
      * Set file.
      *
-     * @param File|null $file
+     * @param File $file
      *
      * @return Tour
      */
@@ -320,23 +320,15 @@ class Tour
     }
 
     /**
-     * Set Entries.
+     * @param Track|null $gpxData
      *
-     * @param Collection $entries
+     * @return Tour
      */
-    public function setEntries($entries)
+    public function setGpxData(Track $gpxData)
     {
-        $this->entries = $entries;
-    }
+        $this->gpxData = $gpxData;
 
-    /**
-     * Set locale.
-     *
-     * @param string|null $locale
-     */
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
+        return $this;
     }
 
     /**
@@ -348,10 +340,12 @@ class Tour
     }
 
     /**
-     * @param Track|null $gpxData
+     * Set locale.
+     *
+     * @param string|null $locale
      */
-    public function setGpxData(Track $gpxData)
+    public function setTranslatableLocale($locale)
     {
-        $this->gpxData = $gpxData;
+        $this->locale = $locale;
     }
 }

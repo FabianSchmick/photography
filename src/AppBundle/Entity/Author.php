@@ -81,7 +81,7 @@ class Author
     /**
      * Set name.
      *
-     * @param string|null $name
+     * @param string $name
      *
      * @return Author
      */
@@ -110,16 +110,6 @@ class Author
     public function getEntries()
     {
         return $this->entries;
-    }
-
-    /**
-     * Set Entries.
-     *
-     * @param Collection $entries
-     */
-    public function setEntries($entries)
-    {
-        $this->entries = $entries;
     }
 
     /**
