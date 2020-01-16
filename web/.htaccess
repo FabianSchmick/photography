@@ -25,6 +25,13 @@ DirectoryIndex app.php
         RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     </IfDefine>
 
+    # gzip for css/js
+    # rewrite file if gzipped file exists
+    RewriteCond %{HTTP:Accept-Encoding} gzip.*deflate|deflate.*gzip
+    RewriteCond %{REQUEST_FILENAME} \.(css|js)$
+    RewriteCond %{REQUEST_FILENAME}.gz -f
+    RewriteRule ^.*$ %{REQUEST_URI}.gz [L]
+
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
     # project in a subdirectory, the base path will be prepended to allow proper
@@ -80,7 +87,6 @@ DirectoryIndex app.php
 # development access restriction
 <IfDefine !DEVELOPMENT>
     <IfModule mod_headers.c>
-
         Header unset Last-Modified
 
         Header unset ETag
@@ -91,23 +97,19 @@ DirectoryIndex app.php
         <FilesMatch "\.(js|css|xml|gz)$">
             Header append Vary: Accept-Encoding
         </FilesMatch>
-
     </IfModule>
 
     FileETag None
 
     <IfModule mod_expires.c>
-
         <FilesMatch "\.(gif|jpg|JPG|jpeg|png|swf|css|js|html?|xml|txt|ico|gz)$">
             ExpiresActive On
             ExpiresDefault "access plus 10 years"
         </FilesMatch>
-
     </IfModule>
 </IfDefine>
 
 # gzip for css/js
-
 # adjust response headers for gzipped css files
 <FilesMatch "\.css\.gz$">
     AddEncoding gzip .gz
@@ -119,10 +121,3 @@ DirectoryIndex app.php
     AddEncoding gzip .gz
     ForceType "application/javascript"
 </FilesMatch>
-
-# gzip for css/js
-# rewrite file if gzipped file exists
-RewriteCond %{HTTP:Accept-Encoding} gzip.*deflate|deflate.*gzip
-RewriteCond %{REQUEST_FILENAME} \.(css|js)$
-RewriteCond %{REQUEST_FILENAME}.gz -f
-RewriteRule ^.*$ %{REQUEST_URI}.gz [L]
