@@ -11,26 +11,17 @@ Encore.setOutputPath(config.outputPath)
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(true);
 
-Encore
-    .addEntry(config.scripts.frontend.dest, config.scripts.frontend.src)
-    .addEntry(config.scripts.admin.dest, config.scripts.admin.src);
+Object.keys(config.scripts).forEach(key => {
+    let script = config.scripts[key];
+    Encore
+        .addEntry(script.dest, script.src);
+});
 
-Encore
-    .addStyleEntry(config.styles.frontend.dest, config.styles.frontend.src)
-    .addStyleEntry(config.styles.admin.dest, config.styles.admin.src);
-
-
-// Array.from(config.scripts).forEach(script => {
-//     console.log(script);
-//     Encore
-//         .addEntry(script.dest, script.src)
-// });
-//
-// Array.from(config.styles).forEach(style => {
-//     console.log(style);
-//     Encore
-//         .addStyleEntry(style.dest, style.src)
-// });
+Object.keys(config.styles).forEach(key => {
+    let style = config.styles[key];
+    Encore
+        .addStyleEntry(style.dest, style.src);
+});
 
 Encore
     .splitEntryChunks()
