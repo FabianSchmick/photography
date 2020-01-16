@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller\Admin;
 
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use AppBundle\Entity\Tour;
 use AppBundle\Form\TourType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,7 +23,7 @@ class TourController extends Controller
      *
      * @Route("/", name="admin_tour_index")
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         $em = $this->getDoctrine()->getManager();
         $tours = $em->getRepository('AppBundle:Tour')->findAll();
@@ -36,7 +38,7 @@ class TourController extends Controller
      *
      * @Route("/new", name="admin_tour_new")
      */
-    public function newAction(Request $request, TranslatorInterface $translator)
+    public function newAction(Request $request, TranslatorInterface $translator): Response
     {
         $tour = new Tour();
         $form = $this->createForm(TourType::class, $tour);
@@ -68,7 +70,7 @@ class TourController extends Controller
      *
      * @Route("/edit/{id}", name="admin_tour_edit")
      */
-    public function editAction(Request $request, TranslatorInterface $translator, Tour $tour)
+    public function editAction(Request $request, TranslatorInterface $translator, Tour $tour): Response
     {
         $form = $this->createForm(TourType::class, $tour);
         $form->handleRequest($request);
@@ -96,7 +98,7 @@ class TourController extends Controller
      *
      * @Route("/delete/{id}", name="admin_tour_delete")
      */
-    public function deleteAction(TranslatorInterface $translator, Tour $tour)
+    public function deleteAction(TranslatorInterface $translator, Tour $tour): RedirectResponse
     {
         $em = $this->getDoctrine()->getManager();
 

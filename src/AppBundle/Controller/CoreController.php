@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Doctrine\PaginationHelper;
 use AppBundle\Entity\File;
 use AppBundle\Entity\Tour;
@@ -25,7 +27,7 @@ class CoreController extends Controller
      *     name="localeAdmin"
      * )
      */
-    public function localeAction(Request $request, $redirect)
+    public function localeAction(Request $request, $redirect): RedirectResponse
     {
         $this->get('session')->set('_locale', $this->container->getParameter('locale'));
 
@@ -40,7 +42,7 @@ class CoreController extends Controller
      * @Route("/download/{file}", name="download_file")
      * @ParamConverter("file", class="AppBundle:File", options={"mapping": {"file": "fileName"}})
      */
-    public function downloadFileAction(File $file, UploaderHelper $uploaderHelper)
+    public function downloadFileAction(File $file, UploaderHelper $uploaderHelper): BinaryFileResponse
     {
         $projectRoot = $this->getParameter('kernel.project_dir');
         $filePath = $projectRoot.'/web'.$uploaderHelper->asset($file, 'file');
@@ -58,7 +60,7 @@ class CoreController extends Controller
     /**
      * @Route("/sitemap.{_format}", name="sitemap", requirements={"_format" = "xml"})
      */
-    public function sitemapAction(Request $request, RouterInterface $router)
+    public function sitemapAction(Request $request, RouterInterface $router): Response
     {
         $em = $this->getDoctrine()->getManager();
         $locales = explode('|', $this->getParameter('app.locales'));

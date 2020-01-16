@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller\Admin;
 
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use AppBundle\Entity\Location;
 use AppBundle\Form\LocationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,7 +23,7 @@ class LocationController extends Controller
      *
      * @Route("/", name="admin_location_index")
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         $em = $this->getDoctrine()->getManager();
         $locations = $em->getRepository('AppBundle:Location')->findAll();
@@ -36,7 +38,7 @@ class LocationController extends Controller
      *
      * @Route("/new", name="admin_location_new")
      */
-    public function newAction(Request $request, TranslatorInterface $translator)
+    public function newAction(Request $request, TranslatorInterface $translator): Response
     {
         $location = new Location();
         $form = $this->createForm(LocationType::class, $location);
@@ -68,7 +70,7 @@ class LocationController extends Controller
      *
      * @Route("/edit/{id}", name="admin_location_edit")
      */
-    public function editAction(Request $request, TranslatorInterface $translator, Location $location)
+    public function editAction(Request $request, TranslatorInterface $translator, Location $location): Response
     {
         $form = $this->createForm(LocationType::class, $location);
         $form->handleRequest($request);
@@ -96,7 +98,7 @@ class LocationController extends Controller
      *
      * @Route("/delete/{id}", name="admin_location_delete")
      */
-    public function deleteAction(TranslatorInterface $translator, Location $location)
+    public function deleteAction(TranslatorInterface $translator, Location $location): RedirectResponse
     {
         $em = $this->getDoctrine()->getManager();
 

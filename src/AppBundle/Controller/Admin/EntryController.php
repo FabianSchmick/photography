@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller\Admin;
 
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use AppBundle\Entity\Entry;
 use AppBundle\Form\EntryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,7 +23,7 @@ class EntryController extends Controller
      *
      * @Route("/", name="admin_entry_index")
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         $em = $this->getDoctrine()->getManager();
         $entries = $em->getRepository('AppBundle:Entry')->findAll();
@@ -36,7 +38,7 @@ class EntryController extends Controller
      *
      * @Route("/new", name="admin_entry_new")
      */
-    public function newAction(Request $request, TranslatorInterface $translator)
+    public function newAction(Request $request, TranslatorInterface $translator): Response
     {
         $entry = new Entry();
         $form = $this->createForm(EntryType::class, $entry);
@@ -68,7 +70,7 @@ class EntryController extends Controller
      *
      * @Route("/edit/{id}", name="admin_entry_edit")
      */
-    public function editAction(Request $request, TranslatorInterface $translator, Entry $entry)
+    public function editAction(Request $request, TranslatorInterface $translator, Entry $entry): Response
     {
         $form = $this->createForm(EntryType::class, $entry);
         $form->handleRequest($request);
@@ -96,7 +98,7 @@ class EntryController extends Controller
      *
      * @Route("/delete/{id}", name="admin_entry_delete")
      */
-    public function deleteAction(TranslatorInterface $translator, Entry $entry)
+    public function deleteAction(TranslatorInterface $translator, Entry $entry): RedirectResponse
     {
         $em = $this->getDoctrine()->getManager();
 

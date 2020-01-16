@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Doctrine\PaginationHelper;
 use AppBundle\Entity\Entry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -20,7 +21,7 @@ class EntryController extends Controller
      * @Route("/entry/{slug}", name="entry_show")
      * @ParamConverter("entry", class="AppBundle:Entry", options={"repository_method" = "findOneByCriteria"})
      */
-    public function showAction(Entry $entry)
+    public function showAction(Entry $entry): Response
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -39,7 +40,7 @@ class EntryController extends Controller
      *
      * @Route("/ajax/entry/{id}/", name="ajax_entry_show", requirements={"id" = "\d+"}, condition="request.isXmlHttpRequest()")
      */
-    public function ajaxShowAction(Entry $entry)
+    public function ajaxShowAction(Entry $entry): Response
     {
         return $this->render('frontend/entry/ajax-show.html.twig', [
             'entry' => $entry,
@@ -51,7 +52,7 @@ class EntryController extends Controller
      *
      * @Route("/ajax/entries/{page}", name="paginate_entries", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
      */
-    public function paginateAction($page = 1)
+    public function paginateAction($page = 1): Response
     {
         $em = $this->getDoctrine()->getManager();
 

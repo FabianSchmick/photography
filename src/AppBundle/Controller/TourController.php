@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Doctrine\PaginationHelper;
 use AppBundle\Entity\Tour;
 use AppBundle\Service\CoreService;
@@ -19,7 +20,7 @@ class TourController extends Controller
     /**
      * @Route("/tour/page/{page}", name="tour_index_paginated", requirements={"page": "\d+"})
      */
-    public function indexAction(CoreService $coreService, $page)
+    public function indexAction(CoreService $coreService, $page): Response
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -47,7 +48,7 @@ class TourController extends Controller
      * @Route("/tour/{slug}", name="tour_show")
      * @ParamConverter("tour", class="AppBundle:Tour", options={"repository_method" = "findOneByCriteria"})
      */
-    public function showAction(CoreService $coreService, Tour $tour, TranslatorInterface $translator)
+    public function showAction(CoreService $coreService, Tour $tour, TranslatorInterface $translator): Response
     {
         $em = $this->getDoctrine()->getManager();
 

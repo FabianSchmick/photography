@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Doctrine\PaginationHelper;
 use AppBundle\Entity\Entry;
 use AppBundle\Entity\Tag;
@@ -20,7 +21,7 @@ class TagController extends Controller
      * @Route("/tag/{slug}", name="tag_show")
      * @ParamConverter("tag", class="AppBundle:Tag", options={"repository_method" = "findOneByCriteria"})
      */
-    public function showAction(Tag $tag)
+    public function showAction(Tag $tag): Response
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -38,7 +39,7 @@ class TagController extends Controller
      * @Route("/ajax/tag/{slug}/{page}", name="paginate_by_tag", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
      * @ParamConverter("tag", class="AppBundle:Tag", options={"repository_method" = "findOneByCriteria", "mapping": {"slug": "slug"}})
      */
-    public function paginateAction(Tag $tag, $page = 1)
+    public function paginateAction(Tag $tag, $page = 1): Response
     {
         $em = $this->getDoctrine()->getManager();
 

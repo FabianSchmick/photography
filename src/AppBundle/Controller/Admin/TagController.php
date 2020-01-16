@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller\Admin;
 
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use AppBundle\Entity\Tag;
 use AppBundle\Form\TagType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,7 +23,7 @@ class TagController extends Controller
      *
      * @Route("/", name="admin_tag_index")
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         $em = $this->getDoctrine()->getManager();
         $tags = $em->getRepository('AppBundle:Tag')->findAll();
@@ -36,7 +38,7 @@ class TagController extends Controller
      *
      * @Route("/new", name="admin_tag_new")
      */
-    public function newAction(Request $request, TranslatorInterface $translator)
+    public function newAction(Request $request, TranslatorInterface $translator): Response
     {
         $tag = new Tag();
         $form = $this->createForm(TagType::class, $tag);
@@ -68,7 +70,7 @@ class TagController extends Controller
      *
      * @Route("/edit/{id}", name="admin_tag_edit")
      */
-    public function editAction(Request $request, TranslatorInterface $translator, Tag $tag)
+    public function editAction(Request $request, TranslatorInterface $translator, Tag $tag): Response
     {
         $form = $this->createForm(TagType::class, $tag);
         $form->handleRequest($request);
@@ -96,7 +98,7 @@ class TagController extends Controller
      *
      * @Route("/delete/{id}", name="admin_tag_delete")
      */
-    public function deleteAction(TranslatorInterface $translator, Tag $tag)
+    public function deleteAction(TranslatorInterface $translator, Tag $tag): RedirectResponse
     {
         $em = $this->getDoctrine()->getManager();
 

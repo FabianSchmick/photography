@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller\Admin;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -15,7 +17,7 @@ class AdminController extends Controller
     /**
      * @Route("/", name="admin_index")
      */
-    public function indexAction()
+    public function indexAction(): RedirectResponse
     {
         // Till I don't know what to display here, redirect to new entry
         return $this->redirect($this->generateUrl('admin_entry_new'));
@@ -25,7 +27,7 @@ class AdminController extends Controller
     /**
      * Renders the admin navigation sidebar.
      */
-    public function renderSidebarAction()
+    public function renderSidebarAction(): Response
     {
         $em = $this->getDoctrine()->getManager();
         $entries = $em->getRepository('AppBundle:Entry')->findBy([], ['timestamp' => 'DESC']);

@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller\Admin;
 
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use AppBundle\Entity\Author;
 use AppBundle\Form\AuthorType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,7 +23,7 @@ class AuthorController extends Controller
      *
      * @Route("/", name="admin_authors_index")
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         $em = $this->getDoctrine()->getManager();
         $authors = $em->getRepository('AppBundle:Author')->findAll();
@@ -36,7 +38,7 @@ class AuthorController extends Controller
      *
      * @Route("/new", name="admin_author_new")
      */
-    public function newAction(Request $request, TranslatorInterface $translator)
+    public function newAction(Request $request, TranslatorInterface $translator): Response
     {
         $author = new Author();
         $form = $this->createForm(AuthorType::class, $author);
@@ -68,7 +70,7 @@ class AuthorController extends Controller
      *
      * @Route("/edit/{id}", name="admin_author_edit")
      */
-    public function editAction(Request $request, TranslatorInterface $translator, Author $author)
+    public function editAction(Request $request, TranslatorInterface $translator, Author $author): Response
     {
         $form = $this->createForm(AuthorType::class, $author);
         $form->handleRequest($request);
@@ -96,7 +98,7 @@ class AuthorController extends Controller
      *
      * @Route("/delete/{id}", name="admin_author_delete")
      */
-    public function deleteAction(TranslatorInterface $translator, Author $author)
+    public function deleteAction(TranslatorInterface $translator, Author $author): RedirectResponse
     {
         $em = $this->getDoctrine()->getManager();
 
