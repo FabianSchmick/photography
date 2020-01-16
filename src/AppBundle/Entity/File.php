@@ -108,7 +108,7 @@ class File
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
      */
-    public function setFile(BaseFile $file = null): void
+    public function setFile(?BaseFile $file = null): void
     {
         $this->file = $file;
 
@@ -120,49 +120,49 @@ class File
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getFileName(): string
+    public function getFileName(): ?string
     {
         return $this->fileName;
     }
 
     /**
-     * @param string $fileName
+     * @param null|string $fileName
      */
-    public function setFileName(string $fileName): void
+    public function setFileName(?string $fileName): void
     {
         $this->fileName = $fileName;
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getOriginalName(): string
+    public function getOriginalName(): ?string
     {
         return $this->originalName;
     }
 
     /**
-     * @param string $originalName
+     * @param null|string $originalName
      */
-    public function setOriginalName(string $originalName = null): void
+    public function setOriginalName(?string $originalName = null): void
     {
         $this->originalName = $originalName;
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getMimeType(): string
+    public function getMimeType(): ?string
     {
         return $this->mimeType;
     }
 
     /**
-     * @param string $mimeType
+     * @param null|string $mimeType
      */
-    public function setMimeType(string $mimeType = null): void
+    public function setMimeType(?string $mimeType = null): void
     {
         $this->mimeType = $mimeType;
     }
