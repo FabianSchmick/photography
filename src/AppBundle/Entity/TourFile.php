@@ -22,6 +22,8 @@ class TourFile extends File
     private $file;
 
     /**
+     * @var Tour
+     *
      * @ORM\OneToOne(targetEntity="Tour", mappedBy="file")
      */
     private $tour;

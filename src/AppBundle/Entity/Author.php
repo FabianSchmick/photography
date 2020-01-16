@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -27,7 +28,7 @@ class Author
     private $id;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @Assert\NotBlank()
      * @Assert\Length(max=128)
@@ -37,13 +38,15 @@ class Author
     private $name;
 
     /**
-     * @var ArrayCollection
+     * @var Collection
      *
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="author", cascade={"persist"})
      */
     private $entries;
 
     /**
+     * @var string|null
+     *
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      */
@@ -78,7 +81,7 @@ class Author
     /**
      * Set name.
      *
-     * @param string $name
+     * @param string|null $name
      *
      * @return Author
      */
@@ -92,7 +95,7 @@ class Author
     /**
      * Get name.
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -102,7 +105,7 @@ class Author
     /**
      * Get Entries.
      *
-     * @return ArrayCollection
+     * @return Collection
      */
     public function getEntries()
     {
@@ -112,7 +115,7 @@ class Author
     /**
      * Set Entries.
      *
-     * @param ArrayCollection $entries
+     * @param Collection $entries
      */
     public function setEntries($entries)
     {
@@ -122,7 +125,7 @@ class Author
     /**
      * Set locale.
      *
-     * @param $locale
+     * @param string|null $locale
      */
     public function setTranslatableLocale($locale)
     {

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -30,7 +31,7 @@ class Tag
     private $id;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @Assert\NotBlank()
      * @Assert\Length(max=128)
@@ -40,7 +41,7 @@ class Tag
     private $name;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @Assert\Length(max=65535)
      * @Gedmo\Translatable
@@ -49,7 +50,7 @@ class Tag
     private $description;
 
     /**
-     * @var Entry
+     * @var Entry|null
      *
      * @ORM\ManyToOne(targetEntity="Entry", inversedBy="previewTag")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
@@ -57,7 +58,7 @@ class Tag
     private $previewEntry;
 
     /**
-     * @var int
+     * @var int|null
      *
      * @Assert\Type("numeric")
      * @ORM\Column(type="integer", nullable=true)
@@ -65,7 +66,7 @@ class Tag
     private $sort;
 
     /**
-     * @var ArrayCollection
+     * @var Collection
      *
      * @ORM\ManyToMany(targetEntity="Entry", mappedBy="tags", cascade={"persist"})
      * @ORM\OrderBy({"timestamp"="DESC"})
@@ -73,6 +74,8 @@ class Tag
     private $entries;
 
     /**
+     * @var string|null
+     *
      * @Gedmo\Translatable
      * @Gedmo\Slug(fields={"name"}, updatable=true)
      * @ORM\Column(type="string", unique=true)
@@ -80,7 +83,7 @@ class Tag
     private $slug;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
@@ -88,7 +91,7 @@ class Tag
     private $created;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
@@ -96,6 +99,8 @@ class Tag
     private $updated;
 
     /**
+     * @var string|null
+     *
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      */
@@ -130,7 +135,7 @@ class Tag
     /**
      * Set name.
      *
-     * @param string $name
+     * @param string|null $name
      *
      * @return Tag
      */
@@ -144,7 +149,7 @@ class Tag
     /**
      * Get name.
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -154,7 +159,7 @@ class Tag
     /**
      * Set description.
      *
-     * @param string $description
+     * @param string|null $description
      *
      * @return Tag
      */
@@ -168,7 +173,7 @@ class Tag
     /**
      * Get description.
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -178,7 +183,7 @@ class Tag
     /**
      * Set previewEntry.
      *
-     * @param Entry $previewEntry
+     * @param Entry|null $previewEntry
      *
      * @return Tag
      */
@@ -192,7 +197,7 @@ class Tag
     /**
      * Get previewEntry.
      *
-     * @return Entry
+     * @return Entry|null
      */
     public function getPreviewEntry()
     {
@@ -202,7 +207,7 @@ class Tag
     /**
      * Set sort.
      *
-     * @param int $sort
+     * @param int|null $sort
      *
      * @return Tag
      */
@@ -216,7 +221,7 @@ class Tag
     /**
      * Get sort.
      *
-     * @return int
+     * @return int|null
      */
     public function getSort()
     {
@@ -226,7 +231,7 @@ class Tag
     /**
      * Get entries.
      *
-     * @return ArrayCollection
+     * @return Collection
      */
     public function getEntries()
     {
@@ -236,9 +241,9 @@ class Tag
     /**
      * Set entries.
      *
-     * @param ArrayCollection $entries
+     * @param Collection $entries
      */
-    public function setEntries(ArrayCollection $entries)
+    public function setEntries(Collection $entries)
     {
         $this->entries = $entries;
     }
@@ -246,7 +251,7 @@ class Tag
     /**
      * Set slug.
      *
-     * @param string $slug
+     * @param string|null $slug
      *
      * @return Tag
      */
@@ -260,7 +265,7 @@ class Tag
     /**
      * Get slug.
      *
-     * @return string
+     * @return string|null
      */
     public function getSlug()
     {
@@ -270,7 +275,7 @@ class Tag
     /**
      * Set created.
      *
-     * @param \DateTime $created
+     * @param \DateTime|null $created
      *
      * @return Tag
      */
@@ -284,7 +289,7 @@ class Tag
     /**
      * Get created.
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getCreated()
     {
@@ -294,7 +299,7 @@ class Tag
     /**
      * Set updated.
      *
-     * @param \DateTime $updated
+     * @param \DateTime|null $updated
      *
      * @return Tag
      */
@@ -308,7 +313,7 @@ class Tag
     /**
      * Get updated.
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getUpdated()
     {
@@ -318,7 +323,7 @@ class Tag
     /**
      * Set locale.
      *
-     * @param $locale
+     * @param string|null $locale
      */
     public function setTranslatableLocale($locale)
     {

@@ -22,6 +22,8 @@ class EntryImage extends File
     private $file;
 
     /**
+     * @var Entry
+     *
      * @ORM\OneToOne(targetEntity="Entry", mappedBy="image")
      */
     private $entry;

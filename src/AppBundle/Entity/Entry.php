@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -30,7 +31,7 @@ class Entry
     private $id;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @Assert\NotBlank()
      * @Assert\Length(max=255)
@@ -40,7 +41,7 @@ class Entry
     private $name;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @Assert\Length(max=65535)
      * @Gedmo\Translatable
@@ -49,7 +50,7 @@ class Entry
     private $description;
 
     /**
-     * @var Author
+     * @var Author|null
      *
      * @ORM\ManyToOne(targetEntity="Author", inversedBy="entries", cascade={"persist"})
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
@@ -57,7 +58,7 @@ class Entry
     private $author;
 
     /**
-     * @var File
+     * @var File|null
      *
      * @Assert\NotBlank()
      * @ORM\OneToOne(targetEntity="EntryImage", inversedBy="entry", cascade={"persist", "remove"})
@@ -65,7 +66,7 @@ class Entry
     private $image;
 
     /**
-     * @var Location
+     * @var Location|null
      *
      * @ORM\ManyToOne(targetEntity="Location", inversedBy="entries", cascade={"persist"})
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
@@ -73,7 +74,7 @@ class Entry
     private $location;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
      * @Assert\Date()
      * @Assert\LessThan(
@@ -84,7 +85,7 @@ class Entry
     private $timestamp;
 
     /**
-     * @var ArrayCollection
+     * @var Collection
      *
      * @Assert\NotBlank()
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="entries", cascade={"persist"})
@@ -97,14 +98,14 @@ class Entry
     private $tags;
 
     /**
-     * @var Tag
+     * @var Tag|null
      *
      * @ORM\OneToMany(targetEntity="Tag", mappedBy="previewEntry")
      */
     private $previewTag;
 
     /**
-     * @var Tour
+     * @var Tour|null
      *
      * @ORM\ManyToOne(targetEntity="Tour", inversedBy="entries", cascade={"persist"})
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
@@ -112,13 +113,15 @@ class Entry
     private $tour;
 
     /**
-     * @var Tour
+     * @var Tour|null
      *
      * @ORM\OneToOne(targetEntity="Tour", mappedBy="previewEntry")
      */
     private $previewTour;
 
     /**
+     * @var string|null
+     *
      * @Gedmo\Translatable
      * @Gedmo\Slug(fields={"name"}, updatable=true)
      * @ORM\Column(type="string", unique=true)
@@ -126,7 +129,7 @@ class Entry
     private $slug;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
@@ -134,7 +137,7 @@ class Entry
     private $created;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
@@ -142,6 +145,8 @@ class Entry
     private $updated;
 
     /**
+     * @var string|null
+     *
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      */
@@ -179,7 +184,7 @@ class Entry
      *
      * @param string $name
      *
-     * @return Entry
+     * @return Entry|null
      */
     public function setName($name)
     {
@@ -191,7 +196,7 @@ class Entry
     /**
      * Get name.
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -201,7 +206,7 @@ class Entry
     /**
      * Set description.
      *
-     * @param string $description
+     * @param string|null $description
      *
      * @return Entry
      */
@@ -215,7 +220,7 @@ class Entry
     /**
      * Get description.
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -225,7 +230,7 @@ class Entry
     /**
      * Set author.
      *
-     * @param Author $author
+     * @param Author|null $author
      *
      * @return Entry
      */
@@ -249,7 +254,7 @@ class Entry
     /**
      * Set image.
      *
-     * @param File $image
+     * @param File|null $image
      *
      * @return Entry
      */
@@ -263,7 +268,7 @@ class Entry
     /**
      * Get image.
      *
-     * @return File
+     * @return File|null
      */
     public function getImage()
     {
@@ -273,7 +278,7 @@ class Entry
     /**
      * Set location.
      *
-     * @param Location $location
+     * @param Location|null $location
      *
      * @return Entry
      */
@@ -287,7 +292,7 @@ class Entry
     /**
      * Get location.
      *
-     * @return Location
+     * @return Location|null
      */
     public function getLocation()
     {
@@ -297,7 +302,7 @@ class Entry
     /**
      * Set timestamp.
      *
-     * @param \DateTime $timestamp
+     * @param \DateTime|null $timestamp
      *
      * @return Entry
      */
@@ -311,7 +316,7 @@ class Entry
     /**
      * Get timestamp.
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getTimestamp()
     {
@@ -321,7 +326,7 @@ class Entry
     /**
      * Get tags.
      *
-     * @return ArrayCollection
+     * @return Collection|null
      */
     public function getTags()
     {
@@ -331,9 +336,9 @@ class Entry
     /**
      * Set tags.
      *
-     * @param ArrayCollection $tags
+     * @param Collection|null $tags
      */
-    public function setTags(ArrayCollection $tags)
+    public function setTags(Collection $tags)
     {
         $this->tags = $tags;
     }
@@ -341,7 +346,7 @@ class Entry
     /**
      * Get previewTag.
      *
-     * @return Tag
+     * @return Tag|null
      */
     public function getPreviewTag()
     {
@@ -351,7 +356,7 @@ class Entry
     /**
      * Set previewTag.
      *
-     * @param Tag $previewTag
+     * @param Tag|null $previewTag
      *
      * @return Entry
      */
@@ -365,7 +370,7 @@ class Entry
     /**
      * Set tour.
      *
-     * @param Tour $tour
+     * @param Tour|null $tour
      *
      * @return Entry
      */
@@ -379,7 +384,7 @@ class Entry
     /**
      * Get tour.
      *
-     * @return Tour
+     * @return Tour|null
      */
     public function getTour()
     {
@@ -389,7 +394,7 @@ class Entry
     /**
      * Get previewTour.
      *
-     * @return Tour
+     * @return Tour|null
      */
     public function getPreviewTour()
     {
@@ -399,7 +404,7 @@ class Entry
     /**
      * Set previewTour.
      *
-     * @param Tour $previewTour
+     * @param Tour|null $previewTour
      *
      * @return Entry
      */
@@ -413,7 +418,7 @@ class Entry
     /**
      * Set slug.
      *
-     * @param string $slug
+     * @param string|null $slug
      *
      * @return Entry
      */
@@ -427,7 +432,7 @@ class Entry
     /**
      * Get slug.
      *
-     * @return string
+     * @return string|null
      */
     public function getSlug()
     {
@@ -437,7 +442,7 @@ class Entry
     /**
      * Set created.
      *
-     * @param \DateTime $created
+     * @param \DateTime|null $created
      *
      * @return Entry
      */
@@ -451,7 +456,7 @@ class Entry
     /**
      * Get created.
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getCreated()
     {
@@ -461,7 +466,7 @@ class Entry
     /**
      * Set updated.
      *
-     * @param \DateTime $updated
+     * @param \DateTime|null $updated
      *
      * @return Entry
      */
@@ -475,7 +480,7 @@ class Entry
     /**
      * Get updated.
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getUpdated()
     {
@@ -485,7 +490,7 @@ class Entry
     /**
      * Set locale.
      *
-     * @param $locale
+     * @param string|null $locale
      */
     public function setTranslatableLocale($locale)
     {

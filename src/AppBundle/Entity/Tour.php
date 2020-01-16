@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use phpGPX\Models\Track;
@@ -33,7 +34,7 @@ class Tour
     private $id;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @Assert\NotBlank()
      * @Assert\Length(max=255)
@@ -43,7 +44,7 @@ class Tour
     private $name;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @Assert\Length(max=65535)
      * @Gedmo\Translatable
@@ -52,7 +53,7 @@ class Tour
     private $description;
 
     /**
-     * @var Entry
+     * @var Entry|null
      *
      * @ORM\OneToOne(targetEntity="Entry", inversedBy="previewTour")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
@@ -60,7 +61,7 @@ class Tour
     private $previewEntry;
 
     /**
-     * @var File
+     * @var File|null
      *
      * @Assert\NotBlank()
      * @ORM\OneToOne(targetEntity="TourFile", inversedBy="tour", cascade={"persist", "remove"})
@@ -68,7 +69,7 @@ class Tour
     private $file;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @Gedmo\Translatable
      * @Gedmo\Slug(fields={"name"}, updatable=true)
@@ -77,7 +78,7 @@ class Tour
     private $slug;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
@@ -85,7 +86,7 @@ class Tour
     private $created;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
@@ -93,13 +94,15 @@ class Tour
     private $updated;
 
     /**
-     * @var ArrayCollection
+     * @var Collection
      *
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="tour", cascade={"persist"})
      */
     private $entries;
 
     /**
+     * @var string|null
+     *
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      */
@@ -108,7 +111,7 @@ class Tour
     /**
      * Helper variable for gpx data like distance, altitude, duration etc.
      *
-     * @var Track
+     * @var Track|null
      */
     private $gpxData;
 
@@ -141,7 +144,7 @@ class Tour
     /**
      * Set name.
      *
-     * @param string $name
+     * @param string|null $name
      *
      * @return Tour
      */
@@ -155,7 +158,7 @@ class Tour
     /**
      * Get name.
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -165,7 +168,7 @@ class Tour
     /**
      * Set description.
      *
-     * @param string $description
+     * @param string|null $description
      *
      * @return Tour
      */
@@ -179,7 +182,7 @@ class Tour
     /**
      * Get description.
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -189,7 +192,7 @@ class Tour
     /**
      * Set previewEntry.
      *
-     * @param Entry $previewEntry
+     * @param Entry|null $previewEntry
      *
      * @return Tour
      */
@@ -203,7 +206,7 @@ class Tour
     /**
      * Get previewEntry.
      *
-     * @return Entry
+     * @return Entry|null
      */
     public function getPreviewEntry()
     {
@@ -213,7 +216,7 @@ class Tour
     /**
      * Set file.
      *
-     * @param File $file
+     * @param File|null $file
      *
      * @return Tour
      */
@@ -227,7 +230,7 @@ class Tour
     /**
      * Get file.
      *
-     * @return File
+     * @return File|null
      */
     public function getFile()
     {
@@ -237,7 +240,7 @@ class Tour
     /**
      * Set slug.
      *
-     * @param string $slug
+     * @param string|null $slug
      *
      * @return Tour
      */
@@ -251,7 +254,7 @@ class Tour
     /**
      * Get slug.
      *
-     * @return string
+     * @return string|null
      */
     public function getSlug()
     {
@@ -261,7 +264,7 @@ class Tour
     /**
      * Set created.
      *
-     * @param \DateTime $created
+     * @param \DateTime|null $created
      *
      * @return Tour
      */
@@ -275,7 +278,7 @@ class Tour
     /**
      * Get created.
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getCreated()
     {
@@ -285,7 +288,7 @@ class Tour
     /**
      * Set updated.
      *
-     * @param \DateTime $updated
+     * @param \DateTime|null $updated
      *
      * @return Tour
      */
@@ -299,7 +302,7 @@ class Tour
     /**
      * Get updated.
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getUpdated()
     {
@@ -309,7 +312,7 @@ class Tour
     /**
      * Get Entries.
      *
-     * @return ArrayCollection
+     * @return Collection
      */
     public function getEntries()
     {
@@ -319,7 +322,7 @@ class Tour
     /**
      * Set Entries.
      *
-     * @param ArrayCollection $entries
+     * @param Collection $entries
      */
     public function setEntries($entries)
     {
@@ -329,7 +332,7 @@ class Tour
     /**
      * Set locale.
      *
-     * @param $locale
+     * @param string|null $locale
      */
     public function setTranslatableLocale($locale)
     {
@@ -337,7 +340,7 @@ class Tour
     }
 
     /**
-     * @return Track
+     * @return Track|null
      */
     public function getGpxData()
     {
@@ -345,7 +348,7 @@ class Tour
     }
 
     /**
-     * @param Track $gpxData
+     * @param Track|null $gpxData
      */
     public function setGpxData(Track $gpxData)
     {
