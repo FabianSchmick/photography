@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use DateTimeImmutable;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File as BaseFile;
@@ -28,7 +30,7 @@ class File
     private $id;
 
     /**
-     * @var BaseFile
+     * @var ?BaseFile
      *
      * @Vich\UploadableField(mapping="file", fileNameProperty="fileName", mimeType="mimeType", originalName="originalName")
      */
@@ -74,7 +76,7 @@ class File
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return (!is_null($this->getFileName())) ? $this->getFileName() : '';
     }
@@ -84,15 +86,15 @@ class File
      *
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @return BaseFile
+     * @return null|BaseFile
      */
-    public function getFile()
+    public function getFile(): ?BaseFile
     {
         return $this->file;
     }
@@ -106,21 +108,21 @@ class File
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
      */
-    public function setFile(BaseFile $file = null)
+    public function setFile(BaseFile $file = null): void
     {
         $this->file = $file;
 
         if ($file !== null) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updated = new \DateTimeImmutable();
+            $this->updated = new DateTimeImmutable();
         }
     }
 
     /**
      * @return string
      */
-    public function getFileName()
+    public function getFileName(): string
     {
         return $this->fileName;
     }
@@ -128,7 +130,7 @@ class File
     /**
      * @param string $fileName
      */
-    public function setFileName($fileName)
+    public function setFileName(string $fileName): void
     {
         $this->fileName = $fileName;
     }
@@ -136,7 +138,7 @@ class File
     /**
      * @return string
      */
-    public function getOriginalName()
+    public function getOriginalName(): string
     {
         return $this->originalName;
     }
@@ -144,7 +146,7 @@ class File
     /**
      * @param string $originalName
      */
-    public function setOriginalName($originalName = null)
+    public function setOriginalName(string $originalName = null): void
     {
         $this->originalName = $originalName;
     }
@@ -152,7 +154,7 @@ class File
     /**
      * @return string
      */
-    public function getMimeType()
+    public function getMimeType(): string
     {
         return $this->mimeType;
     }
@@ -160,7 +162,7 @@ class File
     /**
      * @param string $mimeType
      */
-    public function setMimeType($mimeType = null)
+    public function setMimeType(string $mimeType = null): void
     {
         $this->mimeType = $mimeType;
     }
@@ -168,7 +170,7 @@ class File
     /**
      * @return \DateTime
      */
-    public function getCreated()
+    public function getCreated(): DateTime
     {
         return $this->created;
     }
@@ -176,7 +178,7 @@ class File
     /**
      * @param \DateTime $created
      */
-    public function setCreated(\DateTime $created)
+    public function setCreated(DateTime $created): void
     {
         $this->created = $created;
     }
@@ -184,7 +186,7 @@ class File
     /**
      * @return \DateTime
      */
-    public function getUpdated()
+    public function getUpdated(): DateTime
     {
         return $this->updated;
     }
@@ -192,7 +194,7 @@ class File
     /**
      * @param \DateTime $updated
      */
-    public function setUpdated(\DateTime $updated)
+    public function setUpdated(DateTime $updated): void
     {
         $this->updated = $updated;
     }

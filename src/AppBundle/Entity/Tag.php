@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -117,7 +118,7 @@ class Tag
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getName();
     }
@@ -127,7 +128,7 @@ class Tag
      *
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -135,11 +136,11 @@ class Tag
     /**
      * Set name.
      *
-     * @param string $name
+     * @param string|null $name
      *
      * @return Tag
      */
-    public function setName($name)
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -151,7 +152,7 @@ class Tag
      *
      * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -163,7 +164,7 @@ class Tag
      *
      * @return Tag
      */
-    public function setDescription($description)
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -175,7 +176,7 @@ class Tag
      *
      * @return string|null
      */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -187,7 +188,7 @@ class Tag
      *
      * @return Tag
      */
-    public function setPreviewEntry(Entry $previewEntry)
+    public function setPreviewEntry(?Entry $previewEntry): self
     {
         $this->previewEntry = $previewEntry;
 
@@ -199,7 +200,7 @@ class Tag
      *
      * @return Entry|null
      */
-    public function getPreviewEntry()
+    public function getPreviewEntry(): ?Entry
     {
         return $this->previewEntry;
     }
@@ -211,7 +212,7 @@ class Tag
      *
      * @return Tag
      */
-    public function setSort($sort)
+    public function setSort(?int $sort): self
     {
         $this->sort = $sort;
 
@@ -223,7 +224,7 @@ class Tag
      *
      * @return int|null
      */
-    public function getSort()
+    public function getSort(): ?int
     {
         return $this->sort;
     }
@@ -233,7 +234,7 @@ class Tag
      *
      * @return Collection
      */
-    public function getEntries()
+    public function getEntries(): Collection
     {
         return $this->entries;
     }
@@ -245,7 +246,7 @@ class Tag
      *
      * @return Tag
      */
-    public function setSlug($slug)
+    public function setSlug(string $slug): self
     {
         $this->slug = $slug;
 
@@ -257,7 +258,7 @@ class Tag
      *
      * @return string|null
      */
-    public function getSlug()
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
@@ -269,7 +270,7 @@ class Tag
      *
      * @return Tag
      */
-    public function setCreated($created)
+    public function setCreated(DateTime $created): self
     {
         $this->created = $created;
 
@@ -281,7 +282,7 @@ class Tag
      *
      * @return \DateTime|null
      */
-    public function getCreated()
+    public function getCreated(): ?DateTime
     {
         return $this->created;
     }
@@ -293,7 +294,7 @@ class Tag
      *
      * @return Tag
      */
-    public function setUpdated(\DateTime $updated)
+    public function setUpdated(DateTime $updated): self
     {
         $this->updated = $updated;
 
@@ -305,7 +306,7 @@ class Tag
      *
      * @return \DateTime|null
      */
-    public function getUpdated()
+    public function getUpdated(): ?DateTime
     {
         return $this->updated;
     }
@@ -315,7 +316,7 @@ class Tag
      *
      * @param string|null $locale
      */
-    public function setTranslatableLocale($locale)
+    public function setTranslatableLocale(?string $locale): void
     {
         $this->locale = $locale;
     }

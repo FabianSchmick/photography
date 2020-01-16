@@ -31,7 +31,7 @@ class EntryImage extends File
     /**
      * @return Entry
      */
-    public function getEntry()
+    public function getEntry(): Entry
     {
         return $this->entry;
     }
@@ -39,7 +39,7 @@ class EntryImage extends File
     /**
      * @param Entry $entry
      */
-    public function setEntry(Entry $entry)
+    public function setEntry(Entry $entry): void
     {
         $this->entry = $entry;
     }

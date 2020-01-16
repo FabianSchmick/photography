@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -158,13 +159,13 @@ class Entry
     public function __construct()
     {
         $this->tags = new ArrayCollection();
-        $this->timestamp = new \DateTime();
+        $this->timestamp = new DateTime();
     }
 
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getName();
     }
@@ -174,7 +175,7 @@ class Entry
      *
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -182,11 +183,11 @@ class Entry
     /**
      * Set name.
      *
-     * @param string $name
+     * @param string|null $name
      *
      * @return Entry
      */
-    public function setName($name)
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -198,7 +199,7 @@ class Entry
      *
      * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -210,7 +211,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setDescription($description)
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -222,7 +223,7 @@ class Entry
      *
      * @return string|null
      */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -234,7 +235,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setAuthor(Author $author)
+    public function setAuthor(?Author $author): self
     {
         $this->author = $author;
 
@@ -246,7 +247,7 @@ class Entry
      *
      * @return Author
      */
-    public function getAuthor()
+    public function getAuthor(): ?Author
     {
         return $this->author;
     }
@@ -254,11 +255,11 @@ class Entry
     /**
      * Set image.
      *
-     * @param File $image
+     * @param File|null $image
      *
      * @return Entry
      */
-    public function setImage(File $image)
+    public function setImage(?File $image): self
     {
         $this->image = $image;
 
@@ -270,7 +271,7 @@ class Entry
      *
      * @return File|null
      */
-    public function getImage()
+    public function getImage(): ?File
     {
         return $this->image;
     }
@@ -282,7 +283,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setLocation(Location $location)
+    public function setLocation(?Location $location): self
     {
         $this->location = $location;
 
@@ -294,7 +295,7 @@ class Entry
      *
      * @return Location|null
      */
-    public function getLocation()
+    public function getLocation(): ?Location
     {
         return $this->location;
     }
@@ -306,7 +307,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setTimestamp(\DateTime $timestamp)
+    public function setTimestamp(?DateTime $timestamp): self
     {
         $this->timestamp = clone $timestamp;
 
@@ -318,7 +319,7 @@ class Entry
      *
      * @return \DateTime|null
      */
-    public function getTimestamp()
+    public function getTimestamp(): ?DateTime
     {
         return $this->timestamp;
     }
@@ -330,7 +331,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setTags(Collection $tags)
+    public function setTags(Collection $tags): self
     {
         $this->tags = $tags;
 
@@ -342,7 +343,7 @@ class Entry
      *
      * @return Collection|null
      */
-    public function getTags()
+    public function getTags(): Collection
     {
         return $this->tags;
     }
@@ -352,7 +353,7 @@ class Entry
      *
      * @return Tag|null
      */
-    public function getPreviewTag()
+    public function getPreviewTag(): ?Tag
     {
         return $this->previewTag;
     }
@@ -364,7 +365,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setTour(Tour $tour)
+    public function setTour(?Tour $tour): self
     {
         $this->tour = $tour;
 
@@ -376,7 +377,7 @@ class Entry
      *
      * @return Tour|null
      */
-    public function getTour()
+    public function getTour(): ?Tour
     {
         return $this->tour;
     }
@@ -386,7 +387,7 @@ class Entry
      *
      * @return Tour|null
      */
-    public function getPreviewTour()
+    public function getPreviewTour(): ?Tour
     {
         return $this->previewTour;
     }
@@ -398,7 +399,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setSlug($slug)
+    public function setSlug(string $slug): self
     {
         $this->slug = $slug;
 
@@ -410,7 +411,7 @@ class Entry
      *
      * @return string|null
      */
-    public function getSlug()
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
@@ -422,7 +423,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setCreated($created)
+    public function setCreated(DateTime $created): self
     {
         $this->created = $created;
 
@@ -434,7 +435,7 @@ class Entry
      *
      * @return \DateTime|null
      */
-    public function getCreated()
+    public function getCreated(): ?DateTime
     {
         return $this->created;
     }
@@ -446,7 +447,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setUpdated(\DateTime $updated)
+    public function setUpdated(DateTime $updated): self
     {
         $this->updated = $updated;
 
@@ -458,7 +459,7 @@ class Entry
      *
      * @return \DateTime|null
      */
-    public function getUpdated()
+    public function getUpdated(): ?DateTime
     {
         return $this->updated;
     }
@@ -468,7 +469,7 @@ class Entry
      *
      * @param string|null $locale
      */
-    public function setTranslatableLocale($locale)
+    public function setTranslatableLocale(?string $locale): void
     {
         $this->locale = $locale;
     }

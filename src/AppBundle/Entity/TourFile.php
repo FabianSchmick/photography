@@ -31,7 +31,7 @@ class TourFile extends File
     /**
      * @return Tour
      */
-    public function getTour()
+    public function getTour(): Tour
     {
         return $this->tour;
     }
@@ -39,7 +39,7 @@ class TourFile extends File
     /**
      * @param Tour $tour
      */
-    public function setTour(Tour $tour)
+    public function setTour(Tour $tour): void
     {
         $this->tour = $tour;
     }

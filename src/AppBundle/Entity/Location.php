@@ -63,7 +63,7 @@ class Location
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getName();
     }
@@ -73,7 +73,7 @@ class Location
      *
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -81,11 +81,11 @@ class Location
     /**
      * Set name.
      *
-     * @param string $name
+     * @param string|null $name
      *
      * @return Location
      */
-    public function setName($name)
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -97,7 +97,7 @@ class Location
      *
      * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -107,7 +107,7 @@ class Location
      *
      * @return Collection
      */
-    public function getEntries()
+    public function getEntries(): Collection
     {
         return $this->entries;
     }
@@ -117,7 +117,7 @@ class Location
      *
      * @param string|null $locale
      */
-    public function setTranslatableLocale($locale)
+    public function setTranslatableLocale(?string $locale): void
     {
         $this->locale = $locale;
     }

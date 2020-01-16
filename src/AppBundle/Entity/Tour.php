@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -126,7 +127,7 @@ class Tour
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): ?string
     {
         return $this->getName();
     }
@@ -136,7 +137,7 @@ class Tour
      *
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -148,7 +149,7 @@ class Tour
      *
      * @return Tour
      */
-    public function setName($name)
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -160,7 +161,7 @@ class Tour
      *
      * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -172,7 +173,7 @@ class Tour
      *
      * @return Tour
      */
-    public function setDescription($description)
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -184,7 +185,7 @@ class Tour
      *
      * @return string|null
      */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -196,7 +197,7 @@ class Tour
      *
      * @return Tour
      */
-    public function setPreviewEntry(Entry $previewEntry)
+    public function setPreviewEntry(?Entry $previewEntry): self
     {
         $this->previewEntry = $previewEntry;
 
@@ -208,7 +209,7 @@ class Tour
      *
      * @return Entry|null
      */
-    public function getPreviewEntry()
+    public function getPreviewEntry(): ?Entry
     {
         return $this->previewEntry;
     }
@@ -216,11 +217,11 @@ class Tour
     /**
      * Set file.
      *
-     * @param File $file
+     * @param File|null $file
      *
      * @return Tour
      */
-    public function setFile(File $file)
+    public function setFile(?File $file): self
     {
         $this->file = $file;
 
@@ -232,7 +233,7 @@ class Tour
      *
      * @return File|null
      */
-    public function getFile()
+    public function getFile(): ?File
     {
         return $this->file;
     }
@@ -244,7 +245,7 @@ class Tour
      *
      * @return Tour
      */
-    public function setSlug($slug)
+    public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
 
@@ -256,7 +257,7 @@ class Tour
      *
      * @return string|null
      */
-    public function getSlug()
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
@@ -264,11 +265,11 @@ class Tour
     /**
      * Set created.
      *
-     * @param \DateTime|null $created
+     * @param \DateTime $created
      *
      * @return Tour
      */
-    public function setCreated($created)
+    public function setCreated(DateTime $created): self
     {
         $this->created = $created;
 
@@ -280,7 +281,7 @@ class Tour
      *
      * @return \DateTime|null
      */
-    public function getCreated()
+    public function getCreated(): ?DateTime
     {
         return $this->created;
     }
@@ -288,11 +289,11 @@ class Tour
     /**
      * Set updated.
      *
-     * @param \DateTime|null $updated
+     * @param \DateTime $updated
      *
      * @return Tour
      */
-    public function setUpdated(\DateTime $updated)
+    public function setUpdated(DateTime $updated): self
     {
         $this->updated = $updated;
 
@@ -304,7 +305,7 @@ class Tour
      *
      * @return \DateTime|null
      */
-    public function getUpdated()
+    public function getUpdated(): ?DateTime
     {
         return $this->updated;
     }
@@ -314,7 +315,7 @@ class Tour
      *
      * @return Collection
      */
-    public function getEntries()
+    public function getEntries(): Collection
     {
         return $this->entries;
     }
@@ -324,7 +325,7 @@ class Tour
      *
      * @return Tour
      */
-    public function setGpxData(Track $gpxData)
+    public function setGpxData(?Track $gpxData): self
     {
         $this->gpxData = $gpxData;
 
@@ -334,7 +335,7 @@ class Tour
     /**
      * @return Track|null
      */
-    public function getGpxData()
+    public function getGpxData(): ?Track
     {
         return $this->gpxData;
     }
@@ -344,7 +345,7 @@ class Tour
      *
      * @param string|null $locale
      */
-    public function setTranslatableLocale($locale)
+    public function setTranslatableLocale(?string $locale): void
     {
         $this->locale = $locale;
     }
