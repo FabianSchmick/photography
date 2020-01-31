@@ -45,7 +45,7 @@ class RemovedFileListener
     /**
      * Remove files from media/cache dir, too.
      */
-    public function onPreRemove(Event $event)
+    public function onPreRemove(Event $event): void
     {
         if (!($event->getObject()->getFile() instanceof File)) {
             $removedFile = $event->getObject();
@@ -57,7 +57,7 @@ class RemovedFileListener
     /**
      * Make sure a file entity object is removed after the file is deleted.
      */
-    public function onPostRemove(Event $event)
+    public function onPostRemove(Event $event): void
     {
         if (!($event->getObject()->getFile() instanceof File)) {
             $removedFile = $event->getObject();

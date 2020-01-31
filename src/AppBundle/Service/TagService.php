@@ -29,7 +29,7 @@ class TagService
      *
      * @return Tag $tagEntity        The saved tag entity
      */
-    public function saveTag(array $tag)
+    public function saveTag(array $tag): Tag
     {
         $tagEntity = new Tag();
         if (isset($tag['id'])) {

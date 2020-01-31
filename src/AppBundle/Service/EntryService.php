@@ -4,6 +4,7 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Entry;
 use AppBundle\Entity\EntryImage;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\File;
@@ -62,7 +63,7 @@ class EntryService
      *
      * @return Entry $entryEntity        The saved entry entity
      */
-    public function saveEntry(array $entry, File $image = null)
+    public function saveEntry(array $entry, File $image = null): Entry
     {
         $entryEntity = new Entry();
         if (isset($entry['id'])) {
@@ -91,7 +92,7 @@ class EntryService
             $entryEntity->setLocation($locationEntity);
         }
 
-        $entryEntity->setTimestamp(new \DateTime('now'));
+        $entryEntity->setTimestamp(new DateTime('now'));
         if ($timestamp = date_create(date($entry['timestamp']))) {
             $entryEntity->setTimestamp($timestamp);
         }

@@ -13,9 +13,9 @@ class PaginationHelper
      * @param Query $query    The Query
      * @param int   $pageSize Count of elements per page
      *
-     * @return int Page count
+     * @return float|int
      */
-    public static function getPagesCount(Query $query, $pageSize = 10)
+    public static function getPagesCount(Query $query, int $pageSize = 10)
     {
         $paginator = new Paginator($query);
 
@@ -36,7 +36,7 @@ class PaginationHelper
      *
      * @return array The result
      */
-    public static function paginate(Query $query, $pageSize = 10, $currentPage = 1)
+    public static function paginate(Query $query, int $pageSize = 10, int $currentPage = 1): array
     {
         $pageSize = (int) $pageSize;
         $currentPage = (int) $currentPage;

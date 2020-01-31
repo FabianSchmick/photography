@@ -43,9 +43,9 @@ class PaginationExtension extends AbstractExtension
     /**
      * Register Twig function.
      *
-     * @return array
+     * @return \Twig\TwigFunction[]
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('paginate', [$this, 'getPagination']),
@@ -62,7 +62,7 @@ class PaginationExtension extends AbstractExtension
      *
      * @return Markup
      */
-    public function getPagination($current, $last, $path, $options = [])
+    public function getPagination(int $current, int $last, string $path, array $options = []): Markup
     {
         $paginations = $parameters = [];
         $start = 1;
@@ -131,7 +131,7 @@ class PaginationExtension extends AbstractExtension
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'paginate';
     }

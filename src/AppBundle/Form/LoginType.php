@@ -10,7 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class LoginType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('_username', TextType::class, [
@@ -30,7 +30,7 @@ class LoginType extends AbstractType
      * {@inheritdoc}
      * https://stackoverflow.com/questions/28789109/can-the-symfony2-form-builder-be-used-for-the-login-form.
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'cascade_validation' => true,

@@ -30,11 +30,11 @@ class CoreService
     }
 
     /**
-     * @param string $string The string to purify
+     * @param null|string $string The string to purify
      *
      * @return string $string     The purified string
      */
-    public function purifyString($string)
+    public function purifyString(?string $string): string
     {
         $config = HTMLPurifier_Config::createDefault();
         $config->set('HTML.AllowedElements', ['a', 'b', 'strong', 'ul', 'li', 'p', 'br']);
@@ -49,7 +49,7 @@ class CoreService
      *
      * @param Tour $tour Tour entity
      */
-    public function setGpxData(Tour &$tour)
+    public function setGpxData(Tour &$tour): void
     {
         $gpx = new phpGPX();
 

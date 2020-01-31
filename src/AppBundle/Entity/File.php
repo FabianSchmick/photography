@@ -2,8 +2,8 @@
 
 namespace AppBundle\Entity;
 
-use DateTimeImmutable;
 use DateTime;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File as BaseFile;
@@ -92,7 +92,7 @@ class File
     }
 
     /**
-     * @return null|BaseFile
+     * @return BaseFile|null
      */
     public function getFile(): ?BaseFile
     {
@@ -120,7 +120,7 @@ class File
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getFileName(): ?string
     {
@@ -128,7 +128,7 @@ class File
     }
 
     /**
-     * @param null|string $fileName
+     * @param string|null $fileName
      */
     public function setFileName(?string $fileName): void
     {
@@ -136,7 +136,7 @@ class File
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getOriginalName(): ?string
     {
@@ -144,7 +144,7 @@ class File
     }
 
     /**
-     * @param null|string $originalName
+     * @param string|null $originalName
      */
     public function setOriginalName(?string $originalName = null): void
     {
@@ -152,7 +152,7 @@ class File
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getMimeType(): ?string
     {
@@ -160,7 +160,7 @@ class File
     }
 
     /**
-     * @param null|string $mimeType
+     * @param string|null $mimeType
      */
     public function setMimeType(?string $mimeType = null): void
     {

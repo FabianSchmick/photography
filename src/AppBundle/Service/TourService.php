@@ -34,7 +34,7 @@ class TourService
      *
      * @return Tour $tourEntity     The saved tour entity
      */
-    public function saveTour(array $tour, File $file = null)
+    public function saveTour(array $tour, File $file = null): Tour
     {
         $duplicate = $this->em->getRepository('AppBundle:Tour')->findOneBy(['name' => $tour['name']]);
 

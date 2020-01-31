@@ -24,7 +24,7 @@ class SluggableListener extends GedmoSluggableListener
      *
      * @return string $text
      */
-    public static function transliterate($text, $separator = '-', $objectBeingSlugged)
+    public static function transliterate(string $text, string $separator = '-', $objectBeingSlugged): string
     {
         if ($objectBeingSlugged instanceof Entry) {
             $text = $text.'-'.substr($objectBeingSlugged->getId(), 0, 4);

@@ -6,12 +6,12 @@ use AppBundle\Entity\TourFile;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\File;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class TourFileType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('file', VichImageType::class, [
@@ -19,7 +19,7 @@ class TourFileType extends AbstractType
                 'data_class' => null,
                 'error_bubbling' => true,
                 'constraints' => [
-                    new Assert\File([
+                    new File([
                         'mimeTypes' => ['text/xml', 'application/gpx+xml'],
                     ]),
                 ],
@@ -27,7 +27,7 @@ class TourFileType extends AbstractType
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => TourFile::class,

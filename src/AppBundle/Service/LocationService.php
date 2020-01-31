@@ -31,7 +31,7 @@ class LocationService
      *
      * @return Location $locationEntity   The saved location entity
      */
-    public function saveLocation(array $location)
+    public function saveLocation(array $location): Location
     {
         $duplicate = $this->em->getRepository('AppBundle:Location')->findOneBy(['name' => $location['name']]);
 

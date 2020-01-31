@@ -6,12 +6,12 @@ use AppBundle\Entity\EntryImage;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\File;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class EntryImageType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('file', VichImageType::class, [
@@ -20,7 +20,7 @@ class EntryImageType extends AbstractType
                 'error_bubbling' => true,
                 'allow_delete' => false,
                 'constraints' => [
-                    new Assert\File([
+                    new File([
                         'mimeTypes' => ['image/png', 'image/jpeg', 'image/gif'],
                     ]),
                 ],
@@ -28,7 +28,7 @@ class EntryImageType extends AbstractType
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => EntryImage::class,

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Twig;
 
+use Exception;
 use Twig\Extension\AbstractExtension;
 use Twig\Markup;
 use Twig\TwigFilter;
@@ -34,7 +35,7 @@ class InlineSvgExtension extends AbstractExtension
      *
      * @param string $webDir
      */
-    public function __construct($webDir)
+    public function __construct(string $webDir)
     {
         $this->webDir = $webDir;
     }
@@ -42,9 +43,9 @@ class InlineSvgExtension extends AbstractExtension
     /**
      * Register Twig function.
      *
-     * @return array
+     * @return \Twig\TwigFilter[]
      */
-    public function getFilters()
+    public function getFilters(): array
     {
         return [
             new TwigFilter('inline_svg', [$this, 'getInlineSvg']),
@@ -57,16 +58,16 @@ class InlineSvgExtension extends AbstractExtension
      * @param string $filename Path to the svg file
      * @param array  $params   Optional parameters
      *
-     * @return string
+     * @return Markup
      *
      * @throws \Exception
      */
-    public function getInlineSvg($filename, $params = [])
+    public function getInlineSvg(string $filename, array $params = []): Markup
     {
         $fullPath = $this->webDir.$filename;
 
         if (!file_exists($fullPath)) {
-            throw new \Exception(sprintf('Cannot find svg file: "%s"', $fullPath));
+            throw new Exception(sprintf('Cannot find svg file: "%s"', $fullPath));
         }
 
         $svgString = file_get_contents($fullPath);
@@ -111,7 +112,7 @@ class InlineSvgExtension extends AbstractExtension
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'inline_svg';
     }

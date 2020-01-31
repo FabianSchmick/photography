@@ -35,7 +35,7 @@ class Fixtures extends AbstractFixture implements FixtureInterface
         $this->projectDir = $projectDir;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $tours = [
             [
@@ -122,7 +122,10 @@ class Fixtures extends AbstractFixture implements FixtureInterface
         }
     }
 
-    private function getFiles($tmpDir)
+    /**
+     * @return \Symfony\Component\HttpFoundation\File\UploadedFile[]
+     */
+    private function getFiles($tmpDir): array
     {
         $finder = new Finder();
         $finder->files()->in($tmpDir);

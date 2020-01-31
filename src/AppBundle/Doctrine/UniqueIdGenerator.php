@@ -10,7 +10,7 @@ class UniqueIdGenerator extends AbstractIdGenerator
     /**
      * {@inheritdoc}
      */
-    public function generate(EntityManager $em, $entity)
+    public function generate(EntityManager $em, $entity): int
     {
         do {
             $id = random_int(10000000, 99999999);

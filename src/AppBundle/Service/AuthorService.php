@@ -31,7 +31,7 @@ class AuthorService
      *
      * @return Author $authorEntity     The saved author entity
      */
-    public function saveAuthor(array $author)
+    public function saveAuthor(array $author): Author
     {
         $duplicate = $this->em->getRepository('AppBundle:Author')->findOneBy(['name' => $author['name']]);
 
