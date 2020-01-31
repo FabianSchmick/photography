@@ -14,7 +14,7 @@ export function initSelect2() {
     $('.select2').each((index, el) => {
         $(el).select2({
             allowClear: !$(el).prop('required'),
-            tags: !!$(el).attr('multiple'),
+            tags: $(el).hasClass('select2-add'),
             width: '100%',
             placeholder: $(el).find('option[value=""]').length ? $(el).find('option[value=""]').text() : ''
         });

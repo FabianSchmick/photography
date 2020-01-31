@@ -66,7 +66,7 @@ class EntryType extends AbstractType
                         ->orderBy('a.name', 'ASC');
                 },
                 'attr' => [
-                    'class' => 'select2 form-control',
+                    'class' => 'select2 select2-add form-control',
                 ],
             ])
             ->add('image', EntryImageType::class, [
@@ -83,7 +83,7 @@ class EntryType extends AbstractType
                         ->orderBy('l.name', 'ASC');
                 },
                 'attr' => [
-                    'class' => 'select2 form-control',
+                    'class' => 'select2 select2-add form-control',
                 ],
             ])
             ->add('timestamp', DateType::class, [
@@ -101,7 +101,7 @@ class EntryType extends AbstractType
                 },
                 'multiple' => true,
                 'attr' => [
-                    'class' => 'select2 form-control',
+                    'class' => 'select2 select2-add form-control',
                 ],
             ])
             ->add('tour', EntityType::class, [
