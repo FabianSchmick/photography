@@ -14,7 +14,7 @@ export function map() {
         return;
     }
 
-    let map = L.map('map', {
+    let map = L.map($map.attr('id'), {
         scrollWheelZoom: false
     }).setView($map.data('coordinates'), 13);
 
