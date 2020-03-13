@@ -1,0 +1,29 @@
+# See dos how to configure the bundle: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
+liip_imagine:
+    # valid drivers options include "gd" or "gmagick" or "imagick"
+    driver: "imagick"
+
+    filter_sets:
+        cache: ~
+        entry_thumbnail:
+            filters:
+                relative_resize:
+                    heighten: 500
+            post_processors:
+                jpegoptim: { strip_all: true, max: '%jpeg_quality%', progressive: true }
+                optipng: { strip_all: true, level: '%png_level%' }
+        entry_show:
+            filters:
+                relative_resize:
+                    heighten: 1400
+            post_processors:
+                jpegoptim: { strip_all: true, max: '%jpeg_quality%', progressive: true }
+                optipng: { strip_all: true, level: '%png_level%' }
+        tour_thumbnail:
+            filters:
+                thumbnail:
+                    size: [1080, 500]
+                    mode: outbound
+            post_processors:
+                jpegoptim: { strip_all: true, max: '%jpeg_quality%', progressive: true }
+                optipng: { strip_all: true, level: '%png_level%' }

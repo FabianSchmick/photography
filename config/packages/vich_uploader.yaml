@@ -1,0 +1,27 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        file:
+            uri_prefix: '%upload_directory%'
+            upload_destination: '%abs_upload_directory%'
+            namer:
+                service: Vich\UploaderBundle\Naming\UniqidNamer
+            directory_namer:
+                service: Vich\UploaderBundle\Naming\SubdirDirectoryNamer
+                options: { chars_per_dir: 1, dirs: 2 }
+        entry_image:
+            uri_prefix: '%upload_directory%/entries'
+            upload_destination: '%abs_upload_directory%/entries'
+            namer:
+                service: Vich\UploaderBundle\Naming\UniqidNamer
+        tag_image:
+            uri_prefix: '%upload_directory%/tags'
+            upload_destination: '%abs_upload_directory%/tags'
+            namer:
+                service: Vich\UploaderBundle\Naming\UniqidNamer
+        tour_file:
+            uri_prefix: '%upload_directory%/tours'
+            upload_destination: '%abs_upload_directory%/tours'
+            namer:
+                service: Vich\UploaderBundle\Naming\UniqidNamer

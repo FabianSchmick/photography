@@ -27,7 +27,7 @@ build:
     environment:
         timezone: Europe/Berlin
         php:
-            version: "7.2"
+            version: "7.4"
         postgresql: false
         rabbitmq: false
         mysql: 5.7

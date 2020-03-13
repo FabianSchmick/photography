@@ -1,0 +1,53 @@
+{% use "bootstrap_4_horizontal_layout.html.twig" %}
+
+{% block form_label -%}
+    {%- if label is same as(false) -%}
+        {#<div class="{{ block('form_label_class') }}"></div>#}
+    {%- else -%}
+        {%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' ' ~ block('form_label_class'))|trim}) -%}
+        {{- parent() -}}
+    {%- endif -%}
+{%- endblock form_label %}
+
+{%- block form_widget_compound -%}
+    {%- if form is rootform -%}
+        {{ form_errors(form) }}
+    {%- endif -%}
+    {{- block('form_rows') -}}
+    {{- form_rest(form) -}}
+{%- endblock form_widget_compound -%}
+
+{% block vich_file_widget %}
+    {% apply spaceless %}
+        {{ form_widget(form.file) }}
+        {{ form_errors(form.file) }}
+        {% if form.delete is defined %}
+            {{ form_widget(form.delete) }}
+            {{ form_errors(form.delete) }}
+        {% endif %}
+
+        {% if download_uri %}
+            <a href="{{ download_uri }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> {{ 'current.file'|trans }}</a>
+            <small class="pl-2 text-muted">({{ 'file.upload.info'|trans }})</small>
+        {% endif %}
+    {% endapply %}
+{% endblock %}
+
+{% block vich_image_widget %}
+    {% apply spaceless %}
+        {{ form_widget(form.file) }}
+        {{ form_errors(form.file) }}
+        {% if form.delete is defined %}
+            {{ form_widget(form.delete) }}
+            {{ form_errors(form.delete) }}
+        {% endif %}
+
+        {#{% if image_uri %}#}
+        {#<a href="{{ image_uri }}"><img src="{{ image_uri }}" alt="" /></a>#}
+        {#{% endif %}#}
+        {% if download_uri %}
+            <a href="{{ download_uri }}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i> {{ 'current.file'|trans }}</a>
+            <small class="pl-2 text-muted">({{ 'file.upload.info'|trans }})</small>
+        {% endif %}
+    {% endapply %}
+{% endblock %}

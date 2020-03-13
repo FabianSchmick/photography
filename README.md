@@ -14,7 +14,7 @@ Here is an example of how an end result could look: [fotografie.fabian-schmick.d
 ## Features
 
 The project provides you following functionality:
-- [Symfony 3.4](https://symfony.com/) (LTS version) 
+- [Symfony 4.4](https://symfony.com/) (LTS version) 
 - Basic responsive layout with [Bootstrap](https://getbootstrap.com/) and [jQuery](https://jquery.com/)
 - Small CMS / Backend for creating new entries, tags and tours
 - Image compression and thumbnail generation with [LiipImagineBundle](https://github.com/liip/LiipImagineBundle)
@@ -48,7 +48,7 @@ Generate the database schema
 php bin/console doctrine:migrations:migrate
 ```
 
-Now you only need to run `npm install` and `gulp deploy` in the project root to generate the stylesheet and javascript files.
+Now you only need to run `npm install` and `npm run build` in the project root to generate the stylesheet and javascript files.
 
 If you need some example data run:
 ```
@@ -61,7 +61,7 @@ The standard login credentials for the backend `/admin`:
 - Username: admin
 - Password: admin
 
-If you want to change them you need to encode the password with symfony built in command and replace it's value in `app/config/paramters.yml`
+If you want to change them you need to encode the password with symfony built in command and replace it's value in `.env.local`
 ```
 php bin/console security:encode-password
 ```
