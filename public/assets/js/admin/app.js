@@ -51,6 +51,11 @@ export function search() {
     $('input[data-sidebar-search]').on('keyup', function () {
         let filter = $(this).val();
 
+        if (filter === '') {
+            $sidebar.find('.collapse').collapse('hide');
+            return;
+        }
+
         $sidebar.find('li.searchable').each(function () {
             if ($(this).text().search(new RegExp(filter, 'i')) < 0) {
                 $(this).hide();
@@ -61,10 +66,6 @@ export function search() {
                 }
             }
         });
-
-        if (filter === '') {
-            $sidebar.find('.collapse').collapse('hide');
-        }
     });
 }
 

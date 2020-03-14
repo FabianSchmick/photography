@@ -18,6 +18,7 @@ class TourFileType extends AbstractType
                 'label' => false,
                 'data_class' => null,
                 'error_bubbling' => true,
+                'allow_delete' => false,
                 'constraints' => [
                     new File([
                         'mimeTypes' => ['text/xml', 'application/gpx+xml'],
