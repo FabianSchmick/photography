@@ -162,9 +162,6 @@ class Entry
         $this->timestamp = new DateTime();
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->getName();
@@ -172,8 +169,6 @@ class Entry
 
     /**
      * Get id.
-     *
-     * @return int
      */
     public function getId(): int
     {
@@ -182,8 +177,6 @@ class Entry
 
     /**
      * Set name.
-     *
-     * @param string|null $name
      *
      * @return Entry
      */
@@ -196,8 +189,6 @@ class Entry
 
     /**
      * Get name.
-     *
-     * @return string|null
      */
     public function getName(): ?string
     {
@@ -206,8 +197,6 @@ class Entry
 
     /**
      * Set description.
-     *
-     * @param string|null $description
      *
      * @return Entry
      */
@@ -220,8 +209,6 @@ class Entry
 
     /**
      * Get description.
-     *
-     * @return string|null
      */
     public function getDescription(): ?string
     {
@@ -230,8 +217,6 @@ class Entry
 
     /**
      * Set author.
-     *
-     * @param Author|null $author
      *
      * @return Entry
      */
@@ -255,8 +240,6 @@ class Entry
     /**
      * Set image.
      *
-     * @param File|null $image
-     *
      * @return Entry
      */
     public function setImage(?File $image): self
@@ -268,8 +251,6 @@ class Entry
 
     /**
      * Get image.
-     *
-     * @return File|null
      */
     public function getImage(): ?File
     {
@@ -278,8 +259,6 @@ class Entry
 
     /**
      * Set location.
-     *
-     * @param Location|null $location
      *
      * @return Entry
      */
@@ -292,8 +271,6 @@ class Entry
 
     /**
      * Get location.
-     *
-     * @return Location|null
      */
     public function getLocation(): ?Location
     {
@@ -302,8 +279,6 @@ class Entry
 
     /**
      * Set timestamp.
-     *
-     * @param \DateTime|null $timestamp
      *
      * @return Entry
      */
@@ -316,8 +291,6 @@ class Entry
 
     /**
      * Get timestamp.
-     *
-     * @return \DateTime|null
      */
     public function getTimestamp(): ?DateTime
     {
@@ -326,8 +299,6 @@ class Entry
 
     /**
      * Set tags.
-     *
-     * @param Collection $tags
      *
      * @return Entry
      */
@@ -350,8 +321,6 @@ class Entry
 
     /**
      * Get previewTag.
-     *
-     * @return Tag|null
      */
     public function getPreviewTag(): ?Tag
     {
@@ -360,8 +329,6 @@ class Entry
 
     /**
      * Set tour.
-     *
-     * @param Tour|null $tour
      *
      * @return Entry
      */
@@ -374,8 +341,6 @@ class Entry
 
     /**
      * Get tour.
-     *
-     * @return Tour|null
      */
     public function getTour(): ?Tour
     {
@@ -384,8 +349,6 @@ class Entry
 
     /**
      * Get previewTour.
-     *
-     * @return Tour|null
      */
     public function getPreviewTour(): ?Tour
     {
@@ -394,8 +357,6 @@ class Entry
 
     /**
      * Set slug.
-     *
-     * @param string $slug
      *
      * @return Entry
      */
@@ -408,8 +369,6 @@ class Entry
 
     /**
      * Get slug.
-     *
-     * @return string|null
      */
     public function getSlug(): ?string
     {
@@ -418,8 +377,6 @@ class Entry
 
     /**
      * Set created.
-     *
-     * @param \DateTime $created
      *
      * @return Entry
      */
@@ -432,8 +389,6 @@ class Entry
 
     /**
      * Get created.
-     *
-     * @return \DateTime|null
      */
     public function getCreated(): ?DateTime
     {
@@ -442,8 +397,6 @@ class Entry
 
     /**
      * Set updated.
-     *
-     * @param \DateTime $updated
      *
      * @return Entry
      */
@@ -456,8 +409,6 @@ class Entry
 
     /**
      * Get updated.
-     *
-     * @return \DateTime|null
      */
     public function getUpdated(): ?DateTime
     {
@@ -466,8 +417,6 @@ class Entry
 
     /**
      * Set locale.
-     *
-     * @param string|null $locale
      */
     public function setTranslatableLocale(?string $locale): void
     {

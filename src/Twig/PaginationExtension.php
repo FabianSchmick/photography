@@ -4,7 +4,7 @@ namespace App\Twig;
 
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Templating\EngineInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\Markup;
 use Twig\TwigFunction;
@@ -28,10 +28,6 @@ class PaginationExtension extends AbstractExtension
 
     /**
      * PaginationExtension constructor.
-     *
-     * @param RouterInterface     $router
-     * @param TranslatorInterface $translator
-     * @param EngineInterface     $engine
      */
     public function __construct(RouterInterface $router, TranslatorInterface $translator, EngineInterface $engine)
     {
@@ -128,9 +124,6 @@ class PaginationExtension extends AbstractExtension
         return new Markup($html, 'UTF-8');
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'paginate';

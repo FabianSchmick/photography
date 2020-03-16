@@ -60,9 +60,6 @@ class Location
         $this->entries = new ArrayCollection();
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->getName();
@@ -70,8 +67,6 @@ class Location
 
     /**
      * Get id.
-     *
-     * @return int
      */
     public function getId(): int
     {
@@ -80,8 +75,6 @@ class Location
 
     /**
      * Set name.
-     *
-     * @param string|null $name
      *
      * @return Location
      */
@@ -94,8 +87,6 @@ class Location
 
     /**
      * Get name.
-     *
-     * @return string|null
      */
     public function getName(): ?string
     {
@@ -104,8 +95,6 @@ class Location
 
     /**
      * Get Entries.
-     *
-     * @return Collection
      */
     public function getEntries(): Collection
     {
@@ -114,8 +103,6 @@ class Location
 
     /**
      * Set locale.
-     *
-     * @param string|null $locale
      */
     public function setTranslatableLocale(?string $locale): void
     {

@@ -4,19 +4,19 @@ namespace App\Controller\Admin;
 
 use App\Entity\Tag;
 use App\Form\TagType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Tag controller.
  *
  * @Route("admin/tag")
  */
-class TagController extends Controller
+class TagController extends AbstractController
 {
     /**
      * List all tags.

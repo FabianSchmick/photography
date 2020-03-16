@@ -4,19 +4,19 @@ namespace App\Controller\Admin;
 
 use App\Entity\Author;
 use App\Form\AuthorType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Author controller.
  *
  * @Route("admin/author")
  */
-class AuthorController extends Controller
+class AuthorController extends AbstractController
 {
     /**
      * List all authors.

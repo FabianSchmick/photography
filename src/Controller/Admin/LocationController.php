@@ -4,19 +4,19 @@ namespace App\Controller\Admin;
 
 use App\Entity\Location;
 use App\Form\LocationType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Location controller.
  *
  * @Route("admin/location")
  */
-class LocationController extends Controller
+class LocationController extends AbstractController
 {
     /**
      * List all locations.

@@ -17,10 +17,6 @@ class EntryRepository extends EntityRepository
 {
     /**
      * Find entries query by a tag.
-     *
-     * @param Tag $tag
-     *
-     * @return Query
      */
     public function findEntriesByTag(Tag $tag): Query
     {
@@ -32,13 +28,6 @@ class EntryRepository extends EntityRepository
         return $qb->getQuery();
     }
 
-    /**
-     * @param Entry  $entry
-     * @param string $compare
-     * @param string $order
-     *
-     * @return Entry|null
-     */
     public function findByTimestamp(Entry $entry, string $compare = '<', string $order = 'DESC'): ?Entry
     {
         $qb = $this->createQueryBuilder('e')
@@ -57,8 +46,6 @@ class EntryRepository extends EntityRepository
 
     /**
      * Return query to load all entries.
-     *
-     * @return \Doctrine\ORM\Query The query
      */
     public function getFindAllQuery(): Query
     {
@@ -74,10 +61,6 @@ class EntryRepository extends EntityRepository
      * Find an entry by criteria
      * Need this special function, because of translatable
      * https://github.com/stof/StofDoctrineExtensionsBundle/issues/232.
-     *
-     * @param $params
-     *
-     * @return Entry|null
      */
     public function findOneByCriteria(array $params): ?Entry
     {

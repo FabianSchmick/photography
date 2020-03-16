@@ -14,20 +14,14 @@ class SluggableListener extends GedmoSluggableListener
     }
 
     /**
-     * Since transliterate will convert "ä" to an "a", I added this hack to call
-     * unaccent first so it is converted to "ae" first.
-     *
-     * And for hash only 4 letters.
-     *
-     * @param string $text
-     * @param string $separator
+     * Add the unique ID for Entries as a prefix
      *
      * @return string $text
      */
-    public static function transliterate(string $text, string $separator = '-', $objectBeingSlugged): string
+    public static function transliterate(string $text, string $separator, $objectBeingSlugged): string
     {
         if ($objectBeingSlugged instanceof Entry) {
-            $text = $text.'-'.substr($objectBeingSlugged->getId(), 0, 4);
+            $text = $text.$separator.substr($objectBeingSlugged->getId(), 0, 4);
         }
 
         $text = Urlizer::unaccent($text);

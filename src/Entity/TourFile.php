@@ -28,17 +28,11 @@ class TourFile extends File
      */
     private $tour;
 
-    /**
-     * @return Tour
-     */
     public function getTour(): Tour
     {
         return $this->tour;
     }
 
-    /**
-     * @param Tour $tour
-     */
     public function setTour(Tour $tour): void
     {
         $this->tour = $tour;

@@ -33,9 +33,6 @@ class EntryType extends AbstractType
 
     /**
      * EntryType constructor.
-     *
-     * @param EntityManagerInterface $em          Entity Manager
-     * @param CoreService            $coreService
      */
     public function __construct(EntityManagerInterface $em, CoreService $coreService)
     {

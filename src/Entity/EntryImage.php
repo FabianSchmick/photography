@@ -28,17 +28,11 @@ class EntryImage extends File
      */
     private $entry;
 
-    /**
-     * @return Entry
-     */
     public function getEntry(): Entry
     {
         return $this->entry;
     }
 
-    /**
-     * @param Entry $entry
-     */
     public function setEntry(Entry $entry): void
     {
         $this->entry = $entry;

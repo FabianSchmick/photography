@@ -115,9 +115,6 @@ class Tag
         $this->entries = new ArrayCollection();
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->getName();
@@ -125,8 +122,6 @@ class Tag
 
     /**
      * Get id.
-     *
-     * @return int
      */
     public function getId(): int
     {
@@ -135,8 +130,6 @@ class Tag
 
     /**
      * Set name.
-     *
-     * @param string|null $name
      *
      * @return Tag
      */
@@ -149,8 +142,6 @@ class Tag
 
     /**
      * Get name.
-     *
-     * @return string|null
      */
     public function getName(): ?string
     {
@@ -159,8 +150,6 @@ class Tag
 
     /**
      * Set description.
-     *
-     * @param string|null $description
      *
      * @return Tag
      */
@@ -173,8 +162,6 @@ class Tag
 
     /**
      * Get description.
-     *
-     * @return string|null
      */
     public function getDescription(): ?string
     {
@@ -183,8 +170,6 @@ class Tag
 
     /**
      * Set previewEntry.
-     *
-     * @param Entry|null $previewEntry
      *
      * @return Tag
      */
@@ -197,8 +182,6 @@ class Tag
 
     /**
      * Get previewEntry.
-     *
-     * @return Entry|null
      */
     public function getPreviewEntry(): ?Entry
     {
@@ -207,8 +190,6 @@ class Tag
 
     /**
      * Set sort.
-     *
-     * @param int|null $sort
      *
      * @return Tag
      */
@@ -221,8 +202,6 @@ class Tag
 
     /**
      * Get sort.
-     *
-     * @return int|null
      */
     public function getSort(): ?int
     {
@@ -231,8 +210,6 @@ class Tag
 
     /**
      * Get entries.
-     *
-     * @return Collection
      */
     public function getEntries(): Collection
     {
@@ -241,8 +218,6 @@ class Tag
 
     /**
      * Set slug.
-     *
-     * @param string $slug
      *
      * @return Tag
      */
@@ -255,8 +230,6 @@ class Tag
 
     /**
      * Get slug.
-     *
-     * @return string|null
      */
     public function getSlug(): ?string
     {
@@ -265,8 +238,6 @@ class Tag
 
     /**
      * Set created.
-     *
-     * @param \DateTime $created
      *
      * @return Tag
      */
@@ -279,8 +250,6 @@ class Tag
 
     /**
      * Get created.
-     *
-     * @return \DateTime|null
      */
     public function getCreated(): ?DateTime
     {
@@ -289,8 +258,6 @@ class Tag
 
     /**
      * Set updated.
-     *
-     * @param \DateTime $updated
      *
      * @return Tag
      */
@@ -303,8 +270,6 @@ class Tag
 
     /**
      * Get updated.
-     *
-     * @return \DateTime|null
      */
     public function getUpdated(): ?DateTime
     {
@@ -313,8 +278,6 @@ class Tag
 
     /**
      * Set locale.
-     *
-     * @param string|null $locale
      */
     public function setTranslatableLocale(?string $locale): void
     {

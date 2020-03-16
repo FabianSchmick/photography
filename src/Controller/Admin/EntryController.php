@@ -4,19 +4,19 @@ namespace App\Controller\Admin;
 
 use App\Entity\Entry;
 use App\Form\EntryType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Entry controller.
  *
  * @Route("admin/entry")
  */
-class EntryController extends Controller
+class EntryController extends AbstractController
 {
     /**
      * List all entries.

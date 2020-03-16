@@ -20,12 +20,6 @@ class TagRepository extends EntityRepository
      *      - excluding the requested tag
      *      - occurrence of min $count times
      *      - max $limit related tags.
-     *
-     * @param Tag $tag
-     * @param int $count
-     * @param int $limit
-     *
-     * @return array
      */
     public function findRelatedTagsByTag(Tag $tag, int $count = 3, int $limit = 10): array
     {
@@ -51,10 +45,6 @@ class TagRepository extends EntityRepository
      * Find a tag by criteria
      * Need this special function, because of translatable
      * https://github.com/stof/StofDoctrineExtensionsBundle/issues/232.
-     *
-     * @param $params
-     *
-     * @return Tag|null
      */
     public function findOneByCriteria(array $params): ?Tag
     {

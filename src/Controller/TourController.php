@@ -6,16 +6,16 @@ use App\Doctrine\PaginationHelper;
 use App\Entity\Tour;
 use App\Service\CoreService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("{_locale}", requirements={"_locale": "%app.locales%"})
  */
-class TourController extends Controller
+class TourController extends AbstractController
 {
     /**
      * @Route("/tour/page/{page}", name="tour_index_paginated", requirements={"page": "\d+"})

@@ -30,7 +30,7 @@ class CoreService
     }
 
     /**
-     * @param null|string $string The string to purify
+     * @param string|null $string The string to purify
      *
      * @return string $string     The purified string
      */

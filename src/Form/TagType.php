@@ -23,8 +23,6 @@ class TagType extends AbstractType
 
     /**
      * TagType constructor.
-     *
-     * @param CoreService $coreService
      */
     public function __construct(CoreService $coreService)
     {

@@ -22,8 +22,6 @@ class TourType extends AbstractType
 
     /**
      * TourType constructor.
-     *
-     * @param CoreService $coreService
      */
     public function __construct(CoreService $coreService)
     {

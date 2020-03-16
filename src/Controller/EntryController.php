@@ -5,14 +5,14 @@ namespace App\Controller;
 use App\Doctrine\PaginationHelper;
 use App\Entity\Entry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("{_locale}", requirements={"_locale": "%app.locales%"})
  */
-class EntryController extends Controller
+class EntryController extends AbstractController
 {
     /**
      * Gather all information for the entry detail page.

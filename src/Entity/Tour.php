@@ -134,8 +134,6 @@ class Tour
 
     /**
      * Get id.
-     *
-     * @return int
      */
     public function getId(): int
     {
@@ -144,8 +142,6 @@ class Tour
 
     /**
      * Set name.
-     *
-     * @param string|null $name
      *
      * @return Tour
      */
@@ -158,8 +154,6 @@ class Tour
 
     /**
      * Get name.
-     *
-     * @return string|null
      */
     public function getName(): ?string
     {
@@ -168,8 +162,6 @@ class Tour
 
     /**
      * Set description.
-     *
-     * @param string|null $description
      *
      * @return Tour
      */
@@ -182,8 +174,6 @@ class Tour
 
     /**
      * Get description.
-     *
-     * @return string|null
      */
     public function getDescription(): ?string
     {
@@ -192,8 +182,6 @@ class Tour
 
     /**
      * Set previewEntry.
-     *
-     * @param Entry|null $previewEntry
      *
      * @return Tour
      */
@@ -206,8 +194,6 @@ class Tour
 
     /**
      * Get previewEntry.
-     *
-     * @return Entry|null
      */
     public function getPreviewEntry(): ?Entry
     {
@@ -216,8 +202,6 @@ class Tour
 
     /**
      * Set file.
-     *
-     * @param File|null $file
      *
      * @return Tour
      */
@@ -230,8 +214,6 @@ class Tour
 
     /**
      * Get file.
-     *
-     * @return File|null
      */
     public function getFile(): ?File
     {
@@ -240,8 +222,6 @@ class Tour
 
     /**
      * Set slug.
-     *
-     * @param string|null $slug
      *
      * @return Tour
      */
@@ -254,8 +234,6 @@ class Tour
 
     /**
      * Get slug.
-     *
-     * @return string|null
      */
     public function getSlug(): ?string
     {
@@ -264,8 +242,6 @@ class Tour
 
     /**
      * Set created.
-     *
-     * @param \DateTime $created
      *
      * @return Tour
      */
@@ -278,8 +254,6 @@ class Tour
 
     /**
      * Get created.
-     *
-     * @return \DateTime|null
      */
     public function getCreated(): ?DateTime
     {
@@ -288,8 +262,6 @@ class Tour
 
     /**
      * Set updated.
-     *
-     * @param \DateTime $updated
      *
      * @return Tour
      */
@@ -302,8 +274,6 @@ class Tour
 
     /**
      * Get updated.
-     *
-     * @return \DateTime|null
      */
     public function getUpdated(): ?DateTime
     {
@@ -312,8 +282,6 @@ class Tour
 
     /**
      * Get Entries.
-     *
-     * @return Collection
      */
     public function getEntries(): Collection
     {
@@ -321,8 +289,6 @@ class Tour
     }
 
     /**
-     * @param Track|null $gpxData
-     *
      * @return Tour
      */
     public function setGpxData(?Track $gpxData): self
@@ -332,9 +298,6 @@ class Tour
         return $this;
     }
 
-    /**
-     * @return Track|null
-     */
     public function getGpxData(): ?Track
     {
         return $this->gpxData;
@@ -342,8 +305,6 @@ class Tour
 
     /**
      * Set locale.
-     *
-     * @param string|null $locale
      */
     public function setTranslatableLocale(?string $locale): void
     {

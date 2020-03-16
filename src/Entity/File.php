@@ -73,9 +73,6 @@ class File
      */
     private $updated;
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return (!is_null($this->getFileName())) ? $this->getFileName() : '';
@@ -83,17 +80,12 @@ class File
 
     /**
      * Get id.
-     *
-     * @return int
      */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return BaseFile|null
-     */
     public function getFile(): ?BaseFile
     {
         return $this->file;
@@ -119,81 +111,51 @@ class File
         }
     }
 
-    /**
-     * @return string|null
-     */
     public function getFileName(): ?string
     {
         return $this->fileName;
     }
 
-    /**
-     * @param string|null $fileName
-     */
     public function setFileName(?string $fileName): void
     {
         $this->fileName = $fileName;
     }
 
-    /**
-     * @return string|null
-     */
     public function getOriginalName(): ?string
     {
         return $this->originalName;
     }
 
-    /**
-     * @param string|null $originalName
-     */
     public function setOriginalName(?string $originalName = null): void
     {
         $this->originalName = $originalName;
     }
 
-    /**
-     * @return string|null
-     */
     public function getMimeType(): ?string
     {
         return $this->mimeType;
     }
 
-    /**
-     * @param string|null $mimeType
-     */
     public function setMimeType(?string $mimeType = null): void
     {
         $this->mimeType = $mimeType;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getCreated(): DateTime
     {
         return $this->created;
     }
 
-    /**
-     * @param \DateTime $created
-     */
     public function setCreated(DateTime $created): void
     {
         $this->created = $created;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getUpdated(): DateTime
     {
         return $this->updated;
     }
 
-    /**
-     * @param \DateTime $updated
-     */
     public function setUpdated(DateTime $updated): void
     {
         $this->updated = $updated;

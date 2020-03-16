@@ -32,8 +32,6 @@ class InlineSvgExtension extends AbstractExtension
 
     /**
      * InlineSvgExtension constructor.
-     *
-     * @param string $publicDir
      */
     public function __construct(string $publicDir)
     {
@@ -57,8 +55,6 @@ class InlineSvgExtension extends AbstractExtension
      *
      * @param string $filename Path to the svg file
      * @param array  $params   Optional parameters
-     *
-     * @return Markup
      *
      * @throws \Exception
      */
@@ -109,9 +105,6 @@ class InlineSvgExtension extends AbstractExtension
         return new Markup($svgString, 'UTF-8');
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'inline_svg';

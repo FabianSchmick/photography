@@ -6,18 +6,19 @@ use App\Doctrine\PaginationHelper;
 use App\Entity\File;
 use App\Entity\Tour;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
-class CoreController extends Controller
+class CoreController extends AbstractController
 {
     /**
      * @Route("/", name="locale", defaults={"redirect": "homepage"})
@@ -27,12 +28,12 @@ class CoreController extends Controller
      *     name="localeAdmin"
      * )
      */
-    public function locale(Request $request, $redirect): RedirectResponse
+    public function locale(Request $request, SessionInterface $session, $redirect): RedirectResponse
     {
-        $this->get('session')->set('_locale', $this->container->getParameter('locale'));
+        $session->set('_locale', $this->getParameter('locale'));
 
         if ($requestedLocale = $request->attributes->get('_locale')) {
-            $this->get('session')->set('_locale', $requestedLocale);
+            $session->set('_locale', $requestedLocale);
         }
 
         return $this->redirectToRoute($redirect);

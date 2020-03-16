@@ -6,14 +6,14 @@ use App\Doctrine\PaginationHelper;
 use App\Entity\Entry;
 use App\Entity\Tag;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("{_locale}", requirements={"_locale": "%app.locales%"})
  */
-class TagController extends Controller
+class TagController extends AbstractController
 {
     /**
      * Filter entries by a tag.

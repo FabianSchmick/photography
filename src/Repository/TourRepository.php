@@ -16,8 +16,6 @@ class TourRepository extends EntityRepository
 {
     /**
      * Return query to load all entries.
-     *
-     * @return \Doctrine\ORM\Query The query
      */
     public function getFindAllQuery(): Query
     {
@@ -49,10 +47,6 @@ class TourRepository extends EntityRepository
      * Find a tag by criteria
      * Need this special function, because of translatable
      * https://github.com/stof/StofDoctrineExtensionsBundle/issues/232.
-     *
-     * @param $params
-     *
-     * @return Tour|null
      */
     public function findOneByCriteria(array $params): ?Tour
     {
