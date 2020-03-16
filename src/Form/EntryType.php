@@ -61,7 +61,7 @@ class EntryType extends AbstractType
                 'required' => false,
                 'class' => 'App:Author',
                 'placeholder' => '',
-                'query_builder' => function (EntityRepository $er) {
+                'query_builder' => function (EntityRepository $er): \Doctrine\ORM\QueryBuilder {
                     return $er->createQueryBuilder('a')
                         ->orderBy('a.name', 'ASC');
                 },
@@ -78,7 +78,7 @@ class EntryType extends AbstractType
                 'required' => false,
                 'class' => 'App:Location',
                 'placeholder' => '',
-                'query_builder' => function (EntityRepository $er) {
+                'query_builder' => function (EntityRepository $er): \Doctrine\ORM\QueryBuilder {
                     return $er->createQueryBuilder('l')
                         ->orderBy('l.name', 'ASC');
                 },
@@ -95,7 +95,7 @@ class EntryType extends AbstractType
             ->add('tags', EntityType::class, [
                 'label' => 'tags',
                 'class' => 'App:Tag',
-                'query_builder' => function (EntityRepository $er) {
+                'query_builder' => function (EntityRepository $er): \Doctrine\ORM\QueryBuilder {
                     return $er->createQueryBuilder('t')
                         ->orderBy('t.sort', 'DESC');
                 },
@@ -109,7 +109,7 @@ class EntryType extends AbstractType
                 'required' => false,
                 'class' => 'App:Tour',
                 'placeholder' => '',
-                'query_builder' => function (EntityRepository $er) {
+                'query_builder' => function (EntityRepository $er): \Doctrine\ORM\QueryBuilder {
                     return $er->createQueryBuilder('t')
                         ->orderBy('t.name', 'ASC');
                 },

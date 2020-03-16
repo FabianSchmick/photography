@@ -39,6 +39,9 @@ class LoginType extends AbstractType
         ]);
     }
 
+    /**
+     * @return null
+     */
     public function getBlockPrefix()
     {
         return null;

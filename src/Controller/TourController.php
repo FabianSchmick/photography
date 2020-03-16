@@ -46,7 +46,7 @@ class TourController extends Controller
 
     /**
      * @Route("/tour/{slug}", name="tour_show")
-     * @ParamConverter("tour", class="App:Tour", options={"repository_method" = "findOneByCriteria"})
+     * @ParamConverter("tour", class="App:Tour", options={"repository_method": "findOneByCriteria"})
      */
     public function show(CoreService $coreService, Tour $tour, TranslatorInterface $translator): Response
     {

@@ -37,7 +37,7 @@ class EntryController extends Controller
     /**
      * Gather all information for the ajax entry detail page (lightbox).
      *
-     * @Route("/ajax/entry/{id}/", name="ajax_entry_show", requirements={"id" = "\d+"}, condition="request.isXmlHttpRequest()")
+     * @Route("/ajax/entry/{id}/", name="ajax_entry_show", requirements={"id": "\d+"}, condition="request.isXmlHttpRequest()")
      */
     public function ajaxShow(Entry $entry): Response
     {

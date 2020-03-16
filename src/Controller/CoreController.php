@@ -58,7 +58,7 @@ class CoreController extends Controller
     }
 
     /**
-     * @Route("/sitemap.{_format}", name="sitemap", requirements={"_format" = "xml"})
+     * @Route("/sitemap.{_format}", name="sitemap", requirements={"_format": "xml"})
      */
     public function sitemap(Request $request, RouterInterface $router): Response
     {
