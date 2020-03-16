@@ -3,8 +3,8 @@
 namespace App\Twig;
 
 use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\Templating\EngineInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\Markup;
 use Twig\TwigFunction;
@@ -22,18 +22,18 @@ class PaginationExtension extends AbstractExtension
     private $translator;
 
     /**
-     * @var EngineInterface
+     * @var Environment
      */
-    private $engine;
+    private $environment;
 
     /**
      * PaginationExtension constructor.
      */
-    public function __construct(RouterInterface $router, TranslatorInterface $translator, EngineInterface $engine)
+    public function __construct(RouterInterface $router, TranslatorInterface $translator, Environment $engine)
     {
         $this->router = $router;
         $this->translator = $translator;
-        $this->engine = $engine;
+        $this->environment = $engine;
     }
 
     /**
@@ -117,7 +117,7 @@ class PaginationExtension extends AbstractExtension
 
         ksort($paginations);
 
-        $html = $this->engine->render('templates/pagination.html.twig', [
+        $html = $this->environment->render('templates/pagination.html.twig', [
             'paginations' => $paginations,
         ]);
 

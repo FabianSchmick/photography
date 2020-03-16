@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Doctrine\PaginationHelper;
 use App\Entity\Entry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
