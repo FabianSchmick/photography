@@ -1,4 +1,4 @@
-import * as L from 'leaflet/src/leaflet';
+import * as L from 'leaflet';
 import * as omnivore from '@mapbox/leaflet-omnivore/index';
 import marker from 'leaflet/dist/images/marker-icon.png';
 import marker2x from 'leaflet/dist/images/marker-icon-2x.png';
