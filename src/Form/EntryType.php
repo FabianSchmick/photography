@@ -9,6 +9,7 @@ use App\Entity\Tag;
 use App\Service\CoreService;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -65,7 +66,7 @@ class EntryType extends AbstractType
                 'required' => false,
                 'class' => 'App:Author',
                 'placeholder' => '',
-                'query_builder' => function (EntityRepository $er): \Doctrine\ORM\QueryBuilder {
+                'query_builder' => function (EntityRepository $er): QueryBuilder {
                     return $er->createQueryBuilder('a')
                         ->orderBy('a.name', 'ASC');
                 },
@@ -83,7 +84,7 @@ class EntryType extends AbstractType
                 'required' => false,
                 'class' => 'App:Location',
                 'placeholder' => '',
-                'query_builder' => function (EntityRepository $er): \Doctrine\ORM\QueryBuilder {
+                'query_builder' => function (EntityRepository $er): QueryBuilder {
                     return $er->createQueryBuilder('l')
                         ->orderBy('l.name', 'ASC');
                 },
@@ -100,7 +101,7 @@ class EntryType extends AbstractType
             ->add('tags', EntityType::class, [
                 'label' => 'tags',
                 'class' => 'App:Tag',
-                'query_builder' => function (EntityRepository $er): \Doctrine\ORM\QueryBuilder {
+                'query_builder' => function (EntityRepository $er): QueryBuilder {
                     return $er->createQueryBuilder('t')
                         ->orderBy('t.sort', 'DESC');
                 },
@@ -114,7 +115,7 @@ class EntryType extends AbstractType
                 'required' => false,
                 'class' => 'App:Tour',
                 'placeholder' => '',
-                'query_builder' => function (EntityRepository $er): \Doctrine\ORM\QueryBuilder {
+                'query_builder' => function (EntityRepository $er): QueryBuilder {
                     return $er->createQueryBuilder('t')
                         ->orderBy('t.name', 'ASC');
                 },
