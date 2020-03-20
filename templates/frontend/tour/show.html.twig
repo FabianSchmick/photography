@@ -1,7 +1,13 @@
 {% import 'templates/macro/json-ld.html.twig' as jsonLd %}
 {% extends 'base.html.twig' %}
 
-{% block meta_description %}{{ tour.description ? tour.description|striptags|u.truncate(160) : tour.gpxData.description|u.truncate(160) }}{% endblock %}
+{% block meta_description %}
+    {% if tour.description %}
+        {{ tour.description|striptags|u.truncate(160) }}
+    {% elseif tour.gpxData.description %}
+        {{ tour.gpxData.description|u.truncate(160) }}
+    {% endif %}
+{% endblock %}
 
 {% set img = tour.previewEntry ? vich_uploader_asset(tour.previewEntry.image, 'file') : asset('assets/img/layout/cover-tour.jpg') %}
 {% block meta_image %}{{ absolute_url(img) }}{% endblock %}
