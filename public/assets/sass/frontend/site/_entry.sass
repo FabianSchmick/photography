@@ -47,6 +47,9 @@
         position: relative
         min-height: 100px
 
+        @media(max-width: 991px)
+            padding: 0
+
     .entry-inner
         position: relative
 
@@ -80,6 +83,12 @@
     .next
         left: 15px
         background-image: linear-gradient(to right, rgba(0,0,0,0.5) 0, rgba(0,0,0,0.0001) 100%)
+
+    @media(max-width: 991px)
+        .prev
+            right: 0
+        .next
+            left: 0
 
     @media(max-width: 1200px)
         align-items: normal
