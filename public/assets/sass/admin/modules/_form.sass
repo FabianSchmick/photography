@@ -13,8 +13,10 @@ input#image
             margin: 0
 
             > [class^="col"]
+                flex: 1
                 padding: 0
                 width: auto
+                max-width: 100%
 
     label.required
         font-weight: bold
@@ -29,6 +31,10 @@ input#image
         display: inline-block
         padding: 0 15px 0 0
         min-height: 0
+
+.custom-file-label:after
+    font-family: "Font Awesome 5 Free"
+    content: "\f093"
 
 .select2
     max-width: 100%

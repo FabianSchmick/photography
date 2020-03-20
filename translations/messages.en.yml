@@ -32,12 +32,12 @@ german: Deutsch
 locale.en: English
 locale.de: Deutsch
 live.view: Live view
+no.file.selected: No file selected
 
 # Entry
 new.entry: New Entry
 delete.msg.entry: Are you sure you want to delete the entry
 current.file: Current file
-file.upload.info: Old file gets only overwritten if you upload a new one
 success.edit: Your changes have been saved
 success.new: Your new entry has been saved. Edit it here
 success.deleted.entry: The entry <strong>%entry%</strong> has been deleted

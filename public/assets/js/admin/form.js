@@ -3,6 +3,10 @@ import 'select2/dist/js/i18n/de';
 import 'summernote/dist/summernote-bs4';
 import 'summernote/lang/summernote-de-DE';
 
+$(document).on('change', '.custom-file-input', function() {
+    $(this).parent().find('label').text($(this).val().replace('C:\\fakepath\\', ''));
+});
+
 /**
  * Initializes select2 fields
  */
@@ -12,11 +16,13 @@ export function initSelect2() {
     $.fn.select2.defaults.set('placeholder', '');
 
     $('.select2').each((index, el) => {
-        $(el).select2({
-            allowClear: !$(el).prop('required'),
-            tags: $(el).hasClass('select2-add'),
+        let $el = $(el);
+
+        $el.select2({
+            allowClear: !$el.prop('required'),
+            tags: $el.hasClass('select2-add'),
             width: '100%',
-            placeholder: $(el).find('option[value=""]').length ? $(el).find('option[value=""]').text() : ''
+            placeholder: $el.find('option[value=""]').length ? $el.find('option[value=""]').text() : ''
         });
     });
 }

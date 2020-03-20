@@ -11,6 +11,12 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class EntryImageType extends AbstractType
 {
+    const ALLOWED_MIME_TYPES = [
+        'image/png',
+        'image/jpeg',
+        'image/gif',
+    ];
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -21,8 +27,12 @@ class EntryImageType extends AbstractType
                 'allow_delete' => false,
                 'constraints' => [
                     new File([
-                        'mimeTypes' => ['image/png', 'image/jpeg', 'image/gif'],
+                        'mimeTypes' => self::ALLOWED_MIME_TYPES,
                     ]),
+                ],
+                'attr' => [
+                    'placeholder' => $options['placeholder_text'],
+                    'accept' => implode(',', self::ALLOWED_MIME_TYPES),
                 ],
             ])
         ;
@@ -32,6 +42,7 @@ class EntryImageType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => EntryImage::class,
+            'placeholder_text' => '',
         ]);
     }
 }

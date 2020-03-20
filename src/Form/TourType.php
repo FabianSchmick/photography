@@ -12,6 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TourType extends AbstractType
 {
@@ -21,11 +22,17 @@ class TourType extends AbstractType
     private $coreService;
 
     /**
+     * @var TranslatorInterface
+     */
+    private $translator;
+
+    /**
      * TourType constructor.
      */
-    public function __construct(CoreService $coreService)
+    public function __construct(TranslatorInterface $translator, CoreService $coreService)
     {
         $this->coreService = $coreService;
+        $this->translator = $translator;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -44,6 +51,7 @@ class TourType extends AbstractType
             ->add('file', TourFileType::class, [
                 'label' => 'file',
                 'required' => false,
+                'placeholder_text' => $options['data']->getFile() ? $options['data']->getFile()->getOriginalName() : $this->translator->trans('no.file.selected'),
             ])
         ;
 

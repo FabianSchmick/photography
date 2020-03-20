@@ -18,6 +18,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class EntryType extends AbstractType
 {
@@ -32,12 +33,18 @@ class EntryType extends AbstractType
     private $coreService;
 
     /**
+     * @var TranslatorInterface
+     */
+    private $translator;
+
+    /**
      * EntryType constructor.
      */
-    public function __construct(EntityManagerInterface $em, CoreService $coreService)
+    public function __construct(EntityManagerInterface $em, TranslatorInterface $translator, CoreService $coreService)
     {
         $this->em = $em;
         $this->coreService = $coreService;
+        $this->translator = $translator;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -69,6 +76,7 @@ class EntryType extends AbstractType
             ->add('image', EntryImageType::class, [
                 'label' => 'image',
                 'required' => false,
+                'placeholder_text' => $options['data']->getImage() ? $options['data']->getImage()->getOriginalName() : $this->translator->trans('no.file.selected'),
             ])
             ->add('location', EntityType::class, [
                 'label' => 'location',

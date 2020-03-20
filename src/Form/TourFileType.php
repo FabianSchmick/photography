@@ -11,6 +11,11 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class TourFileType extends AbstractType
 {
+    const ALLOWED_MIME_TYPES = [
+        'text/xml',
+        'application/gpx+xml',
+    ];
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -21,8 +26,12 @@ class TourFileType extends AbstractType
                 'allow_delete' => false,
                 'constraints' => [
                     new File([
-                        'mimeTypes' => ['text/xml', 'application/gpx+xml'],
+                        'mimeTypes' => self::ALLOWED_MIME_TYPES,
                     ]),
+                ],
+                'attr' => [
+                    'placeholder' => $options['placeholder_text'],
+                    'accept' => implode(',', self::ALLOWED_MIME_TYPES),
                 ],
             ])
         ;
@@ -32,6 +41,7 @@ class TourFileType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => TourFile::class,
+            'placeholder_text' => '',
         ]);
     }
 }

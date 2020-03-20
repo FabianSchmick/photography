@@ -32,12 +32,12 @@ german: Deutsch
 locale.en: English
 locale.de: Deutsch
 live.view: Live Ansicht
+no.file.selected: Keine Datei ausgewählt
 
 # Entry
 new.entry: Neuer Eintrag
 delete.msg.entry: Sind Sie sicher, dass Sie den Eintrag löschen möchten
 current.file: Aktuelle Datei
-file.upload.info: Die aktuelle Datei wird nur überschrieben, wenn Sie eine Neue hochladen
 success.edit: Ihre Änderrungen wurden gespeichert
 success.new: Ihr neuer Eintrag wurde gespeichert. Weiter bearbeiten
 success.deleted.entry: Der Eintrag <strong>%entry%</strong> wurde gelöscht
