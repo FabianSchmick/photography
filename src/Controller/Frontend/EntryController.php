@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Frontend;
 
 use App\Doctrine\PaginationHelper;
 use App\Entity\Entry;
@@ -38,7 +38,7 @@ class EntryController extends AbstractController
     /**
      * Gather all information for the ajax entry detail page (lightbox).
      *
-     * @Route("/ajax/entry/{id}/", name="ajax_entry_show", requirements={"id": "\d+"}, condition="request.isXmlHttpRequest()")
+     * @Route("/ajax/entry/{id}/", name="entry_show_ajax", requirements={"id": "\d+"}, condition="request.isXmlHttpRequest()")
      */
     public function ajaxShow(Entry $entry): Response
     {
@@ -50,9 +50,9 @@ class EntryController extends AbstractController
     /**
      * Route for paginate entries.
      *
-     * @Route("/ajax/entries/{page}", name="paginate_entries", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
+     * @Route("/ajax/entries/{page}", name="entry_pagiante_ajax", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
      */
-    public function paginate($page = 1): Response
+    public function ajaxPaginate($page = 1): Response
     {
         $em = $this->getDoctrine()->getManager();
 

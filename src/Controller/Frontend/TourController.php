@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Frontend;
 
 use App\Doctrine\PaginationHelper;
 use App\Entity\Tour;
@@ -18,7 +18,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class TourController extends AbstractController
 {
     /**
-     * @Route("/tour/page/{page}", name="tour_index_paginated", requirements={"page": "\d+"})
+     * @Route("/tour/page/{page}", name="tour_index", requirements={"page": "\d+"})
      */
     public function index(CoreService $coreService, $page): Response
     {
@@ -63,7 +63,7 @@ class TourController extends AbstractController
 
         $breadcrumbs = [
             [
-                'url' => $this->generateUrl('tour_index_paginated', ['page' => $page]),
+                'url' => $this->generateUrl('tour_index', ['page' => $page]),
                 'name' => $translator->trans('tours'),
             ],
             [

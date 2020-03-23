@@ -106,7 +106,7 @@
                                     </h6>
                                     {% for locale in locales|split('|') %}
                                         {% set lang = 'locale.' ~ locale %}
-                                        <a class="dropdown-item d-flex align-items-center{% if request.locale == locale %} active{% endif %}" href="{{ path('localeAdmin', {'_locale': locale}) }}">
+                                        <a class="dropdown-item d-flex align-items-center{% if request.locale == locale %} active{% endif %}" href="{{ path('core_switch_Locale_admin', {'_locale': locale}) }}">
                                             <span class="flag mr-2">
                                                 <svg>
                                                     <use xlink:href="#{{ locale }}-icon"/>

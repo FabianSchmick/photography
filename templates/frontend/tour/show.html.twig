@@ -63,7 +63,7 @@
                     {% set firstPoint = tour.gpxData.segments[0].points|first %}
                     {% set lastPoint = tour.gpxData.segments[0].points|last %}
                     <div id="map" data-gpx="{{ vich_uploader_asset(tour.file, 'file') }}" data-coordinates="[{{ firstPoint.latitude }}, {{ firstPoint.longitude }}]"></div>
-                    <a class="btn btn-teritary" href="{{ path('download_file', {'file': tour.file.fileName}) }}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> {{ 'tour.download'|trans }}</a>
+                    <a class="btn btn-teritary" href="{{ path('core_download_file', {'file': tour.file.fileName}) }}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> {{ 'tour.download'|trans }}</a>
                 </div>
                 {% if not tour.entries.empty %}
                     <div class="tour-pictures">
@@ -71,7 +71,7 @@
                         <div class="text-container gallery" data-justified data-row-height="150">
                             {% for entry in tour.entries %}
                                 {% set url = path('entry_show', {'slug': entry.slug}) %}
-                                {% set src = path('ajax_entry_show', {'id': entry.id}) %}
+                                {% set src = path('entry_show_ajax', {'id': entry.id}) %}
                                 <a href="{{ url }}" data-fancybox="entries" data-src="{{ src }}" data-type="ajax">
                                     <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_thumbnail') }}" alt="{{ entry.name }}">
                                 </a>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Frontend;
 
 use App\Doctrine\PaginationHelper;
 use App\Entity\Entry;
@@ -36,10 +36,10 @@ class TagController extends AbstractController
     /**
      * Route for paginate by tag.
      *
-     * @Route("/ajax/tag/{slug}/{page}", name="paginate_by_tag", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
+     * @Route("/ajax/tag/{slug}/{page}", name="tag_pagiante_ajax", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
      * @ParamConverter("tag", class="App:Tag", options={"repository_method" = "findOneByCriteria", "mapping": {"slug": "slug"}})
      */
-    public function paginate(Tag $tag, $page = 1): Response
+    public function ajaxPaginate(Tag $tag, $page = 1): Response
     {
         $em = $this->getDoctrine()->getManager();
 
