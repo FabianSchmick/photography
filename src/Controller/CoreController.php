@@ -21,11 +21,11 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 class CoreController extends AbstractController
 {
     /**
-     * @Route("/", name="locale", defaults={"redirect": "homepage"})
+     * @Route("/", name="core_switch_Locale_frontend", defaults={"redirect": "homepage"})
      * @Route("/admin/language/{_locale}/",
      *     defaults={"redirect": "admin_index"},
      *     requirements={"_locale": "%app.locales%"},
-     *     name="localeAdmin"
+     *     name="core_switch_Locale_admin"
      * )
      */
     public function locale(Request $request, SessionInterface $session, $redirect): RedirectResponse
@@ -40,7 +40,7 @@ class CoreController extends AbstractController
     }
 
     /**
-     * @Route("/download/{file}", name="download_file")
+     * @Route("/download/{file}", name="core_download_file")
      * @ParamConverter("file", class="App:File", options={"mapping": {"file": "fileName"}})
      */
     public function downloadFile(File $file, UploaderHelper $uploaderHelper): BinaryFileResponse
@@ -59,7 +59,7 @@ class CoreController extends AbstractController
     }
 
     /**
-     * @Route("/sitemap.{_format}", name="sitemap", requirements={"_format": "xml"})
+     * @Route("/sitemap.{_format}", name="core_sitemap", requirements={"_format": "xml"})
      */
     public function sitemap(Request $request, RouterInterface $router): Response
     {
@@ -81,7 +81,7 @@ class CoreController extends AbstractController
 
             for ($i = 1; $i < $pages + 1; ++$i) {
                 $urls[] = [
-                    'loc' => $router->generate('tour_index_paginated', ['_locale' => $locale, 'page' => $i]),
+                    'loc' => $router->generate('tour_index', ['_locale' => $locale, 'page' => $i]),
                     'changefreq' => 'weekly',
                     'priority' => '0.5',
                 ];

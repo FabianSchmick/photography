@@ -103,7 +103,7 @@
                     <a href="{{ path('homepage', {'_fragment': 'entries'}) }}" class="nav-link page-scroll" data-target="#entries">{{ 'gallery'|trans }}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ path('tour_index_paginated', {'page': '1'}) }}" class="nav-link page-scroll" data-target="#tours">{{ 'tours'|trans }}</a>
+                    <a href="{{ path('tour_index', {'page': '1'}) }}" class="nav-link page-scroll" data-target="#tours">{{ 'tours'|trans }}</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ path('imprint-dataprotection') }}" class="nav-link page-scroll" data-target="#imprint-privacy">{{ 'imprint.privacy.policies'|trans }}</a>
@@ -186,7 +186,9 @@
         </script>
     {% endif %}
 
-    {{ encore_entry_script_tags('js/app') }}
+    {% for js in encore_entry_js_files('js/app') %}
+        <script src="{{ asset(js) }}" type="text/javascript" defer="defer" async="async"></script>
+    {% endfor %}
 {% endblock %}
 </body>
 </html>

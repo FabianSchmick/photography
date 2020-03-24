@@ -28,7 +28,7 @@
         <div id="tours-container">
             {% if pages > 1 %}
                 <ul class="pagination justify-content-center" data-replace="#tours-container">
-                    {{ paginate(page, pages, 'tour_index_paginated') }}
+                    {{ paginate(page, pages, 'tour_index') }}
                 </ul>
             {% endif %}
 
@@ -49,7 +49,7 @@
                                     <p>
                                         {% if tour.description %}
                                             {{ tour.description|striptags|u.truncate(220) }}
-                                        {% else %}
+                                        {% elseif tour.gpxData.description %}
                                             {{ tour.gpxData.description|u.truncate(220) }}
                                         {% endif %}
                                     </p>
@@ -80,7 +80,7 @@
 
             {% if pages > 1 %}
                 <ul class="pagination justify-content-center" data-replace="#tours-container">
-                    {{ paginate(page, pages, 'tour_index_paginated') }}
+                    {{ paginate(page, pages, 'tour_index') }}
                 </ul>
             {% endif %}
         </div>
