@@ -186,7 +186,9 @@
         </script>
     {% endif %}
 
-    {{ encore_entry_script_tags('js/app') }}
+    {% for js in encore_entry_js_files('js/app') %}
+        <script src="{{ asset(js) }}" type="text/javascript" defer="defer" async="async"></script>
+    {% endfor %}
 {% endblock %}
 </body>
 </html>

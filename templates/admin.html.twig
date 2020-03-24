@@ -173,7 +173,9 @@
 </div>
 
 {% block javascripts %}
-    {{ encore_entry_script_tags('js/admin') }}
+    {% for js in encore_entry_js_files('js/admin') %}
+        <script src="{{ asset(js) }}" type="text/javascript" defer="defer" async="async"></script>
+    {% endfor %}
 {% endblock %}
 </body>
 </html>
