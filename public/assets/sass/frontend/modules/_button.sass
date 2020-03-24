@@ -1,8 +1,7 @@
 .btn.btn-teritary
     display: inline-block
-    padding: 10px 25px
+    padding: 0.5rem 1rem
     transition: all 0.2s ease-in
-
     border-radius: 5px
     color: $color-secondary
     background: $color-teritary
@@ -12,6 +11,10 @@
     &.btn-inverse
         background: transparent
         border: 2px solid $color-teritary
+        &:hover,
+        &:focus
+            background: $color-teritary
+            border-color: $color-teritary
 
     i
         padding-right: 5px
@@ -22,5 +25,5 @@
         border-color: lighten($color-teritary, 5)
         color: $color-secondary
 
-    @media(max-width: 450px)
-        padding: 7px 17px
+    @include media-breakpoint-up(sm)
+        padding: 0.75rem 1.5rem

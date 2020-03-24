@@ -11,8 +11,8 @@ ul.pagination
 #tours-container
     .pagination
         margin-top: 0
-        margin-bottom: 30px
+        margin-bottom: 1rem
 
-    @media(max-width: 450px)
+    @include media-breakpoint-up(sm)
         .pagination
-            margin-bottom: 15px
+            margin-bottom: $grid-gutter-width

@@ -1,17 +1,19 @@
 {% import 'templates/macro/macro.html.twig' as macro %}
 <div class="entry">
-    <article class="entry-inner">
-        <div class="entry-image">
-            <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_show') }}" alt="{{ entry.name }}">
-        </div>
-        <div class="entry-info">
-            <h2 class="entry-title">
-                {{ entry.name }}
-            </h2>
-            {{ entry.description|raw }}
-            {{ macro.entry_meta(entry) }}
-            {{ macro.entry_tags(entry) }}
-            <a class="btn btn-teritary" href="{{ vich_uploader_asset(entry.image, 'file') }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
-        </div>
-    </article>
+    <div class="entry-centerer">
+        <article class="entry-inner row">
+            <div class="entry-image col-12 col-lg-8">
+                <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_show') }}" alt="{{ entry.name }}">
+            </div>
+            <div class="entry-info col-12 col-lg-4">
+                <h2 class="entry-title">
+                    {{ entry.name }}
+                </h2>
+                {{ entry.description|raw }}
+                {{ macro.entry_meta(entry) }}
+                {{ macro.entry_tags(entry) }}
+                <a class="btn btn-teritary" href="{{ vich_uploader_asset(entry.image, 'file') }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
+            </div>
+        </article>
+    </div>
 </div>

@@ -1,8 +1,13 @@
 html
     height: 100%
+    font-size: 16px
 body
     min-height: 100%
     width: 100%
+    letter-spacing: 0.02rem
+
+    &.fancybox-active
+        overflow: hidden
 
 noscript
     position: fixed
@@ -14,20 +19,17 @@ noscript
         border-radius: 0
 
 hr
-    height: 3px
     width: 60px
-    background: $color-teritary
-    border: 0
-    margin-top: 40px
-    margin-bottom: 40px
+    border-top: 3px solid $color-teritary
+    margin-top: 2.5rem
+    margin-bottom: 2.5rem
 
 .container
     width: 100%
     max-width: 1920px
-    padding: 0 30px
 
-    @media(max-width: 450px)
-        padding: 0 15px
+    @include media-breakpoint-up(sm)
+        padding: 0 $grid-gutter-width
 
 .text-container
     max-width: 750px

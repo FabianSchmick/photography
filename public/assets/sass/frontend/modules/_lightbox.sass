@@ -2,19 +2,19 @@
     #menu,
     #cover,
     main
-        margin-right: 17px
+        margin-right: 1rem
 
 .fancybox-container
     .fancybox-slide
-        padding: 30px
+        padding: 0
 
         > div.entry
             margin: 0
             padding: 0
             max-height: 100%
 
-        @media(max-width: 450px)
-            padding: 15px
+        @include media-breakpoint-up(lg)
+            padding: 2rem 1rem 0 1rem
 
     .fancybox-close-small:after
         right: 0
