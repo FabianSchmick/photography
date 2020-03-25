@@ -1,27 +1,6 @@
-#entries
-    position: relative
-    margin: 100px auto
-    overflow: initial
-
-    &.loading
-        &:after
-            content: ''
-            position: absolute
-            display: block
-            transform: translateX(-50%)
-            margin: 0 auto
-            bottom: -80px
-            left: 50%
-            height: 60px
-            width: 60px
-            background: url(../../../img/layout/icons/spinner-icon.svg) no-repeat center /contain
-
-    @media(max-width: 450px)
-        margin: 20px auto 100px
-
 #entry
     display: flex
-    padding-top: 50px
+    padding-top: 3.125rem
     min-height: 100vh
     align-items: center
 
@@ -37,24 +16,30 @@
             width: 60px
             background: url(../../../img/layout/icons/spinner-icon.svg) no-repeat center /contain
 
-    .entry-title
-        margin: 20px 0
-
-    img
-        width: 100%
-
-    .entry-image
-        position: relative
-        min-height: 100px
-
-        @media(max-width: 991px)
-            padding: 0
+    @include media-breakpoint-up(sm)
+        padding: 3.125rem calc(#{$grid-gutter-width} / 2) 0
 
     .entry-inner
         position: relative
+        width: auto
+        padding: 0
 
-        @media(min-width: 992px)
+    .entry-image-container
+        position: relative
+
+    .entry-image
+        min-height: 100px
+        padding: 0
+
+        img
             width: 100%
+
+    .entry-info
+        color: inherit
+        padding-bottom: 1rem
+
+        @include media-breakpoint-up(sm)
+            padding: 0 $grid-gutter-width $grid-gutter-width
 
     .prev,
     .next
@@ -64,11 +49,11 @@
         transform: translateY(-50%)
         height: 100%
         opacity: 0.4
-        font-size: 34px
+        font-size: 1.5rem
         color: $color-teritary
         text-decoration: none
         border: none
-        padding: 0 50px
+        padding: 2rem
         align-items: center
         justify-content: center
         background-repeat: repeat-x
@@ -77,33 +62,13 @@
             opacity: 0.8
             color: $color-secondary
 
+        @include media-breakpoint-up(lg)
+            font-size: 2.25rem
+            padding: 3rem
+
     .prev
-        right: 15px
+        right: 0
         background-image: linear-gradient(to right, rgba(0,0,0,0.0001) 0, rgba(0,0,0,0.5) 100%)
     .next
-        left: 15px
+        left: 0
         background-image: linear-gradient(to right, rgba(0,0,0,0.5) 0, rgba(0,0,0,0.0001) 100%)
-
-    @media(max-width: 991px)
-        .prev
-            right: 0
-        .next
-            left: 0
-
-    @media(max-width: 1200px)
-        align-items: normal
-        min-height: 1px
-
-        .entry-info
-            padding-top: 10px
-            padding-bottom: 30px
-
-        .prev,
-        .next
-            padding: 0 40px
-
-    @media(max-width: 450px)
-        .prev,
-        .next
-            font-size: 24px
-            padding: 0 30px

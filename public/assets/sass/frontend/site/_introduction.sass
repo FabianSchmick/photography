@@ -1,47 +1,51 @@
 #introduction
     text-align: center
     position: relative
-    padding: 0 30px
+    padding: 0 calc(#{$grid-gutter-width} / 2)
 
     &:before
         content: ""
         position: absolute
-        transform: translateX(-50%)
-        width: 150px
-        height: 150px
         background: url(../../../img/logo.jpg) no-repeat center /contain
         border-radius: 50%
-        top: -75px
         border: 2px solid #fff
+        display: none
+        width: 100px
+        height: 100px
+        top: -50px
+        left: 50%
+        transform: translateX(-50%)
 
-        @media(max-width: 768px)
-            width: 100px
-            height: 100px
-            top: -50px
+    @include media-breakpoint-up(sm)
+        padding: 0 $grid-gutter-width
 
-        @media(max-width: 450px)
-            display: none
+        &:before
+            display: block
 
-    @media(max-width: 450px)
-        padding: 0 15px
+    @include media-breakpoint-up(lg)
+        &:before
+            width: 150px
+            height: 150px
+            top: -75px
 
     h1
         margin: auto
-        padding: 110px 0 30px
+        padding: 2.25rem 0 1rem
 
-        @media(max-width: 450px)
-            padding: 30px 0 15px
+        @include media-breakpoint-up(sm)
+            padding: 6.75rem 0 2rem
 
     .social
         display: inline-block
-        padding-top: 20px
+        padding-top: 1.25rem
+        margin: 0
 
         li
             float: left
 
             a
-                padding: 0 16px
-                font-size: 22px
+                padding: 0 1rem
+                font-size: 1.5rem
                 color: $color-primary
                 transition: all 0.2s ease-in
 
@@ -50,6 +54,3 @@
                     text-decoration: none
                     color: $color-teritary
                     transition: all 0.2s ease-in
-
-        @media(max-width: 450px)
-            margin: 0

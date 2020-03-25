@@ -1,0 +1,48 @@
+#entries
+    position: relative
+    margin: 1.5rem auto 1rem
+    overflow: initial
+
+    &.loading
+        &:after
+            content: ''
+            position: absolute
+            display: block
+            transform: translateX(-50%)
+            margin: 0 auto
+            bottom: -80px
+            left: 50%
+            height: 60px
+            width: 60px
+            background: url(../../../img/layout/icons/spinner-icon.svg) no-repeat center /contain
+
+    @include media-breakpoint-up(sm)
+        margin: 3.5rem auto 0.75rem
+
+    @include media-breakpoint-up(md)
+        margin: 6.75rem auto 1.5rem
+
+    .entry
+        overflow: hidden
+
+        img
+            transition: transform 0.3s
+            max-width: 100%
+
+        .title
+            position: absolute
+            bottom: 0
+            width: 100%
+            min-height: 50px
+            padding: 1rem 0.75rem 0.25rem
+            color: $color-secondary
+            opacity: 0
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 100%)
+            transition: all 0.2s ease-in
+
+        &:hover
+            img
+                transform: scale(1.05)
+
+            .title
+                opacity: 1

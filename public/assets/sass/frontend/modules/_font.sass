@@ -10,7 +10,14 @@ h1, .h1, .entry-title
     hyphens: auto
     word-wrap: break-word
 
-@media(max-width: 450px)
+@include media-breakpoint-down(md)
+    h1, .h1
+        font-size: 2.25rem
+
+    h2, .h2
+        font-size: 1.5rem
+
+@include media-breakpoint-down(sm)
     body
         font-size: 0.875rem
 

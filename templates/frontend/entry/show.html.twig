@@ -9,33 +9,37 @@
 {% block title %}{{ entry.name }}{% endblock %}
 
 {% block content %}
-    <section id="entry" class="container">
-        <article class="entry-inner row">
-            <div class="entry-image col-xs-12 col-lg-9">
-                {% if next %}
-                    <a class="next" href="{{ path('entry_show', {'slug': next.slug}) }}" title="{{ 'next'|trans }}">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                {% endif %}
+    <section id="entry" class="container entry">
+        <div class="entry-centerer">
+            <article class="entry-inner row">
+                <div class="entry-image col-xs-12 col-lg-8 col-xl-9">
+                    <div class="entry-image-container">
+                        {% if next %}
+                            <a class="next" href="{{ path('entry_show', {'slug': next.slug}) }}" title="{{ 'next'|trans }}">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        {% endif %}
 
-                <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_show') }}" alt="{{ entry.name }}">
+                        <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_show') }}" alt="{{ entry.name }}">
 
-                {% if prev %}
-                    <a class="prev" href="{{ path('entry_show', {'slug': prev.slug}) }}" title="{{ 'prev'|trans }}">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                {% endif %}
-            </div>
-            <div class="entry-info col-xs-12 col-lg-3">
-                <h1 class="entry-title">
-                    {{ entry.name }}
-                </h1>
-                {{ entry.description|raw }}
-                {{ macro.entry_meta(entry) }}
-                {{ macro.entry_tags(entry) }}
-                <a class="btn btn-teritary" href="{{ vich_uploader_asset(entry.image, 'file') }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
-            </div>
-        </article>
+                        {% if prev %}
+                            <a class="prev" href="{{ path('entry_show', {'slug': prev.slug}) }}" title="{{ 'prev'|trans }}">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="entry-info col-xs-12 col-lg-4 col-xl-3">
+                    <h1 class="entry-title">
+                        {{ entry.name }}
+                    </h1>
+                    {{ entry.description|raw }}
+                    {{ macro.entry_meta(entry) }}
+                    {{ macro.entry_tags(entry) }}
+                    <a class="btn btn-teritary" href="{{ vich_uploader_asset(entry.image, 'file') }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
+                </div>
+            </article>
+        </div>
     </section>
 {% endblock %}
 

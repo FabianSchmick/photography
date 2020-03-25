@@ -1,28 +1,3 @@
-#entries .entry
-    overflow: hidden
-
-    img
-        transition: transform 0.3s
-        max-width: 100%
-
-    .title
-        position: absolute
-        bottom: 0
-        width: 100%
-        min-height: 50px
-        padding: 1rem 0.75rem 0.25rem
-        color: $color-secondary
-        opacity: 0
-        background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 100%)
-        transition: all 0.2s ease-in
-
-    &:hover
-        img
-            transform: scale(1.05)
-
-        .title
-            opacity: 1
-
 .entry
     height: 100%
     width: 100%
