@@ -4,7 +4,7 @@ ul.tours
 
     li
         position: relative
-        margin-bottom: 25px
+        margin-bottom: calc(#{$grid-gutter-width} / 2)
 
         .tour-preview-img
             overflow: hidden
@@ -19,25 +19,33 @@ ul.tours
             left: 15px
             height: 100%
             width: 100%
-            max-width: calc(100% - 30px)
+            max-width: calc(100% - #{$grid-gutter-width})
             background: rgba(0,0,0,0.7)
             transition: all 0.3s
             color: $color-secondary
 
             .tour-info
                 position: relative
-                padding: 40px 50px 50px
                 height: 100%
+                padding: 1rem
 
                 .h1
-                    margin: 0 0 20px
+                    margin: 0 0 1rem
+                    font-size: 1.125rem
+
+                p
+                    display: none
 
                 .meta
                     display: inline-block
                     margin: 0
                     position: absolute
-                    bottom: 50px
-                    left: 50px
+                    bottom: 15px
+                    left: 15px
+
+                    .tour-maxAltitude, .tour-maxAltitude-value,
+                    .tour-minAltitude, .tour-minAltitude-value
+                        display: none
 
                     dt,
                     dd
@@ -53,43 +61,39 @@ ul.tours
                         line-height: 34px
 
                     dd
-                        padding-right: 25px
+                        padding-right: 1.5rem
                         &:last-child
                             padding-right: 0
 
                 .btn
                     position: absolute
-                    bottom: 50px
-                    right: 50px
+                    bottom: 15px
+                    right: 15px
 
-                @media(max-width: 1450px) and (min-width: 1200px), (max-width: 767px)
-                    padding: 25px 30px 30px
+                @include media-breakpoint-up(sm)
+                    padding: 1.25rem 1.5rem 1.5rem
 
                     .h1
-                        font-size: 32px
+                        font-size: 1.75rem
 
                     .meta
-                        bottom: 30px
-                        left: 30px
-
-                        dt
-                            border: none
-                            margin: 0
-                            width: 20px
-                            height: auto
-                            line-height: initial
-
-                        dd
-                            padding-right: 18px
+                        bottom: 25px
+                        left: 25px
 
                     .btn
-                        bottom: 30px
-                        right: 30px
+                        bottom: 25px
+                        right: 25px
 
-                @media(max-width: 600px)
-                    .h1
-                        font-size: 26px
+                @include media-breakpoint-up(md)
+                    p
+                        display: block
 
+                    .meta
+                        .tour-maxAltitude, .tour-maxAltitude-value,
+                        .tour-minAltitude, .tour-minAltitude-value
+                            display: inline-block
+
+                @include media-breakpoint-up(lg)
                     p
                         display: none
 
@@ -98,22 +102,34 @@ ul.tours
                         .tour-minAltitude, .tour-minAltitude-value
                             display: none
 
-                @media(max-width: 600px)
-                    padding: 15px
-
+                @media (min-width: 1350px)
                     .h1
-                        font-size: 22px
+                        font-size: $h2-font-size
+
+                    p
+                        display: block
 
                     .meta
-                        bottom: 15px
-                        left: 15px
+                        .tour-maxAltitude, .tour-maxAltitude-value,
+                        .tour-minAltitude, .tour-minAltitude-value
+                            display: inline-block
+
+                @media (min-width: 1600px)
+                    padding: 2.5rem 3.125rem 3.125rem
+
+                    .h1
+                        font-size: $h1-font-size
+
+                    .meta
+                        bottom: 50px
+                        left: 50px
 
                     .btn
-                        bottom: 15px
-                        right: 15px
+                        bottom: 50px
+                        right: 50px
 
-        @media(max-width: 450px)
-            margin-bottom: 15px
+        @include media-breakpoint-up(sm)
+            margin-bottom: $grid-gutter-width
 
         &:hover
             .tour-preview-img img
