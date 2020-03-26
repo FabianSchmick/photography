@@ -1,0 +1,33 @@
+.icon
+    display: inline-block
+    svg
+        fill: $gray-900
+        transition: all 0.2s ease-in
+        max-width: 25px
+        max-height: 25px
+
+    &.icon-sm
+        svg
+            max-width: 12px
+            max-height: 12px
+
+        &.icon-marker,
+        &.icon-length,
+        &.icon-download
+            svg
+                max-width: 14px
+                max-height: 15px
+
+    &.icon-rotate-90 svg
+        transform: rotate(90deg)
+    &.icon-rotate-120 svg
+        transform: rotate(120deg)
+    &.icon-rotate-180 svg
+        transform: rotate(180deg)
+    &.icon-rotate-270 svg
+        transform: rotate(270deg)
+
+a.icon
+    &:hover
+        svg
+            fill: $color-teritary

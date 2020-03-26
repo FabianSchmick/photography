@@ -43,6 +43,14 @@ ul.tours
                     bottom: 15px
                     left: 15px
 
+                    .icon
+                        height: 100%
+                        display: flex
+                        justify-content: center
+                        align-items: center
+                        svg
+                            fill: $color-secondary
+
                     .tour-maxAltitude, .tour-maxAltitude-value,
                     .tour-minAltitude, .tour-minAltitude-value
                         display: none
@@ -62,6 +70,7 @@ ul.tours
 
                     dd
                         padding-right: 1.5rem
+                        margin-bottom: 0
                         &:last-child
                             padding-right: 0
 
@@ -72,6 +81,9 @@ ul.tours
 
                 @include media-breakpoint-up(sm)
                     padding: 1.25rem 1.5rem 1.5rem
+
+                    p
+                        display: block
 
                     .h1
                         font-size: 1.75rem
@@ -85,9 +97,6 @@ ul.tours
                         right: 25px
 
                 @include media-breakpoint-up(md)
-                    p
-                        display: block
-
                     .meta
                         .tour-maxAltitude, .tour-maxAltitude-value,
                         .tour-minAltitude, .tour-minAltitude-value

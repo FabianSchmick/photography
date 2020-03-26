@@ -16,7 +16,7 @@
                     <div class="entry-image-container">
                         {% if next %}
                             <a class="next" href="{{ path('entry_show', {'slug': next.slug}) }}" title="{{ 'next'|trans }}">
-                                <i class="fa fa-angle-left"></i>
+                                <span class="icon icon-angle"><svg><use xlink:href="#angle-icon"/></svg></span>
                             </a>
                         {% endif %}
 
@@ -24,7 +24,7 @@
 
                         {% if prev %}
                             <a class="prev" href="{{ path('entry_show', {'slug': prev.slug}) }}" title="{{ 'prev'|trans }}">
-                                <i class="fa fa-angle-right"></i>
+                                <span class="icon icon-angle icon-rotate-180"><svg><use xlink:href="#angle-icon"/></svg></span>
                             </a>
                         {% endif %}
                     </div>
@@ -36,12 +36,20 @@
                     {{ entry.description|raw }}
                     {{ macro.entry_meta(entry) }}
                     {{ macro.entry_tags(entry) }}
-                    <a class="btn btn-teritary" href="{{ vich_uploader_asset(entry.image, 'file') }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
+                    <a class="btn btn-teritary" href="{{ vich_uploader_asset(entry.image, 'file') }}" target="_blank">
+                        <span class="icon icon-sm icon-download pr-1"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'download'|trans }}
+                    </a>
                 </div>
             </article>
         </div>
     </section>
 {% endblock %}
+
+{% block embed_svg %}
+    {{ parent() }}
+    {{ asset('assets/img/layout/icons/angle-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/download-icon.svg')|inline_svg() }}
+{% endblock embed_svg %}
 
 {% block javascripts %}
     <script type="application/ld+json">

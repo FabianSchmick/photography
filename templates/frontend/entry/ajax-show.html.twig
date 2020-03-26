@@ -12,7 +12,9 @@
                 {{ entry.description|raw }}
                 {{ macro.entry_meta(entry) }}
                 {{ macro.entry_tags(entry) }}
-                <a class="btn btn-teritary" href="{{ vich_uploader_asset(entry.image, 'file') }}" target="_blank"><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ 'fullscreen'|trans }}</a>
+                <a class="btn btn-teritary" href="{{ vich_uploader_asset(entry.image, 'file') }}" target="_blank">
+                    <span class="icon icon-sm icon-download pr-1"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'download'|trans }}
+                </a>
             </div>
         </article>
     </div>

@@ -17,10 +17,26 @@
             </p>
         </article>
         <ul class="list-unstyled clearfix social">
-            <li><a href="mailto:schmick.fabian@web.de" class="fas fa-envelope" title="Mail"></a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/schm.fabian" class="fab fa-facebook" title="Facebook"></a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/fabianschmick/" class="fab fa-instagram" title="Instagram"></a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://xing.com/profile/Fabian_Schmick2" class="fab fa-xing" title="Xing"></a></li>
+            <li>
+                <a href="mailto:schmick.fabian@web.de" class="icon icon-mail" title="Mail">
+                    <svg><use xlink:href="#mail-icon"/></svg>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/schm.fabian" class="icon icon-facebook" title="Facebook">
+                    <svg><use xlink:href="#facebook-icon"/></svg>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/fabianschmick/" class="icon icon-instagram" title="Instagram">
+                    <svg><use xlink:href="#instagram-icon"/></svg>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" rel="noopener noreferrer" href="https://xing.com/profile/Fabian_Schmick2" class="icon icon-xing" title="Xing">
+                    <svg><use xlink:href="#xing-icon"/></svg>
+                </a>
+            </li>
         </ul>
     </section>
 
@@ -30,6 +46,15 @@
         </div>
     </section>
 {% endblock %}
+
+{% block embed_svg %}
+    {{ parent() }}
+    {{ asset('assets/img/layout/icons/download-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/facebook-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/instagram-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/mail-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/xing-icon.svg')|inline_svg() }}
+{% endblock embed_svg %}
 
 {% block javascripts %}
     <script type="application/ld+json">

@@ -49,7 +49,6 @@
         transform: translateY(-50%)
         height: 100%
         opacity: 0.4
-        font-size: 1.5rem
         color: $color-teritary
         text-decoration: none
         border: none
@@ -60,11 +59,16 @@
         transition: all 0.2s ease-in
         &:hover
             opacity: 0.8
-            color: $color-secondary
+            .icon
+                svg
+                    fill: $color-teritary
 
         @include media-breakpoint-up(lg)
-            font-size: 2.25rem
             padding: 3rem
+
+        .icon
+            svg
+                fill: $color-secondary
 
     .prev
         right: 0

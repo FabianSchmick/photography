@@ -40,3 +40,8 @@
         </div>
     </section>
 {% endblock %}
+
+{% block embed_svg %}
+    {{ parent() }}
+    {{ asset('assets/img/layout/icons/download-icon.svg')|inline_svg() }}
+{% endblock embed_svg %}

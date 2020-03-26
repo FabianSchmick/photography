@@ -78,19 +78,16 @@ header#menu
                 text-align: center
                 padding: 0
 
-        .navbar-toggle
-            border-radius: 0
-
-            &:hover,
-            &:focus
-                background-color: $color-teritary
-                border: none
-
-                > .icon-bar
-                    background-color: #fff
-
-    .navbar-toggler i
-        color: #fff
+        .navbar-toggler
+            width: 40px
+            padding-right: 0
+            .line
+                display: block
+                height: 3px
+                background-color: $color-secondary
+                margin-bottom: 5px
+                &:last-child
+                    margin-bottom: 0
 
     a.navbar-brand
         margin: 0.5rem 0 0 0
@@ -104,9 +101,6 @@ header#menu
             border-radius: 50%
             margin-right: 0.25rem
             display: none
-
-        i.fa
-            color: $color-teritary
 
     &.on
         background-color: $color-secondary !important
@@ -132,12 +126,14 @@ header#menu
                 > li > a
                     color: $color-primary
 
-        .navbar-toggler i,
         a.navbar-brand
             color: $color-primary
 
             img
                 display: inline-block
+        .navbar-toggler
+            .line
+                background-color: $color-primary
 
     &.navbar-expand-lg > .container,
     &.navbar-expand-lg > .container-fluid

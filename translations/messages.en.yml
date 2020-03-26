@@ -20,8 +20,8 @@ close: Close
 name: Name
 file: File
 page: Page
-pagination.prev: '<i class="fa fa-angle-left" aria-hidden="true" title="Previous"></i>'
-pagination.next: '<i class="fa fa-angle-right" aria-hidden="true" title="Next"></i>'
+pagination.prev: '<span class="icon icon-sm icon-angle" title="Previous"><svg><use xlink:href="#angle-icon"/></svg>'
+pagination.next: '<span class="icon icon-sm icon-angle icon-rotate-180" title="Next"><svg><use xlink:href="#angle-icon"/></svg>'
 
 # Base / Admin template
 photography: Photography
@@ -86,7 +86,7 @@ authors.name: Fabian Schmick
 intro.by: by
 introduction.headline: Forests, streams, mountains, landscapes, mushrooms - <strong>Nature Photography</strong>
 introduction.longtext: My name is Fabian Schmick, I am in my early 20s, come from Sauerland (Germany) and am a Web Developer. Because I am a passionate wanderer, I always discover small and big highlights on my tours which I capture with my camera. On this Website you will find nature-photography and reports of my hiking tours from the Sauerland, the Eifel and the Alps.
-fullscreen: Fullscreen
+download: Download
 next: Next
 prev: Previous
 introduction.tag: All pictures filtered by tag

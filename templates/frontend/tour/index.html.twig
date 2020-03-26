@@ -56,20 +56,26 @@
                                     <dl class="meta">
                                         {% if tour.gpxData.stats.distance %}
                                             {% set distance = tour.gpxData.stats.distance / 1000 %}
-                                            <dt class="tour-distance"><i class="fa fa-arrows-alt-h" aria-hidden="true" title="{{ 'tour.distance'|trans }}"></i></dt>
+                                            <dt class="tour-distance">
+                                                <span class="icon icon-sm icon-length" title="{{ 'tour.distance'|trans }}"><svg><use xlink:href="#length-icon"/></svg></span>
+                                            </dt>
                                             <dd class="tour-distance-value">{{ distance|number_format(1, ',', '.') }} {{ 'tour.distance.unit'|trans }}</dd>
                                         {% endif %}
                                         {% if tour.gpxData.stats.maxAltitude %}
-                                            <dt class="tour-maxAltitude"><i class="fa fa-angle-up" aria-hidden="true" title="{{ 'tour.maxAltitude'|trans }}"></i></dt>
+                                            <dt class="tour-maxAltitude">
+                                                <span class="icon icon-sm icon-angle icon-rotate-90" title="{{ 'tour.maxAltitude'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
+                                            </dt>
                                             <dd class="tour-maxAltitude-value">{{ tour.gpxData.stats.maxAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
                                         {% endif %}
                                         {% if tour.gpxData.stats.minAltitude %}
-                                            <dt class="tour-minAltitude"><i class="fa fa-angle-down" aria-hidden="true" title="{{ 'tour.minAltitude'|trans }}"></i></dt>
+                                            <dt class="tour-minAltitude">
+                                                <span class="icon icon-sm icon-angle icon-rotate-270" title="{{ 'tour.minAltitude'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
+                                            </dt>
                                             <dd class="tour-minAltitude-value">{{ tour.gpxData.stats.minAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
                                         {% endif %}
                                     </dl>
                                     <button class="btn btn-teritary btn-inverse">
-                                        <i class="fa fa-angle-right" aria-hidden="true"></i> {{ 'show.tour'|trans }}
+                                        {{ 'show.tour'|trans }} <span class="icon icon-sm icon-angle icon-rotate-180 pl-1"><svg><use xlink:href="#angle-icon"/></svg></span>
                                     </button>
                                 </div>
                             </div>
@@ -86,6 +92,12 @@
         </div>
     </section>
 {% endblock %}
+
+{% block embed_svg %}
+    {{ parent() }}
+    {{ asset('assets/img/layout/icons/angle-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/length-icon.svg')|inline_svg() }}
+{% endblock embed_svg %}
 
 {% block javascripts %}
     <script type="application/ld+json">

@@ -20,8 +20,8 @@ close: Schließen
 name: Name
 file: Datei
 page: Seite
-pagination.prev: '<i class="fa fa-angle-left" aria-hidden="true" title="Zurück"></i>'
-pagination.next: '<i class="fa fa-angle-right" aria-hidden="true" title="Weiter"></i>'
+pagination.prev: '<span class="icon icon-sm icon-angle" title="Zurück"><svg><use xlink:href="#angle-icon"/></svg>'
+pagination.next: '<span class="icon icon-sm icon-angle icon-rotate-180" title="Weiter"><svg><use xlink:href="#angle-icon"/></svg>'
 
 # Base / Admin template
 photography: Fotografie
@@ -86,7 +86,7 @@ authors.name: Fabian Schmick
 intro.by: von
 introduction.headline: Wälder, Bäche, Berge, Landschaften, Pilze  - <strong>Naturfotografie</strong>
 introduction.longtext: Mein Name ist Fabian Schmick, bin Anfang 20, komme aus dem Sauerland und bin als Webentwickler tätig. Da ich leidenschaftlicher Wanderer bin, entdecke ich auf meinen Touren immer wieder kleine und große Highlights welche ich mit meiner Kamera festhalte. Auf dieser Webseite findest du Naturfotografie und Berichte meiner Wander-Touren aus dem Sauerland, der Eifel und der Alpen.
-fullscreen: Vollbild
+download: Herunterladen
 next: Weiter
 prev: Zurück
 introduction.tag: Alle Bilder gefiltert zum Thema

@@ -16,9 +16,6 @@
             background: $color-teritary
             border-color: $color-teritary
 
-    i
-        padding-right: 5px
-
     &:hover,
     &:focus
         background: lighten($color-teritary, 5)
@@ -27,3 +24,7 @@
 
     @include media-breakpoint-up(sm)
         padding: 0.75rem 1.5rem
+
+    .icon
+        svg
+            fill: $color-secondary
