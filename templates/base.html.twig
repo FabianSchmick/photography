@@ -110,13 +110,14 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="language-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="flag"><svg><use xlink:href="#{{ request.locale }}-icon"/></svg></span> {{ 'languages'|trans }}
+                        {% set lang = 'locale.' ~ request.locale %}
+                        <span class="flag"><svg><use xlink:href="#{{ request.locale }}-icon"/></svg></span> {{ lang|trans }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="language-dropdown">
                         {% for locale in locales|split('|') %}
                             {% set lang = 'locale.' ~ locale %}
-                            <li class="dropdown-item{% if request.locale == locale %} active{% endif %}">
-                                <a href="{{ path('homepage', {'_locale': locale}) }}">
+                            <li class="dropdown-item">
+                                <a href="{{ path('homepage', {'_locale': locale}) }}" {% if request.locale == locale %}class="active"{% endif %}>
                                     <span class="flag">
                                         <svg>
                                             <use xlink:href="#{{ locale }}-icon"/>
