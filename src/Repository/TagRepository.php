@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Tag;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
+use Gedmo\Translatable\TranslatableListener;
 
 /**
  * TagRepository.
@@ -46,18 +47,20 @@ class TagRepository extends EntityRepository
      * Need this special function, because of translatable
      * https://github.com/stof/StofDoctrineExtensionsBundle/issues/232.
      */
-    public function findOneByCriteria(array $params): ?Tag
+    public function findOneByCriteria(string $locale, array $params = []): ?Tag
     {
-        $query = $this->createQueryBuilder('t');
+        $qb = $this->createQueryBuilder('t');
 
         foreach ($params as $column => $value) {
-            $query->andWhere("t.$column = :$column")
+            $qb->andWhere("t.$column = :$column")
                 ->setParameter($column, $value);
         }
 
-        $query = $query->getQuery();
+        $query = $qb->getQuery();
 
-        $query->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER, 'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker');
+        $query
+            ->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER, 'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker')
+            ->setHint(TranslatableListener::HINT_TRANSLATABLE_LOCALE, $locale);
 
         return $query->getOneOrNullResult();
     }

@@ -5,7 +5,7 @@ namespace App\Controller\Frontend;
 use App\Doctrine\PaginationHelper;
 use App\Entity\Tour;
 use App\Service\CoreService;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -46,7 +46,7 @@ class TourController extends AbstractController
 
     /**
      * @Route("/tour/{slug}", name="tour_show")
-     * @ParamConverter("tour", class="App:Tour", options={"repository_method": "findOneByCriteria"})
+     * @Entity("tour", expr="repository.findOneByCriteria(_locale, {'slug': slug})")
      */
     public function show(CoreService $coreService, Tour $tour, TranslatorInterface $translator): Response
     {

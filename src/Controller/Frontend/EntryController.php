@@ -5,7 +5,6 @@ namespace App\Controller\Frontend;
 use App\Doctrine\PaginationHelper;
 use App\Entity\Entry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +18,7 @@ class EntryController extends AbstractController
      * Gather all information for the entry detail page.
      *
      * @Route("/entry/{slug}", name="entry_show")
-     * @ParamConverter("entry", class="App:Entry", options={"repository_method" = "findOneByCriteria"})
+     * @Entity("entry", expr="repository.findOneByCriteria(_locale, {'slug': slug})")
      */
     public function show(Entry $entry): Response
     {

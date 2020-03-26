@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Tour;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
+use Gedmo\Translatable\TranslatableListener;
 
 /**
  * TourRepository.
@@ -19,12 +20,10 @@ class TourRepository extends EntityRepository
      */
     public function getFindAllQuery(): Query
     {
-        $query = $this->createQueryBuilder('t')
+        return $this->createQueryBuilder('t')
             ->select('t')
             ->orderBy('t.updated', 'DESC')
             ->getQuery();
-
-        return $query;
     }
 
     /**
@@ -48,18 +47,20 @@ class TourRepository extends EntityRepository
      * Need this special function, because of translatable
      * https://github.com/stof/StofDoctrineExtensionsBundle/issues/232.
      */
-    public function findOneByCriteria(array $params): ?Tour
+    public function findOneByCriteria(string $locale, array $params = []): ?Tour
     {
-        $query = $this->createQueryBuilder('t');
+        $qb = $this->createQueryBuilder('t');
 
         foreach ($params as $column => $value) {
-            $query->andWhere("t.$column = :$column")
+            $qb->andWhere("t.$column = :$column")
                 ->setParameter($column, $value);
         }
 
-        $query = $query->getQuery();
+        $query = $qb->getQuery();
 
-        $query->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER, 'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker');
+        $query
+            ->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER, 'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker')
+            ->setHint(TranslatableListener::HINT_TRANSLATABLE_LOCALE, $locale);
 
         return $query->getOneOrNullResult();
     }

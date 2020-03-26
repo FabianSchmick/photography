@@ -5,7 +5,7 @@ namespace App\Controller\Frontend;
 use App\Doctrine\PaginationHelper;
 use App\Entity\Entry;
 use App\Entity\Tag;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +19,7 @@ class TagController extends AbstractController
      * Filter entries by a tag.
      *
      * @Route("/tag/{slug}", name="tag_show")
-     * @ParamConverter("tag", class="App:Tag", options={"repository_method" = "findOneByCriteria"})
+     * @Entity("tag", expr="repository.findOneByCriteria(_locale, {'slug': slug})")
      */
     public function show(Tag $tag): Response
     {
@@ -37,7 +37,7 @@ class TagController extends AbstractController
      * Route for paginate by tag.
      *
      * @Route("/ajax/tag/{slug}/{page}", name="tag_pagiante_ajax", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
-     * @ParamConverter("tag", class="App:Tag", options={"repository_method" = "findOneByCriteria", "mapping": {"slug": "slug"}})
+     * @Entity("tag", expr="repository.findOneByCriteria(_locale, {'slug': slug})")
      */
     public function ajaxPaginate(Tag $tag, $page = 1): Response
     {

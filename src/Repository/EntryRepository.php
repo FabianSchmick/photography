@@ -6,6 +6,7 @@ use App\Entity\Entry;
 use App\Entity\Tag;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
+use Gedmo\Translatable\TranslatableListener;
 
 /**
  * EntryRepository.
@@ -20,12 +21,11 @@ class EntryRepository extends EntityRepository
      */
     public function findEntriesByTag(Tag $tag): Query
     {
-        $qb = $this->createQueryBuilder('e')
+        return $this->createQueryBuilder('e')
             ->where(':tag MEMBER OF e.tags')
             ->setParameters(['tag' => $tag])
-            ->orderBy('e.timestamp', 'DESC');
-
-        return $qb->getQuery();
+            ->orderBy('e.timestamp', 'DESC')
+            ->getQuery();
     }
 
     public function findByTimestamp(Entry $entry, string $compare = '<', string $order = 'DESC'): ?Entry
@@ -49,12 +49,10 @@ class EntryRepository extends EntityRepository
      */
     public function getFindAllQuery(): Query
     {
-        $query = $this->createQueryBuilder('e')
+        return $this->createQueryBuilder('e')
             ->select('e')
             ->orderBy('e.timestamp', 'DESC')
             ->getQuery();
-
-        return $query;
     }
 
     /**
@@ -62,18 +60,20 @@ class EntryRepository extends EntityRepository
      * Need this special function, because of translatable
      * https://github.com/stof/StofDoctrineExtensionsBundle/issues/232.
      */
-    public function findOneByCriteria(array $params): ?Entry
+    public function findOneByCriteria(string $locale, array $params = []): ?Entry
     {
-        $query = $this->createQueryBuilder('e');
+        $qb = $this->createQueryBuilder('e');
 
         foreach ($params as $column => $value) {
-            $query->andWhere("e.$column = :$column")
+            $qb->andWhere("e.$column = :$column")
                 ->setParameter($column, $value);
         }
 
-        $query = $query->getQuery();
+        $query = $qb->getQuery();
 
-        $query->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER, 'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker');
+        $query
+            ->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER, 'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker')
+            ->setHint(TranslatableListener::HINT_TRANSLATABLE_LOCALE, $locale);
 
         return $query->getOneOrNullResult();
     }
