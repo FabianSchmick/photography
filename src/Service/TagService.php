@@ -13,13 +13,17 @@ class TagService
     private $em;
 
     /**
-     * TagService constructor.
-     *
-     * @param EntityManagerInterface $em Entity Manager
+     * @var string
      */
-    public function __construct(EntityManagerInterface $em)
+    private $defaultLocale;
+
+    /**
+     * TagService constructor.
+     */
+    public function __construct(EntityManagerInterface $em, string $defaultLocale)
     {
         $this->em = $em;
+        $this->defaultLocale = $defaultLocale;
     }
 
     /**
@@ -35,7 +39,7 @@ class TagService
         if (isset($tag['id'])) {
             $tagEntity = $this->em->getRepository('App:Tag')->findOneBy(['id' => $tag['id']]);
         } else {
-            $duplicate = $this->em->getRepository('App:Tag')->findOneByCriteria(['name' => $tag['name']]);
+            $duplicate = $this->em->getRepository('App:Tag')->findOneByCriteria($this->defaultLocale, ['name' => $tag['name']]);
         }
 
         if (!empty($duplicate)) {
