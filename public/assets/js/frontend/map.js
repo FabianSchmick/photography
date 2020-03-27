@@ -1,7 +1,7 @@
 import * as L from 'leaflet';
 import * as omnivore from '@mapbox/leaflet-omnivore/index';
-import marker from 'leaflet/dist/images/marker-icon.png';
-import marker2x from 'leaflet/dist/images/marker-icon-2x.png';
+import markerPoi from '../../img/layout/icons/map-poi-icon.svg';
+import markerStart from '../../img/layout/icons/map-start-icon.svg';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 /**
@@ -26,8 +26,8 @@ export function map() {
     delete L.Icon.Default.prototype._getIconUrl;
 
     L.Icon.Default.mergeOptions({
-        iconRetinaUrl: marker2x,
-        iconUrl: marker,
+        iconRetinaUrl: markerPoi,
+        iconUrl: markerPoi,
         shadowUrl: markerShadow
     });
 
@@ -35,6 +35,21 @@ export function map() {
         maxZoom: 18,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+
+    // Start icon should be bigger than rest
+    let startIcon = L.icon({
+        iconUrl: markerStart,
+        shadowUrl: markerShadow,
+        iconSize: [38, 120],
+        shadowSize: [50, 64],
+        iconAnchor: [22, 94],
+        shadowAnchor: [15, 65],
+        popupAnchor: [ -4, -60]
+    });
+
+    L.marker($map.data('coordinates'), { icon: startIcon })
+        .addTo(map)
+        .bindPopup('Tour start');
 
     let track = omnivore.gpx($map.data('gpx'), {}, L.geoJson());
     track.on('ready', function() {

@@ -2,7 +2,7 @@
     display: inline-block
     padding: 0.5rem 1rem
     transition: all 0.2s ease-in
-    border-radius: 5px
+    border-radius: $border-radius-base
     color: $color-secondary
     background: $color-teritary
     border-color: $color-teritary
@@ -18,8 +18,8 @@
 
     &:hover,
     &:focus
-        background: lighten($color-teritary, 5)
-        border-color: lighten($color-teritary, 5)
+        background: darken($color-teritary, 5)
+        border-color: darken($color-teritary, 5)
         color: $color-secondary
 
     @include media-breakpoint-up(sm)
