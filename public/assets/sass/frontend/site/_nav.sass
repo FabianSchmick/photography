@@ -29,14 +29,13 @@ header#menu
                 color: $color-secondary
                 font-size: 0.75rem
                 letter-spacing: 0.025rem
-                font-weight: 500
                 transition: all 0.125s ease-in
 
                 &:hover
                     color: $color-teritary
 
             a.active
-                font-weight: bold
+                font-weight: $font-weight-bold
                 color: $color-teritary !important
 
         .flag
@@ -55,7 +54,7 @@ header#menu
             border: 0
 
             .active
-                font-weight: bold
+                font-weight: $font-weight-bold
                 background: none
 
             > .dropdown-item
@@ -115,7 +114,7 @@ header#menu
                         color: $color-teritary
 
                 &.active a, a:focus
-                    font-weight: bold
+                    font-weight: $font-weight-bold
 
             .dropdown-menu
                 background: $color-secondary
