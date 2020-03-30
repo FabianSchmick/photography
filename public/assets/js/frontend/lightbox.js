@@ -7,7 +7,7 @@ import Entry from './Entry';
  * load dynamic content https://github.com/fancyapps/fancyBox/issues/257
  */
 export function lightbox() {
-    let entriesGallery = '[data-fancybox=\'entries\']';
+    let entriesGallery = '[data-fancybox="entries"]';
 
     $.fancybox.defaults.lang = $('html').attr('lang');
     $.fancybox.defaults.hash = false;

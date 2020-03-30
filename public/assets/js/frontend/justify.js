@@ -5,8 +5,10 @@ import 'justifiedGallery';
  */
 export function justify() {
     $('[data-justified]').each((index, el) => {
-        $(el).justifiedGallery({
-            rowHeight: $(el).data('row-height') || 400,
+        let $el = $(el);
+
+        $el.justifiedGallery({
+            rowHeight: $el.data('row-height') || 400,
             maxRowHeight: '175%',
             lastRow: 'nojustify',
             margins: 5,

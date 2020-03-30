@@ -2,8 +2,8 @@
     {% set url = path('entry_show', {'slug': entry.slug}) %}
     {% set src = path('entry_show_ajax', {'id': entry.id}) %}
 
-    <a href="{{ url }}" data-fancybox="entries" data-src="{{ src }}" data-type="ajax" class="entry">
+    <a href="{{ url }}" data-fancybox="entries" data-src="{{ src }}" data-type="ajax" class="entry-preview">
         <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_thumbnail') }}" alt="{{ entry.name }}">
-        <div class="title">{{ entry.name }}</div>
+        <div class="entry-preview-caption">{{ entry.name }}</div>
     </a>
 {% endfor %}
