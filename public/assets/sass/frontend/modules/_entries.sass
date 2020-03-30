@@ -1,7 +1,17 @@
+/**
+ * Flexbox justified gallery
+ * Credits: https://github.com/xieranmaya/blog/issues/6
+ */
+
 #entries
     position: relative
     margin: 1.5rem auto 1rem
-    overflow: initial
+    display: flex
+    flex-wrap: wrap
+
+    &:after
+        content: ''
+        flex-grow: 999999999
 
     &.loading
         &:after
@@ -22,15 +32,22 @@
     @include media-breakpoint-up(md)
         margin: 6.75rem auto 1.5rem
 
-    .entry-preview
+    figure
+        position: relative
         overflow: hidden
-        margin: 0
+        margin: 2px
+
+        i
+            display: block
 
         img
+            position: absolute
+            top: 0
+            width: 100%
+            vertical-align: bottom
             transition: transform 0.3s
-            max-width: 100%
 
-        .entry-preview-caption
+        figcaption
             position: absolute
             bottom: 0
             width: 100%
@@ -49,5 +66,5 @@
             img
                 transform: scale(1.05)
 
-            .entry-preview-caption
+            figcaption
                 opacity: 1

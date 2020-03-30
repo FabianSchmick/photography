@@ -56,8 +56,6 @@ class Entry {
                 .removeClass('loading')
                 .append(data);
 
-            $('[data-justified="true"]').justifiedGallery('norewind');
-
             if ($.fancybox.getInstance()) { // If clicked throw lightbox
                 addContentToLightbox(data);
             }

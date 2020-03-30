@@ -22,7 +22,6 @@ The project provides you following functionality:
 - Tag possibility for describing and filtering entries
 - Upload gpx files for showing your favorite tours with [Leaflet](https://leafletjs.com/) and connect them with your entries 
 - Lazyloading / Infinityscrolling for images
-- Justified Gallery with [JustifiedGallery](http://miromannino.github.io/Justified-Gallery/)
 - Lightbox with [Fancybox](http://fancyapps.com/fancybox/3/)
 - Dynamic Sitemap generation
 - SEO optimized and partly a PWA with [Workbox](https://developers.google.com/web/tools/workbox/modules/workbox-build)

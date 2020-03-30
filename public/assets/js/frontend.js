@@ -23,7 +23,6 @@ $(document).ready(function() {
 
     Entry.loadNextPrevEntry();
     Entry.lazyLoad();
-    justify();
     lightbox();
 
     pagination();
