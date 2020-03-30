@@ -14,7 +14,7 @@ class SluggableListener extends GedmoSluggableListener
     }
 
     /**
-     * Add the unique ID for Entries as a prefix
+     * Add the unique ID for Entries as a prefix.
      *
      * @return string $text
      */

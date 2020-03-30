@@ -55,8 +55,6 @@ class PaginationExtension extends AbstractExtension
      * @param int    $last    Last page
      * @param string $path    Name of the controller which paginates
      * @param array  $options Additional options like a query for the paginate controller or css classes name
-     *
-     * @return Markup
      */
     public function getPagination(int $current, int $last, string $path, array $options = []): Markup
     {

@@ -6,7 +6,7 @@
     <a href="{{ path('entry_show', {'slug': entry.slug}) }}" data-fancybox="entries" data-src="{{ path('entry_show_ajax', {'id': entry.id}) }}" data-type="ajax"
        style="width:{{ dimensions.width * calcbase / dimensions.height }}px; flex-grow: {{ dimensions.width * calcbase / dimensions.height }}">
         <figure>
-            <i style="padding-bottom: {{dimensions.height / dimensions.width * 100}}%"></i>
+            <i style="padding-bottom: {{ dimensions.height / dimensions.width * 100 }}%"></i>
             <img src="{{ src }}" alt="{{ entry.name }}"/>
             <figcaption>{{ entry.name }}</figcaption>
         </figure>
