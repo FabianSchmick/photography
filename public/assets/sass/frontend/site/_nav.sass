@@ -34,6 +34,7 @@ header#menu
             @include media-breakpoint-up(lg)
                 padding: 0
 
+        .dropdown-menu > .dropdown-item,
         .navbar-nav > li
             > a
                 background: transparent
@@ -87,7 +88,6 @@ header#menu
 
             @include media-breakpoint-up(sm)
                 text-align: center
-                padding: 0
 
         .navbar-toggler
             width: 40px
@@ -135,9 +135,6 @@ header#menu
 
             .dropdown-menu
                 background: $color-secondary
-                border: none
-                box-shadow: none
-                border-radius: 0
 
                 > li > a
                     color: $color-primary
