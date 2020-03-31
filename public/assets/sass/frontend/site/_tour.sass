@@ -35,12 +35,18 @@
                 background: $color-teritary
 
     .tour-pictures
-        .gallery
-            position: relative
-            text-align: center
+        .entries
+            justify-content: center
+            &:after
+                display: none
 
             a
                 border-bottom: none
+                flex-grow: initial !important
+
+                figure figcaption
+                    padding: 1rem 0.75rem 0.25rem
+                    font-size: inherit
 
     .tour-map
         #map

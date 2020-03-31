@@ -35,7 +35,7 @@
             {% endif %}
         </article>
 
-        <div id="entries" data-justified="true" data-paginate="{{ path('tag_pagiante_ajax', {'slug': tag.slug}) }}">
+        <div class="entries" data-paginate="{{ path('tag_pagiante_ajax', {'slug': tag.slug}) }}">
             {{ render(controller('App\\Controller\\Frontend\\TagController::ajaxPaginate', {'slug': tag.slug, 'page': 1 })) }}
         </div>
     </section>

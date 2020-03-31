@@ -86,14 +86,8 @@
                 {% if not tour.entries.empty %}
                     <div class="tour-pictures">
                         <h3>{{ 'tour.pictures'|trans }}</h3>
-                        <div class="text-container gallery" data-justified data-row-height="150">
-                            {% for entry in tour.entries %}
-                                {% set url = path('entry_show', {'slug': entry.slug}) %}
-                                {% set src = path('entry_show_ajax', {'id': entry.id}) %}
-                                <a href="{{ url }}" data-fancybox="entries" data-src="{{ src }}" data-type="ajax">
-                                    <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_thumbnail') }}" alt="{{ entry.name }}">
-                                </a>
-                            {% endfor %}
+                        <div class="text-container entries">
+                            {% include 'frontend/entry/ajax-list.html.twig' with {'entries': tour.entries, 'calcbase': 150}  %}
                         </div>
                     </div>
                 {% endif %}
