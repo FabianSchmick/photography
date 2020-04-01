@@ -33,8 +33,9 @@ yarn-error.log
 
 .idea
 .migraw
-/public/assets/dist/
-/public/uploads/
 /node_modules/
 npm-debug.log
+SnoreToast.lnk
+/public/assets/dist/
+/public/uploads/
 /public/sw.js
