@@ -39,3 +39,4 @@ SnoreToast.lnk
 /public/assets/dist/
 /public/uploads/
 /public/sw.js
+/public/workbox*.js

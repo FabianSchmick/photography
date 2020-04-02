@@ -60,11 +60,11 @@ if (Encore.isProduction()) {
                     },
                     {
                         urlPattern: new RegExp('/de/(.*)'),
-                        handler: 'StaleWhileRevalidate'
+                        handler: 'NetworkFirst'
                     },
                     {
                         urlPattern: new RegExp('/en/(.*)'),
-                        handler: 'StaleWhileRevalidate'
+                        handler: 'NetworkFirst'
                     }
                 ],
                 swDest: config.swDest
