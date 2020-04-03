@@ -6,6 +6,7 @@ use App\Entity\Entry;
 use App\Form\EntryType;
 use App\Repository\EntryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -68,7 +69,7 @@ class EntryController extends AbstractController
      *
      * @Route("/edit/{id}", name="admin_entry_edit")
      */
-    public function edit(Request $request, TranslatorInterface $translator, Entry $entry): Response
+    public function edit(Request $request, Entry $entry): Response
     {
         $form = $this->createForm(EntryType::class, $entry);
         $form->handleRequest($request);
@@ -78,16 +79,13 @@ class EntryController extends AbstractController
             $em->persist($entry);
             $em->flush();
 
-            $translated = $translator->trans('flash.success.edit');
-            $this->addFlash(
-                'success',
-                $translated.'.'
-            );
+            $this->addFlash('success', 'flash.success.edit');
         }
 
         return $this->render('admin/entry/edit.html.twig', [
             'entry' => $entry,
             'form' => $form->createView(),
+            'deleteForm' => $this->createDeleteForm($entry)->createView(),
         ]);
     }
 
@@ -96,20 +94,31 @@ class EntryController extends AbstractController
      *
      * @Route("/delete/{id}", name="admin_entry_delete")
      */
-    public function delete(TranslatorInterface $translator, Entry $entry): RedirectResponse
+    public function delete(Request $request, TranslatorInterface $translator, Entry $entry): RedirectResponse
     {
-        $em = $this->getDoctrine()->getManager();
+        $form = $this->createDeleteForm($entry);
+        $form->handleRequest($request);
 
-        $translated = str_replace('%entry%', $entry->getName(), $translator->trans('flash.success.deleted.entry'));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
 
-        $em->remove($entry);
-        $em->flush();
+            $em->remove($entry);
+            $em->flush();
 
-        $this->addFlash(
-            'success',
-            $translated.'.'
-        );
+            $translated = str_replace('%entry%', $entry->getName(), $translator->trans('flash.success.deleted.entry'));
+            $this->addFlash('success', $translated);
+        } else {
+            $this->addFlash('danger', 'flash.error.deleted');
+        }
 
         return $this->redirectToRoute('admin_index');
+    }
+
+    private function createDeleteForm(Entry $entry): FormInterface
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('admin_entry_delete', ['id' => $entry->getId()]))
+            ->setMethod('DELETE')
+            ->getForm();
     }
 }

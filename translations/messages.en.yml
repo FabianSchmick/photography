@@ -66,20 +66,21 @@ header.languages: Languages
 header.authors_name: Fabian Schmick
 
 # Modals
-modal.delete.msg.author: Are you sure you want to delete the author
-modal.delete.msg.entry: Are you sure you want to delete the entry
-modal.delete.msg.location: Are you sure you want to delete the location
-modal.delete.msg.tag: Are you sure you want to delete the tag
-modal.delete.msg.tour: Are you sure you want to delete the tour
+modal.delete.msg.author: Are you sure you want to delete the author?
+modal.delete.msg.entry: Are you sure you want to delete the entry?
+modal.delete.msg.location: Are you sure you want to delete the location?
+modal.delete.msg.tag: Are you sure you want to delete the tag?
+modal.delete.msg.tour: Are you sure you want to delete the tour?
 
 # Flash messages
-flash.success.edit: Your changes have been saved
-flash.success.new: Your new entry has been saved. Edit it here
-flash.success.deleted.entry: The entry <strong>%entry%</strong> has been deleted
-flash.success.deleted.author: The author <strong>%author%</strong> has been deleted
-flash.success.deleted.location: The location <strong>%location%</strong> has been deleted
-flash.success.deleted.tag: The tag <strong>%tag%</strong> has been deleted
-flash.success.deleted.tour: The tour <strong>%tour%</strong> has been delete
+flash.success.edit: Your changes have been saved.
+flash.success.new: Your new entry has been saved. Edit it here.
+flash.success.deleted.entry: The entry <strong>%entry%</strong> has been deleted.
+flash.success.deleted.author: The author <strong>%author%</strong> has been deleted.
+flash.success.deleted.location: The location <strong>%location%</strong> has been deleted.
+flash.success.deleted.tag: The tag <strong>%tag%</strong> has been deleted.
+flash.success.deleted.tour: The tour <strong>%tour%</strong> has been delete.
+flash.error.deleted: There occured an error while deleting. Please reload and try again.
 
 # Pagination
 pagination.page: Page

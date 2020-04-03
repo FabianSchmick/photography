@@ -6,6 +6,7 @@ use App\Entity\Tag;
 use App\Form\TagType;
 use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -68,7 +69,7 @@ class TagController extends AbstractController
      *
      * @Route("/edit/{id}", name="admin_tag_edit")
      */
-    public function edit(Request $request, TranslatorInterface $translator, Tag $tag): Response
+    public function edit(Request $request, Tag $tag): Response
     {
         $form = $this->createForm(TagType::class, $tag);
         $form->handleRequest($request);
@@ -78,16 +79,13 @@ class TagController extends AbstractController
             $em->persist($tag);
             $em->flush();
 
-            $translated = $translator->trans('flash.success.edit');
-            $this->addFlash(
-                'success',
-                $translated.'.'
-            );
+            $this->addFlash('success', 'flash.success.edit');
         }
 
         return $this->render('admin/tag/edit.html.twig', [
             'tag' => $tag,
             'form' => $form->createView(),
+            'deleteForm' => $this->createDeleteForm($tag)->createView(),
         ]);
     }
 
@@ -96,20 +94,31 @@ class TagController extends AbstractController
      *
      * @Route("/delete/{id}", name="admin_tag_delete")
      */
-    public function delete(TranslatorInterface $translator, Tag $tag): RedirectResponse
+    public function delete(Request $request, TranslatorInterface $translator, Tag $tag): RedirectResponse
     {
-        $em = $this->getDoctrine()->getManager();
+        $form = $this->createDeleteForm($tag);
+        $form->handleRequest($request);
 
-        $translated = str_replace('%tag%', $tag->getName(), $translator->trans('flash.success.deleted.tag'));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
 
-        $em->remove($tag);
-        $em->flush();
+            $em->remove($tag);
+            $em->flush();
 
-        $this->addFlash(
-            'success',
-            $translated.'.'
-        );
+            $translated = str_replace('%tag%', $tag->getName(), $translator->trans('flash.success.deleted.tag'));
+            $this->addFlash('success', $translated);
+        } else {
+            $this->addFlash('danger', 'flash.error.deleted');
+        }
 
         return $this->redirectToRoute('admin_index');
+    }
+
+    private function createDeleteForm(Tag $tag): FormInterface
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('admin_tag_delete', ['id' => $tag->getId()]))
+            ->setMethod('DELETE')
+            ->getForm();
     }
 }

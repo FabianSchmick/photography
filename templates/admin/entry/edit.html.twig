@@ -5,7 +5,7 @@
 
 {% block modals %}
     {{ parent() }}
-    {{ macro.create_delete_modal('modal.delete.msg.entry', entry.name, path('admin_entry_delete', {'id': entry.id})) }}
+    {{ macro.create_delete_modal('modal.delete.msg.entry', entry.name, deleteForm) }}
 {% endblock %}
 
 {% block body %}

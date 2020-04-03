@@ -6,6 +6,7 @@ use App\Entity\Tour;
 use App\Form\TourType;
 use App\Repository\TourRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -68,7 +69,7 @@ class TourController extends AbstractController
      *
      * @Route("/edit/{id}", name="admin_tour_edit")
      */
-    public function edit(Request $request, TranslatorInterface $translator, Tour $tour): Response
+    public function edit(Request $request, Tour $tour): Response
     {
         $form = $this->createForm(TourType::class, $tour);
         $form->handleRequest($request);
@@ -78,16 +79,13 @@ class TourController extends AbstractController
             $em->persist($tour);
             $em->flush();
 
-            $translated = $translator->trans('flash.success.edit');
-            $this->addFlash(
-                'success',
-                $translated.'.'
-            );
+            $this->addFlash('success', 'flash.success.edit');
         }
 
         return $this->render('admin/tour/edit.html.twig', [
             'tour' => $tour,
             'form' => $form->createView(),
+            'deleteForm' => $this->createDeleteForm($tour)->createView(),
         ]);
     }
 
@@ -96,20 +94,31 @@ class TourController extends AbstractController
      *
      * @Route("/delete/{id}", name="admin_tour_delete")
      */
-    public function delete(TranslatorInterface $translator, Tour $tour): RedirectResponse
+    public function delete(Request $request, TranslatorInterface $translator, Tour $tour): RedirectResponse
     {
-        $em = $this->getDoctrine()->getManager();
+        $form = $this->createDeleteForm($tour);
+        $form->handleRequest($request);
 
-        $translated = str_replace('%tour%', $tour->getName(), $translator->trans('flash.success.deleted.tour'));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
 
-        $em->remove($tour);
-        $em->flush();
+            $em->remove($tour);
+            $em->flush();
 
-        $this->addFlash(
-            'success',
-            $translated.'.'
-        );
+            $translated = str_replace('%tour%', $tour->getName(), $translator->trans('flash.success.deleted.tour'));
+            $this->addFlash('success', $translated);
+        } else {
+            $this->addFlash('danger', 'flash.error.deleted');
+        }
 
         return $this->redirectToRoute('admin_index');
+    }
+
+    private function createDeleteForm(Tour $tour): FormInterface
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('admin_tour_delete', ['id' => $tour->getId()]))
+            ->setMethod('DELETE')
+            ->getForm();
     }
 }

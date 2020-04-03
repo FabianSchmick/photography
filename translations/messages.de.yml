@@ -66,20 +66,21 @@ header.languages: Sprachen
 header.authors_name: Fabian Schmick
 
 # Modals
-modal.delete.msg.author: Sind Sie sicher, dass Sie diesen Autor löschen möchten
-modal.delete.msg.entry: Sind Sie sicher, dass Sie den Eintrag löschen möchten
-modal.delete.msg.location: Sind Sie sicher, dass Sie diesen Aufnahmeort löschen möchten
-modal.delete.msg.tag: Sind Sie sicher, dass Sie diesen Tag löschen möchten
-modal.delete.msg.tour: Sind Sie sicher, dass Sie diese Tour löschen möchten
+modal.delete.msg.author: Sind Sie sicher, dass Sie diesen Autor löschen möchten?
+modal.delete.msg.entry: Sind Sie sicher, dass Sie den Eintrag löschen möchten?
+modal.delete.msg.location: Sind Sie sicher, dass Sie diesen Aufnahmeort löschen möchten?
+modal.delete.msg.tag: Sind Sie sicher, dass Sie diesen Tag löschen möchten?
+modal.delete.msg.tour: Sind Sie sicher, dass Sie diese Tour löschen möchten?
 
 # Flash messages
-flash.success.edit: Ihre Änderrungen wurden gespeichert
-flash.success.new: Ihr neuer Eintrag wurde gespeichert. Weiter bearbeiten
-flash.success.deleted.entry: Der Eintrag <strong>%entry%</strong> wurde gelöscht
-flash.success.deleted.author: Der Autor <strong>%author%</strong> wurde gelöscht
-flash.success.deleted.location: Der Aufnahmeort <strong>%location%</strong> wurde gelöscht
-flash.success.deleted.tag: Der Tag <strong>%tag%</strong> wurde gelöscht
-flash.success.deleted.tour: Die Tour <strong>%tour%</strong> wurde gelöscht
+flash.success.edit: Ihre Änderrungen wurden gespeichert.
+flash.success.new: Ihr neuer Eintrag wurde gespeichert. Weiter bearbeiten.
+flash.success.deleted.entry: Der Eintrag <strong>%entry%</strong> wurde gelöscht.
+flash.success.deleted.author: Der Autor <strong>%author%</strong> wurde gelöscht.
+flash.success.deleted.location: Der Aufnahmeort <strong>%location%</strong> wurde gelöscht.
+flash.success.deleted.tag: Der Tag <strong>%tag%</strong> wurde gelöscht.
+flash.success.deleted.tour: Die Tour <strong>%tour%</strong> wurde gelöscht.
+flash.error.deleted: Es ist ein Fehler während des Löschens aufgetreten. Bitte versuchen Sie es erneut.
 
 # Pagination
 pagination.page: Seite
