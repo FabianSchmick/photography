@@ -8,7 +8,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -31,29 +30,27 @@ class TagType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        /** @var Tag $tag */
+        $tag = $options['data'];
+
         $builder
-            ->add('name', TextType::class, [
-                'label' => 'name',
-            ])
+            ->add('name')
             ->add('description', TextareaType::class, [
-                'label' => 'description',
                 'required' => false,
                 'attr' => [
                     'class' => 'wysiwyg',
                 ],
             ])
             ->add('sort', NumberType::class, [
-                'label' => 'sort',
                 'required' => false,
             ])
         ;
 
-        if (!$options['data']->getEntries()->isEmpty()) {
+        if (!$tag->getEntries()->isEmpty()) {
             $builder->add('previewEntry', EntityType::class, [
-                'label' => 'previewEntry',
                 'required' => false,
                 'class' => 'App:Entry',
-                'choices' => $options['data']->getEntries(),
+                'choices' => $tag->getEntries(),
                 'placeholder' => '',
                 'attr' => [
                     'class' => 'select2 form-control',
@@ -62,10 +59,10 @@ class TagType extends AbstractType
         }
 
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
-            $form = $event->getForm();
-            $object = $form->getData();
+            /** @var Tag $tag */
+            $tag = $event->getForm()->getData();
 
-            $object->setDescription($this->coreService->purifyString($object->getDescription()));
+            $tag->setDescription($this->coreService->purifyString($tag->getDescription()));
         });
     }
 

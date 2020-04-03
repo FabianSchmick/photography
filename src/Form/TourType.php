@@ -37,30 +37,28 @@ class TourType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        /** @var Tour $tour */
+        $tour = $options['data'];
+
         $builder
-            ->add('name', TextType::class, [
-                'label' => 'name',
-            ])
+            ->add('name')
             ->add('description', TextareaType::class, [
-                'label' => 'description',
                 'required' => false,
                 'attr' => [
                     'class' => 'wysiwyg',
                 ],
             ])
             ->add('file', TourFileType::class, [
-                'label' => 'file',
                 'required' => false,
-                'placeholder_text' => $options['data']->getFile() ? $options['data']->getFile()->getOriginalName() : $this->translator->trans('no.file.selected'),
+                'placeholder_text' => $tour->getFile() ? $tour->getFile()->getOriginalName() : $this->translator->trans('label.no_file_selected'),
             ])
         ;
 
-        if (!$options['data']->getEntries()->isEmpty()) {
+        if (!$tour->getEntries()->isEmpty()) {
             $builder->add('previewEntry', EntityType::class, [
-                'label' => 'previewEntry',
                 'required' => false,
                 'class' => 'App:Entry',
-                'choices' => $options['data']->getEntries(),
+                'choices' => $tour->getEntries(),
                 'placeholder' => '',
                 'attr' => [
                     'class' => 'select2 form-control',
@@ -69,10 +67,10 @@ class TourType extends AbstractType
         }
 
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
-            $form = $event->getForm();
-            $object = $form->getData();
+            /** @var Tour $tour */
+            $tour = $event->getForm()->getData();
 
-            $object->setDescription($this->coreService->purifyString($object->getDescription()));
+            $tour->setDescription($this->coreService->purifyString($tour->getDescription()));
         });
     }
 

@@ -14,7 +14,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -51,18 +50,14 @@ class EntryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, [
-                'label' => 'name',
-            ])
+            ->add('name')
             ->add('description', TextareaType::class, [
-                'label' => 'description',
                 'required' => false,
                 'attr' => [
                     'class' => 'wysiwyg',
                 ],
             ])
             ->add('author', EntityType::class, [
-                'label' => 'author',
                 'required' => false,
                 'class' => 'App:Author',
                 'placeholder' => '',
@@ -75,12 +70,10 @@ class EntryType extends AbstractType
                 ],
             ])
             ->add('image', EntryImageType::class, [
-                'label' => 'image',
                 'required' => false,
-                'placeholder_text' => $options['data']->getImage() ? $options['data']->getImage()->getOriginalName() : $this->translator->trans('no.file.selected'),
+                'placeholder_text' => $options['data']->getImage() ? $options['data']->getImage()->getOriginalName() : $this->translator->trans('label.no_file_selected'),
             ])
             ->add('location', EntityType::class, [
-                'label' => 'location',
                 'required' => false,
                 'class' => 'App:Location',
                 'placeholder' => '',
@@ -93,13 +86,11 @@ class EntryType extends AbstractType
                 ],
             ])
             ->add('timestamp', DateType::class, [
-                'label' => 'timestamp',
                 'required' => false,
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
             ])
             ->add('tags', EntityType::class, [
-                'label' => 'tags',
                 'class' => 'App:Tag',
                 'query_builder' => function (EntityRepository $er): QueryBuilder {
                     return $er->createQueryBuilder('t')
@@ -111,7 +102,6 @@ class EntryType extends AbstractType
                 ],
             ])
             ->add('tour', EntityType::class, [
-                'label' => 'tour',
                 'required' => false,
                 'class' => 'App:Tour',
                 'placeholder' => '',
@@ -150,15 +140,19 @@ class EntryType extends AbstractType
         });
 
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
-            $form = $event->getForm();
-            $object = $form->getData();
+            /** @var Entry $entry */
+            $entry = $event->getForm()->getData();
 
-            /** @var \DateTime $date */
-            $date = $object->getTimestamp();
+            if (!$entry->getTour() && $tour = $entry->getPreviewTour()) {
+                $tour->setPreviewEntry(null);
+                $this->em->persist($tour);
+            }
+
+            $date = $entry->getTimestamp();
             $date->setTime(date('H'), date('i'), date('s'));
-            $object->setTimestamp($date);
+            $entry->setTimestamp($date);
 
-            $object->setDescription($this->coreService->purifyString($object->getDescription()));
+            $entry->setDescription($this->coreService->purifyString($entry->getDescription()));
         });
     }
 
