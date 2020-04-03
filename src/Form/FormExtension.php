@@ -11,7 +11,7 @@ class FormExtension extends AbstractTypeExtension
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'label_format' => 'label.%name%'
+            'label_format' => 'label.%name%',
         ]);
     }
 

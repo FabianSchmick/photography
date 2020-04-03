@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Tour;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Gedmo\Translatable\TranslatableListener;
 
