@@ -51,7 +51,7 @@ class LocationController extends AbstractController
 
             $url = $this->generateUrl('admin_location_edit', ['id' => $location->getId()]);
 
-            $translated = $translator->trans('success.new');
+            $translated = $translator->trans('flash.success.new');
             $this->addFlash(
                 'success',
                 $translated.': <a class="alert-link" href="'.$url.'">'.$location->getName().'</a>.'
@@ -80,7 +80,7 @@ class LocationController extends AbstractController
             $em->persist($location);
             $em->flush();
 
-            $translated = $translator->trans('success.edit');
+            $translated = $translator->trans('flash.success.edit');
             $this->addFlash(
                 'success',
                 $translated.'.'
@@ -102,7 +102,7 @@ class LocationController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $translated = str_replace('%location%', $location->getName(), $translator->trans('success.deleted.location'));
+        $translated = str_replace('%location%', $location->getName(), $translator->trans('flash.success.deleted.location'));
 
         $em->remove($location);
         $em->flush();

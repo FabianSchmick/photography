@@ -51,7 +51,7 @@ class EntryController extends AbstractController
 
             $url = $this->generateUrl('admin_entry_edit', ['id' => $entry->getId()]);
 
-            $translated = $translator->trans('success.new');
+            $translated = $translator->trans('flash.success.new');
             $this->addFlash(
                 'success',
                 $translated.': <a class="alert-link" href="'.$url.'">'.$entry->getName().'</a>.'
@@ -80,7 +80,7 @@ class EntryController extends AbstractController
             $em->persist($entry);
             $em->flush();
 
-            $translated = $translator->trans('success.edit');
+            $translated = $translator->trans('flash.success.edit');
             $this->addFlash(
                 'success',
                 $translated.'.'
@@ -102,7 +102,7 @@ class EntryController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $translated = str_replace('%entry%', $entry->getName(), $translator->trans('success.deleted.entry'));
+        $translated = str_replace('%entry%', $entry->getName(), $translator->trans('flash.success.deleted.entry'));
 
         $em->remove($entry);
         $em->flush();

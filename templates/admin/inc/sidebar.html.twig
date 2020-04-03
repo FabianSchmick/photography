@@ -1,12 +1,12 @@
 <li class="nav-item">
     <a href="{{ path('admin_entry_new') }}" class="nav-link">
-        <i class="fa fa-plus fa-fw"></i> {{ 'new.entry'|trans }}
+        <i class="fa fa-plus fa-fw"></i> {{ 'header.new.entry'|trans }}
     </a>
 </li>
 
 <li class="nav-item">
     <a href="{{ path('admin_tour_new')}}" class="nav-link">
-        <i class="fa fa-plus fa-fw"></i> {{ 'new.tour'|trans }}
+        <i class="fa fa-plus fa-fw"></i> {{ 'header.new.tour'|trans }}
     </a>
 </li>
 
@@ -14,7 +14,7 @@
 
 <li class="searchable nav-item">
     <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapse-1">
-        <i class="fa fa-images fa-fw"></i> {{ 'entries'|trans }}<span class="fa arrow"></span>
+        <i class="fa fa-images fa-fw"></i> {{ 'header.entries'|trans }}<span class="fa arrow"></span>
     </a>
     <ul id="collapse-1" class="collapse list-unstyled">
         {% for entry in entries %}
@@ -26,7 +26,7 @@
 </li>
 <li class="searchable nav-item">
     <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapse-5">
-        <i class="fa fa-map fa-fw"></i> {{ 'tours'|trans }}<span class="fa arrow"></span>
+        <i class="fa fa-map fa-fw"></i> {{ 'header.tours'|trans }}<span class="fa arrow"></span>
     </a>
     <ul id="collapse-5" class="collapse list-unstyled">
         {% for tour in tours %}
@@ -38,7 +38,7 @@
 </li>
 <li class="searchable nav-item">
     <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapse-2">
-        <i class="fa fa-users fa-fw"></i> {{ 'authors'|trans }}<span class="fa arrow"></span>
+        <i class="fa fa-users fa-fw"></i> {{ 'header.authors'|trans }}<span class="fa arrow"></span>
     </a>
     <ul id="collapse-2" class="collapse list-unstyled">
         {% for author in authors %}
@@ -50,7 +50,7 @@
 </li>
 <li class="searchable nav-item">
     <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapse-3">
-        <i class="fa fa-globe fa-fw"></i> {{ 'locations'|trans }}<span class="fa arrow"></span>
+        <i class="fa fa-globe fa-fw"></i> {{ 'header.locations'|trans }}<span class="fa arrow"></span>
     </a>
     <ul id="collapse-3" class="collapse list-unstyled">
         {% for location in locations %}
@@ -62,7 +62,7 @@
 </li>
 <li class="searchable nav-item">
     <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapse-4">
-        <i class="fa fa-hashtag fa-fw"></i> {{ 'tags'|trans }}<span class="fa arrow"></span>
+        <i class="fa fa-hashtag fa-fw"></i> {{ 'header.tags'|trans }}<span class="fa arrow"></span>
     </a>
     <ul id="collapse-4" class="collapse list-unstyled">
         {% for tag in tags %}

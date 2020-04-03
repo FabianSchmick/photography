@@ -1,108 +1,105 @@
-# Common translations
-title: Title
-description: Description
-author: Author
-image: Image
-location: Location
-timestamp: Date
-sort: Sort
-entries: Entries
-authors: Authors
-locations: Locations
-tags: Tags
-tag: Tag
-tours: Tours
-tour: Tour
-edit: Edit
-submit: Submit
-delete: Delete
-close: Close
-name: Name
-file: File
-page: Page
+# Locales
+locale.en: English
+locale.de: Deutsch
+
+# Labels
+label.name: Name
+label.description: Description
+label.author: Author
+label.image: Image
+label.location: Location
+label.timestamp: Date
+label.sort: Sort
+label.entries: Entries
+label.authors: Authors
+label.locations: Locations
+label.tags: Tags
+label.tag: Tag
+label.tours: Tours
+label.tour: Tour
+label.file: File
+label.no_file_selected: No file selected
+label.search: Search
+label.previewEntry: Preview Entry
+label.username: Username
+label.password: Password
+
+# Buttons
+btn.edit: Edit
+btn.submit: Submit
+btn.delete: Delete
+btn.close: Close
+btn.live_view: Live view
+btn.homepage: Homepage
+btn.login: Login
+btn.logout: Logout
+btn.back_to_homepage: Back to Homepage
+btn.download: Download
+btn.next: Next
+btn.prev: Previous
+btn.show_tour: Show tour
+btn.tour_download: GPX download
+
+# Titles
+title.photography: Photography
+title.admin: Admin
+title.login: Login
+
+# Headers
+header.new.entry: New Entry
+header.new.author: New Author
+header.new.location: New Location
+header.new.tag: New Tag
+header.new.tour: New Tour
+header.entries: Entries
+header.authors: Authors
+header.locations: Locations
+header.tags: Tags
+header.tours: Tours
+header.edit: Edit
+header.delete: Delete
+header.login: Please login
+header.home: Home
+header.introduction: About
+header.gallery: Gallery
+header.languages: Languages
+header.authors_name: Fabian Schmick
+
+# Modals
+modal.delete.msg.author: Are you sure you want to delete the author
+modal.delete.msg.entry: Are you sure you want to delete the entry
+modal.delete.msg.location: Are you sure you want to delete the location
+modal.delete.msg.tag: Are you sure you want to delete the tag
+modal.delete.msg.tour: Are you sure you want to delete the tour
+
+# Flash messages
+flash.success.edit: Your changes have been saved
+flash.success.new: Your new entry has been saved. Edit it here
+flash.success.deleted.entry: The entry <strong>%entry%</strong> has been deleted
+flash.success.deleted.author: The author <strong>%author%</strong> has been deleted
+flash.success.deleted.location: The location <strong>%location%</strong> has been deleted
+flash.success.deleted.tag: The tag <strong>%tag%</strong> has been deleted
+flash.success.deleted.tour: The tour <strong>%tour%</strong> has been delete
+
+# Pagination
+pagination.page: Page
 pagination.prev: '<span class="icon icon-sm icon-angle" title="Previous"><svg><use xlink:href="#angle-icon"/></svg>'
 pagination.next: '<span class="icon icon-sm icon-angle icon-rotate-180" title="Next"><svg><use xlink:href="#angle-icon"/></svg>'
 
-# Base / Admin template
-photography: Photography
-admin: Admin
-homepage: Homepage
-english: English
-german: Deutsch
-locale.en: English
-locale.de: Deutsch
-live.view: Live view
-no.file.selected: No file selected
-
-# Entry
-new.entry: New Entry
-delete.msg.entry: Are you sure you want to delete the entry
-current.file: Current file
-success.edit: Your changes have been saved
-success.new: Your new entry has been saved. Edit it here
-success.deleted.entry: The entry <strong>%entry%</strong> has been deleted
-
-# Author
-new.author: New Author
-delete.msg.author: Are you sure you want to delete the author
-success.deleted.author: The author <strong>%author%</strong> has been deleted
-
-# Location
-new.location: New Location
-delete.msg.location: Are you sure you want to delete the location
-success.deleted.location: The location <strong>%location%</strong> has been deleted
-
-# Tag
-new.tag: New Tag
-delete.msg.tag: Are you sure you want to delete the tag
-delete.tag.alert: The image will get removed by saving the tag
-success.deleted.tag: The tag <strong>%tag%</strong> has been deleted
-
-# Tour
-new.tour: New Tour
-delete.msg.tour: Are you sure you want to delete the tour
-success.deleted.tour: The tour <strong>%tour%</strong> has been deleted
-previewEntry: Preview Entry
-
-# Sidebar
-search: Search
-
-# Login
-login: Login
-sign.in: Please login
-bad.credentials: Username or Password wrong
-Invalid credentials.: Username or Password wrong
-username: Username
-password: Password
-logout: Logout
-back.to.homepage: Back to Homepage
-
 # Frontend
-home: Home
-introduction: About
-gallery: Gallery
-languages: Languages
-authors.name: Fabian Schmick
 intro.by: by
 introduction.headline: Forests, streams, mountains, landscapes, mushrooms - <strong>Nature Photography</strong>
 introduction.longtext: My name is Fabian Schmick, I am in my early 20s, come from Sauerland (Germany) and am a Web Developer. Because I am a passionate wanderer, I always discover small and big highlights on my tours which I capture with my camera. On this Website you will find nature-photography and reports of my hiking tours from the Sauerland, the Eifel and the Alps.
-download: Download
-next: Next
-prev: Previous
 introduction.tag: All pictures filtered by tag
-similar.tags: Similar tags
-noscript: Please enable JavaScript to use this website without any issues
-meta.desc: Forests, streams, mountains, landscapes, mushrooms - Nature Photography by Fabian Schmick
+introduction.similar_tags: Similar tags
+introduction.tours.headline: Scenic loop hiking-, crest- or summit- tours
+introduction.tours.longtext: In most cases, I plan my tours on the computer and create a GPX file for my GPS device. So I'm always on the safe side and can dedicate myself to nature and photography during the tour. About my favorite tours I write short tour reports and provide the GPX-File for downloading.
 
 # Tour
 tours.headline: My tour recommendations
-introduction.tours.headline: Scenic loop hiking-, crest- or summit- tours
-introduction.tours: In most cases, I plan my tours on the computer and create a GPX file for my GPS device. So I'm always on the safe side and can dedicate myself to nature and photography during the tour. About my favorite tours I write short tour reports and provide the GPX-File for downloading.
 tour.data: Tourdata
 tour.map: GPX-Track
 tour.pictures: Pictures
-tour.download: GPX download
-show.tour: Show tour
 tour.distance: Length
 tour.distance.unit: km
 tour.minAltitude: Min altitude
@@ -111,8 +108,9 @@ tour.cumulativeElevationGain: Elevation gain
 tour.altitude.unit: hm
 tour.locations: Locations
 
-# Errors
-Invalid CSRF token.: Invalid token, please try again
+# Other
+noscript: Please enable JavaScript to use this website without any issues
+meta.desc: Forests, streams, mountains, landscapes, mushrooms - Nature Photography by Fabian Schmick
 
 # Error page
 page.not.found: Page not found (code 404)

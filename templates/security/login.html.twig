@@ -1,13 +1,13 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}{{ 'login'|trans }}{% endblock %}
+{% block title %}{{ 'header.login'|trans }}{% endblock %}
 
 {% block body %}
     <section id="login" class="container text-center">
 
         {{ form_start(form, {'attr': {'class': 'login-form shadow'}}) }}
 
-            <h1 class="h3 pb-2">{{ 'sign.in'|trans }}</h1>
+            <h1 class="h3 pb-2">{{ 'header.login'|trans }}</h1>
 
             <hr/>
 
@@ -17,11 +17,11 @@
 
             {{ form_widget(form._password) }}
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit" name="login"><i class="fas fa-sign-in-alt"></i> {{ 'login'|trans }}</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" name="login"><i class="fas fa-sign-in-alt"></i> {{ 'btn.login'|trans }}</button>
 
             <hr/>
 
-            <a href="{{ path('homepage') }}"><i class="fas fa-angle-left pr-2"></i>{{ 'back.to.homepage'|trans }}</a>
+            <a href="{{ path('homepage') }}"><i class="fas fa-angle-left pr-2"></i>{{ 'btn.back_to_homepage'|trans }}</a>
 
         {{ form_end(form) }}
     </section>

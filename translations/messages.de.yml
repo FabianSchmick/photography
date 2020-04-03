@@ -1,108 +1,105 @@
-# Common translations
-title: Titel
-description: Beschreibung
-author: Autor
-image: Bild
-location: Aufnahmeort
-timestamp: Datum
-sort: Sortierung
-entries: Einträge
-authors: Autoren
-locations: Aufnahmeorte
-tags: Tags
-tag: Tag
-tours: Touren
-tour: Tour
-edit: Bearbeiten
-submit: Bestätigen
-delete: Löschen
-close: Schließen
-name: Name
-file: Datei
-page: Seite
+# Locales
+locale.en: English
+locale.de: Deutsch
+
+# Labels
+label.name: Name
+label.description: Beschreibung
+label.author: Autor
+label.image: Bild
+label.location: Aufnahmeort
+label.timestamp: Datum
+label.sort: Sortierung
+label.entries: Einträge
+label.authors: Autoren
+label.locations: Aufnahmeorte
+label.tags: Tags
+label.tag: Tag
+label.tours: Touren
+label.tour: Tour
+label.file: Datei
+label.no_file_selected: Keine Datei ausgewählt
+label.search: Suche
+label.previewEntry: Vorschau Eintrag
+label.username: Benutzername
+label.password: Passwort
+
+# Buttons
+btn.edit: Bearbeiten
+btn.submit: Bestätigen
+btn.delete: Löschen
+btn.close: Schließen
+btn.live_view: Live Ansicht
+btn.homepage: Startseite
+btn.login: Anmelden
+btn.logout: Abmelden
+btn.back_to_homepage: Zurück zur Startseite
+btn.download: Herunterladen
+btn.next: Weiter
+btn.prev: Zurück
+btn.show_tour: Tour anzeigen
+btn.tour_download: GPX Herunterladen
+
+# Titles
+title.photography: Fotografie
+title.admin: Admin
+title.login: Anmelden
+
+# Headers
+header.new.entry: Neuer Eintrag
+header.new.author: Neuer Autor
+header.new.location: Neuer Aufnahmeort
+header.new.tag: Neuer Tag
+header.new.tour: Neue Tour
+header.entries: Einträge
+header.authors: Autoren
+header.locations: Aufnahmeorte
+header.tags: Tags
+header.tours: Touren
+header.edit: Bearbeiten
+header.delete: Löschen
+header.login: Bitte anmelden
+header.home: Home
+header.introduction: Über
+header.gallery: Fotos
+header.languages: Sprachen
+header.authors_name: Fabian Schmick
+
+# Modals
+modal.delete.msg.author: Sind Sie sicher, dass Sie diesen Autor löschen möchten
+modal.delete.msg.entry: Sind Sie sicher, dass Sie den Eintrag löschen möchten
+modal.delete.msg.location: Sind Sie sicher, dass Sie diesen Aufnahmeort löschen möchten
+modal.delete.msg.tag: Sind Sie sicher, dass Sie diesen Tag löschen möchten
+modal.delete.msg.tour: Sind Sie sicher, dass Sie diese Tour löschen möchten
+
+# Flash messages
+flash.success.edit: Ihre Änderrungen wurden gespeichert
+flash.success.new: Ihr neuer Eintrag wurde gespeichert. Weiter bearbeiten
+flash.success.deleted.entry: Der Eintrag <strong>%entry%</strong> wurde gelöscht
+flash.success.deleted.author: Der Autor <strong>%author%</strong> wurde gelöscht
+flash.success.deleted.location: Der Aufnahmeort <strong>%location%</strong> wurde gelöscht
+flash.success.deleted.tag: Der Tag <strong>%tag%</strong> wurde gelöscht
+flash.success.deleted.tour: Die Tour <strong>%tour%</strong> wurde gelöscht
+
+# Pagination
+pagination.page: Seite
 pagination.prev: '<span class="icon icon-sm icon-angle" title="Zurück"><svg><use xlink:href="#angle-icon"/></svg>'
 pagination.next: '<span class="icon icon-sm icon-angle icon-rotate-180" title="Weiter"><svg><use xlink:href="#angle-icon"/></svg>'
 
-# Base / Admin template
-photography: Fotografie
-admin: Admin
-homepage: Homepage
-english: English
-german: Deutsch
-locale.en: English
-locale.de: Deutsch
-live.view: Live Ansicht
-no.file.selected: Keine Datei ausgewählt
-
-# Entry
-new.entry: Neuer Eintrag
-delete.msg.entry: Sind Sie sicher, dass Sie den Eintrag löschen möchten
-current.file: Aktuelle Datei
-success.edit: Ihre Änderrungen wurden gespeichert
-success.new: Ihr neuer Eintrag wurde gespeichert. Weiter bearbeiten
-success.deleted.entry: Der Eintrag <strong>%entry%</strong> wurde gelöscht
-
-# Author
-new.author: Neuer Autor
-delete.msg.author: Sind Sie sicher, dass Sie diesen Autor löschen möchten
-success.deleted.author: Der Autor <strong>%author%</strong> wurde gelöscht
-
-# Location
-new.location: Neuer Aufnahmeort
-delete.msg.location: Sind Sie sicher, dass Sie diesen Aufnahmeort löschen möchten
-success.deleted.location: Der Aufnahmeort <strong>%location%</strong> wurde gelöscht
-
-# Tag
-new.tag: Neuer Tag
-delete.msg.tag: Sind Sie sicher, dass Sie diesen Tag löschen möchten
-delete.tag.alert: Das Bild wird beim Speichern gelöscht werden
-success.deleted.tag: Der Tag <strong>%tag%</strong> wurde gelöscht
-
-# Tour
-new.tour: Neue Tour
-delete.msg.tour: Sind Sie sicher, dass Sie diese Tour löschen möchten
-success.deleted.tour: Die Tour <strong>%tour%</strong> wurde gelöscht
-previewEntry: Vorschau Eintrag
-
-# Sidebar
-search: Suche
-
-# Login
-login: Anmelden
-sign.in: Bitte anmelden
-bad.credentials: Benutzername oder Passwort falsch
-Invalid credentials.: Benutzername oder Passwort falsch
-username: Benutzername
-password: Passwort
-logout: Abmelden
-back.to.homepage: Zurück zur Startseite
-
-# Frontend
-home: Home
-introduction: Über
-gallery: Fotos
-languages: Sprachen
-authors.name: Fabian Schmick
-intro.by: von
+# introduction
+introduction.by: von
 introduction.headline: Wälder, Bäche, Berge, Landschaften, Pilze  - <strong>Naturfotografie</strong>
 introduction.longtext: Mein Name ist Fabian Schmick, bin Anfang 20, komme aus dem Sauerland und bin als Webentwickler tätig. Da ich leidenschaftlicher Wanderer bin, entdecke ich auf meinen Touren immer wieder kleine und große Highlights welche ich mit meiner Kamera festhalte. Auf dieser Webseite findest du Naturfotografie und Berichte meiner Wander-Touren aus dem Sauerland, der Eifel und der Alpen.
-download: Herunterladen
-next: Weiter
-prev: Zurück
 introduction.tag: Alle Bilder gefiltert zum Thema
-similar.tags: Ähnliche Tags
-noscript: Bitte aktivieren Sie JavaScript um die Webseite im vollen Umfang nutzen zu können
-meta.desc: Wälder, Bäche, Berge, Landschaften, Pilze - Naturfotografie von Fabian Schmick
+introduction.similar_tags: Ähnliche Tags
+introduction.tours.headline: Aussichtsreiche Rundwanderwege, Kammenwege oder Gipfeltouren
+introduction.tours.longtext: Meine Touren plane ich in meistens über den Computer und erstelle mir dadurch eine GPX-Datei für mein GPS-Gerät. Somit bin ich immer auf der sicheren Seite und kann mich während der Tour ganz der Natur und der Fotografie widmen. Über meine Lieblingswanderwege verfasse ich hier kurze Touren-Berichte und stelle die jeweilige GPX-Datei als Download zur Verfügung.
 
 # Tour
 tours.headline: Meine Touren Empfehlungen
-introduction.tours.headline: Aussichtsreiche Rundwanderwege, Kammenwege oder Gipfeltouren
-introduction.tours: Meine Touren plane ich in meistens über den Computer und erstelle mir dadurch eine GPX-Datei für mein GPS-Gerät. Somit bin ich immer auf der sicheren Seite und kann mich während der Tour ganz der Natur und der Fotografie widmen. Über meine Lieblingswanderwege verfasse ich hier kurze Touren-Berichte und stelle die jeweilige GPX-Datei als Download zur Verfügung.
 tour.data: Tourdaten
 tour.map: GPX-Track
 tour.pictures: Bilder
-tour.download: GPX Herunterladen
-show.tour: Tour anzeigen
 tour.distance: Länge
 tour.distance.unit: km
 tour.minAltitude: Tiefster Punkt
@@ -111,10 +108,11 @@ tour.cumulativeElevationGain: Höhenunterschied
 tour.altitude.unit: hm
 tour.locations: Orte
 
-# Errors
-Invalid CSRF token.: Ungültiger Token, bitte versuchen Sie es erneut
+# Other
+noscript: Bitte aktivieren Sie JavaScript um die Webseite im vollen Umfang nutzen zu können
+meta.desc: Wälder, Bäche, Berge, Landschaften, Pilze - Naturfotografie von Fabian Schmick
 
-# Error page
+# Error pages
 page.not.found: Seite wurde nicht gefunden (code 404)
 page.not.found.explanation.1: Die angeforderte Seite konnte nicht gefunden werden. Möglicherweise existiert die Seite nicht mehr. Überprüfen Sie die URL auf Rechtschreibfehler oder kehren Sie zur
 page.not.found.explanation.2: Startseite zurück

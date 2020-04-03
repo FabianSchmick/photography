@@ -13,7 +13,7 @@
     <meta name="msapplication-TileColor" content="#00cdcd">
     <meta name="theme-color" content="#00cdcd">
 
-    <title>{% block title %}{{ 'admin'|trans }}{% endblock %} | {{ 'photography'|trans }}</title>
+    <title>{% block title %}{{ 'title.admin'|trans }}{% endblock %} | {{ 'title.photography'|trans }}</title>
 
     {% block stylesheets %}
         {{ encore_entry_link_tags('css/admin') }}
@@ -37,7 +37,7 @@
                         <svg id="logo"><use xlink:href="#logo-camera"/></svg>
                     </div>
                     <div class="sidebar-brand-text mx-3 text-left">
-                        <span class="text-left">{{ 'photography'|trans }}</span>
+                        <span class="text-left">{{ 'title.photography'|trans }}</span>
                     </div>
                 </a>
 
@@ -64,7 +64,7 @@
 
                         <form action="#" id="top-search" class="d-none d-sm-inline-block form-inline mr-auto ml-md-2 my-2 my-md-0 mw-100 navbar-search" data-search="" data-target="main">
                             <div class="input-group d-flex align-items-center">
-                                <input type="text" class="form-control border-0 small" placeholder="{{ 'search'|trans }}..." value="" autocomplete="off" aria-label="Search" name="query" data-sidebar-search>
+                                <input type="text" class="form-control border-0 small" placeholder="{{ 'label.search'|trans }}..." value="" autocomplete="off" aria-label="Search" name="query" data-sidebar-search>
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fas fa-search fa-sm"></i>
@@ -82,7 +82,7 @@
                                 <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                     <form action="#" class="form-inline mr-auto w-100 navbar-search" data-search="" data-target="main">
                                         <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="{{ 'search'|trans }}..." value="" autocomplete="off" aria-label="Search" name="query" data-sidebar-search>
+                                            <input type="text" class="form-control bg-light border-0 small" placeholder="{{ 'label.search'|trans }}..." value="" autocomplete="off" aria-label="Search" name="query" data-sidebar-search>
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary" type="button">
                                                     <i class="fas fa-search fa-sm"></i>
@@ -102,7 +102,7 @@
                                 <!-- Dropdown - Alerts -->
                                 <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                     <h6 class="dropdown-header">
-                                        {{ 'languages'|trans }}
+                                        {{ 'header.languages'|trans }}
                                     </h6>
                                     {% for locale in locales|split('|') %}
                                         {% set lang = 'locale.' ~ locale %}
@@ -122,14 +122,14 @@
                             <li class="nav-item">
                                 <a class="nav-link text-gray-700" href="{{ path('homepage', {'_locale': request.locale}) }}" target="_blank">
                                     <i class="fas fa-home fa-sm fa-fw mr-2"></i>
-                                    <span class="d-none d-lg-inline">{{ 'homepage'|trans }}</span>
+                                    <span class="d-none d-lg-inline">{{ 'btn.homepage'|trans }}</span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link text-gray-500" href="{{ path('logout') }}">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
-                                    <span class="d-none d-lg-inline">{{ 'logout'|trans }}</span>
+                                    <span class="d-none d-lg-inline">{{ 'btn.logout'|trans }}</span>
                                 </a>
                             </li>
                         </ul>

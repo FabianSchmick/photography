@@ -1,11 +1,11 @@
 {% import 'templates/macro/macro.html.twig' as macro %}
 {% extends 'admin.html.twig' %}
 
-{% block title %}{{ 'edit'|trans }} - {{ tour.name }}{% endblock %}
+{% block title %}{{ 'header.edit'|trans }} - {{ tour.name }}{% endblock %}
 
 {% block modals %}
     {{ parent() }}
-    {{ macro.create_delete_modal('delete.msg.tour', tour.name, path('admin_tour_delete', {'id': tour.id})) }}
+    {{ macro.create_delete_modal('modal.delete.msg.tour', tour.name, path('admin_tour_delete', {'id': tour.id})) }}
 {% endblock %}
 
 {% block body %}
@@ -13,7 +13,7 @@
     <div class="d-flex justify-content-between">
         <h1 class="h3 mb-4 text-gray-800">{{ tour.name }}</h1>
         <div>
-            <a class="btn btn-primary" href="{{ path('tour_show', {'slug': tour.slug}) }}" target="_blank" title="{{ 'live.view'|trans }}">
+            <a class="btn btn-primary" href="{{ path('tour_show', {'slug': tour.slug}) }}" target="_blank" title="{{ 'btn.live_view'|trans }}">
                 <i class="fa fa-eye" aria-hidden="true"></i>
             </a>
         </div>
@@ -26,8 +26,8 @@
         {{ form_widget(form) }}
 
         <div class="d-flex justify-content-between">
-            <button class="btn btn-success" type="submit" name="submit">{{ 'submit'|trans }}</button>
-            <button class="btn btn-danger pull-right" type="button" data-toggle="modal" data-target="#deleteModal">{{ 'delete'|trans }}</button>
+            <button class="btn btn-success" type="submit" name="submit">{{ 'btn.submit'|trans }}</button>
+            <button class="btn btn-danger pull-right" type="button" data-toggle="modal" data-target="#deleteModal">{{ 'btn.delete'|trans }}</button>
         </div>
 
     {{ form_end(form) }}

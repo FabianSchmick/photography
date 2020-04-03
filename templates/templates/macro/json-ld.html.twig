@@ -3,13 +3,13 @@
         {
             "@context": "http://schema.org",
             "@type": "Blog",
-            "name": "{{ title }} | {{ 'photography'|trans }}",
+            "name": "{{ title }} | {{ 'title.photography'|trans }}",
             "url": "{{ url(app.request.attributes.get('_route'),
                 app.request.attributes.get('_route_params')) }}",
             "description": "{{ desc }}",
             "publisher": {
                 "@type": "Person",
-                "name": "{{ 'authors.name'|trans }}"
+                "name": "{{ 'header.authors_name'|trans }}"
             }
         }
     {% endapply %}
@@ -40,7 +40,7 @@
         {
             "@context": "http://schema.org",
             "@type": "ImageObject",
-            "author": "{{ entry.author.name is defined ? entry.author.name : 'authors.name'|trans }}",
+            "author": "{{ entry.author.name is defined ? entry.author.name : 'header.authors_name'|trans }}",
             {% if entry.location.name is defined %}
             "contentLocation": "{{ entry.location.name }}",
             {% endif %}
@@ -62,13 +62,13 @@
             "@type": "BlogPosting",
             "headline": "{{ post.name }}",
             "image": {% if entry %}{{ jsonLd.imageObject(entry) }}{% else %}"{{ absolute_url(asset('assets/img/layout/cover-tour.jpg')) }}"{% endif %},
-            "editor": "{{ 'authors.name'|trans }}",
+            "editor": "{{ 'header.authors_name'|trans }}",
             {% if entry.tags is defined %}
             "keywords": "{{ entry.tags|join(',') }}",
             {% endif %}
             "publisher": {
                 "@type": "Person",
-                "name": "{{ 'authors.name'|trans }}"
+                "name": "{{ 'header.authors_name'|trans }}"
             },
             "url": "{{ url(app.request.attributes.get('_route'),
                 app.request.attributes.get('_route_params')) }}",
@@ -78,7 +78,7 @@
             "articleBody": "{{ post.description|striptags }}",
             "author": {
                 "@type": "Person",
-                "name": "{{ 'authors.name'|trans }}"
+                "name": "{{ 'header.authors_name'|trans }}"
             }
         }
     {% endapply %}
@@ -164,7 +164,7 @@
                     "position": 1,
                     "item": {
                         "@id": "{{ url('homepage') }}",
-                        "name": "{{ 'home'|trans }}"
+                        "name": "{{ 'header.home'|trans }}"
                     }
                 },
                 {% for element in elements %}

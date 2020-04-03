@@ -15,12 +15,12 @@ class LoginType extends AbstractType
         $builder
             ->add('_username', TextType::class, [
                 'attr' => [
-                    'placeholder' => 'username',
+                    'placeholder' => 'label.username',
                 ],
             ])
             ->add('_password', PasswordType::class, [
                 'attr' => [
-                    'placeholder' => 'password',
+                    'placeholder' => 'label.password',
                 ],
             ])
         ;

@@ -1,10 +1,10 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}{{ 'new.tag'|trans }}{% endblock %}
+{% block title %}{{ 'header.new.tag'|trans }}{% endblock %}
 
 {% block body %}
 
-    <h1 class="h3 mb-4 text-gray-800">{{ 'new.tag'|trans }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ 'header.new.tag'|trans }}</h1>
 
     {{ form_start(form, {'action': path('admin_tag_new')}) }}
 
@@ -13,7 +13,7 @@
         {{ form_widget(form) }}
 
         <div class="form-group">
-            <button class="btn btn-success" type="submit" name="submit">{{ 'submit'|trans }}</button>
+            <button class="btn btn-success" type="submit" name="submit">{{ 'btn.submit'|trans }}</button>
         </div>
 
     {{ form_end(form) }}

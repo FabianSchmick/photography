@@ -1,6 +1,6 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}{{ 'tours'|trans }}{% endblock %}
+{% block title %}{{ 'header.tours'|trans }}{% endblock %}
 
 {% block body %}
 
@@ -9,11 +9,11 @@
 
         <div class="page-header">
             <div class="pull-left">
-                <h1>{{ 'tours'|trans }}</h1>
+                <h1>{{ 'header.tours'|trans }}</h1>
             </div>
             <div class="pull-right">
                 <ul class="actions list-unstyled pull-right">
-                    <li><a class="btn btn-primary" href="{{ path('admin_tour_new') }}">{{ 'new.tour'|trans }}</a></li>
+                    <li><a class="btn btn-primary" href="{{ path('admin_tour_new') }}">{{ 'header.new.tour'|trans }}</a></li>
                 </ul>
             </div>
             <div class="clearfix"></div>
@@ -23,7 +23,7 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>{{ 'name'|trans }}</th>
+                    <th>{{ 'label.name'|trans }}</th>
                     <th></th>
                 </tr>
             </thead>
@@ -37,7 +37,7 @@
                         {{ tour.name }}
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="{{ path('admin_tour_edit', {'id': tour.id}) }}" title="{{ 'edit'|trans }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a class="btn btn-primary" href="{{ path('admin_tour_edit', {'id': tour.id}) }}" title="{{ 'btn.edit'|trans }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     </td>
                 </tr>
             {% endfor %}

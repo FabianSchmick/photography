@@ -26,7 +26,7 @@
             {% endif %}
 
             {% if relatedTags|length > 1 %}
-                <div class="similar-tags">{{ 'similar.tags'|trans }}:</div>
+                <div class="similar-tags">{{ 'introduction.similar_tags'|trans }}:</div>
                 <ul class="list-unstyled tags" style="display: inline-block">
                     {% for relatedTag in relatedTags %}
                         <li><a href="{{ path('tag_show', {'slug': relatedTag.slug}) }}">{{ relatedTag.name }}</a></li>

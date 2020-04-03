@@ -4,7 +4,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalLabel">{{ 'delete'|trans }}?</h5>
+                        <h5 class="modal-title" id="modalLabel">{{ 'header.delete'|trans }}?</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -13,8 +13,8 @@
                         <p>{{ body|trans }} <strong>{{ entity }}</strong>?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'close'|trans }}</button>
-                        <a href="{{ deleteLink }}" class="btn btn-danger">{{ 'delete'|trans }}</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'btn.close'|trans }}</button>
+                        <a href="{{ deleteLink }}" class="btn btn-danger">{{ 'btn.delete'|trans }}</a>
                     </div>
                 </div>
             </div>
@@ -25,19 +25,19 @@
 {%- macro entry_meta(entry) -%}
     <dl class="meta">
         {% if entry.location.name is defined %}
-            <dt class="entry-location">{{ 'location'|trans }}:</dt>
+            <dt class="entry-location">{{ 'label.location'|trans }}:</dt>
             <dd class="entry-location-value">{{ entry.location.name }}</dd>
         {% endif %}
         {% if entry.tour.name is defined %}
-            <dt class="entry-tour">{{ 'tour'|trans }}:</dt>
+            <dt class="entry-tour">{{ 'label.tour'|trans }}:</dt>
             <dd class="entry-tour-value"><a href="{{ path('tour_show', {'slug': entry.tour.slug }) }}">{{ entry.tour.name }}</a></dd>
         {% endif %}
         {% if entry.author.name is defined %}
-            <dt class="entry-author">{{ 'author'|trans }}:</dt>
+            <dt class="entry-author">{{ 'label.author'|trans }}:</dt>
             <dd class="entry-author-value">{{ entry.author.name }}</dd>
         {% endif %}
         {% if entry.timestamp %}
-            <dt class="entry-timestamp">{{ 'timestamp'|trans }}:</dt>
+            <dt class="entry-timestamp">{{ 'label.timestamp'|trans }}:</dt>
             <dd class="entry-timestamp-value">{{ entry.timestamp|date("d.m.Y") }}</dd>
         {% endif %}
     </dl>

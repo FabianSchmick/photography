@@ -15,7 +15,7 @@
                 <div class="entry-image col-xs-12 col-lg-8 col-xl-9">
                     <div class="entry-image-container">
                         {% if next %}
-                            <a class="next" href="{{ path('entry_show', {'slug': next.slug}) }}" title="{{ 'next'|trans }}">
+                            <a class="next" href="{{ path('entry_show', {'slug': next.slug}) }}" title="{{ 'btn.next'|trans }}">
                                 <span class="icon icon-angle"><svg><use xlink:href="#angle-icon"/></svg></span>
                             </a>
                         {% endif %}
@@ -23,7 +23,7 @@
                         <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_show') }}" alt="{{ entry.name }}">
 
                         {% if prev %}
-                            <a class="prev" href="{{ path('entry_show', {'slug': prev.slug}) }}" title="{{ 'prev'|trans }}">
+                            <a class="prev" href="{{ path('entry_show', {'slug': prev.slug}) }}" title="{{ 'btn.prev'|trans }}">
                                 <span class="icon icon-angle icon-rotate-180"><svg><use xlink:href="#angle-icon"/></svg></span>
                             </a>
                         {% endif %}
@@ -37,7 +37,7 @@
                     {{ macro.entry_meta(entry) }}
                     {{ macro.entry_tags(entry) }}
                     <a class="btn btn-teritary" href="{{ vich_uploader_asset(entry.image, 'file') }}" target="_blank">
-                        <span class="icon icon-sm icon-download pr-2"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'download'|trans }}
+                        <span class="icon icon-sm icon-download pr-2"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'btn.download'|trans }}
                     </a>
                 </div>
             </article>

@@ -1,10 +1,10 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}{{ 'new.tour'|trans }}{% endblock %}
+{% block title %}{{ 'header.new.tour'|trans }}{% endblock %}
 
 {% block body %}
 
-    <h1 class="h3 mb-4 text-gray-800">{{ 'new.tour'|trans }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ 'header.new.tour'|trans }}</h1>
 
     {{ form_start(form, {'action': path('admin_tour_new')}) }}
 
@@ -13,7 +13,7 @@
         {{ form_widget(form) }}
 
         <div class="form-group">
-            <button class="btn btn-success" type="submit" name="submit">{{ 'submit'|trans }}</button>
+            <button class="btn btn-success" type="submit" name="submit">{{ 'btn.submit'|trans }}</button>
         </div>
 
     {{ form_end(form) }}

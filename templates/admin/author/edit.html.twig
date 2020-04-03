@@ -1,11 +1,11 @@
 {% import 'templates/macro/macro.html.twig' as macro %}
 {% extends 'admin.html.twig' %}
 
-{% block title %}{{ 'edit'|trans }} - {{ author.name }}{% endblock %}
+{% block title %}{{ 'header.edit'|trans }} - {{ author.name }}{% endblock %}
 
 {% block modals %}
     {{ parent() }}
-    {{ macro.create_delete_modal('delete.msg.author', author.name, path('admin_author_delete', {'id': author.id})) }}
+    {{ macro.create_delete_modal('modal.delete.msg.author', author.name, path('admin_author_delete', {'id': author.id})) }}
 {% endblock %}
 
 {% block body %}
@@ -19,8 +19,8 @@
         {{ form_widget(form) }}
 
         <div class="d-flex justify-content-between">
-            <button class="btn btn-success" type="submit" name="submit">{{ 'submit'|trans }}</button>
-            <button class="btn btn-danger pull-right" type="button" data-toggle="modal" data-target="#deleteModal">{{ 'delete'|trans }}</button>
+            <button class="btn btn-success" type="submit" name="submit">{{ 'btn.submit'|trans }}</button>
+            <button class="btn btn-danger pull-right" type="button" data-toggle="modal" data-target="#deleteModal">{{ 'btn.delete'|trans }}</button>
         </div>
 
     {{ form_end(form) }}

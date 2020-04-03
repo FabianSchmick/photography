@@ -1,11 +1,11 @@
 {% import 'templates/macro/json-ld.html.twig' as jsonLd %}
 {% extends 'base.html.twig' %}
 
-{% block meta_description %}{{ 'tours.headline'|trans }} - {{ 'page'|trans }} {{ page }} - ({{ 'introduction.tours.headline'|trans|striptags }}){% endblock %}
+{% block meta_description %}{{ 'tours.headline'|trans }} - {{ 'pagination.page'|trans }} {{ page }} - ({{ 'introduction.tours.headline'|trans|striptags }}){% endblock %}
 
 {% block meta_image %}{{ absolute_url(asset('assets/img/layout/cover-tour.jpg')) }}{% endblock %}
 
-{% block title %}{{ 'tours'|trans }} - {{ 'page'|trans }} {{ page }}{% endblock %}
+{% block title %}{{ 'tours'|trans }} - {{ 'pagination.page'|trans }} {{ page }}{% endblock %}
 
 {% block body_id %}tours{% endblock %}
 
@@ -21,7 +21,7 @@
         <article class="text-container text-center">
             <h2 class="h5">{{ 'introduction.tours.headline'|trans|raw }}</h2>
             <p>
-                {{ 'introduction.tours'|trans|raw }}
+                {{ 'introduction.tours.longtext'|trans|raw }}
             </p>
         </article>
 
@@ -75,7 +75,7 @@
                                         {% endif %}
                                     </dl>
                                     <button class="btn btn-teritary btn-inverse">
-                                        {{ 'show.tour'|trans }} <span class="icon icon-sm icon-angle icon-rotate-180 pl-2"><svg><use xlink:href="#angle-icon"/></svg></span>
+                                        {{ 'btn.show_tour'|trans }} <span class="icon icon-sm icon-angle icon-rotate-180 pl-2"><svg><use xlink:href="#angle-icon"/></svg></span>
                                     </button>
                                 </div>
                             </div>

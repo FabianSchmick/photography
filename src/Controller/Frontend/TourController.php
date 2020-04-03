@@ -64,7 +64,7 @@ class TourController extends AbstractController
         $breadcrumbs = [
             [
                 'url' => $this->generateUrl('tour_index', ['page' => $page]),
-                'name' => $translator->trans('tours'),
+                'name' => $translator->trans('header.tours'),
             ],
             [
                 'url' => $this->generateUrl('tour_show', ['slug' => $tour->getSlug()]),

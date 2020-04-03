@@ -51,7 +51,7 @@ class TagController extends AbstractController
 
             $url = $this->generateUrl('admin_tag_edit', ['id' => $tag->getId()]);
 
-            $translated = $translator->trans('success.new');
+            $translated = $translator->trans('flash.success.new');
             $this->addFlash(
                 'success',
                 $translated.': <a class="alert-link" href="'.$url.'">'.$tag->getName().'</a>.'
@@ -80,7 +80,7 @@ class TagController extends AbstractController
             $em->persist($tag);
             $em->flush();
 
-            $translated = $translator->trans('success.edit');
+            $translated = $translator->trans('flash.success.edit');
             $this->addFlash(
                 'success',
                 $translated.'.'
@@ -102,7 +102,7 @@ class TagController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $translated = str_replace('%tag%', $tag->getName(), $translator->trans('success.deleted.tag'));
+        $translated = str_replace('%tag%', $tag->getName(), $translator->trans('flash.success.deleted.tag'));
 
         $em->remove($tag);
         $em->flush();

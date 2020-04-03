@@ -1,6 +1,6 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}{{ 'entries'|trans }}{% endblock %}
+{% block title %}{{ 'header.entries'|trans }}{% endblock %}
 
 {% block body %}
 
@@ -9,11 +9,11 @@
 
             <div class="page-header">
                 <div class="pull-left">
-                    <h1>{{ 'entries'|trans }}</h1>
+                    <h1>{{ 'header.entries'|trans }}</h1>
                 </div>
                 <div class="pull-right">
                     <ul class="actions list-unstyled pull-right">
-                        <li><a class="btn btn-primary" href="{{ path('admin_entry_new') }}">{{ 'new.entry'|trans }}</a></li>
+                        <li><a class="btn btn-primary" href="{{ path('admin_entry_new') }}">{{ 'header.new.entry'|trans }}</a></li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -23,8 +23,8 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>{{ 'title'|trans }}</th>
-                    <th>{{ 'timestamp'|trans }}</th>
+                    <th>{{ 'label.name'|trans }}</th>
+                    <th>{{ 'label.timestamp'|trans }}</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -41,7 +41,7 @@
                             {{ entry.timestamp|date('d-m->') }}
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="{{ path('admin_entry_edit', {'id': entry.id}) }}" title="{{ 'edit'|trans }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a class="btn btn-primary" href="{{ path('admin_entry_edit', {'id': entry.id}) }}" title="{{ 'btn.edit'|trans }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 {% endfor %}

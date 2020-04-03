@@ -51,7 +51,7 @@ class AuthorController extends AbstractController
 
             $url = $this->generateUrl('admin_author_edit', ['id' => $author->getId()]);
 
-            $translated = $translator->trans('success.new');
+            $translated = $translator->trans('flash.success.new');
             $this->addFlash(
                 'success',
                 $translated.': <a class="alert-link" href="'.$url.'">'.$author->getName().'</a>.'
@@ -80,7 +80,7 @@ class AuthorController extends AbstractController
             $em->persist($author);
             $em->flush();
 
-            $translated = $translator->trans('success.edit');
+            $translated = $translator->trans('flash.success.edit');
             $this->addFlash(
                 'success',
                 $translated.'.'
@@ -102,7 +102,7 @@ class AuthorController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $translated = str_replace('%author%', $author->getName(), $translator->trans('success.deleted.author'));
+        $translated = str_replace('%author%', $author->getName(), $translator->trans('flash.success.deleted.author'));
 
         $em->remove($author);
         $em->flush();
