@@ -12,7 +12,7 @@
 {% set img = tour.previewEntry ? vich_uploader_asset(tour.previewEntry.image, 'file') : asset('assets/img/layout/cover-tour.jpg') %}
 {% block meta_image %}{{ absolute_url(img) }}{% endblock %}
 
-{% block title %}{{ 'tour'|trans }} - {{ tour.name }}{% endblock %}
+{% block title %}{{ 'header.tour'|trans }} - {{ tour.name }}{% endblock %}
 
 {% block cover %}
     <section id="cover" class="parallax-container">

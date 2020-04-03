@@ -6,7 +6,7 @@
 {% set img = tag.previewEntry ? vich_uploader_asset(tag.previewEntry.image, 'file') : asset('assets/img/layout/cover-tag.jpg') %}
 {% block meta_image %}{{ absolute_url(img) }}{% endblock %}
 
-{% block title %}{{ 'tag'|trans }} {{ tag.name }}{% endblock %}
+{% block title %}{{ 'header.tag'|trans }} {{ tag.name }}{% endblock %}
 
 {% block cover %}
     <section id="cover" class="parallax-container">

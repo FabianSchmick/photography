@@ -55,7 +55,9 @@ header.entries: Einträge
 header.authors: Autoren
 header.locations: Aufnahmeorte
 header.tags: Tags
+header.tag: Tag
 header.tours: Touren
+header.tour: Tour
 header.edit: Bearbeiten
 header.delete: Löschen
 header.login: Bitte anmelden

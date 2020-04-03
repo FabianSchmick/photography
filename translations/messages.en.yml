@@ -55,7 +55,9 @@ header.entries: Entries
 header.authors: Authors
 header.locations: Locations
 header.tags: Tags
+header.tag: Tag
 header.tours: Tours
+header.tour: Tour
 header.edit: Edit
 header.delete: Delete
 header.login: Please login
