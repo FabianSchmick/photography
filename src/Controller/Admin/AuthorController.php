@@ -23,7 +23,7 @@ class AuthorController extends AbstractController
     /**
      * List all authors.
      *
-     * @Route("/", name="admin_authors_index")
+     * @Route("/", name="admin_authors_index", methods={"GET"})
      */
     public function index(AuthorRepository $authorRepository): Response
     {
@@ -35,7 +35,7 @@ class AuthorController extends AbstractController
     /**
      * Save an new author.
      *
-     * @Route("/new", name="admin_author_new")
+     * @Route("/new", name="admin_author_new", methods={"GET","POST"})
      */
     public function new(Request $request, TranslatorInterface $translator): Response
     {
@@ -67,7 +67,7 @@ class AuthorController extends AbstractController
     /**
      * Save an existing author.
      *
-     * @Route("/edit/{id}", name="admin_author_edit")
+     * @Route("/edit/{id}", name="admin_author_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Author $author): Response
     {
@@ -92,7 +92,7 @@ class AuthorController extends AbstractController
     /**
      * Delete an author.
      *
-     * @Route("/delete/{id}", name="admin_author_delete")
+     * @Route("/delete/{id}", name="admin_author_delete", methods={"DELETE"})
      */
     public function delete(Request $request, TranslatorInterface $translator, Author $author): RedirectResponse
     {

@@ -13,7 +13,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/login", name="login")
+     * @Route("/login", name="login", methods={"GET","POST"})
      * https://stackoverflow.com/questions/35663410/form-builder-for-symfony-login-page
      */
     public function login(Request $request, AuthenticationUtils $authenticationUtils): Response

@@ -23,7 +23,7 @@ class EntryController extends AbstractController
     /**
      * List all entries.
      *
-     * @Route("/", name="admin_entry_index")
+     * @Route("/", name="admin_entry_index", methods={"GET"})
      */
     public function index(EntryRepository $entryRepository): Response
     {
@@ -35,7 +35,7 @@ class EntryController extends AbstractController
     /**
      * Save a new entry.
      *
-     * @Route("/new", name="admin_entry_new")
+     * @Route("/new", name="admin_entry_new", methods={"GET","POST"})
      */
     public function new(Request $request, TranslatorInterface $translator): Response
     {
@@ -67,7 +67,7 @@ class EntryController extends AbstractController
     /**
      * Save a existing entry.
      *
-     * @Route("/edit/{id}", name="admin_entry_edit")
+     * @Route("/edit/{id}", name="admin_entry_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Entry $entry): Response
     {
@@ -92,7 +92,7 @@ class EntryController extends AbstractController
     /**
      * Delete a entry.
      *
-     * @Route("/delete/{id}", name="admin_entry_delete")
+     * @Route("/delete/{id}", name="admin_entry_delete", methods={"DELETE"})
      */
     public function delete(Request $request, TranslatorInterface $translator, Entry $entry): RedirectResponse
     {

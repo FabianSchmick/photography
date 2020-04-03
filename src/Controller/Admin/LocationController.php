@@ -23,7 +23,7 @@ class LocationController extends AbstractController
     /**
      * List all locations.
      *
-     * @Route("/", name="admin_location_index")
+     * @Route("/", name="admin_location_index", methods={"GET"})
      */
     public function index(LocationRepository $locationRepository): Response
     {
@@ -35,7 +35,7 @@ class LocationController extends AbstractController
     /**
      * Save a new location.
      *
-     * @Route("/new", name="admin_location_new")
+     * @Route("/new", name="admin_location_new", methods={"GET","POST"})
      */
     public function new(Request $request, TranslatorInterface $translator): Response
     {
@@ -67,7 +67,7 @@ class LocationController extends AbstractController
     /**
      * Save a existing location.
      *
-     * @Route("/edit/{id}", name="admin_location_edit")
+     * @Route("/edit/{id}", name="admin_location_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Location $location): Response
     {
@@ -92,7 +92,7 @@ class LocationController extends AbstractController
     /**
      * Delete a location.
      *
-     * @Route("/delete/{id}", name="admin_location_delete")
+     * @Route("/delete/{id}", name="admin_location_delete", methods={"DELETE"})
      */
     public function delete(Request $request, TranslatorInterface $translator, Location $location): RedirectResponse
     {

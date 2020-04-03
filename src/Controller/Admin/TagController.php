@@ -23,7 +23,7 @@ class TagController extends AbstractController
     /**
      * List all tags.
      *
-     * @Route("/", name="admin_tag_index")
+     * @Route("/", name="admin_tag_index", methods={"GET"})
      */
     public function index(TagRepository $tagRepository): Response
     {
@@ -35,7 +35,7 @@ class TagController extends AbstractController
     /**
      * Save a new tag.
      *
-     * @Route("/new", name="admin_tag_new")
+     * @Route("/new", name="admin_tag_new", methods={"GET","POST"})
      */
     public function new(Request $request, TranslatorInterface $translator): Response
     {
@@ -67,7 +67,7 @@ class TagController extends AbstractController
     /**
      * Save a existing tag.
      *
-     * @Route("/edit/{id}", name="admin_tag_edit")
+     * @Route("/edit/{id}", name="admin_tag_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Tag $tag): Response
     {
@@ -92,7 +92,7 @@ class TagController extends AbstractController
     /**
      * Delete a tag.
      *
-     * @Route("/delete/{id}", name="admin_tag_delete")
+     * @Route("/delete/{id}", name="admin_tag_delete", methods={"DELETE"})
      */
     public function delete(Request $request, TranslatorInterface $translator, Tag $tag): RedirectResponse
     {

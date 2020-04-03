@@ -23,7 +23,7 @@ class TourController extends AbstractController
     /**
      * List all tours.
      *
-     * @Route("/", name="admin_tour_index")
+     * @Route("/", name="admin_tour_index", methods={"GET"})
      */
     public function index(TourRepository $tourRepository): Response
     {
@@ -35,7 +35,7 @@ class TourController extends AbstractController
     /**
      * Save a new tour.
      *
-     * @Route("/new", name="admin_tour_new")
+     * @Route("/new", name="admin_tour_new", methods={"GET","POST"})
      */
     public function new(Request $request, TranslatorInterface $translator): Response
     {
@@ -67,7 +67,7 @@ class TourController extends AbstractController
     /**
      * Save a existing tour.
      *
-     * @Route("/edit/{id}", name="admin_tour_edit")
+     * @Route("/edit/{id}", name="admin_tour_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Tour $tour): Response
     {
@@ -92,7 +92,7 @@ class TourController extends AbstractController
     /**
      * Delete a tour.
      *
-     * @Route("/delete/{id}", name="admin_tour_delete")
+     * @Route("/delete/{id}", name="admin_tour_delete", methods={"DELETE"})
      */
     public function delete(Request $request, TranslatorInterface $translator, Tour $tour): RedirectResponse
     {
