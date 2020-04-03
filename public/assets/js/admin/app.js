@@ -53,6 +53,7 @@ export function search() {
 
         if (filter === '') {
             $sidebar.find('.collapse').collapse('hide');
+            $sidebar.find('.searchable').show();
             return;
         }
 
@@ -75,7 +76,7 @@ export function search() {
 export function ajaxPageWrapper() {
     let $sidebar = $('ul#accordionSidebar');
 
-    $sidebar.on('click', 'a:not([href="#"])', function() {
+    $sidebar.on('click', 'a:not([href="#"]):not(.sidebar-brand)', function() {
         let $pageWrapper = $('#page-wrapper'),
             uri = $(this).attr('href');
 
