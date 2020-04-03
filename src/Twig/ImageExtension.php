@@ -9,6 +9,19 @@ use Twig\TwigFilter;
 class ImageExtension extends AbstractExtension
 {
     /**
+     * @var string
+     */
+    private $publicDir;
+
+    /**
+     * ImageExtension constructor.
+     */
+    public function __construct(string $publicDir)
+    {
+        $this->publicDir = $publicDir;
+    }
+
+    /**
      * Register Twig filter.
      *
      * @return \Twig\TwigFilter[]
@@ -29,7 +42,7 @@ class ImageExtension extends AbstractExtension
      */
     public function getImageDimensions(string $filename): array
     {
-        list($width, $height) = getimagesize($filename);
+        list($width, $height) = getimagesize($this->publicDir.$filename);
 
         return [
             'width' => $width,
