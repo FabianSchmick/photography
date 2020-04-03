@@ -25,7 +25,7 @@ class EntryRepository extends ServiceEntityRepository
     /**
      * Find entries query by a tag.
      */
-    public function findEntriesByTag(Tag $tag): Query
+    public function findEntriesByTagQuery(Tag $tag): Query
     {
         return $this->createQueryBuilder('e')
             ->where(':tag MEMBER OF e.tags')
