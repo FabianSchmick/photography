@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\Tour;
 use App\Entity\TourFile;
+use App\Repository\TourRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -17,13 +18,19 @@ class TourService
     private $em;
 
     /**
+     * @var TourRepository
+     */
+    private $tourRepository;
+
+    /**
      * TourService constructor.
      *
      * @param EntityManagerInterface $em Entity Manager
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, TourRepository $tourRepository)
     {
         $this->em = $em;
+        $this->tourRepository = $tourRepository;
     }
 
     /**
@@ -36,14 +43,14 @@ class TourService
      */
     public function saveTour(array $tour, File $file = null): Tour
     {
-        $duplicate = $this->em->getRepository('App:Tour')->findOneBy(['name' => $tour['name']]);
+        $duplicate = $this->tourRepository->findOneBy(['name' => $tour['name']]);
 
         if ($duplicate) {
             return $duplicate;
         }
         $tourEntity = new Tour();
         if (isset($tour['id'])) {
-            $tourEntity = $this->em->getRepository('App:Tour')->findOneBy(['id' => $tour['id']]);
+            $tourEntity = $this->tourRepository->findOneBy(['id' => $tour['id']]);
         }
         $tourEntity->setName($tour['name']);
         $tourEntity->setDescription($tour['description']);

@@ -4,6 +4,7 @@ namespace App\Controller\Frontend;
 
 use App\Doctrine\PaginationHelper;
 use App\Entity\Tour;
+use App\Repository\TourRepository;
 use App\Service\CoreService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,11 +21,9 @@ class TourController extends AbstractController
     /**
      * @Route("/tour/page/{page}", name="tour_index", requirements={"page": "\d+"})
      */
-    public function index(CoreService $coreService, $page): Response
+    public function index(CoreService $coreService, TourRepository $tourRepository, $page): Response
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $query = $em->getRepository('App:Tour')->getFindAllQuery();
+        $query = $tourRepository->getFindAllQuery();
         $pages = PaginationHelper::getPagesCount($query, Tour::PAGINATION_QUANTITY);
 
         if ($page > 1 && $page > $pages) {
@@ -48,10 +47,8 @@ class TourController extends AbstractController
      * @Route("/tour/{slug}", name="tour_show")
      * @Entity("tour", expr="repository.findOneByCriteria(_locale, {'slug': slug})")
      */
-    public function show(CoreService $coreService, Tour $tour, TranslatorInterface $translator): Response
+    public function show(CoreService $coreService, Tour $tour, TourRepository $tourRepository, TranslatorInterface $translator): Response
     {
-        $em = $this->getDoctrine()->getManager();
-
         $coreService->setGpxData($tour);
 
         if (!$tour->getEntries()->isEmpty()) {
@@ -59,7 +56,7 @@ class TourController extends AbstractController
             $locations = array_unique($locations);
         }
 
-        $page = $em->getRepository('App:Tour')->findTourListPageNumber($tour);
+        $page = $tourRepository->findTourListPageNumber($tour);
 
         $breadcrumbs = [
             [

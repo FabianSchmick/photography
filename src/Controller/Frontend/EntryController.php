@@ -4,6 +4,7 @@ namespace App\Controller\Frontend;
 
 use App\Doctrine\PaginationHelper;
 use App\Entity\Entry;
+use App\Repository\EntryRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,12 +21,10 @@ class EntryController extends AbstractController
      * @Route("/entry/{slug}", name="entry_show")
      * @Entity("entry", expr="repository.findOneByCriteria(_locale, {'slug': slug})")
      */
-    public function show(Entry $entry): Response
+    public function show(Entry $entry, EntryRepository $entryRepository): Response
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $prev = $em->getRepository('App:Entry')->findByTimestamp($entry);
-        $next = $em->getRepository('App:Entry')->findByTimestamp($entry, '>', 'ASC');
+        $prev = $entryRepository->findByTimestamp($entry);
+        $next = $entryRepository->findByTimestamp($entry, '>', 'ASC');
 
         return $this->render('frontend/entry/show.html.twig', [
             'entry' => $entry,
@@ -51,11 +50,9 @@ class EntryController extends AbstractController
      *
      * @Route("/ajax/entries/{page}", name="entry_pagiante_ajax", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
      */
-    public function ajaxPaginate($page = 1): Response
+    public function ajaxPaginate(EntryRepository $entryRepository, $page = 1): Response
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $query = $em->getRepository('App:Entry')->getFindAllQuery();
+        $query = $entryRepository->getFindAllQuery();
         $pages = PaginationHelper::getPagesCount($query);
         $entries = PaginationHelper::paginate($query, Entry::PAGINATION_QUANTITY, $page);
 

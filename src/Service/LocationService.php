@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\Location;
+use App\Repository\LocationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class LocationService
@@ -15,13 +16,17 @@ class LocationService
     private $em;
 
     /**
-     * LocationService constructor.
-     *
-     * @param EntityManagerInterface $em Entity Manager
+     * @var LocationRepository
      */
-    public function __construct(EntityManagerInterface $em)
+    private $locationRepository;
+
+    /**
+     * LocationService constructor.
+     */
+    public function __construct(EntityManagerInterface $em, LocationRepository $locationRepository)
     {
         $this->em = $em;
+        $this->locationRepository = $locationRepository;
     }
 
     /**
@@ -33,14 +38,14 @@ class LocationService
      */
     public function saveLocation(array $location): Location
     {
-        $duplicate = $this->em->getRepository('App:Location')->findOneBy(['name' => $location['name']]);
+        $duplicate = $this->locationRepository->findOneBy(['name' => $location['name']]);
 
         if ($duplicate) {
             return $duplicate;
         }
         $locationEntity = new Location();
         if (isset($location['id'])) {
-            $locationEntity = $this->em->getRepository('App:Location')->findOneBy(['id' => $location['id']]);
+            $locationEntity = $this->locationRepository->findOneBy(['id' => $location['id']]);
         }
         $locationEntity->setName($location['name']);
 

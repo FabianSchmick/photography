@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\Tag;
+use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class TagService
@@ -18,12 +19,18 @@ class TagService
     private $defaultLocale;
 
     /**
+     * @var TagRepository
+     */
+    private $tagRepository;
+
+    /**
      * TagService constructor.
      */
-    public function __construct(EntityManagerInterface $em, string $defaultLocale)
+    public function __construct(EntityManagerInterface $em, TagRepository $tagRepository, string $defaultLocale)
     {
         $this->em = $em;
         $this->defaultLocale = $defaultLocale;
+        $this->tagRepository = $tagRepository;
     }
 
     /**
@@ -37,9 +44,9 @@ class TagService
     {
         $tagEntity = new Tag();
         if (isset($tag['id'])) {
-            $tagEntity = $this->em->getRepository('App:Tag')->findOneBy(['id' => $tag['id']]);
+            $tagEntity = $this->tagRepository->findOneBy(['id' => $tag['id']]);
         } else {
-            $duplicate = $this->em->getRepository('App:Tag')->findOneByCriteria($this->defaultLocale, ['name' => $tag['name']]);
+            $duplicate = $this->tagRepository->findOneByCriteria($this->defaultLocale, ['name' => $tag['name']]);
         }
 
         if (!empty($duplicate)) {

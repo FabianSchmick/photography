@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Entry;
 use App\Form\EntryType;
+use App\Repository\EntryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,13 +24,10 @@ class EntryController extends AbstractController
      *
      * @Route("/", name="admin_entry_index")
      */
-    public function index(): Response
+    public function index(EntryRepository $entryRepository): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $entries = $em->getRepository('App:Entry')->findAll();
-
         return $this->render('admin/entry/index.html.twig', [
-            'entries' => $entries,
+            'entries' => $entryRepository->findAll(),
         ]);
     }
 

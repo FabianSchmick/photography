@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Location;
 use App\Form\LocationType;
+use App\Repository\LocationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,13 +24,10 @@ class LocationController extends AbstractController
      *
      * @Route("/", name="admin_location_index")
      */
-    public function index(): Response
+    public function index(LocationRepository $locationRepository): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $locations = $em->getRepository('App:Location')->findAll();
-
         return $this->render('admin/location/index.html.twig', [
-            'locations' => $locations,
+            'locations' => $locationRepository->findAll(),
         ]);
     }
 

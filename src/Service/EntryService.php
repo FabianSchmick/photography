@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\Entry;
 use App\Entity\EntryImage;
+use App\Repository\EntryRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,47 +13,40 @@ use Symfony\Component\HttpFoundation\File\File;
 class EntryService
 {
     /**
-     * Entity Manager.
-     *
      * @var EntityManagerInterface
      */
     private $em;
 
     /**
-     * Author service.
-     *
      * @var AuthorService
      */
     private $authorService;
 
     /**
-     * Location service.
-     *
      * @var LocationService
      */
     private $locationService;
 
     /**
-     * Tag service.
-     *
      * @var TagService
      */
     private $tagService;
 
     /**
-     * EntryService constructor.
-     *
-     * @param EntityManagerInterface $em              Entity Manager
-     * @param AuthorService          $authorService   Author service
-     * @param LocationService        $locationService Location service
-     * @param TagService             $tagService      Tag service
+     * @var EntryRepository
      */
-    public function __construct(EntityManagerInterface $em, AuthorService $authorService, LocationService $locationService, TagService $tagService)
+    private $entryRepository;
+
+    /**
+     * EntryService constructor.
+     */
+    public function __construct(EntityManagerInterface $em, AuthorService $authorService, LocationService $locationService, TagService $tagService, EntryRepository $entryRepository)
     {
         $this->em = $em;
         $this->authorService = $authorService;
         $this->locationService = $locationService;
         $this->tagService = $tagService;
+        $this->entryRepository = $entryRepository;
     }
 
     /**
@@ -67,7 +61,7 @@ class EntryService
     {
         $entryEntity = new Entry();
         if (isset($entry['id'])) {
-            $entryEntity = $this->em->getRepository('App:Entry')->findOneBy(['id' => $entry['id']]);
+            $entryEntity = $this->entryRepository->findOneBy(['id' => $entry['id']]);
         }
 
         $entryEntity->setName($entry['name']);

@@ -5,6 +5,7 @@ namespace App\Controller\Frontend;
 use App\Doctrine\PaginationHelper;
 use App\Entity\Entry;
 use App\Entity\Tag;
+use App\Repository\TagRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,11 +22,9 @@ class TagController extends AbstractController
      * @Route("/tag/{slug}", name="tag_show")
      * @Entity("tag", expr="repository.findOneByCriteria(_locale, {'slug': slug})")
      */
-    public function show(Tag $tag): Response
+    public function show(Tag $tag, TagRepository $tagRepository): Response
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $relatedTags = $em->getRepository('App:Tag')->findRelatedTagsByTag($tag);
+        $relatedTags = $tagRepository->findRelatedTagsByTag($tag);
 
         return $this->render('frontend/tag/show.html.twig', [
             'tag' => $tag,
@@ -39,11 +38,9 @@ class TagController extends AbstractController
      * @Route("/ajax/tag/{slug}/{page}", name="tag_pagiante_ajax", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
      * @Entity("tag", expr="repository.findOneByCriteria(_locale, {'slug': slug})")
      */
-    public function ajaxPaginate(Tag $tag, $page = 1): Response
+    public function ajaxPaginate(Tag $tag, TagRepository $tagRepository, $page = 1): Response
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $query = $em->getRepository('App:Entry')->findEntriesByTag($tag);
+        $query = $tagRepository->findEntriesByTag($tag);
         $pages = PaginationHelper::getPagesCount($query);
         $entries = PaginationHelper::paginate($query, Entry::PAGINATION_QUANTITY, $page);
 

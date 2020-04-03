@@ -3,25 +3,28 @@
 namespace App\Service;
 
 use App\Entity\Author;
+use App\Repository\AuthorRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class AuthorService
 {
     /**
-     * Entity Manager.
-     *
      * @var EntityManagerInterface
      */
     private $em;
 
     /**
-     * AuthorService constructor.
-     *
-     * @param EntityManagerInterface $em Entity Manager
+     * @var AuthorRepository
      */
-    public function __construct(EntityManagerInterface $em)
+    private $authorRepository;
+
+    /**
+     * AuthorService constructor.
+     */
+    public function __construct(EntityManagerInterface $em, AuthorRepository $authorRepository)
     {
         $this->em = $em;
+        $this->authorRepository = $authorRepository;
     }
 
     /**
@@ -33,14 +36,14 @@ class AuthorService
      */
     public function saveAuthor(array $author): Author
     {
-        $duplicate = $this->em->getRepository('App:Author')->findOneBy(['name' => $author['name']]);
+        $duplicate = $this->authorRepository->findOneBy(['name' => $author['name']]);
 
         if ($duplicate) {
             return $duplicate;
         }
         $authorEntity = new Author();
         if (isset($author['id'])) {
-            $authorEntity = $this->em->getRepository('App:Author')->findOneBy(['id' => $author['id']]);
+            $authorEntity = $this->authorRepository->findOneBy(['id' => $author['id']]);
         }
         $authorEntity->setName($author['name']);
 

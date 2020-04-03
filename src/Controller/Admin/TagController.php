@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Tag;
 use App\Form\TagType;
+use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,13 +24,10 @@ class TagController extends AbstractController
      *
      * @Route("/", name="admin_tag_index")
      */
-    public function index(): Response
+    public function index(TagRepository $tagRepository): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $tags = $em->getRepository('App:Tag')->findAll();
-
         return $this->render('admin/tag/index.html.twig', [
-            'tags' => $tags,
+            'tags' => $tagRepository->findAll(),
         ]);
     }
 

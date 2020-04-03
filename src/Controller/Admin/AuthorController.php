@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Author;
 use App\Form\AuthorType;
+use App\Repository\AuthorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,13 +24,10 @@ class AuthorController extends AbstractController
      *
      * @Route("/", name="admin_authors_index")
      */
-    public function index(): Response
+    public function index(AuthorRepository $authorRepository): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $authors = $em->getRepository('App:Author')->findAll();
-
         return $this->render('admin/author/index.html.twig', [
-            'authors' => $authors,
+            'authors' => $authorRepository->findAll(),
         ]);
     }
 
