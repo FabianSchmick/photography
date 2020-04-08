@@ -6,7 +6,9 @@ use App\Entity\Tour;
 use App\Entity\TourFile;
 use App\Repository\TourRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use phpGPX\phpGPX;
 use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class TourService
 {
@@ -23,14 +25,26 @@ class TourService
     private $tourRepository;
 
     /**
+     * @var UploaderHelper
+     */
+    private $uploaderHelper;
+
+    /**
+     * @var string
+     */
+    private $publicDir;
+
+    /**
      * TourService constructor.
      *
      * @param EntityManagerInterface $em Entity Manager
      */
-    public function __construct(EntityManagerInterface $em, TourRepository $tourRepository)
+    public function __construct(EntityManagerInterface $em, TourRepository $tourRepository, UploaderHelper $uploaderHelper, $publicDir)
     {
         $this->em = $em;
         $this->tourRepository = $tourRepository;
+        $this->uploaderHelper = $uploaderHelper;
+        $this->publicDir = $publicDir;
     }
 
     /**
@@ -66,5 +80,17 @@ class TourService
         $this->em->flush();
 
         return $tourEntity;
+    }
+
+    /**
+     * Sets the gpx stats data for a track.
+     */
+    public function setGpxData(Tour &$tour): void
+    {
+        $gpx = new phpGPX();
+
+        $file = $gpx->load($this->publicDir.$this->uploaderHelper->asset($tour->getFile(), 'file'));
+
+        $tour->setGpxData($file->tracks[0]);
     }
 }

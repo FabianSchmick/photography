@@ -2,33 +2,11 @@
 
 namespace App\Service;
 
-use App\Entity\Tour;
 use HTMLPurifier;
 use HTMLPurifier_Config;
-use phpGPX\phpGPX;
-use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class CoreService
 {
-    /**
-     * @var UploaderHelper
-     */
-    private $uploaderHelper;
-
-    /**
-     * @var string
-     */
-    private $publicDir;
-
-    /**
-     * CoreService constructor.
-     */
-    public function __construct(UploaderHelper $uploaderHelper, $publicDir)
-    {
-        $this->uploaderHelper = $uploaderHelper;
-        $this->publicDir = $publicDir;
-    }
-
     /**
      * @param string|null $string The string to purify
      *
@@ -42,19 +20,5 @@ class CoreService
         $purifier = new HTMLPurifier($config);
 
         return $purifier->purify($string);
-    }
-
-    /**
-     * Sets the gpx stats data for a track.
-     *
-     * @param Tour $tour Tour entity
-     */
-    public function setGpxData(Tour &$tour): void
-    {
-        $gpx = new phpGPX();
-
-        $file = $gpx->load($this->publicDir.$this->uploaderHelper->asset($tour->getFile(), 'file'));
-
-        $tour->setGpxData($file->tracks[0]);
     }
 }

@@ -16,7 +16,7 @@ export function map() {
 
     let map = L.map($map.attr('id'), {
         scrollWheelZoom: false
-    }).setView($map.data('coordinates'), 13);
+    });
 
     map.on('focus', () => { map.scrollWheelZoom.enable(); });
     map.on('blur', () => { map.scrollWheelZoom.disable(); });
@@ -53,6 +53,7 @@ export function map() {
 
     let track = omnivore.gpx($map.data('gpx'), {}, L.geoJson());
     track.on('ready', function() {
+        // https://leafletjs.com/reference-1.6.0.html#path-option
         this.setStyle({
             color: '#00cdcd',
             weight: 5
@@ -60,6 +61,8 @@ export function map() {
         this.eachLayer(marker => {
             marker.bindPopup(marker.feature.properties.name);
         });
+
+        map.fitBounds(track.getBounds(), {padding: [25, 25]});
     });
 
     map.addLayer(track);
