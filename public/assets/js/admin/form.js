@@ -51,6 +51,16 @@ export function initWysiwyg() {
             ['para', ['ul']],
             ['misc', ['codeview', 'help']]
         ],
+        callbacks: {
+            // Clear all formatting of the pasted text (https://github.com/summernote/summernote/issues/1168#issuecomment-236568117)
+            onPaste: (e) => {
+                let bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                e.preventDefault();
+                setTimeout(() => {
+                    document.execCommand('insertText', false, bufferText);
+                }, 10);
+            }
+        },
         onCreateLink: (linkUrl) => {
             return /^([A-Za-z][A-Za-z0-9+-.]*\:[\/\/]?|\/)/.test(linkUrl) ?
                 linkUrl : 'http://' + linkUrl;
