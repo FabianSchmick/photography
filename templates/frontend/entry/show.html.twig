@@ -16,7 +16,7 @@
                     <div class="entry-image-container">
                         {% if next %}
                             <a class="next" href="{{ path('entry_show', {'slug': next.slug}) }}" title="{{ 'btn.next'|trans }}">
-                                <span class="icon icon-angle"><svg><use xlink:href="#angle-icon"/></svg></span>
+                                <span class="icon icon-lg icon-angle"><svg><use xlink:href="#angle-icon"/></svg></span>
                             </a>
                         {% endif %}
 
@@ -24,7 +24,7 @@
 
                         {% if prev %}
                             <a class="prev" href="{{ path('entry_show', {'slug': prev.slug}) }}" title="{{ 'btn.prev'|trans }}">
-                                <span class="icon icon-angle icon-rotate-180"><svg><use xlink:href="#angle-icon"/></svg></span>
+                                <span class="icon icon-lg icon-angle icon-rotate-180"><svg><use xlink:href="#angle-icon"/></svg></span>
                             </a>
                         {% endif %}
                     </div>
