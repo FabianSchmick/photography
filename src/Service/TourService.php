@@ -88,7 +88,7 @@ class TourService
      */
     public function setGpxData(Tour &$tour, ?Track $track = null): void
     {
-        if (empty($data)) {
+        if ($track === null) {
             $track = $this->getGpxData($tour);
         }
 
