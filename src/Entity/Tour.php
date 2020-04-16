@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use phpGPX\Models\Track;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -52,6 +51,40 @@ class Tour
      * @ORM\Column(type="text", length=65535, nullable=true)
      */
     private $description;
+
+    /**
+     * @var float|null in kilometers
+     *
+     * @Assert\Range(min=0, max=100000)
+     * @ORM\Column(type="decimal", precision=6, scale=1, nullable=true)
+     */
+    private $distance;
+
+    /**
+     * @var float|null in meters
+     *
+     * @Assert\Range(min=-1000, max=100000)
+     * @Assert\GreaterThanOrEqual(propertyPath="minAltitude")
+     * @ORM\Column(type="decimal", precision=6, scale=1, nullable=true)
+     */
+    private $maxAltitude;
+
+    /**
+     * @var float|null in meters
+     *
+     * @Assert\Range(min=-1000, max=100000)
+     * @Assert\LessThanOrEqual(propertyPath="maxAltitude")
+     * @ORM\Column(type="decimal", precision=6, scale=1, nullable=true)
+     */
+    private $minAltitude;
+
+    /**
+     * @var float|null in meters
+     *
+     * @Assert\Range(min=-1000, max=100000)
+     * @ORM\Column(type="decimal", precision=6, scale=1, nullable=true)
+     */
+    private $cumulativeElevationGain;
 
     /**
      * @var Entry|null
@@ -110,11 +143,11 @@ class Tour
     private $locale;
 
     /**
-     * Helper variable for gpx data like distance, altitude, duration etc.
+     * Helper variable for gpx segments (coordinates).
      *
-     * @var Track|null
+     * @var array|null
      */
-    private $gpxData;
+    private $segments;
 
     /**
      * Tour constructor.
@@ -178,6 +211,86 @@ class Tour
     public function getDescription(): ?string
     {
         return $this->description;
+    }
+
+    /**
+     * Set distance.
+     *
+     * @return Tour
+     */
+    public function setDistance(?float $distance): self
+    {
+        $this->distance = $distance;
+
+        return $this;
+    }
+
+    /**
+     * Get distance.
+     */
+    public function getDistance(): ?float
+    {
+        return $this->distance;
+    }
+
+    /**
+     * Set maxAltitude.
+     *
+     * @return Tour
+     */
+    public function setMaxAltitude(?float $maxAltitude): self
+    {
+        $this->maxAltitude = $maxAltitude;
+
+        return $this;
+    }
+
+    /**
+     * Get maxAltitude.
+     */
+    public function getMaxAltitude(): ?float
+    {
+        return $this->maxAltitude;
+    }
+
+    /**
+     * Set minAltitude.
+     *
+     * @return Tour
+     */
+    public function setMinAltitude(?float $minAltitude): self
+    {
+        $this->minAltitude = $minAltitude;
+
+        return $this;
+    }
+
+    /**
+     * Get minAltitude.
+     */
+    public function getMinAltitude(): ?float
+    {
+        return $this->minAltitude;
+    }
+
+    /**
+     * Set cumulativeElevationGain.
+     *
+     * @return Tour
+     */
+    public function setCumulativeElevationGain(?float $cumulativeElevationGain): self
+    {
+        $this->cumulativeElevationGain = $cumulativeElevationGain;
+
+        return $this;
+    }
+
+    /**
+     * Get cumulativeElevationGain.
+     */
+    public function getCumulativeElevationGain(): ?float
+    {
+        return $this->cumulativeElevationGain;
     }
 
     /**
@@ -289,18 +402,23 @@ class Tour
     }
 
     /**
+     * Set segments.
+     *
      * @return Tour
      */
-    public function setGpxData(?Track $gpxData): self
+    public function setSegments(?array $segments): self
     {
-        $this->gpxData = $gpxData;
+        $this->segments = $segments;
 
         return $this;
     }
 
-    public function getGpxData(): ?Track
+    /**
+     * Get segments.
+     */
+    public function getSegments(): ?array
     {
-        return $this->gpxData;
+        return $this->segments;
     }
 
     /**

@@ -106,8 +106,8 @@
 
 {%- macro sportsActivityLocation(tour) -%}
     {% import _self as jsonLd %}
-    {% set firstPoint = tour.gpxData.segments[0].points|first %}
-    {% set lastPoint = tour.gpxData.segments[0].points|last %}
+    {% set firstPoint = tour.segments[0].points|first %}
+    {% set lastPoint = tour.segments[0].points|last %}
 
     {% apply spaceless %}
         {
@@ -145,7 +145,7 @@
                 "distance": {
                     "@context": "http://schema.org",
                     "@type": ["Distance", "QuantitativeValue"],
-                    "value": {{ tour.gpxData.stats.distance }},
+                    "value": {{ tour.distance * 1000 }},
                     "unitText": "MTR"
                 }
             }

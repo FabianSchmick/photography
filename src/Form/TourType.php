@@ -4,14 +4,15 @@ namespace App\Form;
 
 use App\Entity\Tour;
 use App\Service\CoreService;
+use App\Service\TourService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TourType extends AbstractType
 {
@@ -21,23 +22,28 @@ class TourType extends AbstractType
     private $coreService;
 
     /**
-     * @var TranslatorInterface
+     * @var TourService
      */
-    private $translator;
+    private $tourService;
 
     /**
      * TourType constructor.
      */
-    public function __construct(TranslatorInterface $translator, CoreService $coreService)
+    public function __construct(CoreService $coreService, TourService $tourService)
     {
         $this->coreService = $coreService;
-        $this->translator = $translator;
+        $this->tourService = $tourService;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         /** @var Tour $tour */
         $tour = $options['data'];
+
+        $track = null;
+        if ($tour->getFile()) {
+            $track = $this->tourService->getGpxData($tour);
+        }
 
         $builder
             ->add('name')
@@ -47,9 +53,37 @@ class TourType extends AbstractType
                     'class' => 'wysiwyg',
                 ],
             ])
+            ->add('distance', NumberType::class, [
+                'required' => false,
+                'unit' => 'unit.distance',
+                'attr' => [
+                    'placeholder' => $this->getTrackStatsPlaceholder($track, 'distance'),
+                ],
+            ])
+            ->add('maxAltitude', NumberType::class, [
+                'required' => false,
+                'unit' => 'unit.altitude',
+                'attr' => [
+                    'placeholder' => $this->getTrackStatsPlaceholder($track, 'maxAltitude'),
+                ],
+            ])
+            ->add('minAltitude', NumberType::class, [
+                'required' => false,
+                'unit' => 'unit.altitude',
+                'attr' => [
+                    'placeholder' => $this->getTrackStatsPlaceholder($track, 'minAltitude'),
+                ],
+            ])
+            ->add('cumulativeElevationGain', NumberType::class, [
+                'required' => false,
+                'unit' => 'unit.cumulativeElevationGain',
+                'attr' => [
+                    'placeholder' => $this->getTrackStatsPlaceholder($track, 'cumulativeElevationGain'),
+                ],
+            ])
             ->add('file', TourFileType::class, [
                 'required' => false,
-                'placeholder_text' => $tour->getFile() ? $tour->getFile()->getOriginalName() : $this->translator->trans('label.no_file_selected'),
+                'placeholder_text' => $tour->getFile() ? $tour->getFile()->getOriginalName() : 'label.no_file_selected',
             ])
         ;
 
@@ -78,5 +112,14 @@ class TourType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Tour::class,
         ]);
+    }
+
+    private function getTrackStatsPlaceholder($track, $property): ?string
+    {
+        if (!empty($track->stats->$property)) {
+            return number_format($track->stats->$property, 1, ',', '');
+        }
+
+        return null;
     }
 }

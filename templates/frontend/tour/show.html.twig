@@ -4,8 +4,6 @@
 {% block meta_description %}
     {% if tour.description %}
         {{ tour.description|striptags|u.truncate(160) }}
-    {% elseif tour.gpxData.description %}
-        {{ tour.gpxData.description|u.truncate(160) }}
     {% endif %}
 {% endblock %}
 
@@ -27,45 +25,42 @@
             <div class="text-container text-center tour-desc">
                 {% if tour.description %}
                     {{ tour.description|raw }}
-                {% else %}
-                    <p>{{ tour.gpxData.description }}</p>
                 {% endif %}
             </div>
             <div class="tour-info">
                 <div class="tour-data">
                     <h3>{{ 'tour.data'|trans }}</h3>
                     <dl class="row meta-table">
-                        {% if tour.gpxData.stats.distance %}
-                            {% set distance = tour.gpxData.stats.distance / 1000 %}
+                        {% if tour.distance %}
                             <dt class="col-6 tour-distance">
-                                {{ 'tour.distance'|trans }} <span class="icon icon-sm icon-length pl-1"><svg><use xlink:href="#length-icon"/></svg></span>
+                                {{ 'label.distance'|trans }} <span class="icon icon-sm icon-length pl-1"><svg><use xlink:href="#length-icon"/></svg></span>
                             </dt>
                             <dd class="col-6 tour-distance-value">
-                                {{ distance|number_format(1, ',', '.') }} {{ 'tour.distance.unit'|trans }}
+                                {{ tour.distance|number_format(1, ',', '.') }} {{ 'unit.distance'|trans }}
                             </dd>
                         {% endif %}
-                        {% if tour.gpxData.stats.maxAltitude %}
+                        {% if tour.maxAltitude %}
                             <dt class="col-6 tour-maxAltitude">
-                                {{ 'tour.maxAltitude'|trans }} <span class="icon icon-sm icon-angle icon-rotate-90 pl-1"><svg><use xlink:href="#angle-icon"/></svg></span>
+                                {{ 'label.maxAltitude'|trans }} <span class="icon icon-sm icon-angle icon-rotate-90 pl-1"><svg><use xlink:href="#angle-icon"/></svg></span>
                             </dt>
                             <dd class="col-6 tour-maxAltitude-value">
-                                {{ tour.gpxData.stats.maxAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}
+                                {{ tour.maxAltitude|number_format(1, ',', '.') }} {{ 'unit.altitude'|trans }}
                             </dd>
                         {% endif %}
-                        {% if tour.gpxData.stats.minAltitude %}
+                        {% if tour.minAltitude %}
                             <dt class="col-6 tour-minAltitude">
-                                {{ 'tour.minAltitude'|trans }} <span class="icon icon-sm icon-angle icon-rotate-270 pl-1"><svg><use xlink:href="#angle-icon"/></svg></span>
+                                {{ 'label.minAltitude'|trans }} <span class="icon icon-sm icon-angle icon-rotate-270 pl-1"><svg><use xlink:href="#angle-icon"/></svg></span>
                             </dt>
                             <dd class="col-6 tour-minAltitude-value">
-                                {{ tour.gpxData.stats.minAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}
+                                {{ tour.minAltitude|number_format(1, ',', '.') }} {{ 'unit.altitude'|trans }}
                             </dd>
                         {% endif %}
-                        {% if tour.gpxData.stats.cumulativeElevationGain %}
+                        {% if tour.cumulativeElevationGain %}
                             <dt class="col-6 tour-cumulativeElevationGain">
-                                {{ 'tour.cumulativeElevationGain'|trans }} <span class="icon icon-sm icon-elevation-gain pl-1"><svg><use xlink:href="#elevation-gain-icon"/></svg></span>
+                                {{ 'label.cumulativeElevationGain'|trans }} <span class="icon icon-sm icon-elevation-gain pl-1"><svg><use xlink:href="#elevation-gain-icon"/></svg></span>
                             </dt>
                             <dd class="col-6 tour-cumulativeElevationGain-value">
-                                {{ tour.gpxData.stats.cumulativeElevationGain|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}
+                                {{ tour.cumulativeElevationGain|number_format(1, ',', '.') }} {{ 'unit.cumulativeElevationGain'|trans }}
                             </dd>
                         {% endif %}
                         {% if locations %}
@@ -78,8 +73,8 @@
                 </div>
                 <div class="text-center tour-map">
                     <h3>{{ 'tour.map'|trans }}</h3>
-                    {% set firstPoint = tour.gpxData.segments[0].points|first %}
-                    {% set lastPoint = tour.gpxData.segments[0].points|last %}
+                    {% set firstPoint = tour.segments[0].points|first %}
+                    {% set lastPoint = tour.segments[0].points|last %}
                     <div id="map" data-gpx="{{ vich_uploader_asset(tour.file, 'file') }}" data-coordinates="[{{ firstPoint.latitude }}, {{ firstPoint.longitude }}]"></div>
                     <a class="btn btn-teritary mt-4" href="{{ path('core_download_file', {'file': tour.file.fileName}) }}" target="_blank"><span class="icon icon-sm icon-download pr-2"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'btn.tour_download'|trans }}</a>
                 </div>

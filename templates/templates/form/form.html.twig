@@ -17,6 +17,19 @@
     {{- form_rest(form) -}}
 {%- endblock form_widget_compound -%}
 
+{%- block form_widget_simple -%}
+    {% set unit = form.parent.vars.unit is defined and form.parent.vars.unit ? form.parent.vars.unit : form.vars.unit %}
+
+    {% if unit %}<div class="input-group">{% endif %}
+    {{ parent() }}
+    {% if unit %}
+        <div class="input-group-append">
+            <span class="input-group-text">{{ unit|trans|raw }}</span>
+        </div>
+    {% endif %}
+    {% if unit %}</div>{% endif %}
+{%- endblock form_widget_simple -%}
+
 {% block vich_file_widget %}
     {% apply spaceless %}
         {{ form_widget(form.file) }}

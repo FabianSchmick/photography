@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class EntryImageType extends AbstractType
@@ -16,6 +17,19 @@ class EntryImageType extends AbstractType
         'image/jpeg',
         'image/gif',
     ];
+
+    /**
+     * @var TranslatorInterface
+     */
+    private $translator;
+
+    /**
+     * TourType constructor.
+     */
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -31,7 +45,7 @@ class EntryImageType extends AbstractType
                     ]),
                 ],
                 'attr' => [
-                    'placeholder' => $options['placeholder_text'],
+                    'placeholder' => $this->translator->trans($options['placeholder_text']),
                     'accept' => implode(',', self::ALLOWED_MIME_TYPES),
                 ],
             ])

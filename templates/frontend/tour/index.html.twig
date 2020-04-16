@@ -49,29 +49,26 @@
                                     <p>
                                         {% if tour.description %}
                                             {{ tour.description|striptags|u.truncate(220) }}
-                                        {% elseif tour.gpxData.description %}
-                                            {{ tour.gpxData.description|u.truncate(220) }}
                                         {% endif %}
                                     </p>
                                     <dl class="meta">
-                                        {% if tour.gpxData.stats.distance %}
-                                            {% set distance = tour.gpxData.stats.distance / 1000 %}
+                                        {% if tour.distance %}
                                             <dt class="tour-distance">
-                                                <span class="icon icon-sm icon-length" title="{{ 'tour.distance'|trans }}"><svg><use xlink:href="#length-icon"/></svg></span>
+                                                <span class="icon icon-sm icon-length" title="{{ 'label.distance'|trans }}"><svg><use xlink:href="#length-icon"/></svg></span>
                                             </dt>
-                                            <dd class="tour-distance-value">{{ distance|number_format(1, ',', '.') }} {{ 'tour.distance.unit'|trans }}</dd>
+                                            <dd class="tour-distance-value">{{ tour.distance|number_format(1, ',', '.') }} {{ 'unit.distance'|trans }}</dd>
                                         {% endif %}
-                                        {% if tour.gpxData.stats.maxAltitude %}
+                                        {% if tour.maxAltitude %}
                                             <dt class="tour-maxAltitude">
-                                                <span class="icon icon-sm icon-angle icon-rotate-90" title="{{ 'tour.maxAltitude'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
+                                                <span class="icon icon-sm icon-angle icon-rotate-90" title="{{ 'label.maxAltitude'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
                                             </dt>
-                                            <dd class="tour-maxAltitude-value">{{ tour.gpxData.stats.maxAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
+                                            <dd class="tour-maxAltitude-value">{{ tour.maxAltitude|number_format(1, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
                                         {% endif %}
-                                        {% if tour.gpxData.stats.minAltitude %}
+                                        {% if tour.minAltitude %}
                                             <dt class="tour-minAltitude">
-                                                <span class="icon icon-sm icon-angle icon-rotate-270" title="{{ 'tour.minAltitude'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
+                                                <span class="icon icon-sm icon-angle icon-rotate-270" title="{{ 'label.minAltitude'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
                                             </dt>
-                                            <dd class="tour-minAltitude-value">{{ tour.gpxData.stats.minAltitude|number_format(1, ',', '.') }} {{ 'tour.altitude.unit'|trans }}</dd>
+                                            <dd class="tour-minAltitude-value">{{ tour.minAltitude|number_format(1, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
                                         {% endif %}
                                     </dl>
                                     <button class="btn btn-teritary btn-inverse">

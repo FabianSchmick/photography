@@ -6,6 +6,7 @@ use App\Entity\Tour;
 use App\Entity\TourFile;
 use App\Repository\TourRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use phpGPX\Models\Track;
 use phpGPX\phpGPX;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
@@ -83,14 +84,34 @@ class TourService
     }
 
     /**
-     * Sets the gpx stats data for a track.
+     * Sets the stats data for a track from the gpx file.
      */
-    public function setGpxData(Tour &$tour): void
+    public function setGpxData(Tour &$tour, ?Track $track = null): void
+    {
+        if (empty($data)) {
+            $track = $this->getGpxData($tour);
+        }
+
+        $tour->setDescription($tour->getDescription() ?? $track->description);
+        $tour->setDistance($tour->getDistance() ?? $track->stats->distance);
+        $tour->setMinAltitude($tour->getMinAltitude() ?? $track->stats->minAltitude);
+        $tour->setMaxAltitude($tour->getMaxAltitude() ?? $track->stats->maxAltitude);
+        $tour->setCumulativeElevationGain($tour->getCumulativeElevationGain() ?? $track->stats->cumulativeElevationGain);
+        $tour->setSegments($track->segments);
+    }
+
+    /**
+     * Read the stats data from a tour gpx file.
+     */
+    public function getGpxData(Tour $tour): Track
     {
         $gpx = new phpGPX();
 
         $file = $gpx->load($this->publicDir.$this->uploaderHelper->asset($tour->getFile(), 'file'));
 
-        $tour->setGpxData($file->tracks[0]);
+        $firstTrack = reset($file->tracks);
+        $firstTrack->stats->distance = $firstTrack->stats->distance / 1000;
+
+        return $firstTrack;
     }
 }

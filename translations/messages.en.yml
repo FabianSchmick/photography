@@ -17,12 +17,21 @@ label.tags: Tags
 label.tag: Tag
 label.tours: Tours
 label.tour: Tour
+label.distance: Length
+label.minAltitude: Min altitude
+label.maxAltitude: Max altitude
+label.cumulativeElevationGain: Elevation gain
 label.file: File
 label.no_file_selected: No file selected
 label.search: Search
 label.previewEntry: Preview Entry
 label.username: Username
 label.password: Password
+
+# Units
+unit.distance: km
+unit.altitude: hm
+unit.cumulativeElevationGain: ±hm
 
 # Buttons
 btn.edit: Edit
@@ -103,12 +112,6 @@ tours.headline: My tour recommendations
 tour.data: Tourdata
 tour.map: GPX-Track
 tour.pictures: Pictures
-tour.distance: Length
-tour.distance.unit: km
-tour.minAltitude: Min altitude
-tour.maxAltitude: Max altitude
-tour.cumulativeElevationGain: Elevation gain
-tour.altitude.unit: hm
 tour.locations: Locations
 
 # Other
