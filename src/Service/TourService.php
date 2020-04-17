@@ -128,10 +128,11 @@ class TourService
 
         /** @var Point[] $points */
         $points = $segments[0]->points;
+        $count = count($points);
 
         $upElevation = 0;
         $downElevation = 0;
-        for ($i = 1; $i < count($points); ++$i) {
+        for ($i = 1; $i < $count; ++$i) {
             $last = $points[$i - 1]->elevation;
             $current = $points[$i]->elevation;
 
@@ -160,7 +161,7 @@ class TourService
         $minutes = $decimalMinutes * (60 / 1); // 60 minutes/hour
 
         $time = new \DateTime();
-        $time->setTime($hours, (int) $minutes);
+        $time->setTime((int) $hours, (int) $minutes);
 
         return $time;
     }

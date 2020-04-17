@@ -323,7 +323,7 @@ class Tour
      */
     public function getCumulativeElevationGain(): ?int
     {
-        return $this->cumulativeElevationGain != 0 ? $this->cumulativeElevationGain : null;
+        return $this->cumulativeElevationGain !== 0 ? $this->cumulativeElevationGain : null;
     }
 
     /**
