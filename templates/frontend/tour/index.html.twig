@@ -62,13 +62,13 @@
                                             <dt class="tour-maxAltitude">
                                                 <span class="icon icon-sm icon-angle icon-rotate-90" title="{{ 'label.maxAltitude'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
                                             </dt>
-                                            <dd class="tour-maxAltitude-value">{{ tour.maxAltitude|number_format(1, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
+                                            <dd class="tour-maxAltitude-value">{{ tour.maxAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
                                         {% endif %}
                                         {% if tour.minAltitude %}
                                             <dt class="tour-minAltitude">
                                                 <span class="icon icon-sm icon-angle icon-rotate-270" title="{{ 'label.minAltitude'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
                                             </dt>
-                                            <dd class="tour-minAltitude-value">{{ tour.minAltitude|number_format(1, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
+                                            <dd class="tour-minAltitude-value">{{ tour.minAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
                                         {% endif %}
                                     </dl>
                                     <button class="btn btn-teritary btn-inverse">

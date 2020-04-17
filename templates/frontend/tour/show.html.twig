@@ -39,12 +39,20 @@
                                 {{ tour.distance|number_format(1, ',', '.') }} {{ 'unit.distance'|trans }}
                             </dd>
                         {% endif %}
+                        {% if tour.duration %}
+                            <dt class="col-6 tour-duration">
+                                {{ 'label.duration'|trans }} <span class="icon icon-sm icon-time pl-1"><svg><use xlink:href="#time-icon"/></svg></span>
+                            </dt>
+                            <dd class="col-6 tour-duration-value">
+                                {{ tour|format_duration }} {{ 'unit.duration'|trans }}
+                            </dd>
+                        {% endif %}
                         {% if tour.maxAltitude %}
                             <dt class="col-6 tour-maxAltitude">
                                 {{ 'label.maxAltitude'|trans }} <span class="icon icon-sm icon-angle icon-rotate-90 pl-1"><svg><use xlink:href="#angle-icon"/></svg></span>
                             </dt>
                             <dd class="col-6 tour-maxAltitude-value">
-                                {{ tour.maxAltitude|number_format(1, ',', '.') }} {{ 'unit.altitude'|trans }}
+                                {{ tour.maxAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}
                             </dd>
                         {% endif %}
                         {% if tour.minAltitude %}
@@ -52,7 +60,7 @@
                                 {{ 'label.minAltitude'|trans }} <span class="icon icon-sm icon-angle icon-rotate-270 pl-1"><svg><use xlink:href="#angle-icon"/></svg></span>
                             </dt>
                             <dd class="col-6 tour-minAltitude-value">
-                                {{ tour.minAltitude|number_format(1, ',', '.') }} {{ 'unit.altitude'|trans }}
+                                {{ tour.minAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}
                             </dd>
                         {% endif %}
                         {% if tour.cumulativeElevationGain %}
@@ -60,7 +68,7 @@
                                 {{ 'label.cumulativeElevationGain'|trans }} <span class="icon icon-sm icon-elevation-gain pl-1"><svg><use xlink:href="#elevation-gain-icon"/></svg></span>
                             </dt>
                             <dd class="col-6 tour-cumulativeElevationGain-value">
-                                {{ tour.cumulativeElevationGain|number_format(1, ',', '.') }} {{ 'unit.cumulativeElevationGain'|trans }}
+                                {{ tour.cumulativeElevationGain|number_format(0, ',', '.') }} {{ 'unit.cumulativeElevationGain'|trans }}
                             </dd>
                         {% endif %}
                         {% if locations %}
@@ -96,6 +104,7 @@
     {{ asset('assets/img/layout/icons/angle-icon.svg')|inline_svg() }}
     {{ asset('assets/img/layout/icons/download-icon.svg')|inline_svg() }}
     {{ asset('assets/img/layout/icons/length-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/time-icon.svg')|inline_svg() }}
     {{ asset('assets/img/layout/icons/elevation-gain-icon.svg')|inline_svg() }}
     {{ asset('assets/img/layout/icons/marker-icon.svg')|inline_svg() }}
 {% endblock embed_svg %}

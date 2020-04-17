@@ -23,6 +23,11 @@ class Tour
 {
     const PAGINATION_QUANTITY = 6;
 
+    /** Values according to: DIN 33466 */
+    const UP_METERS_PER_HOUR = 300;
+    const DOWN_METERS_PER_HOUR = 500;
+    const HORIZONTAL_METERS_PER_HOUR = 4;
+
     /**
      * @var int
      *
@@ -61,28 +66,36 @@ class Tour
     private $distance;
 
     /**
-     * @var float|null in meters
+     * @var DateTime|null
+     *
+     * @Assert\Time()
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private $duration;
+
+    /**
+     * @var int|null in meters
      *
      * @Assert\Range(min=-1000, max=100000)
      * @Assert\GreaterThanOrEqual(propertyPath="minAltitude")
-     * @ORM\Column(type="decimal", precision=6, scale=1, nullable=true)
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $maxAltitude;
 
     /**
-     * @var float|null in meters
+     * @var int|null in meters
      *
      * @Assert\Range(min=-1000, max=100000)
      * @Assert\LessThanOrEqual(propertyPath="maxAltitude")
-     * @ORM\Column(type="decimal", precision=6, scale=1, nullable=true)
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $minAltitude;
 
     /**
-     * @var float|null in meters
+     * @var int|null in meters
      *
      * @Assert\Range(min=-1000, max=100000)
-     * @ORM\Column(type="decimal", precision=6, scale=1, nullable=true)
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $cumulativeElevationGain;
 
@@ -234,11 +247,31 @@ class Tour
     }
 
     /**
+     * Set duration.
+     *
+     * @return Tour
+     */
+    public function setDuration(?DateTime $duration): self
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get duration.
+     */
+    public function getDuration(): ?DateTime
+    {
+        return $this->duration;
+    }
+
+    /**
      * Set maxAltitude.
      *
      * @return Tour
      */
-    public function setMaxAltitude(?float $maxAltitude): self
+    public function setMaxAltitude(?int $maxAltitude): self
     {
         $this->maxAltitude = $maxAltitude;
 
@@ -248,7 +281,7 @@ class Tour
     /**
      * Get maxAltitude.
      */
-    public function getMaxAltitude(): ?float
+    public function getMaxAltitude(): ?int
     {
         return $this->maxAltitude;
     }
@@ -258,7 +291,7 @@ class Tour
      *
      * @return Tour
      */
-    public function setMinAltitude(?float $minAltitude): self
+    public function setMinAltitude(?int $minAltitude): self
     {
         $this->minAltitude = $minAltitude;
 
@@ -268,7 +301,7 @@ class Tour
     /**
      * Get minAltitude.
      */
-    public function getMinAltitude(): ?float
+    public function getMinAltitude(): ?int
     {
         return $this->minAltitude;
     }
@@ -278,7 +311,7 @@ class Tour
      *
      * @return Tour
      */
-    public function setCumulativeElevationGain(?float $cumulativeElevationGain): self
+    public function setCumulativeElevationGain(?int $cumulativeElevationGain): self
     {
         $this->cumulativeElevationGain = $cumulativeElevationGain;
 
@@ -288,9 +321,9 @@ class Tour
     /**
      * Get cumulativeElevationGain.
      */
-    public function getCumulativeElevationGain(): ?float
+    public function getCumulativeElevationGain(): ?int
     {
-        return $this->cumulativeElevationGain;
+        return $this->cumulativeElevationGain != 0 ? $this->cumulativeElevationGain : null;
     }
 
     /**

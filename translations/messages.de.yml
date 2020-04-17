@@ -18,6 +18,7 @@ label.tag: Tag
 label.tours: Touren
 label.tour: Tour
 label.distance: Länge
+label.duration: Dauer
 label.minAltitude: Tiefster Punkt
 label.maxAltitude: Höchster Punkt
 label.cumulativeElevationGain: Höhenunterschied
@@ -30,6 +31,7 @@ label.password: Passwort
 
 # Units
 unit.distance: km
+unit.duration: h
 unit.altitude: hm
 unit.cumulativeElevationGain: ±hm
 

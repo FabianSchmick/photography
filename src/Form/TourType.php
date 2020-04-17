@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -40,9 +41,9 @@ class TourType extends AbstractType
         /** @var Tour $tour */
         $tour = $options['data'];
 
-        $track = null;
+        $placeholderTour = clone $tour;
         if ($tour->getFile()) {
-            $track = $this->tourService->getGpxData($tour);
+            $this->tourService->setGpxData($placeholderTour);
         }
 
         $builder
@@ -57,28 +58,37 @@ class TourType extends AbstractType
                 'required' => false,
                 'unit' => 'unit.distance',
                 'attr' => [
-                    'placeholder' => $this->getTrackStatsPlaceholder($track, 'distance'),
+                    'placeholder' => $placeholderTour->getDistance() ? number_format($placeholderTour->getDistance(), 1, ',', '.') : null,
+                ],
+            ])
+            ->add('duration', TimeType::class, [
+                'required' => false,
+                'unit' => 'unit.duration',
+                'html5' => false,
+                'widget' => 'single_text',
+                'attr' => [
+                    'placeholder' => $this->tourService->formatDuration($placeholderTour),
                 ],
             ])
             ->add('maxAltitude', NumberType::class, [
                 'required' => false,
                 'unit' => 'unit.altitude',
                 'attr' => [
-                    'placeholder' => $this->getTrackStatsPlaceholder($track, 'maxAltitude'),
+                    'placeholder' => $placeholderTour->getMaxAltitude(),
                 ],
             ])
             ->add('minAltitude', NumberType::class, [
                 'required' => false,
                 'unit' => 'unit.altitude',
                 'attr' => [
-                    'placeholder' => $this->getTrackStatsPlaceholder($track, 'minAltitude'),
+                    'placeholder' => $placeholderTour->getMinAltitude(),
                 ],
             ])
             ->add('cumulativeElevationGain', NumberType::class, [
                 'required' => false,
                 'unit' => 'unit.cumulativeElevationGain',
                 'attr' => [
-                    'placeholder' => $this->getTrackStatsPlaceholder($track, 'cumulativeElevationGain'),
+                    'placeholder' => $placeholderTour->getCumulativeElevationGain(),
                 ],
             ])
             ->add('file', TourFileType::class, [
@@ -112,14 +122,5 @@ class TourType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Tour::class,
         ]);
-    }
-
-    private function getTrackStatsPlaceholder($track, $property): ?string
-    {
-        if (!empty($track->stats->$property)) {
-            return number_format($track->stats->$property, 1, ',', '');
-        }
-
-        return null;
     }
 }

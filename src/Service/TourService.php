@@ -6,6 +6,7 @@ use App\Entity\Tour;
 use App\Entity\TourFile;
 use App\Repository\TourRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use phpGPX\Models\Point;
 use phpGPX\Models\Track;
 use phpGPX\phpGPX;
 use Symfony\Component\HttpFoundation\File\File;
@@ -98,6 +99,7 @@ class TourService
         $tour->setMaxAltitude($tour->getMaxAltitude() ?? $track->stats->maxAltitude);
         $tour->setCumulativeElevationGain($tour->getCumulativeElevationGain() ?? $track->stats->cumulativeElevationGain);
         $tour->setSegments($track->segments);
+        $tour->setDuration($tour->getDuration() ?? $this->calcTourDuration($tour)); // Calc last, so all needed values are set
     }
 
     /**
@@ -113,5 +115,66 @@ class TourService
         $firstTrack->stats->distance = $firstTrack->stats->distance / 1000;
 
         return $firstTrack;
+    }
+
+    /**
+     * Calc the tour duration with DIN 33466.
+     */
+    public function calcTourDuration(Tour $tour): ?\DateTime
+    {
+        if (!$segments = $tour->getSegments()) {
+            return null;
+        }
+
+        /** @var Point[] $points */
+        $points = $segments[0]->points;
+
+        $upElevation = 0;
+        $downElevation = 0;
+        for ($i = 1; $i < count($points); ++$i) {
+            $last = $points[$i - 1]->elevation;
+            $current = $points[$i]->elevation;
+
+            if ($last > $current) {
+                $downElevation += $last - $current;
+            } else {
+                $upElevation += $current - $last;
+            }
+        }
+
+        $downDuration = $downElevation / Tour::DOWN_METERS_PER_HOUR;
+        $upDuration = $upElevation / Tour::UP_METERS_PER_HOUR;
+        $sumElevation = $downDuration + $upDuration;
+        $horizontalDuration = $tour->getDistance() / Tour::HORIZONTAL_METERS_PER_HOUR;
+
+        if ($horizontalDuration < $sumElevation) {
+            $decimalDuration = ($horizontalDuration / 2) + $sumElevation;
+        } else {
+            $decimalDuration = ($sumElevation / 2) + $horizontalDuration;
+        }
+
+        // Calc the real time now
+        $hours = floor($decimalDuration);
+        $decimalMinutes = ($hours - $decimalDuration) * -1;
+
+        $minutes = $decimalMinutes * (60 / 1); // 60 minutes/hour
+
+        $time = new \DateTime();
+        $time->setTime($hours, (int) $minutes);
+
+        return $time;
+    }
+
+    /**
+     * Formats the tour duration.
+     * Removes leading zero from hours.
+     */
+    public function formatDuration(Tour $tour): ?string
+    {
+        if (!$duration = $tour->getDuration()) {
+            return null;
+        }
+
+        return ltrim($duration->format('H'), 0).':'.$duration->format('i');
     }
 }
