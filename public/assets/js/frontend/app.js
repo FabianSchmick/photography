@@ -10,14 +10,19 @@ export function navigation() {
     if ($('#menu').offset().top - $('main').offset().top === 0) {
         $navbar.addClass('on');
     } else {
+        addClassOn();
         $window.bind('scroll', function() {
-            const navHeight = $window.height() - 520;
-            if ($window.scrollTop() > navHeight) {
-                $navbar.addClass('on');
-            } else {
-                $navbar.removeClass('on');
-            }
+            addClassOn();
         });
+    }
+
+    function addClassOn() {
+        const navHeight = $window.height() - 520;
+        if ($window.scrollTop() > navHeight) {
+            $navbar.addClass('on');
+        } else {
+            $navbar.removeClass('on');
+        }
     }
 
     $('body').scrollspy({
