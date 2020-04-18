@@ -3,7 +3,7 @@
         {
             "@context": "http://schema.org",
             "@type": "Blog",
-            "name": "{{ title }} | {{ 'title.photography'|trans }}",
+            "name": "{{ title }} | {{ 'header.authors_name'|trans }}",
             "url": "{{ url(app.request.attributes.get('_route'),
                 app.request.attributes.get('_route_params')) }}",
             "description": "{{ desc }}",

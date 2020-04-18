@@ -11,7 +11,7 @@
 
     {% block social_tags %}
         <meta name="description" content="{% block meta_description %}{{ 'meta.desc'|trans }}{% endblock %}">
-        <meta property="og:title" content="{{ block('title') }} | {{ 'title.photography'|trans }}"/>
+        <meta property="og:title" content="{{ block('title') }} | {{ 'header.authors_name'|trans }}"/>
         <meta property="og:type" content="website"/>
         {% if app.request.attributes.get('_route') %}
             <meta property="og:url" content="{{ url(app.request.attributes.get('_route'),
@@ -20,10 +20,10 @@
         <meta property="og:image" content="{% block meta_image %}{{ absolute_url(asset('assets/img/layout/cover-placeholder.jpg')) }}{% endblock %}"/>
         <meta property="og:description" content="{{ block('meta_description') }}"/>
         <meta name="twitter:card" content="summary"/>
-        <meta name="twitter:title" content="{{ block('title') }} | {{ 'title.photography'|trans }}"/>
+        <meta name="twitter:title" content="{{ block('title') }} | {{ 'header.authors_name'|trans }}"/>
         <meta name="twitter:description" content="{{ block('meta_description') }}"/>
         <meta name="twitter:image" content="{{ block('meta_image') }}"/>
-        <meta itemprop="name" content="{{ block('title') }} | {{ 'title.photography'|trans }}"/>
+        <meta itemprop="name" content="{{ block('title') }} | {{ 'header.authors_name'|trans }}"/>
         <meta itemprop="description" content="{{ block('meta_description') }}"/>
         <meta itemprop="image" content="{{ block('meta_image') }}"/>
     {% endblock %}
@@ -36,7 +36,7 @@
     <meta name="msapplication-TileColor" content="#00cdcd">
     <meta name="theme-color" content="#00cdcd">
 
-    <title>{% block title %}{{ 'header.authors_name'|trans }}{% endblock %} | {{ 'title.photography'|trans }}</title>
+    <title>{% block title %}{{ 'title.index'|trans }}{% endblock %} | {{ 'header.authors_name'|trans }}</title>
 
     {% block stylesheets %}
         <link href="https://fonts.googleapis.com/css?family=Montserrat:700%7CRoboto:300%7CRoboto:400%7CRoboto:700" rel="stylesheet">

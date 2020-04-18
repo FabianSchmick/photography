@@ -13,7 +13,7 @@
     <meta name="msapplication-TileColor" content="#00cdcd">
     <meta name="theme-color" content="#00cdcd">
 
-    <title>{% block title %}{{ 'title.admin'|trans }}{% endblock %} | {{ 'title.photography'|trans }}</title>
+    <title>{% block title %}{{ 'title.admin'|trans }}{% endblock %} | {{ 'header.authors_name'|trans }}</title>
 
     {% block stylesheets %}
         {{ encore_entry_link_tags('css/admin') }}
@@ -37,7 +37,7 @@
                         <svg id="logo"><use xlink:href="#logo-camera"/></svg>
                     </div>
                     <div class="sidebar-brand-text mx-3 text-left">
-                        <span class="text-left">{{ 'title.photography'|trans }}</span>
+                        <span class="text-left">{{ 'header.photography'|trans }}</span>
                     </div>
                 </a>
 

@@ -52,7 +52,7 @@ btn.show_tour: Tour anzeigen
 btn.tour_download: GPX Herunterladen
 
 # Titles
-title.photography: Fotografie
+title.index: Naturfotografie
 title.admin: Admin
 title.login: Anmelden
 
@@ -76,6 +76,7 @@ header.home: Home
 header.introduction: Über
 header.gallery: Fotos
 header.languages: Sprachen
+header.photography: Fotografie
 header.authors_name: Fabian Schmick
 
 # Modals
@@ -102,12 +103,12 @@ pagination.next: '<span class="icon icon-sm icon-angle icon-rotate-180" title="W
 
 # introduction
 introduction.by: von
-introduction.headline: Wälder, Bäche, Berge, Landschaften, Pilze  - <strong>Naturfotografie</strong>
-introduction.longtext: Mein Name ist Fabian Schmick, bin Anfang 20, komme aus dem Sauerland und bin als Webentwickler tätig. Da ich leidenschaftlicher Wanderer bin, entdecke ich auf meinen Touren immer wieder kleine und große Highlights welche ich mit meiner Kamera festhalte. Auf dieser Webseite findest du Naturfotografie und Berichte meiner Wander-Touren aus dem Sauerland, der Eifel und der Alpen.
+introduction.headline: Naturbilder und Wanderungen aus dem Sauerland & der Alpen
+introduction.longtext: Mein Name ist Fabian Schmick, bin Anfang 20, komme aus dem Sauerland und bin als Webentwickler tätig. Da ich leidenschaftlicher Wanderer bin, entdecke ich auf meinen Touren immer wieder kleine und große Highlights welche ich mit meiner Kamera festhalte. Auf dieser Webseite findest du Naturfotografie und Berichte meiner Wander-Touren unter anderem aus dem Sauerland, Waldeck-Frankenberg, der Eifel und Alpen.
 introduction.tag: Alle Bilder gefiltert zum Thema
 introduction.similar_tags: Ähnliche Tags
-introduction.tours.headline: Aussichtsreiche Rundwanderwege, Kammenwege oder Gipfeltouren
-introduction.tours.longtext: Meine Touren plane ich in meistens über den Computer und erstelle mir dadurch eine GPX-Datei für mein GPS-Gerät. Somit bin ich immer auf der sicheren Seite und kann mich während der Tour ganz der Natur und der Fotografie widmen. Über meine Lieblingswanderwege verfasse ich hier kurze Touren-Berichte und stelle die jeweilige GPX-Datei als Download zur Verfügung.
+introduction.tours.headline: Aussichtsreiche Rundwanderwege, Steige oder Gipfeltouren
+introduction.tours.longtext: Meine Touren plane ich meistens über den Computer oder mithilfe von Wanderführern. Sobald das Ziel feststeht erstelle ich mir meine Route digital und mit GPX-Daten für mein GPS-Gerät. Somit bin ich immer auf der sicheren Seite und kann mich während der Wanderung ganz der Natur und der Fotografie widmen. Über meine Lieblingswanderwege verfasse ich hier kurze Touren-Berichte und stelle die jeweilige GPX-Datei als Download zum Nachwandern zur Verfügung.
 
 # Tour
 tours.headline: Meine Touren Empfehlungen
