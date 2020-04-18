@@ -11,4 +11,4 @@ imprint-dataprotection:
     requirements:
         _locale: "%app.locales%"
     defaults:
-        template:    frontend/static/privacy.html.twig
+        template: frontend/static/privacy.html.twig
