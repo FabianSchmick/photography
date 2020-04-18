@@ -1,5 +1,6 @@
 // Offline Service Worker
 export function registerSW() {
+    /** global: navigator */
     if ('serviceWorker' in navigator) {
         $(window).on('load', function() {
             navigator.serviceWorker.register('/sw.js').then(function(registration) {

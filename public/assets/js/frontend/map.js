@@ -62,7 +62,7 @@ export function map() {
             marker.bindPopup(marker.feature.properties.name);
         });
 
-        map.fitBounds(track.getBounds(), {padding: [25, 25]});
+        map.fitBounds(track.getBounds(), { padding: [25, 25] });
     });
 
     map.addLayer(track);
