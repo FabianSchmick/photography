@@ -80,6 +80,8 @@ class AuthorController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'flash.success.edit');
+
+            return $this->redirectToRoute('admin_author_edit', ['id' => $author->getId()]);
         }
 
         return $this->render('admin/author/edit.html.twig', [

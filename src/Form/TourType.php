@@ -67,7 +67,7 @@ class TourType extends AbstractType
                 'html5' => false,
                 'widget' => 'single_text',
                 'attr' => [
-                    'placeholder' => $this->tourService->formatDuration($placeholderTour),
+                    'placeholder' => $this->tourService->formatDuration($placeholderTour->getDuration()),
                 ],
             ])
             ->add('maxAltitude', NumberType::class, [

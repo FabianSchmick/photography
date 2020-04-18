@@ -80,6 +80,8 @@ class TagController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'flash.success.edit');
+
+            return $this->redirectToRoute('admin_tag_edit', ['id' => $tag->getId()]);
         }
 
         return $this->render('admin/tag/edit.html.twig', [

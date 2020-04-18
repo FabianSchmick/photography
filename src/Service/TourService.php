@@ -170,9 +170,9 @@ class TourService
      * Formats the tour duration.
      * Removes leading zero from hours.
      */
-    public function formatDuration(Tour $tour): ?string
+    public function formatDuration(?\DateTime $duration): ?string
     {
-        if (!$duration = $tour->getDuration()) {
+        if ($duration === null) {
             return null;
         }
 

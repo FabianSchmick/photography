@@ -80,6 +80,8 @@ class TourController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'flash.success.edit');
+
+            return $this->redirectToRoute('admin_tour_edit', ['id' => $tour->getId()]);
         }
 
         return $this->render('admin/tour/edit.html.twig', [

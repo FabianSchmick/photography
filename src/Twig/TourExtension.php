@@ -37,9 +37,9 @@ class TourExtension extends AbstractExtension
     /**
      * Formats the tour duration.
      */
-    public function formatDuration(Tour $tour): ?string
+    public function formatDuration(?\DateTime $duration): ?string
     {
-        return $this->tourService->formatDuration($tour);
+        return $this->tourService->formatDuration($duration);
     }
 
     public function getName(): string

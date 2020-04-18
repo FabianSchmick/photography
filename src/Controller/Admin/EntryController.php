@@ -80,6 +80,8 @@ class EntryController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'flash.success.edit');
+
+            return $this->redirectToRoute('admin_entry_edit', ['id' => $entry->getId()]);
         }
 
         return $this->render('admin/entry/edit.html.twig', [

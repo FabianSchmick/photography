@@ -44,7 +44,7 @@
                                 {{ 'label.duration'|trans }} <span class="icon icon-sm icon-time pl-1"><svg><use xlink:href="#time-icon"/></svg></span>
                             </dt>
                             <dd class="col-6 tour-duration-value">
-                                {{ tour|format_duration }} {{ 'unit.duration'|trans }}
+                                {{ tour.duration|format_duration }} {{ 'unit.duration'|trans }}
                             </dd>
                         {% endif %}
                         {% if tour.maxAltitude %}

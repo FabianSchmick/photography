@@ -80,6 +80,8 @@ class LocationController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'flash.success.edit');
+
+            return $this->redirectToRoute('admin_location_edit', ['id' => $location->getId()]);
         }
 
         return $this->render('admin/location/edit.html.twig', [
