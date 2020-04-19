@@ -21,7 +21,8 @@
     "select2": "^4.0.12",
     "select2-bootstrap4-theme": "^1.0.0",
     "startbootstrap-sb-admin-2": "^4.0.7",
-    "summernote": "^0.8.12"
+    "summernote": "^0.8.12",
+    "vanilla-lazyload": "^15.1.1"
   },
   "devDependencies": {
     "@symfony/webpack-encore": "^0.28.3",

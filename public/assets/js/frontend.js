@@ -13,6 +13,7 @@ import { map } from './frontend/map';
 
 import Entry from './frontend/Entry';
 import { registerSW } from './util/sw';
+import { lazyload } from './frontend/lazyload';
 
 $(document).ready(function() {
     disableGoogleAnalytics();
@@ -20,6 +21,8 @@ $(document).ready(function() {
     navigation();
     parallax();
 
+    let lazyLoadInstance = lazyload();
+    Entry.setLazyLoadInstance(lazyLoadInstance);
     Entry.loadNextPrevEntry();
     Entry.lazyLoad();
     lightbox();

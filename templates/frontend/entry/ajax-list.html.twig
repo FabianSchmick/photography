@@ -8,7 +8,7 @@
        style="width:{{ dimensions.width * calcbase / dimensions.height }}px; flex-grow: {{ dimensions.width * calcbase / dimensions.height }}">
         <figure>
             <i style="padding-bottom: {{ dimensions.height / dimensions.width * 100 }}%"></i>
-            <img src="{{ src|imagine_filter('entry_thumbnail') }}" alt="{{ entry.name }}"/>
+            <img class="lazy" src="{{ src|imagine_filter('low_entry_thumbnail') }}" data-src="{{ src|imagine_filter('entry_thumbnail') }}" alt="{{ entry.name }}"/>
             <figcaption>{{ entry.name }}</figcaption>
         </figure>
     </a>

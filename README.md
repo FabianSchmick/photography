@@ -21,7 +21,7 @@ The project provides you following functionality:
 - I18n support in English and German
 - Tag possibility for describing and filtering entries
 - Uploading gpx files for showing your favorite tours with [Leaflet](https://leafletjs.com/) and connect them with your entries 
-- Lazyloading / Infinityscrolling for images
+- [Lazyloading](https://github.com/verlok/lazyload) and Infinityscrolling for images
 - Lightbox with [Fancybox](http://fancyapps.com/fancybox/3/)
 - Dynamic Sitemap generation
 - SEO optimization

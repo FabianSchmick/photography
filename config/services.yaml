@@ -48,6 +48,10 @@ services:
     Vich\UploaderBundle\Naming\SubdirDirectoryNamer:
         public: true
 
+    App\Imagine\Filter\Loader\Blur:
+        tags:
+            - { name: liip_imagine.filter.loader, loader: blur }
+
     App\EventListener\RemovedFileListener:
         tags:
             - { name: kernel.event_listener, event: vich_uploader.pre_remove, method: onPreRemove }

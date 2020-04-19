@@ -13,6 +13,7 @@ class Entry {
             page: 1
         };
         this.isLoadingEntries = false;
+        this.lazyLoadInstance = null;
     }
 
     /**
@@ -59,6 +60,8 @@ class Entry {
             if ($.fancybox.getInstance()) { // If clicked throw lightbox
                 addContentToLightbox(data);
             }
+
+            this.lazyLoadInstance.update();
 
             this.isLoadingEntries = false;
         });
@@ -107,6 +110,15 @@ class Entry {
 
             history.pushState(null, '', url);
         });
+    }
+
+    /**
+     * Sets the lazyLoadInstance
+     *
+     * @param lazyLoadInstance
+     */
+    setLazyLoadInstance(lazyLoadInstance) {
+        this.lazyLoadInstance = lazyLoadInstance;
     }
 }
 
