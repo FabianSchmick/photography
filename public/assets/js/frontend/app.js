@@ -34,7 +34,7 @@ export function navigationAddClassOn() {
 
     const navHeight = $window.height() - 520;
 
-    if ($window.scrollTop() > navHeight || ($('#menu').offset().top - mainOffsetTop === 0) || mainOffsetTop === 0) {
+    if (mainOffsetTop === 0 || ($window.scrollTop() - mainOffsetTop === 0) || $window.scrollTop() > navHeight) {
         $navbar.addClass('on');
     } else {
         $navbar.removeClass('on');
