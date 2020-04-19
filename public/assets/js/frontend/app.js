@@ -4,26 +4,10 @@ import { smoothScroll } from '../util/smooth-scroll';
  * Functions for the navigation
  */
 export function navigation() {
-    let $navbar = $('.navbar-default'),
-        $window = $(window);
-
-    if ($('#menu').offset().top - $('main').offset().top === 0) {
-        $navbar.addClass('on');
-    } else {
-        addClassOn();
-        $window.bind('scroll', function() {
-            addClassOn();
-        });
-    }
-
-    function addClassOn() {
-        const navHeight = $window.height() - 520;
-        if ($window.scrollTop() > navHeight) {
-            $navbar.addClass('on');
-        } else {
-            $navbar.removeClass('on');
-        }
-    }
+    navigationAddClassOn();
+    $(window).bind('scroll', function() {
+        navigationAddClassOn();
+    });
 
     $('body').scrollspy({
         target: '.navbar-default',
@@ -41,4 +25,18 @@ export function navigation() {
             }
         }
     });
+}
+
+export function navigationAddClassOn() {
+    let mainOffsetTop = $('main').offset().top,
+        $navbar = $('.navbar-default'),
+        $window = $(window);
+
+    const navHeight = $window.height() - 520;
+
+    if ($window.scrollTop() > navHeight || ($('#menu').offset().top - mainOffsetTop === 0) || mainOffsetTop === 0) {
+        $navbar.addClass('on');
+    } else {
+        $navbar.removeClass('on');
+    }
 }

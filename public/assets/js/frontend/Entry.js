@@ -1,4 +1,5 @@
 import { addContentToLightbox } from './lightbox';
+import { navigationAddClassOn } from './app';
 
 /**
  * Class Entry with methods for index and show page
@@ -107,6 +108,8 @@ class Entry {
             $entry.find('img').on('load', () => {
                 $entry.removeClass('loading');
             });
+
+            navigationAddClassOn();
 
             history.pushState(null, '', url);
         });
