@@ -6,5 +6,6 @@ Disallow: /login
 Disallow: /admin/
 Disallow: /ajax/
 Disallow: /assets/img/layout/
+Disallow: /media/cache/low_entry_thumbnail/
 
 Sitemap: https://fotografie.fabian-schmick.de/sitemap.xml
