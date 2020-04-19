@@ -122,7 +122,7 @@ class TourService
      */
     public function calcTourDuration(Tour $tour): ?\DateTime
     {
-        if (!$segments = $tour->getSegments()) {
+        if (!($segments = $tour->getSegments()) || !$tour->getMaxAltitude()) {
             return null;
         }
 
