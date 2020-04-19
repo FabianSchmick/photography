@@ -16,5 +16,16 @@
     background-image: none
     background-size: cover
 
-.sidebar-dark .nav-item .nav-link
-    color: #fff
+.sidebar-dark
+    .nav-item
+        background: $color-teritary
+
+        .nav-link
+            color: #fff
+
+        .collapse
+            z-index: 100
+
+        @include media-breakpoint-up(md)
+            ul li
+                padding-left: 1.25rem

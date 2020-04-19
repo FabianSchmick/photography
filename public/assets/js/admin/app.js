@@ -46,10 +46,16 @@ export function navigation() {
  * Logic for searching the navigation
  */
 export function search() {
-    let $sidebar = $('ul#accordionSidebar');
+    $('form[data-search] .btn').on('click', function () {
+        filter($(this).closest('form').find('input[name="query"]'));
+    });
+    $('input[name="query"]').on('keyup', function () {
+        filter(this);
+    });
 
-    $('input[data-sidebar-search]').on('keyup', function () {
-        let filter = $(this).val();
+    function filter(input) {
+        let $sidebar = $('ul#accordionSidebar'),
+            filter = $(input).val();
 
         if (filter === '') {
             $sidebar.find('.collapse').collapse('hide');
@@ -58,16 +64,18 @@ export function search() {
         }
 
         $sidebar.find('li.searchable').each(function () {
-            if ($(this).text().search(new RegExp(filter, 'i')) < 0) {
-                $(this).hide();
+            let $this = $(this);
+
+            if ($this.text().search(new RegExp(filter, 'i')) < 0) {
+                $this.hide();
             } else {
-                $(this).show();
-                if ($(this).parent().hasClass('collapse')) {
-                    $(this).parent().collapse('show');
+                $this.show();
+                if ($this.parent().hasClass('collapse')) {
+                    $this.parent().collapse('show');
                 }
             }
         });
-    });
+    }
 }
 
 /**

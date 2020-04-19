@@ -1,5 +1,5 @@
 body
-    @media (min-width: 768px)
+    @include media-breakpoint-up(md)
         #page-wrapper
             padding-left: 1.5rem
         .topbar
@@ -28,6 +28,9 @@ body
     bottom: 0
     left: 0
 
+    #page-wrapper
+        padding-bottom: 1.5rem
+
     @media (min-width: 1921px)
         .sidebar
             width: 100% !important
@@ -47,7 +50,7 @@ body
             margin-left: initial
 
 
-@media (min-width: 768px)
+@include media-breakpoint-up(md)
     .sidebar-wrapper
         width: 20rem
         overflow-x: hidden

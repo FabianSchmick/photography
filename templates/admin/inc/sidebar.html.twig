@@ -18,7 +18,7 @@
     </a>
     <ul id="collapse-1" class="collapse list-unstyled">
         {% for entry in entries %}
-            <li class="searchable nav-item pl-3 ">
+            <li class="searchable nav-item">
                 <a href="{{ path('admin_entry_edit', {'id': entry.id}) }}" class="nav-link p-2">{{ entry.name }}</a>
             </li>
         {% endfor %}
@@ -30,7 +30,7 @@
     </a>
     <ul id="collapse-5" class="collapse list-unstyled">
         {% for tour in tours %}
-            <li class="searchable nav-item pl-3 ">
+            <li class="searchable nav-item">
                 <a href="{{ path('admin_tour_edit', {'id': tour.id}) }}" class="nav-link p-2">{{ tour.name }}</a>
             </li>
         {% endfor %}
@@ -42,7 +42,7 @@
     </a>
     <ul id="collapse-2" class="collapse list-unstyled">
         {% for author in authors %}
-            <li class="searchable nav-item pl-3 ">
+            <li class="searchable nav-item">
                 <a href="{{ path('admin_author_edit', {'id': author.id}) }}" class="nav-link p-2">{{ author.name }}</a>
             </li>
         {% endfor %}
@@ -54,7 +54,7 @@
     </a>
     <ul id="collapse-3" class="collapse list-unstyled">
         {% for location in locations %}
-            <li class="searchable nav-item pl-3 ">
+            <li class="searchable nav-item">
                 <a href="{{ path('admin_location_edit', {'id': location.id}) }}" class="nav-link p-2">{{ location.name }}</a>
             </li>
         {% endfor %}
@@ -66,7 +66,7 @@
     </a>
     <ul id="collapse-4" class="collapse list-unstyled">
         {% for tag in tags %}
-            <li class="searchable nav-item pl-3 ">
+            <li class="searchable nav-item">
                 <a href="{{ path('admin_tag_edit', {'id': tag.id}) }}" class="nav-link p-2">{{ tag.name }}</a>
             </li>
         {% endfor %}
