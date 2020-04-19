@@ -84,7 +84,7 @@
     </div>
 </noscript>
 
-<header id="menu" class="navbar navbar-default navbar-expand-lg fixed-top">
+<header id="menu" class="navbar navbar-default navbar-expand-lg fixed-top{% if app.request.attributes.get('_route') == 'entry_show' %} force-on{% endif %}">
     <nav class="container">
         <div class="navbar-header d-flex justify-content-between">
             <a class="navbar-brand my-2" href="{{ path('homepage') }}"><img src="{{ asset('assets/img/logo.jpg') }}" alt="logo"/> {{ 'header.authors_name'|trans }}</a>
