@@ -18,170 +18,137 @@
 
         <address id="imprint" class="text-container text-center" style="padding: 50px 0">
             <p>
-                Fabian Schmick<br />
-                Kurkölnischestraße, 4<br />
-                59929 Brilon<br />
-                Germany
+                {{ 'imprint.address'|trans|raw }}
             </p>
             <p>
-                {{ 'email'|trans }}: <a href="mailto:schmick.fabian@web.de">schmick.fabian(at)web.de</a><br />
+                {{ 'imprint.email.label'|trans }}: <a href="mailto:{{ 'imprint.email.value'|trans }}">{{ 'imprint.email.text'|trans }}</a><br/>
+                {{ 'imprint.phone.label'|trans }}: {{ 'imprint.phone.text'|trans }}<br/>
             </p>
         </address>
 
         <div class="text-container">
-            <strong>{{ 'contradiction.advertising.emails'|trans }}</strong>
+            <strong>{{ 'imprint.contradiction.advertising_emails.head'|trans }}</strong>
             <p>
-                {{ 'contradiction.advertising.emails.text'|trans }}
+                {{ 'imprint.contradiction.advertising_emails.text'|trans }}
             </p>
 
             <br/>
 
-            <strong>{{ 'copyright'|trans }}</strong>
+            <strong>{{ 'imprint.copyright.head'|trans }}</strong>
             <p>
-                {{ 'copyright.text'|trans }}
+                {{ 'imprint.copyright.text'|trans }}
             </p>
 
             <hr/>
 
-            <strong>{{ 'privacy.intro'|trans }}</strong>
+            <h2 class="h4">{{ 'privacy.first.head'|trans }}</h2>
+
+            <strong>{{ 'privacy.first.general.head'|trans }}</strong>
             <p>
-                {{ 'privacy.intro.text'|trans }}
+                {{ 'privacy.first.general.text'|trans|raw }}
             </p>
 
-            <br/>
+            <h3 class="h5">{{ 'privacy.first.acquisition.head'|trans }}</h3>
 
-            <strong>{{ 'legal.basis.of.processing'|trans }}</strong>
+            <strong>{{ 'privacy.first.acquisition.question.first.q'|trans }}</strong>
             <p>
-                {{ 'legal.basis.of.processing.text'|trans }}
+                {{ 'privacy.first.acquisition.question.first.a'|trans|raw }}
             </p>
 
-            <br/>
-
-            <strong>{{ 'right.to.information'|trans }}</strong>
+            <strong>{{ 'privacy.first.acquisition.question.second.q'|trans }}</strong>
             <p>
-                {{ 'right.to.information.text'|trans|raw }}
+                {{ 'privacy.first.acquisition.question.second.a'|trans|raw }}
             </p>
 
-            <br/>
-
-            <strong>{{ 'disclosure.of.data'|trans }}</strong>
+            <strong>{{ 'privacy.first.acquisition.question.third.q'|trans }}</strong>
             <p>
-                {{ 'disclosure.of.data.text'|trans }}
-            </p>
-            <ul>
-                {% set ul = 'disclosure.of.data.ul'|trans|split('|') %}
-                {% for li in ul %}
-                    <li>{{ li }}</li>
-                {% endfor %}
-            </ul>
-
-            <br/>
-
-            <strong>{{ 'affected.rights'|trans }}</strong>
-            <p>
-                {{ 'affected.rights.text'|trans }}
-            </p>
-            <ul>
-                {% set ul = 'affected.rights.ul'|trans|split('|') %}
-                {% for li in ul %}
-                    <li>{{ li }}</li>
-                {% endfor %}
-            </ul>
-
-            <br/>
-
-            <strong>{{ 'withdrawal'|trans }}</strong>
-            <p>
-                {{ 'withdrawal.text'|trans|raw }}
+                {{ 'privacy.first.acquisition.question.third.a'|trans|raw }}
             </p>
 
-            <br/>
-
-            <strong>{{ 'general.collection.of.data'|trans }}</strong>
+            <strong>{{ 'privacy.first.acquisition.question.fourth.q'|trans }}</strong>
             <p>
-                {{ 'general.collection.of.data.text'|trans }}
-            </p>
-            <ul>
-                {% set ul = 'general.collection.of.data.ul'|trans|split('|') %}
-                {% for li in ul %}
-                    <li>{{ li }}</li>
-                {% endfor %}
-            </ul>
-            <p>
-                {{ 'general.collection.of.data.text2'|trans }}
+                {{ 'privacy.first.acquisition.question.fourth.a'|trans|raw }}
             </p>
 
-            <br/>
-
-            <strong>{{ 'contact.forms'|trans }}</strong>
+            <strong>{{ 'privacy.first.tools.head'|trans }}</strong>
             <p>
-                {{ 'contact.forms.text'|trans }}
+                {{ 'privacy.first.tools.text'|trans|raw }}
             </p>
 
-            <br/>
+            <h2 class="h4 pt-3">{{ 'privacy.second.head'|trans }}</h2>
 
-            <strong>{{ 'right.to.data.portability'|trans }}</strong>
+            <strong>{{ 'privacy.second.privacy.head'|trans }}</strong>
             <p>
-                {{ 'right.to.data.portability.text'|trans }}
+                {{ 'privacy.second.privacy.text'|trans|raw }}
             </p>
 
-            <br/>
-
-            <strong>{{ 'links.to.other.websites'|trans }}</strong>
+            <strong>{{ 'privacy.second.hint.head'|trans }}</strong>
             <p>
-                {{ 'links.to.other.websites.text'|trans }}
+                {{ 'privacy.second.hint.text'|trans|raw }}
             </p>
 
-            <br/>
-
-            <strong>{{ 'references.to.third.party.websites'|trans }}</strong>
+            <strong>{{ 'privacy.second.revocation.head'|trans }}</strong>
             <p>
-                {{ 'references.to.third.party.websites.text'|trans }}
+                {{ 'privacy.second.revocation.text'|trans|raw }}
             </p>
 
-            <br/>
-
-            <strong>{{ 'right.to.complain.to.a.supervisory.authority'|trans }}</strong>
+            <strong>{{ 'privacy.second.revocation_right.head'|trans }}</strong>
             <p>
-                {{ 'right.to.complain.to.a.supervisory.authority.text'|trans }}
+                {{ 'privacy.second.revocation_right.text'|trans|raw }}
             </p>
 
-            <br/>
-
-            <strong>{{ 'google.analytics'|trans }}</strong>
+            <strong>{{ 'privacy.second.complaint.head'|trans }}</strong>
             <p>
-                {{ 'google.analytics.text'|trans|raw }}
+                {{ 'privacy.second.complaint.text'|trans|raw }}
             </p>
 
-            <br/>
-
-            <strong>{{ 'google.fonts'|trans }}</strong>
+            <strong>{{ 'privacy.second.portability.head'|trans }}</strong>
             <p>
-                {{ 'google.fonts.text'|trans|raw }}
+                {{ 'privacy.second.portability.text'|trans|raw }}
             </p>
 
-            <br/>
-
-            <strong>{{ 'security.alert'|trans }}</strong>
+            <strong>{{ 'privacy.second.ssl.head'|trans }}</strong>
             <p>
-                {{ 'security.alert.text'|trans }}
+                {{ 'privacy.second.ssl.text'|trans|raw }}
             </p>
 
-            <br/>
-
-            <strong>{{ 'changes.to.this.privacy.policy'|trans }}</strong>
+            <strong>{{ 'privacy.second.inform.head'|trans }}</strong>
             <p>
-                {{ 'changes.to.this.privacy.policy.text'|trans }}
+                {{ 'privacy.second.inform.text'|trans|raw }}
             </p>
 
-            <br/>
-
+            <strong>{{ 'privacy.second.limit.head'|trans }}</strong>
             <p>
-                {{ 'privacy.hint'|trans }}
+                {{ 'privacy.second.limit.text'|trans|raw }}
             </p>
-            <br/>
+
+            <h2 class="h4 pt-3">{{ 'privacy.third.head'|trans }}</h2>
+
+            <strong>{{ 'privacy.third.cookies.head'|trans }}</strong>
             <p>
-                {{ 'privacy.inquiry'|trans|raw }}
+                {{ 'privacy.third.cookies.text'|trans|raw }}
+            </p>
+
+            <strong>{{ 'privacy.third.contact.head'|trans }}</strong>
+            <p>
+                {{ 'privacy.third.contact.text'|trans|raw }}
+            </p>
+
+            <h2 class="h4 pt-3">{{ 'privacy.fourth.head'|trans }}</h2>
+
+            <strong>{{ 'privacy.fourth.google.fonts.head'|trans }}</strong>
+            <p>
+                {{ 'privacy.fourth.google.fonts.text'|trans|raw }}
+            </p>
+
+            <strong>{{ 'privacy.fourth.google.analytics.head'|trans }}</strong>
+            <p>
+                {{ 'privacy.fourth.google.analytics.text'|trans|raw }}
+            </p>
+
+            <strong>{{ 'privacy.fourth.osm.head'|trans }}</strong>
+            <p>
+                {{ 'privacy.fourth.osm.text'|trans|raw }}
             </p>
 
             <br/>
