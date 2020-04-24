@@ -89,7 +89,7 @@
                 {% if not tour.entries.empty %}
                     <div class="tour-pictures">
                         <h3>{{ 'tour.pictures'|trans }}</h3>
-                        <div class="text-container entries">
+                        <div class="text-container entries" data-lightbox>
                             {% include 'frontend/entry/ajax-list.html.twig' with {'entries': tour.entries, 'calcbase': 150}  %}
                         </div>
                     </div>
@@ -107,6 +107,7 @@
     {{ asset('assets/img/layout/icons/time-icon.svg')|inline_svg() }}
     {{ asset('assets/img/layout/icons/elevation-gain-icon.svg')|inline_svg() }}
     {{ asset('assets/img/layout/icons/marker-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/close-icon.svg')|inline_svg() }}
 {% endblock embed_svg %}
 
 {% block javascripts %}

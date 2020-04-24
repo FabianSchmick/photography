@@ -1,7 +1,23 @@
-.entry
-    height: 100%
-    width: 100%
-    background: none !important
+#entry
+    display: flex
+    padding: 3.125rem 0 0
+    min-height: 100vh
+    align-items: center
+
+    &.loading
+        .entry-image:after
+            content: ''
+            position: absolute
+            display: block
+            transform: translate(-50%, -50%)
+            top: 50%
+            left: 50%
+            height: 60px
+            width: 60px
+            background: url(../../../img/layout/icons/spinner-icon.svg) no-repeat center /contain
+
+    @include media-breakpoint-up(lg)
+        padding: 3.125rem calc(#{$grid-gutter-width} / 2) 0
 
     .entry-centerer
         display: flex
@@ -16,34 +32,73 @@
     .entry-inner
         position: relative
         width: 100%
-        padding: 3.5rem 0 1rem
+        padding: 0
 
-        .entry-title
-            margin: 1.5rem 0 1rem
-
-        .entry-image
-            position: relative
-            text-align: center
-
-            img
-                max-height: 100%
-                max-width: 100%
-
-        .entry-info
-            color: $color-secondary
-
-        a
-            text-decoration: none
-            color: $color-teritary
-
-            &.btn
-                color: $color-secondary
+    .entry-title
+        margin: 1.5rem 0 1rem
 
         @include media-breakpoint-up(lg)
-            padding: 2rem 0
+            margin: 0 0 1rem
 
-            .entry-title
-                margin: 0 0 1rem
+    .entry-image-container
+        position: relative
 
-            .entry-info
-                padding: 0 $grid-gutter-width
+    .entry-image
+        min-height: 100px
+        padding: 0
+
+        @include media-breakpoint-up(lg)
+            padding: 0 0 0 calc(#{$grid-gutter-width} / 2)
+
+        img
+            width: 100%
+
+    .entry-info
+        color: inherit
+        padding-bottom: 1rem
+
+        @include media-breakpoint-up(sm)
+            padding: 0 $grid-gutter-width $grid-gutter-width
+
+    a
+        text-decoration: none
+        color: $color-teritary
+
+        &.btn
+            color: $color-secondary
+
+    .prev,
+    .next
+        display: flex
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        height: 100%
+        opacity: 0.4
+        color: $color-teritary
+        text-decoration: none
+        border: none
+        padding: 2rem
+        align-items: center
+        justify-content: center
+        background-repeat: repeat-x
+        transition: all 0.2s ease-in
+        &:hover
+            opacity: 0.8
+            .icon
+                svg
+                    fill: $color-teritary
+
+        @include media-breakpoint-up(lg)
+            padding: 3rem
+
+        .icon
+            svg
+                fill: $color-secondary
+
+    .prev
+        right: 0
+        background-image: linear-gradient(to right, rgba(0,0,0,0.0001) 0, rgba(0,0,0,0.5) 100%)
+    .next
+        left: 0
+        background-image: linear-gradient(to right, rgba(0,0,0,0.5) 0, rgba(0,0,0,0.0001) 100%)

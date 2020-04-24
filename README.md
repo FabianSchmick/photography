@@ -22,7 +22,7 @@ The project provides you following functionality:
 - Tag possibility for describing and filtering entries
 - Uploading gpx files for showing your favorite tours with [Leaflet](https://leafletjs.com/) and connect them with your entries 
 - [Lazyloading](https://github.com/verlok/lazyload) and Infinityscrolling for images
-- Lightbox with [Fancybox](http://fancyapps.com/fancybox/3/)
+- Lightbox as a quick view
 - Dynamic Sitemap generation
 - SEO optimization
 - PWA Support with [Workbox](https://developers.google.com/web/tools/workbox/modules/workbox-build)

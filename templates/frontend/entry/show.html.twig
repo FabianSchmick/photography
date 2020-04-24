@@ -1,5 +1,4 @@
 {% import 'templates/macro/json-ld.html.twig' as jsonLd %}
-{% import 'templates/macro/macro.html.twig' as macro %}
 {% extends 'base.html.twig' %}
 
 {% block meta_description %}{{ entry.description ? entry.description|striptags|u.truncate(160) : (entry.name ~ ': ' ~ entry.tags|join(', '))|u.truncate(160) }}{% endblock %}
@@ -9,6 +8,7 @@
 {% block title %}{{ entry.name }}{% endblock %}
 
 {% block content %}
+    {% import 'templates/macro/macro.html.twig' as macro %}
     <section id="entry" class="container entry">
         <div class="entry-centerer">
             <article class="entry-inner row">

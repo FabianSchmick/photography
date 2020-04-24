@@ -41,7 +41,7 @@
     </section>
 
     <section id="content" class="container entries-container">
-        <div class="entries" data-paginate="{{ path('entry_pagiante_ajax') }}">
+        <div class="entries" data-paginate="{{ path('entry_pagiante_ajax') }}" data-lightbox>
             {{ render(controller('App\\Controller\\Frontend\\EntryController::ajaxPaginate', { 'page': 1 })) }}
         </div>
     </section>
@@ -54,6 +54,8 @@
     {{ asset('assets/img/layout/icons/instagram-icon.svg')|inline_svg() }}
     {{ asset('assets/img/layout/icons/mail-icon.svg')|inline_svg() }}
     {{ asset('assets/img/layout/icons/xing-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/angle-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/close-icon.svg')|inline_svg() }}
 {% endblock embed_svg %}
 
 {% block javascripts %}

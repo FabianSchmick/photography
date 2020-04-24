@@ -1,21 +1,16 @@
 {% import 'templates/macro/macro.html.twig' as macro %}
-<div class="entry">
-    <div class="entry-centerer">
-        <article class="entry-inner row">
-            <div class="entry-image col-12 col-lg-8">
-                <img src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_show') }}" alt="{{ entry.name }}">
+<div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="d-flex flex-column">
+        <div class="lightbox-head d-flex justify-content-between align-items-center">
+            <div class="lightbox-info">
+                <span id="current-index">1</span> / <span id="last-index">X</span>
             </div>
-            <div class="entry-info col-12 col-lg-4">
-                <h2 class="entry-title">
-                    {{ entry.name }}
-                </h2>
-                {{ entry.description|raw }}
-                {{ macro.entry_meta(entry) }}
-                {{ macro.entry_tags(entry) }}
-                <a class="btn btn-teritary" href="{{ vich_uploader_asset(entry.image, 'file') }}" target="_blank">
-                    <span class="icon icon-sm icon-download pr-2"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'btn.download'|trans }}
-                </a>
-            </div>
-        </article>
+            <button type="button" class="btn btn-default btn-close" data-dismiss="modal" title="{{ 'btn.close'|trans }}">
+                <span class="icon icon-close"><svg><use xlink:href="#close-icon"/></svg></span>
+            </button>
+        </div>
+        <div class="lightbox-body" data-list-target="#list-entry-{{ entry.id }}">
+            {{ block('content', 'frontend/entry/show.html.twig') }}
+        </div>
     </div>
 </div>

@@ -7,6 +7,7 @@ use App\Entity\Entry;
 use App\Repository\EntryRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,27 +22,20 @@ class EntryController extends AbstractController
      * @Route("/entry/{slug}", name="entry_show")
      * @Entity("entry", expr="repository.findOneByCriteria(_locale, {'slug': slug})")
      */
-    public function show(Entry $entry, EntryRepository $entryRepository): Response
+    public function show(Request $request, Entry $entry, EntryRepository $entryRepository): Response
     {
         $prev = $entryRepository->findByTimestamp($entry);
         $next = $entryRepository->findByTimestamp($entry, '>', 'ASC');
 
-        return $this->render('frontend/entry/show.html.twig', [
+        $tpl = 'frontend/entry/show.html.twig';
+        if ($request->isXmlHttpRequest()) {
+            $tpl = 'frontend/entry/ajax-show.html.twig';
+        }
+
+        return $this->render($tpl, [
             'entry' => $entry,
             'prev' => $prev,
             'next' => $next,
-        ]);
-    }
-
-    /**
-     * Gather all information for the ajax entry detail page (lightbox).
-     *
-     * @Route("/ajax/entry/{id}/", name="entry_show_ajax", requirements={"id": "\d+"}, condition="request.isXmlHttpRequest()")
-     */
-    public function ajaxShow(Entry $entry): Response
-    {
-        return $this->render('frontend/entry/ajax-show.html.twig', [
-            'entry' => $entry,
         ]);
     }
 

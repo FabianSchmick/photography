@@ -35,7 +35,7 @@
             {% endif %}
         </article>
 
-        <div class="entries" data-paginate="{{ path('tag_pagiante_ajax', {'slug': tag.slug}) }}">
+        <div class="entries" data-paginate="{{ path('tag_pagiante_ajax', {'slug': tag.slug}) }}" data-lightbox>
             {{ render(controller('App\\Controller\\Frontend\\TagController::ajaxPaginate', {'slug': tag.slug, 'page': 1 })) }}
         </div>
     </section>
@@ -44,4 +44,6 @@
 {% block embed_svg %}
     {{ parent() }}
     {{ asset('assets/img/layout/icons/download-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/angle-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/close-icon.svg')|inline_svg() }}
 {% endblock embed_svg %}

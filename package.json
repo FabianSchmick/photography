@@ -7,7 +7,6 @@
   },
   "version": "1.0.0",
   "dependencies": {
-    "@fancyapps/fancybox": "3.5.2",
     "@fortawesome/fontawesome-free": "^5.11.2",
     "@mapbox/leaflet-omnivore": "^0.3.4",
     "bootstrap": "^4.4.1",

@@ -1,4 +1,3 @@
-import { addContentToLightbox } from './lightbox';
 import { navigationAddClassOn } from './app';
 
 /**
@@ -58,10 +57,6 @@ class Entry {
                 .removeClass('loading')
                 .append(data);
 
-            if ($.fancybox.getInstance()) { // If clicked throw lightbox
-                addContentToLightbox(data);
-            }
-
             this.lazyLoadInstance.update();
 
             this.isLoadingEntries = false;
@@ -101,12 +96,16 @@ class Entry {
      */
     loadEntry(url, $entry) {
         return $.get(url, data => {
-            let html = $.parseHTML(data);
+            let html = $.parseHTML(data),
+                $article = $entry.find('article');
 
-            $entry.find('article').replaceWith($(html).find('section#entry article'));
+            $article.fadeOut(300, () => {
+                $article.replaceWith($(html).find('section#entry article'));
+                $entry.find('article').hide().fadeIn(300);
 
-            $entry.find('img').on('load', () => {
-                $entry.removeClass('loading');
+                $entry.find('img').on('load', () => {
+                    $entry.removeClass('loading');
+                });
             });
 
             navigationAddClassOn();
