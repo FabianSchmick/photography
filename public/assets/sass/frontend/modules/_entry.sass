@@ -1,8 +1,10 @@
 #entry
-    display: flex
     padding: 3.125rem 0 0
     min-height: 100vh
-    align-items: center
+
+    @include media-breakpoint-up(lg)
+        display: flex
+        align-items: center
 
     &.loading
         .entry-image:after

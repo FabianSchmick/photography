@@ -25,8 +25,10 @@
             background: none
     .lightbox-body
         flex: 1 1 auto
-        display: flex
-        align-items: center
+
+        @include media-breakpoint-up(lg)
+            display: flex
+            align-items: center
 
     .lightbox-info
         padding: 0.375rem 0.75rem
