@@ -87,22 +87,33 @@ class Lightbox {
             url = $target.prev().attr('href');
         }
 
-        if (url) {
-            $.get(url, data => {
-                let html = $.parseHTML(data),
-                    lightboxBody = this.$modal.find('.lightbox-body');
-
-                lightboxBody.fadeOut(300, () => {
-                    lightboxBody.replaceWith($(html).find('.lightbox-body'));
-                    this.$modal.find('.lightbox-body').hide().fadeIn(300);
-
-                    this.$modal.removeClass('loading');
-                    this.updateIndex();
-                });
-            });
-        } else {
+        if (!url) {
             this.$modal.removeClass('loading');
+
+            return;
         }
+
+        $.get(url, data => {
+            let html = $.parseHTML(data),
+                $lightboxBody = this.$modal.find('.lightbox-body');
+
+            $lightboxBody.fadeOut(300, () => {
+                $lightboxBody.replaceWith($(html).find('.lightbox-body'));
+
+                $lightboxBody = this.$modal.find('.lightbox-body'); // Get the updated content
+                $lightboxBody.hide().fadeIn(300);
+
+                let img = $lightboxBody.find('img');
+                if (img) {
+                    img.on('load', () => {
+                        this.$modal.removeClass('loading');
+                    });
+                } else {
+                    this.$modal.removeClass('loading');
+                }
+                this.updateIndex();
+            });
+        });
     }
 
     /**
