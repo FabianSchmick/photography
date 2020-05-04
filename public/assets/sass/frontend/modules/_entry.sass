@@ -37,7 +37,10 @@
         padding: 0
 
     .entry-title
-        margin: 1.5rem 0 1rem
+        margin: 1.5rem 0 0.25rem
+
+        @include media-breakpoint-up(sm)
+            margin: 1.5rem 0 1rem
 
         @include media-breakpoint-up(lg)
             margin: 0 0 1rem

@@ -48,7 +48,7 @@
                                     <h4 class="h1">{{ tour.name }}</h4>
                                     <p>
                                         {% if tour.description %}
-                                            {{ tour.description|striptags|u.truncate(220) }}
+                                            {{ tour.description|striptags|u.truncate(220, '...') }}
                                         {% endif %}
                                     </p>
                                     <dl class="meta">
