@@ -13,22 +13,65 @@
 {% block title %}{{ 'header.tour'|trans }} - {{ tour.name }}{% endblock %}
 
 {% block cover %}
-    <section id="cover" class="parallax-container">
-        <img class="parallax" src="{{ img|imagine_filter('entry_show') }}" alt="{{ tour.name }}"/>
+    <section id="cover">
+        {% if not tour.entries.empty and tour.entries.count > 1 %}
+            <div id="entry-carousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    {% for entry in tour.entries %}
+                        <li data-target="#entry-carousel" data-slide-to="{{ loop.index0 }}"
+                            style="background-image: url({{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_thumbnail') }})"
+                            {% if loop.first %}class="active"{% endif %}>
+                        </li>
+                    {% endfor %}
+                </ol>
+                <div class="carousel-inner">
+                    {% for entry in tour.entries %}
+                        <figure class="parallax-container carousel-item{% if loop.first %} active{% endif %}">
+                            <img class="parallax" src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_show') }}" alt="{{ entry.name }}"/>
+                            <figcaption class="parallax-caption d-none d-md-block">
+                                <h4>{{ entry.name }}</h4>
+                                <p class="mb-0"><i>{{ entry.timestamp|date('d.m.Y') }} @ {{ entry.location }}</i></p>
+                            </figcaption>
+                        </figure>
+                    {% endfor %}
+                </div>
+                <div class="carousel-controls">
+                    <a class="btn btn-primary mr-2" href="#entry-carousel" role="button" data-slide="prev" title="{{ 'btn.prev'|trans }}">
+                        <span class="icon icon-angle"><svg><use xlink:href="#angle-icon"/></svg></span>
+                    </a>
+                    <a class="btn btn-primary" href="#entry-carousel" role="button" data-slide="next" title="{{ 'btn.next'|trans }}">
+                        <span class="icon icon-angle icon-rotate-180"><svg><use xlink:href="#angle-icon"/></svg></span>
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {% set entry = tour.previewEntry %}
+            <figure class="parallax-container mb-0">
+                <img class="parallax" src="{{ img|imagine_filter('entry_show') }}" alt="{{ entry.name|default(tour.name) }}"/>
+                {% if entry %}
+                    <figcaption class="parallax-caption d-none d-md-block">
+                        <h4 class="mb-0">{{ entry.name }}</h4>
+                        <p class="mb-0"><i>{{ entry.timestamp|date('d.m.Y') }} @ {{ entry.location }}</i></p>
+                    </figcaption>
+                {% endif %}
+            </figure>
+        {% endif %}
     </section>
 {% endblock %}
 
 {% block content %}
-    <section id="content" class="container">
+    <section id="content">
         <article class="tour">
-            <h1>{{ tour.name }}</h1>
-            <div class="text-container text-center tour-desc">
-                {% if tour.description %}
-                    {{ tour.description|raw }}
-                {% endif %}
+            <div class="container">
+                <h1>{{ tour.name }}</h1>
+                <div class="text-container text-center tour-desc">
+                    {% if tour.description %}
+                        {{ tour.description|raw }}
+                    {% endif %}
+                </div>
             </div>
             <div class="tour-info">
-                <div class="tour-data">
+                <div class="container tour-data">
                     <h3>{{ 'tour.data'|trans }}</h3>
                     <dl class="row meta-table">
                         {% if tour.distance %}
@@ -86,14 +129,6 @@
                     <div id="map" data-gpx="{{ vich_uploader_asset(tour.file, 'file') }}" data-coordinates="[{{ firstPoint.latitude }}, {{ firstPoint.longitude }}]"></div>
                     <a class="btn btn-teritary mt-4" href="{{ path('core_download_file', {'file': tour.file.fileName}) }}" target="_blank"><span class="icon icon-sm icon-download pr-2"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'btn.tour_download'|trans }}</a>
                 </div>
-                {% if not tour.entries.empty %}
-                    <div class="tour-pictures">
-                        <h3>{{ 'tour.pictures'|trans }}</h3>
-                        <div class="text-container entries" data-lightbox>
-                            {% include 'frontend/entry/ajax-list.html.twig' with {'entries': tour.entries, 'calcbase': 150}  %}
-                        </div>
-                    </div>
-                {% endif %}
             </div>
         </article>
     </section>

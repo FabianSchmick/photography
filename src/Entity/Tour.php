@@ -144,6 +144,7 @@ class Tour
      * @var Collection
      *
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="tour", cascade={"persist"})
+     * @ORM\OrderBy({"timestamp"="DESC"})
      */
     private $entries;
 
@@ -427,11 +428,27 @@ class Tour
     }
 
     /**
-     * Get Entries.
+     * Get Entries with $this->previewEntry as first element.
      */
     public function getEntries(): Collection
     {
-        return $this->entries;
+        if (!$this->previewEntry) {
+            return $this->entries;
+        }
+
+        $previewEntryId = $this->previewEntry->getId();
+        $entries = $this->entries->toArray();
+        usort($entries, function (Entry $a, Entry $b) use ($previewEntryId) {
+            if ($a->getId() != $previewEntryId && $b->getId() == $previewEntryId) {
+                return 1;
+            } elseif ($a->getId() == $previewEntryId && $b->getId() != $previewEntryId) {
+                return -1;
+            } else {
+                return $b->getTimestamp() > $a->getTimestamp();
+            }
+        });
+
+        return new ArrayCollection($entries);
     }
 
     /**

@@ -1,0 +1,54 @@
+.carousel
+    position: relative
+    &:after
+        content: ''
+        position: absolute
+        left: 0
+        bottom: 0
+        width: 100%
+        height: 100%
+        box-shadow: inset 0 -25px 25px -25px #000
+
+    .carousel-inner
+        .parallax-container
+            box-shadow: none
+
+        figure
+            margin-bottom: 0
+
+    .carousel-indicators
+        display: none
+
+        @include media-breakpoint-up(lg)
+            display: flex
+
+        li
+            background: no-repeat center /cover
+            width: 85px
+            height: 50px
+            border: 2px solid #fff
+
+    .carousel-controls
+        position: absolute
+        right: 1rem
+        bottom: 1rem
+        z-index: 10
+        @include media-breakpoint-up(sm)
+            right: 1.75rem
+            bottom: 1.75rem
+
+        @include media-breakpoint-up(lg)
+            display: flex
+            right: $grid-gutter-width
+            bottom: -25px
+
+        @include media-breakpoint-up(xl)
+            right: 7.5%
+
+        .btn
+            padding: 0.5rem
+            @include media-breakpoint-up(md)
+                padding: 0.75rem
+
+            .icon svg
+                fill: #fff

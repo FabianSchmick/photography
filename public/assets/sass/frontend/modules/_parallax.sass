@@ -1,25 +1,29 @@
 .parallax-container
     position: relative
-    height: 400px
+    height: 50vh
     overflow: hidden
     box-shadow: inset 0 -25px 25px -25px #000
 
     .parallax
         position: absolute
-        height: 200% /* Greater then 100% */
         width: 100%
         z-index: -1
         object-fit: cover
-
-#cover.parallax-container
-    height: 50vh
-
-    .parallax
-        height: 140%
+        height: 140% /* Greater then 100% */
 
         @include media-breakpoint-down(sm)
             height: 100%
             transform: none !important
+
+    .parallax-caption
+        position: absolute
+        left: 0
+        bottom: 25%
+        padding: 1rem $grid-gutter-width
+        background: rgba($color-teritary, .75)
+        color: #fff
+        border-top-right-radius: $border-radius-base
+        border-bottom-right-radius: $border-radius-base
 
     @include media-breakpoint-up(lg)
         height: 66vh

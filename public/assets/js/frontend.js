@@ -16,6 +16,8 @@ import Lightbox from './frontend/Lightbox';
 import { registerSW } from './util/sw';
 import { lazyload } from './frontend/lazyload';
 
+$.detectSwipe.threshold = 80; // The number of pixels your finger must move to trigger a swipe event
+
 $(document).ready(function() {
     disableGoogleAnalytics();
     notice();

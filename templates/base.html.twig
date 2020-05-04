@@ -141,13 +141,13 @@
 {% block breadcrumb %}
     {% if breadcrumbs is defined %}
         <nav aria-label="breadcrumb" class="text-center">
-            <ol class="breadcrumb justify-content-center">
+            <ol class="breadcrumb justify-content-center flex-nowrap">
                 <li class="breadcrumb-item"><a href="{{ path('homepage') }}" class="link border-0">{{ 'header.home'|trans }}</a></li>
                 {% for breadcrumb in breadcrumbs %}
                     {% if not loop.last %}
-                        <li class="breadcrumb-item"><a href="{{ breadcrumb.url }}" class="link border-0">{{ breadcrumb.name|u.truncate(25) }}</a></li>
+                        <li class="breadcrumb-item text-truncate"><a href="{{ breadcrumb.url }}" class="link border-0">{{ breadcrumb.name }}</a></li>
                     {% else %}
-                        <li class="breadcrumb-item active" aria-current="page">{{ breadcrumb.name|u.truncate(25) }}</li>
+                        <li class="breadcrumb-item text-truncate active" aria-current="page">{{ breadcrumb.name }}</li>
                     {% endif %}
                 {% endfor %}
             </ol>
