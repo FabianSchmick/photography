@@ -5,8 +5,9 @@ import { smoothScroll } from './smooth-scroll';
  */
 export function pagination() {
     $('main').on('click', 'ul.pagination a', function (e) {
-        let url = $(this).attr('href'),
-            pagination = $(this).closest('ul.pagination'),
+        let $this = $(this),
+            url = $this.attr('href'),
+            pagination = $this.closest('ul.pagination'),
             replace = $(pagination).data('replace');
 
         $.get(url, function(data) {

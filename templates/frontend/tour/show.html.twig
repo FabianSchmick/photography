@@ -63,8 +63,8 @@
     <section id="content">
         <article class="tour">
             <div class="container">
-                <h1>{{ tour.name }}</h1>
                 <div class="text-container text-center tour-desc">
+                    <h1>{{ tour.name }}</h1>
                     {% if tour.description %}
                         {{ tour.description|raw }}
                     {% endif %}
