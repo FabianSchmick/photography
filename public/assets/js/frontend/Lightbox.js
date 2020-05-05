@@ -13,7 +13,7 @@ class Lightbox {
     /**
      * Lightbox click listener
      */
-    lightbox() {
+    initLightbox() {
         this.$lightbox.on('click', '> a', e => {
             let $this = $(e.currentTarget);
 

@@ -19,7 +19,7 @@ class Entry {
     /**
      * Lazy loads the entries
      */
-    lazyLoad() {
+    initLazyLoad() {
         let $window = $(window);
 
         $window.on('scroll', () => {

@@ -126,7 +126,7 @@
                     <h3>{{ 'tour.map'|trans }}</h3>
                     {% set firstPoint = tour.segments[0].points|first %}
                     {% set lastPoint = tour.segments[0].points|last %}
-                    <div id="map" data-gpx="{{ vich_uploader_asset(tour.file, 'file') }}" data-coordinates="[{{ firstPoint.latitude }}, {{ firstPoint.longitude }}]"></div>
+                    <div id="map" class="map collapsed" data-tour-map data-gpx="{{ vich_uploader_asset(tour.file, 'file') }}" data-coordinates="[{{ firstPoint.latitude }}, {{ firstPoint.longitude }}]"></div>
                     <a class="btn btn-teritary mt-4" href="{{ path('core_download_file', {'file': tour.file.fileName}) }}" target="_blank"><span class="icon icon-sm icon-download pr-2"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'btn.tour_download'|trans }}</a>
                 </div>
             </div>
@@ -137,12 +137,14 @@
 {% block embed_svg %}
     {{ parent() }}
     {{ asset('assets/img/layout/icons/angle-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/download-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/length-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/time-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/elevation-gain-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/marker-icon.svg')|inline_svg() }}
     {{ asset('assets/img/layout/icons/close-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/compress-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/download-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/elevation-gain-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/expand-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/length-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/marker-icon.svg')|inline_svg() }}
+    {{ asset('assets/img/layout/icons/time-icon.svg')|inline_svg() }}
 {% endblock embed_svg %}
 
 {% block javascripts %}
