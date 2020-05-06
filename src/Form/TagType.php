@@ -37,9 +37,6 @@ class TagType extends AbstractType
             ->add('name')
             ->add('description', TextareaType::class, [
                 'required' => false,
-                'attr' => [
-                    'class' => 'wysiwyg',
-                ],
             ])
             ->add('sort', NumberType::class, [
                 'required' => false,
@@ -52,9 +49,6 @@ class TagType extends AbstractType
                 'class' => 'App:Entry',
                 'choices' => $tag->getEntries(),
                 'placeholder' => '',
-                'attr' => [
-                    'class' => 'select2 form-control',
-                ],
             ]);
         }
 

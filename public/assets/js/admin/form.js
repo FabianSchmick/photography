@@ -4,7 +4,8 @@ import 'summernote/dist/summernote-bs4';
 import 'summernote/lang/summernote-de-DE';
 
 $(document).on('change', '.custom-file-input', function() {
-    $(this).parent().find('label').text($(this).val().replace('C:\\fakepath\\', ''));
+    let $this = $(this);
+    $this.parent().find('label').text($this.val().replace('C:\\fakepath\\', ''));
 });
 
 /**
@@ -20,7 +21,7 @@ export function initSelect2() {
 
         $el.select2({
             allowClear: !$el.prop('required'),
-            tags: $el.hasClass('select2-add'),
+            tags: !!$el.prop('multiple'),
             width: '100%',
             placeholder: $el.find('option[value=""]').length ? $el.find('option[value=""]').text() : ''
         });

@@ -4,7 +4,7 @@ twig:
     strict_variables: '%kernel.debug%'
     exception_controller: null
     form_themes:
-        - 'templates/form/form.html.twig'
+        - 'templates/form/theme.html.twig'
     globals:
         locales: '%app.locales%'
         ga: '%env(string:GOOGLE_ANALYTICS)%'

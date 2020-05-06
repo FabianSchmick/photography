@@ -50,9 +50,6 @@ class TourType extends AbstractType
             ->add('name')
             ->add('description', TextareaType::class, [
                 'required' => false,
-                'attr' => [
-                    'class' => 'wysiwyg',
-                ],
             ])
             ->add('distance', NumberType::class, [
                 'required' => false,
@@ -103,9 +100,6 @@ class TourType extends AbstractType
                 'class' => 'App:Entry',
                 'choices' => $tour->getEntries(),
                 'placeholder' => '',
-                'attr' => [
-                    'class' => 'select2 form-control',
-                ],
             ]);
         }
 

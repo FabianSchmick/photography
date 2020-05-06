@@ -46,9 +46,6 @@ class EntryType extends AbstractType
             ->add('name')
             ->add('description', TextareaType::class, [
                 'required' => false,
-                'attr' => [
-                    'class' => 'wysiwyg',
-                ],
             ])
             ->add('author', EntityType::class, [
                 'required' => false,
@@ -58,9 +55,6 @@ class EntryType extends AbstractType
                     return $er->createQueryBuilder('a')
                         ->orderBy('a.name', 'ASC');
                 },
-                'attr' => [
-                    'class' => 'select2 select2-add form-control',
-                ],
             ])
             ->add('image', EntryImageType::class, [
                 'required' => false,
@@ -74,9 +68,6 @@ class EntryType extends AbstractType
                     return $er->createQueryBuilder('l')
                         ->orderBy('l.name', 'ASC');
                 },
-                'attr' => [
-                    'class' => 'select2 select2-add form-control',
-                ],
             ])
             ->add('timestamp', DateType::class, [
                 'required' => false,
@@ -90,9 +81,6 @@ class EntryType extends AbstractType
                         ->orderBy('t.sort', 'DESC');
                 },
                 'multiple' => true,
-                'attr' => [
-                    'class' => 'select2 select2-add form-control',
-                ],
             ])
             ->add('tour', EntityType::class, [
                 'required' => false,
@@ -102,9 +90,6 @@ class EntryType extends AbstractType
                     return $er->createQueryBuilder('t')
                         ->orderBy('t.name', 'ASC');
                 },
-                'attr' => [
-                    'class' => 'select2 form-control',
-                ],
             ])
         ;
 

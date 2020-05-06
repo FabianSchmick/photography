@@ -17,6 +17,16 @@
     {{- form_rest(form) -}}
 {%- endblock form_widget_compound -%}
 
+{%- block textarea_widget -%}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' wysiwyg')|trim}) -%}
+    {{ parent() }}
+{%- endblock textarea_widget -%}
+
+{%- block choice_widget_collapsed -%}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' select2')|trim}) -%}
+    {{ parent() }}
+{%- endblock choice_widget_collapsed -%}
+
 {%- block form_widget_simple -%}
     {% set unit = form.parent.vars.unit is defined and form.parent.vars.unit ? form.parent.vars.unit : form.vars.unit %}
 
