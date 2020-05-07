@@ -58,6 +58,24 @@ class Tour
     private $description;
 
     /**
+     * @var string|null
+     *
+     * @Assert\Length(max=65535)
+     * @Gedmo\Translatable
+     * @ORM\Column(type="text", length=65535, nullable=true)
+     */
+    private $directions;
+
+    /**
+     * @var string|null
+     *
+     * @Assert\Length(max=65535)
+     * @Gedmo\Translatable
+     * @ORM\Column(type="text", length=65535, nullable=true)
+     */
+    private $equipmentAndSafety;
+
+    /**
      * @var float|null in kilometers
      *
      * @Assert\Range(min=0, max=100000)
@@ -225,6 +243,46 @@ class Tour
     public function getDescription(): ?string
     {
         return $this->description;
+    }
+
+    /**
+     * Set directions.
+     *
+     * @return Tour
+     */
+    public function setDirections(?string $directions): self
+    {
+        $this->directions = $directions;
+
+        return $this;
+    }
+
+    /**
+     * Get directions.
+     */
+    public function getDirections(): ?string
+    {
+        return $this->directions;
+    }
+
+    /**
+     * Set equipmentAndSafety.
+     *
+     * @return Tour
+     */
+    public function setEquipmentAndSafety(?string $equipmentAndSafety): self
+    {
+        $this->equipmentAndSafety = $equipmentAndSafety;
+
+        return $this;
+    }
+
+    /**
+     * Get equipmentAndSafety.
+     */
+    public function getEquipmentAndSafety(): ?string
+    {
+        return $this->equipmentAndSafety;
     }
 
     /**

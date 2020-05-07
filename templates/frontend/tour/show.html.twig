@@ -129,6 +129,22 @@
                     <div id="map" class="map" data-tour-map data-gpx="{{ vich_uploader_asset(tour.file, 'file') }}" data-coordinates="[{{ firstPoint.latitude }}, {{ firstPoint.longitude }}]"></div>
                     <a class="btn btn-teritary mt-4" href="{{ path('core_download_file', {'file': tour.file.fileName}) }}" target="_blank"><span class="icon icon-sm icon-download pr-2"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'btn.tour_download'|trans }}</a>
                 </div>
+                {% if tour.directions %}
+                    <div class="container">
+                        <div class="text-container text-center">
+                            <h3>{{ 'label.directions'|trans }}</h3>
+                            {{ tour.directions|raw }}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if tour.equipmentAndSafety %}
+                    <div class="container">
+                        <div class="text-container text-center">
+                            <h3>{{ 'label.equipmentAndSafety'|trans }}</h3>
+                            {{ tour.equipmentAndSafety|raw }}
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         </article>
     </section>

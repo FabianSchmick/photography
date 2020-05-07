@@ -17,6 +17,8 @@ label.tags: Tags
 label.tag: Tag
 label.tours: Tours
 label.tour: Tour
+label.directions: Directions
+label.equipmentAndSafety: Equipment and safety instructions
 label.distance: Length
 label.duration: Duration
 label.minAltitude: Min altitude

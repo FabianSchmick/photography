@@ -51,6 +51,12 @@ class TourType extends AbstractType
             ->add('description', TextareaType::class, [
                 'required' => false,
             ])
+            ->add('directions', TextareaType::class, [
+                'required' => false,
+            ])
+            ->add('equipmentAndSafety', TextareaType::class, [
+                'required' => false,
+            ])
             ->add('distance', NumberType::class, [
                 'required' => false,
                 'unit' => 'unit.distance',
