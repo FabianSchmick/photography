@@ -114,6 +114,8 @@ class TourType extends AbstractType
             $tour = $event->getForm()->getData();
 
             $tour->setDescription($this->coreService->purifyString($tour->getDescription()));
+            $tour->setDirections($this->coreService->purifyString($tour->getDirections()));
+            $tour->setEquipmentAndSafety($this->coreService->purifyString($tour->getEquipmentAndSafety()));
         });
     }
 
