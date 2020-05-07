@@ -34,7 +34,7 @@ class AdminController extends AbstractController
         $authors = $em->getRepository('App:Author')->findBy([], ['name' => 'ASC']);
         $locations = $em->getRepository('App:Location')->findBy([], ['name' => 'ASC']);
         $tags = $em->getRepository('App:Tag')->findBy([], ['sort' => 'DESC']);
-        $tours = $em->getRepository('App:Tour')->findBy([], ['updated' => 'DESC']);
+        $tours = $em->getRepository('App:Tour')->findBy([], ['sort' => 'DESC', 'updated' => 'DESC']);
 
         return $this->render('admin/inc/sidebar.html.twig', [
             'entries' => $entries,

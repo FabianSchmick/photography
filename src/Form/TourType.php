@@ -98,6 +98,9 @@ class TourType extends AbstractType
                 'required' => false,
                 'placeholder_text' => $tour->getFile() ? $tour->getFile()->getOriginalName() : 'label.no_file_selected',
             ])
+            ->add('sort', NumberType::class, [
+                'required' => false,
+            ])
         ;
 
         if (!$tour->getEntries()->isEmpty()) {

@@ -118,6 +118,14 @@ class Tour
     private $cumulativeElevationGain;
 
     /**
+     * @var int|null
+     *
+     * @Assert\Type("numeric")
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $sort;
+
+    /**
      * @var Entry|null
      *
      * @ORM\OneToOne(targetEntity="Entry", inversedBy="previewTour")
@@ -383,6 +391,26 @@ class Tour
     public function getCumulativeElevationGain(): ?int
     {
         return $this->cumulativeElevationGain !== 0 ? $this->cumulativeElevationGain : null;
+    }
+
+    /**
+     * Set sort.
+     *
+     * @return Tour
+     */
+    public function setSort(?int $sort): self
+    {
+        $this->sort = $sort;
+
+        return $this;
+    }
+
+    /**
+     * Get sort.
+     */
+    public function getSort(): ?int
+    {
+        return $this->sort;
     }
 
     /**

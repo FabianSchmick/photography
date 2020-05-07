@@ -28,7 +28,8 @@ class TourRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('t')
             ->select('t')
-            ->orderBy('t.updated', 'DESC')
+            ->orderBy('t.sort', 'DESC')
+            ->addOrderBy('t.updated', 'DESC')
             ->getQuery();
     }
 
