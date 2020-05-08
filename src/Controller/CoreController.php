@@ -21,12 +21,9 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 class CoreController extends AbstractController
 {
     /**
-     * @Route("/", name="core_switch_Locale_frontend", defaults={"redirect": "homepage"})
-     * @Route("/admin/language/{_locale}/",
-     *     defaults={"redirect": "admin_index"},
-     *     requirements={"_locale": "%app.locales%"},
-     *     name="core_switch_Locale_admin"
-     * )
+     * @Route("/", name="core_switch_locale_frontend", defaults={"redirect": "homepage"})
+     * @Route("/admin/language/{_locale}/", defaults={"redirect": "admin_index"},
+     *     requirements={"_locale": "%app.locales%"}, name="core_switch_locale_admin")
      */
     public function locale(Request $request, SessionInterface $session, $redirect): RedirectResponse
     {

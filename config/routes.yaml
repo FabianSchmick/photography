@@ -1,9 +1,10 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
-
-logout:
-    path: /logout
+homepage:
+    path: /{_locale}/
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+    requirements:
+        _locale: "%app.locales%"
+    defaults:
+        template: frontend/index.html.twig
 
 imprint-dataprotection:
     path: /{_locale}/privacy
@@ -12,3 +13,6 @@ imprint-dataprotection:
         _locale: "%app.locales%"
     defaults:
         template: frontend/static/privacy.html.twig
+
+logout:
+    path: /logout
