@@ -14,7 +14,8 @@
         margin-bottom: 1rem
 
     .tour-desc
-        padding-bottom: 2.5rem
+        @extend .text-container
+        text-align: center
 
         p:last-child
             margin-bottom: 0
@@ -22,9 +23,17 @@
     .tour-info
         > div
             position: relative
-            padding: 3rem 0
+            padding-top: 2.5rem
+            padding-bottom: 2.5rem
 
-            &:before
+            @include media-breakpoint-up(sm)
+                padding-top: 3rem
+                padding-bottom: 3rem
+
+            &.no-spacer
+                padding-top: 0
+
+            &:not(.no-spacer):before
                 content: ''
                 position: absolute
                 top: 0

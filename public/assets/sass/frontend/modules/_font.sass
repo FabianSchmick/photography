@@ -27,6 +27,7 @@ h1, .h1, .entry-title
     h2, .h2
         font-size: 1.25rem
 
+button.link,
 a.link,
 article a,
 p a
@@ -38,3 +39,26 @@ p a
         border-color: darken($color-teritary, 5)
         color: darken($color-teritary, 5)
         text-decoration: none
+        box-shadow: none
+
+.text-fadeout
+    position: relative
+    height: 100px
+    overflow-y: hidden
+
+    &:after
+        content: ""
+        position: absolute
+        width: 100%
+        height: 100%
+        left: 0
+        bottom: 0
+        opacity: 1
+        background: linear-gradient(transparent 25px, #fff)
+        transition: all 0.2s ease-in
+
+.text-fadein
+    &:after
+        content: ""
+        opacity: 0
+        z-index: -1

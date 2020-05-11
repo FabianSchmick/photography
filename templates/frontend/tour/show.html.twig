@@ -62,16 +62,16 @@
 {% block content %}
     <section id="content">
         <article class="tour">
-            <div class="container">
-                <div class="text-container text-center tour-desc">
-                    <h1>{{ tour.name }}</h1>
-                    {% if tour.description %}
-                        {{ tour.description|raw }}
-                    {% endif %}
-                </div>
+            <div class="container text-container text-center">
+                <h1>{{ tour.name }}</h1>
             </div>
             <div class="tour-info">
-                <div class="container tour-data">
+                {% if tour.description %}
+                    <div class="container tour-desc no-spacer">
+                        {{ tour.description|raw }}
+                    </div>
+                {% endif %}
+                <div class="container tour-data px-0">
                     <h3>{{ 'tour.data'|trans }}</h3>
                     <dl class="row meta-table">
                         {% if tour.distance %}
@@ -130,19 +130,35 @@
                     <a class="btn btn-teritary mt-4" href="{{ path('core_download_file', {'file': tour.file.fileName}) }}" target="_blank"><span class="icon icon-sm icon-download pr-2"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'btn.tour_download'|trans }}</a>
                 </div>
                 {% if tour.directions %}
-                    <div class="container">
-                        <div class="text-container text-center">
-                            <h3>{{ 'label.directions'|trans }}</h3>
+                    <div class="container tour-desc">
+                        <h3>{{ 'label.directions'|trans }}</h3>
+                        {% if tour.directions|length > 500 %}
+                            <div id="tour-directions" class="text-fadeout">
+                                {{ tour.directions|raw }}
+                            </div>
+                            <button class="link btn border-0"
+                                data-show-more="#tour-directions"
+                                data-show-more-collapsed="{{ 'btn.show_all'|trans }}"
+                                data-show-more-open="{{ 'btn.hide_some'|trans }}">{{ 'btn.show_all'|trans }}</button>
+                        {% else %}
                             {{ tour.directions|raw }}
-                        </div>
+                        {% endif %}
                     </div>
                 {% endif %}
                 {% if tour.equipmentAndSafety %}
-                    <div class="container">
-                        <div class="text-container text-center">
-                            <h3>{{ 'label.equipmentAndSafety'|trans }}</h3>
+                    <div class="container tour-desc">
+                        <h3>{{ 'label.equipmentAndSafety'|trans }}</h3>
+                        {% if tour.equipmentAndSafety|length > 500 %}
+                            <div id="tour-equipmentAndSafety" class="text-fadeout">
+                                {{ tour.equipmentAndSafety|raw }}
+                            </div>
+                            <button class="link btn border-0"
+                                data-show-more="#tour-equipmentAndSafety"
+                                data-show-more-collapsed="{{ 'btn.show_all'|trans }}"
+                                data-show-more-open="{{ 'btn.hide_some'|trans }}">{{ 'btn.show_all'|trans }}</button>
+                        {% else %}
                             {{ tour.equipmentAndSafety|raw }}
-                        </div>
+                        {% endif %}
                     </div>
                 {% endif %}
             </div>

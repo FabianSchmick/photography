@@ -52,6 +52,8 @@ btn.next: Weiter
 btn.prev: Zurück
 btn.show_tour: Tour anzeigen
 btn.tour_download: GPX Herunterladen
+btn.show_all: Alles einblenden
+btn.hide_some: Einiges ausblenden
 
 # Titles
 title.index: Naturfotografie

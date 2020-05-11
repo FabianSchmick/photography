@@ -9,6 +9,7 @@ import { navigation } from './frontend/app';
 import { parallax } from './frontend/parallax';
 
 import { pagination } from './util/pagination';
+import { showMoreText } from './util/show-more';
 
 import Entry from './frontend/Entry';
 import Lightbox from './frontend/Lightbox';
@@ -24,6 +25,7 @@ $(document).ready(function() {
     navigation();
     parallax();
     pagination();
+    showMoreText();
 
     let lazyLoadInstance = lazyload();
     Entry.setLazyLoadInstance(lazyLoadInstance);

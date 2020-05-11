@@ -52,6 +52,8 @@ btn.next: Next
 btn.prev: Previous
 btn.show_tour: Show tour
 btn.tour_download: GPX download
+btn.show_all: Show all
+btn.hide_some: Hide some
 
 # Titles
 title.index: Naturephotography
