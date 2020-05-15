@@ -18,13 +18,15 @@ export function notice() {
     }
 
     // set cookie
-    $('.agree').on('click', function(e) {
+    $('.agree').on('click', e => {
         $notice.remove();
         $body.removeClass('notice');
+
         Cookies.set('Notice', true, {
             path: '/',
             expires: 365
         });
+
         e.preventDefault();
     });
 }

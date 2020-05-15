@@ -1,7 +1,7 @@
 {
   "outputPath": "./public/assets",
   "publicPath": "/assets",
-  "swDest": "../../sw.js",
+  "swDest": "../sw.js",
 
   "styles": {
     "frontend": {

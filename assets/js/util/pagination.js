@@ -10,7 +10,7 @@ export function pagination() {
             pagination = $this.closest('ul.pagination'),
             replace = $(pagination).data('replace');
 
-        $.get(url, function(data) {
+        $.get(url, data => {
             let html = $.parseHTML(data);
 
             $(replace).replaceWith($(html).find(replace));

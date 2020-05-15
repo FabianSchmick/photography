@@ -5,7 +5,7 @@ import { smoothScroll } from '../util/smooth-scroll';
  */
 export function navigation() {
     navigationAddClassOn();
-    $(window).bind('scroll', function() {
+    $(window).bind('scroll', () => {
         navigationAddClassOn();
     });
 
@@ -27,6 +27,9 @@ export function navigation() {
     });
 }
 
+/**
+ * Adds class "on" for the current active site
+ */
 export function navigationAddClassOn() {
     let mainOffsetTop = $('main').offset().top,
         $navbar = $('.navbar-default'),

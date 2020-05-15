@@ -18,7 +18,7 @@ export function showMoreText() {
 
         $target.animate({
             height: $target.hasClass('text-fadein') ? $target.get(0).scrollHeight : 100
-        }, 250, function() {
+        }, 250, () => {
             if ($target.hasClass('text-fadein')) {
                 $this.html($this.data('show-more-open'));
                 $target.height('auto');

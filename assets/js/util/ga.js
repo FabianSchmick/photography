@@ -2,10 +2,10 @@
  * Disable GA script
  */
 export function disableGoogleAnalytics() {
-    $('.gaOptOut').on('click', function () {
+    $('.gaOptOut').on('click', e => {
         gaOptout();
         alert('Google Analytics wurde deaktiviert!');
 
-        return false;
+        e.preventDefault();
     });
 }

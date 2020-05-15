@@ -1,4 +1,4 @@
-import { navigationAddClassOn } from './app';
+import { navigationAddClassOn } from './navigation';
 
 /**
  * Class Entry with methods for index and show page
@@ -40,25 +40,21 @@ class Entry {
         }
 
         this.isLoadingEntries = true;
-
         this.paginateConfig.container.addClass('loading');
 
         this.paginateConfig.page++;
         let paginateUrlPage = this.paginateConfig.url + '/' + this.paginateConfig.page;
 
         return $.get(paginateUrlPage, data => {
+            this.paginateConfig.container.removeClass('loading');
+
             if (!data.length) {
-                this.paginateConfig.container.removeClass('loading');
                 this.isLoadingEntries = true;
                 return false;
             }
 
-            this.paginateConfig.container
-                .removeClass('loading')
-                .append(data);
-
+            this.paginateConfig.container.append(data);
             this.lazyLoadInstance.update();
-
             this.isLoadingEntries = false;
         });
     }
