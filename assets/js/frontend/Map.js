@@ -2,8 +2,8 @@ import * as L from 'leaflet';
 import * as omnivore from '@mapbox/leaflet-omnivore/index';
 import 'leaflet-easybutton';
 
-import markerPoi from '../../img/layout/icons/map-poi-icon.svg';
-import markerStart from '../../img/layout/icons/map-start-icon.svg';
+import markerPoi from '../../images/layout/icons/map-poi-icon.svg';
+import markerStart from '../../images/layout/icons/map-start-icon.svg';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 import { smoothScroll } from '../util/smooth-scroll';

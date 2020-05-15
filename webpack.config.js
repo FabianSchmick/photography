@@ -24,6 +24,10 @@ Object.keys(config.styles).forEach(key => {
 });
 
 Encore
+    .copyFiles({
+        from: config.copy.from,
+        to: config.copy.to
+    })
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .configureSplitChunks(splitChunks => {
@@ -51,7 +55,7 @@ if (Encore.isProduction()) {
                 skipWaiting: true,
                 runtimeCaching: [
                     {
-                        urlPattern: new RegExp('/assets/img/(.*)'),
+                        urlPattern: new RegExp('/assets/images/(.*)'),
                         handler: 'CacheFirst'
                     },
                     {

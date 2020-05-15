@@ -17,7 +17,7 @@
             <meta property="og:url" content="{{ url(app.request.attributes.get('_route'),
                 app.request.attributes.get('_route_params')) }}"/>
         {% endif %}
-        <meta property="og:image" content="{% block meta_image %}{{ absolute_url(asset('assets/img/layout/cover-placeholder.jpg')) }}{% endblock %}"/>
+        <meta property="og:image" content="{% block meta_image %}{{ absolute_url(asset('assets/images/layout/cover-placeholder.jpg')) }}{% endblock %}"/>
         <meta property="og:description" content="{{ block('meta_description') }}"/>
         <meta name="twitter:card" content="summary"/>
         <meta name="twitter:title" content="{{ block('title') }} | {{ 'header.authors_name'|trans }}"/>
@@ -87,7 +87,7 @@
 <header id="menu" class="navbar navbar-default navbar-expand-lg fixed-top{% if app.request.attributes.get('_route') == 'entry_show' %} force-on{% endif %}">
     <nav class="container">
         <div class="navbar-header d-flex justify-content-between">
-            <a class="navbar-brand my-2" href="{{ path('homepage') }}"><img src="{{ asset('assets/img/logo.jpg') }}" alt="logo"/> {{ 'header.authors_name'|trans }}</a>
+            <a class="navbar-brand my-2" href="{{ path('homepage') }}"><img src="{{ asset('assets/images/logo.jpg') }}" alt="logo"/> {{ 'header.authors_name'|trans }}</a>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#main-navbar-collapse" aria-controls="main-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="line"></span>
                 <span class="line"></span>
@@ -170,8 +170,8 @@
 
 <div id="embed-svg" style="display: none">
     {% block embed_svg %}
-        {{ asset('assets/img/layout/icons/de-icon.svg')|inline_svg() }}
-        {{ asset('assets/img/layout/icons/en-icon.svg')|inline_svg() }}
+        {{ asset('assets/images/layout/icons/de-icon.svg')|inline_svg() }}
+        {{ asset('assets/images/layout/icons/en-icon.svg')|inline_svg() }}
     {% endblock embed_svg %}
 </div>
 

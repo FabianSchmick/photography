@@ -1,18 +1,18 @@
 {
-  "outputPath": "./public/assets/dist",
-  "publicPath": "/assets/dist",
+  "outputPath": "./public/assets",
+  "publicPath": "/assets",
   "swDest": "../../sw.js",
 
   "styles": {
     "frontend": {
       "src": [
-        "./public/assets/sass/frontend.sass"
+        "./assets/sass/frontend.sass"
       ],
       "dest": "css/app"
     },
     "admin": {
       "src": [
-        "./public/assets/sass/admin.sass"
+        "./assets/sass/admin.sass"
       ],
       "dest": "css/admin"
     }
@@ -21,15 +21,20 @@
   "scripts": {
     "frontend": {
       "src": [
-        "./public/assets/js/frontend.js"
+        "./assets/js/frontend.js"
       ],
       "dest": "js/app"
     },
     "admin": {
       "src": [
-        "./public/assets/js/admin.js"
+        "./assets/js/admin.js"
       ],
       "dest": "js/admin"
     }
+  },
+
+  "copy": {
+    "from": "./assets/images",
+    "to": "images/[path][name].[hash:8].[ext]"
   }
 }

@@ -40,7 +40,7 @@ filter:
         - 'tests/*'
         - 'bin/*'
         - 'var/*'
-        - 'public/assets/dist/*'
+        - 'public/assets/*'
 
 checks:
     php: true

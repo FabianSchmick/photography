@@ -3,7 +3,7 @@
 
 {% block meta_description %}{{ 'tours.headline'|trans }} - {{ 'pagination.page'|trans }} {{ page }} - ({{ 'introduction.tours.headline'|trans|striptags }}){% endblock %}
 
-{% block meta_image %}{{ absolute_url(asset('assets/img/layout/cover-tour.jpg')) }}{% endblock %}
+{% block meta_image %}{{ absolute_url(asset('assets/images/layout/cover-tour.jpg')) }}{% endblock %}
 
 {% block title %}{{ 'header.tours'|trans }} - {{ 'pagination.page'|trans }} {{ page }}{% endblock %}
 
@@ -11,7 +11,7 @@
 
 {% block cover %}
     <section id="cover" class="parallax-container">
-        <img class="parallax" src="{{ asset('assets/img/layout/cover-tour.jpg')|imagine_filter('entry_show') }}" alt="{{ 'tours.headline'|trans }}"/>
+        <img class="parallax" src="{{ asset('assets/images/layout/cover-tour.jpg')|imagine_filter('entry_show') }}" alt="{{ 'tours.headline'|trans }}"/>
     </section>
 {% endblock %}
 
@@ -40,7 +40,7 @@
                                 {% if tour.previewEntry %}
                                     <img src="{{ vich_uploader_asset(tour.previewEntry.image, 'file')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.previewentry.name }}">
                                 {% else %}
-                                    <img src="{{ asset('assets/img/layout/cover-tour.jpg')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.name }}">
+                                    <img src="{{ asset('assets/images/layout/cover-tour.jpg')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.name }}">
                                 {% endif %}
                             </div>
                             <div class="tour-info-container">
@@ -92,8 +92,8 @@
 
 {% block embed_svg %}
     {{ parent() }}
-    {{ asset('assets/img/layout/icons/angle-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/length-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/angle-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/length-icon.svg')|inline_svg() }}
 {% endblock embed_svg %}
 
 {% block javascripts %}

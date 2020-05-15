@@ -3,7 +3,7 @@
 
 {% block meta_description %}{{ tag.description ? tag.description|striptags|u.truncate(160) : ('introduction.tag'|trans ~ ' ' ~ tag.name)|u.truncate(160) }}{% endblock %}
 
-{% set img = tag.previewEntry ? vich_uploader_asset(tag.previewEntry.image, 'file') : asset('assets/img/layout/cover-tag.jpg') %}
+{% set img = tag.previewEntry ? vich_uploader_asset(tag.previewEntry.image, 'file') : asset('assets/images/layout/cover-tag.jpg') %}
 {% block meta_image %}{{ absolute_url(img) }}{% endblock %}
 
 {% block title %}{{ 'header.tag'|trans }} {{ tag.name }}{% endblock %}
@@ -43,7 +43,7 @@
 
 {% block embed_svg %}
     {{ parent() }}
-    {{ asset('assets/img/layout/icons/download-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/angle-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/close-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/download-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/angle-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/close-icon.svg')|inline_svg() }}
 {% endblock embed_svg %}

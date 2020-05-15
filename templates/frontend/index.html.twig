@@ -3,7 +3,7 @@
 
 {% block cover %}
     <section id="cover" class="parallax-container">
-        <img class="parallax" src="{{ asset('assets/img/layout/cover-placeholder.jpg')|imagine_filter('entry_show') }}" alt="{{ 'header.photography'|trans }}"/>
+        <img class="parallax" src="{{ asset('assets/images/layout/cover-placeholder.jpg')|imagine_filter('entry_show') }}" alt="{{ 'header.photography'|trans }}"/>
     </section>
 {% endblock %}
 
@@ -49,13 +49,13 @@
 
 {% block embed_svg %}
     {{ parent() }}
-    {{ asset('assets/img/layout/icons/download-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/facebook-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/instagram-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/mail-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/xing-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/angle-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/close-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/download-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/facebook-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/instagram-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/mail-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/xing-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/angle-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/close-icon.svg')|inline_svg() }}
 {% endblock embed_svg %}
 
 {% block javascripts %}

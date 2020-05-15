@@ -7,7 +7,7 @@
     {% endif %}
 {% endblock %}
 
-{% set img = tour.previewEntry ? vich_uploader_asset(tour.previewEntry.image, 'file') : asset('assets/img/layout/cover-tour.jpg') %}
+{% set img = tour.previewEntry ? vich_uploader_asset(tour.previewEntry.image, 'file') : asset('assets/images/layout/cover-tour.jpg') %}
 {% block meta_image %}{{ absolute_url(img) }}{% endblock %}
 
 {% block title %}{{ 'header.tour'|trans }} - {{ tour.name }}{% endblock %}
@@ -168,15 +168,15 @@
 
 {% block embed_svg %}
     {{ parent() }}
-    {{ asset('assets/img/layout/icons/angle-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/close-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/compress-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/download-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/elevation-gain-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/expand-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/length-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/marker-icon.svg')|inline_svg() }}
-    {{ asset('assets/img/layout/icons/time-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/angle-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/close-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/compress-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/download-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/elevation-gain-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/expand-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/length-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/marker-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/time-icon.svg')|inline_svg() }}
 {% endblock embed_svg %}
 
 {% block javascripts %}
