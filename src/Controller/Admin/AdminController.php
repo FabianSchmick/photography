@@ -31,14 +31,14 @@ class AdminController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $entries = $em->getRepository('App:Entry')->findBy([], ['timestamp' => 'DESC']);
-        $authors = $em->getRepository('App:Author')->findBy([], ['name' => 'ASC']);
+        $user = $em->getRepository('App:User')->findBy([], ['fullname' => 'ASC']);
         $locations = $em->getRepository('App:Location')->findBy([], ['name' => 'ASC']);
         $tags = $em->getRepository('App:Tag')->findBy([], ['sort' => 'DESC']);
         $tours = $em->getRepository('App:Tour')->findBy([], ['sort' => 'DESC', 'updated' => 'DESC']);
 
         return $this->render('admin/inc/sidebar.html.twig', [
             'entries' => $entries,
-            'authors' => $authors,
+            'users' => $user,
             'locations' => $locations,
             'tags' => $tags,
             'tours' => $tours,

@@ -47,7 +47,6 @@ class AppFixtures extends Fixture
             [
                 'name' => 'Forest near my hometown',
                 'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-                'author' => 'Fabian Schmick',
                 'location' => 'Germany, NRW',
                 'timestamp' => '2017-10-26',
                 'tags' => [
@@ -57,7 +56,6 @@ class AppFixtures extends Fixture
             [
                 'name' => 'Mountain over 2300m',
                 'description' => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-                'author' => 'Fabian Schmick',
                 'image' => '',
                 'location' => 'Germany, Bavaria',
                 'timestamp' => '2017-10-27',
@@ -68,7 +66,6 @@ class AppFixtures extends Fixture
             [
                 'name' => 'Field with mushrooms',
                 'description' => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-                'author' => 'Fabian Schmick',
                 'location' => 'Germany, NRW',
                 'timestamp' => '2017-10-28',
                 'tags' => [
@@ -78,7 +75,6 @@ class AppFixtures extends Fixture
             [
                 'name' => 'Sunset in winter',
                 'description' => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-                'author' => 'Fabian Schmick',
                 'location' => 'Germany, NRW',
                 'timestamp' => '2017-10-29',
                 'tags' => [

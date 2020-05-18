@@ -48,20 +48,14 @@ Generate the database schema
 php bin/console doctrine:migrations:migrate
 ```
 
+Create a backend user
+```
+php bin/console app:add-user username password fullname
+```
+
 Now you only need to execute `npm install` and `npm run build` in the project root to generate the necessary stylesheet and javascript files.
 
 If you need some example data run:
 ```
 php bin/console doctrine:fixtures:load
-```
-
----
-
-The standard login credentials for the backend `/admin`:
-- Username: admin
-- Password: admin
-
-If you want to change them you need to encode the password with symfony built in command and replace it's value in `.env.local`
-```
-php bin/console security:encode-password
 ```

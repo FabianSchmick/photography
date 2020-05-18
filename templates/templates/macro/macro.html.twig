@@ -35,9 +35,9 @@
             <dt class="entry-tour">{{ 'label.tour'|trans }}:</dt>
             <dd class="entry-tour-value"><a href="{{ path('tour_show', {'slug': entry.tour.slug }) }}">{{ entry.tour.name }}</a></dd>
         {% endif %}
-        {% if entry.author.name is defined %}
+        {% if entry.author.fullname is defined %}
             <dt class="entry-author">{{ 'label.author'|trans }}:</dt>
-            <dd class="entry-author-value">{{ entry.author.name }}</dd>
+            <dd class="entry-author-value">{{ entry.author.fullname }}</dd>
         {% endif %}
         {% if entry.timestamp %}
             <dt class="entry-timestamp">{{ 'label.timestamp'|trans }}:</dt>

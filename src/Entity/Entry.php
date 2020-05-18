@@ -51,9 +51,9 @@ class Entry
     private $description;
 
     /**
-     * @var Author|null
+     * @var User|null
      *
-     * @ORM\ManyToOne(targetEntity="Author", inversedBy="entries", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="entries", cascade={"persist"})
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
     private $author;
@@ -220,7 +220,7 @@ class Entry
      *
      * @return Entry
      */
-    public function setAuthor(?Author $author): self
+    public function setAuthor(?User $author): self
     {
         $this->author = $author;
 
@@ -230,9 +230,9 @@ class Entry
     /**
      * Get author.
      *
-     * @return Author
+     * @return User
      */
-    public function getAuthor(): ?Author
+    public function getAuthor(): ?User
     {
         return $this->author;
     }

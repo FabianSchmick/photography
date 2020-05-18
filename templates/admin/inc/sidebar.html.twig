@@ -41,9 +41,9 @@
         <i class="fa fa-users fa-fw"></i> {{ 'header.authors'|trans }}<span class="fa arrow"></span>
     </a>
     <ul id="collapse-2" class="collapse list-unstyled">
-        {% for author in authors %}
+        {% for user in users %}
             <li class="searchable nav-item">
-                <a href="{{ path('admin_author_edit', {'id': author.id}) }}" class="nav-link p-2">{{ author.name }}</a>
+                <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="nav-link p-2">{{ user }}</a>
             </li>
         {% endfor %}
     </ul>

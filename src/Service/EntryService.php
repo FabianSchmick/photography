@@ -18,11 +18,6 @@ class EntryService
     private $em;
 
     /**
-     * @var AuthorService
-     */
-    private $authorService;
-
-    /**
      * @var LocationService
      */
     private $locationService;
@@ -40,10 +35,9 @@ class EntryService
     /**
      * EntryService constructor.
      */
-    public function __construct(EntityManagerInterface $em, AuthorService $authorService, LocationService $locationService, TagService $tagService, EntryRepository $entryRepository)
+    public function __construct(EntityManagerInterface $em, LocationService $locationService, TagService $tagService, EntryRepository $entryRepository)
     {
         $this->em = $em;
-        $this->authorService = $authorService;
         $this->locationService = $locationService;
         $this->tagService = $tagService;
         $this->entryRepository = $entryRepository;
@@ -66,12 +60,6 @@ class EntryService
 
         $entryEntity->setName($entry['name']);
         $entryEntity->setDescription($entry['description']);
-
-        if (!empty($entry['author'])) {
-            $authorEntity = $this->authorService->saveAuthor(['name' => $entry['author']]);
-
-            $entryEntity->setAuthor($authorEntity);
-        }
 
         if ($image) {
             $entryImage = new EntryImage();

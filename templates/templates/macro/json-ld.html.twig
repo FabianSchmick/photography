@@ -40,7 +40,7 @@
         {
             "@context": "http://schema.org",
             "@type": "ImageObject",
-            "author": "{{ entry.author.name is defined ? entry.author.name : 'header.authors_name'|trans }}",
+            "author": "{{ entry.author.fullname is defined ? entry.author.fullname : 'header.authors_name'|trans }}",
             {% if entry.location.name is defined %}
             "contentLocation": "{{ entry.location.name }}",
             {% endif %}

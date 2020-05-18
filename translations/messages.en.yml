@@ -30,6 +30,7 @@ label.search: Search
 label.previewEntry: Preview Entry
 label.username: Username
 label.password: Password
+label.repeat_password: Repeat password
 
 # Units
 unit.distance: km

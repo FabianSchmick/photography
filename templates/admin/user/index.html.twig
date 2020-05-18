@@ -8,15 +8,7 @@
     <div class="col-xs-12">
 
         <div class="page-header">
-            <div class="pull-left">
-                <h1>{{ 'header.authors'|trans }}</h1>
-            </div>
-            <div class="pull-right">
-                <ul class="actions list-unstyled pull-right">
-                    <li><a class="btn btn-primary" href="{{ path('admin_author_new') }}">{{ 'header.new.author'|trans }}</a></li>
-                </ul>
-            </div>
-            <div class="clearfix"></div>
+            <h1>{{ 'header.authors'|trans }}</h1>
         </div>
 
         <table class="table table-striped">
@@ -28,16 +20,16 @@
             </tr>
             </thead>
             <tbody>
-            {% for author in authors %}
+            {% for user in users %}
                 <tr>
                     <td>
                         {{ loop.index }}
                     </td>
                     <td>
-                        {{ author.name }}
+                        {{ user.fullname }}
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="{{ path('admin_author_edit', {'id': author.id}) }}" title="{{ 'btn.edit'|trans }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a class="btn btn-primary" href="{{ path('admin_user_edit', {'id': user.id}) }}" title="{{ 'btn.edit'|trans }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     </td>
                 </tr>
             {% endfor %}

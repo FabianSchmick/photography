@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\Author;
 use App\Entity\Entry;
 use App\Entity\Location;
 use App\Entity\Tag;
@@ -18,6 +17,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Security;
 
 class EntryType extends AbstractType
 {
@@ -32,16 +32,25 @@ class EntryType extends AbstractType
     private $coreService;
 
     /**
+     * @var Security
+     */
+    private $security;
+
+    /**
      * EntryType constructor.
      */
-    public function __construct(EntityManagerInterface $em, CoreService $coreService)
+    public function __construct(EntityManagerInterface $em, CoreService $coreService, Security $security)
     {
         $this->em = $em;
         $this->coreService = $coreService;
+        $this->security = $security;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        /** @var Entry $entry */
+        $entry = $options['data'];
+
         $builder
             ->add('name')
             ->add('description', TextareaType::class, [
@@ -49,16 +58,17 @@ class EntryType extends AbstractType
             ])
             ->add('author', EntityType::class, [
                 'required' => false,
-                'class' => 'App:Author',
+                'class' => 'App:User',
+                'data' => $entry->getAuthor() ?? $this->security->getUser(),
                 'placeholder' => '',
                 'query_builder' => function (EntityRepository $er): QueryBuilder {
-                    return $er->createQueryBuilder('a')
-                        ->orderBy('a.name', 'ASC');
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.fullname', 'ASC');
                 },
             ])
             ->add('image', EntryImageType::class, [
                 'required' => false,
-                'placeholder_text' => $options['data']->getImage() ? $options['data']->getImage()->getOriginalName() : 'label.no_file_selected',
+                'placeholder_text' => $entry->getImage() ? $entry->getImage()->getOriginalName() : 'label.no_file_selected',
             ])
             ->add('location', EntityType::class, [
                 'required' => false,
@@ -95,10 +105,6 @@ class EntryType extends AbstractType
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $data = $event->getData();
-
-            if (!empty($data['author'] = trim($data['author']))) {
-                $data['author'] = $this->saveNewChoiceByName($data['author'], Author::class, 'App:Author');
-            }
 
             if (!empty($data['location'] = trim($data['location']))) {
                 $data['location'] = $this->saveNewChoiceByName($data['location'], Location::class, 'App:Location');

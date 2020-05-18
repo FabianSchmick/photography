@@ -529,9 +529,9 @@ class Tour
                 return 1;
             } elseif ($a->getId() == $previewEntryId && $b->getId() != $previewEntryId) {
                 return -1;
-            } else {
-                return $b->getTimestamp() > $a->getTimestamp();
             }
+
+            return $b->getTimestamp() > $a->getTimestamp();
         });
 
         return new ArrayCollection($entries);
