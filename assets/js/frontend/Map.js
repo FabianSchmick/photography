@@ -1,5 +1,6 @@
 import * as L from 'leaflet';
 import * as omnivore from '@mapbox/leaflet-omnivore/index';
+import { GestureHandling } from 'leaflet-gesture-handling';
 import 'leaflet-easybutton';
 
 import markerPoi from '../../images/layout/icons/map-poi-icon.svg';
@@ -29,12 +30,12 @@ class Map {
             return;
         }
 
-        this.map = L.map(this.$map.attr('id'), {
-            scrollWheelZoom: false
-        });
+        L.Map.addInitHook('addHandler', 'gestureHandling', GestureHandling);
 
-        this.map.on('focus', () => { this.map.scrollWheelZoom.enable(); });
-        this.map.on('blur', () => { this.map.scrollWheelZoom.disable(); });
+        this.map = L.map(this.$map.attr('id'), {
+            scrollWheelZoom: false,
+            gestureHandling: true
+        });
 
         // stupid hack so that leaflet's images work after going through webpack
         // https://github.com/PaulLeCam/react-leaflet/issues/255#issuecomment-388492108
