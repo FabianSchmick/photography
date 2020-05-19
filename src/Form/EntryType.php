@@ -78,6 +78,9 @@ class EntryType extends AbstractType
                     return $er->createQueryBuilder('l')
                         ->orderBy('l.name', 'ASC');
                 },
+                'attr' => [
+                    'class' => 'select2-add',
+                ],
             ])
             ->add('timestamp', DateType::class, [
                 'required' => false,
@@ -91,6 +94,9 @@ class EntryType extends AbstractType
                         ->orderBy('t.sort', 'DESC');
                 },
                 'multiple' => true,
+                'attr' => [
+                    'class' => 'select2-add',
+                ],
             ])
             ->add('tour', EntityType::class, [
                 'required' => false,

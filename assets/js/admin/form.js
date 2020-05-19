@@ -21,7 +21,7 @@ export function initSelect2() {
 
         $el.select2({
             allowClear: !$el.prop('required'),
-            tags: !!$el.prop('multiple'),
+            tags: $el.hasClass('select2-add'),
             width: '100%',
             placeholder: $el.find('option[value=""]').length ? $el.find('option[value=""]').text() : ''
         });
