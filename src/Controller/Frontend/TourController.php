@@ -59,11 +59,6 @@ class TourController extends AbstractController
     {
         $tourService->setGpxData($tour);
 
-        if (!$tour->getEntries()->isEmpty()) {
-            $locations = array_map(function ($e) { return $e->getLocation(); }, $tour->getEntries()->toArray());
-            $locations = array_unique($locations);
-        }
-
         if ($activeCategoryId = $request->query->get('category')) {
             $activeCategory = $categoryRepository->find($activeCategoryId);
         }
@@ -83,7 +78,6 @@ class TourController extends AbstractController
 
         return $this->render('frontend/tour/show.html.twig', [
             'tour' => $tour,
-            'locations' => $locations ?? [],
             'breadcrumbs' => $breadcrumbs,
         ]);
     }

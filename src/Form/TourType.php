@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Location;
 use App\Entity\Tour;
 use App\Entity\TourCategory;
 use App\Service\CoreService;
@@ -72,6 +73,18 @@ class TourType extends AbstractType
                     'class' => 'select2-add',
                 ],
             ])
+            ->add('location', EntityType::class, [
+                'required' => false,
+                'class' => 'App:Location',
+                'placeholder' => '',
+                'query_builder' => function (EntityRepository $er): QueryBuilder {
+                    return $er->createQueryBuilder('l')
+                        ->orderBy('l.name', 'ASC');
+                },
+                'attr' => [
+                    'class' => 'select2-add',
+                ],
+            ])
             ->add('distance', NumberType::class, [
                 'required' => false,
                 'unit' => 'unit.distance',
@@ -132,6 +145,10 @@ class TourType extends AbstractType
 
             if (!empty($data['tourCategory'] = trim($data['tourCategory']))) {
                 $data['tourCategory'] = $this->coreService->saveNewEntityByName($data['tourCategory'], TourCategory::class, 'App:TourCategory');
+            }
+
+            if (!empty($data['location'] = trim($data['location']))) {
+                $data['location'] = $this->coreService->saveNewEntityByName($data['location'], Location::class, 'App:Location');
             }
 
             $event->setData($data);

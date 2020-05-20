@@ -45,6 +45,13 @@ class Location
     private $entries;
 
     /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="Tour", mappedBy="tour", cascade={"persist"})
+     */
+    private $tours;
+
+    /**
      * @var string|null
      *
      * @Gedmo\Locale
@@ -58,6 +65,7 @@ class Location
     public function __construct()
     {
         $this->entries = new ArrayCollection();
+        $this->tours = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -99,6 +107,14 @@ class Location
     public function getEntries(): Collection
     {
         return $this->entries;
+    }
+
+    /**
+     * Get Tours.
+     */
+    public function getTours(): Collection
+    {
+        return $this->tours;
     }
 
     /**

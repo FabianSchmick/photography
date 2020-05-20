@@ -124,8 +124,7 @@ introduction.tour_categories: Filter by categories
 tours.headline: My tour recommendations
 tour.data: Tourdata
 tour.map: GPX-Track
-tour.pictures: Pictures
-tour.locations: Locations
+tour.sub_headline: '%category% in %location%'
 
 # Other
 noscript: Please enable JavaScript to use this website without any issues

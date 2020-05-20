@@ -126,6 +126,14 @@ class Tour
     private $sort;
 
     /**
+     * @var Location|null
+     *
+     * @ORM\ManyToOne(targetEntity="Location", inversedBy="tours", cascade={"persist"})
+     * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $location;
+
+    /**
      * @var Entry|null
      *
      * @ORM\OneToOne(targetEntity="Entry", inversedBy="previewTour")
@@ -419,6 +427,26 @@ class Tour
     public function getSort(): ?int
     {
         return $this->sort;
+    }
+
+    /**
+     * Set location.
+     *
+     * @return Tour
+     */
+    public function setLocation(?Location $location): self
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location.
+     */
+    public function getLocation(): ?Location
+    {
+        return $this->location;
     }
 
     /**

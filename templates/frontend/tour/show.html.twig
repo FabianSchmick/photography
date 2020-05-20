@@ -64,6 +64,7 @@
         <article class="tour">
             <div class="container text-container text-center">
                 <h1>{{ tour.name }}</h1>
+                <h2 class="h5">{{ 'tour.sub_headline'|trans({'%category%': tour.tourCategory, '%location%': tour.location}) }}</h2>
             </div>
             <div class="tour-info">
                 {% if tour.description %}
@@ -113,12 +114,6 @@
                             <dd class="col-6 tour-cumulativeElevationGain-value">
                                 {{ tour.cumulativeElevationGain|number_format(0, ',', '.') }} {{ 'unit.cumulativeElevationGain'|trans }}
                             </dd>
-                        {% endif %}
-                        {% if locations %}
-                            <dt class="col-6 tour-locations">
-                                {{ 'tour.locations'|trans }} <span class="icon icon-sm icon-marker pl-1"><svg><use xlink:href="#marker-icon"/></svg></span>
-                            </dt>
-                            <dd class="col-6 tour-locations-value">{{ locations|join(', ') }}</dd>
                         {% endif %}
                     </dl>
                 </div>
