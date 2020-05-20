@@ -30,11 +30,14 @@ ul.tags
                 svg
                     fill: $color-secondary
 
-.text-container
-    .filter-tags
-        padding: 0 0 0.5rem
-        font-weight: $font-weight-bold
-        letter-spacing: 0.4px
+.filter-tags
+    padding: 0.5rem 0 0.75rem
+    font-weight: $font-weight-bold
+    letter-spacing: 0.4px
+
+    @include media-breakpoint-up(sm)
+        padding: 1rem 0 0.75rem
+
 
 .entry-info .tags
     padding-top: 0.5rem
