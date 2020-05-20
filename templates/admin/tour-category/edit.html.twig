@@ -1,0 +1,28 @@
+{% import 'templates/macro/macro.html.twig' as macro %}
+{% extends 'admin.html.twig' %}
+
+{% block title %}{{ 'header.edit'|trans }} - {{ tourCategory.name }}{% endblock %}
+
+{% block modals %}
+    {{ parent() }}
+    {{ macro.create_delete_modal('modal.delete.msg.tour_category', tourCategory.name, deleteForm) }}
+{% endblock %}
+
+{% block body %}
+
+    <h1 class="h3 mb-4 text-gray-800">{{ tourCategory.name }}</h1>
+
+    {{ form_start(form, {'action': path('admin_tour_category_edit', {'id': tourCategory.id})}) }}
+
+        {{ form_errors(form) }}
+
+        {{ form_widget(form) }}
+
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-success" type="submit" name="submit">{{ 'btn.submit'|trans }}</button>
+            <button class="btn btn-danger pull-right" type="button" data-toggle="modal" data-target="#deleteModal">{{ 'btn.delete'|trans }}</button>
+        </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

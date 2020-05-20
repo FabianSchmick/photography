@@ -17,6 +17,7 @@ label.tags: Tags
 label.tag: Tag
 label.tours: Touren
 label.tour: Tour
+label.tourCategory: Kategorie
 label.directions: Wegbeschreibung
 label.equipmentAndSafety: Ausrüstung und Sicherheitshinweise
 label.distance: Länge
@@ -67,12 +68,14 @@ header.new.author: Neuer Autor
 header.new.location: Neuer Aufnahmeort
 header.new.tag: Neuer Tag
 header.new.tour: Neue Tour
+header.new.tour_category: Neue Kategorie
 header.entries: Einträge
 header.authors: Autoren
 header.locations: Aufnahmeorte
 header.tags: Tags
 header.tag: Tag
 header.tours: Touren
+header.tour_categories: Kategorien
 header.tour: Tour
 header.edit: Bearbeiten
 header.delete: Löschen
@@ -99,6 +102,7 @@ flash.success.deleted.author: Der Autor <strong>%author%</strong> wurde gelösch
 flash.success.deleted.location: Der Aufnahmeort <strong>%location%</strong> wurde gelöscht.
 flash.success.deleted.tag: Der Tag <strong>%tag%</strong> wurde gelöscht.
 flash.success.deleted.tour: Die Tour <strong>%tour%</strong> wurde gelöscht.
+flash.success.deleted.tour_category: Die Kategorie <strong>%tour_category%</strong> wurde gelöscht.
 flash.error.deleted: Es ist ein Fehler während des Löschens aufgetreten. Bitte versuchen Sie es erneut.
 
 # Pagination

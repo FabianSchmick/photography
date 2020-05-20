@@ -35,6 +35,7 @@ class AdminController extends AbstractController
         $locations = $em->getRepository('App:Location')->findBy([], ['name' => 'ASC']);
         $tags = $em->getRepository('App:Tag')->findBy([], ['sort' => 'DESC']);
         $tours = $em->getRepository('App:Tour')->findBy([], ['sort' => 'DESC', 'updated' => 'DESC']);
+        $tourCategories = $em->getRepository('App:TourCategory')->findBy([], ['sort' => 'DESC']);
 
         return $this->render('admin/inc/sidebar.html.twig', [
             'entries' => $entries,
@@ -42,6 +43,7 @@ class AdminController extends AbstractController
             'locations' => $locations,
             'tags' => $tags,
             'tours' => $tours,
+            'tourCategories' => $tourCategories,
         ]);
     }
 }

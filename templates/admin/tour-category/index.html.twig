@@ -1,0 +1,50 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}{{ 'header.locations'|trans }}{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-xs-12">
+
+        <div class="page-header">
+            <div class="pull-left">
+                <h1>{{ 'header.tour_categories'|trans }}</h1>
+            </div>
+            <div class="pull-right">
+                <ul class="actions list-unstyled pull-right">
+                    <li><a class="btn btn-primary" href="{{ path('admin_tour_category_new') }}">{{ 'header.new.tour_category'|trans }}</a></li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{ 'label.name'|trans }}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for tourCategory in tourCategories %}
+                <tr>
+                    <td>
+                        {{ loop.index }}
+                    </td>
+                    <td>
+                        {{ tourCategory.name }}
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('admin_tour_category_edit', {'id': tourCategory.id}) }}" title="{{ 'btn.edit'|trans }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+{% endblock %}

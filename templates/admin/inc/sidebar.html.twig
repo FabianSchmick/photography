@@ -25,18 +25,6 @@
     </ul>
 </li>
 <li class="searchable nav-item">
-    <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapse-5">
-        <i class="fa fa-map fa-fw"></i> {{ 'header.tours'|trans }}<span class="fa arrow"></span>
-    </a>
-    <ul id="collapse-5" class="collapse list-unstyled">
-        {% for tour in tours %}
-            <li class="searchable nav-item">
-                <a href="{{ path('admin_tour_edit', {'id': tour.id}) }}" class="nav-link p-2">{{ tour.name }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-</li>
-<li class="searchable nav-item">
     <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapse-2">
         <i class="fa fa-users fa-fw"></i> {{ 'header.authors'|trans }}<span class="fa arrow"></span>
     </a>
@@ -68,6 +56,33 @@
         {% for tag in tags %}
             <li class="searchable nav-item">
                 <a href="{{ path('admin_tag_edit', {'id': tag.id}) }}" class="nav-link p-2">{{ tag.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</li>
+
+<hr class="sidebar-divider d-none d-md-block">
+
+<li class="searchable nav-item">
+    <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapse-5">
+        <i class="fa fa-map fa-fw"></i> {{ 'header.tours'|trans }}<span class="fa arrow"></span>
+    </a>
+    <ul id="collapse-5" class="collapse list-unstyled">
+        {% for tour in tours %}
+            <li class="searchable nav-item">
+                <a href="{{ path('admin_tour_edit', {'id': tour.id}) }}" class="nav-link p-2">{{ tour.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</li>
+<li class="searchable nav-item">
+    <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapse-6">
+        <i class="fa fa-list fa-fw"></i> {{ 'header.tour_categories'|trans }}<span class="fa arrow"></span>
+    </a>
+    <ul id="collapse-6" class="collapse list-unstyled">
+        {% for category in tourCategories %}
+            <li class="searchable nav-item">
+                <a href="{{ path('admin_tour_category_edit', {'id': category.id}) }}" class="nav-link p-2">{{ category.name }}</a>
             </li>
         {% endfor %}
     </ul>

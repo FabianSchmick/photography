@@ -3,8 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Tour;
+use App\Entity\TourCategory;
 use App\Service\CoreService;
 use App\Service\TourService;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -56,6 +59,18 @@ class TourType extends AbstractType
             ])
             ->add('equipmentAndSafety', TextareaType::class, [
                 'required' => false,
+            ])
+            ->add('tourCategory', EntityType::class, [
+                'required' => false,
+                'class' => 'App:TourCategory',
+                'placeholder' => '',
+                'query_builder' => function (EntityRepository $er): QueryBuilder {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.name', 'ASC');
+                },
+                'attr' => [
+                    'class' => 'select2-add',
+                ],
             ])
             ->add('distance', NumberType::class, [
                 'required' => false,
@@ -111,6 +126,16 @@ class TourType extends AbstractType
                 'placeholder' => '',
             ]);
         }
+
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+            $data = $event->getData();
+
+            if (!empty($data['tourCategory'] = trim($data['tourCategory']))) {
+                $data['tourCategory'] = $this->coreService->saveNewEntityByName($data['tourCategory'], TourCategory::class, 'App:TourCategory');
+            }
+
+            $event->setData($data);
+        });
 
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
             /** @var Tour $tour */

@@ -17,6 +17,7 @@ label.tags: Tags
 label.tag: Tag
 label.tours: Tours
 label.tour: Tour
+label.tourCategory: Category
 label.directions: Directions
 label.equipmentAndSafety: Equipment and safety instructions
 label.distance: Length
@@ -67,12 +68,14 @@ header.new.author: New Author
 header.new.location: New Location
 header.new.tag: New Tag
 header.new.tour: New Tour
+header.new.tour_category: New Category
 header.entries: Entries
 header.authors: Authors
 header.locations: Locations
 header.tags: Tags
 header.tag: Tag
 header.tours: Tours
+header.tour_categories: Categories
 header.tour: Tour
 header.edit: Edit
 header.delete: Delete
@@ -99,6 +102,7 @@ flash.success.deleted.author: The author <strong>%author%</strong> has been dele
 flash.success.deleted.location: The location <strong>%location%</strong> has been deleted.
 flash.success.deleted.tag: The tag <strong>%tag%</strong> has been deleted.
 flash.success.deleted.tour: The tour <strong>%tour%</strong> has been delete.
+flash.success.deleted.tour_category: The category <strong>%tour_category%</strong> has been delete.
 flash.error.deleted: There occured an error while deleting. Please reload and try again.
 
 # Pagination

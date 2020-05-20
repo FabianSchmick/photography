@@ -1,0 +1,21 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}{{ 'header.new.tour_category'|trans }}{% endblock %}
+
+{% block body %}
+
+    <h1 class="h3 mb-4 text-gray-800">{{ 'header.new.tour_category'|trans }}</h1>
+
+    {{ form_start(form, {'action': path('admin_tour_category_new')}) }}
+
+        {{ form_errors(form) }}
+
+        {{ form_widget(form) }}
+
+        <div class="form-group">
+            <button class="btn btn-success" type="submit" name="submit">{{ 'btn.submit'|trans }}</button>
+        </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

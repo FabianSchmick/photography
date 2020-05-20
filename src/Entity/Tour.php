@@ -175,6 +175,14 @@ class Tour
     private $entries;
 
     /**
+     * @var TourCategory|null
+     *
+     * @ORM\ManyToOne(targetEntity="TourCategory", inversedBy="tour")
+     * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $tourCategory;
+
+    /**
      * @var string|null
      *
      * @Gedmo\Locale
@@ -535,6 +543,26 @@ class Tour
         });
 
         return new ArrayCollection($entries);
+    }
+
+    /**
+     * Get tourCategory.
+     */
+    public function getTourCategory(): ?TourCategory
+    {
+        return $this->tourCategory;
+    }
+
+    /**
+     * Set tourCategory.
+     *
+     * @return Tour
+     */
+    public function setTourCategory(?TourCategory $tourCategory): self
+    {
+        $this->tourCategory = $tourCategory;
+
+        return $this;
     }
 
     /**

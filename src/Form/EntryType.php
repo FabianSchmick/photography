@@ -113,7 +113,7 @@ class EntryType extends AbstractType
             $data = $event->getData();
 
             if (!empty($data['location'] = trim($data['location']))) {
-                $data['location'] = $this->saveNewChoiceByName($data['location'], Location::class, 'App:Location');
+                $data['location'] = $this->coreService->saveNewEntityByName($data['location'], Location::class, 'App:Location');
             }
 
             if (empty($data['timestamp'])) {
@@ -122,7 +122,7 @@ class EntryType extends AbstractType
 
             foreach ($data['tags'] as $key => $tag) {
                 if (!empty($tag = trim($tag))) {
-                    $data['tags'][$key] = $this->saveNewChoiceByName($tag, Tag::class, 'App:Tag');
+                    $data['tags'][$key] = $this->coreService->saveNewEntityByName($tag, Tag::class, 'App:Tag');
                 }
             }
 
@@ -151,19 +151,5 @@ class EntryType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Entry::class,
         ]);
-    }
-
-    protected function saveNewChoiceByName($choice, $class, $repo): int
-    {
-        $entity = $this->em->getRepository($repo)->find($choice);
-
-        if (!$entity) {
-            $entity = new $class();
-            $entity->setName($choice);
-            $this->em->persist($entity);
-            $this->em->flush();
-        }
-
-        return $entity->getId();
     }
 }
