@@ -9,6 +9,7 @@ import { registerSW } from './util/sw';
 
 import { navigation } from './frontend/navigation';
 import { parallax } from './frontend/parallax';
+import { filter } from './util/filter';
 import { pagination } from './util/pagination';
 import { showMoreText } from './util/show-more';
 import { lazyload } from './frontend/lazyload';
@@ -26,6 +27,7 @@ $(document).ready(function() {
 
     navigation();
     parallax();
+    filter();
     pagination();
     showMoreText();
     let lazyLoadInstance = lazyload();

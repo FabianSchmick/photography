@@ -35,7 +35,7 @@
                     </h1>
                     {{ entry.description|raw }}
                     {{ macro.entry_meta(entry) }}
-                    {{ macro.entry_tags(entry) }}
+                    {{ macro.tags(entry.tags) }}
                     <a class="btn btn-teritary" href="{{ vich_uploader_asset(entry.image, 'file') }}" target="_blank">
                         <span class="icon icon-sm icon-download pr-2"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'btn.download'|trans }}
                     </a>

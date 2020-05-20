@@ -41,7 +41,7 @@
     </section>
 
     <section id="content" class="container entries-container">
-        <div id="gallery" class="entries" data-paginate="{{ path('entry_pagiante_ajax') }}" data-lightbox>
+        <div id="gallery" class="entries" data-infinite-scroll="{{ path('entry_pagiante_ajax') }}" data-lightbox>
             {{ render(controller('App\\Controller\\Frontend\\EntryController::ajaxPaginate', { 'page': 1 })) }}
         </div>
     </section>

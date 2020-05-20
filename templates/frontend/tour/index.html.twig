@@ -23,19 +23,39 @@
             <p>
                 {{ 'introduction.tours.longtext'|trans|raw }}
             </p>
+            {% if categories|length %}
+                <div class="filter-tags">{{ 'introduction.tour_categories'|trans }}:</div>
+                <ul class="tags" data-filter="#tours-container">
+                    {% for category in categories %}
+                        <li>
+                            {% if activeCategory and category.id == activeCategory.id %}
+                                <a href="{{ path('tour_index', {'page': 1}) }}" class="active">
+                                    {{ category.name }} <span class="icon icon-sm icon-close"><svg><use xlink:href="#close-icon"></use></svg></span>
+                                </a>
+                            {% else %}
+                                <a href="{{ path('tour_index', {'page': 1, 'category': category.id}) }}">
+                                    {{ category.name }}
+                                </a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </article>
 
         <div id="tours-container">
+            {% set query = activeCategory ? {'q': {'category': activeCategory.id}} : [] %}
+
             {% if pages > 1 %}
-                <ul class="pagination justify-content-center" data-replace="#tours-container">
-                    {{ paginate(page, pages, 'tour_index') }}
+                <ul class="pagination justify-content-center" data-paginate="#tours-container">
+                    {{ paginate(page, pages, 'tour_index', query) }}
                 </ul>
             {% endif %}
 
             <ul class="tours row list-unstyled">
                 {% for tour in tours %}
                     <li class="col-lg-6">
-                        <a href="{{ path('tour_show', {'slug': tour.slug}) }}">
+                        <a href="{{ path('tour_show', {'slug': tour.slug}|merge(query.q|default([]))) }}">
                             <div class="tour-preview-img">
                                 {% if tour.previewEntry %}
                                     <img src="{{ vich_uploader_asset(tour.previewEntry.image, 'file')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.previewentry.name }}">
@@ -82,8 +102,8 @@
             </ul>
 
             {% if pages > 1 %}
-                <ul class="pagination justify-content-center" data-replace="#tours-container">
-                    {{ paginate(page, pages, 'tour_index') }}
+                <ul class="pagination justify-content-center" data-paginate="#tours-container">
+                    {{ paginate(page, pages, 'tour_index', query) }}
                 </ul>
             {% endif %}
         </div>
@@ -94,6 +114,7 @@
     {{ parent() }}
     {{ asset('assets/images/layout/icons/angle-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/length-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/close-icon.svg')|inline_svg() }}
 {% endblock embed_svg %}
 
 {% block javascripts %}

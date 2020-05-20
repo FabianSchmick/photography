@@ -11,6 +11,8 @@ use Twig\TwigFunction;
 
 class PaginationExtension extends AbstractExtension
 {
+    const MAX_VISIBLE = 2;
+
     /**
      * @var RouterInterface
      */
@@ -74,13 +76,13 @@ class PaginationExtension extends AbstractExtension
             }
         }
 
-        // Break the sites down to max 2 prev and 2 next visible
-        if ($current - 2 > 1) {
-            $start = $current - 2;
+        // Break the sites down to max self::MAX_VISIBLE visible
+        if ($current - self::MAX_VISIBLE > 1) {
+            $start = $current - self::MAX_VISIBLE;
         }
 
-        if ($current + 2 < $last) {
-            $end = $current + 2;
+        if ($current + self::MAX_VISIBLE < $last) {
+            $end = $current + self::MAX_VISIBLE;
         }
 
         // Add prev and next btn

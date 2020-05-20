@@ -1,4 +1,5 @@
 {% import 'templates/macro/json-ld.html.twig' as jsonLd %}
+{% import 'templates/macro/macro.html.twig' as macro %}
 {% extends 'base.html.twig' %}
 
 {% block meta_description %}{{ tag.description ? tag.description|striptags|u.truncate(160) : ('introduction.tag'|trans ~ ' ' ~ tag.name)|u.truncate(160) }}{% endblock %}
@@ -25,17 +26,13 @@
                 {{ tag.description|raw }}
             {% endif %}
 
-            {% if relatedTags|length > 1 %}
-                <div class="similar-tags">{{ 'introduction.similar_tags'|trans }}:</div>
-                <ul class="list-unstyled tags" style="display: inline-block">
-                    {% for relatedTag in relatedTags %}
-                        <li><a href="{{ path('tag_show', {'slug': relatedTag.slug}) }}">{{ relatedTag.name }}</a></li>
-                    {% endfor %}
-                </ul>
+            {% if relatedTags|length %}
+                <div class="filter-tags">{{ 'introduction.similar_tags'|trans }}:</div>
+                {{ macro.tags(relatedTags) }}
             {% endif %}
         </article>
 
-        <div class="entries" data-paginate="{{ path('tag_pagiante_ajax', {'slug': tag.slug}) }}" data-lightbox>
+        <div class="entries" data-infinite-scroll="{{ path('tag_pagiante_ajax', {'slug': tag.slug}) }}" data-lightbox>
             {{ render(controller('App\\Controller\\Frontend\\TagController::ajaxPaginate', {'slug': tag.slug, 'page': 1 })) }}
         </div>
     </section>

@@ -2,6 +2,7 @@ ul.tags
     margin: 0
     padding-right: 2px
     padding-left: 2px
+    list-style: none
 
     li
         display: inline-block
@@ -20,14 +21,18 @@ ul.tags
             color: $color-teritary
             text-decoration: none
 
+            &.active,
             &:hover
                 transition: all 0.2s ease-in
                 color: $color-secondary
                 background: $color-teritary
 
+                svg
+                    fill: $color-secondary
+
 .text-container
-    .similar-tags
-        padding: 1rem 0 0.5rem
+    .filter-tags
+        padding: 0 0 0.5rem
         font-weight: $font-weight-bold
         letter-spacing: 0.4px
 

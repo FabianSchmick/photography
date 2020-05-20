@@ -1,22 +1,28 @@
 {% import 'templates/macro/json-ld.html.twig' as jsonLd %}
+
+{%- set request = app.request -%}
+{%- if request.attributes.get('_route') -%}
+    {% set pageUrl = url(request.attributes.get('_route'),
+        request.attributes.get('_route_params')) %}
+{%- endif -%}
+
 <!DOCTYPE html>
-<html lang="{{ app.request.locale }}">
+<html lang="{{ request.locale }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% block meta_robots %}
+    {% block meta_robots -%}
         <meta name="robots" content="noarchive">
     {% endblock %}
 
-    {% block social_tags %}
+    {% block social_tags -%}
         <meta name="description" content="{% block meta_description %}{{ 'meta.desc'|trans }}{% endblock %}">
         <meta property="og:title" content="{{ block('title') }} | {{ 'header.authors_name'|trans }}"/>
         <meta property="og:type" content="website"/>
-        {% if app.request.attributes.get('_route') %}
-            <meta property="og:url" content="{{ url(app.request.attributes.get('_route'),
-                app.request.attributes.get('_route_params')) }}"/>
-        {% endif %}
+        {% if pageUrl -%}
+            <meta property="og:url" content="{{ pageUrl }}"/>
+        {% endif -%}
         <meta property="og:image" content="{% block meta_image %}{{ absolute_url(asset('assets/images/layout/cover-placeholder.jpg')) }}{% endblock %}"/>
         <meta property="og:description" content="{{ block('meta_description') }}"/>
         <meta name="twitter:card" content="summary"/>
@@ -28,6 +34,9 @@
         <meta itemprop="image" content="{{ block('meta_image') }}"/>
     {% endblock %}
 
+    {% if pageUrl -%}
+        <link rel="canonical" href="{{ pageUrl }}"/>
+    {% endif -%}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
@@ -38,7 +47,7 @@
 
     <title>{% block title %}{{ 'title.index'|trans }}{% endblock %} | {{ 'header.authors_name'|trans }}</title>
 
-    {% block stylesheets %}
+    {% block stylesheets -%}
         <link href="https://fonts.googleapis.com/css?family=Montserrat:700%7CRoboto:300%7CRoboto:400%7CRoboto:700" rel="stylesheet">
         {{ encore_entry_link_tags('css/app') }}
     {% endblock %}
@@ -73,7 +82,7 @@
 </head>
 <body id="{% block body_id %}body{% endblock %}">
 
-<!-- Template by Fabian Schmick https://github.com/FabianSchmick/photography -->
+<!-- Developed by Fabian Schmick https://github.com/FabianSchmick/photography -->
 
 <noscript>
     <style>
@@ -84,7 +93,7 @@
     </div>
 </noscript>
 
-<header id="menu" class="navbar navbar-default navbar-expand-lg fixed-top{% if app.request.attributes.get('_route') == 'entry_show' %} force-on{% endif %}">
+<header id="menu" class="navbar navbar-default navbar-expand-lg fixed-top{% if request.attributes.get('_route') == 'entry_show' %} force-on{% endif %}">
     <nav class="container">
         <div class="navbar-header d-flex justify-content-between">
             <a class="navbar-brand my-2" href="{{ path('homepage') }}"><img src="{{ asset('assets/images/logo.jpg') }}" alt="logo"/> {{ 'header.authors_name'|trans }}</a>
@@ -95,7 +104,6 @@
             </button>
         </div>
 
-        {% set request = app.request %}
         <div class="collapse navbar-collapse" id="main-navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -182,10 +190,9 @@
         </script>
     {% endif %}
 
-    {% if app.request.attributes.get('_route') %}
+    {% if pageUrl %}
         <script type="text/javascript">
-            var pageUrl = "{{ url(app.request.attributes.get('_route'),
-                app.request.attributes.get('_route_params')) }}";
+            var pageUrl = "{{ pageUrl }}";
         </script>
     {% endif %}
 

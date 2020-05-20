@@ -4,10 +4,12 @@ namespace App\Controller\Frontend;
 
 use App\Doctrine\PaginationHelper;
 use App\Entity\Tour;
+use App\Repository\TourCategoryRepository;
 use App\Repository\TourRepository;
 use App\Service\TourService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,9 +23,13 @@ class TourController extends AbstractController
     /**
      * @Route("/tour/page/{page}", name="tour_index", requirements={"page": "\d+"})
      */
-    public function index(TourService $tourService, TourRepository $tourRepository, $page): Response
+    public function index(Request $request, TourService $tourService, TourRepository $tourRepository, TourCategoryRepository $categoryRepository, $page): Response
     {
-        $query = $tourRepository->getFindAllQuery();
+        if ($activeCategory = $request->query->get('category')) {
+            $activeCategory = $categoryRepository->find($activeCategory);
+        }
+
+        $query = $tourRepository->getFindAllQuery($activeCategory);
         $pages = PaginationHelper::getPagesCount($query, Tour::PAGINATION_QUANTITY);
 
         if ($page > 1 && $page > $pages) {
@@ -38,6 +44,8 @@ class TourController extends AbstractController
 
         return $this->render('frontend/tour/index.html.twig', [
             'tours' => $tours,
+            'categories' => $categoryRepository->findBy([], ['sort' => 'DESC']),
+            'activeCategory' => $activeCategory,
             'page' => $page,
             'pages' => $pages,
         ]);
@@ -47,7 +55,7 @@ class TourController extends AbstractController
      * @Route("/tour/{slug}", name="tour_show")
      * @Entity("tour", expr="repository.findOneByCriteria(_locale, {'slug': slug})")
      */
-    public function show(TourService $tourService, Tour $tour, TourRepository $tourRepository, TranslatorInterface $translator): Response
+    public function show(Request $request, TourService $tourService, Tour $tour, TourRepository $tourRepository, TourCategoryRepository $categoryRepository, TranslatorInterface $translator): Response
     {
         $tourService->setGpxData($tour);
 
@@ -56,11 +64,15 @@ class TourController extends AbstractController
             $locations = array_unique($locations);
         }
 
-        $page = $tourRepository->findTourListPageNumber($tour);
+        if ($activeCategoryId = $request->query->get('category')) {
+            $activeCategory = $categoryRepository->find($activeCategoryId);
+        }
+
+        $page = $tourRepository->findTourListPageNumber($tour, $activeCategory ?? null);
 
         $breadcrumbs = [
             [
-                'url' => $this->generateUrl('tour_index', ['page' => $page]),
+                'url' => $this->generateUrl('tour_index', ['page' => $page, 'category' => $activeCategoryId]),
                 'name' => $translator->trans('header.tours'),
             ],
             [

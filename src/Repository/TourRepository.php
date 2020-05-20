@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Tour;
+use App\Entity\TourCategory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Query;
@@ -22,27 +23,31 @@ class TourRepository extends ServiceEntityRepository
     }
 
     /**
-     * Return query to load all entries.
+     * Return query to load all or filtered entries.
      */
-    public function getFindAllQuery(): Query
+    public function getFindAllQuery(?TourCategory $category = null): Query
     {
-        return $this->createQueryBuilder('t')
+         $qb = $this->createQueryBuilder('t')
             ->select('t')
             ->orderBy('t.sort', 'DESC')
-            ->addOrderBy('t.updated', 'DESC')
-            ->getQuery();
+            ->addOrderBy('t.updated', 'DESC');
+
+         if ($category) {
+             $qb = $qb->where('t.tourCategory = :category')
+                ->setParameter('category', $category);
+         }
+
+         return $qb->getQuery();
     }
 
     /**
      * Get the page for $tour on the tour index page.
      *
-     * @param Tour $tour The tour to find the page for
-     *
      * @return int The page where $tour is find
      */
-    public function findTourListPageNumber(Tour $tour): int
+    public function findTourListPageNumber(Tour $tour, ?TourCategory $category = null): int
     {
-        $tours = $this->getFindAllQuery()->getResult();
+        $tours = $this->getFindAllQuery($category)->getResult();
 
         $pos = array_search($tour, $tours);
 

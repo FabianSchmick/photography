@@ -5,11 +5,11 @@ import { navigationAddClassOn } from './navigation';
  */
 class Entry {
     constructor() {
-        let $paginateContainer = $('[data-paginate]');
+        let $paginateContainer = $('[data-infinite-scroll]');
 
         this.paginateConfig = {
             container: $paginateContainer,
-            url: $paginateContainer.data('paginate') || false,
+            url: $paginateContainer.data('infinite-scroll') || false,
             page: 1
         };
         this.isLoadingEntries = false;
