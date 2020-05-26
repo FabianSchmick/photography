@@ -47,7 +47,7 @@ class Location
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="Tour", mappedBy="tour", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Tour", mappedBy="location", cascade={"persist"})
      */
     private $tours;
 
