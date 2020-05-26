@@ -113,12 +113,12 @@ pagination.next: '<span class="icon icon-sm icon-angle icon-rotate-180" title="N
 # Frontend
 introduction.by: by
 introduction.headline: Naturephotos and hikings from the Sauerland & the Alps
-introduction.longtext: My name is Fabian Schmick, I am in my early 20s, come from Sauerland (Germany) and am a Web Developer. Because I am a passionate wanderer, I always discover small and big highlights on my tours which I capture with my camera. On this Website you will find nature-photography and reports of my hiking tours from the Sauerland, Waldeck-Frankenberg, the Eifel and Alps.
+introduction.longtext: My name is Fabian Schmick, I am in my early 20s, come from Sauerland (Germany) and am a Web Developer. Because I am a passionate wanderer, I always discover small and big highlights on my tours which I capture with my camera. On this Website you will find nature-photography and reports of my mountain sport tours from the Sauerland, Waldeck-Frankenberg, the Eifel and Alps.
 introduction.tag: All pictures filtered by tag
 introduction.similar_tags: Similar tags
 introduction.tours.headline: Beautiful circular hiking-, climb- or summit- tours
-introduction.tours.longtext: I usually plan my tours on the computer or with the help of hiking guides. As soon as the destination is determined, I create my route digitally and with GPX data for my GPS device. So I am always safe and can focus myself entirely to nature and photography during the hike. On this page I write short tour reports about my favorite hiking trails and make the respective GPX file available for download.
-introduction.tour_categories: Filter by categories
+introduction.tours.longtext: I usually plan my tours using digital maps or with the help of well-known hiking guides. As soon as the destination is determined, I create my route with the corresponding GPX data for my GPS device. So I'm always on the safe side and can focus myself to nature and photography during outdoors. On this page I write short tour reports about my favorite hiking trails, climbs and bike tours and provide the respective GPX file available for download.
+introduction.tour_categories: Filter by activity
 
 # Tour
 tours.headline: My tour recommendations

@@ -50,7 +50,7 @@
                 <img class="parallax" src="{{ img|imagine_filter('entry_show') }}" alt="{{ entry.name|default(tour.name) }}"/>
                 {% if entry %}
                     <figcaption class="parallax-caption d-none d-md-block">
-                        <h4 class="mb-0">{{ entry.name }}</h4>
+                        <h4>{{ entry.name }}</h4>
                         <p class="mb-0"><i>{{ entry.timestamp|date('d.m.Y') }} @ {{ entry.location }}</i></p>
                     </figcaption>
                 {% endif %}
@@ -64,14 +64,16 @@
         <article class="tour">
             <div class="container text-container text-center">
                 <h1>{{ tour.name }}</h1>
-                <h2 class="h5">{{ 'tour.sub_headline'|trans({'%category%': tour.tourCategory, '%location%': tour.location}) }}</h2>
+                {% if tour.tourCategory and tour.location %}
+                    <h2 class="h5">{{ 'tour.sub_headline'|trans({'%category%': tour.tourCategory, '%location%': tour.location}) }}</h2>
+                {% endif %}
             </div>
             <div class="tour-info">
-                {% if tour.description %}
-                    <div class="container tour-desc no-spacer">
+                <div class="container tour-desc no-spacer">
+                    {% if tour.description %}
                         {{ tour.description|raw }}
-                    </div>
-                {% endif %}
+                    {% endif %}
+                </div>
                 <div class="container tour-data px-0">
                     <h3>{{ 'tour.data'|trans }}</h3>
                     <dl class="row meta-table">
