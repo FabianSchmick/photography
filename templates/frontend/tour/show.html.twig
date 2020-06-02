@@ -3,7 +3,7 @@
 
 {% block meta_description %}
     {% if tour.description %}
-        {{ tour.description|striptags|u.truncate(160) }}
+        {{ tour.description|striptags|u.truncate(160)|trim }}
     {% endif %}
 {% endblock %}
 

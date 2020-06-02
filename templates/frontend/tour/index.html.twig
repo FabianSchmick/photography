@@ -24,7 +24,7 @@
                 {{ 'introduction.tours.longtext'|trans|raw }}
             </p>
             {% if categories|length %}
-                <div class="filter-tags">{{ 'introduction.tour_categories'|trans }}:</div>
+                <div class="font-weight-bold py-2">{{ 'introduction.tour_categories'|trans }}:</div>
                 <ul class="tags" data-filter="#tours-container">
                     {% for category in categories %}
                         <li>

@@ -48,7 +48,7 @@ class Entry {
         return $.get(paginateUrlPage, data => {
             this.paginateConfig.container.removeClass('loading');
 
-            if (!data.length) {
+            if (!$.trim(data)) {
                 this.isLoadingEntries = true;
                 return false;
             }
