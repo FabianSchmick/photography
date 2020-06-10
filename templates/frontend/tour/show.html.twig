@@ -94,14 +94,15 @@
                                 {% if tour.formulaType %}
                                     {% set formula = constant('App\\Entity\\Tour::FORMULA_DEFINITIONS')[tour.formulaType]|default([]) %}
 
-                                    <span class="icon icon-sm icon-teritary icon-info pl-1" data-toggle="tooltip" data-html="true"
+                                    <button type="button" class="btn btn-sm p-0 ml-1 icon icon-sm icon-teritary icon-info"
+                                            data-toggle="tooltip" data-html="true" style="margin-top: -5px;"
                                           title="{{ ('tooltip.formula.'~tour.formulaType)|trans({
                                               '%UP_METERS_PER_HOUR%': formula.UP_METERS_PER_HOUR|default(''),
                                               '%DOWN_METERS_PER_HOUR%': formula.DOWN_METERS_PER_HOUR|default(''),
                                               '%HORIZONTAL_METERS_PER_HOUR%': formula.HORIZONTAL_METERS_PER_HOUR|default(''),
                                           })|raw }}">
                                         <svg><use xlink:href="#info-icon"/></svg>
-                                    </span>
+                                    </button>
                                 {% endif %}
                             </dd>
                         {% endif %}
