@@ -91,6 +91,18 @@
                             </dt>
                             <dd class="col-6 tour-duration-value">
                                 {{ tour.duration|format_duration }} {{ 'unit.duration'|trans }}
+                                {% if tour.formulaType %}
+                                    {% set formula = constant('App\\Entity\\Tour::FORMULA_DEFINITIONS')[tour.formulaType]|default([]) %}
+
+                                    <span class="icon icon-sm icon-teritary icon-info pl-1" data-toggle="tooltip" data-html="true"
+                                          title="{{ ('tooltip.formula.'~tour.formulaType)|trans({
+                                              '%UP_METERS_PER_HOUR%': formula.UP_METERS_PER_HOUR|default(''),
+                                              '%DOWN_METERS_PER_HOUR%': formula.DOWN_METERS_PER_HOUR|default(''),
+                                              '%HORIZONTAL_METERS_PER_HOUR%': formula.HORIZONTAL_METERS_PER_HOUR|default(''),
+                                          })|raw }}">
+                                        <svg><use xlink:href="#info-icon"/></svg>
+                                    </span>
+                                {% endif %}
                             </dd>
                         {% endif %}
                         {% if tour.maxAltitude %}
@@ -174,6 +186,7 @@
     {{ asset('assets/images/layout/icons/length-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/marker-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/time-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/info-icon.svg')|inline_svg() }}
 {% endblock embed_svg %}
 
 {% block javascripts %}

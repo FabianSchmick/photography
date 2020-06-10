@@ -158,7 +158,7 @@ class TourService
     /**
      * Calc the hiking tour duration
      */
-    public function calcHikingDuration($distance, int $upElevation, int $downElevation): \DateTime
+    public function calcHikingDuration($distance, $upElevation, $downElevation): \DateTime
     {
         $formulaDefinitions = Tour::FORMULA_DEFINITIONS['HIKING'];
 
@@ -179,7 +179,7 @@ class TourService
     /**
      * Calc the mountainbike tour duration
      */
-    public function calcMountainBikeDuration($distance, int $upElevation): \DateTime
+    public function calcMountainBikeDuration($distance, $upElevation): \DateTime
     {
         $formulaDefinitions = Tour::FORMULA_DEFINITIONS['MBT'];
 
@@ -198,7 +198,7 @@ class TourService
     /**
      * Calc the via ferrata tour duration
      */
-    public function calcViaFerrataDuration(int $upElevation, int $downElevation): \DateTime
+    public function calcViaFerrataDuration($upElevation, $downElevation): \DateTime
     {
         $formulaDefinitions = Tour::FORMULA_DEFINITIONS['VIA_FERRATA'];
 

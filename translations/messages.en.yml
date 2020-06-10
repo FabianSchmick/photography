@@ -66,6 +66,11 @@ title.index: Naturephotography
 title.admin: Admin
 title.login: Login
 
+# Tooltips
+tooltip.formula.HIKING: '<b>Hiking time calculation</b> (per hour): %UP_METERS_PER_HOUR%m up, %DOWN_METERS_PER_HOUR%m down and %HORIZONTAL_METERS_PER_HOUR% km plain (DIN 33466).'
+tooltip.formula.MBT: '<b>Travel time calculation</b> (per hour): %UP_METERS_PER_HOUR%m up und %HORIZONTAL_METERS_PER_HOUR% km plain.'
+tooltip.formula.VIA_FERRATA: '<b>Climbing time calculation</b> (per hour): %UP_METERS_PER_HOUR%m up, %DOWN_METERS_PER_HOUR%m down.'
+
 # Headers
 header.new.entry: New Entry
 header.new.author: New Author
