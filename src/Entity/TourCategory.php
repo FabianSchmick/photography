@@ -47,6 +47,13 @@ class TourCategory
     private $sort;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=32, nullable=true)
+     */
+    private $formulaType;
+
+    /**
      * @var \DateTime|null
      *
      * @Gedmo\Timestampable(on="create")
@@ -117,6 +124,26 @@ class TourCategory
     public function getName(): ?string
     {
         return $this->name;
+    }
+
+    /**
+     * Set formulaType.
+     *
+     * @return TourCategory
+     */
+    public function setFormulaType(?string $formulaType): self
+    {
+        $this->formulaType = $formulaType;
+
+        return $this;
+    }
+
+    /**
+     * Get formulaType.
+     */
+    public function getFormulaType(): ?string
+    {
+        return $this->formulaType;
     }
 
     /**

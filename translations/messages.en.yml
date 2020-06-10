@@ -18,6 +18,10 @@ label.tag: Tag
 label.tours: Tours
 label.tour: Tour
 label.tourCategory: Category
+label.formulaType: Formula to calculate the route duration
+label.HIKING: Hiking (DIN 33466)
+label.MBT: Mountainbike (DAV recommended)
+label.VIA_FERRATA: Via Ferrata (DAV recommended)
 label.directions: Directions
 label.equipmentAndSafety: Equipment and safety instructions
 label.distance: Length

@@ -118,11 +118,11 @@ class TourService
     }
 
     /**
-     * Calc the tour duration with DIN 33466.
+     * Calc the tour duration dependent on formula type.
      */
     public function calcTourDuration(Tour $tour): ?\DateTime
     {
-        if (!($segments = $tour->getSegments()) || !$tour->getMaxAltitude()) {
+        if (!($segments = $tour->getSegments()) || !($formulaType = $tour->getFormulaType()) || !$tour->getMaxAltitude()) {
             return null;
         }
 
@@ -143,10 +143,29 @@ class TourService
             }
         }
 
-        $downDuration = $downElevation / Tour::DOWN_METERS_PER_HOUR;
-        $upDuration = $upElevation / Tour::UP_METERS_PER_HOUR;
+        switch ($formulaType) {
+            case 'HIKING':
+                return $this->calcHikingDuration($tour->getDistance(), $upElevation, $downElevation);
+            case 'MBT':
+                return $this->calcMountainBikeDuration($tour->getDistance(), $upElevation);
+            case 'VIA_FERRATA':
+                return $this->calcViaFerrataDuration($upElevation, $downElevation);
+        }
+
+        return null;
+    }
+
+    /**
+     * Calc the hiking tour duration
+     */
+    public function calcHikingDuration($distance, int $upElevation, int $downElevation): \DateTime
+    {
+        $formulaDefinitions = Tour::FORMULA_DEFINITIONS['HIKING'];
+
+        $downDuration = $downElevation / $formulaDefinitions['DOWN_METERS_PER_HOUR'];
+        $upDuration = $upElevation / $formulaDefinitions['UP_METERS_PER_HOUR'];
         $sumElevation = $downDuration + $upDuration;
-        $horizontalDuration = $tour->getDistance() / Tour::HORIZONTAL_METERS_PER_HOUR;
+        $horizontalDuration = $distance / $formulaDefinitions['HORIZONTAL_METERS_PER_HOUR'];
 
         if ($horizontalDuration < $sumElevation) {
             $decimalDuration = ($horizontalDuration / 2) + $sumElevation;
@@ -154,16 +173,40 @@ class TourService
             $decimalDuration = ($sumElevation / 2) + $horizontalDuration;
         }
 
-        // Calc the real time now
-        $hours = floor($decimalDuration);
-        $decimalMinutes = ($hours - $decimalDuration) * -1;
+        return $this->formatDecimalDuration($decimalDuration);
+    }
 
-        $minutes = $decimalMinutes * (60 / 1); // 60 minutes/hour
+    /**
+     * Calc the mountainbike tour duration
+     */
+    public function calcMountainBikeDuration($distance, int $upElevation): \DateTime
+    {
+        $formulaDefinitions = Tour::FORMULA_DEFINITIONS['MBT'];
 
-        $time = new \DateTime();
-        $time->setTime((int) $hours, (int) $minutes);
+        $upDuration = $upElevation / $formulaDefinitions['UP_METERS_PER_HOUR'];
+        $horizontalDuration = $distance / $formulaDefinitions['HORIZONTAL_METERS_PER_HOUR'];
 
-        return $time;
+        if ($horizontalDuration < $upDuration) {
+            $decimalDuration = ($horizontalDuration / 2) + $upDuration;
+        } else {
+            $decimalDuration = ($upDuration / 2) + $horizontalDuration;
+        }
+
+        return $this->formatDecimalDuration($decimalDuration);
+    }
+
+    /**
+     * Calc the via ferrata tour duration
+     */
+    public function calcViaFerrataDuration(int $upElevation, int $downElevation): \DateTime
+    {
+        $formulaDefinitions = Tour::FORMULA_DEFINITIONS['VIA_FERRATA'];
+
+        $downDuration = $downElevation / $formulaDefinitions['DOWN_METERS_PER_HOUR'];
+        $upDuration = $upElevation / $formulaDefinitions['UP_METERS_PER_HOUR'];
+        $sumElevation = $downDuration + $upDuration;
+
+        return $this->formatDecimalDuration($sumElevation);
     }
 
     /**
@@ -177,5 +220,21 @@ class TourService
         }
 
         return ltrim($duration->format('H'), 0).':'.$duration->format('i');
+    }
+
+    /**
+     * Calculate the real time from a decimal duration
+     */
+    private function formatDecimalDuration($decimalDuration): \DateTime
+    {
+        $hours = floor($decimalDuration);
+        $decimalMinutes = ($hours - $decimalDuration) * -1;
+
+        $minutes = $decimalMinutes * (60 / 1); // 60 minutes/hour
+
+        $time = new \DateTime();
+        $time->setTime((int) $hours, (int) $minutes);
+
+        return $time;
     }
 }

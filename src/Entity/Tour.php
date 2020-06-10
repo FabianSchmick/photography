@@ -23,10 +23,22 @@ class Tour
 {
     const PAGINATION_QUANTITY = 6;
 
-    /** Values according to: DIN 33466 */
-    const UP_METERS_PER_HOUR = 300;
-    const DOWN_METERS_PER_HOUR = 500;
-    const HORIZONTAL_METERS_PER_HOUR = 4;
+    const FORMULA_DEFINITIONS = [
+        'HIKING' => [
+            /** Values according to: DIN 33466 */
+            'UP_METERS_PER_HOUR' => 300,
+            'DOWN_METERS_PER_HOUR' => 500,
+            'HORIZONTAL_METERS_PER_HOUR' => 4,
+        ],
+        'MBT' => [
+            'UP_METERS_PER_HOUR' => 500,
+            'HORIZONTAL_METERS_PER_HOUR' => 12,
+        ],
+        'VIA_FERRATA' => [
+            'UP_METERS_PER_HOUR' => 200,
+            'DOWN_METERS_PER_HOUR' => 400,
+        ],
+    ];
 
     /**
      * @var int
@@ -619,5 +631,13 @@ class Tour
     public function setTranslatableLocale(?string $locale): void
     {
         $this->locale = $locale;
+    }
+
+    /**
+     * Returns the formula to apply for calculating the tour duration
+     */
+    public function getFormulaType(): ?string
+    {
+        return !$this->getTourCategory() ?: $this->getTourCategory()->getFormulaType();
     }
 }

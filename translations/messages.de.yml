@@ -18,6 +18,10 @@ label.tag: Tag
 label.tours: Touren
 label.tour: Tour
 label.tourCategory: Kategorie
+label.formulaType: Formel zur Berechnung der Streckendauer
+label.HIKING: Wanderung (DIN 33466)
+label.MBT: Mountainbike (DAV Empfehlung)
+label.VIA_FERRATA: Klettersteig (DAV Empfehlung)
 label.directions: Wegbeschreibung
 label.equipmentAndSafety: Ausrüstung und Sicherheitshinweise
 label.distance: Länge
