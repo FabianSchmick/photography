@@ -2,5 +2,7 @@
  * Tooltip for hints
  */
 export function tooltip() {
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip({
+        trigger: 'click hover'
+    });
 }

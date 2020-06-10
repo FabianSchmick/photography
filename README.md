@@ -20,7 +20,8 @@ The project provides you following functionality:
 - Image compression and thumbnail generation with [LiipImagineBundle](https://github.com/liip/LiipImagineBundle)
 - I18n support in English and German
 - Tag possibility for describing and filtering entries
-- Uploading gpx files for showing your favorite tours with [Leaflet](https://leafletjs.com/) and connect them with your entries 
+- Uploading gpx files for showing your favorite tours with [Leaflet](https://leafletjs.com/) and connect them with your entries
+- Calculation of the tour duration with German Alpine Club (DAV) recommendations 
 - [Lazyloading](https://github.com/verlok/lazyload) and Infinityscrolling for images
 - Lightbox as a quick view
 - Dynamic Sitemap generation
