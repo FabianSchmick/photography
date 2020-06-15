@@ -54,7 +54,7 @@ p a
         left: 0
         bottom: 0
         opacity: 1
-        background: linear-gradient(transparent 25px, #fff)
+        background: linear-gradient(rgba(255,255,255,0) 25px, #fff) /* Safari bug see https://stackoverflow.com/a/30674347/5947371 */
         transition: all 0.2s ease-in
 
 .text-fadein
