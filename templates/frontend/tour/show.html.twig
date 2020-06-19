@@ -64,8 +64,10 @@
         <article class="tour">
             <div class="container text-container text-center">
                 <h1>{{ tour.name }}</h1>
-                {% if tour.tourCategory and tour.location %}
-                    <h2 class="h5">{{ 'tour.sub_headline'|trans({'%category%': tour.tourCategory, '%location%': tour.location}) }}</h2>
+                {% if tour.tourCategory and tour.locations|length %}
+                    {% set locations = tour.locations.toArray|natural_language_join %}
+
+                    <h2 class="h5">{{ 'tour.sub_headline'|trans({'%category%': tour.tourCategory, '%locations%': locations}) }}</h2>
                 {% endif %}
             </div>
             <div class="tour-info">

@@ -138,12 +138,16 @@ class Tour
     private $sort;
 
     /**
-     * @var Location|null
+     * @var Collection
      *
-     * @ORM\ManyToOne(targetEntity="Location", inversedBy="tours", cascade={"persist"})
-     * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\ManyToMany(targetEntity="Location", inversedBy="tours", cascade={"persist"})
+     * @ORM\JoinTable(name="location_to_tour",
+     *     joinColumns={@ORM\JoinColumn(referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(referencedColumnName="id")}
+     * )
+     * @ORM\OrderBy({"name"="ASC"})
      */
-    private $location;
+    private $locations;
 
     /**
      * @var Entry|null
@@ -223,6 +227,7 @@ class Tour
     public function __construct()
     {
         $this->entries = new ArrayCollection();
+        $this->locations = new ArrayCollection();
     }
 
     /**
@@ -442,23 +447,23 @@ class Tour
     }
 
     /**
-     * Set location.
+     * Set locations.
      *
      * @return Tour
      */
-    public function setLocation(?Location $location): self
+    public function setLocation(?Collection $locations): self
     {
-        $this->location = $location;
+        $this->locations = $locations;
 
         return $this;
     }
 
     /**
-     * Get location.
+     * Get locations.
      */
-    public function getLocation(): ?Location
+    public function getLocations(): ?Collection
     {
-        return $this->location;
+        return $this->locations;
     }
 
     /**

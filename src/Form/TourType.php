@@ -73,8 +73,9 @@ class TourType extends AbstractType
                     'class' => 'select2-add',
                 ],
             ])
-            ->add('location', EntityType::class, [
+            ->add('locations', EntityType::class, [
                 'required' => false,
+                'multiple' => true,
                 'class' => 'App:Location',
                 'placeholder' => '',
                 'query_builder' => function (EntityRepository $er): QueryBuilder {
@@ -147,8 +148,10 @@ class TourType extends AbstractType
                 $data['tourCategory'] = $this->coreService->saveNewEntityByName($data['tourCategory'], TourCategory::class, 'App:TourCategory');
             }
 
-            if (!empty($data['location'] = trim($data['location']))) {
-                $data['location'] = $this->coreService->saveNewEntityByName($data['location'], Location::class, 'App:Location');
+            foreach ($data['locations'] as $key => $location) {
+                if (!empty($location = trim($location))) {
+                    $data['locations'][$key] = $this->coreService->saveNewEntityByName($location, Location::class, 'App:Location');
+                }
             }
 
             $event->setData($data);

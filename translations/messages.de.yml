@@ -133,7 +133,7 @@ introduction.tour_categories: Filter nach Aktivität
 tours.headline: Meine Touren Empfehlungen
 tour.data: Tourdaten
 tour.map: GPX-Track
-tour.sub_headline: '%category% in %location%'
+tour.sub_headline: '%category% in %locations%'
 
 # Other
 noscript: Bitte aktivieren Sie JavaScript um die Webseite im vollen Umfang nutzen zu können
