@@ -2,8 +2,6 @@
 
 namespace App\Twig;
 
-use App\Entity\Tour;
-use App\Service\TourService;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -29,7 +27,7 @@ class StringExtension extends AbstractExtension
         $last = array_pop($list);
 
         if ($list) {
-            return implode(', ', $list) . ' & ' . $last;
+            return implode(', ', $list).' & '.$last;
         }
 
         return $last;

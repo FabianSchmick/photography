@@ -157,7 +157,7 @@ class TourService
     }
 
     /**
-     * Calc the hiking tour duration
+     * Calc the hiking tour duration.
      */
     public function calcHikingDuration($distance, $upElevation, $downElevation): DateInterval
     {
@@ -178,7 +178,7 @@ class TourService
     }
 
     /**
-     * Calc the mountainbike tour duration
+     * Calc the mountainbike tour duration.
      */
     public function calcMountainBikeDuration($distance, $upElevation): DateInterval
     {
@@ -197,7 +197,7 @@ class TourService
     }
 
     /**
-     * Calc the via ferrata tour duration
+     * Calc the via ferrata tour duration.
      */
     public function calcViaFerrataDuration($upElevation, $downElevation): DateInterval
     {
@@ -224,7 +224,7 @@ class TourService
     }
 
     /**
-     * Calculate the real time from a decimal duration
+     * Calculate the real time from a decimal duration.
      */
     private function formatDecimalDuration($decimalDuration): DateInterval
     {

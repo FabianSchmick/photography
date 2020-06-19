@@ -26,7 +26,7 @@ class Tour
 
     const FORMULA_DEFINITIONS = [
         'HIKING' => [
-            /** Values according to: DIN 33466 */
+            /* Values according to: DIN 33466 */
             'UP_METERS_PER_HOUR' => 300,
             'DOWN_METERS_PER_HOUR' => 500,
             'HORIZONTAL_METERS_PER_HOUR' => 4,
@@ -639,7 +639,7 @@ class Tour
     }
 
     /**
-     * Returns the formula to apply for calculating the tour duration
+     * Returns the formula to apply for calculating the tour duration.
      */
     public function getFormulaType(): ?string
     {

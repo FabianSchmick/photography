@@ -37,7 +37,7 @@ class CoreService
     }
 
     /**
-     * Saves a new entity by its name
+     * Saves a new entity by its name.
      */
     public function saveNewEntityByName($choice, string $class, string $repo): int
     {
