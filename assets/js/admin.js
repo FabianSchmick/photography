@@ -6,7 +6,7 @@ import 'startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing';
 import 'startbootstrap-sb-admin-2/js/sb-admin-2';
 
 import { navigation, search, ajaxPageWrapper } from './admin/app';
-import { initSelect2, initWysiwyg } from './admin/form';
+import { initMask, initSelect2, initWysiwyg } from './admin/form';
 
 $(document).ready(function() {
     navigation();
@@ -15,4 +15,5 @@ $(document).ready(function() {
 
     initSelect2();
     initWysiwyg();
+    initMask();
 });

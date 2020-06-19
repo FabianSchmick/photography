@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Location;
 use App\Entity\Tour;
 use App\Entity\TourCategory;
+use App\Form\DataTransformer\DateIntervalTransformer;
 use App\Service\CoreService;
 use App\Service\TourService;
 use Doctrine\ORM\EntityRepository;
@@ -13,7 +14,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -32,12 +33,18 @@ class TourType extends AbstractType
     private $tourService;
 
     /**
+     * @var DateIntervalTransformer
+     */
+    private $transformer;
+
+    /**
      * TourType constructor.
      */
-    public function __construct(CoreService $coreService, TourService $tourService)
+    public function __construct(CoreService $coreService, TourService $tourService, DateIntervalTransformer $transformer)
     {
         $this->coreService = $coreService;
         $this->tourService = $tourService;
+        $this->transformer = $transformer;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -93,11 +100,9 @@ class TourType extends AbstractType
                     'placeholder' => $placeholderTour->getDistance() ? number_format($placeholderTour->getDistance(), 1, ',', '.') : null,
                 ],
             ])
-            ->add('duration', TimeType::class, [
+            ->add('duration', TextType::class, [
                 'required' => false,
                 'unit' => 'unit.duration',
-                'html5' => false,
-                'widget' => 'single_text',
                 'attr' => [
                     'placeholder' => $this->tourService->formatDuration($placeholderTour->getDuration()),
                 ],
@@ -140,6 +145,8 @@ class TourType extends AbstractType
                 'placeholder' => '',
             ]);
         }
+
+        $builder->get('duration')->addModelTransformer($this->transformer);
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $data = $event->getData();

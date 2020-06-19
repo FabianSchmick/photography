@@ -16,7 +16,7 @@ export function initSelect2() {
     $.fn.select2.defaults.set('language', $('html').attr('lang'));
     $.fn.select2.defaults.set('placeholder', '');
 
-    $('.select2').each((index, el) => {
+    $('select.select2').each((index, el) => {
         let $el = $(el);
 
         $el.select2({
@@ -38,7 +38,7 @@ export function initWysiwyg() {
         lang = 'de-DE';
     }
 
-    $('.wysiwyg').summernote({
+    $('textarea.wysiwyg').summernote({
         height: 100,
         lang: lang,
         disableDragAndDrop: true,

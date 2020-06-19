@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateInterval;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -96,10 +97,9 @@ class Tour
     private $distance;
 
     /**
-     * @var DateTime|null
+     * @var DateInterval|null
      *
-     * @Assert\Time()
-     * @ORM\Column(type="time", nullable=true)
+     * @ORM\Column(type="dateinterval", nullable=true)
      */
     private $duration;
 
@@ -351,7 +351,7 @@ class Tour
      *
      * @return Tour
      */
-    public function setDuration(?DateTime $duration): self
+    public function setDuration(?DateInterval $duration): self
     {
         $this->duration = $duration;
 
@@ -361,7 +361,7 @@ class Tour
     /**
      * Get duration.
      */
-    public function getDuration(): ?DateTime
+    public function getDuration(): ?DateInterval
     {
         return $this->duration;
     }
