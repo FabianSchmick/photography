@@ -201,7 +201,7 @@ class Tour
     /**
      * @var TourCategory|null
      *
-     * @ORM\ManyToOne(targetEntity="TourCategory", inversedBy="tour")
+     * @ORM\ManyToOne(targetEntity="TourCategory", inversedBy="tours")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
     private $tourCategory;
