@@ -53,6 +53,10 @@ class EntryType extends AbstractType
 
         $builder
             ->add('name')
+            ->add('image', EntryImageType::class, [
+                'required' => $entry->getImage() ? false : true,
+                'placeholder_text' => $entry->getImage() ? $entry->getImage()->getOriginalName() : 'label.no_file_selected',
+            ])
             ->add('description', TextareaType::class, [
                 'required' => false,
             ])
@@ -65,10 +69,6 @@ class EntryType extends AbstractType
                     return $er->createQueryBuilder('u')
                         ->orderBy('u.fullname', 'ASC');
                 },
-            ])
-            ->add('image', EntryImageType::class, [
-                'required' => false,
-                'placeholder_text' => $entry->getImage() ? $entry->getImage()->getOriginalName() : 'label.no_file_selected',
             ])
             ->add('location', EntityType::class, [
                 'required' => false,
