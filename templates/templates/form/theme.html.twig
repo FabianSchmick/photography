@@ -27,6 +27,18 @@
     {{ parent() }}
 {%- endblock choice_widget_collapsed -%}
 
+{% block checkbox_row -%}
+    {% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' checkbox-custom')|trim}) -%}
+
+    <div{% with {attr: row_attr|merge({class: (row_attr.class|default('') ~ ' form-group row')|trim})} %}{{ block('attributes') }}{% endwith %}>{#--#}
+        <div class="{{ block('form_label_class') }}">{{ 'label.checkbox'|trans }}</div>
+        <div class="{{ block('form_group_class') }}">
+            {{- form_widget(form, {label_attr: label_attr}) -}}
+            {{- form_help(form) -}}
+        </div>
+    </div>
+{%- endblock checkbox_row %}
+
 {%- block form_widget_simple -%}
     {% set unit = form.parent.vars.unit is defined and form.parent.vars.unit ? form.parent.vars.unit : form.vars.unit %}
 

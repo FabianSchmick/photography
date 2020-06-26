@@ -41,6 +41,24 @@ class Tour
         ],
     ];
 
+    const LEVEL_OF_DIFFICULTY = [
+        'A' => 0,
+        'A/B' => 1,
+        'B' => 2,
+        'B/C' => 3,
+        'C' => 4,
+        'C/D' => 5,
+        'D' => 6,
+        'D/E' => 7,
+        'E' => 8,
+        'I' => 9,
+        'II' => 10,
+        'III' => 11,
+        'IV' => 12,
+        'V' => 13,
+        'VI' => 14,
+    ];
+
     /**
      * @var int
      *
@@ -128,6 +146,14 @@ class Tour
      * @ORM\Column(type="smallint", nullable=true)
      */
     private $cumulativeElevationGain;
+
+    /**
+     * @var int|null in meters
+     *
+     * @Assert\Choice(choices=Tour::LEVEL_OF_DIFFICULTY)
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $levelOfDifficulty;
 
     /**
      * @var int|null
@@ -424,6 +450,34 @@ class Tour
     public function getCumulativeElevationGain(): ?int
     {
         return $this->cumulativeElevationGain !== 0 ? $this->cumulativeElevationGain : null;
+    }
+
+    /**
+     * Set levelOfDifficulty.
+     *
+     * @return Tour
+     */
+    public function setLevelOfDifficulty(?int $levelOfDifficulty): self
+    {
+        $this->levelOfDifficulty = $levelOfDifficulty;
+
+        return $this;
+    }
+
+    /**
+     * Get levelOfDifficulty.
+     */
+    public function getLevelOfDifficulty(): ?int
+    {
+        return $this->levelOfDifficulty;
+    }
+
+    /**
+     * Get the real value (not the key).
+     */
+    public function getValueLevelOfDifficulty()
+    {
+        return array_search($this->levelOfDifficulty, self::LEVEL_OF_DIFFICULTY);
     }
 
     /**

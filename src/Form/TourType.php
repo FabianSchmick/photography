@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -59,6 +60,10 @@ class TourType extends AbstractType
 
         $builder
             ->add('name')
+            ->add('file', TourFileType::class, [
+                'required' => $tour->getFile() ? false : true,
+                'placeholder_text' => $tour->getFile() ? $tour->getFile()->getOriginalName() : 'label.no_file_selected',
+            ])
             ->add('description', TextareaType::class, [
                 'required' => false,
             ])
@@ -128,14 +133,15 @@ class TourType extends AbstractType
                     'placeholder' => $placeholderTour->getCumulativeElevationGain(),
                 ],
             ])
-            ->add('file', TourFileType::class, [
-                'required' => false,
-                'placeholder_text' => $tour->getFile() ? $tour->getFile()->getOriginalName() : 'label.no_file_selected',
-            ])
-            ->add('sort', NumberType::class, [
-                'required' => false,
-            ])
         ;
+
+        if ($tour->getTourCategory() && $tour->getTourCategory()->isHasLevelOfDifficulty()) {
+            $builder->add('levelOfDifficulty', ChoiceType::class, [
+                'required' => false,
+                'choices' => Tour::LEVEL_OF_DIFFICULTY,
+                'placeholder' => '',
+            ]);
+        }
 
         if (!$tour->getEntries()->isEmpty()) {
             $builder->add('previewEntry', EntityType::class, [
@@ -145,6 +151,10 @@ class TourType extends AbstractType
                 'placeholder' => '',
             ]);
         }
+
+        $builder->add('sort', NumberType::class, [
+            'required' => false,
+        ]);
 
         $builder->get('duration')->addModelTransformer($this->transformer);
 

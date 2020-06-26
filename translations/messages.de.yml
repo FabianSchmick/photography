@@ -22,6 +22,8 @@ label.formulaType: Formel zur Berechnung der Streckendauer
 label.HIKING: Wanderung (DIN 33466)
 label.MBT: Mountainbike (DAV Empfehlung)
 label.VIA_FERRATA: Klettersteig (DAV Empfehlung)
+label.hasLevelOfDifficulty: Hat Einstufungen der Schwierigkeit
+label.levelOfDifficulty: Schwierigkeit
 label.directions: Wegbeschreibung
 label.equipmentAndSafety: Ausrüstung und Sicherheitshinweise
 label.distance: Länge
@@ -36,6 +38,7 @@ label.previewEntry: Vorschau Eintrag
 label.username: Benutzername
 label.password: Passwort
 label.repeat_password: Passwort wiederholen
+label.checkbox: Option
 
 # Units
 unit.distance: km
@@ -70,6 +73,7 @@ title.login: Anmelden
 tooltip.formula.HIKING: '<b>Gehzeiten-Berechnung</b> (pro Stunde): %UP_METERS_PER_HOUR%m im Anstieg, %DOWN_METERS_PER_HOUR%m im Abstieg und %HORIZONTAL_METERS_PER_HOUR% km in der Ebene (DIN 33466).'
 tooltip.formula.MBT: '<b>Fahrzeit-Berechnung</b> (pro Stunde): %UP_METERS_PER_HOUR%m im Anstieg und %HORIZONTAL_METERS_PER_HOUR% km in der Ebene.'
 tooltip.formula.VIA_FERRATA: '<b>Steigzeit-Berechnung</b> (pro Stunde): %UP_METERS_PER_HOUR%m im Anstieg, %DOWN_METERS_PER_HOUR%m im Abstieg.'
+tooltip.levelOfDifficulty: Einstufung nach Schall-Skala für Klettersteige oder UIAA-Skala für Klettern
 
 # Headers
 header.new.entry: Neuer Eintrag

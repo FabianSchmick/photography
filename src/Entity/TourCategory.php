@@ -54,6 +54,13 @@ class TourCategory
     private $formulaType;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", options={"default" : 0})
+     */
+    private $hasLevelOfDifficulty;
+
+    /**
      * @var \DateTime|null
      *
      * @Gedmo\Timestampable(on="create")
@@ -91,6 +98,7 @@ class TourCategory
     public function __construct()
     {
         $this->tours = new ArrayCollection();
+        $this->hasLevelOfDifficulty = false;
     }
 
     public function __toString(): string
@@ -144,6 +152,26 @@ class TourCategory
     public function getFormulaType(): ?string
     {
         return $this->formulaType;
+    }
+
+    /**
+     * Set hasLevelOfDifficulty.
+     *
+     * @return TourCategory
+     */
+    public function setHasLevelOfDifficulty(bool $hasLevelOfDifficulty): self
+    {
+        $this->hasLevelOfDifficulty = $hasLevelOfDifficulty;
+
+        return $this;
+    }
+
+    /**
+     * Get hasLevelOfDifficulty.
+     */
+    public function isHasLevelOfDifficulty(): bool
+    {
+        return $this->hasLevelOfDifficulty;
     }
 
     /**

@@ -132,6 +132,20 @@
                                 {{ tour.cumulativeElevationGain|number_format(0, ',', '.') }} {{ 'unit.cumulativeElevationGain'|trans }}
                             </dd>
                         {% endif %}
+                        {% if tour.levelOfDifficulty %}
+                            <dt class="col-6 tour-levelOfDifficulty">
+                                {{ 'label.levelOfDifficulty'|trans }} <span class="icon icon-sm icon-level-of-difficulty pl-1"><svg><use xlink:href="#level-of-difficulty-icon"/></svg></span>
+                            </dt>
+                            <dd class="col-6 tour-levelOfDifficulty-value">
+                                {{ tour.valueLevelOfDifficulty }}
+
+                                <button type="button" class="btn btn-sm p-0 ml-1 icon icon-sm icon-teritary icon-info"
+                                        data-toggle="tooltip" data-html="true" style="margin-top: -5px;"
+                                        title="{{ ('tooltip.levelOfDifficulty')|trans()|raw }}">
+                                    <svg><use xlink:href="#info-icon"/></svg>
+                                </button>
+                            </dd>
+                        {% endif %}
                     </dl>
                 </div>
                 <div class="text-center tour-map">
@@ -187,6 +201,7 @@
     {{ asset('assets/images/layout/icons/elevation-gain-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/expand-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/length-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/level-of-difficulty-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/marker-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/time-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/info-icon.svg')|inline_svg() }}
