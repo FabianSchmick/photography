@@ -31,7 +31,7 @@ class Tour
             'DOWN_METERS_PER_HOUR' => 500,
             'HORIZONTAL_METERS_PER_HOUR' => 4,
         ],
-        'MBT' => [
+        'MTB' => [
             'UP_METERS_PER_HOUR' => 500,
             'HORIZONTAL_METERS_PER_HOUR' => 12,
         ],

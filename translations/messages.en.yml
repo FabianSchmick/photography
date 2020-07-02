@@ -20,7 +20,7 @@ label.tour: Tour
 label.tourCategory: Category
 label.formulaType: Formula to calculate the route duration
 label.HIKING: Hiking (DIN 33466)
-label.MBT: Mountainbike (DAV recommended)
+label.MTB: Mountainbike (DAV recommended)
 label.VIA_FERRATA: Via Ferrata (DAV recommended)
 label.hasLevelOfDifficulty: Has level of difficulty
 label.levelOfDifficulty: Difficulty
@@ -71,7 +71,7 @@ title.login: Login
 
 # Tooltips
 tooltip.formula.HIKING: '<b>Hiking time calculation</b> (per hour): %UP_METERS_PER_HOUR%m up, %DOWN_METERS_PER_HOUR%m down and %HORIZONTAL_METERS_PER_HOUR% km plain (DIN 33466).'
-tooltip.formula.MBT: '<b>Travel time calculation</b> (per hour): %UP_METERS_PER_HOUR%m up und %HORIZONTAL_METERS_PER_HOUR% km plain.'
+tooltip.formula.MTB: '<b>Travel time calculation</b> (per hour): %UP_METERS_PER_HOUR%m up und %HORIZONTAL_METERS_PER_HOUR% km plain.'
 tooltip.formula.VIA_FERRATA: '<b>Climbing time calculation</b> (per hour): %UP_METERS_PER_HOUR%m up, %DOWN_METERS_PER_HOUR%m down.'
 tooltip.levelOfDifficulty: Classification according to the Schall-Scale for Ferrata or UIAA-Scale for climbing
 

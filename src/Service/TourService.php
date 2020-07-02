@@ -147,7 +147,7 @@ class TourService
         switch ($formulaType) {
             case 'HIKING':
                 return $this->calcHikingDuration($tour->getDistance(), $upElevation, $downElevation);
-            case 'MBT':
+            case 'MTB':
                 return $this->calcMountainBikeDuration($tour->getDistance(), $upElevation);
             case 'VIA_FERRATA':
                 return $this->calcViaFerrataDuration($upElevation, $downElevation);
@@ -182,7 +182,7 @@ class TourService
      */
     public function calcMountainBikeDuration($distance, $upElevation): DateInterval
     {
-        $formulaDefinitions = Tour::FORMULA_DEFINITIONS['MBT'];
+        $formulaDefinitions = Tour::FORMULA_DEFINITIONS['MTB'];
 
         $upDuration = $upElevation / $formulaDefinitions['UP_METERS_PER_HOUR'];
         $horizontalDuration = $distance / $formulaDefinitions['HORIZONTAL_METERS_PER_HOUR'];
