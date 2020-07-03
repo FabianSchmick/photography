@@ -109,34 +109,34 @@
                             </dd>
                         {% endif %}
                         {% if tour.maxAltitude %}
-                            <dt class="col-6 tour-maxAltitude">
+                            <dt class="col-6 tour-max-altitude">
                                 {{ 'label.maxAltitude'|trans }} <span class="icon icon-sm icon-angle icon-rotate-90 pl-1"><svg><use xlink:href="#angle-icon"/></svg></span>
                             </dt>
-                            <dd class="col-6 tour-maxAltitude-value">
+                            <dd class="col-6 tour-max-altitude-value">
                                 {{ tour.maxAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}
                             </dd>
                         {% endif %}
                         {% if tour.minAltitude %}
-                            <dt class="col-6 tour-minAltitude">
+                            <dt class="col-6 tour-min-altitude">
                                 {{ 'label.minAltitude'|trans }} <span class="icon icon-sm icon-angle icon-rotate-270 pl-1"><svg><use xlink:href="#angle-icon"/></svg></span>
                             </dt>
-                            <dd class="col-6 tour-minAltitude-value">
+                            <dd class="col-6 tour-min-altitude-value">
                                 {{ tour.minAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}
                             </dd>
                         {% endif %}
                         {% if tour.cumulativeElevationGain %}
-                            <dt class="col-6 tour-cumulativeElevationGain">
+                            <dt class="col-6 tour-cumulative-elevation-gain">
                                 {{ 'label.cumulativeElevationGain'|trans }} <span class="icon icon-sm icon-elevation-gain pl-1"><svg><use xlink:href="#elevation-gain-icon"/></svg></span>
                             </dt>
-                            <dd class="col-6 tour-cumulativeElevationGain-value">
+                            <dd class="col-6 tour-cumulative-elevation-gain-value">
                                 {{ tour.cumulativeElevationGain|number_format(0, ',', '.') }} {{ 'unit.cumulativeElevationGain'|trans }}
                             </dd>
                         {% endif %}
                         {% if tour.levelOfDifficulty %}
-                            <dt class="col-6 tour-levelOfDifficulty">
+                            <dt class="col-6 tour-level-of-difficulty">
                                 {{ 'label.levelOfDifficulty'|trans }} <span class="icon icon-sm icon-level-of-difficulty pl-1"><svg><use xlink:href="#level-of-difficulty-icon"/></svg></span>
                             </dt>
-                            <dd class="col-6 tour-levelOfDifficulty-value">
+                            <dd class="col-6 tour-level-of-difficulty-value">
                                 {{ tour.valueLevelOfDifficulty }}
 
                                 <button type="button" class="btn btn-sm p-0 ml-1 icon icon-sm icon-teritary icon-info"
