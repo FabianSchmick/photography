@@ -50,11 +50,12 @@ class EntryController extends AbstractController
 
             $url = $this->generateUrl('admin_entry_edit', ['id' => $entry->getId()]);
 
-            $translated = $translator->trans('flash.success.new');
-            $this->addFlash(
-                'success',
-                $translated.': <a class="alert-link" href="'.$url.'">'.$entry->getName().'</a>.'
-            );
+            $translated = $translator->trans('flash.success.new', [
+                '%link%' => $url,
+                '%name%' => $entry->getName(),
+            ]);
+
+            $this->addFlash('success', $translated);
 
             return $this->redirectToRoute('admin_entry_new');
         }
@@ -107,7 +108,10 @@ class EntryController extends AbstractController
             $em->remove($entry);
             $em->flush();
 
-            $translated = str_replace('%entry%', $entry->getName(), $translator->trans('flash.success.deleted.entry'));
+            $translated = $translator->trans('flash.success.deleted.entry', [
+                '%entry%' => $entry->getName(),
+            ]);
+
             $this->addFlash('success', $translated);
         } else {
             $this->addFlash('danger', 'flash.error.deleted');

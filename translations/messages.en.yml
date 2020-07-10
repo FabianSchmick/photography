@@ -109,7 +109,7 @@ modal.delete.msg.tour: Are you sure you want to delete the tour?
 
 # Flash messages
 flash.success.edit: Your changes have been saved.
-flash.success.new: Your new entry has been saved. Edit it here.
+flash.success.new: 'Your new entry has been saved. <a href="%link%">%name%</a> edit it.'
 flash.success.deleted.entry: The entry <strong>%entry%</strong> has been deleted.
 flash.success.deleted.author: The author <strong>%author%</strong> has been deleted.
 flash.success.deleted.location: The location <strong>%location%</strong> has been deleted.

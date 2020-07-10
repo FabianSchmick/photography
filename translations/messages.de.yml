@@ -109,7 +109,7 @@ modal.delete.msg.tour: Sind Sie sicher, dass Sie diese Tour löschen möchten?
 
 # Flash messages
 flash.success.edit: Ihre Änderrungen wurden gespeichert.
-flash.success.new: Ihr neuer Eintrag wurde gespeichert. Weiter bearbeiten.
+flash.success.new: 'Der Eintrag wurde gespeichert. <a href="%link%">%name%</a> weiter bearbeiten.'
 flash.success.deleted.entry: Der Eintrag <strong>%entry%</strong> wurde gelöscht.
 flash.success.deleted.author: Der Autor <strong>%author%</strong> wurde gelöscht.
 flash.success.deleted.location: Der Aufnahmeort <strong>%location%</strong> wurde gelöscht.

@@ -50,11 +50,12 @@ class TourCategoryController extends AbstractController
 
             $url = $this->generateUrl('admin_tour_category_edit', ['id' => $tourCategory->getId()]);
 
-            $translated = $translator->trans('flash.success.new');
-            $this->addFlash(
-                'success',
-                $translated.': <a class="alert-link" href="'.$url.'">'.$tourCategory->getName().'</a>.'
-            );
+            $translated = $translator->trans('flash.success.new', [
+                '%link%' => $url,
+                '%name%' => $tourCategory->getName(),
+            ]);
+
+            $this->addFlash('success', $translated);
 
             return $this->redirectToRoute('admin_tour_category_new');
         }
@@ -107,7 +108,10 @@ class TourCategoryController extends AbstractController
             $em->remove($tourCategory);
             $em->flush();
 
-            $translated = str_replace('%tour_category%', $tourCategory->getName(), $translator->trans('flash.success.deleted.tour_category'));
+            $translated = $translator->trans('flash.success.deleted.tour_category', [
+                '%tour_category%' => $tourCategory->getName(),
+            ]);
+
             $this->addFlash('success', $translated);
         } else {
             $this->addFlash('danger', 'flash.error.deleted');
