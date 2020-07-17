@@ -51,9 +51,6 @@ class ExtendableEntityByNameType extends AbstractType
                 return $er->createQueryBuilder('e')
                     ->orderBy('e.name', 'ASC');
             },
-            'attr' => [
-                'class' => 'select2-add',
-            ],
         ]);
     }
 

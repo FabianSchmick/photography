@@ -27,6 +27,11 @@
     {{ parent() }}
 {%- endblock choice_widget_collapsed -%}
 
+{%- block extendable_entity_by_name_widget -%}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' select2-add')|trim}) -%}
+    {{- block('choice_widget') -}}
+{%- endblock extendable_entity_by_name_widget -%}
+
 {% block checkbox_row -%}
     {% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' checkbox-custom')|trim}) -%}
 
