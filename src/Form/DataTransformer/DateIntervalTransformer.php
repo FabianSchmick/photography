@@ -21,12 +21,8 @@ class DateIntervalTransformer implements DataTransformerInterface
 
     /**
      * Transform a DateInterval into a string like: 9:25.
-     *
-     * @param mixed $value
-     *
-     * @return string|null
      */
-    public function transform($value)
+    public function transform($value): ?string
     {
         if ($value !== null && !$value instanceof DateInterval) {
             throw new TransformationFailedException(sprintf('Can\'t transform value "%s"!', $value));
@@ -38,13 +34,9 @@ class DateIntervalTransformer implements DataTransformerInterface
     /**
      * Reverse transform a string like: 9:25 into a DateInterval object.
      *
-     * @param mixed $value
-     *
-     * @return DateInterval|null
-     *
      * @throws \Exception
      */
-    public function reverseTransform($value)
+    public function reverseTransform($value): ?DateInterval
     {
         if ($value !== null && !is_string($value)) {
             throw new TransformationFailedException(sprintf('Can\'t transform value "%s"!', $value));

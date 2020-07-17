@@ -3,8 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Entry;
-use App\Entity\Location;
-use App\Entity\Tag;
+use App\Form\Custom\ExtendableEntityByNameType;
+use App\Form\Custom\PurifyTextareaType;
 use App\Service\CoreService;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
@@ -12,7 +12,6 @@ use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -57,7 +56,7 @@ class EntryType extends AbstractType
                 'required' => $entry->getImage() ? false : true,
                 'placeholder_text' => $entry->getImage() ? $entry->getImage()->getOriginalName() : 'label.no_file_selected',
             ])
-            ->add('description', TextareaType::class, [
+            ->add('description', PurifyTextareaType::class, [
                 'required' => false,
             ])
             ->add('author', EntityType::class, [
@@ -70,33 +69,18 @@ class EntryType extends AbstractType
                         ->orderBy('u.fullname', 'ASC');
                 },
             ])
-            ->add('location', EntityType::class, [
+            ->add('location', ExtendableEntityByNameType::class, [
                 'required' => false,
                 'class' => 'App:Location',
-                'placeholder' => '',
-                'query_builder' => function (EntityRepository $er): QueryBuilder {
-                    return $er->createQueryBuilder('l')
-                        ->orderBy('l.name', 'ASC');
-                },
-                'attr' => [
-                    'class' => 'select2-add',
-                ],
             ])
             ->add('timestamp', DateType::class, [
                 'required' => false,
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
             ])
-            ->add('tags', EntityType::class, [
+            ->add('tags', ExtendableEntityByNameType::class, [
                 'class' => 'App:Tag',
-                'query_builder' => function (EntityRepository $er): QueryBuilder {
-                    return $er->createQueryBuilder('t')
-                        ->orderBy('t.sort', 'DESC');
-                },
                 'multiple' => true,
-                'attr' => [
-                    'class' => 'select2-add',
-                ],
             ])
             ->add('tour', EntityType::class, [
                 'required' => false,
@@ -112,18 +96,8 @@ class EntryType extends AbstractType
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $data = $event->getData();
 
-            if (!empty($data['location'] = trim($data['location']))) {
-                $data['location'] = $this->coreService->saveNewEntityByName($data['location'], Location::class, 'App:Location');
-            }
-
             if (empty($data['timestamp'])) {
                 $data['timestamp'] = date('yyyy-MM-dd');
-            }
-
-            foreach ($data['tags'] as $key => $tag) {
-                if (!empty($tag = trim($tag))) {
-                    $data['tags'][$key] = $this->coreService->saveNewEntityByName($tag, Tag::class, 'App:Tag');
-                }
             }
 
             $event->setData($data);
@@ -141,8 +115,6 @@ class EntryType extends AbstractType
             $date = $entry->getTimestamp();
             $date->setTime(date('H'), date('i'), date('s'));
             $entry->setTimestamp($date);
-
-            $entry->setDescription($this->coreService->purifyString($entry->getDescription()));
         });
     }
 

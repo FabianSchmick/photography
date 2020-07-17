@@ -52,7 +52,7 @@ class TourController extends AbstractController
 
             $translated = $translator->trans('flash.success.new', [
                 '%link%' => $url,
-                '%name%' => $tour->getName()
+                '%name%' => $tour->getName(),
             ]);
 
             $this->addFlash('success', $translated);

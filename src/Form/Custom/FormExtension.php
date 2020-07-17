@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Custom;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
