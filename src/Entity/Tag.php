@@ -14,7 +14,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * Tag.
  *
- * @ORM\Table(name="tag")
+ * @ORM\Table()
  * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
  * @UniqueEntity("name")
  * @Vich\Uploadable

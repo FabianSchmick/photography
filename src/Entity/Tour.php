@@ -15,7 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * Tour.
  *
- * @ORM\Table(name="tour")
+ * @ORM\Table()
  * @ORM\Entity(repositoryClass="App\Repository\TourRepository")
  * @UniqueEntity("name")
  * @Vich\Uploadable
