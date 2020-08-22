@@ -1,0 +1,67 @@
+{% import 'templates/macro/json-ld.html.twig' as jsonLd %}
+{% extends 'base.html.twig' %}
+
+{% block meta_description %}{{ 'tours.headline'|trans }} - {{ 'tour.maps'|trans }} - ({{ 'introduction.tours.headline'|trans|striptags }}){% endblock %}
+
+{% block meta_image %}{{ absolute_url(asset('assets/images/layout/cover-tour.jpg')) }}{% endblock %}
+
+{% block title %}{{ 'header.tours'|trans }} - {{ 'tour.maps'|trans }}{% endblock %}
+
+{% block body_id %}tours{% endblock %}
+
+{% block cover %}
+    <section id="cover" class="parallax-container">
+        <img class="parallax" src="{{ asset('assets/images/layout/cover-tour.jpg')|imagine_filter('entry_show') }}" alt="{{ 'tours.headline'|trans }}"/>
+    </section>
+{% endblock %}
+
+{% block content %}
+    <section id="content" class="container">
+        <h1>{{ 'tours.headline'|trans }} ({{ 'tour.maps'|trans }})</h1>
+        <article class="text-container text-center">
+            <h2 class="h5">{{ 'introduction.tours.headline'|trans|raw }}</h2>
+            <p>
+                {{ 'introduction.tours.longtext'|trans|raw }}
+            </p>
+            {% if categories|length %}
+                <div class="font-weight-bold py-2">{{ 'introduction.tour_categories'|trans }}:</div>
+                <ul class="tags" data-filter="#tours-container">
+                    {% for category in categories %}
+                        <li>
+                            {% if activeCategory and category.id == activeCategory.id %}
+                                <a href="{{ path('tour_map') }}" class="active">
+                                    {{ category.name }} <span class="icon icon-sm icon-close"><svg><use xlink:href="#close-icon"></use></svg></span>
+                                </a>
+                            {% else %}
+                                <a href="{{ path('tour_map', {'category': category.id}) }}">
+                                    {{ category.name }}
+                                </a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </article>
+
+        {% set query = activeCategory ? {'q': {'category': activeCategory.id}} : [] %}
+        <div id="tours-container">
+            <div id="map" class="map" data-tour-map data-gpx="{{ mapData|json_encode }}"></div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block embed_svg %}
+    {{ parent() }}
+    {{ asset('assets/images/layout/icons/compress-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/expand-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/close-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/marker-icon.svg')|inline_svg() }}
+{% endblock embed_svg %}
+
+{% block javascripts %}
+    <script type="application/ld+json">
+        {{ jsonLd.collectionPage(tours) }}
+    </script>
+
+    {{ parent() }}
+{% endblock %}
