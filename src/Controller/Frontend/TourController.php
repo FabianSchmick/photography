@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 /**
  * @Route("{_locale}", requirements={"_locale": "%app.locales%"})
@@ -48,6 +49,32 @@ class TourController extends AbstractController
             'activeCategory' => $activeCategory,
             'page' => $page,
             'pages' => $pages,
+        ]);
+    }
+
+    /**
+     * @Route("/tour/map", name="tour_map")
+     */
+    public function map(Request $request, TourService $tourService, TourRepository $tourRepository, TourCategoryRepository $categoryRepository, UploaderHelper $uploaderHelper): Response
+    {
+        if ($activeCategory = $request->query->get('category')) {
+            $activeCategory = $categoryRepository->find($activeCategory);
+        }
+
+        /** @var Tour[] $tours */
+        $tours = $tourRepository->getFindAllQuery($activeCategory)->getResult();
+
+        $mapData = [];
+        foreach ($tours as $tour) {
+            $tourService->setGpxData($tour);
+            $mapData[] = $uploaderHelper->asset($tour->getFile(), 'file');
+        }
+
+        return $this->render('frontend/tour/map.html.twig', [
+            'tours' => $tours,
+            'mapData' => $mapData,
+            'categories' => $categoryRepository->findBy([], ['sort' => 'DESC']),
+            'activeCategory' => $activeCategory,
         ]);
     }
 

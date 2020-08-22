@@ -18,6 +18,8 @@ class Map {
         this.map = null;
         this.$map = null;
         this.bounds = [];
+        this.startMarkers = [];
+        this.readyTracks = [];
     }
 
     /**
@@ -48,9 +50,35 @@ class Map {
         });
 
         this.addTileLayer();
-        this.addStartIcon(this.$map.data('coordinates'));
-        this.addGpxTrack(this.$map.data('gpx'));
-        this.toggleMapFullscreen();
+        if (this.$map.data('gpx')) {
+            let gpx = this.$map.data('gpx'),
+                length = 1;
+
+            if (Array.isArray(gpx)) {
+                length = gpx.length;
+
+                gpx.forEach(item => this.addGpxTrack(item));
+            } else {
+                this.addGpxTrack(gpx);
+            }
+
+            let fitBoundsInterval = setInterval(() => {
+                if (this.readyTracks.length === length) {
+                    if (Array.isArray(gpx)) {
+                        // https://stackoverflow.com/questions/16845614/zoom-to-fit-all-markers-in-mapbox-or-leaflet
+                        let group = new L.featureGroup(this.startMarkers);
+                        this.bounds = group.getBounds();
+                    }
+
+                    this.fitBounds();
+                    clearInterval(fitBoundsInterval);
+                }
+            }, 250);
+
+        }
+        if (this.$map.data('fullscreen')) {
+            this.toggleMapFullscreen();
+        }
     }
 
     /**
@@ -80,15 +108,17 @@ class Map {
             popupAnchor: [ -4, -60]
         });
 
-        L.marker(coordinates, { icon: startIcon })
-            .addTo(this.map)
-            .bindPopup('Tour start');
+        let marker = L.marker(coordinates, { icon: startIcon })
+            .addTo(this.map);
+
+        this.startMarkers.push(marker);
     }
 
     /**
      * Adds a track layer from a gpx file
      *
-     * @param {string} url
+     * @param {string}  url
+     * @param {boolean} url
      */
     addGpxTrack(url) {
         let track = omnivore.gpx(url, {}, L.geoJson());
@@ -102,8 +132,16 @@ class Map {
                 marker.bindPopup(marker.feature.properties.name);
             });
 
+            // Get first coordinates for the start icon
+            const layers = e.target._layers,
+                firstLayer = layers[Object.keys(layers)[0]],
+                startCoordinates = firstLayer._latlngs[0];
+
+            this.addStartIcon([startCoordinates.lat, startCoordinates.lng]);
+
             this.bounds = track.getBounds();
-            this.fitBounds();
+
+            this.readyTracks.push(url);
         });
 
         this.map.addLayer(track);

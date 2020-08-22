@@ -119,9 +119,7 @@
                 </div>
                 <div class="text-center tour-map">
                     <h3>{{ 'tour.map'|trans }}</h3>
-                    {% set firstPoint = tour.segments[0].points|first %}
-                    {% set lastPoint = tour.segments[0].points|last %}
-                    <div id="map" class="map" data-tour-map data-gpx="{{ vich_uploader_asset(tour.file, 'file') }}" data-coordinates="[{{ firstPoint.latitude }}, {{ firstPoint.longitude }}]"></div>
+                    <div id="map" class="map" data-tour-map data-gpx="{{ vich_uploader_asset(tour.file, 'file') }}" data-fullscreen></div>
                     <a class="btn btn-teritary mt-4" href="{{ path('core_download_file', {'file': tour.file.fileName}) }}" target="_blank"><span class="icon icon-sm icon-download pr-2"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'btn.tour_download'|trans }}</a>
                 </div>
                 {% if tour.directions %}
