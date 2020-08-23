@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateInterval;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -14,7 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * Tour.
  *
- * @ORM\Table(name="tour")
+ * @ORM\Table()
  * @ORM\Entity(repositoryClass="App\Repository\TourRepository")
  * @UniqueEntity("name")
  * @Vich\Uploadable
@@ -23,10 +24,40 @@ class Tour
 {
     const PAGINATION_QUANTITY = 6;
 
-    /** Values according to: DIN 33466 */
-    const UP_METERS_PER_HOUR = 300;
-    const DOWN_METERS_PER_HOUR = 500;
-    const HORIZONTAL_METERS_PER_HOUR = 4;
+    const FORMULA_DEFINITIONS = [
+        'HIKING' => [
+            /* Values according to: DIN 33466 */
+            'UP_METERS_PER_HOUR' => 300,
+            'DOWN_METERS_PER_HOUR' => 500,
+            'HORIZONTAL_METERS_PER_HOUR' => 4,
+        ],
+        'MTB' => [
+            'UP_METERS_PER_HOUR' => 500,
+            'HORIZONTAL_METERS_PER_HOUR' => 12,
+        ],
+        'VIA_FERRATA' => [
+            'UP_METERS_PER_HOUR' => 200,
+            'DOWN_METERS_PER_HOUR' => 400,
+        ],
+    ];
+
+    const LEVEL_OF_DIFFICULTY = [
+        'A' => 0,
+        'A/B' => 1,
+        'B' => 2,
+        'B/C' => 3,
+        'C' => 4,
+        'C/D' => 5,
+        'D' => 6,
+        'D/E' => 7,
+        'E' => 8,
+        'I' => 9,
+        'II' => 10,
+        'III' => 11,
+        'IV' => 12,
+        'V' => 13,
+        'VI' => 14,
+    ];
 
     /**
      * @var int
@@ -84,10 +115,9 @@ class Tour
     private $distance;
 
     /**
-     * @var DateTime|null
+     * @var DateInterval|null
      *
-     * @Assert\Time()
-     * @ORM\Column(type="time", nullable=true)
+     * @ORM\Column(type="dateinterval", nullable=true)
      */
     private $duration;
 
@@ -118,6 +148,14 @@ class Tour
     private $cumulativeElevationGain;
 
     /**
+     * @var int|null in meters
+     *
+     * @Assert\Choice(choices=Tour::LEVEL_OF_DIFFICULTY)
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $levelOfDifficulty;
+
+    /**
      * @var int|null
      *
      * @Assert\Type("numeric")
@@ -126,12 +164,16 @@ class Tour
     private $sort;
 
     /**
-     * @var Location|null
+     * @var Collection
      *
-     * @ORM\ManyToOne(targetEntity="Location", inversedBy="tours", cascade={"persist"})
-     * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\ManyToMany(targetEntity="Location", inversedBy="tours", cascade={"persist"})
+     * @ORM\JoinTable(name="location_to_tour",
+     *     joinColumns={@ORM\JoinColumn(referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(referencedColumnName="id")}
+     * )
+     * @ORM\OrderBy({"name"="ASC"})
      */
-    private $location;
+    private $locations;
 
     /**
      * @var Entry|null
@@ -185,7 +227,7 @@ class Tour
     /**
      * @var TourCategory|null
      *
-     * @ORM\ManyToOne(targetEntity="TourCategory", inversedBy="tour")
+     * @ORM\ManyToOne(targetEntity="TourCategory", inversedBy="tours")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
     private $tourCategory;
@@ -211,6 +253,7 @@ class Tour
     public function __construct()
     {
         $this->entries = new ArrayCollection();
+        $this->locations = new ArrayCollection();
     }
 
     /**
@@ -334,7 +377,7 @@ class Tour
      *
      * @return Tour
      */
-    public function setDuration(?DateTime $duration): self
+    public function setDuration(?DateInterval $duration): self
     {
         $this->duration = $duration;
 
@@ -344,7 +387,7 @@ class Tour
     /**
      * Get duration.
      */
-    public function getDuration(): ?DateTime
+    public function getDuration(): ?DateInterval
     {
         return $this->duration;
     }
@@ -410,6 +453,34 @@ class Tour
     }
 
     /**
+     * Set levelOfDifficulty.
+     *
+     * @return Tour
+     */
+    public function setLevelOfDifficulty(?int $levelOfDifficulty): self
+    {
+        $this->levelOfDifficulty = $levelOfDifficulty;
+
+        return $this;
+    }
+
+    /**
+     * Get levelOfDifficulty.
+     */
+    public function getLevelOfDifficulty(): ?int
+    {
+        return $this->levelOfDifficulty;
+    }
+
+    /**
+     * Get the real value (not the key).
+     */
+    public function getValueLevelOfDifficulty()
+    {
+        return array_search($this->levelOfDifficulty, self::LEVEL_OF_DIFFICULTY);
+    }
+
+    /**
      * Set sort.
      *
      * @return Tour
@@ -430,23 +501,23 @@ class Tour
     }
 
     /**
-     * Set location.
+     * Set locations.
      *
      * @return Tour
      */
-    public function setLocation(?Location $location): self
+    public function setLocation(?Collection $locations): self
     {
-        $this->location = $location;
+        $this->locations = $locations;
 
         return $this;
     }
 
     /**
-     * Get location.
+     * Get locations.
      */
-    public function getLocation(): ?Location
+    public function getLocations(): ?Collection
     {
-        return $this->location;
+        return $this->locations;
     }
 
     /**
@@ -619,5 +690,13 @@ class Tour
     public function setTranslatableLocale(?string $locale): void
     {
         $this->locale = $locale;
+    }
+
+    /**
+     * Returns the formula to apply for calculating the tour duration.
+     */
+    public function getFormulaType(): ?string
+    {
+        return !$this->getTourCategory() ?: $this->getTourCategory()->getFormulaType();
     }
 }

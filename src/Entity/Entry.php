@@ -13,7 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * Entry.
  *
- * @ORM\Table(name="entry")
+ * @ORM\Table()
  * @ORM\Entity(repositoryClass="App\Repository\EntryRepository")
  * @Vich\Uploadable
  */
@@ -81,7 +81,7 @@ class Entry
      * @Assert\LessThan(
      *     value="now",
      * )
-     * @ORM\Column(name="timestamp", type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $timestamp;
 

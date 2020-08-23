@@ -27,17 +27,17 @@ class TourRepository extends ServiceEntityRepository
      */
     public function getFindAllQuery(?TourCategory $category = null): Query
     {
-         $qb = $this->createQueryBuilder('t')
+        $qb = $this->createQueryBuilder('t')
             ->select('t')
             ->orderBy('t.sort', 'DESC')
             ->addOrderBy('t.updated', 'DESC');
 
-         if ($category) {
-             $qb = $qb->where('t.tourCategory = :category')
+        if ($category) {
+            $qb = $qb->where('t.tourCategory = :category')
                 ->setParameter('category', $category);
-         }
+        }
 
-         return $qb->getQuery();
+        return $qb->getQuery();
     }
 
     /**

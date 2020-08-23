@@ -37,15 +37,22 @@ class CoreService
     }
 
     /**
-     * Saves a new entity by its name
+     * Creates a new entity by its name.
      */
-    public function saveNewEntityByName($choice, string $class, string $repo): int
+    public function createNewEntityByName(string $repoName, $choice): ?int
     {
-        $entity = $this->em->getRepository($repo)->find($choice);
+        if (empty($choice = trim($choice))) {
+            return null;
+        }
 
-        if (!$entity) {
+        $repo = $this->em->getRepository($repoName);
+
+        if (!$entity = $repo->find($choice)) {
+            $class = $repo->getClassName();
+
             $entity = new $class();
             $entity->setName($choice);
+
             $this->em->persist($entity);
             $this->em->flush();
         }

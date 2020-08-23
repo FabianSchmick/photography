@@ -9,7 +9,7 @@ ul.tours
 
     li
         position: relative
-        margin-bottom: calc(#{$grid-gutter-width} / 2)
+        margin-bottom: $grid-gutter-width / 2
 
         .tour-preview-img
             overflow: hidden
@@ -58,8 +58,8 @@ ul.tours
                         svg
                             fill: $color-secondary
 
-                    .tour-maxAltitude, .tour-maxAltitude-value,
-                    .tour-minAltitude, .tour-minAltitude-value
+                    .tour-max-altitude, .tour-max-altitude-value,
+                    .tour-min-altitude, .tour-min-altitude-value
                         display: none
 
                     dt,
@@ -108,8 +108,8 @@ ul.tours
 
                 @include media-breakpoint-up(md)
                     .meta
-                        .tour-maxAltitude, .tour-maxAltitude-value,
-                        .tour-minAltitude, .tour-minAltitude-value
+                        .tour-max-altitude, .tour-max-altitude-value,
+                        .tour-min-altitude, .tour-min-altitude-value
                             display: inline-block
 
                 @include media-breakpoint-up(lg)
@@ -117,8 +117,8 @@ ul.tours
                         display: none
 
                     .meta
-                        .tour-maxAltitude, .tour-maxAltitude-value,
-                        .tour-minAltitude, .tour-minAltitude-value
+                        .tour-max-altitude, .tour-max-altitude-value,
+                        .tour-min-altitude, .tour-min-altitude-value
                             display: none
 
                 @media (min-width: 1350px)
@@ -129,8 +129,8 @@ ul.tours
                         display: block
 
                     .meta
-                        .tour-maxAltitude, .tour-maxAltitude-value,
-                        .tour-minAltitude, .tour-minAltitude-value
+                        .tour-max-altitude, .tour-max-altitude-value,
+                        .tour-min-altitude, .tour-min-altitude-value
                             display: inline-block
 
                 @media (min-width: 1600px)

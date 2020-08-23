@@ -81,7 +81,10 @@ class UserController extends AbstractController
             $em->remove($user);
             $em->flush();
 
-            $translated = str_replace('%author%', $user->getFullname(), $translator->trans('flash.success.deleted.author'));
+            $translated = $translator->trans('flash.success.deleted.author', [
+                '%author%' => $user->getFullname(),
+            ]);
+
             $this->addFlash('success', $translated);
         } else {
             $this->addFlash('danger', 'flash.error.deleted');

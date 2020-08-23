@@ -3,14 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Tag;
+use App\Form\Custom\PurifyTextareaType;
 use App\Service\CoreService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TagType extends AbstractType
@@ -35,7 +33,7 @@ class TagType extends AbstractType
 
         $builder
             ->add('name')
-            ->add('description', TextareaType::class, [
+            ->add('description', PurifyTextareaType::class, [
                 'required' => false,
             ])
             ->add('sort', NumberType::class, [
@@ -51,13 +49,6 @@ class TagType extends AbstractType
                 'placeholder' => '',
             ]);
         }
-
-        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
-            /** @var Tag $tag */
-            $tag = $event->getForm()->getData();
-
-            $tag->setDescription($this->coreService->purifyString($tag->getDescription()));
-        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

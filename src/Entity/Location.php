@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Location.
  *
- * @ORM\Table(name="location")
+ * @ORM\Table()
  * @ORM\Entity(repositoryClass="App\Repository\LocationRepository")
  * @UniqueEntity("name")
  */
@@ -21,7 +21,7 @@ class Location
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -33,7 +33,7 @@ class Location
      * @Assert\NotBlank()
      * @Assert\Length(max=255)
      * @Gedmo\Translatable
-     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $name;
 
@@ -47,7 +47,7 @@ class Location
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="Tour", mappedBy="tour", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Tour", mappedBy="locations", cascade={"persist"})
      */
     private $tours;
 

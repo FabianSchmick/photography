@@ -1,18 +1,18 @@
 /**
- * Show fade out text completely
+ * Show faded out text completely
  */
 export function showMoreText() {
-    let animateCompleted = true;
+    let isAnimationCompleted = true;
 
     $('main').on('click', 'button[data-show-more]', function () {
         let $this = $(this),
             $target = $($this.data('show-more'));
 
-        if (!animateCompleted) {
+        if (!isAnimationCompleted) {
             return false;
         }
 
-        animateCompleted = false;
+        isAnimationCompleted = false;
 
         $target.toggleClass('text-fadein');
 
@@ -26,7 +26,7 @@ export function showMoreText() {
                 $this.html($this.data('show-more-collapsed'));
             }
 
-            animateCompleted = true;
+            isAnimationCompleted = true;
         });
 
         return false;

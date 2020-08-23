@@ -12,6 +12,7 @@ import { parallax } from './frontend/parallax';
 import { filter } from './util/filter';
 import { pagination } from './util/pagination';
 import { showMoreText } from './util/show-more';
+import { tooltip } from './util/tooltip';
 import { lazyload } from './frontend/lazyload';
 
 import Entry from './frontend/Entry';
@@ -30,6 +31,7 @@ $(document).ready(function() {
     filter();
     pagination();
     showMoreText();
+    tooltip();
     let lazyLoadInstance = lazyload();
 
     Entry.setLazyLoadInstance(lazyLoadInstance);

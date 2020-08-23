@@ -24,7 +24,7 @@
                 {{ 'introduction.tours.longtext'|trans|raw }}
             </p>
             {% if categories|length %}
-                <div class="filter-tags">{{ 'introduction.tour_categories'|trans }}:</div>
+                <div class="font-weight-bold py-2">{{ 'introduction.tour_categories'|trans }}:</div>
                 <ul class="tags" data-filter="#tours-container">
                     {% for category in categories %}
                         <li>
@@ -57,7 +57,7 @@
                                 {% endif %}
                             </div>
                             <div class="tour-info-container">
-                                <div class="tour-info clearfix">
+                                <div class="tour-info">
                                     <h4 class="h1">{{ tour.name }}</h4>
                                     <p>
                                         {% if tour.description %}
@@ -72,16 +72,16 @@
                                             <dd class="tour-distance-value">{{ tour.distance|number_format(1, ',', '.') }} {{ 'unit.distance'|trans }}</dd>
                                         {% endif %}
                                         {% if tour.maxAltitude %}
-                                            <dt class="tour-maxAltitude">
+                                            <dt class="tour-max-altitude">
                                                 <span class="icon icon-sm icon-angle icon-rotate-90" title="{{ 'label.maxAltitude'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
                                             </dt>
-                                            <dd class="tour-maxAltitude-value">{{ tour.maxAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
+                                            <dd class="tour-max-altitude-value">{{ tour.maxAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
                                         {% endif %}
                                         {% if tour.minAltitude %}
-                                            <dt class="tour-minAltitude">
+                                            <dt class="tour-min-altitude">
                                                 <span class="icon icon-sm icon-angle icon-rotate-270" title="{{ 'label.minAltitude'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
                                             </dt>
-                                            <dd class="tour-minAltitude-value">{{ tour.minAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
+                                            <dd class="tour-min-altitude-value">{{ tour.minAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
                                         {% endif %}
                                     </dl>
                                     <button class="btn btn-teritary btn-inverse">

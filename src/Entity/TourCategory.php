@@ -47,6 +47,20 @@ class TourCategory
     private $sort;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=32, nullable=true)
+     */
+    private $formulaType;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", options={"default" : 0})
+     */
+    private $hasLevelOfDifficulty;
+
+    /**
      * @var \DateTime|null
      *
      * @Gedmo\Timestampable(on="create")
@@ -63,12 +77,12 @@ class TourCategory
     private $updated;
 
     /**
-     * @var Tour
+     * @var Collection
      *
      * @ORM\OneToMany(targetEntity="Tour", mappedBy="tourCategory", cascade={"persist"})
      * @ORM\OrderBy({"sort"="DESC"})
      */
-    private $tour;
+    private $tours;
 
     /**
      * @var string|null
@@ -83,7 +97,8 @@ class TourCategory
      */
     public function __construct()
     {
-        $this->tour = new ArrayCollection();
+        $this->tours = new ArrayCollection();
+        $this->hasLevelOfDifficulty = false;
     }
 
     public function __toString(): string
@@ -120,6 +135,46 @@ class TourCategory
     }
 
     /**
+     * Set formulaType.
+     *
+     * @return TourCategory
+     */
+    public function setFormulaType(?string $formulaType): self
+    {
+        $this->formulaType = $formulaType;
+
+        return $this;
+    }
+
+    /**
+     * Get formulaType.
+     */
+    public function getFormulaType(): ?string
+    {
+        return $this->formulaType;
+    }
+
+    /**
+     * Set hasLevelOfDifficulty.
+     *
+     * @return TourCategory
+     */
+    public function setHasLevelOfDifficulty(bool $hasLevelOfDifficulty): self
+    {
+        $this->hasLevelOfDifficulty = $hasLevelOfDifficulty;
+
+        return $this;
+    }
+
+    /**
+     * Get hasLevelOfDifficulty.
+     */
+    public function isHasLevelOfDifficulty(): bool
+    {
+        return $this->hasLevelOfDifficulty;
+    }
+
+    /**
      * Set sort.
      *
      * @return TourCategory
@@ -140,46 +195,13 @@ class TourCategory
     }
 
     /**
-     * Get tour.
+     * Get tours.
      *
      * @return Collection|Tour[]
      */
-    public function getTour(): Collection
+    public function getTours(): Collection
     {
-        return $this->tour;
-    }
-
-    /**
-     * Add tour.
-     *
-     * @return TourCategory
-     */
-    public function addTour(Tour $tour): self
-    {
-        if (!$this->tour->contains($tour)) {
-            $this->tour[] = $tour;
-            $tour->setTourCategory($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Remove tour.
-     *
-     * @return TourCategory
-     */
-    public function removeTour(Tour $tour): self
-    {
-        if ($this->tour->contains($tour)) {
-            $this->tour->removeElement($tour);
-            // set the owning side to null (unless already changed)
-            if ($tour->getTourCategory() === $this) {
-                $tour->setTourCategory(null);
-            }
-        }
-
-        return $this;
+        return $this->tours;
     }
 
     /**

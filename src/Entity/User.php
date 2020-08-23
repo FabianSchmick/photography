@@ -48,7 +48,7 @@ class User implements UserInterface
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="Entry", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Entry", mappedBy="author", cascade={"persist"})
      */
     private $entries;
 

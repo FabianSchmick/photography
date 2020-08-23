@@ -50,11 +50,12 @@ class TourController extends AbstractController
 
             $url = $this->generateUrl('admin_tour_edit', ['id' => $tour->getId()]);
 
-            $translated = $translator->trans('flash.success.new');
-            $this->addFlash(
-                'success',
-                $translated.': <a class="alert-link" href="'.$url.'">'.$tour->getName().'</a>.'
-            );
+            $translated = $translator->trans('flash.success.new', [
+                '%link%' => $url,
+                '%name%' => $tour->getName(),
+            ]);
+
+            $this->addFlash('success', $translated);
 
             return $this->redirectToRoute('admin_tour_new');
         }
@@ -107,7 +108,10 @@ class TourController extends AbstractController
             $em->remove($tour);
             $em->flush();
 
-            $translated = str_replace('%tour%', $tour->getName(), $translator->trans('flash.success.deleted.tour'));
+            $translated = $translator->trans('flash.success.deleted.tour', [
+                '%tour%' => $tour->getName(),
+            ]);
+
             $this->addFlash('success', $translated);
         } else {
             $this->addFlash('danger', 'flash.error.deleted');

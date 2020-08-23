@@ -12,7 +12,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * File.
  *
- * @ORM\Table(name="file")
+ * @ORM\Table()
  * @ORM\Entity(repositoryClass="App\Repository\FileRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="sti_descriminator", type="string")

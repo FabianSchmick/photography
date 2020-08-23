@@ -1,7 +1,7 @@
 #introduction
     text-align: center
     position: relative
-    padding: 0 calc(#{$grid-gutter-width} / 2)
+    padding: 0 $grid-gutter-width / 2
 
     &:before
         content: ""
@@ -9,7 +9,6 @@
         background: url(../../../images/logo.jpg) no-repeat center /contain
         border-radius: 50%
         border: 7px solid #fff
-        display: none
         width: 100px
         height: 100px
         top: -50px
@@ -30,7 +29,7 @@
 
     h1
         margin: auto
-        padding: 2.25rem 0 1rem
+        padding: 4.25rem 0 1rem
 
         @include media-breakpoint-up(sm)
             padding: 6.75rem 0 2rem

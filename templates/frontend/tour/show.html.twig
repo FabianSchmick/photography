@@ -3,7 +3,7 @@
 
 {% block meta_description %}
     {% if tour.description %}
-        {{ tour.description|striptags|u.truncate(160) }}
+        {{ tour.description|striptags|u.truncate(160)|trim }}
     {% endif %}
 {% endblock %}
 
@@ -50,7 +50,7 @@
                 <img class="parallax" src="{{ img|imagine_filter('entry_show') }}" alt="{{ entry.name|default(tour.name) }}"/>
                 {% if entry %}
                     <figcaption class="parallax-caption d-none d-md-block">
-                        <h4 class="mb-0">{{ entry.name }}</h4>
+                        <h4>{{ entry.name }}</h4>
                         <p class="mb-0"><i>{{ entry.timestamp|date('d.m.Y') }} @ {{ entry.location }}</i></p>
                     </figcaption>
                 {% endif %}
@@ -64,14 +64,18 @@
         <article class="tour">
             <div class="container text-container text-center">
                 <h1>{{ tour.name }}</h1>
-                <h2 class="h5">{{ 'tour.sub_headline'|trans({'%category%': tour.tourCategory, '%location%': tour.location}) }}</h2>
+                {% if tour.tourCategory and tour.locations|length %}
+                    {% set locations = tour.locations.toArray|natural_language_join %}
+
+                    <h2 class="h5">{{ 'tour.sub_headline'|trans({'%category%': tour.tourCategory, '%locations%': locations}) }}</h2>
+                {% endif %}
             </div>
             <div class="tour-info">
-                {% if tour.description %}
-                    <div class="container tour-desc no-spacer">
+                <div class="container tour-desc no-spacer">
+                    {% if tour.description %}
                         {{ tour.description|raw }}
-                    </div>
-                {% endif %}
+                    {% endif %}
+                </div>
                 <div class="container tour-data px-0">
                     <h3>{{ 'tour.data'|trans }}</h3>
                     <dl class="row meta-table">
@@ -89,30 +93,57 @@
                             </dt>
                             <dd class="col-6 tour-duration-value">
                                 {{ tour.duration|format_duration }} {{ 'unit.duration'|trans }}
+                                {% if tour.formulaType %}
+                                    {% set formula = constant('App\\Entity\\Tour::FORMULA_DEFINITIONS')[tour.formulaType]|default([]) %}
+
+                                    <button type="button" class="btn btn-sm p-0 ml-1 icon icon-sm icon-teritary icon-info"
+                                            data-toggle="tooltip" data-html="true" style="margin-top: -5px;"
+                                          title="{{ ('tooltip.formula.'~tour.formulaType)|trans({
+                                              '%UP_METERS_PER_HOUR%': formula.UP_METERS_PER_HOUR|default(''),
+                                              '%DOWN_METERS_PER_HOUR%': formula.DOWN_METERS_PER_HOUR|default(''),
+                                              '%HORIZONTAL_METERS_PER_HOUR%': formula.HORIZONTAL_METERS_PER_HOUR|default(''),
+                                          })|raw }}">
+                                        <svg><use xlink:href="#info-icon"/></svg>
+                                    </button>
+                                {% endif %}
                             </dd>
                         {% endif %}
                         {% if tour.maxAltitude %}
-                            <dt class="col-6 tour-maxAltitude">
+                            <dt class="col-6 tour-max-altitude">
                                 {{ 'label.maxAltitude'|trans }} <span class="icon icon-sm icon-angle icon-rotate-90 pl-1"><svg><use xlink:href="#angle-icon"/></svg></span>
                             </dt>
-                            <dd class="col-6 tour-maxAltitude-value">
+                            <dd class="col-6 tour-max-altitude-value">
                                 {{ tour.maxAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}
                             </dd>
                         {% endif %}
                         {% if tour.minAltitude %}
-                            <dt class="col-6 tour-minAltitude">
+                            <dt class="col-6 tour-min-altitude">
                                 {{ 'label.minAltitude'|trans }} <span class="icon icon-sm icon-angle icon-rotate-270 pl-1"><svg><use xlink:href="#angle-icon"/></svg></span>
                             </dt>
-                            <dd class="col-6 tour-minAltitude-value">
+                            <dd class="col-6 tour-min-altitude-value">
                                 {{ tour.minAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}
                             </dd>
                         {% endif %}
                         {% if tour.cumulativeElevationGain %}
-                            <dt class="col-6 tour-cumulativeElevationGain">
+                            <dt class="col-6 tour-cumulative-elevation-gain">
                                 {{ 'label.cumulativeElevationGain'|trans }} <span class="icon icon-sm icon-elevation-gain pl-1"><svg><use xlink:href="#elevation-gain-icon"/></svg></span>
                             </dt>
-                            <dd class="col-6 tour-cumulativeElevationGain-value">
+                            <dd class="col-6 tour-cumulative-elevation-gain-value">
                                 {{ tour.cumulativeElevationGain|number_format(0, ',', '.') }} {{ 'unit.cumulativeElevationGain'|trans }}
+                            </dd>
+                        {% endif %}
+                        {% if tour.levelOfDifficulty %}
+                            <dt class="col-6 tour-level-of-difficulty">
+                                {{ 'label.levelOfDifficulty'|trans }} <span class="icon icon-sm icon-level-of-difficulty pl-1"><svg><use xlink:href="#level-of-difficulty-icon"/></svg></span>
+                            </dt>
+                            <dd class="col-6 tour-level-of-difficulty-value">
+                                {{ tour.valueLevelOfDifficulty }}
+
+                                <button type="button" class="btn btn-sm p-0 ml-1 icon icon-sm icon-teritary icon-info"
+                                        data-toggle="tooltip" data-html="true" style="margin-top: -5px;"
+                                        title="{{ ('tooltip.levelOfDifficulty')|trans()|raw }}">
+                                    <svg><use xlink:href="#info-icon"/></svg>
+                                </button>
                             </dd>
                         {% endif %}
                     </dl>
@@ -168,8 +199,10 @@
     {{ asset('assets/images/layout/icons/elevation-gain-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/expand-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/length-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/level-of-difficulty-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/marker-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/time-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/info-icon.svg')|inline_svg() }}
 {% endblock embed_svg %}
 
 {% block javascripts %}
