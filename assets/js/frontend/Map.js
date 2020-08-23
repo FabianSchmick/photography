@@ -2,6 +2,7 @@ import * as L from 'leaflet';
 import * as omnivore from '@mapbox/leaflet-omnivore/index';
 import { GestureHandling } from 'leaflet-gesture-handling';
 import 'leaflet-easybutton';
+import 'leaflet.markercluster';
 
 import markerPoi from '../../images/layout/icons/map-poi-icon.svg';
 import markerStart from '../../images/layout/icons/map-start-icon.svg';
@@ -18,8 +19,8 @@ class Map {
         this.map = null;
         this.$map = null;
         this.bounds = [];
-        this.startMarkers = [];
-        this.readyTracks = [];
+        this.tracks = [];
+        this.cluster = null;
     }
 
     /**
@@ -63,14 +64,20 @@ class Map {
             }
 
             let fitBoundsInterval = setInterval(() => {
-                if (this.readyTracks.length === length) {
+                if (this.tracks.length === length) {
                     if (Array.isArray(gpx)) {
-                        // https://stackoverflow.com/questions/16845614/zoom-to-fit-all-markers-in-mapbox-or-leaflet
-                        let group = new L.featureGroup(this.startMarkers);
-                        this.bounds = group.getBounds();
+                        this.addCluster();
+
+                        this.tracks.forEach(track => {
+                            this.cluster.addLayer(track);
+                        });
+                        this.bounds = this.cluster.getBounds();
+                    } else {
+                        this.tracks.forEach(track => this.map.addLayer(track));
                     }
 
                     this.fitBounds();
+
                     clearInterval(fitBoundsInterval);
                 }
             }, 250);
@@ -105,20 +112,17 @@ class Map {
             shadowSize: [50, 64],
             iconAnchor: [22, 94],
             shadowAnchor: [15, 65],
-            popupAnchor: [ -4, -60]
+            popupAnchor: [-4, -60]
         });
 
-        let marker = L.marker(coordinates, { icon: startIcon })
+        L.marker(coordinates, { icon: startIcon })
             .addTo(this.map);
-
-        this.startMarkers.push(marker);
     }
 
     /**
      * Adds a track layer from a gpx file
      *
      * @param {string}  url
-     * @param {boolean} url
      */
     addGpxTrack(url) {
         let track = omnivore.gpx(url, {}, L.geoJson());
@@ -141,10 +145,8 @@ class Map {
 
             this.bounds = track.getBounds();
 
-            this.readyTracks.push(url);
+            this.tracks.push(track);
         });
-
-        this.map.addLayer(track);
     }
 
     /**
@@ -152,6 +154,23 @@ class Map {
      */
     fitBounds() {
         this.map.fitBounds(this.bounds, { padding: [25, 25] });
+    }
+
+    addCluster() {
+        // Compute a polygon "center", use your favorite algorithm (centroid, etc.)
+        L.Polygon.addInitHook(function () {
+            this._latlng = this._bounds.getCenter();
+        });
+
+        // Provide getLatLng and setLatLng methods for Leaflet.markercluster to be able to cluster polygons.
+        L.Polygon.include({
+            getLatLng: function () {
+                return this._latlng;
+            },
+            setLatLng: function () {} // Dummy method.
+        });
+
+        this.cluster = L.markerClusterGroup().addTo(this.map);
     }
 
     /**
