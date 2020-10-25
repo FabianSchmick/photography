@@ -99,7 +99,7 @@ class TourController extends AbstractController
     public function show(Request $request, TourService $tourService, Tour $tour, TourRepository $tourRepository, TourCategoryRepository $categoryRepository, TranslatorInterface $translator, UploaderHelper $uploaderHelper): Response
     {
         $tourService->setGpxData($tour);
-        $mapData[$tour->getId()] = $uploaderHelper->asset($tour->getFile(), 'file');
+        $mapData = [$tour->getId() => $uploaderHelper->asset($tour->getFile(), 'file')];
 
         if ($activeCategoryId = $request->query->get('category')) {
             $activeCategory = $categoryRepository->find($activeCategoryId);

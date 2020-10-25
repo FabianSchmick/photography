@@ -194,10 +194,10 @@ export class Map {
 
         if (hideTrack) {
             marker
-                .on('popupopen', _ => {
+                .on('popupopen', () => {
                     track.setStyle({ opacity: 1 });
                 })
-                .on('popupclose', _ => {
+                .on('popupclose', () => {
                     track.setStyle({ opacity: 0 });
                 });
         }
