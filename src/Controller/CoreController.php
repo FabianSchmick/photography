@@ -84,6 +84,12 @@ class CoreController extends AbstractController
                 ];
             }
 
+            $urls[] = [
+                'loc' => $router->generate('tour_map', ['_locale' => $locale]),
+                'changefreq' => 'weekly',
+                'priority' => '0.5',
+            ];
+
             $entries = $em->getRepository('App:Entry')->findAll();
 
             foreach ($entries as $entry) {

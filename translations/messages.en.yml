@@ -136,8 +136,9 @@ introduction.tour_categories: Filter by activity
 # Tour
 tours.headline: My tour recommendations
 tour.data: Tourdata
-tour.map: GPX-Track
-tour.maps: GPX-Tracks
+tour.map: Tour map
+tour.maps: Map
+tour.list: List
 tour.sub_headline: '%category% in %locations%'
 
 # Other

@@ -23,28 +23,46 @@
             <p>
                 {{ 'introduction.tours.longtext'|trans|raw }}
             </p>
-            {% if categories|length %}
-                <div class="font-weight-bold py-2">{{ 'introduction.tour_categories'|trans }}:</div>
-                <ul class="tags" data-filter="#tours-container">
-                    {% for category in categories %}
-                        <li>
-                            {% if activeCategory and category.id == activeCategory.id %}
-                                <a href="{{ path('tour_index', {'page': 1}) }}" class="active">
-                                    {{ category.name }} <span class="icon icon-sm icon-close"><svg><use xlink:href="#close-icon"></use></svg></span>
-                                </a>
-                            {% else %}
-                                <a href="{{ path('tour_index', {'page': 1, 'category': category.id}) }}">
-                                    {{ category.name }}
-                                </a>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
         </article>
 
         {% set query = activeCategory ? {'q': {'category': activeCategory.id}} : [] %}
         <div id="tours-container">
+            <div class="tours-options mb-3">
+                {% if categories|length %}
+                    <div class="tours-option-filter">
+                        <div class="font-weight-bold py-2">{{ 'introduction.tour_categories'|trans }}:</div>
+                        <ul class="tags" data-filter="#tours-container">
+                            {% for category in categories %}
+                                <li>
+                                    {% if activeCategory and category.id == activeCategory.id %}
+                                        <a href="{{ path('tour_index', {'page': 1}) }}" class="active">
+                                            {{ category.name }} <span class="icon icon-sm icon-close"><svg><use xlink:href="#close-icon"></use></svg></span>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('tour_index', {'page': 1, 'category': category.id}) }}">
+                                            {{ category.name }}
+                                        </a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                <ul class="tours-option-view list-unstyled" data-filter="#tours-container">
+                    <li>
+                        <a href="{{ path('tour_index', activeCategory ? {'page': 1, 'category': activeCategory.id} : {'page': 1}) }}" class="btn btn-teritary{% if request.attributes.get('_route') != 'tour_index' %} btn-inverse{% endif %}">
+                            <span class="d-none d-md-block pr-2">{{ 'tour.list'|trans }}</span> <span class="icon icon-sm icon-list"><svg><use xlink:href="#list-icon"></use></svg></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('tour_map', activeCategory ? {'category': activeCategory.id} : {}) }}" class="btn btn-teritary{% if request.attributes.get('_route') != 'tour_map' %} btn-inverse{% endif %}">
+                            <span class="d-none d-md-block pr-2">{{ 'tour.maps'|trans }}</span> <span class="icon icon-sm icon-map"><svg><use xlink:href="#map-icon"></use></svg></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
             <ul class="tours row list-unstyled">
                 {% for tour in tours %}
                     <li class="col-lg-6">
@@ -106,6 +124,8 @@
 {% block embed_svg %}
     {{ parent() }}
     {{ asset('assets/images/layout/icons/angle-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/map-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/list-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/length-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/close-icon.svg')|inline_svg() }}
 {% endblock embed_svg %}

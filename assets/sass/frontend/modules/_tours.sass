@@ -7,6 +7,44 @@
         margin-left: -$grid-gutter-width
         margin-right: -$grid-gutter-width
 
+.tours-options
+    .tours-option-filter
+        text-align: center
+
+    @include media-breakpoint-up(sm)
+        display: flex
+        justify-content: space-between
+        align-items: end
+
+        .tours-option-filter
+            padding-right: 1rem
+            text-align: initial
+
+    .tours-option-view
+        display: flex
+        margin-bottom: 0.75rem
+        justify-content: center
+
+        @include media-breakpoint-up(sm)
+            justify-content: initial
+
+        .btn
+            padding: 0.75rem 1rem
+
+            @include media-breakpoint-up(md)
+                padding: 0.75rem 1.5rem
+
+        .icon
+            width: 15px
+            height: 15px
+
+        li:first-child .btn
+            border-top-right-radius: 0
+            border-bottom-right-radius: 0
+        li:last-child .btn
+            border-top-left-radius: 0
+            border-bottom-left-radius: 0
+
 ul.tours
     margin-bottom: 0
     text-align: initial
@@ -90,6 +128,10 @@ ul.tours
                     position: absolute
                     bottom: 15px
                     right: 15px
+                    color: $color-secondary
+
+                    .icon svg
+                        fill: $color-secondary
 
                 @include media-breakpoint-up(sm)
                     padding: 1.25rem 1.5rem 1.5rem

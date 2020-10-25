@@ -7,15 +7,23 @@
     color: $color-secondary
     background: $color-teritary
     border-color: $color-teritary
+    border-width: 2px
     text-decoration: none
 
     &.btn-inverse
+        color: $color-teritary
         background: transparent
         border: 2px solid $color-teritary
+        .icon svg
+            fill: $color-teritary
+
         &:hover,
         &:focus
             background: $color-teritary
             border-color: $color-teritary
+            color: $color-secondary
+            .icon svg
+                fill: $color-secondary
 
     &:hover,
     &:focus
