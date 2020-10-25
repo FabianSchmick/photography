@@ -43,15 +43,16 @@
             {% endif %}
         </article>
 
-        {% set query = activeCategory ? {'q': {'category': activeCategory.id}} : [] %}
         <div id="tours-container">
-            <div id="map" class="map" data-tour-map data-gpx="{{ mapData|json_encode }}"></div>
+            <div id="map" class="map" data-tour-map data-gpx="{{ mapData|json_encode }}" data-popup-url="{{ path('tour_marker_popup_ajax', {'tour': '__TOUR_ID__'}) }}"></div>
         </div>
     </section>
 {% endblock %}
 
 {% block embed_svg %}
     {{ parent() }}
+    {{ asset('assets/images/layout/icons/angle-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/length-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/compress-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/expand-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/close-icon.svg')|inline_svg() }}

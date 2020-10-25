@@ -7,13 +7,14 @@ import 'leaflet.markercluster';
 import markerPoi from '../../images/layout/icons/map-poi-icon.svg';
 import markerStart from '../../images/layout/icons/map-start-icon.svg';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import spinnerIcon from '../../images/layout/icons/spinner-icon.svg';
 
 import { smoothScroll } from '../util/smooth-scroll';
 
 /**
  * Class Map with methods for tour page
  */
-class Map {
+export class Map {
     constructor() {
         this.selector = '[data-tour-map]';
         this.map = null;
@@ -53,37 +54,29 @@ class Map {
         this.addTileLayer();
         if (this.$map.data('gpx')) {
             let gpx = this.$map.data('gpx'),
-                length = 1;
+                length = Object.keys(gpx).length;
 
-            if (Array.isArray(gpx)) {
-                length = gpx.length;
-
-                gpx.forEach(item => this.addGpxTrack(item, length > 1));
-            } else {
-                this.addGpxTrack(gpx);
-            }
+            Object.keys(gpx).forEach(id => {
+                this.addGpxTrack(gpx[id], id, length > 1);
+            });
 
             let fitBoundsInterval = setInterval(() => {
                 // Ensure every track has been loaded
                 if (this.tracks.length === length) {
-                    if (Array.isArray(gpx)) {
-                        this.addCluster();
+                    this.addCluster();
 
-                        this.tracks.forEach(track => {
-                            this.cluster.addLayer(track);
-                        });
-                        this.bounds = this.cluster.getBounds();
-                    } else {
-                        this.tracks.forEach(track => this.map.addLayer(track));
-                    }
+                    this.tracks.forEach(track => {
+                        this.cluster.addLayer(track);
+                    });
+                    this.bounds = this.cluster.getBounds();
 
                     this.fitBounds();
 
                     clearInterval(fitBoundsInterval);
                 }
             }, 250);
-
         }
+
         if (this.$map.data('fullscreen')) {
             this.toggleMapFullscreen();
         }
@@ -103,9 +96,10 @@ class Map {
      * Adds a track layer from a gpx file
      *
      * @param {string}  url
+     * @param {string}  id
      * @param {boolean} hideTrack
      */
-    addGpxTrack(url, hideTrack = false) {
+    addGpxTrack(url, id, hideTrack = false) {
         let track = omnivore.gpx(url, {}, L.geoJson());
         track.on('ready', e => {
             // https://leafletjs.com/reference-1.6.0.html#path-option
@@ -123,7 +117,7 @@ class Map {
             // Get first coordinates for the start icon
             const firstLayer = layers[Object.keys(layers)[0]],
                 startCoordinates = firstLayer._latlngs[0],
-                startIcon = this.getStartIcon([startCoordinates.lat, startCoordinates.lng], e.target, hideTrack);
+                startIcon = this.getStartIcon([startCoordinates.lat, startCoordinates.lng], e.target, id, hideTrack);
 
             layers.push(startIcon);
 
@@ -164,11 +158,12 @@ class Map {
      *
      * @param {array}   coordinates
      * @param {object}  track
+     * @param {string}  id
      * @param {boolean} hideTrack
      *
      * @return Marker start icon
      */
-    getStartIcon(coordinates, track, hideTrack = false) {
+    getStartIcon(coordinates, track, id, hideTrack = false) {
         // Start icon should be bigger than rest
         let startIcon = L.icon({
             iconUrl: markerStart,
@@ -182,7 +177,20 @@ class Map {
 
         let marker = L.marker(coordinates, { icon: startIcon });
 
-        marker.bindPopup('Start');
+        marker.bindPopup(`<img src="${spinnerIcon}" alt="loading" width="50px"/>`, {
+            className: 'tour-marker-popup',
+            minWidth: 275
+        });
+        marker.on('click', e => {
+            let popup = e.target.getPopup(),
+                url = this.$map.data('popup-url');
+
+            url = url.replace('__TOUR_ID__', id);
+            $.get(url).done(data => {
+                popup.setContent(data);
+                popup.update();
+            });
+        });
 
         if (hideTrack) {
             marker
@@ -234,6 +242,3 @@ class Map {
         }).addTo(this.map);
     }
 }
-
-// Singleton pattern, so all vars have their correct state
-export default (new Map);

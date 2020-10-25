@@ -1,0 +1,44 @@
+<a class="popup-content " href="{{ path('tour_show', {'slug': tour.slug}) }}">
+    <div class="image-container">
+        {% if tour.tourCategory %}
+            <div class="tour-category">{{ tour.tourCategory }}</div>
+        {% endif %}
+
+        {% if tour.previewEntry %}
+            <img src="{{ vich_uploader_asset(tour.previewEntry.image, 'file')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.previewentry.name }}">
+        {% else %}
+            <img src="{{ asset('assets/images/layout/cover-tour.jpg')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.name }}">
+        {% endif %}
+    </div>
+
+    <div class="p-2">
+        <h6>{{ tour.name }}</h6>
+
+        <dl class="meta">
+            {% if tour.distance %}
+                <div class="meta-row">
+                    <dt class="tour-distance">
+                        <span class="icon icon-sm icon-length" title="{{ 'label.distance'|trans }}"><svg><use xlink:href="#length-icon"/></svg></span>
+                    </dt>
+                    <dd class="tour-distance-value">{{ tour.distance|number_format(1, ',', '.') }} {{ 'unit.distance'|trans }}</dd>
+                </div>
+            {% endif %}
+            {% if tour.maxAltitude %}
+                <div class="meta-row">
+                    <dt class="tour-max-altitude">
+                        <span class="icon icon-sm icon-angle icon-rotate-90" title="{{ 'label.maxAltitude'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
+                    </dt>
+                    <dd class="tour-max-altitude-value">{{ tour.maxAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
+                </div>
+            {% endif %}
+            {% if tour.minAltitude %}
+                <div class="meta-row">
+                    <dt class="tour-min-altitude">
+                        <span class="icon icon-sm icon-angle icon-rotate-270" title="{{ 'label.minAltitude'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
+                    </dt>
+                    <dd class="tour-min-altitude-value">{{ tour.minAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
+                </div>
+            {% endif %}
+        </dl>
+    </div>
+</a>

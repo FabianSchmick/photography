@@ -1,7 +1,11 @@
 #tours-container #map
-    height: 100vh
-    margin-left: -$grid-gutter-width
-    margin-right: -$grid-gutter-width
+    height: calc(100vh - 51px) /* height of navigation */
+    margin-left: -$grid-gutter-width / 2
+    margin-right: -$grid-gutter-width / 2
+
+    @include media-breakpoint-up(md)
+        margin-left: -$grid-gutter-width
+        margin-right: -$grid-gutter-width
 
 ul.tours
     margin-bottom: 0

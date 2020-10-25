@@ -1,4 +1,4 @@
-import Map from '../frontend/Map';
+import { Map } from '../frontend/Map';
 
 /**
  * Ajax filter
@@ -18,7 +18,9 @@ export function filter() {
             $(replace).replaceWith($html.find(replace));
             $filter.replaceWith($html.find(selector));
 
-            Map.initMap();
+            // Re-init Map, because there can be new data available
+            let map = new Map();
+            map.initMap();
 
             history.pushState(null, '', url);
         });

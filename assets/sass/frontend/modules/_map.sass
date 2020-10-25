@@ -4,9 +4,93 @@
 
 .leaflet-popup-content-wrapper
     border-radius: $border-radius-base
+    overflow: hidden
+    text-align: center
 
-.leaflet-popup-content-wrapper, .leaflet-popup-tip
-    color: inherit
+.leaflet-container a.leaflet-popup-close-button
+    width: 20px
+    height: 20px
+    color: $color-secondary
+    background: $color-teritary
+    text-align: center
+    font-size: 1rem
+    line-height: 1rem
+    padding: 0
+    transition: background 0.3s
+    &:hover
+        color: $color-secondary
+        background: darken($color-teritary, 5)
+
+.tour-marker-popup
+    &:hover
+        .image-container:after
+            opacity: 0 !important
+
+    .leaflet-popup-content-wrapper
+        padding: 0
+        .leaflet-popup-content
+            margin: 0
+
+            .popup-content
+                text-align: initial
+                display: block
+                color: $color-primary
+                text-decoration: none
+
+                .image-container
+                    position: relative
+
+                    &:after
+                        content: ''
+                        background: #000
+                        opacity: 0.2
+                        position: absolute
+                        width: 100%
+                        height: 100%
+                        left: 0
+                        top: 0
+                        transition: all 0.3s
+
+                    .tour-category
+                        position: absolute
+                        bottom: 0
+                        left: 0
+                        display: inline-block
+                        height: 20px
+                        background: $color-teritary
+                        color: $color-secondary
+                        padding: 0 .5rem
+                        line-height: 20px
+                        z-index: 10
+
+                    img
+                        max-width: 100%
+
+                .meta
+                    display: flex
+                    justify-content: space-between
+                    margin-bottom: 0
+
+                    .icon
+                        height: 100%
+                        display: flex
+                        justify-content: center
+                        align-items: center
+                        svg
+                            transition: all 0.3s
+                            fill: $color-primary
+
+                    .meta-row
+                        display: flex
+                        align-items: center
+
+                    dt,
+                    dd
+                        display: inline-block
+                        margin-bottom: 0
+
+                    dt
+                        margin-right: 5px
 
 .easy-button-button
     .icon

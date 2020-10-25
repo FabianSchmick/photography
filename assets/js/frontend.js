@@ -17,7 +17,7 @@ import { lazyload } from './frontend/lazyload';
 
 import Entry from './frontend/Entry';
 import Lightbox from './frontend/Lightbox';
-import Map from './frontend/Map';
+import { Map } from './frontend/Map';
 
 $.detectSwipe.threshold = 80; // The number of pixels your finger must move to trigger a swipe event
 
@@ -38,5 +38,7 @@ $(document).ready(function() {
     Entry.initLazyLoad();
     Entry.loadNextPrevEntry();
     Lightbox.initLightbox();
-    Map.initMap();
+
+    let map = new Map();
+    map.initMap();
 });

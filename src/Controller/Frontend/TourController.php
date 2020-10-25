@@ -67,7 +67,7 @@ class TourController extends AbstractController
         $mapData = [];
         foreach ($tours as $tour) {
             $tourService->setGpxData($tour);
-            $mapData[] = $uploaderHelper->asset($tour->getFile(), 'file');
+            $mapData[$tour->getId()] = $uploaderHelper->asset($tour->getFile(), 'file');
         }
 
         return $this->render('frontend/tour/map.html.twig', [
@@ -79,12 +79,27 @@ class TourController extends AbstractController
     }
 
     /**
+     * Route getting the marker popup content.
+     *
+     * @Route("/ajax/tour/map/marker-popup/{tour}", name="tour_marker_popup_ajax", condition="request.isXmlHttpRequest()")
+     */
+    public function ajaxMarkerPopup(TourService $tourService, Tour $tour): Response
+    {
+        $tourService->setGpxData($tour);
+
+        return $this->render('frontend/tour/ajax-marker-popup.html.twig', [
+            'tour' => $tour,
+        ]);
+    }
+
+    /**
      * @Route("/tour/{slug}", name="tour_show")
      * @Entity("tour", expr="repository.findOneByCriteria(_locale, {'slug': slug})")
      */
-    public function show(Request $request, TourService $tourService, Tour $tour, TourRepository $tourRepository, TourCategoryRepository $categoryRepository, TranslatorInterface $translator): Response
+    public function show(Request $request, TourService $tourService, Tour $tour, TourRepository $tourRepository, TourCategoryRepository $categoryRepository, TranslatorInterface $translator, UploaderHelper $uploaderHelper): Response
     {
         $tourService->setGpxData($tour);
+        $mapData[$tour->getId()] = $uploaderHelper->asset($tour->getFile(), 'file');
 
         if ($activeCategoryId = $request->query->get('category')) {
             $activeCategory = $categoryRepository->find($activeCategoryId);
@@ -105,6 +120,7 @@ class TourController extends AbstractController
 
         return $this->render('frontend/tour/show.html.twig', [
             'tour' => $tour,
+            'mapData' => $mapData,
             'breadcrumbs' => $breadcrumbs,
         ]);
     }
