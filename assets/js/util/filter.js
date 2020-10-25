@@ -1,3 +1,5 @@
+import Map from '../frontend/Map';
+
 /**
  * Ajax filter
  */
@@ -15,6 +17,8 @@ export function filter() {
 
             $(replace).replaceWith($html.find(replace));
             $filter.replaceWith($html.find(selector));
+
+            Map.initMap();
 
             history.pushState(null, '', url);
         });

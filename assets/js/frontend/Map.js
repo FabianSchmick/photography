@@ -58,12 +58,13 @@ class Map {
             if (Array.isArray(gpx)) {
                 length = gpx.length;
 
-                gpx.forEach(item => this.addGpxTrack(item));
+                gpx.forEach(item => this.addGpxTrack(item, length > 1));
             } else {
                 this.addGpxTrack(gpx);
             }
 
             let fitBoundsInterval = setInterval(() => {
+                // Ensure every track has been loaded
                 if (this.tracks.length === length) {
                     if (Array.isArray(gpx)) {
                         this.addCluster();
@@ -99,49 +100,34 @@ class Map {
     }
 
     /**
-     * Adds the start icon for a track
-     *
-     * @param {array} coordinates
-     */
-    addStartIcon(coordinates) {
-        // Start icon should be bigger than rest
-        let startIcon = L.icon({
-            iconUrl: markerStart,
-            shadowUrl: markerShadow,
-            iconSize: [38, 120],
-            shadowSize: [50, 64],
-            iconAnchor: [22, 94],
-            shadowAnchor: [15, 65],
-            popupAnchor: [-4, -60]
-        });
-
-        L.marker(coordinates, { icon: startIcon })
-            .addTo(this.map);
-    }
-
-    /**
      * Adds a track layer from a gpx file
      *
      * @param {string}  url
+     * @param {boolean} hideTrack
      */
-    addGpxTrack(url) {
+    addGpxTrack(url, hideTrack = false) {
         let track = omnivore.gpx(url, {}, L.geoJson());
         track.on('ready', e => {
             // https://leafletjs.com/reference-1.6.0.html#path-option
             e.target.setStyle({
                 color: '#00cdcd',
+                opacity: hideTrack ? 0 : 0.6666,
+                interactive: false,
                 weight: 5
             });
-            e.target.eachLayer(marker => {
-                marker.bindPopup(marker.feature.properties.name);
-            });
+
+            // Remove all markers and leave only the track LineString
+            let layers = Object.values(e.target._layers);
+            layers = layers.filter(layer => layer.feature.geometry.type === 'LineString');
 
             // Get first coordinates for the start icon
-            const layers = e.target._layers,
-                firstLayer = layers[Object.keys(layers)[0]],
-                startCoordinates = firstLayer._latlngs[0];
+            const firstLayer = layers[Object.keys(layers)[0]],
+                startCoordinates = firstLayer._latlngs[0],
+                startIcon = this.getStartIcon([startCoordinates.lat, startCoordinates.lng], e.target, hideTrack);
 
-            this.addStartIcon([startCoordinates.lat, startCoordinates.lng]);
+            layers.push(startIcon);
+
+            e.target._layers = Object.assign({}, layers);
 
             this.bounds = track.getBounds();
 
@@ -171,6 +157,44 @@ class Map {
         });
 
         this.cluster = L.markerClusterGroup().addTo(this.map);
+    }
+
+    /**
+     * Returns the start icon for a track
+     *
+     * @param {array}   coordinates
+     * @param {object}  track
+     * @param {boolean} hideTrack
+     *
+     * @return Marker start icon
+     */
+    getStartIcon(coordinates, track, hideTrack = false) {
+        // Start icon should be bigger than rest
+        let startIcon = L.icon({
+            iconUrl: markerStart,
+            shadowUrl: markerShadow,
+            iconSize: [38, 120],
+            shadowSize: [50, 64],
+            iconAnchor: [22, 94],
+            shadowAnchor: [15, 65],
+            popupAnchor: [-4, -60]
+        });
+
+        let marker = L.marker(coordinates, { icon: startIcon });
+
+        marker.bindPopup('Start');
+
+        if (hideTrack) {
+            marker
+                .on('popupopen', _ => {
+                    track.setStyle({ opacity: 1 });
+                })
+                .on('popupclose', _ => {
+                    track.setStyle({ opacity: 0 });
+                });
+        }
+
+        return marker;
     }
 
     /**
