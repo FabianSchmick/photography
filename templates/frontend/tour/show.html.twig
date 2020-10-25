@@ -150,8 +150,8 @@
                 </div>
                 <div class="text-center tour-map">
                     <h3>{{ 'tour.map'|trans }}</h3>
-                    <div id="map" class="map" data-tour-map data-gpx="{{ mapData|json_encode }}" data-popup-url="{{ path('tour_marker_popup_ajax', {'tour': '__TOUR_ID__'}) }}" data-fullscreen></div>
-                    <a class="btn btn-teritary mt-4" href="{{ path('core_download_file', {'file': tour.file.fileName}) }}" target="_blank">
+                    <div id="map" class="map" data-tour-map data-gpx="{{ mapData|json_encode }}" data-popup-url="{{ path('tour_marker_popup_ajax', {'tour': '__TOUR_ID__'}) }}" data-fullscreen="true"></div>
+                    <a class="btn btn-teritary mt-4" href="{{ path('core_download_file', {'file': tour.file.fileName}) }}" target="_blank"> 
                         <span class="icon icon-sm icon-download pr-2"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'btn.tour_download'|trans }}
                     </a>
                 </div>
