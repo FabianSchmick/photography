@@ -150,7 +150,7 @@ export class Map {
             setLatLng: function () {} // Dummy method.
         });
 
-        this.cluster = L.markerClusterGroup().addTo(this.map);
+        this.cluster = L.markerClusterGroup({ showCoverageOnHover: false }).addTo(this.map);
     }
 
     /**
