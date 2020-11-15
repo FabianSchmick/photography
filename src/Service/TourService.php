@@ -86,6 +86,25 @@ class TourService
     }
 
     /**
+     * Returns the elevation data for an elevation chart
+     */
+    public function getElevationData(Tour $tour): array
+    {
+        if (empty($tour->getSegments()[0])) {
+            return [];
+        }
+
+        $elevationData = [];
+        foreach ($tour->getSegments()[0]->points as $point) {
+            $elevationData[] = [
+                round($point->distance) / 1000, intval($point->elevation)
+            ];
+        }
+
+        return $elevationData;
+    }
+
+    /**
      * Sets the stats data for a track from the gpx file.
      */
     public function setGpxData(Tour &$tour, ?Track $track = null): void

@@ -121,6 +121,7 @@ class TourController extends AbstractController
         return $this->render('frontend/tour/show.html.twig', [
             'tour' => $tour,
             'mapData' => $mapData,
+            'elevationData' => $tourService->getElevationData($tour),
             'breadcrumbs' => $breadcrumbs,
         ]);
     }
