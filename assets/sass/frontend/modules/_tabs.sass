@@ -1,0 +1,20 @@
+.nav-tabs
+  border-bottom: none
+
+  .nav-link
+    color: lighten($color-primary, 30)
+    border: none
+    padding: 0.5rem
+
+    @include media-breakpoint-up(sm)
+      padding: 0.5rem 1rem
+
+    h3
+      padding-bottom: .25rem
+      border-bottom: 3px solid transparent
+
+    &.active
+      color: $color-primary
+
+      h3
+        border-color: $color-primary

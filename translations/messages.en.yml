@@ -41,6 +41,8 @@ label.repeat_password: Repeat password
 label.checkbox: Option
 
 # Units
+unit.decimalSeparator: '.'
+unit.thousandsSeparator: ','
 unit.distance: km
 unit.duration: h
 unit.altitude: hm
@@ -138,8 +140,13 @@ tours.headline: My tour recommendations
 tour.data: Tourdata
 tour.map: Tour map
 tour.maps: Map
+tour.chart: Altitude chart
 tour.list: List
 tour.sub_headline: '%category% in %locations%'
+
+# Chart
+chart.headerFormat: 'Distance: {point.x:.1f} km'
+chart.pointFormat: 'Height: {point.y} m'
 
 # Other
 noscript: Please enable JavaScript to use this website without any issues

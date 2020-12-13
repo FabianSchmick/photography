@@ -76,6 +76,7 @@
                         {{ tour.description|raw }}
                     {% endif %}
                 </div>
+
                 <div class="container tour-data px-0">
                     <h3>{{ 'tour.data'|trans }}</h3>
                     <dl class="row meta-table">
@@ -148,14 +149,29 @@
                         {% endif %}
                     </dl>
                 </div>
-                <div class="text-center tour-map">
-                    <h3>{{ 'tour.map'|trans }}</h3>
-                    <div id="map" class="map" data-tour-map data-gpx="{{ mapData|json_encode }}" data-popup-url="{{ path('tour_marker_popup_ajax', {'tour': '__TOUR_ID__'}) }}" data-fullscreen="true"></div>
-                    <a class="btn btn-teritary mt-4" href="{{ path('core_download_file', {'file': tour.file.fileName}) }}" target="_blank">
-                        <span class="icon icon-sm icon-download pr-2"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'btn.tour_download'|trans }}
-                    </a>
+
+                <div>
+                    <ul class="justify-content-center nav nav-tabs mb-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tour-map" role="tab" aria-selected="true"><h3 class="mb-0">{{ 'tour.map'|trans }}</h3></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tour-chart" role="tab" aria-selected="false"><h3 class="mb-0">{{ 'tour.chart'|trans }}</h3></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active text-center tour-map" id="tour-map" role="tabpanel">
+                            <div id="map" class="map" data-tour-map data-gpx="{{ mapData|json_encode }}" data-popup-url="{{ path('tour_marker_popup_ajax', {'tour': '__TOUR_ID__'}) }}" data-fullscreen="true"></div>
+                            <a class="btn btn-teritary mt-4" href="{{ path('core_download_file', {'file': tour.file.fileName}) }}" target="_blank">
+                                <span class="icon icon-sm icon-download pr-2"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'btn.tour_download'|trans }}
+                            </a>
+                        </div>
+                        <div class="tab-pane fade" id="tour-chart" role="tabpanel">
+                            <div id="tour-elevation-chart" class="chart px-2 px-md-4" data-elevation="{{ elevationData|json_encode }}"></div>
+                        </div>
+                    </div>
                 </div>
-                <div id="tour-elevation-chart" data-elevation="{{ elevationData|json_encode }}"></div>
+
                 {% if tour.directions %}
                     <div class="container tour-desc">
                         <h3>{{ 'label.directions'|trans }}</h3>
@@ -214,6 +230,15 @@
     </script>
     <script type="application/ld+json">
         {{ jsonLd.sportsActivityLocation(tour) }}
+    </script>
+
+    <script>
+        const TRANSLATION_MAP = {
+            'chart.headerFormat': "{{ 'chart.headerFormat'|trans }}",
+            'chart.pointFormat': "{{ 'chart.pointFormat'|trans }}",
+            'unit.decimalSeparator': "{{ 'unit.decimalSeparator'|trans }}",
+            'unit.thousandsSeparator': "{{ 'unit.thousandsSeparator'|trans }}",
+        };
     </script>
 
     {{ parent() }}
