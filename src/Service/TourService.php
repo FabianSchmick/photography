@@ -86,7 +86,7 @@ class TourService
     }
 
     /**
-     * Returns the elevation data for an elevation chart
+     * Returns the elevation data for an elevation chart.
      */
     public function getElevationData(Tour $tour): array
     {
@@ -97,7 +97,7 @@ class TourService
         $elevationData = [];
         foreach ($tour->getSegments()[0]->points as $point) {
             $elevationData[] = [
-                round($point->distance) / 1000, intval($point->elevation)
+                round($point->distance) / 1000, intval($point->elevation),
             ];
         }
 
