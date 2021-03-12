@@ -7,7 +7,6 @@ build:
             tests:
                 override:
                     - ./vendor/bin/simple-phpunit
-                    - php bin/security-checker.phar security:check composer.lock
                     - php-scrutinizer-run
                     -
                         command: phpcs-run
