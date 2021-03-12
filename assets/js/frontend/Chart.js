@@ -13,6 +13,10 @@ class Chart {
      * Create a new elevation chart for a gpx track
      */
     initChart() {
+        if (!this.$el.length) {
+            return;
+        }
+
         Highcharts.setOptions({
             lang: {
                 decimalPoint: TRANSLATION_MAP['unit.decimalSeparator'],

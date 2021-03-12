@@ -187,6 +187,12 @@
     {% if pageUrl %}
         <script type="text/javascript">
             var pageUrl = "{{ pageUrl }}";
+            const TRANSLATION_MAP = {
+                'chart.headerFormat': "{{ 'chart.headerFormat'|trans }}",
+                'chart.pointFormat': "{{ 'chart.pointFormat'|trans }}",
+                'unit.decimalSeparator': "{{ 'unit.decimalSeparator'|trans }}",
+                'unit.thousandsSeparator': "{{ 'unit.thousandsSeparator'|trans }}",
+            };
         </script>
     {% endif %}
 
