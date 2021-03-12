@@ -3,7 +3,6 @@ global.$ = global.jQuery = $;
 import 'bootstrap';
 import 'detect_swipe';
 
-import { notice } from './util/notice';
 import { disableGoogleAnalytics } from './util/ga';
 import { registerSW } from './util/sw';
 
@@ -23,7 +22,6 @@ import { Map } from './frontend/Map';
 $.detectSwipe.threshold = 80; // The number of pixels your finger must move to trigger a swipe event
 
 $(document).ready(function() {
-    notice();
     disableGoogleAnalytics();
     registerSW();
 

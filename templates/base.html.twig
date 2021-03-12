@@ -170,12 +170,6 @@
     {% endblock %}
 </main>
 
-<div id="notice" class="show">
-    {{ 'cookie.notice'|trans }}<br>
-    <a href="{{ path('imprint-dataprotection') }}" class="link">{{ 'cookie.notice.moreInforamtion'|trans }}</a>
-    <a href="#" class="agree link">{{ 'cookie.notice.agree'|trans }}</a>
-</div>
-
 <div id="embed-svg" style="display: none">
     {% block embed_svg %}
         {{ asset('assets/images/layout/icons/de-icon.svg')|inline_svg() }}
