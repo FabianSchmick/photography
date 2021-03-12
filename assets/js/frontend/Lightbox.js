@@ -40,12 +40,7 @@ class Lightbox {
         this.$modal.modal();
 
         this.$modal.on('click', '[data-dismiss="modal"]', () => {
-            $(this.modal+', .modal-backdrop').fadeOut(300, () => {
-                $('body').removeClass('modal-open').css('padding-right', '');
-                $('.modal-backdrop').remove();
-                this.$modal.remove();
-                history.pushState(null, '', pageUrl);
-            });
+            this.dismissModal();
         });
 
         this.$modal.on('swipeleft', () => {
@@ -64,6 +59,24 @@ class Lightbox {
             this.loadNextOrPrev($(e.currentTarget).hasClass('prev'));
 
             e.preventDefault();
+        });
+
+        $(document).on('keyup', e => {
+            if (e.keyCode === 27) {
+                this.dismissModal();
+            }
+        });
+    }
+
+    /**
+     * Dismisses/closes the current active modal
+     */
+    dismissModal() {
+        $(this.modal+', .modal-backdrop').fadeOut(300, () => {
+            $('body').removeClass('modal-open').css('padding-right', '');
+            $('.modal-backdrop').remove();
+            this.$modal.remove();
+            history.pushState(null, '', pageUrl);
         });
     }
 

@@ -43,3 +43,7 @@ $(document).ready(function() {
     let map = new Map();
     map.initMap();
 });
+
+$(window).bind('popstate', function() {
+    window.location = location.href;
+});
