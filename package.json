@@ -33,7 +33,7 @@
     "core-js": "^3.6.4",
     "eslint": "^6.8.0",
     "node-sass": "^4.14.1",
-    "sass-loader": "7.0.1",
+    "sass-loader": "^8.0.2",
     "webpack-notifier": "^1.8.0",
     "workbox-webpack-plugin": "^5.1.2"
   },
