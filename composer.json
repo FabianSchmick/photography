@@ -9,7 +9,7 @@
         "ezyang/htmlpurifier": "^4.12",
         "liip/imagine-bundle": "^2.3",
         "sensio/framework-extra-bundle": "^5.1",
-        "sibyx/phpgpx": "@RC",
+        "sibyx/phpgpx": "^1.1.2",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "4.4.*",
         "symfony/console": "4.4.*",
