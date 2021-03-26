@@ -118,6 +118,7 @@ class TourService
         $tour->setMinAltitude($tour->getMinAltitude() ?? $track->stats->minAltitude);
         $tour->setMaxAltitude($tour->getMaxAltitude() ?? $track->stats->maxAltitude);
         $tour->setCumulativeElevationGain($tour->getCumulativeElevationGain() ?? $track->stats->cumulativeElevationGain);
+        $tour->setCumulativeElevationLoss($tour->getCumulativeElevationLoss() ?? $track->stats->cumulativeElevationLoss);
         $tour->setSegments($track->segments);
         $tour->setDuration($tour->getDuration() ?? $this->calcTourDuration($tour)); // Calc last, so all needed values are set
     }
@@ -146,30 +147,13 @@ class TourService
             return null;
         }
 
-        /** @var Point[] $points */
-        $points = $segments[0]->points;
-        $count = count($points);
-
-        $upElevation = 0;
-        $downElevation = 0;
-        for ($i = 1; $i < $count; ++$i) {
-            $last = $points[$i - 1]->elevation;
-            $current = $points[$i]->elevation;
-
-            if ($last > $current) {
-                $downElevation += $last - $current;
-            } else {
-                $upElevation += $current - $last;
-            }
-        }
-
         switch ($formulaType) {
             case 'HIKING':
-                return $this->calcHikingDuration($tour->getDistance(), $upElevation, $downElevation);
+                return $this->calcHikingDuration($tour->getDistance(), $tour->getCumulativeElevationGain(), $tour->getCumulativeElevationLoss());
             case 'MTB':
-                return $this->calcMountainBikeDuration($tour->getDistance(), $upElevation);
+                return $this->calcMountainBikeDuration($tour->getDistance(), $tour->getCumulativeElevationGain());
             case 'VIA_FERRATA':
-                return $this->calcViaFerrataDuration($upElevation, $downElevation);
+                return $this->calcViaFerrataDuration($tour->getCumulativeElevationGain(), $tour->getCumulativeElevationLoss());
         }
 
         return null;

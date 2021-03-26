@@ -112,6 +112,13 @@ class TourType extends AbstractType
                     'placeholder' => $placeholderTour->getCumulativeElevationGain(),
                 ],
             ])
+            ->add('cumulativeElevationLoss', NumberType::class, [
+                'required' => false,
+                'unit' => 'unit.cumulativeElevationLoss',
+                'attr' => [
+                    'placeholder' => $placeholderTour->getCumulativeElevationLoss(),
+                ],
+            ])
         ;
 
         if ($tour->getTourCategory() && $tour->getTourCategory()->isHasLevelOfDifficulty()) {

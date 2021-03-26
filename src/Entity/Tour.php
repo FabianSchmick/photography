@@ -150,6 +150,14 @@ class Tour
     /**
      * @var int|null in meters
      *
+     * @Assert\Range(min=-1000, max=100000)
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $cumulativeElevationLoss;
+
+    /**
+     * @var int|null in meters
+     *
      * @Assert\Choice(choices=Tour::LEVEL_OF_DIFFICULTY)
      * @ORM\Column(type="smallint", nullable=true)
      */
@@ -450,6 +458,26 @@ class Tour
     public function getCumulativeElevationGain(): ?int
     {
         return $this->cumulativeElevationGain !== 0 ? $this->cumulativeElevationGain : null;
+    }
+
+    /**
+     * Set cumulativeElevationLoss.
+     *
+     * @return Tour
+     */
+    public function setCumulativeElevationLoss(?int $cumulativeElevationLoss): self
+    {
+        $this->cumulativeElevationLoss = $cumulativeElevationLoss;
+
+        return $this;
+    }
+
+    /**
+     * Get cumulativeElevationLoss.
+     */
+    public function getCumulativeElevationLoss(): ?int
+    {
+        return $this->cumulativeElevationLoss !== 0 ? $this->cumulativeElevationLoss : null;
     }
 
     /**

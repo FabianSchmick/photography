@@ -31,6 +31,7 @@ label.duration: Duration
 label.minAltitude: Min altitude
 label.maxAltitude: Max altitude
 label.cumulativeElevationGain: Elevation gain
+label.cumulativeElevationLoss: Elevation loss
 label.file: File
 label.no_file_selected: No file selected
 label.search: Search
@@ -46,7 +47,8 @@ unit.thousandsSeparator: ','
 unit.distance: km
 unit.duration: h
 unit.altitude: hm
-unit.cumulativeElevationGain: ±hm
+unit.cumulativeElevationGain: +hm
+unit.cumulativeElevationLoss: -hm
 
 # Buttons
 btn.edit: Edit

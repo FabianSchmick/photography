@@ -30,7 +30,8 @@ label.distance: Länge
 label.duration: Dauer
 label.minAltitude: Tiefster Punkt
 label.maxAltitude: Höchster Punkt
-label.cumulativeElevationGain: Höhenunterschied
+label.cumulativeElevationGain: Höhengewinn
+label.cumulativeElevationLoss: Höhenverlust
 label.file: Datei
 label.no_file_selected: Keine Datei ausgewählt
 label.search: Suche
@@ -46,7 +47,8 @@ unit.thousandsSeparator: '.'
 unit.distance: km
 unit.duration: h
 unit.altitude: hm
-unit.cumulativeElevationGain: ±hm
+unit.cumulativeElevationGain: +hm
+unit.cumulativeElevationLoss: -hm
 
 # Buttons
 btn.edit: Bearbeiten

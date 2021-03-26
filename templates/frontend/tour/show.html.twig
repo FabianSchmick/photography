@@ -127,10 +127,18 @@
                         {% endif %}
                         {% if tour.cumulativeElevationGain %}
                             <dt class="col-6 tour-cumulative-elevation-gain">
-                                {{ 'label.cumulativeElevationGain'|trans }} <span class="icon icon-sm icon-elevation-gain pl-1"><svg><use xlink:href="#elevation-gain-icon"/></svg></span>
+                                {{ 'label.cumulativeElevationGain'|trans }} <span class="icon icon-sm icon-elevation icon-rotate-45 px-1"><svg><use xlink:href="#elevation-icon"/></svg></span>
                             </dt>
                             <dd class="col-6 tour-cumulative-elevation-gain-value">
                                 {{ tour.cumulativeElevationGain|number_format(0, ',', '.') }} {{ 'unit.cumulativeElevationGain'|trans }}
+                            </dd>
+                        {% endif %}
+                        {% if tour.cumulativeElevationLoss %}
+                            <dt class="col-6 tour-cumulative-elevation-loss">
+                                {{ 'label.cumulativeElevationLoss'|trans }} <span class="icon icon-sm icon-elevation icon-rotate-135 px-1"><svg><use xlink:href="#elevation-icon"/></svg></span>
+                            </dt>
+                            <dd class="col-6 tour-cumulative-elevation-loss-value">
+                                {{ tour.cumulativeElevationLoss|number_format(0, ',', '.') }} {{ 'unit.cumulativeElevationLoss'|trans }}
                             </dd>
                         {% endif %}
                         {% if tour.levelOfDifficulty %}
@@ -215,7 +223,7 @@
     {{ asset('assets/images/layout/icons/close-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/compress-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/download-icon.svg')|inline_svg() }}
-    {{ asset('assets/images/layout/icons/elevation-gain-icon.svg')|inline_svg() }}
+    {{ asset('assets/images/layout/icons/elevation-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/expand-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/length-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/level-of-difficulty-icon.svg')|inline_svg() }}
