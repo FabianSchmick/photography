@@ -142,7 +142,7 @@ class TourService
      */
     public function calcTourDuration(Tour $tour): ?DateInterval
     {
-        if (!($segments = $tour->getSegments()) || !($formulaType = $tour->getFormulaType()) || !$tour->getMaxAltitude()) {
+        if (!($formulaType = $tour->getFormulaType()) || !$tour->getCumulativeElevationGain()) {
             return null;
         }
 
