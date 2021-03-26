@@ -7,7 +7,6 @@ use App\Entity\TourFile;
 use App\Repository\TourRepository;
 use DateInterval;
 use Doctrine\ORM\EntityManagerInterface;
-use phpGPX\Models\Point;
 use phpGPX\Models\Track;
 use phpGPX\phpGPX;
 use Symfony\Component\HttpFoundation\File\File;
