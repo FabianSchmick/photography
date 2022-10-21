@@ -150,7 +150,7 @@ export class Map {
             setLatLng: function () {} // Dummy method.
         });
 
-        this.cluster = L.markerClusterGroup({ showCoverageOnHover: false }).addTo(this.map);
+        this.cluster = window.L.markerClusterGroup({ showCoverageOnHover: false }).addTo(this.map);
     }
 
     /**
@@ -209,7 +209,7 @@ export class Map {
      * Resize the map to full view height
      */
     toggleMapFullscreen() {
-        L.easyButton({
+        window.L.easyButton({
             states: [{
                 stateName: 'expand',
                 icon: '<span class="icon icon-sm icon-expand"><svg><use xlink:href="#expand-icon"/></svg></span>',

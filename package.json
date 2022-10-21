@@ -24,18 +24,19 @@
     "select2": "^4.0.12",
     "select2-bootstrap4-theme": "^1.0.0",
     "startbootstrap-sb-admin-2": "^4.1.1",
-    "summernote": "^0.8.12",
+    "summernote": "0.8.18",
     "vanilla-lazyload": "^15.1.1"
   },
   "devDependencies": {
-    "@symfony/webpack-encore": "^0.30.2",
+    "@symfony/webpack-encore": "^1.0.0",
     "compression-webpack-plugin": "^3.1.0",
     "core-js": "^3.6.4",
     "eslint": "^6.8.0",
-    "node-sass": "^4.14.1",
-    "sass-loader": "^8.0.2",
+    "file-loader": "^6.2.0",
+    "node-sass": "^7.0.3",
+    "sass-loader": "^12.6.0",
     "webpack-notifier": "^1.8.0",
-    "workbox-webpack-plugin": "^5.1.2"
+    "workbox-webpack-plugin": "^6.5.4"
   },
   "scripts": {
     "dev": "encore dev",
