@@ -28,6 +28,37 @@ class EntryImage extends File
      */
     private $entry;
 
+    /**
+     * Stop PHP auto-rotating images based on EXIF 'orientation' data.
+     *
+     * @see https://stackoverflow.com/a/14989870/5947371
+     */
+    public function setFile(?BaseFile $file = null): void
+    {
+        $image = new \Imagick($file->getPathname());
+        $orientation = $image->getImageOrientation();
+
+        switch ($orientation) {
+            case \Imagick::ORIENTATION_BOTTOMRIGHT:
+                $image->rotateimage('#000', 180); // rotate 180 degrees
+                break;
+
+            case \Imagick::ORIENTATION_RIGHTTOP:
+                $image->rotateimage('#000', 90); // rotate 90 degrees CW
+                break;
+
+            case \Imagick::ORIENTATION_LEFTBOTTOM:
+                $image->rotateimage('#000', -90); // rotate 90 degrees CCW
+                break;
+        }
+
+        // Now that it's auto-rotated, make sure the EXIF data is correct in case the EXIF gets saved with the image!
+        $image->setImageOrientation(\Imagick::ORIENTATION_TOPLEFT);
+        $image->writeImage($file->getPathname());
+
+        parent::setFile($file);
+    }
+
     public function getEntry(): Entry
     {
         return $this->entry;
