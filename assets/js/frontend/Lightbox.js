@@ -44,25 +44,27 @@ class Lightbox {
         });
 
         this.$modal.on('swipeleft', () => {
-            this.$modal.addClass('loading');
-
-            this.loadNextOrPrev();
+            this.loadNext();
         }).on('swiperight', () => {
-            this.$modal.addClass('loading');
-
-            this.loadNextOrPrev(false);
+            this.loadPrev();
         });
 
         this.$modal.on('click', 'a.prev, a.next', e => {
-            this.$modal.addClass('loading');
-
-            this.loadNextOrPrev($(e.currentTarget).hasClass('prev'));
+            if ($(e.currentTarget).hasClass('prev')) {
+                this.loadPrev();
+            } else {
+                this.loadNext();
+            }
 
             e.preventDefault();
         });
 
         $(document).on('keyup', e => {
-            if (e.keyCode === 27) {
+            if (e.keyCode === 37) {
+                this.loadNext();
+            } else if (e.keyCode === 39) {
+                this.loadPrev();
+            } else if (e.keyCode === 27) {
                 this.dismissModal();
             }
         });
@@ -81,25 +83,40 @@ class Lightbox {
     }
 
     /**
-     * Load the next or prev entry
-     *
-     * @param {boolean} prev if var is false then load next
+     * Load the previous entry
      */
-    loadNextOrPrev(prev = true) {
-        let $target = $(this.$modal.find('[data-list-target]').data('list-target')),
-            url;
+    loadPrev() {
+        this.$modal.addClass('loading');
+
+        let $target = $(this.$modal.find('[data-list-target]').data('list-target'));
 
         // Do not trust the links on the show page,
         // because the lightbox can contain already filtered entries, too.
-        if (prev) {
-            if (!$target.next()) {
-                Entry.loadEntries();
-            }
-            url = $target.next().attr('href');
-        } else {
-            url = $target.prev().attr('href');
+        if (!$target.next()) {
+            Entry.loadEntries();
         }
+        this.loadEntry($target.next().attr('href'));
+    }
 
+    /**
+     * Load the next entry
+     */
+    loadNext() {
+        this.$modal.addClass('loading');
+
+        let $target = $(this.$modal.find('[data-list-target]').data('list-target'));
+
+        // Do not trust the links on the show page,
+        // because the lightbox can contain already filtered entries, too.
+        this.loadEntry($target.prev().attr('href'));
+    }
+
+    /**
+     * Load the next or prev entry into the modal
+     *
+     * @param {string} url The entry url to load
+     */
+    loadEntry(url) {
         if (!url) {
             this.$modal.removeClass('loading');
 
