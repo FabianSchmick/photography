@@ -44,9 +44,9 @@ class Lightbox {
         });
 
         this.$modal.on('swipeleft', () => {
-            this.loadNext();
-        }).on('swiperight', () => {
             this.loadPrev();
+        }).on('swiperight', () => {
+            this.loadNext();
         });
 
         this.$modal.on('click', 'a.prev, a.next', e => {
