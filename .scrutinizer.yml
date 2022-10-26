@@ -35,6 +35,7 @@ build:
                 - imagick
         python:
             version: "3.5.0"
+            virtualenv: true
         postgresql: false
         rabbitmq: false
         mysql: 5.7
