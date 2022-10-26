@@ -33,6 +33,8 @@ build:
             pecl_extensions:
                 - apcu
                 - imagick
+        python:
+            version: "3.5.0"
         postgresql: false
         rabbitmq: false
         mysql: 5.7
