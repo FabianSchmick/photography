@@ -35,6 +35,10 @@ class EntryImage extends File
      */
     public function setFile(?BaseFile $file = null): void
     {
+        if ($file === null) {
+            return;
+        }
+
         $image = new \Imagick($file->getPathname());
         $orientation = $image->getImageOrientation();
 
