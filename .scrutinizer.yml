@@ -25,6 +25,9 @@ build:
 
     environment:
         timezone: Europe/Berlin
+        apt_packages:
+            - libmagickwand-dev
+            - libmagickcore-dev
         php:
             version: "7.4"
             pecl_extensions:
