@@ -34,8 +34,9 @@ build:
                 - apcu
                 - imagick
         python:
-            version: "3.5.0"
+            version: "3.6.0"
             virtualenv: true
+        node: "v12.22.12"
         postgresql: false
         rabbitmq: false
         mysql: 5.7
