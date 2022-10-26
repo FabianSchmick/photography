@@ -27,6 +27,9 @@ build:
         timezone: Europe/Berlin
         php:
             version: "7.4"
+            pecl_extensions:
+                - apcu
+                - imagick
         postgresql: false
         rabbitmq: false
         mysql: 5.7
