@@ -1,4 +1,5 @@
 {% import 'templates/macro/json-ld.html.twig' as jsonLd %}
+{% import 'templates/macro/macro.html.twig' as macro %}
 {% extends 'base.html.twig' %}
 
 {% block meta_description %}{{ 'tours.headline'|trans }} - {{ 'tour.maps'|trans }} - ({{ 'introduction.tours.headline'|trans|striptags }}){% endblock %}
@@ -62,7 +63,12 @@
                 </ul>
             </div>
 
-            <div id="map" class="map" data-tour-map data-gpx="{{ mapData|json_encode }}" data-popup-url="{{ path('tour_marker_popup_ajax', {'tour': '__TOUR_ID__'}) }}"></div>
+            {% set gdprContent %}
+                <div id="map" class="map" data-tour-map data-gpx="{{ mapData|json_encode }}" data-popup-url="{{ path('tour_marker_popup_ajax', {'tour': '__TOUR_ID__'}) }}"></div>
+            {% endset %}
+
+            {{ macro.gdpr_map(gdprContent) }}
+
         </div>
     </section>
 {% endblock %}

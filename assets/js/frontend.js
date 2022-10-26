@@ -15,9 +15,9 @@ import { tooltip } from './util/tooltip';
 import { lazyload } from './frontend/lazyload';
 
 import Entry from './frontend/Entry';
+import { Gdpr } from './frontend/Gdpr';
 import Lightbox from './frontend/Lightbox';
 import Chart from './frontend/Chart';
-import { Map } from './frontend/Map';
 
 $.detectSwipe.threshold = 80; // The number of pixels your finger must move to trigger a swipe event
 
@@ -40,8 +40,8 @@ $(document).ready(function() {
 
     Chart.initChart();
 
-    let map = new Map();
-    map.initMap();
+    let gdpr = new Gdpr();
+    gdpr.initGdprForMap();
 });
 
 $(window).bind('popstate', function() {

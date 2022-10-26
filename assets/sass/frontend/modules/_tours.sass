@@ -1,11 +1,15 @@
 #tours-container #map
-    height: calc(100vh - 160px) /* height of navigation and filter */
     margin-left: -$grid-gutter-width / 2
     margin-right: -$grid-gutter-width / 2
 
     @include media-breakpoint-up(md)
         margin-left: -$grid-gutter-width
         margin-right: -$grid-gutter-width
+
+#tours-container
+    #map,
+    form.gdpr-form
+        height: calc(100vh - 160px) /* height of navigation and filter */
 
 .tours-options
     .tours-option-filter

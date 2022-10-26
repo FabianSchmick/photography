@@ -1,4 +1,5 @@
 {% import 'templates/macro/json-ld.html.twig' as jsonLd %}
+{% import 'templates/macro/macro.html.twig' as macro %}
 {% extends 'base.html.twig' %}
 
 {% block meta_description %}
@@ -169,7 +170,13 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade show active text-center tour-map" id="tour-map" role="tabpanel">
-                            <div id="map" class="map" data-tour-map data-gpx="{{ mapData|json_encode }}" data-popup-url="{{ path('tour_marker_popup_ajax', {'tour': '__TOUR_ID__'}) }}" data-fullscreen="true"></div>
+
+                            {% set gdprContent %}
+                                <div id="map" class="map" data-tour-map data-gpx="{{ mapData|json_encode }}" data-popup-url="{{ path('tour_marker_popup_ajax', {'tour': '__TOUR_ID__'}) }}" data-fullscreen="true"></div>
+                            {% endset %}
+
+                            {{ macro.gdpr_map(gdprContent) }}
+
                             <a class="btn btn-teritary mt-4" href="{{ path('core_download_file', {'file': tour.file.fileName}) }}" target="_blank">
                                 <span class="icon icon-sm icon-download pr-2"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'btn.tour_download'|trans }}
                             </a>

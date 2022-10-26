@@ -1,4 +1,4 @@
-import { Map } from '../frontend/Map';
+import { Gdpr } from '../frontend/Gdpr';
 
 /**
  * Ajax filter
@@ -18,9 +18,9 @@ export function filter() {
             $(replace).replaceWith($html.find(replace));
             $filter.replaceWith($html.find(selector));
 
-            // Re-init Map, because there can be new data available
-            let map = new Map();
-            map.initMap();
+            // Re-init Gdpr, because there can be new data available
+            let gdpr = new Gdpr();
+            gdpr.initGdprForMap();
 
             history.pushState(null, '', url);
         });

@@ -65,8 +65,8 @@ btn.next: Weiter
 btn.prev: Zurück
 btn.show_tour: Tour anzeigen
 btn.tour_download: GPX Herunterladen
-btn.show_all: Alles einblenden
-btn.hide_some: Einiges ausblenden
+btn.show_all: Alles anzeigen
+btn.hide_some: Weniger anzeigen
 
 # Titles
 title.index: Naturfotografie
@@ -161,6 +161,11 @@ page.not.found.explanation.2: Startseite zurück
 site.error: Unerwarteter Fehler (code 500)
 site.error.explanation.1: Die Anfrage konnte vom Server nicht verarbeitet werden. Eventuell ist der Programmcode fehlerhaft. Bitte versuchen Sie es später erneut oder kehren Sie zur
 site.error.explanation.2: Startseite zurück
+
+# Gdpr
+gdpr.map.text: 'Um deine Daten zu schützen wurde die Karte nicht automatisch geladen. Wenn diese Karte geladen wird, werden persönliche Daten (z.B. die IP-Adresse) an openstreetmap.de weitergegeben. Mehr dazu im <a href="%link%">Datenschutz</a> dieser Seite.'
+gdpr.map.enable: Karte anzeigen
+gdpr.checkbox.enable: Speichere diese Auswahl
 
 # Imprint and Privacy Policies
 cookie.notice: Mit der Nutzung dieser Website erklären Sie sich damit einverstanden, dass ich Cookies verwende.

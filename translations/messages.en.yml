@@ -162,6 +162,11 @@ site.error: Unexpected site error (code 500)
 site.error.explanation.1: The request could not handled by the server. Maybe the code is broken. Please try again later or
 site.error.explanation.2: return to the homepage
 
+# Gdpr
+gdpr.map.text: 'To protect your privacy, we did not automatically load the map. When you load this map, personal data (like your IP-address) may be transferred to openstreetmap.de. Read more in the <a href="%link%">privacy policies</a>'
+gdpr.map.enable: Show the map
+gdpr.checkbox.enable: Save this decision
+
 # Imprint and Privacy Policies
 cookie.notice: By using this website, you agree to my use of cookies.
 cookie.notice.moreInforamtion: More information

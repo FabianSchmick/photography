@@ -53,3 +53,23 @@
         {% endfor %}
     </ul>
 {%- endmacro -%}
+
+{%- macro gdpr_map(content) -%}
+    {% if app.request.cookies.get('gdpr-map') %}
+        {{ content }}
+    {% else %}
+        <form class="gdpr-form px-3">
+            <div class="text-container text-center p-4">
+                <p>{{ 'gdpr.map.text'|trans({'%link%': path('imprint-dataprotection')})|raw }}</p>
+                <button type="button" class="btn btn-teritary btn-small" data-gdpr-map data-gdpr-content='{{ content|trim }}'>{{ 'gdpr.map.enable'|trans }}</button>
+                <hr class="mt-3 mb-2"/>
+                <div class="custom-control custom-checkbox">
+                    <input class="custom-control-input gdpr-checkbox" type="checkbox" value="1" id="gdpr-checkbox">
+                    <label class="custom-control-label" for="gdpr-checkbox">
+                        {{ 'gdpr.checkbox.enable'|trans }}
+                    </label>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+{%- endmacro -%}
