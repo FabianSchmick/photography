@@ -5,8 +5,8 @@ namespace App\Repository;
 use App\Entity\Tour;
 use App\Entity\TourCategory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\Query;
+use Doctrine\Persistence\ManagerRegistry;
 use Gedmo\Translatable\TranslatableListener;
 
 /**
