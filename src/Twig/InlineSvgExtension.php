@@ -41,7 +41,7 @@ class InlineSvgExtension extends AbstractExtension
     /**
      * Register Twig function.
      *
-     * @return \Twig\TwigFilter[]
+     * @return TwigFilter[]
      */
     public function getFilters(): array
     {

@@ -10,7 +10,7 @@ class SluggableListener extends GedmoSluggableListener
 {
     public function __construct()
     {
-        $this->setTransliterator(['\App\EventListener\SluggableListener', 'transliterate']);
+        $this->setTransliterator([self::class, 'transliterate']);
     }
 
     /**

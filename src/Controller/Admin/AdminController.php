@@ -2,6 +2,12 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Entry;
+use App\Entity\Location;
+use App\Entity\Tag;
+use App\Entity\Tour;
+use App\Entity\TourCategory;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,12 +36,12 @@ class AdminController extends AbstractController
     public function renderSidebar(): Response
     {
         $em = $this->getDoctrine()->getManager();
-        $entries = $em->getRepository('App:Entry')->findBy([], ['timestamp' => 'DESC']);
-        $user = $em->getRepository('App:User')->findBy([], ['fullname' => 'ASC']);
-        $locations = $em->getRepository('App:Location')->findBy([], ['name' => 'ASC']);
-        $tags = $em->getRepository('App:Tag')->findBy([], ['sort' => 'DESC']);
-        $tours = $em->getRepository('App:Tour')->findBy([], ['sort' => 'DESC', 'updated' => 'DESC']);
-        $tourCategories = $em->getRepository('App:TourCategory')->findBy([], ['sort' => 'DESC']);
+        $entries = $em->getRepository(Entry::class)->findBy([], ['timestamp' => 'DESC']);
+        $user = $em->getRepository(User::class)->findBy([], ['fullname' => 'ASC']);
+        $locations = $em->getRepository(Location::class)->findBy([], ['name' => 'ASC']);
+        $tags = $em->getRepository(Tag::class)->findBy([], ['sort' => 'DESC']);
+        $tours = $em->getRepository(Tour::class)->findBy([], ['sort' => 'DESC', 'updated' => 'DESC']);
+        $tourCategories = $em->getRepository(TourCategory::class)->findBy([], ['sort' => 'DESC']);
 
         return $this->render('admin/inc/sidebar.html.twig', [
             'entries' => $entries,

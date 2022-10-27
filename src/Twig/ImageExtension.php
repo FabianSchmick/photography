@@ -24,7 +24,7 @@ class ImageExtension extends AbstractExtension
     /**
      * Register Twig filter.
      *
-     * @return \Twig\TwigFilter[]
+     * @return TwigFilter[]
      */
     public function getFilters(): array
     {

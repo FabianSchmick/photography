@@ -45,7 +45,7 @@ class TourFileType extends AbstractType
                 ],
                 'attr' => [
                     'placeholder' => $this->translator->trans($options['placeholder_text']),
-                    'accept' => implode(',', self::ALLOWED_MIME_TYPES),
+                    'accept' => '.gpx,'.implode(',', self::ALLOWED_MIME_TYPES),
                 ],
             ])
         ;

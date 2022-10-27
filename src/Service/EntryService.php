@@ -46,12 +46,12 @@ class EntryService
     /**
      * Save an entry.
      *
-     * @param array $entry Array of data for saving an entry object
-     * @param File  $image UploadFile object with containing image
+     * @param array     $entry Array of data for saving an entry object
+     * @param File|null $image UploadFile object with containing image
      *
      * @return Entry $entryEntity        The saved entry entity
      */
-    public function saveEntry(array $entry, File $image = null): Entry
+    public function saveEntry(array $entry, ?File $image = null): Entry
     {
         $entryEntity = new Entry();
         if (isset($entry['id'])) {

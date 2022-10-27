@@ -41,7 +41,7 @@ class PaginationExtension extends AbstractExtension
     /**
      * Register Twig function.
      *
-     * @return \Twig\TwigFunction[]
+     * @return TwigFunction[]
      */
     public function getFunctions(): array
     {

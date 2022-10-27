@@ -2,11 +2,13 @@
 
 namespace App\Form;
 
+use App\Entity\Entry;
+use App\Entity\Location;
 use App\Entity\Tour;
+use App\Entity\TourCategory;
 use App\Form\Custom\ExtendableEntityByNameType;
 use App\Form\Custom\PurifyTextareaType;
 use App\Form\DataTransformer\DateIntervalTransformer;
-use App\Service\CoreService;
 use App\Service\TourService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -18,11 +20,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TourType extends AbstractType
 {
-    /**
-     * @var CoreService
-     */
-    private $coreService;
-
     /**
      * @var TourService
      */
@@ -36,9 +33,8 @@ class TourType extends AbstractType
     /**
      * TourType constructor.
      */
-    public function __construct(CoreService $coreService, TourService $tourService, DateIntervalTransformer $transformer)
+    public function __construct(TourService $tourService, DateIntervalTransformer $transformer)
     {
-        $this->coreService = $coreService;
         $this->tourService = $tourService;
         $this->transformer = $transformer;
     }
@@ -56,7 +52,7 @@ class TourType extends AbstractType
         $builder
             ->add('name')
             ->add('file', TourFileType::class, [
-                'required' => $tour->getFile() ? false : true,
+                'required' => !$tour->getFile(),
                 'placeholder_text' => $tour->getFile() ? $tour->getFile()->getOriginalName() : 'label.no_file_selected',
             ])
             ->add('description', PurifyTextareaType::class, [
@@ -70,12 +66,12 @@ class TourType extends AbstractType
             ])
             ->add('tourCategory', ExtendableEntityByNameType::class, [
                 'required' => false,
-                'class' => 'App:TourCategory',
+                'class' => TourCategory::class,
             ])
             ->add('locations', ExtendableEntityByNameType::class, [
                 'required' => false,
                 'multiple' => true,
-                'class' => 'App:Location',
+                'class' => Location::class,
             ])
             ->add('distance', NumberType::class, [
                 'required' => false,
@@ -132,7 +128,7 @@ class TourType extends AbstractType
         if (!$tour->getEntries()->isEmpty()) {
             $builder->add('previewEntry', EntityType::class, [
                 'required' => false,
-                'class' => 'App:Entry',
+                'class' => Entry::class,
                 'choices' => $tour->getEntries(),
                 'placeholder' => '',
             ]);

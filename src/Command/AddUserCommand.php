@@ -24,7 +24,14 @@ class AddUserCommand extends Command
      */
     private $io;
 
+    /**
+     * @var EntityManagerInterface
+     */
     private $entityManager;
+
+    /**
+     * @var UserPasswordEncoderInterface
+     */
     private $passwordEncoder;
 
     public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
@@ -56,7 +63,7 @@ class AddUserCommand extends Command
         $this->io = new SymfonyStyle($input, $output);
     }
 
-    protected function interact(InputInterface $input, OutputInterface $output)
+    protected function interact(InputInterface $input, OutputInterface $output): void
     {
         if (null !== $input->getArgument('username') && null !== $input->getArgument('password') && null !== $input->getArgument('full-name')) {
             return;

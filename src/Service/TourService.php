@@ -52,12 +52,12 @@ class TourService
     /**
      * Save an tour.
      *
-     * @param array $tour Array of data for saving an tour object
-     * @param File  $file UploadFile object with containing gpx file
+     * @param array     $tour Array of data for saving an tour object
+     * @param File|null $file UploadFile object with containing gpx file
      *
      * @return Tour $tourEntity     The saved tour entity
      */
-    public function saveTour(array $tour, File $file = null): Tour
+    public function saveTour(array $tour, ?File $file = null): Tour
     {
         $duplicate = $this->tourRepository->findOneBy(['name' => $tour['name']]);
 

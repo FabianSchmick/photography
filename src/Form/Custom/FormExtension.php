@@ -15,7 +15,7 @@ class FormExtension extends AbstractTypeExtension
         $view->vars['unit'] = $options['unit'];
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'label_format' => 'label.%name%',

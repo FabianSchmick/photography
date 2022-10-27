@@ -43,7 +43,7 @@ class ExtendableEntityByNameType extends AbstractType
         });
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'placeholder' => '',
@@ -54,7 +54,7 @@ class ExtendableEntityByNameType extends AbstractType
         ]);
     }
 
-    public function getParent()
+    public function getParent(): string
     {
         return EntityType::class;
     }

@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Entry;
+use App\Entity\Location;
+use App\Entity\Tag;
+use App\Entity\Tour;
+use App\Entity\User;
 use App\Form\Custom\ExtendableEntityByNameType;
 use App\Form\Custom\PurifyTextareaType;
-use App\Service\CoreService;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
@@ -26,11 +29,6 @@ class EntryType extends AbstractType
     private $em;
 
     /**
-     * @var CoreService
-     */
-    private $coreService;
-
-    /**
      * @var Security
      */
     private $security;
@@ -38,10 +36,9 @@ class EntryType extends AbstractType
     /**
      * EntryType constructor.
      */
-    public function __construct(EntityManagerInterface $em, CoreService $coreService, Security $security)
+    public function __construct(EntityManagerInterface $em, Security $security)
     {
         $this->em = $em;
-        $this->coreService = $coreService;
         $this->security = $security;
     }
 
@@ -53,7 +50,7 @@ class EntryType extends AbstractType
         $builder
             ->add('name')
             ->add('image', EntryImageType::class, [
-                'required' => $entry->getImage() ? false : true,
+                'required' => !$entry->getImage(),
                 'placeholder_text' => $entry->getImage() ? $entry->getImage()->getOriginalName() : 'label.no_file_selected',
             ])
             ->add('description', PurifyTextareaType::class, [
@@ -61,7 +58,7 @@ class EntryType extends AbstractType
             ])
             ->add('author', EntityType::class, [
                 'required' => false,
-                'class' => 'App:User',
+                'class' => User::class,
                 'data' => $entry->getAuthor() ?? $this->security->getUser(),
                 'placeholder' => '',
                 'query_builder' => function (EntityRepository $er): QueryBuilder {
@@ -71,7 +68,7 @@ class EntryType extends AbstractType
             ])
             ->add('location', ExtendableEntityByNameType::class, [
                 'required' => false,
-                'class' => 'App:Location',
+                'class' => Location::class,
             ])
             ->add('timestamp', DateType::class, [
                 'required' => false,
@@ -79,12 +76,12 @@ class EntryType extends AbstractType
                 'format' => 'yyyy-MM-dd',
             ])
             ->add('tags', ExtendableEntityByNameType::class, [
-                'class' => 'App:Tag',
+                'class' => Tag::class,
                 'multiple' => true,
             ])
             ->add('tour', EntityType::class, [
                 'required' => false,
-                'class' => 'App:Tour',
+                'class' => Tour::class,
                 'placeholder' => '',
                 'query_builder' => function (EntityRepository $er): QueryBuilder {
                     return $er->createQueryBuilder('t')

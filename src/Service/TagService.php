@@ -38,7 +38,7 @@ class TagService
      *
      * @param array $tag Array of data for saving a tag object
      *
-     * @return Tag $tagEntity        The saved tag entity
+     * @return Tag $tagEntity The saved tag entity
      */
     public function saveTag(array $tag): Tag
     {

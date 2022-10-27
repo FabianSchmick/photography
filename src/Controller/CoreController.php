@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Doctrine\PaginationHelper;
+use App\Entity\Entry;
 use App\Entity\File;
+use App\Entity\Tag;
 use App\Entity\Tour;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -73,7 +75,7 @@ class CoreController extends AbstractController
                 'priority' => '1.0',
             ];
 
-            $query = $em->getRepository('App:Tour')->getFindAllQuery();
+            $query = $em->getRepository(Tour::class)->getFindAllQuery();
             $pages = PaginationHelper::getPagesCount($query, Tour::PAGINATION_QUANTITY);
 
             for ($i = 1; $i < $pages + 1; ++$i) {
@@ -90,7 +92,7 @@ class CoreController extends AbstractController
                 'priority' => '0.5',
             ];
 
-            $entries = $em->getRepository('App:Entry')->findAll();
+            $entries = $em->getRepository(Entry::class)->findAll();
 
             foreach ($entries as $entry) {
                 $entry->setTranslatableLocale($locale);
@@ -103,7 +105,7 @@ class CoreController extends AbstractController
                 ];
             }
 
-            $tags = $em->getRepository('App:Tag')->findAll();
+            $tags = $em->getRepository(Tag::class)->findAll();
 
             foreach ($tags as $tag) {
                 $tag->setTranslatableLocale($locale);
@@ -116,7 +118,7 @@ class CoreController extends AbstractController
                 ];
             }
 
-            $tours = $em->getRepository('App:Tour')->findAll();
+            $tours = $em->getRepository(Tour::class)->findAll();
 
             foreach ($tours as $tour) {
                 $tour->setTranslatableLocale($locale);

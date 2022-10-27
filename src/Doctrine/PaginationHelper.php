@@ -38,9 +38,6 @@ class PaginationHelper
      */
     public static function paginate(Query $query, int $pageSize = 10, int $currentPage = 1): array
     {
-        $pageSize = (int) $pageSize;
-        $currentPage = (int) $currentPage;
-
         if ($pageSize < 1) {
             $pageSize = 10;
         }
@@ -51,12 +48,10 @@ class PaginationHelper
 
         $paginator = new Paginator($query);
 
-        $results = $paginator
+        return $paginator
             ->getQuery()
             ->setFirstResult($pageSize * ($currentPage - 1))
             ->setMaxResults($pageSize)
             ->getResult();
-
-        return $results;
     }
 }
