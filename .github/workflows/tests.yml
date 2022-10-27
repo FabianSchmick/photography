@@ -1,0 +1,84 @@
+name: Tests
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+
+permissions:
+    contents: read
+    packages: read
+
+env:
+    PHP_VERSION: 7.4
+
+jobs:
+    twig-lint:
+        name: Validate Twig-Templates
+        runs-on: ubuntu-20.04
+        steps:
+            -   uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ env.PHP_VERSION }}
+                    tools: composer:v2
+                    ini-values: variables_order=EGPCS, date.timezone=Europe/Berlin
+                    extensions: intl
+            -   uses: actions/checkout@v3
+            -   uses: actions/cache@v2
+                with:
+                    path: vendor
+                    key: composer-${{ runner.os }}-${{ env.PHP_VERSION }}-${{ hashFiles('composer.json', 'composer.lock') }}
+                    restore-keys: |
+                        composer-${{ runner.os }}-${{ env.PHP_VERSION }}-
+                        composer-${{ runner.os }}-
+            -   run: |
+                    composer install --no-interaction --no-progress --ansi --no-scripts
+                    composer show
+            -   run: bin/console lint:twig src/
+
+    yaml-lint:
+        name: Validate YAML-Files
+        runs-on: ubuntu-20.04
+        steps:
+            -   uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ env.PHP_VERSION }}
+                    tools: composer:v2
+                    ini-values: variables_order=EGPCS, date.timezone=Europe/Berlin
+                    extensions: intl
+            -   uses: actions/checkout@v3
+            -   uses: actions/cache@v2
+                with:
+                    path: vendor
+                    key: composer-${{ runner.os }}-${{ env.PHP_VERSION }}-${{ hashFiles('composer.json', 'composer.lock') }}
+                    restore-keys: |
+                        composer-${{ runner.os }}-${{ env.PHP_VERSION }}-
+                        composer-${{ runner.os }}-
+            -   run: |
+                    composer install --no-interaction --no-progress --ansi --no-scripts
+                    composer show
+            -   run: bin/console lint:yaml src/
+
+    symfony-container-lint:
+        name: Validate Service-Definitions
+        runs-on: ubuntu-20.04
+        steps:
+            -   uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ env.PHP_VERSION }}
+                    tools: composer:v2
+                    ini-values: variables_order=EGPCS, date.timezone=Europe/Berlin
+                    extensions: intl
+            -   uses: actions/checkout@v3
+            -   uses: actions/cache@v2
+                with:
+                    path: vendor
+                    key: composer-${{ runner.os }}-${{ env.PHP_VERSION }}-${{ hashFiles('composer.json', 'composer.lock') }}
+                    restore-keys: |
+                        composer-${{ runner.os }}-${{ env.PHP_VERSION }}-
+                        composer-${{ runner.os }}-
+            -   run: |
+                    composer install --no-interaction --no-progress --ansi --no-scripts
+                    composer show
+            -   run: bin/console lint:container

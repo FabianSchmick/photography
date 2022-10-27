@@ -1,10 +1,10 @@
+name: Coding Standards
+
 on:
     push:
         branches:
             - master
     pull_request:
-
-name: Coding Standards
 
 jobs:
     php-cs-fix:
@@ -26,6 +26,7 @@ jobs:
                     commit_message: "Fix CS with PHP-CS-Fixer"
 
     js-cs-fix:
+        name: ESLint
         runs-on: ubuntu-20.04
         steps:
             -   name: Checkout code
