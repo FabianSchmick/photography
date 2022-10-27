@@ -39,11 +39,8 @@ class LoginType extends AbstractType
         ]);
     }
 
-    /**
-     * @return null
-     */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
-        return null;
+        return '';
     }
 }
