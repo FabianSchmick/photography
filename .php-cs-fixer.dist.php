@@ -1,10 +1,10 @@
 <?php
 
-$finder = PhpCsFixer\Finder::create()
+$finder = (new PhpCsFixer\Finder())
     ->in(__DIR__.'/src')
 ;
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRules([
         '@Symfony' => true,
         'array_indentation' => true,
@@ -19,4 +19,5 @@ return PhpCsFixer\Config::create()
         'yoda_style' => false
     ])
     ->setFinder($finder)
+    ->setCacheFile('.php-cs-fixer.cache') // forward compatibility with 3.x line
 ;
