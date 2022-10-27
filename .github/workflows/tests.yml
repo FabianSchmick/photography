@@ -35,7 +35,7 @@ jobs:
             -   run: |
                     composer install --no-interaction --no-progress --ansi --no-scripts
                     composer show
-            -   run: bin/console lint:twig src/
+            -   run: bin/console lint:twig templates/
 
     yaml-lint:
         name: Validate YAML-Files
@@ -58,7 +58,7 @@ jobs:
             -   run: |
                     composer install --no-interaction --no-progress --ansi --no-scripts
                     composer show
-            -   run: bin/console lint:yaml src/
+            -   run: bin/console lint:yaml config/
 
     symfony-container-lint:
         name: Validate Service-Definitions
