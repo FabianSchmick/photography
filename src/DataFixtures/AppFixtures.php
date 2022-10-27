@@ -5,7 +5,7 @@ namespace App\DataFixtures;
 use App\Service\EntryService;
 use App\Service\TourService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -118,7 +118,7 @@ class AppFixtures extends Fixture
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\File\UploadedFile[]
+     * @return UploadedFile[]
      */
     private function getFiles($tmpDir): array
     {
