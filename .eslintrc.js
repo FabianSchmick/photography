@@ -10,6 +10,8 @@ module.exports = {
         "allowImportExportEverywhere": true
     },
     "globals": {
+        "global": "writable",
+        "TRANSLATION_MAP": "readonly",
         "pageUrl": "readonly",
         "gaOptout": "readonly",
         "paginateUrl": "writable"

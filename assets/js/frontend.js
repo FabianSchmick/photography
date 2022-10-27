@@ -17,7 +17,7 @@ import { lazyload } from './frontend/lazyload';
 import Entry from './frontend/Entry';
 import { Gdpr } from './frontend/Gdpr';
 import Lightbox from './frontend/Lightbox';
-import Chart from './frontend/Chart';
+import Chart from "./frontend/Chart";
 
 $.detectSwipe.threshold = 80; // The number of pixels your finger must move to trigger a swipe event
 

@@ -63,7 +63,7 @@ export function initWysiwyg() {
             }
         },
         onCreateLink: (linkUrl) => {
-            return /^([A-Za-z][A-Za-z0-9+-.]*\:[\/\/]?|\/)/.test(linkUrl) ?
+            return /^([A-Za-z][A-Za-z0-9+-.]*:[/]?|\/)/.test(linkUrl) ?
                 linkUrl : 'http://' + linkUrl;
         }
     });
