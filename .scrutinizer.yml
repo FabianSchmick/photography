@@ -36,8 +36,10 @@ build:
         node: "v16.17.1"
         postgresql: false
         rabbitmq: false
-        mariadb: 10
         redis: false
+
+    services:
+        mariadb: 10
 
 filter:
     excluded_paths:
