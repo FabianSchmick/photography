@@ -99,11 +99,11 @@ class Entry
     private $tags;
 
     /**
-     * @var Tag|null
+     * @var Collection
      *
      * @ORM\OneToMany(targetEntity="Tag", mappedBy="previewEntry")
      */
-    private $previewTag;
+    private $previewTags;
 
     /**
      * @var Tour|null
@@ -308,9 +308,9 @@ class Entry
     /**
      * Get previewTag.
      */
-    public function getPreviewTag(): ?Tag
+    public function getPreviewTags(): ?Collection
     {
-        return $this->previewTag;
+        return $this->previewTags;
     }
 
     /**

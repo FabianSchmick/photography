@@ -53,7 +53,7 @@ class Tag
     /**
      * @var Entry|null
      *
-     * @ORM\ManyToOne(targetEntity="Entry", inversedBy="previewTag")
+     * @ORM\ManyToOne(targetEntity="Entry", inversedBy="previewTags")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
     private $previewEntry;
