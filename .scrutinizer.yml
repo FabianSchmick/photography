@@ -36,7 +36,7 @@ build:
         node: "v16.17.1"
         postgresql: false
         rabbitmq: false
-        mysql: 5.7
+        mariadb: 10
         redis: false
 
 filter:
