@@ -53,16 +53,4 @@ class RemovedFileListener
             $this->cacheManager->remove($path);
         }
     }
-
-    /**
-     * Make sure a file entity object is removed after the file is deleted.
-     */
-    public function onPostRemove(Event $event): void
-    {
-        if (!($event->getObject()->getFile() instanceof File)) {
-            $removedFile = $event->getObject();
-            $this->em->remove($removedFile);
-            $this->em->flush();
-        }
-    }
 }

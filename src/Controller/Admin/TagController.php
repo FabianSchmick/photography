@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Tag;
 use App\Form\TagType;
 use App\Repository\TagRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -20,6 +21,16 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class TagController extends AbstractController
 {
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * List all tags.
      *
@@ -43,10 +54,9 @@ class TagController extends AbstractController
         $form = $this->createForm(TagType::class, $tag);
         $form->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($tag);
-            $em->flush();
+            $this->entityManager->persist($tag);
+            $this->entityManager->flush();
 
             $url = $this->generateUrl('admin_tag_edit', ['id' => $tag->getId()]);
 
@@ -75,10 +85,9 @@ class TagController extends AbstractController
         $form = $this->createForm(TagType::class, $tag);
         $form->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($tag);
-            $em->flush();
+            $this->entityManager->persist($tag);
+            $this->entityManager->flush();
 
             $this->addFlash('success', 'flash.success.edit');
 
@@ -103,10 +112,8 @@ class TagController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $em->remove($tag);
-            $em->flush();
+            $this->entityManager->remove($tag);
+            $this->entityManager->flush();
 
             $translated = $translator->trans('flash.success.deleted.tag', [
                 '%tag%' => $tag->getName(),

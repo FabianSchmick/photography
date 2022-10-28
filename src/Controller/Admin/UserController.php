@@ -5,13 +5,14 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -21,6 +22,16 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class UserController extends AbstractController
 {
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * List all users.
      *
@@ -38,20 +49,19 @@ class UserController extends AbstractController
      *
      * @Route("/edit/{id}", name="admin_user_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function edit(Request $request, User $user, UserPasswordHasherInterface $passwordHasher): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
             if ($plainPassword = $form->get('plainPassword')->getData()) {
-                $password = $passwordEncoder->encodePassword($user, $plainPassword);
+                $password = $passwordHasher->hashPassword($user, $plainPassword);
                 $user->setPassword($password);
             }
 
-            $em->persist($user);
-            $em->flush();
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
 
             $this->addFlash('success', 'flash.success.edit');
 
@@ -76,10 +86,8 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $em->remove($user);
-            $em->flush();
+            $this->entityManager->remove($user);
+            $this->entityManager->flush();
 
             $translated = $translator->trans('flash.success.deleted.author', [
                 '%author%' => $user->getFullname(),

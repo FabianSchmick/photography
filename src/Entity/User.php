@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\LegacyPasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -13,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity("username")
  */
-class User implements UserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyPasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id()
@@ -74,13 +76,21 @@ class User implements UserInterface
     }
 
     /**
+     * This method is deprecated since Symfony 5.3, use getUserIdentifier() instead.
+     */
+    public function getUsername(): string
+    {
+        return $this->getUserIdentifier();
+    }
+
+    /**
      * Get username. A visual identifier that represents this user.
      *
      * @see UserInterface
      */
-    public function getUsername(): string
+    public function getUserIdentifier(): string
     {
-        return (string) $this->username;
+        return $this->username;
     }
 
     /**
@@ -140,11 +150,11 @@ class User implements UserInterface
     }
 
     /**
-     * @see UserInterface
+     * @see PasswordAuthenticatedUserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return $this->password;
     }
 
     /**
@@ -168,11 +178,12 @@ class User implements UserInterface
     }
 
     /**
-     * @see UserInterface
+     * @see LegacyPasswordAuthenticatedUserInterface
      */
-    public function getSalt()
+    public function getSalt(): ?string
     {
         // not needed when using the "bcrypt" algorithm in security.yaml
+        return null;
     }
 
     /**

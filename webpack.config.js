@@ -33,10 +33,13 @@ Encore
     .configureSplitChunks(splitChunks => {
         splitChunks.minSize = 0;
     })
-    .configureBabel(() => {}, {
-        useBuiltIns: 'usage',
-        corejs: 3,
-        exclude: /node_modules/
+    .configureBabel((config) => {
+        config.plugins.push('@babel/plugin-proposal-class-properties');
+    })
+    // enables @babel/preset-env polyfills
+    .configureBabelPresetEnv((config) => {
+        config.useBuiltIns = 'usage';
+        config.corejs = 3;
     })
     .enableBuildNotifications();
 
@@ -77,4 +80,10 @@ if (Encore.isProduction()) {
     ;
 }
 
-module.exports = Encore.getWebpackConfig();
+// https://github.com/symfony/webpack-encore/issues/191#issuecomment-340377542
+const webpackConfig = Encore.getWebpackConfig();
+webpackConfig.watchOptions = {
+    poll: true
+};
+
+module.exports = webpackConfig;

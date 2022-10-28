@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Tour;
 use App\Form\TourType;
 use App\Repository\TourRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -20,6 +21,16 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class TourController extends AbstractController
 {
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * List all tours.
      *
@@ -43,10 +54,9 @@ class TourController extends AbstractController
         $form = $this->createForm(TourType::class, $tour);
         $form->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($tour);
-            $em->flush();
+            $this->entityManager->persist($tour);
+            $this->entityManager->flush();
 
             $url = $this->generateUrl('admin_tour_edit', ['id' => $tour->getId()]);
 
@@ -75,10 +85,9 @@ class TourController extends AbstractController
         $form = $this->createForm(TourType::class, $tour);
         $form->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($tour);
-            $em->flush();
+            $this->entityManager->persist($tour);
+            $this->entityManager->flush();
 
             $this->addFlash('success', 'flash.success.edit');
 
@@ -103,10 +112,8 @@ class TourController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $em->remove($tour);
-            $em->flush();
+            $this->entityManager->remove($tour);
+            $this->entityManager->flush();
 
             $translated = $translator->trans('flash.success.deleted.tour', [
                 '%tour%' => $tour->getName(),

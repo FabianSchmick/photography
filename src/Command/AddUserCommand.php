@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use function Symfony\Component\String\u;
 
 /**
@@ -30,16 +30,16 @@ class AddUserCommand extends Command
     private $entityManager;
 
     /**
-     * @var UserPasswordEncoderInterface
+     * @var UserPasswordHasherInterface
      */
-    private $passwordEncoder;
+    private $passwordHasher;
 
-    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
+    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher)
     {
         parent::__construct();
 
         $this->entityManager = $em;
-        $this->passwordEncoder = $encoder;
+        $this->passwordHasher = $passwordHasher;
     }
 
     /**
@@ -119,7 +119,7 @@ class AddUserCommand extends Command
         $user->setRoles(['ROLE_ADMIN']);
 
         // See https://symfony.com/doc/current/security.html#c-encoding-passwords
-        $encodedPassword = $this->passwordEncoder->encodePassword($user, $plainPassword);
+        $encodedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
         $user->setPassword($encodedPassword);
 
         $this->entityManager->persist($user);

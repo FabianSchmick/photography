@@ -7,6 +7,7 @@ use App\Entity\Entry;
 use App\Entity\File;
 use App\Entity\Tag;
 use App\Entity\Tour;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -40,7 +41,7 @@ class CoreController extends AbstractController
 
     /**
      * @Route("/download/{file}", name="core_download_file")
-     * @ParamConverter("file", class="App:File", options={"mapping": {"file": "fileName"}})
+     * @ParamConverter("file", class="App\Entity\File", options={"mapping": {"file": "fileName"}})
      */
     public function downloadFile(File $file, UploaderHelper $uploaderHelper): BinaryFileResponse
     {
@@ -60,9 +61,8 @@ class CoreController extends AbstractController
     /**
      * @Route("/sitemap.{_format}", name="core_sitemap", requirements={"_format": "xml"})
      */
-    public function sitemap(Request $request, RouterInterface $router): Response
+    public function sitemap(Request $request, RouterInterface $router, EntityManagerInterface $em): Response
     {
-        $em = $this->getDoctrine()->getManager();
         $locales = explode('|', $this->getParameter('app.locales'));
 
         $hostname = $request->getScheme().'://'.$request->getHost();

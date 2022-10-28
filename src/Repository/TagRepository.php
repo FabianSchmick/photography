@@ -2,10 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Entry;
 use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Query;
+use Doctrine\Persistence\ManagerRegistry;
 use Gedmo\Translatable\TranslatableListener;
 
 /**
@@ -30,7 +31,7 @@ class TagRepository extends ServiceEntityRepository
      */
     public function findRelatedTagsByTag(Tag $tag, int $count = 3, int $limit = 10): array
     {
-        $in = $this->getEntityManager()->getRepository('App:Entry')
+        $in = $this->getEntityManager()->getRepository(Entry::class)
             ->createQueryBuilder('a_e')
             ->where(':tag MEMBER OF a_e.tags');
 

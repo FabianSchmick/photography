@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\TourCategory;
 use App\Form\TourCategoryType;
 use App\Repository\TourCategoryRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -20,6 +21,16 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class TourCategoryController extends AbstractController
 {
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * List all tourCategories.
      *
@@ -43,10 +54,9 @@ class TourCategoryController extends AbstractController
         $form = $this->createForm(TourCategoryType::class, $tourCategory);
         $form->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($tourCategory);
-            $em->flush();
+            $this->entityManager->persist($tourCategory);
+            $this->entityManager->flush();
 
             $url = $this->generateUrl('admin_tour_category_edit', ['id' => $tourCategory->getId()]);
 
@@ -75,10 +85,9 @@ class TourCategoryController extends AbstractController
         $form = $this->createForm(TourCategoryType::class, $tourCategory);
         $form->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($tourCategory);
-            $em->flush();
+            $this->entityManager->persist($tourCategory);
+            $this->entityManager->flush();
 
             $this->addFlash('success', 'flash.success.edit');
 
@@ -103,10 +112,8 @@ class TourCategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $em->remove($tourCategory);
-            $em->flush();
+            $this->entityManager->remove($tourCategory);
+            $this->entityManager->flush();
 
             $translated = $translator->trans('flash.success.deleted.tour_category', [
                 '%tour_category%' => $tourCategory->getName(),
