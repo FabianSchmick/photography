@@ -28,14 +28,11 @@ class LoginType extends AbstractType
 
     /**
      * {@inheritdoc}
-     * https://stackoverflow.com/questions/28789109/can-the-symfony2-form-builder-be-used-for-the-login-form.
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'cascade_validation' => true,
-            'csrf_token_id' => 'authenticate', // Matches security.yml
-            'csrf_protection' => true,
         ]);
     }
 
