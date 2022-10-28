@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Entry;
 use App\Form\EntryType;
 use App\Repository\EntryRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -20,6 +21,16 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class EntryController extends AbstractController
 {
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * List all entries.
      *
@@ -43,10 +54,9 @@ class EntryController extends AbstractController
         $form = $this->createForm(EntryType::class, $entry);
         $form->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($entry);
-            $em->flush();
+            $this->entityManager->persist($entry);
+            $this->entityManager->flush();
 
             $url = $this->generateUrl('admin_entry_edit', ['id' => $entry->getId()]);
 
@@ -75,10 +85,9 @@ class EntryController extends AbstractController
         $form = $this->createForm(EntryType::class, $entry);
         $form->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($entry);
-            $em->flush();
+            $this->entityManager->persist($entry);
+            $this->entityManager->flush();
 
             $this->addFlash('success', 'flash.success.edit');
 
@@ -103,10 +112,8 @@ class EntryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $em->remove($entry);
-            $em->flush();
+            $this->entityManager->remove($entry);
+            $this->entityManager->flush();
 
             $translated = $translator->trans('flash.success.deleted.entry', [
                 '%entry%' => $entry->getName(),

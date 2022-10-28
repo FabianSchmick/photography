@@ -8,6 +8,7 @@ use App\Entity\Tag;
 use App\Entity\Tour;
 use App\Entity\TourCategory;
 use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,9 +34,8 @@ class AdminController extends AbstractController
     /**
      * Renders the admin navigation sidebar.
      */
-    public function renderSidebar(): Response
+    public function renderSidebar(EntityManagerInterface $em): Response
     {
-        $em = $this->getDoctrine()->getManager();
         $entries = $em->getRepository(Entry::class)->findBy([], ['timestamp' => 'DESC']);
         $user = $em->getRepository(User::class)->findBy([], ['fullname' => 'ASC']);
         $locations = $em->getRepository(Location::class)->findBy([], ['name' => 'ASC']);

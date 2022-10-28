@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Location;
 use App\Form\LocationType;
 use App\Repository\LocationRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -20,6 +21,16 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class LocationController extends AbstractController
 {
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * List all locations.
      *
@@ -43,10 +54,9 @@ class LocationController extends AbstractController
         $form = $this->createForm(LocationType::class, $location);
         $form->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($location);
-            $em->flush();
+            $this->entityManager->persist($location);
+            $this->entityManager->flush();
 
             $url = $this->generateUrl('admin_location_edit', ['id' => $location->getId()]);
 
@@ -75,10 +85,9 @@ class LocationController extends AbstractController
         $form = $this->createForm(LocationType::class, $location);
         $form->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($location);
-            $em->flush();
+            $this->entityManager->persist($location);
+            $this->entityManager->flush();
 
             $this->addFlash('success', 'flash.success.edit');
 
@@ -103,10 +112,8 @@ class LocationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $em->remove($location);
-            $em->flush();
+            $this->entityManager->remove($location);
+            $this->entityManager->flush();
 
             $translated = $translator->trans('flash.success.deleted.location', [
                 '%location%' => $location->getName(),
