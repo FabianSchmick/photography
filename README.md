@@ -46,7 +46,7 @@ To run the application [setup Symfony](https://symfony.com/doc/4.4/setup.html#ru
 
 Generate the database schema
 ```
-php bin/console doctrine:migrations:migrate
+php bin/console doctrine:schema:update
 ```
 
 Create a backend user
