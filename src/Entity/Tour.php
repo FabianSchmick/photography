@@ -264,9 +264,6 @@ class Tour
         $this->locations = new ArrayCollection();
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->getName();
