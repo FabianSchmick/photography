@@ -130,8 +130,6 @@ class Tag
 
     /**
      * Set name.
-     *
-     * @return Tag
      */
     public function setName(?string $name): self
     {
@@ -150,8 +148,6 @@ class Tag
 
     /**
      * Set description.
-     *
-     * @return Tag
      */
     public function setDescription(?string $description): self
     {
@@ -170,8 +166,6 @@ class Tag
 
     /**
      * Set previewEntry.
-     *
-     * @return Tag
      */
     public function setPreviewEntry(?Entry $previewEntry): self
     {
@@ -190,8 +184,6 @@ class Tag
 
     /**
      * Set sort.
-     *
-     * @return Tag
      */
     public function setSort(?int $sort): self
     {
@@ -218,8 +210,6 @@ class Tag
 
     /**
      * Set slug.
-     *
-     * @return Tag
      */
     public function setSlug(string $slug): self
     {
@@ -238,8 +228,6 @@ class Tag
 
     /**
      * Set created.
-     *
-     * @return Tag
      */
     public function setCreated(DateTime $created): self
     {
@@ -258,8 +246,6 @@ class Tag
 
     /**
      * Set updated.
-     *
-     * @return Tag
      */
     public function setUpdated(DateTime $updated): self
     {

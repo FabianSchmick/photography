@@ -22,9 +22,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Tour
 {
-    const PAGINATION_QUANTITY = 6;
+    public const PAGINATION_QUANTITY = 6;
 
-    const FORMULA_DEFINITIONS = [
+    public const FORMULA_DEFINITIONS = [
         'HIKING' => [
             /* Values according to: DIN 33466 */
             'UP_METERS_PER_HOUR' => 300,
@@ -41,7 +41,7 @@ class Tour
         ],
     ];
 
-    const LEVEL_OF_DIFFICULTY = [
+    public const LEVEL_OF_DIFFICULTY = [
         'A' => 0,
         'A/B' => 1,
         'B' => 2,
@@ -282,8 +282,6 @@ class Tour
 
     /**
      * Set name.
-     *
-     * @return Tour
      */
     public function setName(?string $name): self
     {
@@ -302,8 +300,6 @@ class Tour
 
     /**
      * Set description.
-     *
-     * @return Tour
      */
     public function setDescription(?string $description): self
     {
@@ -322,8 +318,6 @@ class Tour
 
     /**
      * Set directions.
-     *
-     * @return Tour
      */
     public function setDirections(?string $directions): self
     {
@@ -342,8 +336,6 @@ class Tour
 
     /**
      * Set equipmentAndSafety.
-     *
-     * @return Tour
      */
     public function setEquipmentAndSafety(?string $equipmentAndSafety): self
     {
@@ -362,8 +354,6 @@ class Tour
 
     /**
      * Set distance.
-     *
-     * @return Tour
      */
     public function setDistance(?float $distance): self
     {
@@ -382,8 +372,6 @@ class Tour
 
     /**
      * Set duration.
-     *
-     * @return Tour
      */
     public function setDuration(?DateInterval $duration): self
     {
@@ -402,8 +390,6 @@ class Tour
 
     /**
      * Set maxAltitude.
-     *
-     * @return Tour
      */
     public function setMaxAltitude(?int $maxAltitude): self
     {
@@ -422,8 +408,6 @@ class Tour
 
     /**
      * Set minAltitude.
-     *
-     * @return Tour
      */
     public function setMinAltitude(?int $minAltitude): self
     {
@@ -442,8 +426,6 @@ class Tour
 
     /**
      * Set cumulativeElevationGain.
-     *
-     * @return Tour
      */
     public function setCumulativeElevationGain(?int $cumulativeElevationGain): self
     {
@@ -462,8 +444,6 @@ class Tour
 
     /**
      * Set cumulativeElevationLoss.
-     *
-     * @return Tour
      */
     public function setCumulativeElevationLoss(?int $cumulativeElevationLoss): self
     {
@@ -482,8 +462,6 @@ class Tour
 
     /**
      * Set levelOfDifficulty.
-     *
-     * @return Tour
      */
     public function setLevelOfDifficulty(?int $levelOfDifficulty): self
     {
@@ -510,8 +488,6 @@ class Tour
 
     /**
      * Set sort.
-     *
-     * @return Tour
      */
     public function setSort(?int $sort): self
     {
@@ -530,8 +506,6 @@ class Tour
 
     /**
      * Set locations.
-     *
-     * @return Tour
      */
     public function setLocation(?Collection $locations): self
     {
@@ -550,8 +524,6 @@ class Tour
 
     /**
      * Set previewEntry.
-     *
-     * @return Tour
      */
     public function setPreviewEntry(?Entry $previewEntry): self
     {
@@ -570,8 +542,6 @@ class Tour
 
     /**
      * Set file.
-     *
-     * @return Tour
      */
     public function setFile(?File $file): self
     {
@@ -590,8 +560,6 @@ class Tour
 
     /**
      * Set slug.
-     *
-     * @return Tour
      */
     public function setSlug(?string $slug): self
     {
@@ -610,8 +578,6 @@ class Tour
 
     /**
      * Set created.
-     *
-     * @return Tour
      */
     public function setCreated(DateTime $created): self
     {
@@ -630,8 +596,6 @@ class Tour
 
     /**
      * Set updated.
-     *
-     * @return Tour
      */
     public function setUpdated(DateTime $updated): self
     {
@@ -682,8 +646,6 @@ class Tour
 
     /**
      * Set tourCategory.
-     *
-     * @return Tour
      */
     public function setTourCategory(?TourCategory $tourCategory): self
     {
@@ -694,8 +656,6 @@ class Tour
 
     /**
      * Set segments.
-     *
-     * @return Tour
      */
     public function setSegments(?array $segments): self
     {

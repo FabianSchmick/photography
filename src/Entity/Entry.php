@@ -19,7 +19,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Entry
 {
-    const PAGINATION_QUANTITY = 10;
+    public const PAGINATION_QUANTITY = 10;
 
     /**
      * @var int
@@ -177,8 +177,6 @@ class Entry
 
     /**
      * Set name.
-     *
-     * @return Entry
      */
     public function setName(?string $name): self
     {
@@ -197,8 +195,6 @@ class Entry
 
     /**
      * Set description.
-     *
-     * @return Entry
      */
     public function setDescription(?string $description): self
     {
@@ -217,8 +213,6 @@ class Entry
 
     /**
      * Set author.
-     *
-     * @return Entry
      */
     public function setAuthor(?User $author): self
     {
@@ -239,8 +233,6 @@ class Entry
 
     /**
      * Set image.
-     *
-     * @return Entry
      */
     public function setImage(?File $image): self
     {
@@ -259,8 +251,6 @@ class Entry
 
     /**
      * Set location.
-     *
-     * @return Entry
      */
     public function setLocation(?Location $location): self
     {
@@ -279,8 +269,6 @@ class Entry
 
     /**
      * Set timestamp.
-     *
-     * @return Entry
      */
     public function setTimestamp(?DateTime $timestamp): self
     {
@@ -299,8 +287,6 @@ class Entry
 
     /**
      * Set tags.
-     *
-     * @return Entry
      */
     public function setTags(Collection $tags): self
     {
@@ -329,8 +315,6 @@ class Entry
 
     /**
      * Set tour.
-     *
-     * @return Entry
      */
     public function setTour(?Tour $tour): self
     {
@@ -357,8 +341,6 @@ class Entry
 
     /**
      * Set slug.
-     *
-     * @return Entry
      */
     public function setSlug(string $slug): self
     {
@@ -377,8 +359,6 @@ class Entry
 
     /**
      * Set created.
-     *
-     * @return Entry
      */
     public function setCreated(DateTime $created): self
     {
@@ -397,8 +377,6 @@ class Entry
 
     /**
      * Set updated.
-     *
-     * @return Entry
      */
     public function setUpdated(DateTime $updated): self
     {

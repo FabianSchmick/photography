@@ -43,6 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
 
     /**
      * @var string The hashed password
+     *
      * @ORM\Column(type="string")
      */
     private $password;
@@ -95,8 +96,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
 
     /**
      * Set username.
-     *
-     * @return User
      */
     public function setUsername(string $username): self
     {
@@ -115,8 +114,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
 
     /**
      * Set fullname.
-     *
-     * @return User
      */
     public function setFullname(?string $fullname): self
     {
@@ -139,8 +136,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
 
     /**
      * Set roles.
-     *
-     * @return User
      */
     public function setRoles(array $roles): self
     {
@@ -159,8 +154,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
 
     /**
      * Set password.
-     *
-     * @return User
      */
     public function setPassword(string $password): self
     {

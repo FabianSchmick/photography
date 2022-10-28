@@ -12,7 +12,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class TourFileType extends AbstractType
 {
-    const ALLOWED_MIME_TYPES = [
+    public const ALLOWED_MIME_TYPES = [
         'text/xml',
         'application/gpx+xml',
     ];

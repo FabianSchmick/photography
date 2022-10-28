@@ -83,8 +83,6 @@ class Location
 
     /**
      * Set name.
-     *
-     * @return Location
      */
     public function setName(?string $name): self
     {

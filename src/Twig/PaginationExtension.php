@@ -11,7 +11,7 @@ use Twig\TwigFunction;
 
 class PaginationExtension extends AbstractExtension
 {
-    const MAX_VISIBLE = 2;
+    public const MAX_VISIBLE = 2;
 
     /**
      * @var RouterInterface

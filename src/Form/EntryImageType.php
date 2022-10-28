@@ -12,7 +12,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class EntryImageType extends AbstractType
 {
-    const ALLOWED_MIME_TYPES = [
+    public const ALLOWED_MIME_TYPES = [
         'image/png',
         'image/jpeg',
         'image/gif',
