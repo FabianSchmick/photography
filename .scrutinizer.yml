@@ -8,14 +8,11 @@ build:
                 override:
                     - ./vendor/bin/simple-phpunit
                     - php-scrutinizer-run
-                    -
-                        command: phpcs-run
-                        use_website_config: true
                     - js-scrutinizer-run
 
     dependencies:
         before:
-            - mysql -uroot -e 'CREATE DATABASE application'
+            - mysql -uroot -e 'CREATE DATABASE application_test'
         override:
             - composer install --no-interaction
             - php bin/console doctrine:migrations:migrate --no-interaction
@@ -45,7 +42,6 @@ build:
 filter:
     excluded_paths:
         - '.github/*'
-        - 'app/*'
         - 'tests/*'
         - 'bin/*'
         - 'var/*'
