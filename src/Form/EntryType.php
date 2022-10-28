@@ -73,7 +73,6 @@ class EntryType extends AbstractType
             ->add('timestamp', DateType::class, [
                 'required' => false,
                 'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
             ])
             ->add('tags', ExtendableEntityByNameType::class, [
                 'class' => Tag::class,

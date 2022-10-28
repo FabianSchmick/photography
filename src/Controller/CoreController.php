@@ -40,7 +40,7 @@ class CoreController extends AbstractController
 
     /**
      * @Route("/download/{file}", name="core_download_file")
-     * @ParamConverter("file", class="App:File", options={"mapping": {"file": "fileName"}})
+     * @ParamConverter("file", class="App\Entity\File", options={"mapping": {"file": "fileName"}})
      */
     public function downloadFile(File $file, UploaderHelper $uploaderHelper): BinaryFileResponse
     {

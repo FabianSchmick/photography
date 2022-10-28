@@ -77,7 +77,7 @@ class Entry
     /**
      * @var \DateTime|null
      *
-     * @Assert\Date()
+     * @Assert\Type("\DateTimeInterface")
      * @Assert\LessThan(
      *     value="now",
      * )
