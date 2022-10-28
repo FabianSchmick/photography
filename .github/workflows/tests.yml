@@ -96,7 +96,7 @@ jobs:
             -   run: bin/console lint:container
 
     doctrine-entities-lint:
-        name: Lint Doctrine entities
+        name: Validate Doctrine-Schema mapping
         runs-on: ubuntu-20.04
         steps:
             -   uses: shivammathur/setup-php@v2
