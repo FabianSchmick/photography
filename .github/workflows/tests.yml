@@ -94,3 +94,26 @@ jobs:
                     composer install --no-interaction --no-progress --ansi --no-scripts
                     composer show
             -   run: bin/console lint:container
+
+    doctrine-entities-lint:
+        name: Lint Doctrine entities
+        runs-on: ubuntu-20.04
+        steps:
+            -   uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ env.PHP_VERSION }}
+                    tools: composer:v2
+                    ini-values: variables_order=EGPCS, date.timezone=Europe/Berlin
+                    extensions: intl
+            -   uses: actions/checkout@v3
+            -   uses: actions/cache@v2
+                with:
+                    path: vendor
+                    key: composer-${{ runner.os }}-${{ env.PHP_VERSION }}-${{ hashFiles('composer.json', 'composer.lock') }}
+                    restore-keys: |
+                        composer-${{ runner.os }}-${{ env.PHP_VERSION }}-
+                        composer-${{ runner.os }}-
+            -   run: |
+                    composer install --no-interaction --no-progress --ansi --no-scripts
+                    composer show
+            -   run: bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
