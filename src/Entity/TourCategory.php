@@ -116,8 +116,6 @@ class TourCategory
 
     /**
      * Set name.
-     *
-     * @return TourCategory
      */
     public function setName(?string $name): self
     {
@@ -136,8 +134,6 @@ class TourCategory
 
     /**
      * Set formulaType.
-     *
-     * @return TourCategory
      */
     public function setFormulaType(?string $formulaType): self
     {
@@ -156,8 +152,6 @@ class TourCategory
 
     /**
      * Set hasLevelOfDifficulty.
-     *
-     * @return TourCategory
      */
     public function setHasLevelOfDifficulty(bool $hasLevelOfDifficulty): self
     {
@@ -176,8 +170,6 @@ class TourCategory
 
     /**
      * Set sort.
-     *
-     * @return TourCategory
      */
     public function setSort(?int $sort): self
     {
@@ -206,8 +198,6 @@ class TourCategory
 
     /**
      * Set created.
-     *
-     * @return TourCategory
      */
     public function setCreated(DateTime $created): self
     {
@@ -226,8 +216,6 @@ class TourCategory
 
     /**
      * Set updated.
-     *
-     * @return TourCategory
      */
     public function setUpdated(DateTime $updated): self
     {
