@@ -14,6 +14,18 @@ env:
     PHP_VERSION: 7.4
 
 jobs:
+    php-security-check:
+        name: PHP Security Checker
+        runs-on: ubuntu-20.04
+        steps:
+            -   uses: actions/checkout@v3
+            -   uses: actions/cache@v2
+                id: cache-db
+                with:
+                    path: ~/.symfony/cache
+                    key: db
+            -   uses: symfonycorp/security-checker-action@v4
+
     twig-lint:
         name: Validate Twig-Templates
         runs-on: ubuntu-20.04
