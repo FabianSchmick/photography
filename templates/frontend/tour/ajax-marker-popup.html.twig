@@ -23,20 +23,20 @@
                     <dd class="tour-distance-value">{{ tour.distance|number_format(1, ',', '.') }} {{ 'unit.distance'|trans }}</dd>
                 </div>
             {% endif %}
-            {% if tour.maxAltitude %}
+            {% if tour.cumulativeElevationGain %}
                 <div class="meta-row">
-                    <dt class="tour-max-altitude">
-                        <span class="icon icon-sm icon-angle icon-rotate-90" title="{{ 'label.maxAltitude'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
+                    <dt class="tour-cumulative-elevation-gain">
+                        <span class="icon icon-sm icon-elevation icon-rotate-45" title="{{ 'label.cumulativeElevationGain'|trans }}"><svg><use xlink:href="#elevation-icon"/></svg></span>
                     </dt>
-                    <dd class="tour-max-altitude-value">{{ tour.maxAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
+                    <dd class="tour-cumulative-elevation-gain-value">{{ tour.cumulativeElevationGain|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
                 </div>
             {% endif %}
-            {% if tour.minAltitude %}
+            {% if tour.cumulativeElevationLoss %}
                 <div class="meta-row">
-                    <dt class="tour-min-altitude">
-                        <span class="icon icon-sm icon-angle icon-rotate-270" title="{{ 'label.minAltitude'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
+                    <dt class="tour-cumulative-elevation-loss">
+                        <span class="icon icon-sm icon-elevation icon-rotate-135" title="{{ 'label.cumulativeElevationLoss'|trans }}"><svg><use xlink:href="#elevation-icon"/></svg></span>
                     </dt>
-                    <dd class="tour-min-altitude-value">{{ tour.minAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
+                    <dd class="tour-cumulative-elevation-loss-value">{{ tour.cumulativeElevationLoss|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
                 </div>
             {% endif %}
         </dl>
