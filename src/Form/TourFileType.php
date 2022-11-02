@@ -12,22 +12,16 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class TourFileType extends AbstractType
 {
-    public const ALLOWED_MIME_TYPES = [
+    final public const ALLOWED_MIME_TYPES = [
         'text/xml',
         'application/gpx+xml',
     ];
 
     /**
-     * @var TranslatorInterface
-     */
-    private $translator;
-
-    /**
      * TourType constructor.
      */
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(private readonly TranslatorInterface $translator)
     {
-        $this->translator = $translator;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void

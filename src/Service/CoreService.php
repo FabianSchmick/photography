@@ -9,16 +9,10 @@ use HTMLPurifier_Config;
 class CoreService
 {
     /**
-     * @var EntityManagerInterface
-     */
-    private $em;
-
-    /**
      * EntryService constructor.
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(private readonly EntityManagerInterface $em)
     {
-        $this->em = $em;
     }
 
     /**
@@ -41,7 +35,7 @@ class CoreService
      */
     public function createNewEntityByName(string $repoName, $choice): ?int
     {
-        if (empty($choice = trim($choice))) {
+        if (empty($choice = trim((string) $choice))) {
             return null;
         }
 

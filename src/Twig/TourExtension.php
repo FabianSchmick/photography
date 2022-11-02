@@ -10,16 +10,10 @@ use Twig\TwigFilter;
 class TourExtension extends AbstractExtension
 {
     /**
-     * @var TourService
-     */
-    private $tourService;
-
-    /**
      * TourExtension constructor.
      */
-    public function __construct(TourService $tourService)
+    public function __construct(private readonly TourService $tourService)
     {
-        $this->tourService = $tourService;
     }
 
     /**
@@ -40,10 +34,5 @@ class TourExtension extends AbstractExtension
     public function formatDuration(?\DateInterval $duration): ?string
     {
         return $this->tourService->formatDuration($duration);
-    }
-
-    public function getName(): string
-    {
-        return 'tour';
     }
 }

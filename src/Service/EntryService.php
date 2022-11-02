@@ -13,34 +13,10 @@ use Symfony\Component\HttpFoundation\File\File;
 class EntryService
 {
     /**
-     * @var EntityManagerInterface
-     */
-    private $em;
-
-    /**
-     * @var LocationService
-     */
-    private $locationService;
-
-    /**
-     * @var TagService
-     */
-    private $tagService;
-
-    /**
-     * @var EntryRepository
-     */
-    private $entryRepository;
-
-    /**
      * EntryService constructor.
      */
-    public function __construct(EntityManagerInterface $em, LocationService $locationService, TagService $tagService, EntryRepository $entryRepository)
+    public function __construct(private readonly EntityManagerInterface $em, private readonly LocationService $locationService, private readonly TagService $tagService, private readonly EntryRepository $entryRepository)
     {
-        $this->em = $em;
-        $this->locationService = $locationService;
-        $this->tagService = $tagService;
-        $this->entryRepository = $entryRepository;
     }
 
     /**

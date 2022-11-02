@@ -7,6 +7,7 @@ use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
+use Gedmo\Translatable\Query\TreeWalker\TranslationWalker;
 use Gedmo\Translatable\TranslatableListener;
 
 /**
@@ -66,7 +67,7 @@ class TagRepository extends ServiceEntityRepository
         $query = $qb->getQuery();
 
         $query
-            ->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER, 'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker')
+            ->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER, TranslationWalker::class)
             ->setHint(TranslatableListener::HINT_TRANSLATABLE_LOCALE, $locale);
 
         return $query->getOneOrNullResult();

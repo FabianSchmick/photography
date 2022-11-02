@@ -9,28 +9,10 @@ use Doctrine\ORM\EntityManagerInterface;
 class TagService
 {
     /**
-     * @var EntityManagerInterface
-     */
-    private $em;
-
-    /**
-     * @var string
-     */
-    private $defaultLocale;
-
-    /**
-     * @var TagRepository
-     */
-    private $tagRepository;
-
-    /**
      * TagService constructor.
      */
-    public function __construct(EntityManagerInterface $em, TagRepository $tagRepository, string $defaultLocale)
+    public function __construct(private readonly EntityManagerInterface $em, private readonly TagRepository $tagRepository, private readonly string $defaultLocale)
     {
-        $this->em = $em;
-        $this->defaultLocale = $defaultLocale;
-        $this->tagRepository = $tagRepository;
     }
 
     /**

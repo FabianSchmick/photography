@@ -2,7 +2,6 @@
 
 namespace App\EventListener;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Event\Event;
@@ -14,32 +13,13 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 class RemovedFileListener
 {
     /**
-     * @var EntityManagerInterface
-     */
-    private $em;
-
-    /**
-     * @var CacheManager
-     */
-    private $cacheManager;
-
-    /**
-     * @var UploaderHelper
-     */
-    private $helper;
-
-    /**
      * RemovedFileListener constructor.
      *
-     * @param EntityManagerInterface $em             Entity Manager
-     * @param CacheManager           $cacheManager   Liip Cache Manger for removing files from media/cache dir
-     * @param UploaderHelper         $uploaderHelper Liip UploadHelper to get the path
+     * @param CacheManager   $cacheManager Liip Cache Manger for removing files from media/cache dir
+     * @param UploaderHelper $helper       Vich UploadHelper to get the path
      */
-    public function __construct(EntityManagerInterface $em, CacheManager $cacheManager, UploaderHelper $uploaderHelper)
+    public function __construct(private readonly CacheManager $cacheManager, private readonly UploaderHelper $helper)
     {
-        $this->em = $em;
-        $this->cacheManager = $cacheManager;
-        $this->helper = $uploaderHelper;
     }
 
     /**

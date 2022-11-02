@@ -24,22 +24,10 @@ use Symfony\Component\Security\Core\Security;
 class EntryType extends AbstractType
 {
     /**
-     * @var EntityManagerInterface
-     */
-    private $em;
-
-    /**
-     * @var Security
-     */
-    private $security;
-
-    /**
      * EntryType constructor.
      */
-    public function __construct(EntityManagerInterface $em, Security $security)
+    public function __construct(private readonly EntityManagerInterface $em, private readonly Security $security)
     {
-        $this->em = $em;
-        $this->security = $security;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -61,10 +49,8 @@ class EntryType extends AbstractType
                 'class' => User::class,
                 'data' => $entry->getAuthor() ?? $this->security->getUser(),
                 'placeholder' => '',
-                'query_builder' => function (EntityRepository $er): QueryBuilder {
-                    return $er->createQueryBuilder('u')
-                        ->orderBy('u.fullname', 'ASC');
-                },
+                'query_builder' => fn (EntityRepository $er): QueryBuilder => $er->createQueryBuilder('u')
+                    ->orderBy('u.fullname', 'ASC'),
             ])
             ->add('location', ExtendableEntityByNameType::class, [
                 'required' => false,
@@ -82,10 +68,8 @@ class EntryType extends AbstractType
                 'required' => false,
                 'class' => Tour::class,
                 'placeholder' => '',
-                'query_builder' => function (EntityRepository $er): QueryBuilder {
-                    return $er->createQueryBuilder('t')
-                        ->orderBy('t.name', 'ASC');
-                },
+                'query_builder' => fn (EntityRepository $er): QueryBuilder => $er->createQueryBuilder('t')
+                    ->orderBy('t.name', 'ASC'),
             ])
         ;
 

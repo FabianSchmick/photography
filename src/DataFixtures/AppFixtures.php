@@ -12,26 +12,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class AppFixtures extends Fixture
 {
-    /**
-     * @var EntryService
-     */
-    private $entryService;
-
-    /**
-     * @var TourService
-     */
-    private $tourService;
-
-    /**
-     * @var string
-     */
-    private $projectDir;
-
-    public function __construct(EntryService $entryService, TourService $tourService, $projectDir)
+    public function __construct(private readonly EntryService $entryService, private readonly TourService $tourService, private readonly string $projectDir)
     {
-        $this->entryService = $entryService;
-        $this->tourService = $tourService;
-        $this->projectDir = $projectDir;
     }
 
     public function load(ObjectManager $manager): void

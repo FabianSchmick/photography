@@ -19,45 +19,35 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Location
 {
     /**
-     * @var int
-     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private int $id;
 
     /**
-     * @var string|null
-     *
      * @Assert\NotBlank()
      * @Assert\Length(max=255)
      * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255, unique=true)
      */
-    private $name;
+    private ?string $name = null;
 
     /**
-     * @var Collection
-     *
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="location", cascade={"persist"})
      */
-    private $entries;
+    private Collection $entries;
 
     /**
-     * @var Collection
-     *
      * @ORM\ManyToMany(targetEntity="Tour", mappedBy="locations", cascade={"persist"})
      */
-    private $tours;
+    private Collection $tours;
 
     /**
-     * @var string|null
-     *
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      */
-    private $locale;
+    private ?string $locale = null;
 
     /**
      * Location constructor.

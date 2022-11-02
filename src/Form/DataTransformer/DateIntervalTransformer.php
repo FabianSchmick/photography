@@ -9,14 +9,8 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class DateIntervalTransformer implements DataTransformerInterface
 {
-    /**
-     * @var TourService
-     */
-    private $tourService;
-
-    public function __construct(TourService $tourService)
+    public function __construct(private readonly TourService $tourService)
     {
-        $this->tourService = $tourService;
     }
 
     /**

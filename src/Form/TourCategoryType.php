@@ -23,9 +23,7 @@ class TourCategoryType extends AbstractType
                 'required' => false,
                 'placeholder' => '',
                 'choices' => array_combine($types, $types),
-                'choice_label' => function ($choice, $key) {
-                    return "label.{$key}";
-                },
+                'choice_label' => fn ($choice, $key) => "label.$key",
             ])
             ->add('hasLevelOfDifficulty', CheckboxType::class, [
                 'required' => false,

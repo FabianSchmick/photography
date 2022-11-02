@@ -22,90 +22,70 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Tag
 {
     /**
-     * @var int
-     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="App\Doctrine\UniqueIdGenerator")
      */
-    private $id;
+    private int $id;
 
     /**
-     * @var string|null
-     *
      * @Assert\NotBlank()
      * @Assert\Length(max=128)
      * @Gedmo\Translatable
      * @ORM\Column(type="string", length=128, unique=true)
      */
-    private $name;
+    private ?string $name = null;
 
     /**
-     * @var string|null
-     *
      * @Assert\Length(max=65535)
      * @Gedmo\Translatable
      * @ORM\Column(type="text", length=65535, nullable=true)
      */
-    private $description;
+    private ?string $description = null;
 
     /**
-     * @var Entry|null
-     *
      * @ORM\ManyToOne(targetEntity="Entry", inversedBy="previewTags")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
-    private $previewEntry;
+    private ?Entry $previewEntry = null;
 
     /**
-     * @var int|null
-     *
      * @Assert\Type("numeric")
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $sort;
+    private ?int $sort = null;
 
     /**
-     * @var Collection
-     *
      * @ORM\ManyToMany(targetEntity="Entry", mappedBy="tags", cascade={"persist"})
      * @ORM\OrderBy({"timestamp"="DESC"})
      */
-    private $entries;
+    private Collection $entries;
 
     /**
-     * @var string|null
-     *
      * @Gedmo\Translatable
      * @Gedmo\Slug(fields={"name"}, updatable=true)
      * @ORM\Column(type="string", unique=true)
      */
-    private $slug;
+    private ?string $slug = null;
 
     /**
-     * @var \DateTime|null
-     *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private $created;
+    private ?DateTime $created = null;
 
     /**
-     * @var \DateTime|null
-     *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private $updated;
+    private ?DateTime $updated = null;
 
     /**
-     * @var string|null
-     *
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      */
-    private $locale;
+    private ?string $locale = null;
 
     /**
      * Tag constructor.

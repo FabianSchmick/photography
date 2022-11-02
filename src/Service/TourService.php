@@ -15,38 +15,10 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 class TourService
 {
     /**
-     * Entity Manager.
-     *
-     * @var EntityManagerInterface
-     */
-    private $em;
-
-    /**
-     * @var TourRepository
-     */
-    private $tourRepository;
-
-    /**
-     * @var UploaderHelper
-     */
-    private $uploaderHelper;
-
-    /**
-     * @var string
-     */
-    private $publicDir;
-
-    /**
      * TourService constructor.
-     *
-     * @param EntityManagerInterface $em Entity Manager
      */
-    public function __construct(EntityManagerInterface $em, TourRepository $tourRepository, UploaderHelper $uploaderHelper, $publicDir)
+    public function __construct(private readonly EntityManagerInterface $em, private readonly TourRepository $tourRepository, private readonly UploaderHelper $uploaderHelper, private readonly string $publicDir)
     {
-        $this->em = $em;
-        $this->tourRepository = $tourRepository;
-        $this->uploaderHelper = $uploaderHelper;
-        $this->publicDir = $publicDir;
     }
 
     /**
@@ -146,16 +118,12 @@ class TourService
             return null;
         }
 
-        switch ($formulaType) {
-            case 'HIKING':
-                return $this->calcHikingDuration($tour->getDistance(), $tour->getCumulativeElevationGain(), $tour->getCumulativeElevationLoss());
-            case 'MTB':
-                return $this->calcMountainBikeDuration($tour->getDistance(), $tour->getCumulativeElevationGain());
-            case 'VIA_FERRATA':
-                return $this->calcViaFerrataDuration($tour->getCumulativeElevationGain(), $tour->getCumulativeElevationLoss());
-        }
-
-        return null;
+        return match ($formulaType) {
+            'HIKING' => $this->calcHikingDuration($tour->getDistance(), $tour->getCumulativeElevationGain(), $tour->getCumulativeElevationLoss()),
+            'MTB' => $this->calcMountainBikeDuration($tour->getDistance(), $tour->getCumulativeElevationGain()),
+            'VIA_FERRATA' => $this->calcViaFerrataDuration($tour->getCumulativeElevationGain(), $tour->getCumulativeElevationLoss()),
+            default => null,
+        };
     }
 
     /**

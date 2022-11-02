@@ -21,57 +21,43 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class File
 {
     /**
-     * @var int
-     *
      * @ORM\Id
      * @ORM\Column(type="bigint")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private int $id;
 
     /**
-     * @var ?BaseFile
-     *
      * @Vich\UploadableField(mapping="file", fileNameProperty="fileName", mimeType="mimeType", originalName="originalName")
      */
-    private $file;
+    private ?BaseFile $file = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @var string
      */
-    private $fileName;
+    private ?string $fileName = null;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $originalName;
+    private ?string $originalName = null;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $mimeType;
+    private ?string $mimeType = null;
 
     /**
-     * @var \DateTime
-     *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private $created;
+    private ?DateTime $created = null;
 
     /**
-     * @var \DateTime
-     *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private $updated;
+    private ?DateTime $updated;
 
     public function __toString(): string
     {

@@ -19,75 +19,59 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Entry
 {
-    public const PAGINATION_QUANTITY = 10;
+    final public const PAGINATION_QUANTITY = 10;
 
     /**
-     * @var int
-     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="App\Doctrine\UniqueIdGenerator")
      */
-    private $id;
+    private int $id;
 
     /**
-     * @var string|null
-     *
      * @Assert\NotBlank()
      * @Assert\Length(max=255)
      * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private ?string $name = null;
 
     /**
-     * @var string|null
-     *
      * @Assert\Length(max=65535)
      * @Gedmo\Translatable
      * @ORM\Column(type="text", length=65535, nullable=true)
      */
-    private $description;
+    private ?string $description = null;
 
     /**
-     * @var User|null
-     *
      * @ORM\ManyToOne(targetEntity="User", inversedBy="entries", cascade={"persist"})
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
-    private $author;
+    private ?User $author = null;
 
     /**
-     * @var File|null
-     *
      * @Assert\NotBlank()
      * @ORM\OneToOne(targetEntity="EntryImage", inversedBy="entry", cascade={"persist", "remove"})
      */
-    private $image;
+    private ?File $image = null;
 
     /**
-     * @var Location|null
-     *
      * @ORM\ManyToOne(targetEntity="Location", inversedBy="entries", cascade={"persist"})
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
-    private $location;
+    private ?Location $location = null;
 
     /**
-     * @var \DateTime|null
-     *
      * @Assert\Type("\DateTimeInterface")
      * @Assert\LessThan(
      *     value="now",
      * )
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $timestamp;
+    private ?DateTime $timestamp;
 
     /**
-     * @var Collection
-     *
      * @Assert\NotBlank()
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="entries", cascade={"persist"})
      * @ORM\JoinTable(name="tag_to_entry",
@@ -96,62 +80,48 @@ class Entry
      * )
      * @ORM\OrderBy({"sort"="DESC"})
      */
-    private $tags;
+    private Collection $tags;
 
     /**
-     * @var Collection
-     *
      * @ORM\OneToMany(targetEntity="Tag", mappedBy="previewEntry")
      */
-    private $previewTags;
+    private Collection $previewTags;
 
     /**
-     * @var Tour|null
-     *
      * @ORM\ManyToOne(targetEntity="Tour", inversedBy="entries", cascade={"persist"})
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
-    private $tour;
+    private ?Tour $tour = null;
 
     /**
-     * @var Tour|null
-     *
      * @ORM\OneToOne(targetEntity="Tour", mappedBy="previewEntry")
      */
-    private $previewTour;
+    private ?Tour $previewTour = null;
 
     /**
-     * @var string|null
-     *
      * @Gedmo\Translatable
      * @Gedmo\Slug(fields={"name"}, updatable=true)
      * @ORM\Column(type="string", unique=true)
      */
-    private $slug;
+    private ?string $slug = null;
 
     /**
-     * @var \DateTime|null
-     *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private $created;
+    private ?DateTime $created = null;
 
     /**
-     * @var \DateTime|null
-     *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private $updated;
+    private ?DateTime $updated = null;
 
     /**
-     * @var string|null
-     *
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      */
-    private $locale;
+    private ?string $locale = null;
 
     /**
      * Entry constructor.
@@ -159,6 +129,7 @@ class Entry
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->previewTags = new ArrayCollection();
         $this->timestamp = new DateTime();
     }
 
@@ -297,8 +268,6 @@ class Entry
 
     /**
      * Get tags.
-     *
-     * @return Collection|null
      */
     public function getTags(): Collection
     {
@@ -308,7 +277,7 @@ class Entry
     /**
      * Get previewTag.
      */
-    public function getPreviewTags(): ?Collection
+    public function getPreviewTags(): Collection
     {
         return $this->previewTags;
     }

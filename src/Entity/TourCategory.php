@@ -19,78 +19,60 @@ use Symfony\Component\Validator\Constraints as Assert;
 class TourCategory
 {
     /**
-     * @var int
-     *
      * @ORM\Column(type="integer")
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="App\Doctrine\UniqueIdGenerator")
      */
-    private $id;
+    private int $id;
 
     /**
-     * @var string|null
-     *
      * @Assert\NotBlank()
      * @Assert\Length(max=128)
      * @Gedmo\Translatable
      * @ORM\Column(type="string", length=128, unique=true)
      */
-    private $name;
+    private ?string $name = null;
 
     /**
-     * @var int|null
-     *
      * @Assert\Type("numeric")
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $sort;
+    private ?int $sort = null;
 
     /**
-     * @var string|null
-     *
      * @ORM\Column(type="string", length=32, nullable=true)
      */
-    private $formulaType;
+    private ?string $formulaType = null;
 
     /**
-     * @var bool
-     *
      * @ORM\Column(type="boolean", options={"default" : 0})
      */
-    private $hasLevelOfDifficulty;
+    private bool $hasLevelOfDifficulty = false;
 
     /**
-     * @var \DateTime|null
-     *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private $created;
+    private ?DateTime $created = null;
 
     /**
-     * @var \DateTime|null
-     *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private $updated;
+    private ?DateTime $updated = null;
 
     /**
-     * @var Collection
-     *
      * @ORM\OneToMany(targetEntity="Tour", mappedBy="tourCategory", cascade={"persist"})
      * @ORM\OrderBy({"sort"="DESC"})
      */
-    private $tours;
+    private Collection $tours;
 
     /**
-     * @var string|null
-     *
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      */
-    private $locale;
+    private ?string $locale = null;
 
     /**
      * Tour constructor.
@@ -98,7 +80,6 @@ class TourCategory
     public function __construct()
     {
         $this->tours = new ArrayCollection();
-        $this->hasLevelOfDifficulty = false;
     }
 
     public function __toString(): string
@@ -188,8 +169,6 @@ class TourCategory
 
     /**
      * Get tours.
-     *
-     * @return Collection|Tour[]
      */
     public function getTours(): Collection
     {

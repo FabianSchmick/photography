@@ -14,14 +14,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ExtendableEntityByNameType extends AbstractType
 {
-    /**
-     * @var CoreService
-     */
-    private $coreService;
-
-    public function __construct(CoreService $coreService)
+    public function __construct(private readonly CoreService $coreService)
     {
-        $this->coreService = $coreService;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -47,10 +41,8 @@ class ExtendableEntityByNameType extends AbstractType
     {
         $resolver->setDefaults([
             'placeholder' => '',
-            'query_builder' => function (EntityRepository $er): QueryBuilder {
-                return $er->createQueryBuilder('e')
-                    ->orderBy('e.name', 'ASC');
-            },
+            'query_builder' => fn (EntityRepository $er): QueryBuilder => $er->createQueryBuilder('e')
+                ->orderBy('e.name', 'ASC'),
         ]);
     }
 

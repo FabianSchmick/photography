@@ -15,18 +15,14 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class EntryImage extends File
 {
     /**
-     * @var BaseFile
-     *
      * @Vich\UploadableField(mapping="entry_image", fileNameProperty="fileName", mimeType="mimeType", originalName="originalName")
      */
-    private $file;
+    private ?BaseFile $file;
 
     /**
-     * @var Entry
-     *
      * @ORM\OneToOne(targetEntity="Entry", mappedBy="image")
      */
-    private $entry;
+    private ?Entry $entry = null;
 
     /**
      * Stop PHP auto-rotating images based on EXIF 'orientation' data.

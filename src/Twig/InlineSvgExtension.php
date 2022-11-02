@@ -24,18 +24,10 @@ use Twig\TwigFilter;
 class InlineSvgExtension extends AbstractExtension
 {
     /**
-     * Project public directory.
-     *
-     * @var string
-     */
-    private $publicDir;
-
-    /**
      * InlineSvgExtension constructor.
      */
-    public function __construct(string $publicDir)
+    public function __construct(private readonly string $publicDir)
     {
-        $this->publicDir = $publicDir;
     }
 
     /**
@@ -60,6 +52,8 @@ class InlineSvgExtension extends AbstractExtension
      */
     public function getInlineSvg(string $filename, array $params = []): Markup
     {
+        $svg = null;
+        $attrs = [];
         $fullPath = $this->publicDir.$filename;
 
         if (!file_exists($fullPath)) {
@@ -103,10 +97,5 @@ class InlineSvgExtension extends AbstractExtension
         $svgString = preg_replace('#<!--.*-->#', '', $svgString);
 
         return new Markup($svgString, 'UTF-8');
-    }
-
-    public function getName(): string
-    {
-        return 'inline_svg';
     }
 }

@@ -15,18 +15,14 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class TourFile extends File
 {
     /**
-     * @var BaseFile
-     *
      * @Vich\UploadableField(mapping="tour_file", fileNameProperty="fileName", mimeType="mimeType", originalName="originalName")
      */
-    private $file;
+    private ?BaseFile $file;
 
     /**
-     * @var Tour
-     *
      * @ORM\OneToOne(targetEntity="Tour", mappedBy="file")
      */
-    private $tour;
+    private ?Tour $tour = null;
 
     public function getTour(): Tour
     {

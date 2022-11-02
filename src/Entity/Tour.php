@@ -22,9 +22,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Tour
 {
-    public const PAGINATION_QUANTITY = 6;
+    final public const PAGINATION_QUANTITY = 6;
 
-    public const FORMULA_DEFINITIONS = [
+    final public const FORMULA_DEFINITIONS = [
         'HIKING' => [
             /* Values according to: DIN 33466 */
             'UP_METERS_PER_HOUR' => 300,
@@ -41,7 +41,7 @@ class Tour
         ],
     ];
 
-    public const LEVEL_OF_DIFFICULTY = [
+    final public const LEVEL_OF_DIFFICULTY = [
         'A' => 0,
         'A/B' => 1,
         'B' => 2,
@@ -60,51 +60,41 @@ class Tour
     ];
 
     /**
-     * @var int
-     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="App\Doctrine\UniqueIdGenerator")
      */
-    private $id;
+    private int $id;
 
     /**
-     * @var string|null
-     *
      * @Assert\NotBlank()
      * @Assert\Length(max=255)
      * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255, unique=true)
      */
-    private $name;
+    private ?string $name = null;
 
     /**
-     * @var string|null
-     *
      * @Assert\Length(max=65535)
      * @Gedmo\Translatable
      * @ORM\Column(type="text", length=65535, nullable=true)
      */
-    private $description;
+    private ?string $description = null;
 
     /**
-     * @var string|null
-     *
      * @Assert\Length(max=65535)
      * @Gedmo\Translatable
      * @ORM\Column(type="text", length=65535, nullable=true)
      */
-    private $directions;
+    private ?string $directions = null;
 
     /**
-     * @var string|null
-     *
      * @Assert\Length(max=65535)
      * @Gedmo\Translatable
      * @ORM\Column(type="text", length=65535, nullable=true)
      */
-    private $equipmentAndSafety;
+    private ?string $equipmentAndSafety = null;
 
     /**
      * @var float|null in kilometers
@@ -112,14 +102,12 @@ class Tour
      * @Assert\Range(min=0, max=100000)
      * @ORM\Column(type="decimal", precision=6, scale=1, nullable=true)
      */
-    private $distance;
+    private ?float $distance = null;
 
     /**
-     * @var DateInterval|null
-     *
      * @ORM\Column(type="dateinterval", nullable=true)
      */
-    private $duration;
+    private ?DateInterval $duration = null;
 
     /**
      * @var int|null in meters
@@ -128,7 +116,7 @@ class Tour
      * @Assert\GreaterThanOrEqual(propertyPath="minAltitude")
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $maxAltitude;
+    private ?int $maxAltitude = null;
 
     /**
      * @var int|null in meters
@@ -137,7 +125,7 @@ class Tour
      * @Assert\LessThanOrEqual(propertyPath="maxAltitude")
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $minAltitude;
+    private ?int $minAltitude = null;
 
     /**
      * @var int|null in meters
@@ -145,7 +133,7 @@ class Tour
      * @Assert\Range(min=-1000, max=100000)
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $cumulativeElevationGain;
+    private ?int $cumulativeElevationGain = null;
 
     /**
      * @var int|null in meters
@@ -153,7 +141,7 @@ class Tour
      * @Assert\Range(min=-1000, max=100000)
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $cumulativeElevationLoss;
+    private ?int $cumulativeElevationLoss = null;
 
     /**
      * @var int|null in meters
@@ -161,19 +149,15 @@ class Tour
      * @Assert\Choice(choices=Tour::LEVEL_OF_DIFFICULTY)
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $levelOfDifficulty;
+    private ?int $levelOfDifficulty = null;
 
     /**
-     * @var int|null
-     *
      * @Assert\Type("numeric")
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $sort;
+    private ?int $sort = null;
 
     /**
-     * @var Collection
-     *
      * @ORM\ManyToMany(targetEntity="Location", inversedBy="tours", cascade={"persist"})
      * @ORM\JoinTable(name="location_to_tour",
      *     joinColumns={@ORM\JoinColumn(referencedColumnName="id")},
@@ -181,79 +165,61 @@ class Tour
      * )
      * @ORM\OrderBy({"name"="ASC"})
      */
-    private $locations;
+    private Collection $locations;
 
     /**
-     * @var Entry|null
-     *
      * @ORM\OneToOne(targetEntity="Entry", inversedBy="previewTour")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
-    private $previewEntry;
+    private ?Entry $previewEntry = null;
 
     /**
-     * @var File|null
-     *
      * @Assert\NotBlank()
      * @ORM\OneToOne(targetEntity="TourFile", inversedBy="tour", cascade={"persist", "remove"})
      */
-    private $file;
+    private ?File $file = null;
 
     /**
-     * @var string|null
-     *
      * @Gedmo\Translatable
      * @Gedmo\Slug(fields={"name"}, updatable=true)
      * @ORM\Column(type="string", unique=true)
      */
-    private $slug;
+    private ?string $slug = null;
 
     /**
-     * @var \DateTime|null
-     *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private $created;
+    private ?DateTime $created = null;
 
     /**
-     * @var \DateTime|null
-     *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private $updated;
+    private ?DateTime $updated = null;
 
     /**
-     * @var Collection
-     *
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="tour", cascade={"persist"})
      * @ORM\OrderBy({"timestamp"="DESC"})
      */
-    private $entries;
+    private Collection $entries;
 
     /**
-     * @var TourCategory|null
-     *
      * @ORM\ManyToOne(targetEntity="TourCategory", inversedBy="tours")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
-    private $tourCategory;
+    private ?TourCategory $tourCategory = null;
 
     /**
-     * @var string|null
-     *
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      */
-    private $locale;
+    private ?string $locale = null;
 
     /**
      * Helper variable for gpx segments (coordinates).
-     *
-     * @var array|null
      */
-    private $segments;
+    private ?array $segments = null;
 
     /**
      * Tour constructor.

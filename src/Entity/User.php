@@ -28,32 +28,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $username;
+    private string $username;
 
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=128)
      */
-    private $fullname;
+    private string $fullname;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private array $roles = [];
 
     /**
      * @var string The hashed password
      *
      * @ORM\Column(type="string")
      */
-    private $password;
+    private ?string $password = null;
 
     /**
-     * @var Collection
-     *
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="author", cascade={"persist"})
      */
-    private $entries;
+    private Collection $entries;
 
     /**
      * User constructor.
@@ -165,7 +163,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
     /**
      * Get Entries.
      */
-    public function getEntries(): ?Collection
+    public function getEntries(): Collection
     {
         return $this->entries;
     }
