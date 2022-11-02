@@ -123,6 +123,7 @@
 
 {% block embed_svg %}
     {{ parent() }}
+    {{ asset('assets/images/layout/icons/angle-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/elevation-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/map-icon.svg')|inline_svg() }}
     {{ asset('assets/images/layout/icons/list-icon.svg')|inline_svg() }}
