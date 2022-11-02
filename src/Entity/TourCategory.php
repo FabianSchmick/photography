@@ -55,13 +55,13 @@ class TourCategory
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private ?DateTimeInterface $created = null;
+    private DateTimeInterface $created;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private ?DateTimeInterface $updated = null;
+    private DateTimeInterface $updated;
 
     /**
      * @ORM\OneToMany(targetEntity="Tour", mappedBy="tourCategory", cascade={"persist"})
@@ -75,12 +75,11 @@ class TourCategory
      */
     private ?string $locale = null;
 
-    /**
-     * Tour constructor.
-     */
     public function __construct()
     {
         $this->tours = new ArrayCollection();
+        $this->created = new DateTime();
+        $this->updated = new DateTime();
     }
 
     public function __toString(): string
@@ -88,17 +87,11 @@ class TourCategory
         return $this->getName();
     }
 
-    /**
-     * Get id.
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * Set name.
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -106,17 +99,11 @@ class TourCategory
         return $this;
     }
 
-    /**
-     * Get name.
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * Set formulaType.
-     */
     public function setFormulaType(?string $formulaType): self
     {
         $this->formulaType = $formulaType;
@@ -124,17 +111,11 @@ class TourCategory
         return $this;
     }
 
-    /**
-     * Get formulaType.
-     */
     public function getFormulaType(): ?string
     {
         return $this->formulaType;
     }
 
-    /**
-     * Set hasLevelOfDifficulty.
-     */
     public function setHasLevelOfDifficulty(bool $hasLevelOfDifficulty): self
     {
         $this->hasLevelOfDifficulty = $hasLevelOfDifficulty;
@@ -142,17 +123,11 @@ class TourCategory
         return $this;
     }
 
-    /**
-     * Get hasLevelOfDifficulty.
-     */
     public function isHasLevelOfDifficulty(): bool
     {
         return $this->hasLevelOfDifficulty;
     }
 
-    /**
-     * Set sort.
-     */
     public function setSort(?int $sort): self
     {
         $this->sort = $sort;
@@ -160,25 +135,16 @@ class TourCategory
         return $this;
     }
 
-    /**
-     * Get sort.
-     */
     public function getSort(): ?int
     {
         return $this->sort;
     }
 
-    /**
-     * Get tours.
-     */
     public function getTours(): Collection
     {
         return $this->tours;
     }
 
-    /**
-     * Set created.
-     */
     public function setCreated(DateTimeInterface $created): self
     {
         $this->created = $created;
@@ -186,17 +152,11 @@ class TourCategory
         return $this;
     }
 
-    /**
-     * Get created.
-     */
-    public function getCreated(): ?DateTimeInterface
+    public function getCreated(): DateTimeInterface
     {
         return $this->created;
     }
 
-    /**
-     * Set updated.
-     */
     public function setUpdated(DateTimeInterface $updated): self
     {
         $this->updated = $updated;
@@ -204,17 +164,11 @@ class TourCategory
         return $this;
     }
 
-    /**
-     * Get updated.
-     */
-    public function getUpdated(): ?DateTimeInterface
+    public function getUpdated(): DateTimeInterface
     {
         return $this->updated;
     }
 
-    /**
-     * Set locale.
-     */
     public function setTranslatableLocale(?string $locale): void
     {
         $this->locale = $locale;

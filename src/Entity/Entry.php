@@ -110,13 +110,13 @@ class Entry
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private ?DateTimeInterface $created = null;
+    private DateTimeInterface $created;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private ?DateTimeInterface $updated = null;
+    private DateTimeInterface $updated;
 
     /**
      * @Gedmo\Locale
@@ -124,14 +124,13 @@ class Entry
      */
     private ?string $locale = null;
 
-    /**
-     * Entry constructor.
-     */
     public function __construct()
     {
         $this->tags = new ArrayCollection();
         $this->previewTags = new ArrayCollection();
         $this->timestamp = new DateTime();
+        $this->created = new DateTime();
+        $this->updated = new DateTime();
     }
 
     public function __toString(): string
@@ -139,17 +138,11 @@ class Entry
         return $this->getName();
     }
 
-    /**
-     * Get id.
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * Set name.
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -157,17 +150,11 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get name.
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * Set description.
-     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -175,17 +162,11 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get description.
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * Set author.
-     */
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
@@ -193,17 +174,11 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get author.
-     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
-    /**
-     * Set image.
-     */
     public function setImage(?File $image): self
     {
         $this->image = $image;
@@ -211,17 +186,11 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get image.
-     */
     public function getImage(): ?File
     {
         return $this->image;
     }
 
-    /**
-     * Set location.
-     */
     public function setLocation(?Location $location): self
     {
         $this->location = $location;
@@ -229,17 +198,11 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get location.
-     */
     public function getLocation(): ?Location
     {
         return $this->location;
     }
 
-    /**
-     * Set timestamp.
-     */
     public function setTimestamp(?DateTimeInterface $timestamp): self
     {
         $this->timestamp = clone $timestamp;
@@ -247,17 +210,11 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get timestamp.
-     */
     public function getTimestamp(): ?DateTimeInterface
     {
         return $this->timestamp;
     }
 
-    /**
-     * Set tags.
-     */
     public function setTags(Collection $tags): self
     {
         $this->tags = $tags;
@@ -265,25 +222,16 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get tags.
-     */
     public function getTags(): Collection
     {
         return $this->tags;
     }
 
-    /**
-     * Get previewTag.
-     */
     public function getPreviewTags(): Collection
     {
         return $this->previewTags;
     }
 
-    /**
-     * Set tour.
-     */
     public function setTour(?Tour $tour): self
     {
         $this->tour = $tour;
@@ -291,25 +239,16 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get tour.
-     */
     public function getTour(): ?Tour
     {
         return $this->tour;
     }
 
-    /**
-     * Get previewTour.
-     */
     public function getPreviewTour(): ?Tour
     {
         return $this->previewTour;
     }
 
-    /**
-     * Set slug.
-     */
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
@@ -317,53 +256,35 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get slug.
-     */
     public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    /**
-     * Set created.
-     */
-    public function setCreated(?DateTimeInterface $created): self
+    public function setCreated(DateTimeInterface $created): self
     {
         $this->created = $created;
 
         return $this;
     }
 
-    /**
-     * Get created.
-     */
-    public function getCreated(): ?DateTimeInterface
+    public function getCreated(): DateTimeInterface
     {
         return $this->created;
     }
 
-    /**
-     * Set updated.
-     */
-    public function setUpdated(?DateTimeInterface $updated): self
+    public function setUpdated(DateTimeInterface $updated): self
     {
         $this->updated = $updated;
 
         return $this;
     }
 
-    /**
-     * Get updated.
-     */
-    public function getUpdated(): ?DateTimeInterface
+    public function getUpdated(): DateTimeInterface
     {
         return $this->updated;
     }
 
-    /**
-     * Set locale.
-     */
     public function setTranslatableLocale(?string $locale): void
     {
         $this->locale = $locale;

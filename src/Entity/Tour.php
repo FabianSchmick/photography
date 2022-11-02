@@ -191,13 +191,13 @@ class Tour
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private ?DateTimeInterface $created = null;
+    private DateTimeInterface $created;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private ?DateTimeInterface $updated = null;
+    private DateTimeInterface $updated;
 
     /**
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="tour", cascade={"persist"})
@@ -222,13 +222,12 @@ class Tour
      */
     private ?array $segments = null;
 
-    /**
-     * Tour constructor.
-     */
     public function __construct()
     {
         $this->entries = new ArrayCollection();
         $this->locations = new ArrayCollection();
+        $this->created = new DateTime();
+        $this->updated = new DateTime();
     }
 
     public function __toString(): string
@@ -236,17 +235,11 @@ class Tour
         return $this->getName();
     }
 
-    /**
-     * Get id.
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * Set name.
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -254,17 +247,11 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get name.
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * Set description.
-     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -272,17 +259,11 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get description.
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * Set directions.
-     */
     public function setDirections(?string $directions): self
     {
         $this->directions = $directions;
@@ -290,17 +271,11 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get directions.
-     */
     public function getDirections(): ?string
     {
         return $this->directions;
     }
 
-    /**
-     * Set equipmentAndSafety.
-     */
     public function setEquipmentAndSafety(?string $equipmentAndSafety): self
     {
         $this->equipmentAndSafety = $equipmentAndSafety;
@@ -308,17 +283,11 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get equipmentAndSafety.
-     */
     public function getEquipmentAndSafety(): ?string
     {
         return $this->equipmentAndSafety;
     }
 
-    /**
-     * Set distance.
-     */
     public function setDistance(?float $distance): self
     {
         $this->distance = $distance;
@@ -326,17 +295,11 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get distance.
-     */
     public function getDistance(): ?float
     {
         return $this->distance;
     }
 
-    /**
-     * Set duration.
-     */
     public function setDuration(?DateInterval $duration): self
     {
         $this->duration = $duration;
@@ -344,17 +307,11 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get duration.
-     */
     public function getDuration(): ?DateInterval
     {
         return $this->duration;
     }
 
-    /**
-     * Set maxAltitude.
-     */
     public function setMaxAltitude(?int $maxAltitude): self
     {
         $this->maxAltitude = $maxAltitude;
@@ -362,17 +319,11 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get maxAltitude.
-     */
     public function getMaxAltitude(): ?int
     {
         return $this->maxAltitude;
     }
 
-    /**
-     * Set minAltitude.
-     */
     public function setMinAltitude(?int $minAltitude): self
     {
         $this->minAltitude = $minAltitude;
@@ -380,17 +331,11 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get minAltitude.
-     */
     public function getMinAltitude(): ?int
     {
         return $this->minAltitude;
     }
 
-    /**
-     * Set cumulativeElevationGain.
-     */
     public function setCumulativeElevationGain(?int $cumulativeElevationGain): self
     {
         $this->cumulativeElevationGain = $cumulativeElevationGain;
@@ -398,17 +343,11 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get cumulativeElevationGain.
-     */
     public function getCumulativeElevationGain(): ?int
     {
         return $this->cumulativeElevationGain !== 0 ? $this->cumulativeElevationGain : null;
     }
 
-    /**
-     * Set cumulativeElevationLoss.
-     */
     public function setCumulativeElevationLoss(?int $cumulativeElevationLoss): self
     {
         $this->cumulativeElevationLoss = $cumulativeElevationLoss;
@@ -416,17 +355,11 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get cumulativeElevationLoss.
-     */
     public function getCumulativeElevationLoss(): ?int
     {
         return $this->cumulativeElevationLoss !== 0 ? $this->cumulativeElevationLoss : null;
     }
 
-    /**
-     * Set levelOfDifficulty.
-     */
     public function setLevelOfDifficulty(?int $levelOfDifficulty): self
     {
         $this->levelOfDifficulty = $levelOfDifficulty;
@@ -434,9 +367,6 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get levelOfDifficulty.
-     */
     public function getLevelOfDifficulty(): ?int
     {
         return $this->levelOfDifficulty;
@@ -450,9 +380,6 @@ class Tour
         return array_search($this->levelOfDifficulty, self::LEVEL_OF_DIFFICULTY);
     }
 
-    /**
-     * Set sort.
-     */
     public function setSort(?int $sort): self
     {
         $this->sort = $sort;
@@ -460,17 +387,11 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get sort.
-     */
     public function getSort(): ?int
     {
         return $this->sort;
     }
 
-    /**
-     * Set locations.
-     */
     public function setLocation(?Collection $locations): self
     {
         $this->locations = $locations;
@@ -478,17 +399,11 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get locations.
-     */
     public function getLocations(): ?Collection
     {
         return $this->locations;
     }
 
-    /**
-     * Set previewEntry.
-     */
     public function setPreviewEntry(?Entry $previewEntry): self
     {
         $this->previewEntry = $previewEntry;
@@ -496,17 +411,11 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get previewEntry.
-     */
     public function getPreviewEntry(): ?Entry
     {
         return $this->previewEntry;
     }
 
-    /**
-     * Set file.
-     */
     public function setFile(?File $file): self
     {
         $this->file = $file;
@@ -514,17 +423,11 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get file.
-     */
     public function getFile(): ?File
     {
         return $this->file;
     }
 
-    /**
-     * Set slug.
-     */
     public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
@@ -532,46 +435,31 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get slug.
-     */
     public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    /**
-     * Set created.
-     */
-    public function setCreated(?DateTimeInterface $created): self
+    public function setCreated(DateTimeInterface $created): self
     {
         $this->created = $created;
 
         return $this;
     }
 
-    /**
-     * Get created.
-     */
-    public function getCreated(): ?DateTimeInterface
+    public function getCreated(): DateTimeInterface
     {
         return $this->created;
     }
 
-    /**
-     * Set updated.
-     */
-    public function setUpdated(?DateTimeInterface $updated): self
+    public function setUpdated(DateTimeInterface $updated): self
     {
         $this->updated = $updated;
 
         return $this;
     }
 
-    /**
-     * Get updated.
-     */
-    public function getUpdated(): ?DateTimeInterface
+    public function getUpdated(): DateTimeInterface
     {
         return $this->updated;
     }
@@ -600,17 +488,11 @@ class Tour
         return new ArrayCollection($entries);
     }
 
-    /**
-     * Get tourCategory.
-     */
     public function getTourCategory(): ?TourCategory
     {
         return $this->tourCategory;
     }
 
-    /**
-     * Set tourCategory.
-     */
     public function setTourCategory(?TourCategory $tourCategory): self
     {
         $this->tourCategory = $tourCategory;
@@ -618,9 +500,6 @@ class Tour
         return $this;
     }
 
-    /**
-     * Set segments.
-     */
     public function setSegments(?array $segments): self
     {
         $this->segments = $segments;
@@ -628,17 +507,11 @@ class Tour
         return $this;
     }
 
-    /**
-     * Get segments.
-     */
     public function getSegments(): ?array
     {
         return $this->segments;
     }
 
-    /**
-     * Set locale.
-     */
     public function setTranslatableLocale(?string $locale): void
     {
         $this->locale = $locale;

@@ -52,22 +52,25 @@ class File
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private ?DateTimeInterface $created = null;
+    private DateTimeInterface $created;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private ?DateTimeInterface $updated;
+    private DateTimeInterface $updated;
+
+    public function __construct()
+    {
+        $this->created = new DateTime();
+        $this->updated = new DateTime();
+    }
 
     public function __toString(): string
     {
         return (!is_null($this->getFileName())) ? $this->getFileName() : '';
     }
 
-    /**
-     * Get id.
-     */
     public function getId(): int
     {
         return $this->id;
@@ -128,22 +131,22 @@ class File
         $this->mimeType = $mimeType;
     }
 
-    public function getCreated(): ?DateTimeInterface
+    public function getCreated(): DateTimeInterface
     {
         return $this->created;
     }
 
-    public function setCreated(?DateTimeInterface $created): void
+    public function setCreated(DateTimeInterface $created): void
     {
         $this->created = $created;
     }
 
-    public function getUpdated(): ?DateTimeInterface
+    public function getUpdated(): DateTimeInterface
     {
         return $this->updated;
     }
 
-    public function setUpdated(?DateTimeInterface $updated): void
+    public function setUpdated(DateTimeInterface $updated): void
     {
         $this->updated = $updated;
     }

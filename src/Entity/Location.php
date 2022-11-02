@@ -49,9 +49,6 @@ class Location
      */
     private ?string $locale = null;
 
-    /**
-     * Location constructor.
-     */
     public function __construct()
     {
         $this->entries = new ArrayCollection();
@@ -63,17 +60,11 @@ class Location
         return $this->getName();
     }
 
-    /**
-     * Get id.
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * Set name.
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -81,33 +72,21 @@ class Location
         return $this;
     }
 
-    /**
-     * Get name.
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * Get Entries.
-     */
     public function getEntries(): Collection
     {
         return $this->entries;
     }
 
-    /**
-     * Get Tours.
-     */
     public function getTours(): Collection
     {
         return $this->tours;
     }
 
-    /**
-     * Set locale.
-     */
     public function setTranslatableLocale(?string $locale): void
     {
         $this->locale = $locale;

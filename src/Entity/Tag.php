@@ -74,13 +74,13 @@ class Tag
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private ?DateTimeInterface $created = null;
+    private DateTimeInterface $created;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private ?DateTimeInterface $updated = null;
+    private DateTimeInterface $updated;
 
     /**
      * @Gedmo\Locale
@@ -88,12 +88,11 @@ class Tag
      */
     private ?string $locale = null;
 
-    /**
-     * Tag constructor.
-     */
     public function __construct()
     {
         $this->entries = new ArrayCollection();
+        $this->created = new DateTime();
+        $this->updated = new DateTime();
     }
 
     public function __toString(): string
@@ -101,17 +100,11 @@ class Tag
         return $this->getName();
     }
 
-    /**
-     * Get id.
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * Set name.
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -119,17 +112,11 @@ class Tag
         return $this;
     }
 
-    /**
-     * Get name.
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * Set description.
-     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -137,17 +124,11 @@ class Tag
         return $this;
     }
 
-    /**
-     * Get description.
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * Set previewEntry.
-     */
     public function setPreviewEntry(?Entry $previewEntry): self
     {
         $this->previewEntry = $previewEntry;
@@ -155,17 +136,11 @@ class Tag
         return $this;
     }
 
-    /**
-     * Get previewEntry.
-     */
     public function getPreviewEntry(): ?Entry
     {
         return $this->previewEntry;
     }
 
-    /**
-     * Set sort.
-     */
     public function setSort(?int $sort): self
     {
         $this->sort = $sort;
@@ -173,25 +148,16 @@ class Tag
         return $this;
     }
 
-    /**
-     * Get sort.
-     */
     public function getSort(): ?int
     {
         return $this->sort;
     }
 
-    /**
-     * Get entries.
-     */
     public function getEntries(): Collection
     {
         return $this->entries;
     }
 
-    /**
-     * Set slug.
-     */
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
@@ -199,53 +165,35 @@ class Tag
         return $this;
     }
 
-    /**
-     * Get slug.
-     */
     public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    /**
-     * Set created.
-     */
-    public function setCreated(?DateTimeInterface $created): self
+    public function setCreated(DateTimeInterface $created): self
     {
         $this->created = $created;
 
         return $this;
     }
 
-    /**
-     * Get created.
-     */
-    public function getCreated(): ?DateTimeInterface
+    public function getCreated(): DateTimeInterface
     {
         return $this->created;
     }
 
-    /**
-     * Set updated.
-     */
-    public function setUpdated(?DateTimeInterface $updated): self
+    public function setUpdated(DateTimeInterface $updated): self
     {
         $this->updated = $updated;
 
         return $this;
     }
 
-    /**
-     * Get updated.
-     */
-    public function getUpdated(): ?DateTimeInterface
+    public function getUpdated(): DateTimeInterface
     {
         return $this->updated;
     }
 
-    /**
-     * Set locale.
-     */
     public function setTranslatableLocale(?string $locale): void
     {
         $this->locale = $locale;
