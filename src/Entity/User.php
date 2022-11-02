@@ -22,7 +22,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @Assert\NotBlank()
@@ -127,7 +127,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
     /**
      * @see PasswordAuthenticatedUserInterface
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }

@@ -22,7 +22,7 @@ class TourFile extends File
     /**
      * @ORM\OneToOne(targetEntity="Tour", mappedBy="file")
      */
-    private ?Tour $tour = null;
+    private Tour $tour;
 
     public function getTour(): Tour
     {

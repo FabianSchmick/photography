@@ -22,7 +22,7 @@ class EntryImage extends File
     /**
      * @ORM\OneToOne(targetEntity="Entry", mappedBy="image")
      */
-    private ?Entry $entry = null;
+    private Entry $entry;
 
     /**
      * Stop PHP auto-rotating images based on EXIF 'orientation' data.
