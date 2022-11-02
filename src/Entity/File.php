@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use DateTime;
-use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File as BaseFile;
