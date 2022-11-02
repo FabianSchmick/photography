@@ -96,7 +96,7 @@ class TourService
         $elevationData = [];
         foreach ($tour->getSegments()[0]->points as $point) {
             $elevationData[] = [
-                round($point->distance) / 1000, intval($point->elevation),
+                (int) $point->distance / 1000, (int) $point->elevation,
             ];
         }
 
@@ -113,11 +113,11 @@ class TourService
         }
 
         $tour->setDescription($tour->getDescription() ?? $track->description);
-        $tour->setDistance($tour->getDistance() ?? $track->stats->distance);
-        $tour->setMinAltitude($tour->getMinAltitude() ?? $track->stats->minAltitude);
-        $tour->setMaxAltitude($tour->getMaxAltitude() ?? $track->stats->maxAltitude);
-        $tour->setCumulativeElevationGain($tour->getCumulativeElevationGain() ?? $track->stats->cumulativeElevationGain);
-        $tour->setCumulativeElevationLoss($tour->getCumulativeElevationLoss() ?? $track->stats->cumulativeElevationLoss);
+        $tour->setDistance($tour->getDistance() ?? (int) $track->stats->distance);
+        $tour->setMinAltitude($tour->getMinAltitude() ?? (int) $track->stats->minAltitude);
+        $tour->setMaxAltitude($tour->getMaxAltitude() ?? (int) $track->stats->maxAltitude);
+        $tour->setCumulativeElevationGain($tour->getCumulativeElevationGain() ?? (int) $track->stats->cumulativeElevationGain);
+        $tour->setCumulativeElevationLoss($tour->getCumulativeElevationLoss() ?? (int) $track->stats->cumulativeElevationLoss);
         $tour->setSegments($track->segments);
         $tour->setDuration($tour->getDuration() ?? $this->calcTourDuration($tour)); // Calc last, so all needed values are set
     }
