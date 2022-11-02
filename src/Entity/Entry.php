@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -69,7 +70,7 @@ class Entry
      * )
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?DateTime $timestamp;
+    private ?DateTimeInterface $timestamp;
 
     /**
      * @Assert\NotBlank()
@@ -109,13 +110,13 @@ class Entry
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private ?DateTime $created = null;
+    private ?DateTimeInterface $created = null;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private ?DateTime $updated = null;
+    private ?DateTimeInterface $updated = null;
 
     /**
      * @Gedmo\Locale
@@ -194,8 +195,6 @@ class Entry
 
     /**
      * Get author.
-     *
-     * @return User
      */
     public function getAuthor(): ?User
     {
@@ -241,7 +240,7 @@ class Entry
     /**
      * Set timestamp.
      */
-    public function setTimestamp(?DateTime $timestamp): self
+    public function setTimestamp(?DateTimeInterface $timestamp): self
     {
         $this->timestamp = clone $timestamp;
 
@@ -251,7 +250,7 @@ class Entry
     /**
      * Get timestamp.
      */
-    public function getTimestamp(): ?DateTime
+    public function getTimestamp(): ?DateTimeInterface
     {
         return $this->timestamp;
     }
@@ -329,7 +328,7 @@ class Entry
     /**
      * Set created.
      */
-    public function setCreated(DateTime $created): self
+    public function setCreated(?DateTimeInterface $created): self
     {
         $this->created = $created;
 
@@ -339,7 +338,7 @@ class Entry
     /**
      * Get created.
      */
-    public function getCreated(): ?DateTime
+    public function getCreated(): ?DateTimeInterface
     {
         return $this->created;
     }
@@ -347,7 +346,7 @@ class Entry
     /**
      * Set updated.
      */
-    public function setUpdated(DateTime $updated): self
+    public function setUpdated(?DateTimeInterface $updated): self
     {
         $this->updated = $updated;
 
@@ -357,7 +356,7 @@ class Entry
     /**
      * Get updated.
      */
-    public function getUpdated(): ?DateTime
+    public function getUpdated(): ?DateTimeInterface
     {
         return $this->updated;
     }

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File as BaseFile;
@@ -51,13 +52,13 @@ class File
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private ?DateTime $created = null;
+    private ?DateTimeInterface $created = null;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private ?DateTime $updated;
+    private ?DateTimeInterface $updated;
 
     public function __toString(): string
     {
@@ -127,22 +128,22 @@ class File
         $this->mimeType = $mimeType;
     }
 
-    public function getCreated(): DateTime
+    public function getCreated(): ?DateTimeInterface
     {
         return $this->created;
     }
 
-    public function setCreated(DateTime $created): void
+    public function setCreated(?DateTimeInterface $created): void
     {
         $this->created = $created;
     }
 
-    public function getUpdated(): DateTime
+    public function getUpdated(): ?DateTimeInterface
     {
         return $this->updated;
     }
 
-    public function setUpdated(DateTime $updated): void
+    public function setUpdated(?DateTimeInterface $updated): void
     {
         $this->updated = $updated;
     }

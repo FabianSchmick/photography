@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -54,13 +55,13 @@ class TourCategory
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private ?DateTime $created = null;
+    private ?DateTimeInterface $created = null;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private ?DateTime $updated = null;
+    private ?DateTimeInterface $updated = null;
 
     /**
      * @ORM\OneToMany(targetEntity="Tour", mappedBy="tourCategory", cascade={"persist"})
@@ -178,7 +179,7 @@ class TourCategory
     /**
      * Set created.
      */
-    public function setCreated(DateTime $created): self
+    public function setCreated(DateTimeInterface $created): self
     {
         $this->created = $created;
 
@@ -188,7 +189,7 @@ class TourCategory
     /**
      * Get created.
      */
-    public function getCreated(): ?DateTime
+    public function getCreated(): ?DateTimeInterface
     {
         return $this->created;
     }
@@ -196,7 +197,7 @@ class TourCategory
     /**
      * Set updated.
      */
-    public function setUpdated(DateTime $updated): self
+    public function setUpdated(DateTimeInterface $updated): self
     {
         $this->updated = $updated;
 
@@ -206,7 +207,7 @@ class TourCategory
     /**
      * Get updated.
      */
-    public function getUpdated(): ?DateTime
+    public function getUpdated(): ?DateTimeInterface
     {
         return $this->updated;
     }
