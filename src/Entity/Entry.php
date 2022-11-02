@@ -34,14 +34,14 @@ class Entry
      * @Assert\NotBlank()
      * @Assert\Length(max=255)
      * @Gedmo\Translatable
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string")
      */
     private ?string $name = null;
 
     /**
      * @Assert\Length(max=65535)
      * @Gedmo\Translatable
-     * @ORM\Column(type="text", length=65535, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private ?string $description = null;
 
@@ -80,11 +80,15 @@ class Entry
      *     inverseJoinColumns={@ORM\JoinColumn(referencedColumnName="id")}
      * )
      * @ORM\OrderBy({"sort"="DESC"})
+     *
+     * @var Collection<Tag>
      */
     private Collection $tags;
 
     /**
      * @ORM\OneToMany(targetEntity="Tag", mappedBy="previewEntry")
+     *
+     * @var Collection<Tag>
      */
     private Collection $previewTags;
 

@@ -50,6 +50,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
 
     /**
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="author", cascade={"persist"})
+     *
+     * @var Collection<Entry>
      */
     private Collection $entries;
 

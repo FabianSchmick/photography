@@ -72,28 +72,28 @@ class Tour
      * @Assert\NotBlank()
      * @Assert\Length(max=255)
      * @Gedmo\Translatable
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", unique=true)
      */
     private ?string $name = null;
 
     /**
      * @Assert\Length(max=65535)
      * @Gedmo\Translatable
-     * @ORM\Column(type="text", length=65535, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private ?string $description = null;
 
     /**
      * @Assert\Length(max=65535)
      * @Gedmo\Translatable
-     * @ORM\Column(type="text", length=65535, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private ?string $directions = null;
 
     /**
      * @Assert\Length(max=65535)
      * @Gedmo\Translatable
-     * @ORM\Column(type="text", length=65535, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private ?string $equipmentAndSafety = null;
 
@@ -165,6 +165,8 @@ class Tour
      *     inverseJoinColumns={@ORM\JoinColumn(referencedColumnName="id")}
      * )
      * @ORM\OrderBy({"name"="ASC"})
+     *
+     * @var Collection<Location>
      */
     private Collection $locations;
 
@@ -202,6 +204,8 @@ class Tour
     /**
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="tour", cascade={"persist"})
      * @ORM\OrderBy({"timestamp"="DESC"})
+     *
+     * @var Collection<Entry>
      */
     private Collection $entries;
 

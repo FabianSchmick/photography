@@ -66,6 +66,8 @@ class TourCategory
     /**
      * @ORM\OneToMany(targetEntity="Tour", mappedBy="tourCategory", cascade={"persist"})
      * @ORM\OrderBy({"sort"="DESC"})
+     *
+     * @var Collection<Tour>
      */
     private Collection $tours;
 

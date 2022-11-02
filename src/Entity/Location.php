@@ -29,17 +29,21 @@ class Location
      * @Assert\NotBlank()
      * @Assert\Length(max=255)
      * @Gedmo\Translatable
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", unique=true)
      */
     private ?string $name = null;
 
     /**
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="location", cascade={"persist"})
+     *
+     * @var Collection<Entry>
      */
     private Collection $entries;
 
     /**
      * @ORM\ManyToMany(targetEntity="Tour", mappedBy="locations", cascade={"persist"})
+     *
+     * @var Collection<Tour>
      */
     private Collection $tours;
 

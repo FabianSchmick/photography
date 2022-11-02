@@ -41,7 +41,7 @@ class Tag
     /**
      * @Assert\Length(max=65535)
      * @Gedmo\Translatable
-     * @ORM\Column(type="text", length=65535, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private ?string $description = null;
 
@@ -60,6 +60,8 @@ class Tag
     /**
      * @ORM\ManyToMany(targetEntity="Entry", mappedBy="tags", cascade={"persist"})
      * @ORM\OrderBy({"timestamp"="DESC"})
+     *
+     * @var Collection<Entry>
      */
     private Collection $entries;
 
