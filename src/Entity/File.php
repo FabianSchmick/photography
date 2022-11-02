@@ -7,6 +7,7 @@ use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File as BaseFile;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -84,7 +85,7 @@ class File
      * must be able to accept an instance of 'File' as the bundle will inject one here
      * during Doctrine hydration.
      *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     * @param File|UploadedFile $file
      */
     public function setFile(?BaseFile $file = null): void
     {
@@ -93,7 +94,7 @@ class File
         if ($file !== null) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updated = new DateTimeImmutable();
+            $this->updated = new DateTime();
         }
     }
 
