@@ -3,22 +3,14 @@
 namespace App\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
-use HTMLPurifier;
-use HTMLPurifier_Config;
 
 class CoreService
 {
     /**
-     * @var EntityManagerInterface
-     */
-    private $em;
-
-    /**
      * EntryService constructor.
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(private readonly EntityManagerInterface $em)
     {
-        $this->em = $em;
     }
 
     /**
@@ -28,10 +20,10 @@ class CoreService
      */
     public function purifyString(?string $string): string
     {
-        $config = HTMLPurifier_Config::createDefault();
+        $config = \HTMLPurifier_Config::createDefault();
         $config->set('HTML.AllowedElements', ['a', 'b', 'strong', 'ul', 'li', 'p', 'br']);
         $config->set('Attr.AllowedFrameTargets', ['_blank']);
-        $purifier = new HTMLPurifier($config);
+        $purifier = new \HTMLPurifier($config);
 
         return $purifier->purify($string);
     }
@@ -41,7 +33,7 @@ class CoreService
      */
     public function createNewEntityByName(string $repoName, $choice): ?int
     {
-        if (empty($choice = trim($choice))) {
+        if (empty($choice = trim((string) $choice))) {
             return null;
         }
 

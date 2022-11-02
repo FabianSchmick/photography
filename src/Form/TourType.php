@@ -21,22 +21,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class TourType extends AbstractType
 {
     /**
-     * @var TourService
-     */
-    private $tourService;
-
-    /**
-     * @var DateIntervalTransformer
-     */
-    private $transformer;
-
-    /**
      * TourType constructor.
      */
-    public function __construct(TourService $tourService, DateIntervalTransformer $transformer)
+    public function __construct(private readonly TourService $tourService, private readonly DateIntervalTransformer $transformer)
     {
-        $this->tourService = $tourService;
-        $this->transformer = $transformer;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void

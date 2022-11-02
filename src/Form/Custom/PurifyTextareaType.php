@@ -11,14 +11,8 @@ use Symfony\Component\Form\FormEvents;
 
 class PurifyTextareaType extends AbstractType
 {
-    /**
-     * @var CoreService
-     */
-    private $coreService;
-
-    public function __construct(CoreService $coreService)
+    public function __construct(private readonly CoreService $coreService)
     {
-        $this->coreService = $coreService;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void

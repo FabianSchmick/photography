@@ -5,7 +5,6 @@ namespace App\Service;
 use App\Entity\Tour;
 use App\Entity\TourFile;
 use App\Repository\TourRepository;
-use DateInterval;
 use Doctrine\ORM\EntityManagerInterface;
 use phpGPX\Models\Track;
 use phpGPX\phpGPX;
@@ -15,38 +14,10 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 class TourService
 {
     /**
-     * Entity Manager.
-     *
-     * @var EntityManagerInterface
-     */
-    private $em;
-
-    /**
-     * @var TourRepository
-     */
-    private $tourRepository;
-
-    /**
-     * @var UploaderHelper
-     */
-    private $uploaderHelper;
-
-    /**
-     * @var string
-     */
-    private $publicDir;
-
-    /**
      * TourService constructor.
-     *
-     * @param EntityManagerInterface $em Entity Manager
      */
-    public function __construct(EntityManagerInterface $em, TourRepository $tourRepository, UploaderHelper $uploaderHelper, $publicDir)
+    public function __construct(private readonly EntityManagerInterface $em, private readonly TourRepository $tourRepository, private readonly UploaderHelper $uploaderHelper, private readonly string $publicDir)
     {
-        $this->em = $em;
-        $this->tourRepository = $tourRepository;
-        $this->uploaderHelper = $uploaderHelper;
-        $this->publicDir = $publicDir;
     }
 
     /**
@@ -96,7 +67,7 @@ class TourService
         $elevationData = [];
         foreach ($tour->getSegments()[0]->points as $point) {
             $elevationData[] = [
-                round($point->distance) / 1000, intval($point->elevation),
+                (int) $point->distance / 1000, (int) $point->elevation,
             ];
         }
 
@@ -113,11 +84,11 @@ class TourService
         }
 
         $tour->setDescription($tour->getDescription() ?? $track->description);
-        $tour->setDistance($tour->getDistance() ?? $track->stats->distance);
-        $tour->setMinAltitude($tour->getMinAltitude() ?? $track->stats->minAltitude);
-        $tour->setMaxAltitude($tour->getMaxAltitude() ?? $track->stats->maxAltitude);
-        $tour->setCumulativeElevationGain($tour->getCumulativeElevationGain() ?? $track->stats->cumulativeElevationGain);
-        $tour->setCumulativeElevationLoss($tour->getCumulativeElevationLoss() ?? $track->stats->cumulativeElevationLoss);
+        $tour->setDistance($tour->getDistance() ?? (int) $track->stats->distance);
+        $tour->setMinAltitude($tour->getMinAltitude() ?? (int) $track->stats->minAltitude);
+        $tour->setMaxAltitude($tour->getMaxAltitude() ?? (int) $track->stats->maxAltitude);
+        $tour->setCumulativeElevationGain($tour->getCumulativeElevationGain() ?? (int) $track->stats->cumulativeElevationGain);
+        $tour->setCumulativeElevationLoss($tour->getCumulativeElevationLoss() ?? (int) $track->stats->cumulativeElevationLoss);
         $tour->setSegments($track->segments);
         $tour->setDuration($tour->getDuration() ?? $this->calcTourDuration($tour)); // Calc last, so all needed values are set
     }
@@ -140,28 +111,24 @@ class TourService
     /**
      * Calc the tour duration dependent on formula type.
      */
-    public function calcTourDuration(Tour $tour): ?DateInterval
+    public function calcTourDuration(Tour $tour): ?\DateInterval
     {
         if (!($formulaType = $tour->getFormulaType()) || !$tour->getCumulativeElevationGain()) {
             return null;
         }
 
-        switch ($formulaType) {
-            case 'HIKING':
-                return $this->calcHikingDuration($tour->getDistance(), $tour->getCumulativeElevationGain(), $tour->getCumulativeElevationLoss());
-            case 'MTB':
-                return $this->calcMountainBikeDuration($tour->getDistance(), $tour->getCumulativeElevationGain());
-            case 'VIA_FERRATA':
-                return $this->calcViaFerrataDuration($tour->getCumulativeElevationGain(), $tour->getCumulativeElevationLoss());
-        }
-
-        return null;
+        return match ($formulaType) {
+            'HIKING' => $this->calcHikingDuration($tour->getDistance(), $tour->getCumulativeElevationGain(), $tour->getCumulativeElevationLoss()),
+            'MTB' => $this->calcMountainBikeDuration($tour->getDistance(), $tour->getCumulativeElevationGain()),
+            'VIA_FERRATA' => $this->calcViaFerrataDuration($tour->getCumulativeElevationGain(), $tour->getCumulativeElevationLoss()),
+            default => null,
+        };
     }
 
     /**
      * Calc the hiking tour duration.
      */
-    public function calcHikingDuration($distance, $upElevation, $downElevation): DateInterval
+    public function calcHikingDuration($distance, $upElevation, $downElevation): \DateInterval
     {
         $formulaDefinitions = Tour::FORMULA_DEFINITIONS['HIKING'];
 
@@ -182,7 +149,7 @@ class TourService
     /**
      * Calc the mountainbike tour duration.
      */
-    public function calcMountainBikeDuration($distance, $upElevation): DateInterval
+    public function calcMountainBikeDuration($distance, $upElevation): \DateInterval
     {
         $formulaDefinitions = Tour::FORMULA_DEFINITIONS['MTB'];
 
@@ -201,7 +168,7 @@ class TourService
     /**
      * Calc the via ferrata tour duration.
      */
-    public function calcViaFerrataDuration($upElevation, $downElevation): DateInterval
+    public function calcViaFerrataDuration($upElevation, $downElevation): \DateInterval
     {
         $formulaDefinitions = Tour::FORMULA_DEFINITIONS['VIA_FERRATA'];
 
@@ -216,7 +183,7 @@ class TourService
      * Formats the tour duration.
      * Removes leading zero from hours.
      */
-    public function formatDuration(?DateInterval $duration): ?string
+    public function formatDuration(?\DateInterval $duration): ?string
     {
         if ($duration === null) {
             return null;
@@ -228,13 +195,13 @@ class TourService
     /**
      * Calculate the real time from a decimal duration.
      */
-    private function formatDecimalDuration($decimalDuration): DateInterval
+    private function formatDecimalDuration($decimalDuration): \DateInterval
     {
         $hours = floor($decimalDuration);
         $decimalMinutes = ($hours - $decimalDuration) * -1;
 
         $minutes = (int) ($decimalMinutes * (60 / 1)); // 60 minutes/hour
 
-        return new DateInterval("PT{$hours}H{$minutes}M");
+        return new \DateInterval("PT{$hours}H{$minutes}M");
     }
 }

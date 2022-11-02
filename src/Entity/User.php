@@ -22,42 +22,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $username;
+    private string $username;
 
     /**
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=128)
      */
-    private $fullname;
+    private string $fullname;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private array $roles = [];
 
     /**
      * @var string The hashed password
      *
      * @ORM\Column(type="string")
      */
-    private $password;
+    private ?string $password = null;
 
     /**
-     * @var Collection
-     *
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="author", cascade={"persist"})
+     *
+     * @var Collection<Entry>
      */
-    private $entries;
+    private Collection $entries;
 
-    /**
-     * User constructor.
-     */
     public function __construct()
     {
         $this->entries = new ArrayCollection();
@@ -68,9 +65,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
         return $this->getFullname();
     }
 
-    /**
-     * Get id.
-     */
     public function getId(): ?int
     {
         return $this->id;
@@ -94,9 +88,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
         return $this->username;
     }
 
-    /**
-     * Set username.
-     */
     public function setUsername(string $username): self
     {
         $this->username = $username;
@@ -104,17 +95,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
         return $this;
     }
 
-    /**
-     * Get fullname.
-     */
     public function getFullname(): ?string
     {
         return $this->fullname;
     }
 
-    /**
-     * Set fullname.
-     */
     public function setFullname(?string $fullname): self
     {
         $this->fullname = $fullname;
@@ -134,9 +119,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
         return array_unique($roles);
     }
 
-    /**
-     * Set roles.
-     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -147,14 +129,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
     /**
      * @see PasswordAuthenticatedUserInterface
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    /**
-     * Set password.
-     */
     public function setPassword(string $password): self
     {
         $this->password = $password;
@@ -162,10 +141,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
         return $this;
     }
 
-    /**
-     * Get Entries.
-     */
-    public function getEntries(): ?Collection
+    public function getEntries(): Collection
     {
         return $this->entries;
     }

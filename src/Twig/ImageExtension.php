@@ -2,23 +2,16 @@
 
 namespace App\Twig;
 
-use Exception;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 class ImageExtension extends AbstractExtension
 {
     /**
-     * @var string
-     */
-    private $publicDir;
-
-    /**
      * ImageExtension constructor.
      */
-    public function __construct(string $publicDir)
+    public function __construct(private readonly string $publicDir)
     {
-        $this->publicDir = $publicDir;
     }
 
     /**
@@ -38,20 +31,15 @@ class ImageExtension extends AbstractExtension
      *
      * @param string $filename Imagepath
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function getImageDimensions(string $filename): array
     {
-        list($width, $height) = getimagesize($this->publicDir.$filename);
+        [$width, $height] = getimagesize($this->publicDir.$filename);
 
         return [
             'width' => $width,
             'height' => $height,
         ];
-    }
-
-    public function getName(): string
-    {
-        return 'image';
     }
 }

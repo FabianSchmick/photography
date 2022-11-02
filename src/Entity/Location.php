@@ -19,49 +19,40 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Location
 {
     /**
-     * @var int
-     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private int $id;
 
     /**
-     * @var string|null
-     *
      * @Assert\NotBlank()
      * @Assert\Length(max=255)
      * @Gedmo\Translatable
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", unique=true)
      */
-    private $name;
+    private ?string $name = null;
 
     /**
-     * @var Collection
-     *
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="location", cascade={"persist"})
+     *
+     * @var Collection<Entry>
      */
-    private $entries;
+    private Collection $entries;
 
     /**
-     * @var Collection
-     *
      * @ORM\ManyToMany(targetEntity="Tour", mappedBy="locations", cascade={"persist"})
+     *
+     * @var Collection<Tour>
      */
-    private $tours;
+    private Collection $tours;
 
     /**
-     * @var string|null
-     *
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      */
-    private $locale;
+    private ?string $locale = null;
 
-    /**
-     * Location constructor.
-     */
     public function __construct()
     {
         $this->entries = new ArrayCollection();
@@ -70,20 +61,14 @@ class Location
 
     public function __toString(): string
     {
-        return $this->getName();
+        return $this->getName() ?? '';
     }
 
-    /**
-     * Get id.
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * Set name.
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -91,33 +76,21 @@ class Location
         return $this;
     }
 
-    /**
-     * Get name.
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * Get Entries.
-     */
     public function getEntries(): Collection
     {
         return $this->entries;
     }
 
-    /**
-     * Get Tours.
-     */
     public function getTours(): Collection
     {
         return $this->tours;
     }
 
-    /**
-     * Set locale.
-     */
     public function setTranslatableLocale(?string $locale): void
     {
         $this->locale = $locale;

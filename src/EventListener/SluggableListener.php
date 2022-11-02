@@ -15,8 +15,6 @@ class SluggableListener extends GedmoSluggableListener
 
     /**
      * Add the unique ID for Entries as a prefix.
-     *
-     * @return string $text
      */
     public static function transliterate(string $text, string $separator, $objectBeingSlugged): string
     {

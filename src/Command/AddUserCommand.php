@@ -20,27 +20,11 @@ class AddUserCommand extends Command
 {
     protected static $defaultName = 'app:add-user';
 
-    /**
-     * @var SymfonyStyle
-     */
-    private $io;
+    private SymfonyStyle $io;
 
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
-    /**
-     * @var UserPasswordHasherInterface
-     */
-    private $passwordHasher;
-
-    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher)
+    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly UserPasswordHasherInterface $passwordHasher)
     {
         parent::__construct();
-
-        $this->entityManager = $em;
-        $this->passwordHasher = $passwordHasher;
     }
 
     /**

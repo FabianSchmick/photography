@@ -3,10 +3,10 @@
 namespace App\Entity;
 
 use DateTime;
-use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File as BaseFile;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -21,66 +21,55 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class File
 {
     /**
-     * @var int
-     *
      * @ORM\Id
      * @ORM\Column(type="bigint")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private int $id;
 
     /**
-     * @var ?BaseFile
-     *
      * @Vich\UploadableField(mapping="file", fileNameProperty="fileName", mimeType="mimeType", originalName="originalName")
      */
-    private $file;
+    private ?BaseFile $file = null;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @var string
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $fileName;
+    private ?string $fileName = null;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $originalName;
+    private ?string $originalName = null;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $mimeType;
+    private ?string $mimeType = null;
 
     /**
-     * @var \DateTime
-     *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private $created;
+    private \DateTimeInterface $created;
 
     /**
-     * @var \DateTime
-     *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private $updated;
+    private \DateTimeInterface $updated;
+
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
+    }
 
     public function __toString(): string
     {
         return (!is_null($this->getFileName())) ? $this->getFileName() : '';
     }
 
-    /**
-     * Get id.
-     */
     public function getId(): int
     {
         return $this->id;
@@ -98,7 +87,7 @@ class File
      * must be able to accept an instance of 'File' as the bundle will inject one here
      * during Doctrine hydration.
      *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     * @param File|UploadedFile $file
      */
     public function setFile(?BaseFile $file = null): void
     {
@@ -107,7 +96,7 @@ class File
         if ($file !== null) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updated = new DateTimeImmutable();
+            $this->updated = new \DateTime();
         }
     }
 
@@ -141,22 +130,22 @@ class File
         $this->mimeType = $mimeType;
     }
 
-    public function getCreated(): DateTime
+    public function getCreated(): \DateTimeInterface
     {
         return $this->created;
     }
 
-    public function setCreated(DateTime $created): void
+    public function setCreated(\DateTimeInterface $created): void
     {
         $this->created = $created;
     }
 
-    public function getUpdated(): DateTime
+    public function getUpdated(): \DateTimeInterface
     {
         return $this->updated;
     }
 
-    public function setUpdated(DateTime $updated): void
+    public function setUpdated(\DateTimeInterface $updated): void
     {
         $this->updated = $updated;
     }

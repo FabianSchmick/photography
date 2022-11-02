@@ -11,31 +11,13 @@ use Twig\TwigFunction;
 
 class PaginationExtension extends AbstractExtension
 {
-    public const MAX_VISIBLE = 2;
-
-    /**
-     * @var RouterInterface
-     */
-    private $router;
-
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
-
-    /**
-     * @var Environment
-     */
-    private $environment;
+    final public const MAX_VISIBLE = 2;
 
     /**
      * PaginationExtension constructor.
      */
-    public function __construct(RouterInterface $router, TranslatorInterface $translator, Environment $engine)
+    public function __construct(private readonly RouterInterface $router, private readonly TranslatorInterface $translator, private readonly Environment $environment)
     {
-        $this->router = $router;
-        $this->translator = $translator;
-        $this->environment = $engine;
     }
 
     /**
@@ -64,8 +46,8 @@ class PaginationExtension extends AbstractExtension
         $start = 1;
         $end = $last;
         $options['active'] = $options['class'] ?? 'active';
-        $options['prev'] = $options['prev'] ?? 'prev';
-        $options['next'] = $options['next'] ?? 'next';
+        $options['prev'] ??= 'prev';
+        $options['next'] ??= 'next';
 
         // Add parameters for the route
         if (isset($options['q'])) {
@@ -122,10 +104,5 @@ class PaginationExtension extends AbstractExtension
         ]);
 
         return new Markup($html, 'UTF-8');
-    }
-
-    public function getName(): string
-    {
-        return 'paginate';
     }
 }

@@ -12,17 +12,15 @@ class PaginationHelper
      *
      * @param Query $query    The Query
      * @param int   $pageSize Count of elements per page
-     *
-     * @return float|int
      */
-    public static function getPagesCount(Query $query, int $pageSize = 10)
+    public static function getPagesCount(Query $query, int $pageSize = 10): int
     {
         $paginator = new Paginator($query);
 
         // Disable for performance reasons
         $paginator->setUseOutputWalkers(false);
 
-        return ceil($paginator->count() / $pageSize);
+        return (int) ceil($paginator->count() / $pageSize);
     }
 
     /**

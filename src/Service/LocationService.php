@@ -9,24 +9,10 @@ use Doctrine\ORM\EntityManagerInterface;
 class LocationService
 {
     /**
-     * Entity Manager.
-     *
-     * @var EntityManagerInterface
-     */
-    private $em;
-
-    /**
-     * @var LocationRepository
-     */
-    private $locationRepository;
-
-    /**
      * LocationService constructor.
      */
-    public function __construct(EntityManagerInterface $em, LocationRepository $locationRepository)
+    public function __construct(private readonly EntityManagerInterface $em, private readonly LocationRepository $locationRepository)
     {
-        $this->em = $em;
-        $this->locationRepository = $locationRepository;
     }
 
     /**

@@ -19,75 +19,59 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Entry
 {
-    public const PAGINATION_QUANTITY = 10;
+    final public const PAGINATION_QUANTITY = 10;
 
     /**
-     * @var int
-     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="App\Doctrine\UniqueIdGenerator")
      */
-    private $id;
+    private int $id;
 
     /**
-     * @var string|null
-     *
      * @Assert\NotBlank()
      * @Assert\Length(max=255)
      * @Gedmo\Translatable
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string")
      */
-    private $name;
+    private ?string $name = null;
 
     /**
-     * @var string|null
-     *
      * @Assert\Length(max=65535)
      * @Gedmo\Translatable
-     * @ORM\Column(type="text", length=65535, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $description;
+    private ?string $description = null;
 
     /**
-     * @var User|null
-     *
      * @ORM\ManyToOne(targetEntity="User", inversedBy="entries", cascade={"persist"})
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
-    private $author;
+    private ?User $author = null;
 
     /**
-     * @var File|null
-     *
      * @Assert\NotBlank()
      * @ORM\OneToOne(targetEntity="EntryImage", inversedBy="entry", cascade={"persist", "remove"})
      */
-    private $image;
+    private ?File $image = null;
 
     /**
-     * @var Location|null
-     *
      * @ORM\ManyToOne(targetEntity="Location", inversedBy="entries", cascade={"persist"})
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
-    private $location;
+    private ?Location $location = null;
 
     /**
-     * @var \DateTime|null
-     *
      * @Assert\Type("\DateTimeInterface")
      * @Assert\LessThan(
      *     value="now",
      * )
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $timestamp;
+    private ?\DateTimeInterface $timestamp;
 
     /**
-     * @var Collection
-     *
      * @Assert\NotBlank()
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="entries", cascade={"persist"})
      * @ORM\JoinTable(name="tag_to_entry",
@@ -95,89 +79,73 @@ class Entry
      *     inverseJoinColumns={@ORM\JoinColumn(referencedColumnName="id")}
      * )
      * @ORM\OrderBy({"sort"="DESC"})
+     *
+     * @var Collection<Tag>
      */
-    private $tags;
+    private Collection $tags;
 
     /**
-     * @var Tag|null
-     *
      * @ORM\OneToMany(targetEntity="Tag", mappedBy="previewEntry")
+     *
+     * @var Collection<Tag>
      */
-    private $previewTag;
+    private Collection $previewTags;
 
     /**
-     * @var Tour|null
-     *
      * @ORM\ManyToOne(targetEntity="Tour", inversedBy="entries", cascade={"persist"})
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
-    private $tour;
+    private ?Tour $tour = null;
 
     /**
-     * @var Tour|null
-     *
      * @ORM\OneToOne(targetEntity="Tour", mappedBy="previewEntry")
      */
-    private $previewTour;
+    private ?Tour $previewTour = null;
 
     /**
-     * @var string|null
-     *
      * @Gedmo\Translatable
      * @Gedmo\Slug(fields={"name"}, updatable=true)
      * @ORM\Column(type="string", unique=true)
      */
-    private $slug;
+    private ?string $slug = null;
 
     /**
-     * @var \DateTime|null
-     *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private $created;
+    private \DateTimeInterface $created;
 
     /**
-     * @var \DateTime|null
-     *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private $updated;
+    private \DateTimeInterface $updated;
 
     /**
-     * @var string|null
-     *
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      */
-    private $locale;
+    private ?string $locale = null;
 
-    /**
-     * Entry constructor.
-     */
     public function __construct()
     {
         $this->tags = new ArrayCollection();
-        $this->timestamp = new DateTime();
+        $this->previewTags = new ArrayCollection();
+        $this->timestamp = new \DateTime();
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
     }
 
     public function __toString(): string
     {
-        return $this->getName();
+        return $this->getName() ?? '';
     }
 
-    /**
-     * Get id.
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * Set name.
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -185,17 +153,11 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get name.
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * Set description.
-     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -203,17 +165,11 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get description.
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * Set author.
-     */
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
@@ -221,19 +177,11 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get author.
-     *
-     * @return User
-     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
-    /**
-     * Set image.
-     */
     public function setImage(?File $image): self
     {
         $this->image = $image;
@@ -241,17 +189,11 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get image.
-     */
     public function getImage(): ?File
     {
         return $this->image;
     }
 
-    /**
-     * Set location.
-     */
     public function setLocation(?Location $location): self
     {
         $this->location = $location;
@@ -259,35 +201,23 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get location.
-     */
     public function getLocation(): ?Location
     {
         return $this->location;
     }
 
-    /**
-     * Set timestamp.
-     */
-    public function setTimestamp(?DateTime $timestamp): self
+    public function setTimestamp(?\DateTimeInterface $timestamp): self
     {
         $this->timestamp = clone $timestamp;
 
         return $this;
     }
 
-    /**
-     * Get timestamp.
-     */
-    public function getTimestamp(): ?DateTime
+    public function getTimestamp(): ?\DateTimeInterface
     {
         return $this->timestamp;
     }
 
-    /**
-     * Set tags.
-     */
     public function setTags(Collection $tags): self
     {
         $this->tags = $tags;
@@ -295,27 +225,16 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get tags.
-     *
-     * @return Collection|null
-     */
     public function getTags(): Collection
     {
         return $this->tags;
     }
 
-    /**
-     * Get previewTag.
-     */
-    public function getPreviewTag(): ?Tag
+    public function getPreviewTags(): Collection
     {
-        return $this->previewTag;
+        return $this->previewTags;
     }
 
-    /**
-     * Set tour.
-     */
     public function setTour(?Tour $tour): self
     {
         $this->tour = $tour;
@@ -323,25 +242,16 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get tour.
-     */
     public function getTour(): ?Tour
     {
         return $this->tour;
     }
 
-    /**
-     * Get previewTour.
-     */
     public function getPreviewTour(): ?Tour
     {
         return $this->previewTour;
     }
 
-    /**
-     * Set slug.
-     */
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
@@ -349,53 +259,35 @@ class Entry
         return $this;
     }
 
-    /**
-     * Get slug.
-     */
     public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    /**
-     * Set created.
-     */
-    public function setCreated(DateTime $created): self
+    public function setCreated(\DateTimeInterface $created): self
     {
         $this->created = $created;
 
         return $this;
     }
 
-    /**
-     * Get created.
-     */
-    public function getCreated(): ?DateTime
+    public function getCreated(): \DateTimeInterface
     {
         return $this->created;
     }
 
-    /**
-     * Set updated.
-     */
-    public function setUpdated(DateTime $updated): self
+    public function setUpdated(\DateTimeInterface $updated): self
     {
         $this->updated = $updated;
 
         return $this;
     }
 
-    /**
-     * Get updated.
-     */
-    public function getUpdated(): ?DateTime
+    public function getUpdated(): \DateTimeInterface
     {
         return $this->updated;
     }
 
-    /**
-     * Set locale.
-     */
     public function setTranslatableLocale(?string $locale): void
     {
         $this->locale = $locale;

@@ -32,9 +32,4 @@ class StringExtension extends AbstractExtension
 
         return $last;
     }
-
-    public function getName(): string
-    {
-        return 'string';
-    }
 }
