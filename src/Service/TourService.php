@@ -5,7 +5,6 @@ namespace App\Service;
 use App\Entity\Tour;
 use App\Entity\TourFile;
 use App\Repository\TourRepository;
-use DateInterval;
 use Doctrine\ORM\EntityManagerInterface;
 use phpGPX\Models\Track;
 use phpGPX\phpGPX;
@@ -112,7 +111,7 @@ class TourService
     /**
      * Calc the tour duration dependent on formula type.
      */
-    public function calcTourDuration(Tour $tour): ?DateInterval
+    public function calcTourDuration(Tour $tour): ?\DateInterval
     {
         if (!($formulaType = $tour->getFormulaType()) || !$tour->getCumulativeElevationGain()) {
             return null;
@@ -129,7 +128,7 @@ class TourService
     /**
      * Calc the hiking tour duration.
      */
-    public function calcHikingDuration($distance, $upElevation, $downElevation): DateInterval
+    public function calcHikingDuration($distance, $upElevation, $downElevation): \DateInterval
     {
         $formulaDefinitions = Tour::FORMULA_DEFINITIONS['HIKING'];
 
@@ -150,7 +149,7 @@ class TourService
     /**
      * Calc the mountainbike tour duration.
      */
-    public function calcMountainBikeDuration($distance, $upElevation): DateInterval
+    public function calcMountainBikeDuration($distance, $upElevation): \DateInterval
     {
         $formulaDefinitions = Tour::FORMULA_DEFINITIONS['MTB'];
 
@@ -169,7 +168,7 @@ class TourService
     /**
      * Calc the via ferrata tour duration.
      */
-    public function calcViaFerrataDuration($upElevation, $downElevation): DateInterval
+    public function calcViaFerrataDuration($upElevation, $downElevation): \DateInterval
     {
         $formulaDefinitions = Tour::FORMULA_DEFINITIONS['VIA_FERRATA'];
 
@@ -184,7 +183,7 @@ class TourService
      * Formats the tour duration.
      * Removes leading zero from hours.
      */
-    public function formatDuration(?DateInterval $duration): ?string
+    public function formatDuration(?\DateInterval $duration): ?string
     {
         if ($duration === null) {
             return null;
@@ -196,13 +195,13 @@ class TourService
     /**
      * Calculate the real time from a decimal duration.
      */
-    private function formatDecimalDuration($decimalDuration): DateInterval
+    private function formatDecimalDuration($decimalDuration): \DateInterval
     {
         $hours = floor($decimalDuration);
         $decimalMinutes = ($hours - $decimalDuration) * -1;
 
         $minutes = (int) ($decimalMinutes * (60 / 1)); // 60 minutes/hour
 
-        return new DateInterval("PT{$hours}H{$minutes}M");
+        return new \DateInterval("PT{$hours}H{$minutes}M");
     }
 }

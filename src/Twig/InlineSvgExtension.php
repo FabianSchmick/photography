@@ -2,7 +2,6 @@
 
 namespace App\Twig;
 
-use Exception;
 use Twig\Extension\AbstractExtension;
 use Twig\Markup;
 use Twig\TwigFilter;
@@ -57,7 +56,7 @@ class InlineSvgExtension extends AbstractExtension
         $fullPath = $this->publicDir.$filename;
 
         if (!file_exists($fullPath)) {
-            throw new Exception(sprintf('Cannot find svg file: "%s"', $fullPath));
+            throw new \Exception(sprintf('Cannot find svg file: "%s"', $fullPath));
         }
 
         $svgString = file_get_contents($fullPath);

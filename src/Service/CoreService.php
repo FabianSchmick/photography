@@ -3,8 +3,6 @@
 namespace App\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
-use HTMLPurifier;
-use HTMLPurifier_Config;
 
 class CoreService
 {
@@ -22,10 +20,10 @@ class CoreService
      */
     public function purifyString(?string $string): string
     {
-        $config = HTMLPurifier_Config::createDefault();
+        $config = \HTMLPurifier_Config::createDefault();
         $config->set('HTML.AllowedElements', ['a', 'b', 'strong', 'ul', 'li', 'p', 'br']);
         $config->set('Attr.AllowedFrameTargets', ['_blank']);
-        $purifier = new HTMLPurifier($config);
+        $purifier = new \HTMLPurifier($config);
 
         return $purifier->purify($string);
     }

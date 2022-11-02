@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use DateTime;
-use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File as BaseFile;
@@ -52,18 +51,18 @@ class File
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private DateTimeInterface $created;
+    private \DateTimeInterface $created;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private DateTimeInterface $updated;
+    private \DateTimeInterface $updated;
 
     public function __construct()
     {
-        $this->created = new DateTime();
-        $this->updated = new DateTime();
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
     }
 
     public function __toString(): string
@@ -97,7 +96,7 @@ class File
         if ($file !== null) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updated = new DateTime();
+            $this->updated = new \DateTime();
         }
     }
 
@@ -131,22 +130,22 @@ class File
         $this->mimeType = $mimeType;
     }
 
-    public function getCreated(): DateTimeInterface
+    public function getCreated(): \DateTimeInterface
     {
         return $this->created;
     }
 
-    public function setCreated(DateTimeInterface $created): void
+    public function setCreated(\DateTimeInterface $created): void
     {
         $this->created = $created;
     }
 
-    public function getUpdated(): DateTimeInterface
+    public function getUpdated(): \DateTimeInterface
     {
         return $this->updated;
     }
 
-    public function setUpdated(DateTimeInterface $updated): void
+    public function setUpdated(\DateTimeInterface $updated): void
     {
         $this->updated = $updated;
     }

@@ -5,7 +5,6 @@ namespace App\Service;
 use App\Entity\Entry;
 use App\Entity\EntryImage;
 use App\Repository\EntryRepository;
-use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\File;
@@ -50,7 +49,7 @@ class EntryService
             $entryEntity->setLocation($locationEntity);
         }
 
-        $entryEntity->setTimestamp(new DateTime('now'));
+        $entryEntity->setTimestamp(new \DateTime('now'));
         if ($timestamp = date_create(date($entry['timestamp']))) {
             $entryEntity->setTimestamp($timestamp);
         }

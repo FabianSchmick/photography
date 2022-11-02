@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use DateInterval;
 use DateTime;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -108,7 +107,7 @@ class Tour
     /**
      * @ORM\Column(type="dateinterval", nullable=true)
      */
-    private ?DateInterval $duration = null;
+    private ?\DateInterval $duration = null;
 
     /**
      * @var int|null in meters
@@ -193,13 +192,13 @@ class Tour
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private DateTimeInterface $created;
+    private \DateTimeInterface $created;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private DateTimeInterface $updated;
+    private \DateTimeInterface $updated;
 
     /**
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="tour", cascade={"persist"})
@@ -230,8 +229,8 @@ class Tour
     {
         $this->entries = new ArrayCollection();
         $this->locations = new ArrayCollection();
-        $this->created = new DateTime();
-        $this->updated = new DateTime();
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
     }
 
     public function __toString(): string
@@ -304,14 +303,14 @@ class Tour
         return $this->distance;
     }
 
-    public function setDuration(?DateInterval $duration): self
+    public function setDuration(?\DateInterval $duration): self
     {
         $this->duration = $duration;
 
         return $this;
     }
 
-    public function getDuration(): ?DateInterval
+    public function getDuration(): ?\DateInterval
     {
         return $this->duration;
     }
@@ -444,26 +443,26 @@ class Tour
         return $this->slug;
     }
 
-    public function setCreated(DateTimeInterface $created): self
+    public function setCreated(\DateTimeInterface $created): self
     {
         $this->created = $created;
 
         return $this;
     }
 
-    public function getCreated(): DateTimeInterface
+    public function getCreated(): \DateTimeInterface
     {
         return $this->created;
     }
 
-    public function setUpdated(DateTimeInterface $updated): self
+    public function setUpdated(\DateTimeInterface $updated): self
     {
         $this->updated = $updated;
 
         return $this;
     }
 
-    public function getUpdated(): DateTimeInterface
+    public function getUpdated(): \DateTimeInterface
     {
         return $this->updated;
     }

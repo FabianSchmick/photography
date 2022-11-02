@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use DateTime;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -76,13 +75,13 @@ class Tag
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private DateTimeInterface $created;
+    private \DateTimeInterface $created;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
-    private DateTimeInterface $updated;
+    private \DateTimeInterface $updated;
 
     /**
      * @Gedmo\Locale
@@ -93,8 +92,8 @@ class Tag
     public function __construct()
     {
         $this->entries = new ArrayCollection();
-        $this->created = new DateTime();
-        $this->updated = new DateTime();
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
     }
 
     public function __toString(): string
@@ -172,26 +171,26 @@ class Tag
         return $this->slug;
     }
 
-    public function setCreated(DateTimeInterface $created): self
+    public function setCreated(\DateTimeInterface $created): self
     {
         $this->created = $created;
 
         return $this;
     }
 
-    public function getCreated(): DateTimeInterface
+    public function getCreated(): \DateTimeInterface
     {
         return $this->created;
     }
 
-    public function setUpdated(DateTimeInterface $updated): self
+    public function setUpdated(\DateTimeInterface $updated): self
     {
         $this->updated = $updated;
 
         return $this;
     }
 
-    public function getUpdated(): DateTimeInterface
+    public function getUpdated(): \DateTimeInterface
     {
         return $this->updated;
     }

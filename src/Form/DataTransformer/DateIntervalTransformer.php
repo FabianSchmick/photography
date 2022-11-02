@@ -18,7 +18,7 @@ class DateIntervalTransformer implements DataTransformerInterface
      */
     public function transform($value): ?string
     {
-        if ($value !== null && !$value instanceof DateInterval) {
+        if ($value !== null && !$value instanceof \DateInterval) {
             throw new TransformationFailedException(sprintf('Can\'t transform value "%s"!', $value));
         }
 
@@ -30,7 +30,7 @@ class DateIntervalTransformer implements DataTransformerInterface
      *
      * @throws \Exception
      */
-    public function reverseTransform($value): ?DateInterval
+    public function reverseTransform($value): ?\DateInterval
     {
         if ($value !== null && !is_string($value)) {
             throw new TransformationFailedException(sprintf('Can\'t transform value "%s"!', $value));
@@ -47,6 +47,6 @@ class DateIntervalTransformer implements DataTransformerInterface
             $intervalSpec .= "{$values[1]}M";
         }
 
-        return new DateInterval($intervalSpec);
+        return new \DateInterval($intervalSpec);
     }
 }

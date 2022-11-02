@@ -2,7 +2,6 @@
 
 namespace App\Twig;
 
-use Exception;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -32,7 +31,7 @@ class ImageExtension extends AbstractExtension
      *
      * @param string $filename Imagepath
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function getImageDimensions(string $filename): array
     {
