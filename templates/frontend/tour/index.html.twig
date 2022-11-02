@@ -93,13 +93,13 @@
                                             <dt class="tour-cumulative-elevation-gain">
                                                 <span class="icon icon-sm icon-elevation icon-rotate-45" title="{{ 'label.cumulativeElevationGain'|trans }}"><svg><use xlink:href="#elevation-icon"/></svg></span>
                                             </dt>
-                                            <dd class="tour-cumulative-elevation-gain-value">{{ tour.cumulativeElevationGain|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
+                                            <dd class="tour-cumulative-elevation-gain-value">{{ tour.cumulativeElevationGain|number_format(0, ',', '.') }} {{ 'unit.cumulativeElevationGain'|trans }}</dd>
                                         {% endif %}
                                         {% if tour.cumulativeElevationLoss %}
                                             <dt class="tour-cumulative-elevation-loss">
                                                 <span class="icon icon-sm icon-elevation icon-rotate-135" title="{{ 'label.cumulativeElevationLoss'|trans }}"><svg><use xlink:href="#elevation-icon"/></svg></span>
                                             </dt>
-                                            <dd class="tour-cumulative-elevation-loss-value">{{ tour.cumulativeElevationLoss|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}</dd>
+                                            <dd class="tour-cumulative-elevation-loss-value">{{ tour.cumulativeElevationLoss|number_format(0, ',', '.') }} {{ 'unit.cumulativeElevationLoss'|trans }}</dd>
                                         {% endif %}
                                     </dl>
                                     <button class="btn btn-teritary btn-inverse">
