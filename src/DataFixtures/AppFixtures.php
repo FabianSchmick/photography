@@ -2,8 +2,11 @@
 
 namespace App\DataFixtures;
 
-use App\Service\EntryService;
-use App\Service\TourService;
+use App\Tests\Builder\EntryBuilder;
+use App\Tests\Builder\LocationBuilder;
+use App\Tests\Builder\TagBuilder;
+use App\Tests\Builder\TourBuilder;
+use App\Tests\Builder\TourCategoryBuilder;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Filesystem\Filesystem;
@@ -12,58 +15,34 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class AppFixtures extends Fixture
 {
-    public function __construct(private readonly EntryService $entryService, private readonly TourService $tourService, private readonly string $projectDir)
+    public function __construct(private readonly string $projectDir)
     {
     }
 
     public function load(ObjectManager $manager): void
     {
-        $tours = [
-            [
-                'name' => 'Tour to the top of the mountain',
-                'description' => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-            ],
-        ];
+        $tags = [];
+        $tagBuilder = new TagBuilder($manager);
+        $tagBuilder->setName('Nature');
+        $tagBuilder->setName('Natur', 'de');
+        $tags[] = $tagBuilder->create();
+        $tagBuilder->setName('Snow');
+        $tagBuilder->setName('Schnee', 'de');
+        $tags[] = $tagBuilder->create();
+        $tagBuilder->setName('Landscape');
+        $tagBuilder->setName('Landschaft', 'de');
+        $tags[] = $tagBuilder->create();
+        $tagBuilder->setName('Mountains');
+        $tagBuilder->setName('Berge', 'de');
+        $tags[] = $tagBuilder->create();
 
-        $entries = [
-            [
-                'name' => 'Forest near my hometown',
-                'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-                'location' => 'Germany, NRW',
-                'timestamp' => '2017-10-26',
-                'tags' => [
-                    'Nature', 'Forest', 'Woods', 'Trees', 'Landscape',
-                ],
-            ],
-            [
-                'name' => 'Mountain over 2300m',
-                'description' => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-                'image' => '',
-                'location' => 'Germany, Bavaria',
-                'timestamp' => '2017-10-27',
-                'tags' => [
-                    'Nature', 'Mountain', 'Landscape',
-                ],
-            ],
-            [
-                'name' => 'Field with mushrooms',
-                'description' => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-                'location' => 'Germany, NRW',
-                'timestamp' => '2017-10-28',
-                'tags' => [
-                    'Nature', 'Grass', 'Landscape',
-                ],
-            ],
-            [
-                'name' => 'Sunset in winter',
-                'description' => 'Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-                'location' => 'Germany, NRW',
-                'timestamp' => '2017-10-29',
-                'tags' => [
-                    'Nature', 'Sunset', 'Winter', 'Snow', 'Landscape',
-                ],
-            ],
-        ];
+        $locations = [];
+        $locationBuilder = new LocationBuilder($manager);
+        $locationBuilder->setName('Munich');
+        $locationBuilder->setName('München', 'de');
+        $locations[] = $locationBuilder->create();
+        $locationBuilder->setName('Berlin');
+        $locations[] = $locationBuilder->create();
 
         $imgFixturesDir = $this->projectDir.'/fixtures/img';
         $tourFixturesDir = $this->projectDir.'/fixtures/tour';
@@ -75,9 +54,19 @@ class AppFixtures extends Fixture
 
         $gpxFiles = $this->getFiles($tmpDir);
 
-        foreach ($tours as $tour) {
-            $this->tourService->saveTour($tour, $gpxFiles[array_rand($gpxFiles)]);
-        }
+        $tourCategoryBuilder = new TourCategoryBuilder($manager);
+        $tourCategoryBuilder->setName('Hiking');
+        $tourCategoryBuilder->setName('Wandern', 'de');
+        $tourCategoryBuilder->setFormulaType('HIKING');
+        $tourCategory = $tourCategoryBuilder->create();
+
+        $tourBuilder = new TourBuilder($manager);
+        $tourBuilder->setName('Winterberg - Kahler Asten Track');
+        $tourBuilder->setName('Winterberg - Kahler Asten Steig', 'de');
+        $tourBuilder->setFile($gpxFiles[array_rand($gpxFiles)]);
+        $tourBuilder->addLocation($locations[0]);
+        $tourBuilder->setTourCategory($tourCategory);
+        $tour = $tourBuilder->create();
 
         $fileSystem = new Filesystem();
         $fileSystem->remove($tmpDir);
@@ -85,18 +74,32 @@ class AppFixtures extends Fixture
 
         $images = $this->getFiles($tmpDir);
 
-        // 20 entries
-        for ($i = 0; $i < 5; ++$i) {
-            foreach ($entries as $key => $entry) {
-                $minute = (string) random_int(10, 59);
-                $entry['timestamp'] .= ' 11:'.$minute;
-                $this->entryService->saveEntry($entry, $images[$key]);
+        for ($i = 0; $i < 20; ++$i) {
+            $entryBuilder = new EntryBuilder($manager);
+            $entryBuilder->setName("Lorem Ipsum: $i");
+            $entryBuilder->setName("Lorem Ipsum DE: $i", 'de');
+            $entryBuilder->setLocation($locations[array_rand($locations)]);
+            $entryBuilder->setImage($images[array_rand($images)]);
+
+            $randTagKeys = array_rand($tags, 2);
+            $entryBuilder->addTag($tags[$randTagKeys[0]]);
+            $entryBuilder->addTag($tags[$randTagKeys[1]]);
+
+            $randomTimestamp = mt_rand((new \DateTime('2015-01-01'))->getTimestamp(), (new \DateTime())->getTimestamp());
+            $randomDate = new \DateTime();
+            $randomDate->setTimestamp($randomTimestamp);
+            $entryBuilder->setTimestamp($randomDate);
+
+            if (random_int(0, 1)) {
+                $entryBuilder->setTour($tour);
             }
-            if ($i < 4) {
-                $fileSystem->mirror($imgFixturesDir, $tmpDir);
-            }
-            shuffle($images);
+
+            $entryBuilder->create();
+
+            $fileSystem->mirror($imgFixturesDir, $tmpDir);
         }
+
+        $fileSystem->remove($tmpDir);
     }
 
     /**

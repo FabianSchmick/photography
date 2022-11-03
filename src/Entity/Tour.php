@@ -395,7 +395,7 @@ class Tour
         return $this->sort;
     }
 
-    public function setLocation(?Collection $locations): self
+    public function setLocations(?Collection $locations): self
     {
         $this->locations = $locations;
 
