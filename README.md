@@ -3,10 +3,10 @@ Photography
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/FabianSchmick/photography/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/FabianSchmick/photography/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/FabianSchmick/photography/badges/build.png?b=master)](https://scrutinizer-ci.com/g/FabianSchmick/photography/build-status/master)
 
-This project is based on the [Symfony PHP Framework](http://symfony.com/) and should be seen as some sort of small template for photograph websites.
+This project is based on the [Symfony PHP Framework](https://symfony.com/) and should be seen as some sort of small template for photograph websites.
 Note: you should have experience in web development to adjust the project to your preferences.
 
-You can find first impressions on [fotografie.fabian-schmick.de](http://fotografie.fabian-schmick.de) or watch the gif below
+You can find first impressions on [fotografie.fabian-schmick.de](https://fotografie.fabian-schmick.de) or watch the gif below
 
 ![back-and-frontend](./.github/example.gif "Back- and Frontend view")
 
@@ -14,7 +14,7 @@ You can find first impressions on [fotografie.fabian-schmick.de](http://fotograf
 ## Features
 
 The project provides you following functionality:
-- [Symfony 4.4](https://symfony.com/releases/4.4) (LTS version) 
+- [Symfony 5.4](https://symfony.com/releases/5.4) (LTS version) and PHP 8.1 compatibility
 - Responsive layout with the help of [Bootstrap](https://getbootstrap.com/) and [jQuery](https://jquery.com/)
 - Small CMS / Backend functionality for creating new entries, tags and tours
 - Image compression and thumbnail generation with [LiipImagineBundle](https://github.com/liip/LiipImagineBundle)
@@ -23,11 +23,11 @@ The project provides you following functionality:
 - Uploading gpx files for showing your favorite tours with [Leaflet](https://leafletjs.com/) and connect them with your entries
 - Calculation of the tour duration with German Alpine Club (DAV) recommendations 
 - [Lazyloading](https://github.com/verlok/lazyload) and Infinityscrolling for images
-- Lightbox as a quick view
+- Lightbox as a quick view for images
 - Dynamic Sitemap generation
 - SEO optimization
-- PWA Support with [Workbox](https://developers.google.com/web/tools/workbox/modules/workbox-build)
-- Many more 
+- Valid for General Data Protection Regulation (GDPR)
+- Some PWA Support with [Workbox](https://developers.google.com/web/tools/workbox/modules/workbox-build)
 
 
 ## Installation
