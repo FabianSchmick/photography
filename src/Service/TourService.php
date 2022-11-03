@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Config\TourDurationFormula;
 use App\Entity\Tour;
 use phpGPX\Models\Track;
 use phpGPX\phpGPX;
@@ -92,7 +93,8 @@ class TourService
      */
     public function calcHikingDuration($distance, $upElevation, $downElevation): \DateInterval
     {
-        $formulaDefinitions = Tour::FORMULA_DEFINITIONS['HIKING'];
+        $formula = TourDurationFormula::HIKING;
+        $formulaDefinitions = $formula->constants();
 
         $downDuration = $downElevation / $formulaDefinitions['DOWN_METERS_PER_HOUR'];
         $upDuration = $upElevation / $formulaDefinitions['UP_METERS_PER_HOUR'];
@@ -113,7 +115,8 @@ class TourService
      */
     public function calcMountainBikeDuration($distance, $upElevation): \DateInterval
     {
-        $formulaDefinitions = Tour::FORMULA_DEFINITIONS['MTB'];
+        $formula = TourDurationFormula::MTB;
+        $formulaDefinitions = $formula->constants();
 
         $upDuration = $upElevation / $formulaDefinitions['UP_METERS_PER_HOUR'];
         $horizontalDuration = $distance / $formulaDefinitions['HORIZONTAL_METERS_PER_HOUR'];
@@ -132,7 +135,8 @@ class TourService
      */
     public function calcViaFerrataDuration($upElevation, $downElevation): \DateInterval
     {
-        $formulaDefinitions = Tour::FORMULA_DEFINITIONS['VIA_FERRATA'];
+        $formula = TourDurationFormula::VIA_FERRATA;
+        $formulaDefinitions = $formula->constants();
 
         $downDuration = $downElevation / $formulaDefinitions['DOWN_METERS_PER_HOUR'];
         $upDuration = $upElevation / $formulaDefinitions['UP_METERS_PER_HOUR'];

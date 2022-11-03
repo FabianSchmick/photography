@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Tour;
+use App\Config\TourDurationFormula;
 use App\Entity\TourCategory;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -15,7 +15,7 @@ class TourCategoryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $types = array_keys(Tour::FORMULA_DEFINITIONS);
+        $types = array_map(fn ($enum) => $enum->name, TourDurationFormula::cases());
 
         $builder
             ->add('name')

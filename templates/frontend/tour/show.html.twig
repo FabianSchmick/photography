@@ -96,7 +96,8 @@
                             <dd class="col-6 tour-duration-value">
                                 {{ tour.duration|format_duration }} {{ 'unit.duration'|trans }}
                                 {% if tour.formulaType %}
-                                    {% set formula = constant('App\\Entity\\Tour::FORMULA_DEFINITIONS')[tour.formulaType]|default([]) %}
+                                    {% set formula = enum('App\\Config\\TourDurationFormula::'~tour.formulaType) %}
+                                    {% set formula = formula.constants %}
 
                                     <button type="button" class="btn btn-sm p-0 ml-1 icon icon-sm icon-teritary icon-info"
                                             data-toggle="tooltip" data-html="true" style="margin-top: -5px;"

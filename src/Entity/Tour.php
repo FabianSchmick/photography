@@ -24,23 +24,6 @@ class Tour
 {
     final public const PAGINATION_QUANTITY = 6;
 
-    final public const FORMULA_DEFINITIONS = [
-        'HIKING' => [
-            /* Values according to: DIN 33466 */
-            'UP_METERS_PER_HOUR' => 300,
-            'DOWN_METERS_PER_HOUR' => 500,
-            'HORIZONTAL_METERS_PER_HOUR' => 4,
-        ],
-        'MTB' => [
-            'UP_METERS_PER_HOUR' => 500,
-            'HORIZONTAL_METERS_PER_HOUR' => 12,
-        ],
-        'VIA_FERRATA' => [
-            'UP_METERS_PER_HOUR' => 200,
-            'DOWN_METERS_PER_HOUR' => 400,
-        ],
-    ];
-
     final public const LEVEL_OF_DIFFICULTY = [
         'A' => 0,
         'A/B' => 1,
