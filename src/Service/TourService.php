@@ -3,9 +3,6 @@
 namespace App\Service;
 
 use App\Entity\Tour;
-use App\Entity\TourFile;
-use App\Repository\TourRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use phpGPX\Models\Track;
 use phpGPX\phpGPX;
 use Symfony\Component\HttpFoundation\File\File;
@@ -16,43 +13,8 @@ class TourService
     /**
      * TourService constructor.
      */
-    public function __construct(private readonly EntityManagerInterface $em, private readonly TourRepository $tourRepository, private readonly UploaderHelper $uploaderHelper, private readonly string $publicDir)
+    public function __construct(private readonly UploaderHelper $uploaderHelper, private readonly string $publicDir)
     {
-    }
-
-    /**
-     * Save an tour.
-     *
-     * @param array     $tour Array of data for saving an tour object
-     * @param File|null $file UploadFile object with containing gpx file
-     *
-     * @return Tour $tourEntity     The saved tour entity
-     */
-    public function saveTour(array $tour, ?File $file = null): Tour
-    {
-        $duplicate = $this->tourRepository->findOneBy(['name' => $tour['name']]);
-
-        if ($duplicate) {
-            return $duplicate;
-        }
-        $tourEntity = new Tour();
-        if (isset($tour['id'])) {
-            $tourEntity = $this->tourRepository->findOneBy(['id' => $tour['id']]);
-        }
-        $tourEntity->setName($tour['name']);
-        $tourEntity->setDescription($tour['description']);
-
-        if ($file) {
-            $tourFile = new TourFile();
-            $tourFile->setFile($file);
-
-            $tourEntity->setFile($tourFile);
-        }
-
-        $this->em->persist($tourEntity);
-        $this->em->flush();
-
-        return $tourEntity;
     }
 
     /**
