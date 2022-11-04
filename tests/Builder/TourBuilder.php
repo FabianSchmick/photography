@@ -46,18 +46,13 @@ class TourBuilder
 
     private ?Entry $previewEntry = null;
 
-    private File $file;
+    private ?File $file = null;
 
     private ?TourCategory $tourCategory = null;
 
     public function __construct(private readonly ObjectManager $manager)
     {
         $this->locations = new ArrayCollection();
-
-        $this->file = new TourFile();
-        $this->file->setFile(
-            new UploadedFile(__DIR__.'/../../fixtures/tour/winterberg-kahler-asten-steig.gpx', 'winterberg-kahler-asten-steig.gpx', 'text/xml', null, true)
-        );
     }
 
     public function create(): Tour
@@ -75,10 +70,19 @@ class TourBuilder
         $tour->setSort($this->sort);
         $tour->setLocations($this->locations);
         $tour->setPreviewEntry($this->previewEntry);
-        $tour->setFile($this->file);
         $tour->setTourCategory($this->tourCategory);
         $tour->setName($this->names[array_key_first($this->names)] ?? 'Tour');
         $tour->setDescription($this->descriptions[array_key_first($this->descriptions)] ?? null);
+
+        if ($this->file === null) {
+            copy(__DIR__.'/../../fixtures/tour/winterberg-kahler-asten-steig.gpx', __DIR__.'/winterberg-kahler-asten-steig.gpx');
+            $this->file = new TourFile();
+            $this->file->setFile(
+                new UploadedFile(__DIR__.'/winterberg-kahler-asten-steig.gpx', 'winterberg-kahler-asten-steig.gpx', 'text/xml', null, true)
+            );
+        }
+
+        $tour->setFile($this->file);
 
         $this->manager->persist($tour);
         $this->manager->flush();
@@ -100,6 +104,8 @@ class TourBuilder
             $this->manager->persist($tour);
             $this->manager->flush();
         }
+
+        $this->file = null;
 
         return $tour;
     }
