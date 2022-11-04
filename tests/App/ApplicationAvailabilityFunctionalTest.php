@@ -2,19 +2,42 @@
 
 namespace App\Tests;
 
+use App\DataFixtures\AppFixtures;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Loader;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Define a functional test that at least checks if your application pages are successfully loading.
- * https://symfony.com/doc/4.4/best_practices.html#tests
+ * https://symfony.com/doc/5.4/best_practices.html#tests.
  */
 class ApplicationAvailabilityFunctionalTest extends WebTestCase
 {
+    public static function setUpBeforeClass(): void
+    {
+        static::$kernel = static::createKernel();
+        static::$kernel->boot();
+        $em = static::$kernel->getContainer()
+            ->get('doctrine')
+            ->getManager()
+        ;
+
+        $loader = new Loader();
+        $loader->addFixture(new AppFixtures(static::$kernel->getProjectDir()));
+
+        $purger = new ORMPurger($em);
+        $executor = new ORMExecutor($em, $purger);
+        $executor->execute($loader->getFixtures());
+
+        parent::setUpBeforeClass();
+    }
+
     /**
      * @dataProvider urlProvider
      */
-    public function testPageIsSuccessful($url)
+    public function testPageIsSuccessful(string $url): void
     {
         $client = static::createClient();
 
@@ -26,7 +49,7 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
     /**
      * @dataProvider getSecureUrls
      */
-    public function testSecureUrls($url)
+    public function testSecureUrls(string $url): void
     {
         $client = static::createClient();
 
@@ -36,26 +59,30 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
     }
 
     /**
-     * Some pages
+     * Some pages.
      */
-    public function urlProvider()
+    public function urlProvider(): iterable
     {
-        yield ['/de/'];
         yield ['/en/'];
+        yield ['/de/'];
         yield ['/login'];
         yield ['/en/tag/nature'];
-        yield ['/de/tour/page/1'];
+        yield ['/de/tag/natur'];
         yield ['/en/tour/page/1'];
+        yield ['/de/tour/page/1'];
+        yield ['/en/tour/winterberg-kahler-asten-track'];
+        yield ['/de/tour/winterberg-kahler-asten-steig'];
         yield ['/sitemap.xml'];
     }
 
     /**
-     * Secure pages
+     * Secure pages.
      */
-    public function getSecureUrls()
+    public function getSecureUrls(): iterable
     {
         yield ['/admin/'];
         yield ['/admin/entry/new'];
+        yield ['/admin/tour/new'];
         yield ['/admin/language/en'];
     }
 }
