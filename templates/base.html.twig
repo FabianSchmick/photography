@@ -51,10 +51,10 @@
         {{ encore_entry_link_tags('css/app') }}
     {% endblock %}
 
-    {% if app.environment == 'prod' and ga %}
+    {% if app.environment == 'prod' and ga_property %}
         <!-- Google Analytics -->
         <script>
-            var gaProperty = '{{ ga }}';
+            var gaProperty = '{{ ga_property }}';
 
             var disableStr = 'ga-disable-' + gaProperty;
             if (document.cookie.indexOf(disableStr + '=true') > -1) {
@@ -185,13 +185,18 @@
 
     {% if pageUrl %}
         <script type="text/javascript">
-            var pageUrl = "{{ pageUrl }}";
+            const PAGE_URL = "{{ pageUrl }}";
             const TRANSLATION_MAP = {
                 'chart.headerFormat': "{{ 'chart.headerFormat'|trans }}",
                 'chart.pointFormat': "{{ 'chart.pointFormat'|trans }}",
                 'unit.decimalSeparator': "{{ 'unit.decimalSeparator'|trans }}",
                 'unit.thousandsSeparator': "{{ 'unit.thousandsSeparator'|trans }}",
             };
+            {% if thunderforest_tiles_api_key %}
+                const MAP_TILES_URL = 'https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey={{ thunderforest_tiles_api_key }}';
+            {% else %}
+                const MAP_TILES_URL = 'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png';
+            {% endif %}
         </script>
     {% endif %}
 

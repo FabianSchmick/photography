@@ -163,7 +163,7 @@ site.error.explanation.1: Die Anfrage konnte vom Server nicht verarbeitet werden
 site.error.explanation.2: Startseite zurück
 
 # Gdpr
-gdpr.map.text: 'Um deine Daten zu schützen wurde die Karte nicht automatisch geladen. Wenn diese Karte geladen wird, werden persönliche Daten (z.B. die IP-Adresse) an openstreetmap.de weitergegeben. Mehr dazu im <a href="%link%">Datenschutz</a> dieser Seite.'
+gdpr.map.text: 'Um deine Daten zu schützen wurde die Karte nicht automatisch geladen. Wenn diese Karte geladen wird, werden persönliche Daten (z.B. die IP-Adresse) an openstreetmap.de und thunderforest.com weitergegeben. Mehr dazu im <a href="%link%">Datenschutz</a> dieser Seite.'
 gdpr.map.enable: Karte anzeigen
 gdpr.checkbox.enable: Speichere diese Auswahl
 
@@ -391,12 +391,12 @@ privacy.fourth.google.analytics.text: |
   Unsere Internetseite verwendet den Analysedienst Google Analytics. Dieser Webanalysedienst wird von der Google Inc., 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA (im Folgenden kurz: Google) betrieben. Wir verwenden Google Analytics, um Ihre Nutzung unserer Website auszuwerten und um Berichte über Nutzeraktivitäten zusammenzustellen. In diesen Zwecken liegt auch unser berechtigtes Interesse an der Datenverarbeitung. Die Rechtsgrundlage für den Einsatz von Google Analytics ist § 15 Abs. 3 TMG bzw. Art. 6 Abs. 1 lit. f DSGVO. Dieses Analysetool funktioniert auf Grundlage von Cookies. Ein Cookie ist eine Textdatei, die beim Besuch einer Internetseite verschickt und auf der Festplatte des Nutzers der Website zwischengespeichert wird um eine Analyse der Benutzung der Webseite durch Sie zu ermöglichen. Die durch den Cookie gespeicherten Informationen werden in der Regel an einen Server von Google in den USA übertragen und dort dann gespeichert. Im Rahmen der IP-Anonymisierung wird Ihre IP-Adresse von Google innerhalb eines Mitgliedsstaates der EU oder einem anderen Vertragsstaat des Abkommens über den europäischen Wirtschaftsraum zuvor gekürzt. In unserem Auftrag wird Google die übertragenen Informationen nutzen, um einen Report über die Nutzung der Webseite zu erstellen. Wir haben mit Google einen Vertrag zur Auftragsverarbeitung geschlossen. Die im Rahmen von Google Analytics übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt. Wenn Sie die Nutzung von Cookies unterbinden möchten, können Sie dies durch lokale Vornahme der Änderungen Ihrer Einstellungen in dem auf Ihrem Computer verwendeten Internetbrowser (z.B. Safari, Internet Explorer, Opera, Firefox etc.), also dem Programm zum Öffnen und Anzeigen von Internetseiten tun. Ferner können Sie die Erfassung und Verarbeitung Ihrer Daten durch den Cookie von Google, verhindern indem Sie ein unter dem folgenden Link von Google angebotenes Browser-Plugin herunterladen und installieren: <a href="http://tools.google.com/dlpage/gaoptout?hl=de" target="_blank">http://tools.google.com/dlpage/gaoptout?hl=de</a>.<br/>
   Sie können die Erfassung durch Google Analytics verhindern, indem Sie auf den nachfolgenden Link klicken. Dann wird ein sogenanntes Opt-Out-Cookie gesetzt, welches die zukünftige Erfassung Ihrer Daten beim Besuch dieser Webseite verhindert: <a href="#" class="gaOptOut">Google Analytics deaktivieren</a>.<br/>
   Weitere Informationen zu den Nutzungsbedingungen und zum Datenschutz von Google und Google Analytics finden Sie unter <a href="http://www.google.com/analytics/terms/de.html" target="_blank">http://www.google.com/analytics/terms/de.html</a> sowie unter <a href="https://www.google.de/intl/de/policies/" target="_blank">https://www.google.de/intl/de/policies/</a>. Wir weisen darauf hin, dass Google Analytics um die Erweiterung „anonymizeIp“ ergänzt wurde. Damit wird anonymisierte Erfassung von IP-Adressen gewährleistet.
-privacy.fourth.osm.head: OpenStreetMap
+privacy.fourth.osm.head: OpenStreetMap | Thunderforest
 privacy.fourth.osm.text: |
-  Wir nutzen den Kartendienst von OpenStreetMap (OSM). Anbieterin ist die Open-Street-Map Foundation
-  (OSMF), 132 Maney Hill Road, Sutton Coldfield, West Midlands, B72 1JU, United Kingdom.<br/>
-  Wenn Sie eine Website besuchen, auf der OpenStreetMap eingebunden ist, werden u. a. Ihre IP-Adresse und
-  weitere Informationen über Ihr Verhalten auf dieser Website an die OSMF weitergeleitet. OpenStreetMap
+  Wir nutzen den Kartendienst von OpenStreetMap (OSM) und Thunderforest. Anbieterin ist die Open-Street-Map Foundation
+  (OSMF), 132 Maney Hill Road, Sutton Coldfield, West Midlands, B72 1JU, United Kingdom und die Gravitystorm Limited, 53 Ancaster Crescent, New Malden KT3 6BD, United Kingdom<br/>
+  Wenn Sie eine Website besuchen, auf der OpenStreetMap und Thunderforest eingebunden ist, werden u. a. Ihre IP-Adresse und
+  weitere Informationen über Ihr Verhalten auf dieser Website an die OSMF und Thunderforest weitergeleitet. OpenStreetMap und Thunderforest
   speichert hierzu unter Umständen Cookies in Ihrem Browser. Das sind Textdateien, die auf Ihrem Computer
   gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglichen. Sie können die
   Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern; wir
@@ -405,8 +405,9 @@ privacy.fourth.osm.text: |
   Ferner kann Ihr Standort erfasst werden, wenn Sie dies in Ihren Geräteeinstellungen – z. B. auf Ihrem Handy –
   zugelassen haben. Der Anbieter dieser Seite hat keinen Einfluss auf diese Datenübertragung. Details
   entnehmen Sie der Datenschutzerklärung von OpenStreetMap unter folgendem Link:
-  <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" target="_blank">https://wiki.osmfoundation.org/wiki/Privacy_Policy</a>.<br/>
-  Die Nutzung von OpenStreetMap erfolgt im Interesse einer ansprechenden Darstellung unserer Online-
+  <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" target="_blank">https://wiki.osmfoundation.org/wiki/Privacy_Policy</a> und
+  <a href="https://www.thunderforest.com/privacy/" target="_blank">https://www.thunderforest.com/privacy</a>.<br/>
+  Die Nutzung von OpenStreetMap und Thunderforest erfolgt im Interesse einer ansprechenden Darstellung unserer Online-
   Angebote und einer leichten Auffindbarkeit der von uns auf der Website angegebenen Orte. Dies stellt ein
   berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar. Sofern eine entsprechende Einwilligung
   abgefragt wurde (z. B. eine Einwilligung zur Speicherung von Cookies), erfolgt die Verarbeitung

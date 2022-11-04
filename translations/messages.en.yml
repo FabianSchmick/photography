@@ -163,7 +163,7 @@ site.error.explanation.1: The request could not handled by the server. Maybe the
 site.error.explanation.2: return to the homepage
 
 # Gdpr
-gdpr.map.text: 'To protect your privacy, we did not automatically load the map. When you load this map, personal data (like your IP-address) may be transferred to openstreetmap.de. Read more in the <a href="%link%">privacy policies</a>'
+gdpr.map.text: 'To protect your privacy, we did not automatically load the map. When you load this map, personal data (like your IP-address) may be transferred to openstreetmap.de and thunderforest.com. Read more in the <a href="%link%">privacy policies</a>'
 gdpr.map.enable: Show the map
 gdpr.checkbox.enable: Save this decision
 
@@ -393,10 +393,10 @@ privacy.fourth.google.analytics.text: |
   Weitere Informationen zu den Nutzungsbedingungen und zum Datenschutz von Google und Google Analytics finden Sie unter <a href="http://www.google.com/analytics/terms/de.html" target="_blank">http://www.google.com/analytics/terms/de.html</a> sowie unter <a href="https://www.google.de/intl/de/policies/" target="_blank">https://www.google.de/intl/de/policies/</a>. Wir weisen darauf hin, dass Google Analytics um die Erweiterung „anonymizeIp“ ergänzt wurde. Damit wird anonymisierte Erfassung von IP-Adressen gewährleistet.
 privacy.fourth.osm.head: OpenStreetMap
 privacy.fourth.osm.text: |
-  Wir nutzen den Kartendienst von OpenStreetMap (OSM). Anbieterin ist die Open-Street-Map Foundation
-  (OSMF), 132 Maney Hill Road, Sutton Coldfield, West Midlands, B72 1JU, United Kingdom.<br/>
-  Wenn Sie eine Website besuchen, auf der OpenStreetMap eingebunden ist, werden u. a. Ihre IP-Adresse und
-  weitere Informationen über Ihr Verhalten auf dieser Website an die OSMF weitergeleitet. OpenStreetMap
+  Wir nutzen den Kartendienst von OpenStreetMap (OSM) und Thunderforest. Anbieterin ist die Open-Street-Map Foundation
+  (OSMF), 132 Maney Hill Road, Sutton Coldfield, West Midlands, B72 1JU, United Kingdom und die Gravitystorm Limited, 53 Ancaster Crescent, New Malden KT3 6BD, United Kingdom<br/>
+  Wenn Sie eine Website besuchen, auf der OpenStreetMap und Thunderforest eingebunden ist, werden u. a. Ihre IP-Adresse und
+  weitere Informationen über Ihr Verhalten auf dieser Website an die OSMF und Thunderforest weitergeleitet. OpenStreetMap und Thunderforest
   speichert hierzu unter Umständen Cookies in Ihrem Browser. Das sind Textdateien, die auf Ihrem Computer
   gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglichen. Sie können die
   Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern; wir
@@ -405,8 +405,9 @@ privacy.fourth.osm.text: |
   Ferner kann Ihr Standort erfasst werden, wenn Sie dies in Ihren Geräteeinstellungen – z. B. auf Ihrem Handy –
   zugelassen haben. Der Anbieter dieser Seite hat keinen Einfluss auf diese Datenübertragung. Details
   entnehmen Sie der Datenschutzerklärung von OpenStreetMap unter folgendem Link:
-  <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" target="_blank">https://wiki.osmfoundation.org/wiki/Privacy_Policy</a>.<br/>
-  Die Nutzung von OpenStreetMap erfolgt im Interesse einer ansprechenden Darstellung unserer Online-
+  <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" target="_blank">https://wiki.osmfoundation.org/wiki/Privacy_Policy</a> und
+  <a href="https://www.thunderforest.com/privacy/" target="_blank">https://www.thunderforest.com/privacy</a>.<br/>
+  Die Nutzung von OpenStreetMap und Thunderforest erfolgt im Interesse einer ansprechenden Darstellung unserer Online-
   Angebote und einer leichten Auffindbarkeit der von uns auf der Website angegebenen Orte. Dies stellt ein
   berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar. Sofern eine entsprechende Einwilligung
   abgefragt wurde (z. B. eine Einwilligung zur Speicherung von Cookies), erfolgt die Verarbeitung

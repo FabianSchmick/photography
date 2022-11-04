@@ -12,7 +12,8 @@ module.exports = {
     "globals": {
         "global": "writable",
         "TRANSLATION_MAP": "readonly",
-        "pageUrl": "readonly",
+        "PAGE_URL": "readonly",
+        "MAP_TILES_URL": "readonly",
         "gaOptout": "readonly",
         "paginateUrl": "writable"
     },
