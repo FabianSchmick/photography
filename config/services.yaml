@@ -11,7 +11,6 @@ parameters:
     # The upload directory in /public
     upload_directory: '/uploads'
     abs_upload_directory: '%kernel.project_dir%/public%upload_directory%'
-    google_analytics: '%env(string:GOOGLE_ANALYTICS)%'
 
     # Image qualities
     jpeg_quality: 75

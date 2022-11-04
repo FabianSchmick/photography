@@ -86,9 +86,9 @@ export class Map {
      * Adds the openstreetmap tiles
      */
     addTileLayer() {
-        L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+        L.tileLayer(MAP_TILES_URL, {
             maxZoom: 18,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            attribution: 'Maps &copy; <a href="https://www.thunderforest.com">Thunderforest</a> | Data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
         }).addTo(this.map);
     }
 

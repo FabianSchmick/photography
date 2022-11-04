@@ -78,7 +78,7 @@ class Lightbox {
             $('body').removeClass('modal-open').css('padding-right', '');
             $('.modal-backdrop').remove();
             this.$modal.remove();
-            history.pushState(null, '', pageUrl);
+            history.pushState(null, '', PAGE_URL);
         });
     }
 

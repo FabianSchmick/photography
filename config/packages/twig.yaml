@@ -4,7 +4,8 @@ twig:
         - 'templates/form/theme.html.twig'
     globals:
         locales: '%app.locales%'
-        ga: '%env(string:GOOGLE_ANALYTICS)%'
+        ga_property: '%env(string:GOOGLE_ANALYTICS_PROPERTY)%'
+        thunderforest_tiles_api_key: '%env(string:THUNDERFOREST_TILES_API_KEY)%'
 
 when@test:
     twig:

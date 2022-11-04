@@ -142,10 +142,12 @@
 {#                {{ 'privacy.fourth.google.fonts.text'|trans|raw }}#}
 {#            </p>#}
 
-{#            <strong>{{ 'privacy.fourth.google.analytics.head'|trans }}</strong>#}
-{#            <p>#}
-{#                {{ 'privacy.fourth.google.analytics.text'|trans|raw }}#}
-{#            </p>#}
+            {% if ga_property %}
+                <strong>{{ 'privacy.fourth.google.analytics.head'|trans }}</strong>
+                <p>
+                    {{ 'privacy.fourth.google.analytics.text'|trans|raw }}
+                </p>
+            {% endif %}
 
             <strong>{{ 'privacy.fourth.osm.head'|trans }}</strong>
             <p>

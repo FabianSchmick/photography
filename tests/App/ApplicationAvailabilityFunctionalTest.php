@@ -70,6 +70,8 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
         yield ['/de/tag/natur'];
         yield ['/en/tour/page/1'];
         yield ['/de/tour/page/1'];
+        yield ['/en/tour/map'];
+        yield ['/de/tour/map'];
         yield ['/en/tour/winterberg-kahler-asten-track'];
         yield ['/de/tour/winterberg-kahler-asten-steig'];
         yield ['/sitemap.xml'];
