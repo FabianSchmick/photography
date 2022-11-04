@@ -19,10 +19,7 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
     {
         $kernel = static::createKernel();
         $kernel->boot();
-        $em = $kernel->getContainer()
-            ->get('doctrine')
-            ->getManager()
-        ;
+        $em = $kernel->getContainer()->get('doctrine')->getManager();
 
         $loader = new Loader();
         $loader->addFixture(new AppFixtures($kernel->getProjectDir()));
