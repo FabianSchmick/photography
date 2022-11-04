@@ -17,15 +17,15 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
 {
     public static function setUpBeforeClass(): void
     {
-        static::$kernel = static::createKernel();
-        static::$kernel->boot();
-        $em = static::$kernel->getContainer()
+        $kernel = static::createKernel();
+        $kernel->boot();
+        $em = $kernel->getContainer()
             ->get('doctrine')
             ->getManager()
         ;
 
         $loader = new Loader();
-        $loader->addFixture(new AppFixtures(static::$kernel->getProjectDir()));
+        $loader->addFixture(new AppFixtures($kernel->getProjectDir()));
 
         $purger = new ORMPurger($em);
         $executor = new ORMExecutor($em, $purger);
