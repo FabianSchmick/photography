@@ -208,7 +208,7 @@ class Entry
 
     public function setTimestamp(?\DateTimeInterface $timestamp): self
     {
-        $this->timestamp = clone $timestamp;
+        $this->timestamp = $timestamp;
 
         return $this;
     }

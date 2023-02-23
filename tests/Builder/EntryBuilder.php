@@ -22,7 +22,7 @@ class EntryBuilder
 
     private ?User $author = null;
 
-    private File $image;
+    private ?File $image = null;
 
     private ?Location $location = null;
 
@@ -38,24 +38,28 @@ class EntryBuilder
     public function __construct(private readonly ObjectManager $manager)
     {
         $this->tags = new ArrayCollection();
-
-        $this->image = new EntryImage();
-        $this->image->setFile(
-            new UploadedFile(__DIR__.'/../../fixtures/img/example1.jpg', 'example1.jpg', 'image/jpeg', null, true)
-        );
     }
 
     public function create(): Entry
     {
         $entry = new Entry();
         $entry->setAuthor($this->author);
-        $entry->setImage($this->image);
         $entry->setLocation($this->location);
         $entry->setTimestamp($this->timestamp);
         $entry->setTags($this->tags);
         $entry->setTour($this->tour);
         $entry->setName($this->names[array_key_first($this->names)] ?? 'Entry');
         $entry->setDescription($this->descriptions[array_key_first($this->descriptions)] ?? null);
+
+        if ($this->image === null) {
+            copy(__DIR__.'/../../fixtures/img/example1.jpg', __DIR__.'/example1.jpg');
+            $this->image = new EntryImage();
+            $this->image->setFile(
+                new UploadedFile(__DIR__.'/example1.jpg', 'example1.jpg', 'image/jpeg', null, true)
+            );
+        }
+
+        $entry->setImage($this->image);
 
         $this->manager->persist($entry);
         $this->manager->flush();
@@ -77,6 +81,8 @@ class EntryBuilder
             $this->manager->persist($entry);
             $this->manager->flush();
         }
+
+        $this->image = null;
 
         return $entry;
     }
