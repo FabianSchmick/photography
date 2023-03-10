@@ -147,15 +147,13 @@ jobs:
                     cache: 'npm'
             -   run: npm ci
             -   run: npm run build
-            -   name: Add the builded files to git
-                uses: EndBug/add-and-commit@v9
+            -   uses: EndBug/add-and-commit@v9
                 with:
-                    add: './public/assets/ ./public/sw.js* ./public/workbox* node_modules/jpegoptim-bin/vendor/jpegoptim node_modules/optipng-bin/vendor/optipng --force'
+                    add: './public/assets/ ./public/sw.js* ./public/workbox* node_modules/jpegoptim-bin/ node_modules/optipng-bin/ --force'
                     author_name: Deployment Bot
                     author_email: fs@fabian-schmick.de
                     push: false
-            -   name: Finaly push to the deployment repository
-                uses: cpina/github-action-push-to-another-repository@main
+            -   uses: cpina/github-action-push-to-another-repository@main
                 env:
                     SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
                 with:
