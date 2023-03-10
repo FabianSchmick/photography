@@ -1,4 +1,4 @@
-name: Tests
+name: Tests and Deployment
 
 on:
     push:
@@ -117,3 +117,50 @@ jobs:
                     composer install --no-interaction --no-progress --ansi --no-scripts
                     composer show
             -   run: bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
+
+    deploy:
+        name: Deploy to the deployment repository
+        runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/master'
+        needs: [php-security-check, twig-lint, yaml-lint, symfony-container-lint, doctrine-entities-lint]
+        steps:
+            -   uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ env.PHP_VERSION }}
+                    tools: composer:v2
+                    ini-values: variables_order=EGPCS, date.timezone=Europe/Berlin
+                    extensions: intl
+            -   uses: actions/checkout@v3
+            -   uses: actions/cache@v2
+                with:
+                    path: vendor
+                    key: composer-${{ runner.os }}-${{ env.PHP_VERSION }}-${{ hashFiles('composer.json', 'composer.lock') }}
+                    restore-keys: |
+                        composer-${{ runner.os }}-${{ env.PHP_VERSION }}-
+                        composer-${{ runner.os }}-
+            -   run: |
+                    composer install --no-interaction --no-progress --ansi --no-scripts
+                    composer show
+            -   uses: actions/setup-node@v3
+                with:
+                    node-version: 16
+                    cache: 'npm'
+            -   run: npm ci
+            -   run: npm build
+            -   name: Add the builded files to git
+                uses: EndBug/add-and-commit@v9
+                with:
+                    add: './public/assets/ ./public/sw.js* ./public/workbox* node_modules/jpegoptim-bin/vendor/jpegoptim node_modules/optipng-bin/vendor/optipng --force'
+                    author_name: Deployment Bot
+                    author_email: fs@fabian-schmick.de
+                    new_branch: deploy
+                    push: false
+            -   name: Finaly push to the deployment repository
+                uses: cpina/github-action-push-to-another-repository@main
+                env:
+                    SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+                with:
+                    source-directory: '.'
+                    destination-github-username: 'FabianSchmick'
+                    destination-repository-name: 'fotografie.fabian-schmick.de'
+                    target-branch: master
