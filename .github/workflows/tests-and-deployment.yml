@@ -146,7 +146,7 @@ jobs:
                     node-version: 16
                     cache: 'npm'
             -   run: npm ci
-            -   run: npm build
+            -   run: npm run build
             -   name: Add the builded files to git
                 uses: EndBug/add-and-commit@v9
                 with:
