@@ -121,7 +121,7 @@ jobs:
     deploy:
         name: Deploy to the deployment repository
         runs-on: ubuntu-latest
-        if: github.ref == 'refs/heads/master'
+#        if: github.ref == 'refs/heads/master'
         needs: [php-security-check, twig-lint, yaml-lint, symfony-container-lint, doctrine-entities-lint]
         steps:
             -   uses: shivammathur/setup-php@v2
@@ -147,17 +147,13 @@ jobs:
                     cache: 'npm'
             -   run: npm ci
             -   run: npm run build
-            -   uses: EndBug/add-and-commit@v9
-                with:
-                    add: './public/assets/ ./public/sw.js* ./public/workbox* node_modules/jpegoptim-bin/ node_modules/optipng-bin/ --force'
-                    author_name: Deployment Bot
-                    author_email: fs@fabian-schmick.de
-                    push: false
-            -   uses: cpina/github-action-push-to-another-repository@main
-                env:
+            -   env:
                     SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
-                with:
-                    source-directory: '.'
-                    destination-github-username: 'FabianSchmick'
-                    destination-repository-name: 'fotografie.fabian-schmick.de'
-                    target-branch: master
+                run: |
+                    git config --global user.name "Deployment Bot"
+                    git config --global user.email "fs@fabian-schmick.de"
+                    git checkout -b deploy
+                    git add ./public/assets/ ./public/sw.js* ./public/workbox* node_modules/jpegoptim-bin/ node_modules/optipng-bin/ --force
+                    git commit -m "Add builded files"
+                    git remote add deployment https://${{ secrets.SSH_DEPLOY_KEY }}@github.com/FabianSchmick/fotografie.fabian-schmick.de
+                    git push --set-upstream deployment deploy
