@@ -124,6 +124,9 @@ jobs:
 #        if: github.ref == 'refs/heads/master'
         needs: [php-security-check, twig-lint, yaml-lint, symfony-container-lint, doctrine-entities-lint]
         steps:
+            -   uses: webfactory/ssh-agent@v0.7.0
+                with:
+                    ssh-private-key: ${{ secrets.SSH_DEPLOY_KEY }}
             -   uses: shivammathur/setup-php@v2
                 with:
                     php-version: ${{ env.PHP_VERSION }}
@@ -147,13 +150,11 @@ jobs:
                     cache: 'npm'
             -   run: npm ci
             -   run: npm run build
-            -   env:
-                    SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
-                run: |
+            -   run: |
                     git config --global user.name "Deployment Bot"
                     git config --global user.email "fs@fabian-schmick.de"
                     git checkout -b deploy
                     git add ./public/assets/ ./public/sw.js* ./public/workbox* node_modules/jpegoptim-bin/ node_modules/optipng-bin/ --force
                     git commit -m "Add builded files"
-                    git remote add deployment https://${{ secrets.SSH_DEPLOY_KEY }}@github.com/FabianSchmick/fotografie.fabian-schmick.de
+                    git remote add deployment git@github.com:FabianSchmick/fotografie.fabian-schmick.de.git
                     git push --set-upstream deployment deploy
