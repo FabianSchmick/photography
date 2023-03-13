@@ -134,6 +134,9 @@ jobs:
                     ini-values: variables_order=EGPCS, date.timezone=Europe/Berlin
                     extensions: intl
             -   uses: actions/checkout@v3
+                with:
+                    # https://stackoverflow.com/a/62293647/5947371
+                    fetch-depth: 0
             -   uses: actions/cache@v2
                 with:
                     path: vendor
