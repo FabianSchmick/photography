@@ -124,6 +124,9 @@ jobs:
         if: github.ref == 'refs/heads/master'
         needs: [php-security-check, twig-lint, yaml-lint, symfony-container-lint, doctrine-entities-lint]
         steps:
+            -   uses: webfactory/ssh-agent@v0.7.0
+                with:
+                    ssh-private-key: ${{ secrets.SSH_DEPLOY_KEY }}
             -   uses: shivammathur/setup-php@v2
                 with:
                     php-version: ${{ env.PHP_VERSION }}
@@ -131,6 +134,9 @@ jobs:
                     ini-values: variables_order=EGPCS, date.timezone=Europe/Berlin
                     extensions: intl
             -   uses: actions/checkout@v3
+                with:
+                    # https://stackoverflow.com/a/62293647/5947371
+                    fetch-depth: 0
             -   uses: actions/cache@v2
                 with:
                     path: vendor
@@ -147,17 +153,10 @@ jobs:
                     cache: 'npm'
             -   run: npm ci
             -   run: npm run build
-            -   uses: EndBug/add-and-commit@v9
-                with:
-                    add: './public/assets/ ./public/sw.js* ./public/workbox* node_modules/jpegoptim-bin/ node_modules/optipng-bin/ --force'
-                    author_name: Deployment Bot
-                    author_email: fs@fabian-schmick.de
-                    push: false
-            -   uses: cpina/github-action-push-to-another-repository@main
-                env:
-                    SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
-                with:
-                    source-directory: '.'
-                    destination-github-username: 'FabianSchmick'
-                    destination-repository-name: 'fotografie.fabian-schmick.de'
-                    target-branch: master
+            -   run: |
+                    git config --global user.name "Deployment Bot"
+                    git config --global user.email "fs@fabian-schmick.de"
+                    git add ./public/assets/ ./public/sw.js* ./public/workbox* node_modules/jpegoptim-bin/ node_modules/optipng-bin/ --force
+                    git commit -m "Add builded files"
+                    git remote add deployment git@github.com:FabianSchmick/fotografie.fabian-schmick.de.git
+                    git push deployment master --force
