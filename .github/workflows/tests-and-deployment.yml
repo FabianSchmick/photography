@@ -121,7 +121,7 @@ jobs:
     deploy:
         name: Deploy to the deployment repository
         runs-on: ubuntu-latest
-#        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/master'
         needs: [php-security-check, twig-lint, yaml-lint, symfony-container-lint, doctrine-entities-lint]
         steps:
             -   uses: webfactory/ssh-agent@v0.7.0
@@ -156,8 +156,7 @@ jobs:
             -   run: |
                     git config --global user.name "Deployment Bot"
                     git config --global user.email "fs@fabian-schmick.de"
-                    git checkout -b deploy
                     git add ./public/assets/ ./public/sw.js* ./public/workbox* node_modules/jpegoptim-bin/ node_modules/optipng-bin/ --force
                     git commit -m "Add builded files"
                     git remote add deployment git@github.com:FabianSchmick/fotografie.fabian-schmick.de.git
-                    git push --set-upstream deployment deploy
+                    git push deployment master --force
