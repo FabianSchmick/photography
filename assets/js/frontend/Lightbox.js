@@ -8,6 +8,7 @@ class Lightbox {
         this.$lightbox = $('[data-lightbox]');
         this.modal = '#lightbox';
         this.$modal = null;
+        this.isLoading = false;
     }
 
     /**
@@ -37,7 +38,7 @@ class Lightbox {
 
         this.updateIndex();
 
-        this.$modal.modal();
+        new bootstrap.Modal(document.getElementById(this.$modal.attr('id'))).show();
 
         this.$modal.on('click', '[data-dismiss="modal"]', () => {
             this.dismissModal();
@@ -75,7 +76,10 @@ class Lightbox {
      */
     dismissModal() {
         $(this.modal+', .modal-backdrop').fadeOut(300, () => {
-            $('body').removeClass('modal-open').css('padding-right', '');
+            $('body')
+                .removeClass('modal-open')
+                .css('padding-right', '')
+                .css('overflow', 'auto');
             $('.modal-backdrop').remove();
             this.$modal.remove();
             history.pushState(null, '', PAGE_URL);
@@ -117,11 +121,13 @@ class Lightbox {
      * @param {string} url The entry url to load
      */
     loadEntry(url) {
-        if (!url) {
+        if (!url || this.isLoading) {
             this.$modal.removeClass('loading');
 
             return;
         }
+
+        this.isLoading = true;
 
         $.get(url, data => {
             let html = $.parseHTML(data),
@@ -142,6 +148,7 @@ class Lightbox {
                     this.$modal.removeClass('loading');
                 }
                 this.updateIndex();
+                this.isLoading = false;
             });
         });
     }

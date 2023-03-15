@@ -1,6 +1,7 @@
 import $ from 'jquery';
 global.$ = global.jQuery = $;
-import 'bootstrap';
+import * as bootstrap from 'bootstrap';
+window.bootstrap = bootstrap;
 import 'detect_swipe';
 
 import { disableGoogleAnalytics } from './util/ga';

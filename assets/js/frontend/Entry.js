@@ -12,7 +12,7 @@ class Entry {
             url: $paginateContainer.data('infinite-scroll') || false,
             page: 1
         };
-        this.isLoadingEntries = false;
+        this.isLoading = false;
         this.lazyLoadInstance = null;
     }
 
@@ -35,11 +35,11 @@ class Entry {
      * @returns {*}
      */
     loadEntries() {
-        if (!this.paginateConfig.container.length || this.isLoadingEntries) {
+        if (!this.paginateConfig.container.length || this.isLoading) {
             return;
         }
 
-        this.isLoadingEntries = true;
+        this.isLoading = true;
         this.paginateConfig.container.addClass('loading');
 
         this.paginateConfig.page++;
@@ -49,13 +49,13 @@ class Entry {
             this.paginateConfig.container.removeClass('loading');
 
             if (!$.trim(data)) {
-                this.isLoadingEntries = true;
+                this.isLoading = true;
                 return false;
             }
 
             this.paginateConfig.container.append(data);
             this.lazyLoadInstance.update();
-            this.isLoadingEntries = false;
+            this.isLoading = false;
         });
     }
 
@@ -66,19 +66,21 @@ class Entry {
         let $entry = $('section#entry');
 
         $entry.on('click', 'a.prev, a.next', e => {
-            $entry.addClass('loading');
-
             this.loadEntry($(e.currentTarget).attr('href'), $entry);
 
             e.preventDefault();
         }).on('swipeleft', e => {
-            $entry.addClass('loading');
-
             this.loadEntry($(e.currentTarget).find('a.prev').attr('href'), $entry);
         }).on('swiperight', e => {
-            $entry.addClass('loading');
-
             this.loadEntry($(e.currentTarget).find('a.next').attr('href'), $entry);
+        });
+
+        $(document).on('keyup', e => {
+            if (e.keyCode === 37) {
+                this.loadEntry($(e.currentTarget).find('a.next').attr('href'), $entry);
+            } else if (e.keyCode === 39) {
+                this.loadEntry($(e.currentTarget).find('a.prev').attr('href'), $entry);
+            }
         });
     }
 
@@ -91,6 +93,13 @@ class Entry {
      * @returns {*}
      */
     loadEntry(url, $entry) {
+        if (this.isLoading) {
+            return;
+        }
+
+        $entry.addClass('loading');
+        this.isLoading = true;
+
         return $.get(url, data => {
             let html = $.parseHTML(data),
                 $article = $entry.find('article');
@@ -107,6 +116,7 @@ class Entry {
             navigationAddClassOn();
 
             history.pushState(null, '', url);
+            this.isLoading = false;
         });
     }
 

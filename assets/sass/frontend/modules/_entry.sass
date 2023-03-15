@@ -7,16 +7,29 @@
         align-items: center
 
     &.loading
-        .entry-image:after
-            content: ''
-            position: absolute
-            display: block
-            transform: translate(-50%, -50%)
-            top: 50%
-            left: 50%
-            height: 60px
-            width: 60px
-            background: url(../../../images/layout/icons/spinner-icon.svg) no-repeat center /contain
+        .entry-image
+            pointer-events: none
+            position: relative
+            &:before
+                position: absolute
+                display: block
+                left: 0.75rem
+                top: 0
+                height: 100%
+                width: calc(100% - 0.75rem)
+                background: rgba(0,0,0,0.5)
+                z-index: 10
+            &:after
+                content: ''
+                position: absolute
+                display: block
+                transform: translate(-50%, -50%)
+                top: 50%
+                left: 50%
+                height: 60px
+                width: 60px
+                background: url(../../../images/layout/icons/spinner-icon.svg) no-repeat center /contain
+                z-index: 20
 
     @include media-breakpoint-up(lg)
         padding: 3.125rem $grid-gutter-width / 2 0
@@ -51,6 +64,10 @@
     .entry-image
         min-height: 100px
         padding: 0
+
+        &:before
+            content: ''
+            transition: all 0.2s ease-in
 
         @include media-breakpoint-up(lg)
             padding: 0 0 0 $grid-gutter-width / 2

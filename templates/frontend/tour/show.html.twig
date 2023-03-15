@@ -16,12 +16,12 @@
 {% block cover %}
     <section id="cover">
         {% if not tour.entries.empty and tour.entries.count > 1 %}
-            <div id="entry-carousel" class="carousel slide" data-ride="carousel">
+            <div id="entry-carousel" class="carousel slide" data-bs-ride="carousel">
                 <ol class="carousel-indicators">
                     {% for entry in tour.entries %}
-                        <li data-target="#entry-carousel" data-slide-to="{{ loop.index0 }}"
+                        <li data-bs-target="#entry-carousel" data-bs-slide-to="{{ loop.index0 }}"
                             style="background-image: url({{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_thumbnail') }})"
-                            {% if loop.first %}class="active"{% endif %}>
+                            {% if loop.first %}class="active" aria-current="true"{% endif %}>
                         </li>
                     {% endfor %}
                 </ol>
@@ -37,12 +37,12 @@
                     {% endfor %}
                 </div>
                 <div class="carousel-controls">
-                    <a class="btn btn-primary mr-2" href="#entry-carousel" role="button" data-slide="prev" title="{{ 'btn.prev'|trans }}">
-                        <span class="icon icon-angle"><svg><use xlink:href="#angle-icon"/></svg></span>
-                    </a>
-                    <a class="btn btn-primary" href="#entry-carousel" role="button" data-slide="next" title="{{ 'btn.next'|trans }}">
-                        <span class="icon icon-angle icon-rotate-180"><svg><use xlink:href="#angle-icon"/></svg></span>
-                    </a>
+                    <button class="btn btn-primary me-2" data-bs-target="#entry-carousel" data-bs-slide="prev">
+                        <span class="icon icon-angle" title="{{ 'btn.prev'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
+                    </button>
+                    <button class="btn btn-primary" data-bs-target="#entry-carousel" data-bs-slide="next">
+                        <span class="icon icon-angle icon-rotate-180" title="{{ 'btn.next'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
+                    </button>
                 </div>
             </div>
         {% else %}
@@ -83,7 +83,7 @@
                     <dl class="row meta-table">
                         {% if tour.distance %}
                             <dt class="col-6 tour-distance">
-                                {{ 'label.distance'|trans }} <span class="icon icon-sm icon-length pl-1"><svg><use xlink:href="#length-icon"/></svg></span>
+                                {{ 'label.distance'|trans }} <span class="icon icon-sm icon-length ps-1"><svg><use xlink:href="#length-icon"/></svg></span>
                             </dt>
                             <dd class="col-6 tour-distance-value">
                                 {{ tour.distance|number_format(1, ',', '.') }} {{ 'unit.distance'|trans }}
@@ -91,7 +91,7 @@
                         {% endif %}
                         {% if tour.duration %}
                             <dt class="col-6 tour-duration">
-                                {{ 'label.duration'|trans }} <span class="icon icon-sm icon-time pl-1"><svg><use xlink:href="#time-icon"/></svg></span>
+                                {{ 'label.duration'|trans }} <span class="icon icon-sm icon-time ps-1"><svg><use xlink:href="#time-icon"/></svg></span>
                             </dt>
                             <dd class="col-6 tour-duration-value">
                                 {{ tour.duration|format_duration }} {{ 'unit.duration'|trans }}
@@ -99,8 +99,8 @@
                                     {% set formula = enum('App\\Config\\TourDurationFormula::'~tour.formulaType) %}
                                     {% set formula = formula.constants %}
 
-                                    <button type="button" class="btn btn-sm p-0 ml-1 icon icon-sm icon-teritary icon-info"
-                                            data-toggle="tooltip" data-html="true" style="margin-top: -5px;"
+                                    <button type="button" class="btn btn-sm p-0 ms-1 icon icon-sm icon-teritary icon-info"
+                                            data-bs-toggle="tooltip" data-bs-html="true" style="margin-top: -5px;"
                                           title="{{ ('tooltip.formula.'~tour.formulaType)|trans({
                                               '%UP_METERS_PER_HOUR%': formula.UP_METERS_PER_HOUR|default(''),
                                               '%DOWN_METERS_PER_HOUR%': formula.DOWN_METERS_PER_HOUR|default(''),
@@ -113,7 +113,7 @@
                         {% endif %}
                         {% if tour.maxAltitude %}
                             <dt class="col-6 tour-max-altitude">
-                                {{ 'label.maxAltitude'|trans }} <span class="icon icon-sm icon-angle icon-rotate-90 pl-1"><svg><use xlink:href="#angle-icon"/></svg></span>
+                                {{ 'label.maxAltitude'|trans }} <span class="icon icon-sm icon-angle icon-rotate-90 ps-1"><svg><use xlink:href="#angle-icon"/></svg></span>
                             </dt>
                             <dd class="col-6 tour-max-altitude-value">
                                 {{ tour.maxAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}
@@ -121,7 +121,7 @@
                         {% endif %}
                         {% if tour.minAltitude %}
                             <dt class="col-6 tour-min-altitude">
-                                {{ 'label.minAltitude'|trans }} <span class="icon icon-sm icon-angle icon-rotate-270 pl-1"><svg><use xlink:href="#angle-icon"/></svg></span>
+                                {{ 'label.minAltitude'|trans }} <span class="icon icon-sm icon-angle icon-rotate-270 ps-1"><svg><use xlink:href="#angle-icon"/></svg></span>
                             </dt>
                             <dd class="col-6 tour-min-altitude-value">
                                 {{ tour.minAltitude|number_format(0, ',', '.') }} {{ 'unit.altitude'|trans }}
@@ -145,13 +145,13 @@
                         {% endif %}
                         {% if tour.levelOfDifficulty %}
                             <dt class="col-6 tour-level-of-difficulty">
-                                {{ 'label.levelOfDifficulty'|trans }} <span class="icon icon-sm icon-level-of-difficulty pl-1"><svg><use xlink:href="#level-of-difficulty-icon"/></svg></span>
+                                {{ 'label.levelOfDifficulty'|trans }} <span class="icon icon-sm icon-level-of-difficulty ps-1"><svg><use xlink:href="#level-of-difficulty-icon"/></svg></span>
                             </dt>
                             <dd class="col-6 tour-level-of-difficulty-value">
                                 {{ tour.valueLevelOfDifficulty }}
 
-                                <button type="button" class="btn btn-sm p-0 ml-1 icon icon-sm icon-teritary icon-info"
-                                        data-toggle="tooltip" data-html="true" style="margin-top: -5px;"
+                                <button type="button" class="btn btn-sm p-0 ms-1 icon icon-sm icon-teritary icon-info"
+                                        data-bs-toggle="tooltip" data-bs-html="true" style="margin-top: -5px;"
                                         title="{{ ('tooltip.levelOfDifficulty')|trans()|raw }}">
                                     <svg><use xlink:href="#info-icon"/></svg>
                                 </button>
@@ -163,10 +163,10 @@
                 <div>
                     <ul class="justify-content-center nav nav-tabs mb-3" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#tour-map" role="tab" aria-selected="true"><h3 class="mb-0">{{ 'tour.map'|trans }}</h3></a>
+                            <a class="nav-link active" data-bs-toggle="tab" href="#tour-map" role="tab" aria-selected="true"><h3 class="mb-0">{{ 'tour.map'|trans }}</h3></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tour-chart" role="tab" aria-selected="false"><h3 class="mb-0">{{ 'tour.chart'|trans }}</h3></a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#tour-chart" role="tab" aria-selected="false"><h3 class="mb-0">{{ 'tour.chart'|trans }}</h3></a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -179,7 +179,7 @@
                             {{ macro.gdpr_map(gdprContent) }}
 
                             <a class="btn btn-teritary mt-4" href="{{ path('core_download_file', {'file': tour.file.fileName}) }}" target="_blank">
-                                <span class="icon icon-sm icon-download pr-2"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'btn.tour_download'|trans }}
+                                <span class="me-2 icon icon-sm icon-download pe-2"><svg><use xlink:href="#download-icon"/></svg></span> {{ 'btn.tour_download'|trans }}
                             </a>
                         </div>
                         <div class="tab-pane fade" id="tour-chart" role="tabpanel">

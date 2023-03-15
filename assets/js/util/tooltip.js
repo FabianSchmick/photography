@@ -1,8 +1,10 @@
+import '@popperjs/core';
+
 /**
  * Tooltip for hints
  */
 export function tooltip() {
-    $('[data-toggle="tooltip"]').tooltip({
+    $('[data-bs-toggle="tooltip"]').tooltip({
         trigger: 'focus hover'
     });
 }
