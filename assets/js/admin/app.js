@@ -14,32 +14,6 @@ export function navigation() {
             Cookies.set('sidebar-toggled', false);
         }
     });
-
-    let $aside = $('#sidebar-nav');
-
-    $aside
-        .on('mouseenter', function () {
-            let el = $aside.get(0);
-            if (el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth) {
-                $aside.addClass('overflow');
-                $body.addClass('nav-overflow');
-            }
-        })
-        .on('mouseleave', function () {
-            $aside.removeClass('overflow');
-            $body.removeClass('nav-overflow');
-        })
-        .on('shown.bs.collapse hidden.bs.collapse', '.collapse', function () {
-            let el = $aside.get(0);
-            if (el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth) {
-                $aside.addClass('overflow');
-                $body.addClass('nav-overflow');
-            } else {
-                $aside.removeClass('overflow');
-                $body.removeClass('nav-overflow');
-            }
-        })
-    ;
 }
 
 /**
@@ -58,7 +32,7 @@ export function search() {
             filter = $(input).val();
 
         if (filter === '') {
-            $sidebar.find('.collapse').collapse('hide');
+            $sidebar.find('.collapse').removeClass('show');
             $sidebar.find('.searchable').show();
             return;
         }
@@ -71,7 +45,7 @@ export function search() {
             } else {
                 $this.show();
                 if ($this.parent().hasClass('collapse')) {
-                    $this.parent().collapse('show');
+                    $this.parent().addClass('show');
                 }
             }
         });

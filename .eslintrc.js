@@ -15,6 +15,7 @@ module.exports = {
         "PAGE_URL": "readonly",
         "MAP_TILES_URL": "readonly",
         "gaOptout": "readonly",
+        "bootstrap": "readonly",
         "paginateUrl": "writable"
     },
     "rules": {

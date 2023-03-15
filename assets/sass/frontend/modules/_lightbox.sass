@@ -1,15 +1,38 @@
 #lightbox
+    .modal-dialog
+        max-width: 100%
+        margin: auto
+        pointer-events: initial
+
     &.loading
-        &:after
-            content: ''
-            position: absolute
-            display: block
-            transform: translate(-50%, -50%)
-            top: 50%
-            left: 50%
-            height: 60px
-            width: 60px
-            background: url(../../../images/layout/icons/spinner-icon.svg) no-repeat center /contain
+        #entry .entry-inner .entry-image
+            pointer-events: none
+            position: relative
+            &:before
+                position: absolute
+                display: block
+                left: 0
+                top: 0
+                height: 100%
+                width: 100%
+                background: rgba(0,0,0,0.5)
+                z-index: 10
+
+                @include media-breakpoint-up(lg)
+                    width: calc(100% - 0.75rem)
+                    left: 0.75rem
+
+            &:after
+                content: ''
+                position: absolute
+                display: block
+                transform: translate(-50%, -50%)
+                top: 50%
+                left: 50%
+                height: 60px
+                width: 60px
+                background: url(../../../images/layout/icons/spinner-icon.svg) no-repeat center /contain
+                z-index: 20
 
     .d-flex.flex-column
         min-height: 100%
@@ -37,11 +60,15 @@
     .btn.btn-close
         padding: 0.5rem
         border-radius: 0
+        width: auto
+        height: auto
+        transition: all 0.2s ease-in
+        opacity: 1
         &:focus
             box-shadow: none
 
         @include media-breakpoint-up(lg)
-            background: rgba(30,30,30,.6)
+            background: #000
 
         .icon svg
             fill: #fff

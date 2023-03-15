@@ -1,6 +1,6 @@
 import 'select2';
 import 'select2/dist/js/i18n/de';
-import 'summernote/dist/summernote-bs4';
+import 'summernote/dist/summernote-lite';
 import 'summernote/dist/lang/summernote-de-DE';
 
 $(document).on('change', '.custom-file-input', function() {

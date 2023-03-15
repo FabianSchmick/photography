@@ -52,12 +52,12 @@
                 <ul class="tours-option-view list-unstyled" data-filter="#tours-container">
                     <li>
                         <a href="{{ path('tour_index', activeCategory ? {'page': 1, 'category': activeCategory.id} : {'page': 1}) }}" class="btn btn-teritary{% if request.attributes.get('_route') != 'tour_index' %} btn-inverse{% endif %}">
-                            <span class="d-none d-md-block pr-2">{{ 'tour.list'|trans }}</span> <span class="icon icon-sm icon-list"><svg><use xlink:href="#list-icon"></use></svg></span>
+                            <span class="d-none d-md-block pe-2">{{ 'tour.list'|trans }}</span> <span class="icon icon-sm icon-list"><svg><use xlink:href="#list-icon"></use></svg></span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ path('tour_map', activeCategory ? {'category': activeCategory.id} : {}) }}" class="btn btn-teritary{% if request.attributes.get('_route') != 'tour_map' %} btn-inverse{% endif %}">
-                            <span class="d-none d-md-block pr-2">{{ 'tour.maps'|trans }}</span> <span class="icon icon-sm icon-map"><svg><use xlink:href="#map-icon"></use></svg></span>
+                            <span class="d-none d-md-block pe-2">{{ 'tour.maps'|trans }}</span> <span class="icon icon-sm icon-map"><svg><use xlink:href="#map-icon"></use></svg></span>
                         </a>
                     </li>
                 </ul>
