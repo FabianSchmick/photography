@@ -7,7 +7,7 @@ use Twig\Markup;
 use Twig\TwigFilter;
 
 /**
- * Filter which converts svg file and returns an inline svg string
+ * Filter which converts svg file and returns an inline svg string.
  *
  * Inspired by https://github.com/manuelodelain/svg-twig-extension
  */
