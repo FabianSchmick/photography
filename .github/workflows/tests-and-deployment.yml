@@ -118,6 +118,40 @@ jobs:
                     composer show
             -   run: bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
 
+    phpunit:
+        name: PHPUnit
+        runs-on: ubuntu-20.04
+        steps:
+            -   uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ env.PHP_VERSION }}
+                    tools: composer:v2
+                    ini-values: variables_order=EGPCS, date.timezone=Europe/Berlin
+                    extensions: intl
+            -   uses: actions/checkout@v3
+            -   uses: actions/cache@v3
+                with:
+                    path: vendor
+                    key: composer-${{ runner.os }}-${{ env.PHP_VERSION }}-${{ hashFiles('composer.json', 'composer.lock') }}
+                    restore-keys: |
+                        composer-${{ runner.os }}-${{ env.PHP_VERSION }}-
+                        composer-${{ runner.os }}-
+            -   run: |
+                    composer install --no-interaction --no-progress --ansi --no-scripts
+                    composer show
+            -   run: |
+                    sudo /etc/init.d/mysql start
+                    mysql -e 'CREATE DATABASE application_test;' -uroot -p
+            -   uses: actions/setup-node@v3
+                with:
+                    node-version: 16
+                    cache: 'npm'
+            -   run: npm ci
+            -   run: npm run build
+            -   run: php bin/console doctrine:schema:update --force --env=test
+            -   run: php bin/console doctrine:fixtures:load --no-interaction --env=test
+            -   run: bin/phpunit
+
     deploy:
         name: Deploy to the deployment repository
         runs-on: ubuntu-latest
