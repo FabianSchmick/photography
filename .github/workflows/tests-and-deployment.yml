@@ -121,13 +121,6 @@ jobs:
     phpunit:
         name: PHPUnit
         runs-on: ubuntu-20.04
-        services:
-            mysql:
-                image: mysql:8.0
-                env:
-                    MYSQL_ROOT_PASSWORD:
-                ports:
-                    - '8888:3306'
         steps:
             -   uses: shivammathur/setup-php@v2
                 with:
@@ -147,7 +140,8 @@ jobs:
                     composer install --no-interaction --no-progress --ansi --no-scripts
                     composer show
             -   run: |
-                    mysql -e 'CREATE DATABASE application_test;' -uroot -p -h127.0.0.1
+                    sudo /etc/init.d/mysql start
+                    mysql -e 'CREATE DATABASE application_test;' -uroot -proot
             -   uses: actions/setup-node@v3
                 with:
                     node-version: 16
