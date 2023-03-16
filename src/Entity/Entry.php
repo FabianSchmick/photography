@@ -35,7 +35,7 @@ class Entry
      * @Gedmo\Translatable
      * @ORM\Column(type="string")
      */
-    private ?string $name = null;
+    private string $name;
 
     /**
      * @Assert\Length(max=65535)
@@ -107,7 +107,7 @@ class Entry
      * @Gedmo\Slug(fields={"name"}, updatable=true)
      * @ORM\Column(type="string", unique=true)
      */
-    private ?string $slug = null;
+    private string $slug;
 
     /**
      * @Gedmo\Timestampable(on="create")
@@ -146,14 +146,14 @@ class Entry
         return $this->id;
     }
 
-    public function setName(?string $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -182,7 +182,7 @@ class Entry
         return $this->author;
     }
 
-    public function setImage(?File $image): self
+    public function setImage(File $image): self
     {
         $this->image = $image;
 
@@ -259,7 +259,7 @@ class Entry
         return $this;
     }
 
-    public function getSlug(): ?string
+    public function getSlug(): string
     {
         return $this->slug;
     }

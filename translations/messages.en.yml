@@ -74,8 +74,8 @@ title.admin: Admin
 title.login: Login
 
 # Tooltips
-tooltip.formula.HIKING: '<b>Hiking time calculation</b> (per hour): %UP_METERS_PER_HOUR%m up, %DOWN_METERS_PER_HOUR%m down and %HORIZONTAL_METERS_PER_HOUR% km plain (DIN 33466).'
-tooltip.formula.MTB: '<b>Travel time calculation</b> (per hour): %UP_METERS_PER_HOUR%m up und %HORIZONTAL_METERS_PER_HOUR% km plain.'
+tooltip.formula.HIKING: '<b>Hiking time calculation</b> (per hour): %UP_METERS_PER_HOUR%m up, %DOWN_METERS_PER_HOUR%m down and %HORIZONTAL_KILOMETERS_PER_HOUR% km plain (DIN 33466).'
+tooltip.formula.MTB: '<b>Travel time calculation</b> (per hour): %UP_METERS_PER_HOUR%m up und %HORIZONTAL_KILOMETERS_PER_HOUR% km plain.'
 tooltip.formula.VIA_FERRATA: '<b>Climbing time calculation</b> (per hour): %UP_METERS_PER_HOUR%m up, %DOWN_METERS_PER_HOUR%m down.'
 tooltip.levelOfDifficulty: Classification according to the Schall-Scale for Ferrata or UIAA-Scale for climbing
 
@@ -130,7 +130,7 @@ pagination.next: '<span class="icon icon-sm icon-angle icon-rotate-180" title="N
 # Frontend
 introduction.by: by
 introduction.headline: Naturephotos and hikings from the Sauerland & the Alps
-introduction.longtext: My name is Fabian Schmick, I am in my middle 20s, come from Sauerland (Germany) and am a Web Developer. Because I am a passionate wanderer, I always discover small and big highlights on my tours which I capture with my camera. On this Website you will find nature-photography and reports of my mountain sport tours from the Sauerland, Waldeck-Frankenberg, Carpathians and the Alps.
+introduction.longtext: My name is Fabian Schmick, I am in my middle 20s, come from Sauerland (Germany) and am a Web Developer. Because I am a passionate wanderer, I always discover small and big highlights on my tours which I capture with my camera. On this Website you will find nature-photography and reports of my mountain sport tours from the Sauerland, Upland and the Alps.
 introduction.tag: All pictures filtered by tag
 introduction.similar_tags: Similar tags
 introduction.tours.headline: Beautiful circular hiking-, climb- or summit- tours

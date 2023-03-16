@@ -11,9 +11,6 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class TourService
 {
-    /**
-     * TourService constructor.
-     */
     public function __construct(private readonly UploaderHelper $uploaderHelper, private readonly string $publicDir)
     {
     }
@@ -99,7 +96,7 @@ class TourService
         $downDuration = $downElevation / $formulaDefinitions['DOWN_METERS_PER_HOUR'];
         $upDuration = $upElevation / $formulaDefinitions['UP_METERS_PER_HOUR'];
         $sumElevation = $downDuration + $upDuration;
-        $horizontalDuration = $distance / $formulaDefinitions['HORIZONTAL_METERS_PER_HOUR'];
+        $horizontalDuration = $distance / $formulaDefinitions['HORIZONTAL_KILOMETERS_PER_HOUR'];
 
         if ($horizontalDuration < $sumElevation) {
             $decimalDuration = ($horizontalDuration / 2) + $sumElevation;
@@ -119,7 +116,7 @@ class TourService
         $formulaDefinitions = $formula->constants();
 
         $upDuration = $upElevation / $formulaDefinitions['UP_METERS_PER_HOUR'];
-        $horizontalDuration = $distance / $formulaDefinitions['HORIZONTAL_METERS_PER_HOUR'];
+        $horizontalDuration = $distance / $formulaDefinitions['HORIZONTAL_KILOMETERS_PER_HOUR'];
 
         if ($horizontalDuration < $upDuration) {
             $decimalDuration = ($horizontalDuration / 2) + $upDuration;

@@ -6,9 +6,6 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class CoreService
 {
-    /**
-     * EntryService constructor.
-     */
     public function __construct(private readonly EntityManagerInterface $em)
     {
     }

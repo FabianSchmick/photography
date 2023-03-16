@@ -32,7 +32,7 @@ class TourCategory
      * @Gedmo\Translatable
      * @ORM\Column(type="string", length=128, unique=true)
      */
-    private ?string $name = null;
+    private string $name;
 
     /**
      * @Assert\Type("numeric")
@@ -93,14 +93,14 @@ class TourCategory
         return $this->id;
     }
 
-    public function setName(?string $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }

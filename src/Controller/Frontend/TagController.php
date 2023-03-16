@@ -39,7 +39,7 @@ class TagController extends AbstractController
      * @Route("/ajax/tag/{slug}/{page}", name="tag_pagiante_ajax", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
      * @Entity("tag", expr="repository.findOneByCriteria(_locale, {'slug': slug})")
      */
-    public function ajaxPaginate(Tag $tag, EntryRepository $entryRepository, $page = 1): Response
+    public function ajaxPaginate(Tag $tag, EntryRepository $entryRepository, int $page = 1): Response
     {
         $query = $entryRepository->findEntriesByTagQuery($tag);
         $pages = PaginationHelper::getPagesCount($query);

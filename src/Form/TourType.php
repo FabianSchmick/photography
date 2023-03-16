@@ -20,9 +20,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TourType extends AbstractType
 {
-    /**
-     * TourType constructor.
-     */
     public function __construct(private readonly TourService $tourService, private readonly DateIntervalTransformer $transformer)
     {
     }

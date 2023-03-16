@@ -9,16 +9,11 @@ use Twig\TwigFilter;
 
 class TourExtension extends AbstractExtension
 {
-    /**
-     * TourExtension constructor.
-     */
     public function __construct(private readonly TourService $tourService)
     {
     }
 
     /**
-     * Register Twig filter.
-     *
      * @return TwigFilter[]
      */
     public function getFilters(): array

@@ -24,7 +24,7 @@ class TourController extends AbstractController
     /**
      * @Route("/tour/page/{page}", name="tour_index", requirements={"page": "\d+"})
      */
-    public function index(Request $request, TourService $tourService, TourRepository $tourRepository, TourCategoryRepository $categoryRepository, $page): Response
+    public function index(Request $request, TourService $tourService, TourRepository $tourRepository, TourCategoryRepository $categoryRepository, int $page): Response
     {
         if ($activeCategory = $request->query->get('category')) {
             $activeCategory = $categoryRepository->find($activeCategory);

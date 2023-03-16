@@ -28,7 +28,7 @@ class CoreController extends AbstractController
      * @Route("/admin/language/{_locale}/", defaults={"redirect": "admin_index"},
      *     requirements={"_locale": "%app.locales%"}, name="core_switch_locale_admin")
      */
-    public function locale(Request $request, SessionInterface $session, $redirect): RedirectResponse
+    public function locale(Request $request, SessionInterface $session, string $redirect): RedirectResponse
     {
         $session->set('_locale', $this->getParameter('locale'));
 
