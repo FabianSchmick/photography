@@ -6,19 +6,8 @@ build:
                     - 'true'
             tests:
                 override:
-                    - ./vendor/bin/simple-phpunit
                     - php-scrutinizer-run
                     - js-scrutinizer-run
-
-    dependencies:
-        before:
-            - mysql -uroot -e 'CREATE DATABASE application_test'
-        override:
-            - composer install --no-interaction
-            - php bin/console doctrine:schema:update --force --env=test
-            - php bin/console doctrine:fixtures:load --no-interaction --env=test
-            - npm install
-            - npm run build
 
     environment:
         timezone: Europe/Berlin
@@ -37,9 +26,6 @@ build:
         postgresql: false
         rabbitmq: false
         redis: false
-
-    services:
-        mariadb: 10
 
 filter:
     excluded_paths:
