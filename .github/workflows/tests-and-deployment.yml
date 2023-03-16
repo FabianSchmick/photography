@@ -140,10 +140,10 @@ jobs:
                     composer install --no-interaction --no-progress --ansi --no-scripts
                     composer show
             -   run: |
-                    sudo /etc/init.d/mysql stop
-                    sudo mkdir /var/run/mysqld
-                    sudo chown mysql /var/run/mysqld
-                    sudo mysqld_safe --skip-grant-tables&
+                    sudo /etc/init.d/mysql start
+                    sudo mysql
+                    ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY '';
+                    exit;
                     mysql -e 'CREATE DATABASE application_test;' -uroot -p
             -   uses: actions/setup-node@v3
                 with:
