@@ -31,7 +31,7 @@ class Location
      * @Gedmo\Translatable
      * @ORM\Column(type="string", unique=true)
      */
-    private ?string $name = null;
+    private string $name;
 
     /**
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="location", cascade={"persist"})
@@ -69,14 +69,14 @@ class Location
         return $this->id;
     }
 
-    public function setName(?string $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }

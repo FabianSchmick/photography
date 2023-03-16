@@ -74,8 +74,8 @@ title.admin: Admin
 title.login: Anmelden
 
 # Tooltips
-tooltip.formula.HIKING: '<b>Gehzeiten-Berechnung</b> (pro Stunde): %UP_METERS_PER_HOUR%m im Anstieg, %DOWN_METERS_PER_HOUR%m im Abstieg und %HORIZONTAL_METERS_PER_HOUR% km in der Ebene (DIN 33466).'
-tooltip.formula.MTB: '<b>Fahrzeit-Berechnung</b> (pro Stunde): %UP_METERS_PER_HOUR%m im Anstieg und %HORIZONTAL_METERS_PER_HOUR% km in der Ebene.'
+tooltip.formula.HIKING: '<b>Gehzeiten-Berechnung</b> (pro Stunde): %UP_METERS_PER_HOUR%m im Anstieg, %DOWN_METERS_PER_HOUR%m im Abstieg und %HORIZONTAL_KILOMETERS_PER_HOUR% km in der Ebene (DIN 33466).'
+tooltip.formula.MTB: '<b>Fahrzeit-Berechnung</b> (pro Stunde): %UP_METERS_PER_HOUR%m im Anstieg und %HORIZONTAL_KILOMETERS_PER_HOUR% km in der Ebene.'
 tooltip.formula.VIA_FERRATA: '<b>Steigzeit-Berechnung</b> (pro Stunde): %UP_METERS_PER_HOUR%m im Anstieg, %DOWN_METERS_PER_HOUR%m im Abstieg.'
 tooltip.levelOfDifficulty: Einstufung nach Schall-Skala für Klettersteige oder UIAA-Skala fürs Klettern
 
@@ -130,7 +130,7 @@ pagination.next: '<span class="icon icon-sm icon-angle icon-rotate-180" title="W
 # introduction
 introduction.by: von
 introduction.headline: Naturbilder und Wanderungen aus dem Sauerland & der Alpen
-introduction.longtext: Mein Name ist Fabian Schmick, bin Mitte 20, komme aus dem Sauerland und bin als Webentwickler tätig. Da ich leidenschaftlicher Wanderer bin, entdecke ich auf meinen Touren immer wieder kleine und große Highlights welche ich mit meiner Kamera festhalte. Auf dieser Webseite findest du Naturfotografie und Berichte meiner Bergsport-Touren unter anderem aus dem Sauerland, Waldeck-Frankenberg, Karpaten und der Alpen.
+introduction.longtext: Mein Name ist Fabian Schmick, bin Mitte 20, komme aus dem Sauerland und bin als Webentwickler tätig. Da ich leidenschaftlicher Wanderer bin, entdecke ich auf meinen Touren immer wieder kleine und große Highlights welche ich mit meiner Kamera festhalte. Auf dieser Webseite findest du Naturfotografie und Berichte meiner Bergsport-Touren unter anderem aus dem Sauerland, Upland und der Alpen.
 introduction.tag: Alle Bilder gefiltert zum Thema
 introduction.similar_tags: Ähnliche Tags
 introduction.tours.headline: Aussichtsreiche Rundwanderwege, Steige oder Gipfeltouren

@@ -65,7 +65,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
         return $this->getFullname();
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }

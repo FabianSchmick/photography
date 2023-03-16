@@ -44,7 +44,7 @@ class EntryController extends AbstractController
      *
      * @Route("/ajax/entries/{page}", name="entry_pagiante_ajax", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
      */
-    public function ajaxPaginate(EntryRepository $entryRepository, $page = 1): Response
+    public function ajaxPaginate(EntryRepository $entryRepository, int $page = 1): Response
     {
         $query = $entryRepository->getFindAllQuery();
         $pages = PaginationHelper::getPagesCount($query);

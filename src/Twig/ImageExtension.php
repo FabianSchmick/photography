@@ -7,16 +7,11 @@ use Twig\TwigFilter;
 
 class ImageExtension extends AbstractExtension
 {
-    /**
-     * ImageExtension constructor.
-     */
     public function __construct(private readonly string $publicDir)
     {
     }
 
     /**
-     * Register Twig filter.
-     *
      * @return TwigFilter[]
      */
     public function getFilters(): array

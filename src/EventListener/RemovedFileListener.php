@@ -13,8 +13,6 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 class RemovedFileListener
 {
     /**
-     * RemovedFileListener constructor.
-     *
      * @param CacheManager   $cacheManager Liip Cache Manger for removing files from media/cache dir
      * @param UploaderHelper $helper       Vich UploadHelper to get the path
      */

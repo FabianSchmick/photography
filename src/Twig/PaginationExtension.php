@@ -13,16 +13,11 @@ class PaginationExtension extends AbstractExtension
 {
     final public const MAX_VISIBLE = 2;
 
-    /**
-     * PaginationExtension constructor.
-     */
     public function __construct(private readonly RouterInterface $router, private readonly TranslatorInterface $translator, private readonly Environment $environment)
     {
     }
 
     /**
-     * Register Twig function.
-     *
      * @return TwigFunction[]
      */
     public function getFunctions(): array
@@ -33,7 +28,7 @@ class PaginationExtension extends AbstractExtension
     }
 
     /**
-     * Generates a pagination and adds breaks points with prev and next btn.
+     * Generate a pagination and add break points with a prev and next btn.
      *
      * @param int    $current Current page
      * @param int    $last    Last page

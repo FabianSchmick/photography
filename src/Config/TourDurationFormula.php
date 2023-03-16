@@ -15,11 +15,11 @@ enum TourDurationFormula
                 /* Values according to: DIN 33466 */
                 'UP_METERS_PER_HOUR' => 300,
                 'DOWN_METERS_PER_HOUR' => 500,
-                'HORIZONTAL_METERS_PER_HOUR' => 4,
+                'HORIZONTAL_KILOMETERS_PER_HOUR' => 4,
             ],
             TourDurationFormula::MTB => [
                 'UP_METERS_PER_HOUR' => 500,
-                'HORIZONTAL_METERS_PER_HOUR' => 12,
+                'HORIZONTAL_KILOMETERS_PER_HOUR' => 12,
             ],
             TourDurationFormula::VIA_FERRATA => [
                 'UP_METERS_PER_HOUR' => 200,

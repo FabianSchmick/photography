@@ -35,7 +35,7 @@ class Tag
      * @Gedmo\Translatable
      * @ORM\Column(type="string", length=128, unique=true)
      */
-    private ?string $name = null;
+    private string $name;
 
     /**
      * @Assert\Length(max=65535)
@@ -69,7 +69,7 @@ class Tag
      * @Gedmo\Slug(fields={"name"}, updatable=true)
      * @ORM\Column(type="string", unique=true)
      */
-    private ?string $slug = null;
+    private string $slug;
 
     /**
      * @Gedmo\Timestampable(on="create")
@@ -106,14 +106,14 @@ class Tag
         return $this->id;
     }
 
-    public function setName(?string $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -166,7 +166,7 @@ class Tag
         return $this;
     }
 
-    public function getSlug(): ?string
+    public function getSlug(): string
     {
         return $this->slug;
     }

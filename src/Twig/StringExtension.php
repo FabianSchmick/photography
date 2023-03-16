@@ -8,8 +8,6 @@ use Twig\TwigFilter;
 class StringExtension extends AbstractExtension
 {
     /**
-     * Register Twig filter.
-     *
      * @return TwigFilter[]
      */
     public function getFilters(): array

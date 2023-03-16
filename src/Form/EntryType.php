@@ -23,9 +23,6 @@ use Symfony\Component\Security\Core\Security;
 
 class EntryType extends AbstractType
 {
-    /**
-     * EntryType constructor.
-     */
     public function __construct(private readonly EntityManagerInterface $em, private readonly Security $security)
     {
     }
