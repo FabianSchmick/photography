@@ -1,7 +1,7 @@
 Photography
 ===========
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/FabianSchmick/photography/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/FabianSchmick/photography/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/FabianSchmick/photography/badges/build.png?b=master)](https://scrutinizer-ci.com/g/FabianSchmick/photography/build-status/master)
+[![Tests and Deployment](https://github.com/FabianSchmick/photography/actions/workflows/tests-and-deployment.yml/badge.svg)](https://github.com/FabianSchmick/photography/actions/workflows/tests-and-deployment.yml) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/FabianSchmick/photography/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/FabianSchmick/photography/?branch=master)
 
 This project is based on the [Symfony PHP Framework](https://symfony.com/) and should be seen as some sort of small template for photograph websites.
 Note: you should have experience in web development to adjust the project to your preferences.
