@@ -121,6 +121,13 @@ jobs:
     phpunit:
         name: PHPUnit
         runs-on: ubuntu-20.04
+        services:
+            mysql:
+                image: mysql:8.0
+                env:
+                    MYSQL_ROOT_PASSWORD:
+                ports:
+                    - '8888:3306'
         steps:
             -   uses: shivammathur/setup-php@v2
                 with:
@@ -140,11 +147,7 @@ jobs:
                     composer install --no-interaction --no-progress --ansi --no-scripts
                     composer show
             -   run: |
-                    sudo /etc/init.d/mysql start
-                    sudo mysql
-                    ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY '';
-                    exit;
-                    mysql -e 'CREATE DATABASE application_test;' -uroot -p
+                    mysql -e 'CREATE DATABASE application_test;' -uroot -p -h127.0.0.1
             -   uses: actions/setup-node@v3
                 with:
                     node-version: 16
