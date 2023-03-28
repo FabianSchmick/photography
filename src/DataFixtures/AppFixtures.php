@@ -2,8 +2,8 @@
 
 namespace App\DataFixtures;
 
-use App\Tests\Builder\PostBuilder;
 use App\Tests\Builder\LocationBuilder;
+use App\Tests\Builder\PostBuilder;
 use App\Tests\Builder\TagBuilder;
 use App\Tests\Builder\TourBuilder;
 use App\Tests\Builder\TourCategoryBuilder;

@@ -2,8 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Post;
 use App\Entity\Location;
+use App\Entity\Post;
 use App\Entity\Tour;
 use App\Entity\TourCategory;
 use App\Form\Custom\ExtendableEntityByNameType;

@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Doctrine\PaginationHelper;
-use App\Entity\Post;
 use App\Entity\File;
+use App\Entity\Post;
 use App\Entity\Tag;
 use App\Entity\Tour;
 use Doctrine\ORM\EntityManagerInterface;
