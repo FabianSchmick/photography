@@ -1,0 +1,15 @@
+{% set calcbase = calcbase|default(400) %}
+
+{% for post in posts %}
+    {% set src = vich_uploader_asset(post.image, 'file') %}
+    {% set dimensions = src|image_dimensions %}
+
+    <a href="{{ path('post_show', {'slug': post.slug}) }}" id="list-post-{{ post.id }}"
+       style="width:{{ dimensions.width * calcbase / dimensions.height }}px; flex-grow: {{ dimensions.width * calcbase / dimensions.height }}">
+        <figure>
+            <i style="padding-bottom: {{ dimensions.height / dimensions.width * 100 }}%"></i>
+            <img class="lazy" src="{{ src|imagine_filter('low_post_thumbnail') }}" data-src="{{ src|imagine_filter('post_thumbnail') }}" alt="{{ post.name }}"/>
+            <figcaption>{{ post.name }}</figcaption>
+        </figure>
+    </a>
+{% endfor %}

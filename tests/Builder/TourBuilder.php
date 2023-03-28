@@ -2,7 +2,7 @@
 
 namespace App\Tests\Builder;
 
-use App\Entity\Entry;
+use App\Entity\Post;
 use App\Entity\File;
 use App\Entity\Location;
 use App\Entity\Tour;
@@ -44,7 +44,7 @@ class TourBuilder
      */
     private Collection $locations;
 
-    private ?Entry $previewEntry = null;
+    private ?Post $previewPost = null;
 
     private File $file;
 
@@ -74,7 +74,7 @@ class TourBuilder
         $tour->setLevelOfDifficulty($this->levelOfDifficulty);
         $tour->setSort($this->sort);
         $tour->setLocations($this->locations);
-        $tour->setPreviewEntry($this->previewEntry);
+        $tour->setPreviewPost($this->previewPost);
         $tour->setFile($this->file);
         $tour->setTourCategory($this->tourCategory);
         $tour->setName($this->names[array_key_first($this->names)] ?? 'Tour');
@@ -202,9 +202,9 @@ class TourBuilder
         return $this;
     }
 
-    public function setPreviewEntry(?Entry $previewEntry): self
+    public function setPreviewPost(?Post $previewPost): self
     {
-        $this->previewEntry = $previewEntry;
+        $this->previewPost = $previewPost;
 
         return $this;
     }

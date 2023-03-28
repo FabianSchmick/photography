@@ -35,25 +35,25 @@
     {% endapply %}
 {%- endmacro -%}
 
-{%- macro imageObject(entry, scriptTag = true) -%}
+{%- macro imageObject(post) -%}
     {% apply spaceless %}
         {
             "@context": "http://schema.org",
             "@type": "ImageObject",
-            "author": "{{ entry.author.fullname is defined ? entry.author.fullname : 'header.authors_name'|trans }}",
-            {% if entry.location.name is defined %}
-            "contentLocation": "{{ entry.location.name }}",
+            "author": "{{ post.author.fullname is defined ? post.author.fullname : 'header.authors_name'|trans }}",
+            {% if post.location.name is defined %}
+            "contentLocation": "{{ post.location.name }}",
             {% endif %}
-            "contentUrl": "{{ vich_uploader_asset(entry.image, 'file') }}",
-            "url": "{{ url('entry_show', {'slug': entry.slug}) }}",
-            "datePublished": "{{ entry.timestamp|date('Y-m-d') }}",
-            "description": "{{ entry.description|striptags }}",
-            "name": "{{ entry.name }}"
+            "contentUrl": "{{ vich_uploader_asset(post.image, 'file') }}",
+            "url": "{{ url('post_show', {'slug': post.slug}) }}",
+            "datePublished": "{{ post.timestamp|date('Y-m-d') }}",
+            "description": "{{ post.description|striptags }}",
+            "name": "{{ post.name }}"
         }
     {% endapply %}
 {%- endmacro -%}
 
-{%- macro blogPosting(post, entry) -%}
+{%- macro blogPosting(post, entity) -%}
     {% import _self as jsonLd %}
 
     {% apply spaceless %}
@@ -61,10 +61,10 @@
             "@context": "http://schema.org",
             "@type": "BlogPosting",
             "headline": "{{ post.name }}",
-            "image": {% if entry %}{{ jsonLd.imageObject(entry) }}{% else %}"{{ absolute_url(asset('assets/images/layout/cover-tour.jpg')) }}"{% endif %},
+            "image": {% if entity %}{{ jsonLd.imageObject(entity) }}{% else %}"{{ absolute_url(asset('assets/images/layout/cover-tour.jpg')) }}"{% endif %},
             "editor": "{{ 'header.authors_name'|trans }}",
-            {% if entry.tags is defined %}
-            "keywords": "{{ entry.tags|join(',') }}",
+            {% if entity.tags is defined %}
+            "keywords": "{{ entity.tags|join(',') }}",
             {% endif %}
             "publisher": {
                 "@type": "Person",
@@ -95,7 +95,7 @@
                 "@type": "ItemList",
                 "itemListElement": [
                     {% for element in elements %}
-                        {{ jsonLd.blogPosting(element, element.previewEntry) }}
+                        {{ jsonLd.blogPosting(element, element.previewPost) }}
                         {% if not loop.last %},{% endif %}
                     {% endfor %}
                 ]
@@ -116,8 +116,8 @@
             "name": "{{ tour.name }}",
             "description": "{{ tour.description|striptags }}",
             "Image": [
-                {% for entry in tour.entries %}
-                    {{ jsonLd.imageObject(entry) }}
+                {% for post in tour.posts %}
+                    {{ jsonLd.imageObject(post) }}
                     {% if not loop.last %},{% endif %}
                 {% endfor %}
             ],

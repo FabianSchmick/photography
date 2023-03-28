@@ -1,12 +1,12 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}{{ 'header.new.entry'|trans }}{% endblock %}
+{% block title %}{{ 'header.new.post'|trans }}{% endblock %}
 
 {% block body %}
 
-    <h1 class="h3 mb-4 text-gray-800">{{ 'header.new.entry'|trans }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ 'header.new.post'|trans }}</h1>
 
-    {{ form_start(form, {'action': path('admin_entry_new')}) }}
+    {{ form_start(form, {'action': path('admin_post_new')}) }}
 
         {{ form_errors(form) }}
 

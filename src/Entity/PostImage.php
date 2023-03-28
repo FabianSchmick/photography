@@ -12,17 +12,17 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Entity()
  * @Vich\Uploadable
  */
-class EntryImage extends File
+class PostImage extends File
 {
     /**
-     * @Vich\UploadableField(mapping="entry_image", fileNameProperty="fileName", mimeType="mimeType", originalName="originalName")
+     * @Vich\UploadableField(mapping="post_image", fileNameProperty="fileName", mimeType="mimeType", originalName="originalName")
      */
     private ?BaseFile $file;
 
     /**
-     * @ORM\OneToOne(targetEntity="Entry", mappedBy="image")
+     * @ORM\OneToOne(targetEntity="Post", mappedBy="image")
      */
-    private Entry $entry;
+    private Post $post;
 
     /**
      * Stop PHP auto-rotating images based on EXIF 'orientation' data.
@@ -59,13 +59,13 @@ class EntryImage extends File
         parent::setFile($file);
     }
 
-    public function getEntry(): Entry
+    public function getPost(): Post
     {
-        return $this->entry;
+        return $this->post;
     }
 
-    public function setEntry(Entry $entry): void
+    public function setPost(Post $post): void
     {
-        $this->entry = $entry;
+        $this->post = $post;
     }
 }

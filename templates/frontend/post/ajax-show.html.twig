@@ -9,8 +9,8 @@
                 <span class="icon icon-close"><svg><use xlink:href="#close-icon"/></svg></span>
             </button>
         </div>
-        <div class="lightbox-body" data-list-target="#list-entry-{{ entry.id }}">
-            {{ block('content', 'frontend/entry/show.html.twig') }}
+        <div class="lightbox-body" data-list-target="#list-post-{{ post.id }}">
+            {{ block('content', 'frontend/post/show.html.twig') }}
         </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
-import Entry from './Entry';
+import Post from './Post';
 
 /**
- * Class Lightbox primary usage for displaying entries
+ * Class Lightbox primary usage for displaying posts
  */
 class Lightbox {
     constructor() {
@@ -87,7 +87,7 @@ class Lightbox {
     }
 
     /**
-     * Load the previous entry
+     * Load the previous post
      */
     loadPrev() {
         this.$modal.addClass('loading');
@@ -95,15 +95,15 @@ class Lightbox {
         let $target = $(this.$modal.find('[data-list-target]').data('list-target'));
 
         // Do not trust the links on the show page,
-        // because the lightbox can contain already filtered entries, too.
+        // because the lightbox can contain already filtered posts, too.
         if (!$target.next()) {
-            Entry.loadEntries();
+            Post.loadEntries();
         }
         this.loadEntry($target.next().attr('href'));
     }
 
     /**
-     * Load the next entry
+     * Load the next post
      */
     loadNext() {
         this.$modal.addClass('loading');
@@ -111,14 +111,14 @@ class Lightbox {
         let $target = $(this.$modal.find('[data-list-target]').data('list-target'));
 
         // Do not trust the links on the show page,
-        // because the lightbox can contain already filtered entries, too.
+        // because the lightbox can contain already filtered posts, too.
         this.loadEntry($target.prev().attr('href'));
     }
 
     /**
-     * Load the next or prev entry into the modal
+     * Load the next or prev post into the modal
      *
-     * @param {string} url The entry url to load
+     * @param {string} url The post url to load
      */
     loadEntry(url) {
         if (!url || this.isLoading) {
@@ -167,9 +167,9 @@ class Lightbox {
 
         history.pushState(null, '', $target.attr('href'));
 
-        // Load more entries if modal comes to end
+        // Load more posts if modal comes to end
         if ($currentIndex >= $lastIndex -3) {
-            Entry.loadEntries();
+            Post.loadEntries();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\EntryImage;
+use App\Entity\PostImage;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
-class EntryImageType extends AbstractType
+class PostImageType extends AbstractType
 {
     final public const ALLOWED_MIME_TYPES = [
         'image/png',
@@ -48,7 +48,7 @@ class EntryImageType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => EntryImage::class,
+            'data_class' => PostImage::class,
             'placeholder_text' => '',
         ]);
     }

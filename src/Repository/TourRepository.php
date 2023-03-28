@@ -24,7 +24,7 @@ class TourRepository extends ServiceEntityRepository
     }
 
     /**
-     * Return query to load all or filtered entries.
+     * Return query to load all or filtered posts.
      */
     public function getFindAllQuery(?TourCategory $category = null): Query
     {

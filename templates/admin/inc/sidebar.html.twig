@@ -1,6 +1,6 @@
 <li class="nav-item">
-    <a href="{{ path('admin_entry_new') }}" class="nav-link">
-        <i class="fa fa-plus fa-fw"></i> {{ 'header.new.entry'|trans }}
+    <a href="{{ path('admin_post_new') }}" class="nav-link">
+        <i class="fa fa-plus fa-fw"></i> {{ 'header.new.post'|trans }}
     </a>
 </li>
 
@@ -14,12 +14,12 @@
 
 <li class="searchable nav-item">
     <a href="#" class="nav-link collapsed" data-toggle="collapse" data-target="#collapse-1">
-        <i class="fa fa-images fa-fw"></i> {{ 'header.entries'|trans }}<span class="fa arrow"></span>
+        <i class="fa fa-images fa-fw"></i> {{ 'header.posts'|trans }}<span class="fa arrow"></span>
     </a>
     <ul id="collapse-1" class="collapse list-unstyled">
-        {% for entry in entries %}
+        {% for post in posts %}
             <li class="searchable nav-item">
-                <a href="{{ path('admin_entry_edit', {'id': entry.id}) }}" class="nav-link p-2">{{ entry.name }}</a>
+                <a href="{{ path('admin_post_edit', {'id': post.id}) }}" class="nav-link p-2">{{ post.name }}</a>
             </li>
         {% endfor %}
     </ul>

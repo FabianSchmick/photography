@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Entry;
+use App\Entity\Post;
 use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
@@ -11,22 +11,22 @@ use Gedmo\Translatable\Query\TreeWalker\TranslationWalker;
 use Gedmo\Translatable\TranslatableListener;
 
 /**
- * @method Entry|null find($id, $lockMode = null, $lockVersion = null)
- * @method Entry|null findOneBy(array $criteria, array $orderBy = null)
- * @method Entry[]    findAll()
- * @method Entry[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Post|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Post|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Post[]    findAll()
+ * @method Post[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EntryRepository extends ServiceEntityRepository
+class PostRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $managerRegistry)
     {
-        parent::__construct($managerRegistry, Entry::class);
+        parent::__construct($managerRegistry, Post::class);
     }
 
     /**
-     * Find entries query by a tag.
+     * Find posts query by a tag.
      */
-    public function findEntriesByTagQuery(Tag $tag): Query
+    public function findPostsByTagQuery(Tag $tag): Query
     {
         return $this->createQueryBuilder('e')
             ->where(':tag MEMBER OF e.tags')
@@ -35,16 +35,16 @@ class EntryRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
-    public function findByTimestamp(Entry $entry, string $compare = '<', string $order = 'DESC'): ?Entry
+    public function findByTimestamp(Post $post, string $compare = '<', string $order = 'DESC'): ?Post
     {
         $qb = $this->createQueryBuilder('e')
             ->where("e.timestamp {$compare} :timestamp")
-            ->andWhere('e != :entry')
+            ->andWhere('e != :post')
             ->orderBy('e.timestamp', $order)
             ->setMaxResults(1)
             ->setParameters([
-                'entry' => $entry,
-                'timestamp' => $entry->getTimestamp(),
+                'post' => $post,
+                'timestamp' => $post->getTimestamp(),
             ])
             ->getQuery();
 
@@ -52,7 +52,7 @@ class EntryRepository extends ServiceEntityRepository
     }
 
     /**
-     * Return query to load all entries.
+     * Return query to load all posts.
      */
     public function getFindAllQuery(): Query
     {
@@ -63,11 +63,11 @@ class EntryRepository extends ServiceEntityRepository
     }
 
     /**
-     * Find an entry by criteria
+     * Find an post by criteria
      * Need this special function, because of translatable
      * https://github.com/stof/StofDoctrineExtensionsBundle/issues/232.
      */
-    public function findOneByCriteria(string $locale, array $params = []): ?Entry
+    public function findOneByCriteria(string $locale, array $params = []): ?Post
     {
         $qb = $this->createQueryBuilder('e');
 

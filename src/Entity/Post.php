@@ -11,13 +11,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * Entry.
+ * Post.
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="App\Repository\EntryRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
  * @Vich\Uploadable
  */
-class Entry
+class Post
 {
     final public const PAGINATION_QUANTITY = 10;
 
@@ -45,19 +45,19 @@ class Entry
     private ?string $description = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="entries", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="posts", cascade={"persist"})
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
     private ?User $author = null;
 
     /**
      * @Assert\NotBlank()
-     * @ORM\OneToOne(targetEntity="EntryImage", inversedBy="entry", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="PostImage", inversedBy="post", cascade={"persist", "remove"})
      */
     private ?File $image = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Location", inversedBy="entries", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Location", inversedBy="posts", cascade={"persist"})
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
     private ?Location $location = null;
@@ -73,8 +73,8 @@ class Entry
 
     /**
      * @Assert\NotBlank()
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="entries", cascade={"persist"})
-     * @ORM\JoinTable(name="tag_to_entry",
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="posts", cascade={"persist"})
+     * @ORM\JoinTable(name="tag_to_post",
      *     joinColumns={@ORM\JoinColumn(referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(referencedColumnName="id")}
      * )
@@ -85,20 +85,20 @@ class Entry
     private Collection $tags;
 
     /**
-     * @ORM\OneToMany(targetEntity="Tag", mappedBy="previewEntry")
+     * @ORM\OneToMany(targetEntity="Tag", mappedBy="previewPost")
      *
      * @var Collection<Tag>
      */
     private Collection $previewTags;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Tour", inversedBy="entries", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Tour", inversedBy="posts", cascade={"persist"})
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
     private ?Tour $tour = null;
 
     /**
-     * @ORM\OneToOne(targetEntity="Tour", mappedBy="previewEntry")
+     * @ORM\OneToOne(targetEntity="Tour", mappedBy="previewPost")
      */
     private ?Tour $previewTour = null;
 

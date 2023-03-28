@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Entry;
+use App\Entity\Post;
 use App\Entity\Location;
 use App\Entity\Tour;
 use App\Entity\TourCategory;
@@ -110,11 +110,11 @@ class TourType extends AbstractType
             ]);
         }
 
-        if (!$tour->getEntries()->isEmpty()) {
-            $builder->add('previewEntry', EntityType::class, [
+        if (!$tour->getPosts()->isEmpty()) {
+            $builder->add('previewPost', EntityType::class, [
                 'required' => false,
-                'class' => Entry::class,
-                'choices' => $tour->getEntries(),
+                'class' => Post::class,
+                'choices' => $tour->getPosts(),
                 'placeholder' => '',
             ]);
         }

@@ -4,8 +4,8 @@
             <div class="tour-category">{{ tour.tourCategory }}</div>
         {% endif %}
 
-        {% if tour.previewEntry %}
-            <img src="{{ vich_uploader_asset(tour.previewEntry.image, 'file')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.previewentry.name }}">
+        {% if tour.previewPost %}
+            <img src="{{ vich_uploader_asset(tour.previewPost.image, 'file')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.previewpost.name }}">
         {% else %}
             <img src="{{ asset('assets/images/layout/cover-tour.jpg')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.name }}">
         {% endif %}

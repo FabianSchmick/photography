@@ -1,6 +1,6 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}{{ 'header.entries'|trans }}{% endblock %}
+{% block title %}{{ 'header.posts'|trans }}{% endblock %}
 
 {% block body %}
 
@@ -9,11 +9,11 @@
 
             <div class="page-header">
                 <div class="pull-left">
-                    <h1>{{ 'header.entries'|trans }}</h1>
+                    <h1>{{ 'header.posts'|trans }}</h1>
                 </div>
                 <div class="pull-right">
                     <ul class="actions list-unstyled pull-right">
-                        <li><a class="btn btn-primary" href="{{ path('admin_entry_new') }}">{{ 'header.new.entry'|trans }}</a></li>
+                        <li><a class="btn btn-primary" href="{{ path('admin_post_new') }}">{{ 'header.new.post'|trans }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -28,19 +28,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for entry in entries %}
+                {% for post in posts %}
                     <tr>
                         <td>
                             {{ loop.index }}
                         </td>
                         <td>
-                            {{ entry.name }}
+                            {{ post.name }}
                         </td>
                         <td>
-                            {{ entry.timestamp|date('d-m->') }}
+                            {{ post.timestamp|date('d-m->') }}
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="{{ path('admin_entry_edit', {'id': entry.id}) }}" title="{{ 'btn.edit'|trans }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a class="btn btn-primary" href="{{ path('admin_post_edit', {'id': post.id}) }}" title="{{ 'btn.edit'|trans }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 {% endfor %}

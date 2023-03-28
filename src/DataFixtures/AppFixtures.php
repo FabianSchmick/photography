@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Tests\Builder\EntryBuilder;
+use App\Tests\Builder\PostBuilder;
 use App\Tests\Builder\LocationBuilder;
 use App\Tests\Builder\TagBuilder;
 use App\Tests\Builder\TourBuilder;
@@ -75,26 +75,26 @@ class AppFixtures extends Fixture
         $images = $this->getFiles($tmpDir);
 
         for ($i = 0; $i < 20; ++$i) {
-            $entryBuilder = new EntryBuilder($manager);
-            $entryBuilder->setName("Lorem Ipsum: $i");
-            $entryBuilder->setName("Lorem Ipsum DE: $i", 'de');
-            $entryBuilder->setLocation($locations[array_rand($locations)]);
-            $entryBuilder->setImage($images[array_rand($images)]);
+            $postBuilder = new PostBuilder($manager);
+            $postBuilder->setName("Lorem Ipsum: $i");
+            $postBuilder->setName("Lorem Ipsum DE: $i", 'de');
+            $postBuilder->setLocation($locations[array_rand($locations)]);
+            $postBuilder->setImage($images[array_rand($images)]);
 
             $randTagKeys = array_rand($tags, 2);
-            $entryBuilder->addTag($tags[$randTagKeys[0]]);
-            $entryBuilder->addTag($tags[$randTagKeys[1]]);
+            $postBuilder->addTag($tags[$randTagKeys[0]]);
+            $postBuilder->addTag($tags[$randTagKeys[1]]);
 
             $randomTimestamp = mt_rand((new \DateTime('2015-01-01'))->getTimestamp(), (new \DateTime())->getTimestamp());
             $randomDate = new \DateTime();
             $randomDate->setTimestamp($randomTimestamp);
-            $entryBuilder->setTimestamp($randomDate);
+            $postBuilder->setTimestamp($randomDate);
 
             if (random_int(0, 1)) {
-                $entryBuilder->setTour($tour);
+                $postBuilder->setTour($tour);
             }
 
-            $entryBuilder->create();
+            $postBuilder->create();
 
             $fileSystem->mirror($imgFixturesDir, $tmpDir);
         }

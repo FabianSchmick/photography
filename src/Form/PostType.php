@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Entry;
+use App\Entity\Post;
 use App\Entity\Location;
 use App\Entity\Tag;
 use App\Entity\Tour;
@@ -21,7 +21,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Security;
 
-class EntryType extends AbstractType
+class PostType extends AbstractType
 {
     public function __construct(private readonly EntityManagerInterface $em, private readonly Security $security)
     {
@@ -29,14 +29,14 @@ class EntryType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        /** @var Entry $entry */
-        $entry = $options['data'];
+        /** @var Post $post */
+        $post = $options['data'];
 
         $builder
             ->add('name')
-            ->add('image', EntryImageType::class, [
-                'required' => !$entry->getImage(),
-                'placeholder_text' => $entry->getImage() ? $entry->getImage()->getOriginalName() : 'label.no_file_selected',
+            ->add('image', PostImageType::class, [
+                'required' => !$post->getImage(),
+                'placeholder_text' => $post->getImage() ? $post->getImage()->getOriginalName() : 'label.no_file_selected',
             ])
             ->add('description', PurifyTextareaType::class, [
                 'required' => false,
@@ -44,7 +44,7 @@ class EntryType extends AbstractType
             ->add('author', EntityType::class, [
                 'required' => false,
                 'class' => User::class,
-                'data' => $entry->getAuthor() ?? $this->security->getUser(),
+                'data' => $post->getAuthor() ?? $this->security->getUser(),
                 'placeholder' => '',
                 'query_builder' => fn (EntityRepository $er): QueryBuilder => $er->createQueryBuilder('u')
                     ->orderBy('u.fullname', 'ASC'),
@@ -81,24 +81,24 @@ class EntryType extends AbstractType
         });
 
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
-            /** @var Entry $entry */
-            $entry = $event->getForm()->getData();
+            /** @var Post $post */
+            $post = $event->getForm()->getData();
 
-            if (!$entry->getTour() && $tour = $entry->getPreviewTour()) {
-                $tour->setPreviewEntry(null);
+            if (!$post->getTour() && $tour = $post->getPreviewTour()) {
+                $tour->setPreviewPost(null);
                 $this->em->persist($tour);
             }
 
-            $date = $entry->getTimestamp();
+            $date = $post->getTimestamp();
             $date->setTime(date('H'), date('i'), date('s'));
-            $entry->setTimestamp($date);
+            $post->setTimestamp($date);
         });
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Entry::class,
+            'data_class' => Post::class,
         ]);
     }
 }

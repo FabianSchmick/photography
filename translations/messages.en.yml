@@ -10,7 +10,7 @@ label.image: Image
 label.location: Location
 label.timestamp: Date
 label.sort: Sort
-label.entries: Entries
+label.posts: Posts
 label.authors: Authors
 label.locations: Locations
 label.tags: Tags
@@ -35,7 +35,7 @@ label.cumulativeElevationLoss: Elevation loss
 label.file: File
 label.no_file_selected: No file selected
 label.search: Search
-label.previewEntry: Preview Entry
+label.previewPost: Preview Post
 label.username: Username
 label.password: Password
 label.repeat_password: Repeat password
@@ -80,13 +80,13 @@ tooltip.formula.VIA_FERRATA: '<b>Climbing time calculation</b> (per hour): %UP_M
 tooltip.levelOfDifficulty: Classification according to the Schall-Scale for Ferrata or UIAA-Scale for climbing
 
 # Headers
-header.new.entry: New Entry
+header.new.post: New Post
 header.new.author: New Author
 header.new.location: New Location
 header.new.tag: New Tag
 header.new.tour: New Tour
 header.new.tour_category: New Category
-header.entries: Entries
+header.posts: Posts
 header.authors: Authors
 header.locations: Locations
 header.tags: Tags
@@ -106,15 +106,15 @@ header.authors_name: Fabian Schmick
 
 # Modals
 modal.delete.msg.author: Are you sure you want to delete the author?
-modal.delete.msg.entry: Are you sure you want to delete the entry?
+modal.delete.msg.post: Are you sure you want to delete the post?
 modal.delete.msg.location: Are you sure you want to delete the location?
 modal.delete.msg.tag: Are you sure you want to delete the tag?
 modal.delete.msg.tour: Are you sure you want to delete the tour?
 
 # Flash messages
 flash.success.edit: Your changes have been saved.
-flash.success.new: 'Your new entry has been saved. <a href="%link%">%name%</a> edit it.'
-flash.success.deleted.entry: The entry <strong>%entry%</strong> has been deleted.
+flash.success.new: 'Your new post has been saved. <a href="%link%">%name%</a> edit it.'
+flash.success.deleted.post: The post <strong>%post%</strong> has been deleted.
 flash.success.deleted.author: The author <strong>%author%</strong> has been deleted.
 flash.success.deleted.location: The location <strong>%location%</strong> has been deleted.
 flash.success.deleted.tag: The tag <strong>%tag%</strong> has been deleted.

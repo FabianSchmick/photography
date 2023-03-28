@@ -80,7 +80,7 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
     public function getSecureUrls(): iterable
     {
         yield ['/admin/'];
-        yield ['/admin/entry/new'];
+        yield ['/admin/post/new'];
         yield ['/admin/tour/new'];
         yield ['/admin/language/en'];
     }

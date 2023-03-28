@@ -34,11 +34,11 @@ class Location
     private string $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Entry", mappedBy="location", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="location", cascade={"persist"})
      *
-     * @var Collection<Entry>
+     * @var Collection<Post>
      */
-    private Collection $entries;
+    private Collection $posts;
 
     /**
      * @ORM\ManyToMany(targetEntity="Tour", mappedBy="locations", cascade={"persist"})
@@ -55,7 +55,7 @@ class Location
 
     public function __construct()
     {
-        $this->entries = new ArrayCollection();
+        $this->posts = new ArrayCollection();
         $this->tours = new ArrayCollection();
     }
 
@@ -81,9 +81,9 @@ class Location
         return $this->name;
     }
 
-    public function getEntries(): Collection
+    public function getPosts(): Collection
     {
-        return $this->entries;
+        return $this->posts;
     }
 
     public function getTours(): Collection

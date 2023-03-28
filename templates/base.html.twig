@@ -92,7 +92,7 @@
     </div>
 </noscript>
 
-<header id="menu" class="navbar navbar-default navbar-expand-lg fixed-top{% if request.attributes.get('_route') == 'entry_show' %} force-on{% endif %}">
+<header id="menu" class="navbar navbar-default navbar-expand-lg fixed-top{% if request.attributes.get('_route') == 'post_show' %} force-on{% endif %}">
     <nav class="container">
         <div class="navbar-header d-flex justify-content-between">
             <a class="navbar-brand my-2" href="{{ path('homepage') }}"><img src="{{ asset('assets/images/logo.jpg') }}" alt="logo"/> {{ 'header.authors_name'|trans }}</a>

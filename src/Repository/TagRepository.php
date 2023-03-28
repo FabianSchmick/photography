@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Entry;
+use App\Entity\Post;
 use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
@@ -25,19 +25,19 @@ class TagRepository extends ServiceEntityRepository
 
     /**
      * Find related tags by a tag.
-     * Method returns the tags from all entries which relate to the current tag under the following conditions:
+     * Method returns the tags from all posts which relate to the current tag under the following conditions:
      *      - excluding the requested tag
      *      - occurrence of min $count times
      *      - max $limit related tags.
      */
     public function findRelatedTagsByTag(Tag $tag, int $count = 3, int $limit = 10): array
     {
-        $in = $this->getEntityManager()->getRepository(Entry::class)
+        $in = $this->getEntityManager()->getRepository(Post::class)
             ->createQueryBuilder('a_e')
             ->where(':tag MEMBER OF a_e.tags');
 
         $qb = $this->createQueryBuilder('b_t');
-        $qb->innerJoin('b_t.entries', 'b_te')
+        $qb->innerJoin('b_t.posts', 'b_te')
             ->where($qb->expr()->in('b_te', $in->getDQL()))
             ->andWhere('b_t != :tag')
             ->orderBy('COUNT(b_t)', 'DESC')

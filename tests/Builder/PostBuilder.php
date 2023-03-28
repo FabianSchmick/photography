@@ -2,8 +2,8 @@
 
 namespace App\Tests\Builder;
 
-use App\Entity\Entry;
-use App\Entity\EntryImage;
+use App\Entity\Post;
+use App\Entity\PostImage;
 use App\Entity\File;
 use App\Entity\Location;
 use App\Entity\Tag;
@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class EntryBuilder
+class PostBuilder
 {
     private array $names = [];
 
@@ -39,46 +39,46 @@ class EntryBuilder
     {
         $this->tags = new ArrayCollection();
 
-        $this->image = new EntryImage();
+        $this->image = new PostImage();
         $this->image->setFile(
             new UploadedFile(__DIR__.'/../../fixtures/img/example1.jpg', 'example1.jpg', 'image/jpeg', null, true)
         );
     }
 
-    public function create(): Entry
+    public function create(): Post
     {
-        $entry = new Entry();
-        $entry->setAuthor($this->author);
-        $entry->setImage($this->image);
-        $entry->setLocation($this->location);
-        $entry->setTimestamp($this->timestamp);
-        $entry->setTags($this->tags);
-        $entry->setTour($this->tour);
-        $entry->setName($this->names[array_key_first($this->names)] ?? 'Entry');
-        $entry->setDescription($this->descriptions[array_key_first($this->descriptions)] ?? null);
+        $post = new Post();
+        $post->setAuthor($this->author);
+        $post->setImage($this->image);
+        $post->setLocation($this->location);
+        $post->setTimestamp($this->timestamp);
+        $post->setTags($this->tags);
+        $post->setTour($this->tour);
+        $post->setName($this->names[array_key_first($this->names)] ?? 'Post');
+        $post->setDescription($this->descriptions[array_key_first($this->descriptions)] ?? null);
 
-        $this->manager->persist($entry);
+        $this->manager->persist($post);
         $this->manager->flush();
 
         unset($this->names[array_key_first($this->names)]);
         foreach ($this->names as $locale => $name) {
-            $entry->setName($name);
-            $entry->setTranslatableLocale($locale);
+            $post->setName($name);
+            $post->setTranslatableLocale($locale);
 
-            $this->manager->persist($entry);
+            $this->manager->persist($post);
             $this->manager->flush();
         }
 
         unset($this->descriptions[array_key_first($this->descriptions)]);
         foreach ($this->descriptions as $locale => $description) {
-            $entry->setDescription($description);
-            $entry->setTranslatableLocale($locale);
+            $post->setDescription($description);
+            $post->setTranslatableLocale($locale);
 
-            $this->manager->persist($entry);
+            $this->manager->persist($post);
             $this->manager->flush();
         }
 
-        return $entry;
+        return $post;
     }
 
     public function setName(string $name, string $locale = 'en'): self
@@ -104,7 +104,7 @@ class EntryBuilder
 
     public function setImage(UploadedFile $image): self
     {
-        $this->image = new EntryImage();
+        $this->image = new PostImage();
         $this->image->setFile($image);
 
         return $this;

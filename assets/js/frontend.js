@@ -15,7 +15,7 @@ import { showMoreText } from './util/show-more';
 import { tooltip } from './util/tooltip';
 import { lazyload } from './frontend/lazyload';
 
-import Entry from './frontend/Entry';
+import Post from './frontend/Post';
 import { Gdpr } from './frontend/Gdpr';
 import Lightbox from './frontend/Lightbox';
 import Chart from './frontend/Chart';
@@ -34,9 +34,9 @@ $(document).ready(function() {
     tooltip();
     let lazyLoadInstance = lazyload();
 
-    Entry.setLazyLoadInstance(lazyLoadInstance);
-    Entry.initLazyLoad();
-    Entry.loadNextPrevEntry();
+    Post.setLazyLoadInstance(lazyLoadInstance);
+    Post.initLazyLoad();
+    Post.loadNextPrevEntry();
     Lightbox.initLightbox();
 
     Chart.initChart();
