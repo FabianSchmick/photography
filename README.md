@@ -16,11 +16,11 @@ You can find first impressions on [fotografie.fabian-schmick.de](https://fotogra
 The project provides you following functionality:
 - [Symfony 5.4](https://symfony.com/releases/5.4) (LTS version) and PHP 8.1 compatibility
 - Responsive layout with the help of [Bootstrap](https://getbootstrap.com/) and [jQuery](https://jquery.com/)
-- Small CMS / Backend functionality for creating new entries, tags and tours
+- Small CMS / Backend functionality for creating new posts, tags and tours
 - Image compression and thumbnail generation with [LiipImagineBundle](https://github.com/liip/LiipImagineBundle)
 - I18n support in English and German
-- Tag possibility for describing and filtering entries
-- Uploading gpx files for showing your favorite tours with [Leaflet](https://leafletjs.com/) and connect them with your entries
+- Tag possibility for describing and filtering posts
+- Uploading gpx files for showing your favorite tours with [Leaflet](https://leafletjs.com/) and connect them with your posts
 - Calculation of the tour duration with German Alpine Club (DAV) recommendations 
 - [Lazyloading](https://github.com/verlok/lazyload) and Infinityscrolling for images
 - Lightbox as a quick view for images
