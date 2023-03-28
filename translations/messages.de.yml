@@ -10,7 +10,7 @@ label.image: Bild
 label.location: Aufnahmeort
 label.timestamp: Datum
 label.sort: Sortierung
-label.entries: Einträge
+label.posts: Beiträge
 label.authors: Autoren
 label.locations: Aufnahmeorte
 label.tags: Tags
@@ -35,7 +35,7 @@ label.cumulativeElevationLoss: Höhenverlust
 label.file: Datei
 label.no_file_selected: Keine Datei ausgewählt
 label.search: Suche
-label.previewEntry: Vorschau Eintrag
+label.previewPost: Vorschau Beitrag
 label.username: Benutzername
 label.password: Passwort
 label.repeat_password: Passwort wiederholen
@@ -80,13 +80,13 @@ tooltip.formula.VIA_FERRATA: '<b>Steigzeit-Berechnung</b> (pro Stunde): %UP_METE
 tooltip.levelOfDifficulty: Einstufung nach Schall-Skala für Klettersteige oder UIAA-Skala fürs Klettern
 
 # Headers
-header.new.entry: Neuer Eintrag
+header.new.post: Neuer Beitrag
 header.new.author: Neuer Autor
 header.new.location: Neuer Aufnahmeort
 header.new.tag: Neuer Tag
 header.new.tour: Neue Tour
 header.new.tour_category: Neue Kategorie
-header.entries: Einträge
+header.posts: Beiträge
 header.authors: Autoren
 header.locations: Aufnahmeorte
 header.tags: Tags
@@ -106,15 +106,15 @@ header.authors_name: Fabian Schmick
 
 # Modals
 modal.delete.msg.author: Sind Sie sicher, dass Sie diesen Autor löschen möchten?
-modal.delete.msg.entry: Sind Sie sicher, dass Sie den Eintrag löschen möchten?
+modal.delete.msg.post: Sind Sie sicher, dass Sie den Beitrag löschen möchten?
 modal.delete.msg.location: Sind Sie sicher, dass Sie diesen Aufnahmeort löschen möchten?
 modal.delete.msg.tag: Sind Sie sicher, dass Sie diesen Tag löschen möchten?
 modal.delete.msg.tour: Sind Sie sicher, dass Sie diese Tour löschen möchten?
 
 # Flash messages
 flash.success.edit: Ihre Änderrungen wurden gespeichert.
-flash.success.new: 'Der Eintrag wurde gespeichert. <a href="%link%">%name%</a> weiter bearbeiten.'
-flash.success.deleted.entry: Der Eintrag <strong>%entry%</strong> wurde gelöscht.
+flash.success.new: 'Der Beitrag wurde gespeichert. <a href="%link%">%name%</a> weiter bearbeiten.'
+flash.success.deleted.post: Der Beitrag <strong>%post%</strong> wurde gelöscht.
 flash.success.deleted.author: Der Autor <strong>%author%</strong> wurde gelöscht.
 flash.success.deleted.location: Der Aufnahmeort <strong>%location%</strong> wurde gelöscht.
 flash.success.deleted.tag: Der Tag <strong>%tag%</strong> wurde gelöscht.

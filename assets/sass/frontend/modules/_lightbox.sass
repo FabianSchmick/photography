@@ -5,7 +5,7 @@
         pointer-events: initial
 
     &.loading
-        #entry .entry-inner .entry-image
+        #post .post-inner .post-image
             pointer-events: none
             position: relative
             &:before
@@ -73,7 +73,7 @@
         .icon svg
             fill: #fff
 
-    #entry
+    #post
         padding-top: 0
         padding-bottom: 0
         min-height: auto
@@ -82,8 +82,8 @@
             padding-top: 1rem
             padding-bottom: 1.75rem
 
-        .entry-inner
-            .entry-image
+        .post-inner
+            .post-image
                 position: relative
                 text-align: center
 
@@ -91,7 +91,7 @@
                     max-height: 100%
                     max-width: 100%
 
-            .entry-info
+            .post-info
                 color: $color-secondary
 
 .modal-backdrop.show

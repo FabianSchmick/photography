@@ -25,23 +25,23 @@
     {% endapply %}
 {%- endmacro -%}
 
-{%- macro entry_meta(entry) -%}
+{%- macro post_meta(post) -%}
     <dl class="meta">
-        {% if entry.location.name is defined %}
-            <dt class="entry-location">{{ 'label.location'|trans }}:</dt>
-            <dd class="entry-location-value">{{ entry.location.name }}</dd>
+        {% if post.location.name is defined %}
+            <dt class="post-location">{{ 'label.location'|trans }}:</dt>
+            <dd class="post-location-value">{{ post.location.name }}</dd>
         {% endif %}
-        {% if entry.tour.name is defined %}
-            <dt class="entry-tour">{{ 'label.tour'|trans }}:</dt>
-            <dd class="entry-tour-value"><a href="{{ path('tour_show', {'slug': entry.tour.slug }) }}">{{ entry.tour.name }}</a></dd>
+        {% if post.tour.name is defined %}
+            <dt class="post-tour">{{ 'label.tour'|trans }}:</dt>
+            <dd class="post-tour-value"><a href="{{ path('tour_show', {'slug': post.tour.slug }) }}">{{ post.tour.name }}</a></dd>
         {% endif %}
-        {% if entry.author.fullname is defined %}
-            <dt class="entry-author">{{ 'label.author'|trans }}:</dt>
-            <dd class="entry-author-value">{{ entry.author.fullname }}</dd>
+        {% if post.author.fullname is defined %}
+            <dt class="post-author">{{ 'label.author'|trans }}:</dt>
+            <dd class="post-author-value">{{ post.author.fullname }}</dd>
         {% endif %}
-        {% if entry.timestamp %}
-            <dt class="entry-timestamp">{{ 'label.timestamp'|trans }}:</dt>
-            <dd class="entry-timestamp-value">{{ entry.timestamp|date("d.m.Y") }}</dd>
+        {% if post.timestamp %}
+            <dt class="post-timestamp">{{ 'label.timestamp'|trans }}:</dt>
+            <dd class="post-timestamp-value">{{ post.timestamp|date("d.m.Y") }}</dd>
         {% endif %}
     </dl>
 {%- endmacro -%}

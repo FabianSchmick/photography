@@ -45,10 +45,10 @@ class Tag
     private ?string $description = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Entry", inversedBy="previewTags")
+     * @ORM\ManyToOne(targetEntity="Post", inversedBy="previewTags")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
-    private ?Entry $previewEntry = null;
+    private ?Post $previewPost = null;
 
     /**
      * @Assert\Type("numeric")
@@ -57,12 +57,12 @@ class Tag
     private ?int $sort = null;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Entry", mappedBy="tags", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Post", mappedBy="tags", cascade={"persist"})
      * @ORM\OrderBy({"timestamp"="DESC"})
      *
-     * @var Collection<Entry>
+     * @var Collection<Post>
      */
-    private Collection $entries;
+    private Collection $posts;
 
     /**
      * @Gedmo\Translatable
@@ -91,7 +91,7 @@ class Tag
 
     public function __construct()
     {
-        $this->entries = new ArrayCollection();
+        $this->posts = new ArrayCollection();
         $this->created = new \DateTime();
         $this->updated = new \DateTime();
     }
@@ -130,16 +130,16 @@ class Tag
         return $this->description;
     }
 
-    public function setPreviewEntry(?Entry $previewEntry): self
+    public function setPreviewPost(?Post $previewPost): self
     {
-        $this->previewEntry = $previewEntry;
+        $this->previewPost = $previewPost;
 
         return $this;
     }
 
-    public function getPreviewEntry(): ?Entry
+    public function getPreviewPost(): ?Post
     {
-        return $this->previewEntry;
+        return $this->previewPost;
     }
 
     public function setSort(?int $sort): self
@@ -154,9 +154,9 @@ class Tag
         return $this->sort;
     }
 
-    public function getEntries(): Collection
+    public function getPosts(): Collection
     {
-        return $this->entries;
+        return $this->posts;
     }
 
     public function setSlug(string $slug): self

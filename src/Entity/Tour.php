@@ -153,10 +153,10 @@ class Tour
     private Collection $locations;
 
     /**
-     * @ORM\OneToOne(targetEntity="Entry", inversedBy="previewTour")
+     * @ORM\OneToOne(targetEntity="Post", inversedBy="previewTour")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="SET NULL")
      */
-    private ?Entry $previewEntry = null;
+    private ?Post $previewPost = null;
 
     /**
      * @Assert\NotBlank()
@@ -184,12 +184,12 @@ class Tour
     private \DateTimeInterface $updated;
 
     /**
-     * @ORM\OneToMany(targetEntity="Entry", mappedBy="tour", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="tour", cascade={"persist"})
      * @ORM\OrderBy({"timestamp"="DESC"})
      *
-     * @var Collection<Entry>
+     * @var Collection<Post>
      */
-    private Collection $entries;
+    private Collection $posts;
 
     /**
      * @ORM\ManyToOne(targetEntity="TourCategory", inversedBy="tours")
@@ -210,7 +210,7 @@ class Tour
 
     public function __construct()
     {
-        $this->entries = new ArrayCollection();
+        $this->posts = new ArrayCollection();
         $this->locations = new ArrayCollection();
         $this->created = new \DateTime();
         $this->updated = new \DateTime();
@@ -390,16 +390,16 @@ class Tour
         return $this->locations;
     }
 
-    public function setPreviewEntry(?Entry $previewEntry): self
+    public function setPreviewPost(?Post $previewPost): self
     {
-        $this->previewEntry = $previewEntry;
+        $this->previewPost = $previewPost;
 
         return $this;
     }
 
-    public function getPreviewEntry(): ?Entry
+    public function getPreviewPost(): ?Post
     {
-        return $this->previewEntry;
+        return $this->previewPost;
     }
 
     public function setFile(?File $file): self
@@ -451,27 +451,27 @@ class Tour
     }
 
     /**
-     * Get Entries with $this->previewEntry as first element.
+     * Get Posts with $this->previewPost as first element.
      */
-    public function getEntries(): Collection
+    public function getPosts(): Collection
     {
-        if (!$this->previewEntry) {
-            return $this->entries;
+        if (!$this->previewPost) {
+            return $this->posts;
         }
 
-        $previewEntryId = $this->previewEntry->getId();
-        $entries = $this->entries->toArray();
-        usort($entries, function (Entry $a, Entry $b) use ($previewEntryId) {
-            if ($a->getId() != $previewEntryId && $b->getId() == $previewEntryId) {
+        $previewPostId = $this->previewPost->getId();
+        $posts = $this->posts->toArray();
+        usort($posts, function (Post $a, Post $b) use ($previewPostId) {
+            if ($a->getId() != $previewPostId && $b->getId() == $previewPostId) {
                 return 1;
-            } elseif ($a->getId() == $previewEntryId && $b->getId() != $previewEntryId) {
+            } elseif ($a->getId() == $previewPostId && $b->getId() != $previewPostId) {
                 return -1;
             }
 
             return $b->getTimestamp() > $a->getTimestamp();
         });
 
-        return new ArrayCollection($entries);
+        return new ArrayCollection($posts);
     }
 
     public function getTourCategory(): ?TourCategory

@@ -11,7 +11,7 @@
 
 {% block cover %}
     <section id="cover" class="parallax-container">
-        <img class="parallax" src="{{ asset('assets/images/layout/cover-tour.jpg')|imagine_filter('entry_show') }}" alt="{{ 'tours.headline'|trans }}"/>
+        <img class="parallax" src="{{ asset('assets/images/layout/cover-tour.jpg')|imagine_filter('post_show') }}" alt="{{ 'tours.headline'|trans }}"/>
     </section>
 {% endblock %}
 
@@ -68,8 +68,8 @@
                     <li class="col-lg-6">
                         <a href="{{ path('tour_show', {'slug': tour.slug}|merge(query.q|default([]))) }}">
                             <div class="tour-preview-img">
-                                {% if tour.previewEntry %}
-                                    <img src="{{ vich_uploader_asset(tour.previewEntry.image, 'file')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.previewentry.name }}">
+                                {% if tour.previewPost %}
+                                    <img src="{{ vich_uploader_asset(tour.previewPost.image, 'file')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.previewpost.name }}">
                                 {% else %}
                                     <img src="{{ asset('assets/images/layout/cover-tour.jpg')|imagine_filter('tour_thumbnail') }}" alt="{{ tour.name }}">
                                 {% endif %}

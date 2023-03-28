@@ -4,19 +4,19 @@
 
 {% block meta_description %}{{ tag.description ? tag.description|striptags|u.truncate(160) : ('introduction.tag'|trans ~ ' ' ~ tag.name)|u.truncate(160) }}{% endblock %}
 
-{% set img = tag.previewEntry ? vich_uploader_asset(tag.previewEntry.image, 'file') : asset('assets/images/layout/cover-tag.jpg') %}
+{% set img = tag.previewPost ? vich_uploader_asset(tag.previewPost.image, 'file') : asset('assets/images/layout/cover-tag.jpg') %}
 {% block meta_image %}{{ absolute_url(img) }}{% endblock %}
 
 {% block title %}{{ 'header.tag'|trans }} {{ tag.name }}{% endblock %}
 
 {% block cover %}
     <section id="cover" class="parallax-container">
-        <img class="parallax" src="{{ img|imagine_filter('entry_show') }}" alt="{{ tag.name }}"/>
+        <img class="parallax" src="{{ img|imagine_filter('post_show') }}" alt="{{ tag.name }}"/>
     </section>
 {% endblock %}
 
 {% block content %}
-    <section id="content" class="container entries-container">
+    <section id="content" class="container posts-container">
         <h1>{{ tag.name }}</h1>
 
         <article class="text-container text-center">
@@ -32,7 +32,7 @@
             {% endif %}
         </article>
 
-        <div class="entries" data-infinite-scroll="{{ path('tag_pagiante_ajax', {'slug': tag.slug}) }}" data-lightbox>
+        <div class="posts" data-infinite-scroll="{{ path('tag_pagiante_ajax', {'slug': tag.slug}) }}" data-lightbox>
             {{ render(controller('App\\Controller\\Frontend\\TagController::ajaxPaginate', {'slug': tag.slug, 'page': 1 })) }}
         </div>
     </section>

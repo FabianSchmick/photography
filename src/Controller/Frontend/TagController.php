@@ -3,9 +3,9 @@
 namespace App\Controller\Frontend;
 
 use App\Doctrine\PaginationHelper;
-use App\Entity\Entry;
+use App\Entity\Post;
 use App\Entity\Tag;
-use App\Repository\EntryRepository;
+use App\Repository\PostRepository;
 use App\Repository\TagRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TagController extends AbstractController
 {
     /**
-     * Filter entries by a tag.
+     * Filter posts by a tag.
      *
      * @Route("/tag/{slug}", name="tag_show")
      * @Entity("tag", expr="repository.findOneByCriteria(_locale, {'slug': slug})")
@@ -39,14 +39,14 @@ class TagController extends AbstractController
      * @Route("/ajax/tag/{slug}/{page}", name="tag_pagiante_ajax", requirements={"page": "\d+"}, condition="request.isXmlHttpRequest()")
      * @Entity("tag", expr="repository.findOneByCriteria(_locale, {'slug': slug})")
      */
-    public function ajaxPaginate(Tag $tag, EntryRepository $entryRepository, int $page = 1): Response
+    public function ajaxPaginate(Tag $tag, PostRepository $postRepository, int $page = 1): Response
     {
-        $query = $entryRepository->findEntriesByTagQuery($tag);
+        $query = $postRepository->findPostsByTagQuery($tag);
         $pages = PaginationHelper::getPagesCount($query);
-        $entries = PaginationHelper::paginate($query, Entry::PAGINATION_QUANTITY, $page);
+        $posts = PaginationHelper::paginate($query, Post::PAGINATION_QUANTITY, $page);
 
-        return $this->render('frontend/entry/ajax-list.html.twig', [
-            'entries' => $entries,
+        return $this->render('frontend/post/ajax-list.html.twig', [
+            'posts' => $posts,
             'page' => $page,
             'pages' => $pages,
         ]);

@@ -10,9 +10,9 @@ vich_uploader:
             directory_namer:
                 service: Vich\UploaderBundle\Naming\SubdirDirectoryNamer
                 options: { chars_per_dir: 1, dirs: 2 }
-        entry_image:
-            uri_prefix: '%upload_directory%/entries'
-            upload_destination: '%abs_upload_directory%/entries'
+        post_image:
+            uri_prefix: '%upload_directory%/posts'
+            upload_destination: '%abs_upload_directory%/posts'
             namer:
                 service: Vich\UploaderBundle\Naming\UniqidNamer
         tag_image:

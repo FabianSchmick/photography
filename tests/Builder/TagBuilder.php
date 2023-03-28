@@ -2,7 +2,7 @@
 
 namespace App\Tests\Builder;
 
-use App\Entity\Entry;
+use App\Entity\Post;
 use App\Entity\Tag;
 use Doctrine\Persistence\ObjectManager;
 
@@ -12,7 +12,7 @@ class TagBuilder
 
     private array $descriptions = [];
 
-    private ?Entry $previewEntry = null;
+    private ?Post $previewPost = null;
 
     private ?int $sort = null;
 
@@ -23,7 +23,7 @@ class TagBuilder
     public function create(): Tag
     {
         $tag = new Tag();
-        $tag->setPreviewEntry($this->previewEntry);
+        $tag->setPreviewPost($this->previewPost);
         $tag->setSort($this->sort);
         $tag->setName($this->names[array_key_first($this->names)] ?? 'Tag');
         $tag->setDescription($this->descriptions[array_key_first($this->descriptions)] ?? null);
@@ -66,9 +66,9 @@ class TagBuilder
         return $this;
     }
 
-    public function setPreviewEntry(?Entry $previewEntry): self
+    public function setPreviewPost(?Post $previewPost): self
     {
-        $this->previewEntry = $previewEntry;
+        $this->previewPost = $previewPost;
 
         return $this;
     }

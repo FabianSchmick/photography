@@ -8,51 +8,51 @@
     {% endif %}
 {% endblock %}
 
-{% set img = tour.previewEntry ? vich_uploader_asset(tour.previewEntry.image, 'file') : asset('assets/images/layout/cover-tour.jpg') %}
+{% set img = tour.previewPost ? vich_uploader_asset(tour.previewPost.image, 'file') : asset('assets/images/layout/cover-tour.jpg') %}
 {% block meta_image %}{{ absolute_url(img) }}{% endblock %}
 
 {% block title %}{{ 'header.tour'|trans }} - {{ tour.name }}{% endblock %}
 
 {% block cover %}
     <section id="cover">
-        {% if not tour.entries.empty and tour.entries.count > 1 %}
-            <div id="entry-carousel" class="carousel slide" data-bs-ride="carousel">
+        {% if not tour.posts.empty and tour.posts.count > 1 %}
+            <div id="post-carousel" class="carousel slide" data-bs-ride="carousel">
                 <ol class="carousel-indicators">
-                    {% for entry in tour.entries %}
-                        <li data-bs-target="#entry-carousel" data-bs-slide-to="{{ loop.index0 }}"
-                            style="background-image: url({{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_thumbnail') }})"
+                    {% for post in tour.posts %}
+                        <li data-bs-target="#post-carousel" data-bs-slide-to="{{ loop.index0 }}"
+                            style="background-image: url({{ vich_uploader_asset(post.image, 'file')|imagine_filter('post_thumbnail') }})"
                             {% if loop.first %}class="active" aria-current="true"{% endif %}>
                         </li>
                     {% endfor %}
                 </ol>
                 <div class="carousel-inner">
-                    {% for entry in tour.entries %}
+                    {% for post in tour.posts %}
                         <figure class="parallax-container carousel-item{% if loop.first %} active{% endif %}">
-                            <img class="parallax" src="{{ vich_uploader_asset(entry.image, 'file')|imagine_filter('entry_show') }}" alt="{{ entry.name }}"/>
+                            <img class="parallax" src="{{ vich_uploader_asset(post.image, 'file')|imagine_filter('post_show') }}" alt="{{ post.name }}"/>
                             <figcaption class="parallax-caption d-none d-md-block">
-                                <h4>{{ entry.name }}</h4>
-                                <p class="mb-0"><i>{{ entry.timestamp|date('d.m.Y') }} @ {{ entry.location }}</i></p>
+                                <h4>{{ post.name }}</h4>
+                                <p class="mb-0"><i>{{ post.timestamp|date('d.m.Y') }} @ {{ post.location }}</i></p>
                             </figcaption>
                         </figure>
                     {% endfor %}
                 </div>
                 <div class="carousel-controls">
-                    <button class="btn btn-primary me-2" data-bs-target="#entry-carousel" data-bs-slide="prev">
+                    <button class="btn btn-primary me-2" data-bs-target="#post-carousel" data-bs-slide="prev">
                         <span class="icon icon-angle" title="{{ 'btn.prev'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
                     </button>
-                    <button class="btn btn-primary" data-bs-target="#entry-carousel" data-bs-slide="next">
+                    <button class="btn btn-primary" data-bs-target="#post-carousel" data-bs-slide="next">
                         <span class="icon icon-angle icon-rotate-180" title="{{ 'btn.next'|trans }}"><svg><use xlink:href="#angle-icon"/></svg></span>
                     </button>
                 </div>
             </div>
         {% else %}
-            {% set entry = tour.previewEntry %}
+            {% set post = tour.previewPost %}
             <figure class="parallax-container mb-0">
-                <img class="parallax" src="{{ img|imagine_filter('entry_show') }}" alt="{{ entry.name|default(tour.name) }}"/>
-                {% if entry %}
+                <img class="parallax" src="{{ img|imagine_filter('post_show') }}" alt="{{ post.name|default(tour.name) }}"/>
+                {% if post %}
                     <figcaption class="parallax-caption d-none d-md-block">
-                        <h4>{{ entry.name }}</h4>
-                        <p class="mb-0"><i>{{ entry.timestamp|date('d.m.Y') }} @ {{ entry.location }}</i></p>
+                        <h4>{{ post.name }}</h4>
+                        <p class="mb-0"><i>{{ post.timestamp|date('d.m.Y') }} @ {{ post.location }}</i></p>
                     </figcaption>
                 {% endif %}
             </figure>
@@ -242,7 +242,7 @@
 
 {% block javascripts %}
     <script type="application/ld+json">
-        {{ jsonLd.blogPosting(tour, tour.previewEntry) }}
+        {{ jsonLd.blogPosting(tour, tour.previewPost) }}
     </script>
     <script type="application/ld+json">
         {{ jsonLd.sportsActivityLocation(tour) }}

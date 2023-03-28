@@ -49,15 +49,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
     private ?string $password = null;
 
     /**
-     * @ORM\OneToMany(targetEntity="Entry", mappedBy="author", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="author", cascade={"persist"})
      *
-     * @var Collection<Entry>
+     * @var Collection<Post>
      */
-    private Collection $entries;
+    private Collection $posts;
 
     public function __construct()
     {
-        $this->entries = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -141,9 +141,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, LegacyP
         return $this;
     }
 
-    public function getEntries(): Collection
+    public function getPosts(): Collection
     {
-        return $this->entries;
+        return $this->posts;
     }
 
     /**

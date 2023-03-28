@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Doctrine\PaginationHelper;
-use App\Entity\Entry;
 use App\Entity\File;
+use App\Entity\Post;
 use App\Entity\Tag;
 use App\Entity\Tour;
 use Doctrine\ORM\EntityManagerInterface;
@@ -92,14 +92,14 @@ class CoreController extends AbstractController
                 'priority' => '0.5',
             ];
 
-            $entries = $em->getRepository(Entry::class)->findAll();
+            $posts = $em->getRepository(Post::class)->findAll();
 
-            foreach ($entries as $entry) {
-                $entry->setTranslatableLocale($locale);
-                $em->refresh($entry);
+            foreach ($posts as $post) {
+                $post->setTranslatableLocale($locale);
+                $em->refresh($post);
 
                 $urls[] = [
-                    'loc' => $router->generate('entry_show', ['_locale' => $locale, 'slug' => $entry->getSlug()]),
+                    'loc' => $router->generate('post_show', ['_locale' => $locale, 'slug' => $post->getSlug()]),
                     'changefreq' => 'weekly',
                     'priority' => '0.5',
                 ];

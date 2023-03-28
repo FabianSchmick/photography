@@ -2,8 +2,8 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Entry;
 use App\Entity\Location;
+use App\Entity\Post;
 use App\Entity\Tag;
 use App\Entity\Tour;
 use App\Entity\TourCategory;
@@ -26,8 +26,8 @@ class AdminController extends AbstractController
      */
     public function index(): RedirectResponse
     {
-        // Till I don't know what to display here, redirect to new entry
-        return $this->redirect($this->generateUrl('admin_entry_new'));
+        // Till I don't know what to display here, redirect to new post
+        return $this->redirect($this->generateUrl('admin_post_new'));
 //        return $this->render('admin/index.html.twig', []);
     }
 
@@ -36,7 +36,7 @@ class AdminController extends AbstractController
      */
     public function renderSidebar(EntityManagerInterface $em): Response
     {
-        $entries = $em->getRepository(Entry::class)->findBy([], ['timestamp' => 'DESC']);
+        $posts = $em->getRepository(Post::class)->findBy([], ['timestamp' => 'DESC']);
         $user = $em->getRepository(User::class)->findBy([], ['fullname' => 'ASC']);
         $locations = $em->getRepository(Location::class)->findBy([], ['name' => 'ASC']);
         $tags = $em->getRepository(Tag::class)->findBy([], ['sort' => 'DESC']);
@@ -44,7 +44,7 @@ class AdminController extends AbstractController
         $tourCategories = $em->getRepository(TourCategory::class)->findBy([], ['sort' => 'DESC']);
 
         return $this->render('admin/inc/sidebar.html.twig', [
-            'entries' => $entries,
+            'posts' => $posts,
             'users' => $user,
             'locations' => $locations,
             'tags' => $tags,

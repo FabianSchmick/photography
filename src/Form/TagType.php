@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Entry;
+use App\Entity\Post;
 use App\Entity\Tag;
 use App\Form\Custom\PurifyTextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -28,11 +28,11 @@ class TagType extends AbstractType
             ])
         ;
 
-        if (!$tag->getEntries()->isEmpty()) {
-            $builder->add('previewEntry', EntityType::class, [
+        if (!$tag->getPosts()->isEmpty()) {
+            $builder->add('previewPost', EntityType::class, [
                 'required' => false,
-                'class' => Entry::class,
-                'choices' => $tag->getEntries(),
+                'class' => Post::class,
+                'choices' => $tag->getPosts(),
                 'placeholder' => '',
             ]);
         }

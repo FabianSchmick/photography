@@ -1,9 +1,9 @@
 import { navigationAddClassOn } from './navigation';
 
 /**
- * Class Entry with methods for index and show page
+ * Class Post with methods for index and show page
  */
-class Entry {
+class Post {
     constructor() {
         let $paginateContainer = $('[data-infinite-scroll]');
 
@@ -17,7 +17,7 @@ class Entry {
     }
 
     /**
-     * Lazy loads the entries
+     * Lazy loads the posts
      */
     initLazyLoad() {
         let $window = $(window);
@@ -30,7 +30,7 @@ class Entry {
     }
 
     /**
-     * Ajax function to get the next entries
+     * Ajax function to get the next posts
      *
      * @returns {*}
      */
@@ -60,10 +60,10 @@ class Entry {
     }
 
     /**
-     * Loads next or prev entry for entry detail page links
+     * Loads next or prev post for post detail page links
      */
     loadNextPrevEntry() {
-        let $entry = $('section#entry');
+        let $entry = $('section#post');
 
         $entry.on('click', 'a.prev, a.next', e => {
             this.loadEntry($(e.currentTarget).attr('href'), $entry);
@@ -105,7 +105,7 @@ class Entry {
                 $article = $entry.find('article');
 
             $article.fadeOut(300, () => {
-                $article.replaceWith($(html).find('section#entry article'));
+                $article.replaceWith($(html).find('section#post article'));
                 $entry.find('article').hide().fadeIn(300);
 
                 $entry.find('img').on('load', () => {
@@ -131,4 +131,4 @@ class Entry {
 }
 
 // Singleton pattern, so all vars have their correct state
-export default (new Entry);
+export default (new Post);

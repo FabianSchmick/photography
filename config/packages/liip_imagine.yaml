@@ -8,7 +8,7 @@ liip_imagine:
 
     filter_sets:
         cache: ~
-        entry_thumbnail:
+        post_thumbnail:
             filters:
                 auto_rotate: ~
                 relative_resize:
@@ -16,7 +16,7 @@ liip_imagine:
             post_processors:
                 jpegoptim: { strip_all: true, max: '%jpeg_quality%', progressive: true }
                 optipng: { strip_all: true, level: '%png_level%' }
-        low_entry_thumbnail:
+        low_post_thumbnail:
             filters:
                 auto_rotate: ~
                 relative_resize:
@@ -25,7 +25,7 @@ liip_imagine:
             post_processors:
                 jpegoptim: { strip_all: true, max: 25, progressive: true }
                 optipng: { strip_all: true, level: '%png_level%' }
-        entry_show:
+        post_show:
             filters:
                 auto_rotate: ~
                 relative_resize:

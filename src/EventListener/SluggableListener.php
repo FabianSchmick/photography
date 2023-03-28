@@ -2,7 +2,7 @@
 
 namespace App\EventListener;
 
-use App\Entity\Entry;
+use App\Entity\Post;
 use Gedmo\Sluggable\SluggableListener as GedmoSluggableListener;
 use Gedmo\Sluggable\Util\Urlizer;
 
@@ -14,11 +14,11 @@ class SluggableListener extends GedmoSluggableListener
     }
 
     /**
-     * Add the unique ID for Entries as a prefix.
+     * Add the unique ID for Posts as a prefix.
      */
     public static function transliterate(string $text, string $separator, $objectBeingSlugged): string
     {
-        if ($objectBeingSlugged instanceof Entry) {
+        if ($objectBeingSlugged instanceof Post) {
             $text = $text.$separator.substr($objectBeingSlugged->getId(), 0, 4);
         }
 
