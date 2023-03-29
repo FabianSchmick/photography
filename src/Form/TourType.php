@@ -39,6 +39,7 @@ class TourType extends AbstractType
             ->add('file', TourFileType::class, [
                 'required' => !$tour->getFile(),
                 'placeholder_text' => $tour->getFile() ? $tour->getFile()->getOriginalName() : 'label.no_file_selected',
+                'label_attr' => ['class' => 'required'],
             ])
             ->add('description', PurifyTextareaType::class, [
                 'required' => false,

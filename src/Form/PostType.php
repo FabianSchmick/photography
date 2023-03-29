@@ -37,6 +37,7 @@ class PostType extends AbstractType
             ->add('image', PostImageType::class, [
                 'required' => !$post->getImage(),
                 'placeholder_text' => $post->getImage() ? $post->getImage()->getOriginalName() : 'label.no_file_selected',
+                'label_attr' => ['class' => 'required'],
             ])
             ->add('description', PurifyTextareaType::class, [
                 'required' => false,

@@ -7,7 +7,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
@@ -35,7 +34,6 @@ class PostImageType extends AbstractType
                     new File([
                         'mimeTypes' => self::ALLOWED_MIME_TYPES,
                     ]),
-                    new NotBlank(),
                 ],
                 'attr' => [
                     'placeholder' => $this->translator->trans($options['placeholder_text']),
