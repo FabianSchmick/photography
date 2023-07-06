@@ -124,9 +124,9 @@
 
             <h2 class="h4 pt-3">{{ 'privacy.third.head'|trans }}</h2>
 
-            <strong>{{ 'privacy.third.cookies.head'|trans }}</strong>
+            <strong>{{ 'privacy.fourth.server.head'|trans }}</strong>
             <p>
-                {{ 'privacy.third.cookies.text'|trans|raw }}
+                {{ 'privacy.fourth.server.text'|trans|raw }}
             </p>
 
 {#            <strong>{{ 'privacy.third.contact.head'|trans }}</strong>#}
@@ -136,16 +136,12 @@
 
             <h2 class="h4 pt-3">{{ 'privacy.fourth.head'|trans }}</h2>
 
-            {# No longer used, comment in if used again #}
-{#            <strong>{{ 'privacy.fourth.google.fonts.head'|trans }}</strong>#}
-{#            <p>#}
-{#                {{ 'privacy.fourth.google.fonts.text'|trans|raw }}#}
-{#            </p>#}
+            {% if matomo_host and matomo_site_id %}
+                {% set matomo_opt_out_link = matomo_host~'index.php?module=CoreAdminHome&action=optOut&language='~app.request.locale %}
 
-            {% if ga_property %}
-                <strong>{{ 'privacy.fourth.google.analytics.head'|trans }}</strong>
+                <strong>{{ 'privacy.fourth.matomo.head'|trans }}</strong>
                 <p>
-                    {{ 'privacy.fourth.google.analytics.text'|trans|raw }}
+                    {{ 'privacy.fourth.matomo.text'|trans({'%matomo_opt_out_link%': matomo_opt_out_link})|raw }}
                 </p>
             {% endif %}
 

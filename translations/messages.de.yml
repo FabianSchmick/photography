@@ -326,34 +326,36 @@ privacy.second.limit.text: |
   juristischen Person oder aus Gründen eines wichtigen öffentlichen Interesses der Europäischen Union oder
   eines Mitgliedstaats verarbeitet werden.
 privacy.third.head: 3. Datenerfassung auf dieser Website
-privacy.third.cookies.head: Cookies
-privacy.third.cookies.text: |
-  Unsere Internetseiten verwenden so genannte „Cookies“. Cookies sind kleine Textdateien und richten auf
-  Ihrem Endgerät keinen Schaden an. Sie werden entweder vorübergehend für die Dauer einer Sitzung
-  (Session-Cookies) oder dauerhaft (permanente Cookies) auf Ihrem Endgerät gespeichert. Session-Cookies
-  werden nach Ende Ihres Besuchs automatisch gelöscht. Permanente Cookies bleiben auf Ihrem Endgerät
-  gespeichert, bis Sie diese selbst löschen oder eine automatische Löschung durch Ihren Webbrowser erfolgt.<br/>
-  Teilweise können auch Cookies von Drittunternehmen auf Ihrem Endgerät gespeichert werden, wenn Sie
-  unsere Seite betreten (Third-Party-Cookies). Diese ermöglichen uns oder Ihnen die Nutzung bestimmter
-  Dienstleistungen des Drittunternehmens (z.B. Cookies zur Abwicklung von Zahlungsdienstleistungen).<br/>
-  Cookies haben verschiedene Funktionen. Zahlreiche Cookies sind technisch notwendig, da bestimmte
-  Webseitenfunktionen ohne diese nicht funktionieren würden (z.B. die Warenkorbfunktion oder die Anzeige
-  von Videos). Andere Cookies dienen dazu, das Nutzerverhalten auszuwerten oder Werbung anzuzeigen.<br/>
-  Cookies, die zur Durchführung des elektronischen Kommunikationsvorgangs (notwendige Cookies) oder zur
-  Bereitstellung bestimmter, von Ihnen erwünschter Funktionen (funktionale Cookies, z. B. für die
-  Warenkorbfunktion) oder zur Optimierung der Webseite (z.B. Cookies zur Messung des Webpublikums)
-  erforderlich sind, werden auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO gespeichert, sofern keine andere
-  Rechtsgrundlage angegeben wird. Der Websitebetreiber hat ein berechtigtes Interesse an der Speicherung
-  von Cookies zur technisch fehlerfreien und optimierten Bereitstellung seiner Dienste. Sofern eine
-  Einwilligung zur Speicherung von Cookies abgefragt wurde, erfolgt die Speicherung der betreffenden
-  Cookies ausschließlich auf Grundlage dieser Einwilligung (Art. 6 Abs. 1 lit. a DSGVO); die Einwilligung ist
-  jederzeit widerrufbar.<br/>
-  Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und
-  Cookies nur im Einzelfall erlauben, die Annahme von Cookies für bestimmte Fälle oder generell ausschließen
-  sowie das automatische Löschen der Cookies beim Schließen des Browsers aktivieren. Bei der
-  Deaktivierung von Cookies kann die Funktionalität dieser Website eingeschränkt sein.<br/>
-  Soweit Cookies von Drittunternehmen oder zu Analysezwecken eingesetzt werden, werden wir Sie hierüber
-  im Rahmen dieser Datenschutzerklärung gesondert informieren und ggf. eine Einwilligung abfragen.
+privacy.fourth.server.head: Server Protokoll
+privacy.fourth.server.text: |
+  Wenn Sie diese Webseite verwenden, wird der Aufruf vom Host der Webseite (dataforest GmbH, Taunusstraße 52, 65830 Kriftel) aufgezeichnet. 
+  Dieses Log enthält Ihre IP-Adresse, welche Sie indirekt über Ihren Internetanbieter identifiziert. 
+  Die Aufzeichnung dieser Daten ist gesetzlich verpflichtend und für die Sicherheit notwendig. 
+  Es gibt keine Möglichkeit zum Opt-Out, die Daten werden aber niemals für andere Zwecke verwendet.<br/>
+  Im Server Protokoll finden sich unter anderem folgende Daten:<br/>
+  <ul>
+      <li>
+          IP-Adresse
+      </li>
+      <li>
+          Datum und Uhrzeit
+      </li>
+      <li>
+          Domain-Name der Webseite, von der Sie kamen
+      </li>
+      <li>
+          URL der aufgerufenen Seite
+      </li>
+      <li>
+          Name Ihres Internet Service Providers
+      </li>
+      <li>
+          Betriebssystem und Browserversion
+      </li>
+      <li>
+          Dateien die angeklickt und heruntergeladen wurden
+      </li>
+    </ul>
 privacy.third.contact.head: Kontaktformular
 privacy.third.contact.text: |
   Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem
@@ -370,27 +372,58 @@ privacy.third.contact.text: |
   (z. B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen –
   insbesondere Aufbewahrungsfristen – bleiben unberührt.
 privacy.fourth.head: 4. Plugins und Tools
-privacy.fourth.google.fonts.head: Google Web Fonts
-privacy.fourth.google.fonts.text: |
-  Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Web Fonts, die von Google
-  bereitgestellt werden. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Web Fonts in ihren
-  Browsercache, um Texte und Schriftarten korrekt anzuzeigen.<br/>
-  Zu diesem Zweck muss der von Ihnen verwendete Browser Verbindung zu den Servern von Google
-  aufnehmen. Hierdurch erlangt Google Kenntnis darüber, dass über Ihre IP-Adresse diese Website
-  aufgerufen wurde. Die Nutzung von Google WebFonts erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.
-  Der Webseitenbetreiber hat ein berechtigtes Interesse an der einheitlichen Darstellung des Schriftbildes auf
-  seiner Webseite. Sofern eine entsprechende Einwilligung abgefragt wurde (z. B. eine Einwilligung zur
-  Speicherung von Cookies), erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a
-  DSGVO; die Einwilligung ist jederzeit widerrufbar.<br/>
-  Wenn Ihr Browser Web Fonts nicht unterstützt, wird eine Standardschrift von Ihrem Computer genutzt.<br/>
-  Weitere Informationen zu Google Web Fonts finden Sie unter
-  <a href="https://developers.google.com/fonts/faq" target="_blank">https://developers.google.com/fonts/faq</a> und in der Datenschutzerklärung von Google:
-  <a href="https://policies.google.com/privacy?hl=de" target="_blank">https://policies.google.com/privacy?hl=de</a>.
-privacy.fourth.google.analytics.head: Google Analytics
-privacy.fourth.google.analytics.text: |
-  Unsere Internetseite verwendet den Analysedienst Google Analytics. Dieser Webanalysedienst wird von der Google Inc., 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA (im Folgenden kurz: Google) betrieben. Wir verwenden Google Analytics, um Ihre Nutzung unserer Website auszuwerten und um Berichte über Nutzeraktivitäten zusammenzustellen. In diesen Zwecken liegt auch unser berechtigtes Interesse an der Datenverarbeitung. Die Rechtsgrundlage für den Einsatz von Google Analytics ist § 15 Abs. 3 TMG bzw. Art. 6 Abs. 1 lit. f DSGVO. Dieses Analysetool funktioniert auf Grundlage von Cookies. Ein Cookie ist eine Textdatei, die beim Besuch einer Internetseite verschickt und auf der Festplatte des Nutzers der Website zwischengespeichert wird um eine Analyse der Benutzung der Webseite durch Sie zu ermöglichen. Die durch den Cookie gespeicherten Informationen werden in der Regel an einen Server von Google in den USA übertragen und dort dann gespeichert. Im Rahmen der IP-Anonymisierung wird Ihre IP-Adresse von Google innerhalb eines Mitgliedsstaates der EU oder einem anderen Vertragsstaat des Abkommens über den europäischen Wirtschaftsraum zuvor gekürzt. In unserem Auftrag wird Google die übertragenen Informationen nutzen, um einen Report über die Nutzung der Webseite zu erstellen. Wir haben mit Google einen Vertrag zur Auftragsverarbeitung geschlossen. Die im Rahmen von Google Analytics übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt. Wenn Sie die Nutzung von Cookies unterbinden möchten, können Sie dies durch lokale Vornahme der Änderungen Ihrer Einstellungen in dem auf Ihrem Computer verwendeten Internetbrowser (z.B. Safari, Internet Explorer, Opera, Firefox etc.), also dem Programm zum Öffnen und Anzeigen von Internetseiten tun. Ferner können Sie die Erfassung und Verarbeitung Ihrer Daten durch den Cookie von Google, verhindern indem Sie ein unter dem folgenden Link von Google angebotenes Browser-Plugin herunterladen und installieren: <a href="http://tools.google.com/dlpage/gaoptout?hl=de" target="_blank">http://tools.google.com/dlpage/gaoptout?hl=de</a>.<br/>
-  Sie können die Erfassung durch Google Analytics verhindern, indem Sie auf den nachfolgenden Link klicken. Dann wird ein sogenanntes Opt-Out-Cookie gesetzt, welches die zukünftige Erfassung Ihrer Daten beim Besuch dieser Webseite verhindert: <a href="#" class="gaOptOut">Google Analytics deaktivieren</a>.<br/>
-  Weitere Informationen zu den Nutzungsbedingungen und zum Datenschutz von Google und Google Analytics finden Sie unter <a href="http://www.google.com/analytics/terms/de.html" target="_blank">http://www.google.com/analytics/terms/de.html</a> sowie unter <a href="https://www.google.de/intl/de/policies/" target="_blank">https://www.google.de/intl/de/policies/</a>. Wir weisen darauf hin, dass Google Analytics um die Erweiterung „anonymizeIp“ ergänzt wurde. Damit wird anonymisierte Erfassung von IP-Adressen gewährleistet.
+privacy.fourth.matomo.head: Matomo (ehemals Piwik)
+privacy.fourth.matomo.text: |
+  Unsere Internetseite verwendet den Analysedienst <a href="https://matomo.org/" target="_blank">Matomo</a>, eine Open Source, selbstgehostete Software um anonyme Nutzungsdaten für diese Webseite zu sammeln.<br/>
+  Die Daten zum Verhalten der Besucher werden gesammelt um eventuelle Probleme wie nicht gefundene Seiten, Suchmaschinenprobleme oder unbeliebte Seiten herauszufinden. 
+  Sobald die Daten (Anzahl der Besucher die Fehlerseiten oder nur eine Seite sehen, usw.) verarbeitet werden, erzeugt Matomo Berichte für die Webseitenbetreiber, 
+  damit diese darauf reagieren können. (Layoutveränderungen, neue Inhalte, usw.)<br/><br/>
+  Matomo verarbeitet die folgenden Daten:<br/>
+  <ul>
+    <li>
+        Anonymisierte IP-Adressen indem die letzten 2 bytes entfernt werden (also 198.51.0.0 anstatt 198.51.100.54)
+    </li>
+    <li>
+        Pseudoanonymisierter Standort (basierend auf der anonymisierten IP-Adresse)
+    </li>
+    <li>
+        Datum und Uhrzeit
+    </li>
+    <li>
+        Titel der aufgerufenen Seite
+    </li>
+    <li>
+        URL der aufgerufenen Seite
+    </li>
+    <li>
+        URL der vorhergehenden Seite (sofern diese das erlaubt)
+    </li>
+    <li>
+        Bildschirmauflösung
+    </li>
+    <li>
+        Lokale Zeit
+    </li>
+    <li>
+        Dateien die angeklickt und heruntergeladen wurden
+    </li>
+    <li>
+        Externe Links
+    </li>
+    <li>
+        Dauer des Seitenaufbaus
+    </li>
+    <li>
+        Land, Region, Stadt (mit niedriger Genauigkeit aufgrund von IP-Adresse)
+    </li>
+    <li>
+        Hauptsprache des Browsers
+    </li>
+    <li>
+        User Agent des Browsers
+    </li>
+  </ul>
+  <iframe frameborder="no" width="500px" height="250px" src="%matomo_opt_out_link%"></iframe>
 privacy.fourth.osm.head: OpenStreetMap | Thunderforest
 privacy.fourth.osm.text: |
   Wir nutzen den Kartendienst von OpenStreetMap (OSM) und Thunderforest. Anbieterin ist die Open-Street-Map Foundation
