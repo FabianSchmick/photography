@@ -4,7 +4,8 @@ twig:
         - 'templates/form/theme.html.twig'
     globals:
         locales: '%app.locales%'
-        ga_property: '%env(string:GOOGLE_ANALYTICS_PROPERTY)%'
+        matomo_host: '%env(string:MATOMO_HOST)%'
+        matomo_site_id: '%env(string:MATOMO_SITE_ID)%'
         thunderforest_tiles_api_key: '%env(string:THUNDERFOREST_TILES_API_KEY)%'
 
 when@test:
