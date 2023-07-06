@@ -137,9 +137,11 @@
             <h2 class="h4 pt-3">{{ 'privacy.fourth.head'|trans }}</h2>
 
             {% if matomo_host and matomo_site_id %}
+                {% set matomo_opt_out_link = matomo_host~'index.php?module=CoreAdminHome&action=optOut&language='~app.request.locale %}
+
                 <strong>{{ 'privacy.fourth.matomo.head'|trans }}</strong>
                 <p>
-                    {{ 'privacy.fourth.matomo.text'|trans|raw }}
+                    {{ 'privacy.fourth.matomo.text'|trans({'%matomo_opt_out_link%': matomo_opt_out_link})|raw }}
                 </p>
             {% endif %}
 

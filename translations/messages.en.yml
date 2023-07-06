@@ -334,28 +334,29 @@ privacy.fourth.server.text: |
   Es gibt keine Möglichkeit zum Opt-Out, die Daten werden aber niemals für andere Zwecke verwendet.<br/>
   Im Server Protokoll finden sich unter anderem folgende Daten:<br/>
   <ul>
-      <li>
-          IP-Adresse
-      </li>
-      <li>
-          Datum und Uhrzeit
-      </li>
-      <li>
-          Domain-Name der Webseite, von der Sie kamen
-      </li>
-      <li>
-          URL der aufgerufenen Seite
-      </li>
-      <li>
-          Name Ihres Internet Service Providers
-      </li>
-      <li>
-          Betriebssystem und Browserversion
-      </li>
-      <li>
-          Dateien die angeklickt und heruntergeladen wurden
-      </li>
-    </ul>
+    <li>
+        IP-Adresse
+    </li>
+    <li>
+        Datum und Uhrzeit
+    </li>
+    <li>
+        Domain-Name der Webseite, von der Sie kamen
+    </li>
+    <li>
+        URL der aufgerufenen Seite
+    </li>
+    <li>
+        Name Ihres Internet Service Providers
+    </li>
+    <li>
+        Betriebssystem und Browserversion
+    </li>
+    <li>
+        Dateien die angeklickt und heruntergeladen wurden
+    </li>
+  </ul>
+  <iframe frameborder="no" width="500px" height="250px" src="%matomo_opt_out_link%"></iframe>
 privacy.third.contact.head: Kontaktformular
 privacy.third.contact.text: |
   Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem
